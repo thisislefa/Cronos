@@ -1,0 +1,956 @@
+<style>
+/* AWS Migration Service Page Styles - Unique to prevent conflicts */
+.defcon-aws-section {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.defcon-aws-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.defcon-aws-hero {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-aws-hero::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background-color: #0091ff;
+    opacity: 0.1;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.defcon-aws-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: #06273e;
+    opacity: 0.05;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.defcon-aws-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.defcon-aws-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #06273e;
+    position: relative;
+    display: inline-block;
+}
+
+.defcon-aws-hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+}
+
+.defcon-aws-hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    color: #06273e;
+}
+
+.defcon-aws-hero-cta {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-aws-hero-cta:hover {
+    background-color: #0077cc;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-aws-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-aws-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #0091ff;
+}
+
+.defcon-aws-features {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.defcon-aws-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.defcon-aws-feature-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.defcon-aws-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-aws-feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background-color: #0091ff;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.defcon-aws-feature-card:hover::before {
+    height: 100%;
+}
+
+.defcon-aws-feature-icon {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+}
+
+.defcon-aws-feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.defcon-aws-feature-desc {
+    color: #555;
+}
+
+.defcon-aws-packages {
+    padding: 80px 0;
+}
+
+.defcon-aws-packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.defcon-aws-package-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 40px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid #e5e5e5;
+}
+
+.defcon-aws-package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: #0091ff;
+}
+
+.defcon-aws-package-card.popular {
+    border: 2px solid #0091ff;
+    position: relative;
+}
+
+.defcon-aws-package-card.popular::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.defcon-aws-package-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #06273e;
+    text-align: center;
+}
+
+.defcon-aws-package-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0091ff;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.defcon-aws-package-price span {
+    font-size: 1rem;
+    color: #555;
+}
+
+.defcon-aws-package-features {
+    margin-bottom: 30px;
+}
+
+.defcon-aws-package-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.defcon-aws-package-feature i {
+    color: #0091ff;
+    margin-right: 10px;
+}
+
+.defcon-aws-package-cta {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.defcon-aws-package-cta:hover {
+    background-color: #0077cc;
+}
+
+.defcon-aws-process {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.defcon-aws-process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    position: relative;
+}
+
+.defcon-aws-process-steps::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #e5e5e5;
+    z-index: 1;
+}
+
+.defcon-aws-process-step {
+    width: calc(20% - 20px);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.defcon-aws-process-step-number {
+    width: 80px;
+    height: 80px;
+    background-color: #0091ff;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-aws-process-step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #06273e;
+}
+
+.defcon-aws-process-step-desc {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.defcon-aws-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: #ffffff;
+    text-align: center;
+}
+
+.defcon-aws-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.defcon-aws-cta-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.defcon-aws-cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    color: #0091ff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-aws-cta-button:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Styles */
+.defcon-aws-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.defcon-aws-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.defcon-aws-modal-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    transform: translateY(-50px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.defcon-aws-modal.active .defcon-aws-modal-content {
+    transform: translateY(0);
+}
+
+.defcon-aws-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.defcon-aws-modal-close:hover {
+    color: #0091ff;
+}
+
+.defcon-aws-modal-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #06273e;
+}
+
+.defcon-aws-form-group {
+    margin-bottom: 20px;
+}
+
+.defcon-aws-form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #06273e;
+}
+
+.defcon-aws-form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.defcon-aws-form-input:focus {
+    border-color: #0091ff;
+    outline: none;
+}
+
+.defcon-aws-form-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.defcon-aws-form-submit:hover {
+    background-color: #0077cc;
+}
+
+/* Animations */
+@keyframes defcon-aws-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes defcon-aws-slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.defcon-aws-animate {
+    opacity: 0;
+}
+
+.defcon-aws-animate-fade {
+    animation: defcon-aws-fadeIn 1s ease forwards;
+}
+
+.defcon-aws-animate-slide {
+    animation: defcon-aws-slideUp 0.8s ease forwards;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .defcon-aws-hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .defcon-aws-hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .defcon-aws-process-step {
+        width: calc(33.33% - 20px);
+    }
+    
+    .defcon-aws-process-steps::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .defcon-aws-hero {
+        padding: 60px 0;
+    }
+    
+    .defcon-aws-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .defcon-aws-section-title {
+        font-size: 2rem;
+    }
+    
+    .defcon-aws-process-step {
+        width: calc(50% - 20px);
+    }
+    
+    .defcon-aws-packages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .defcon-aws-features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .defcon-aws-hero {
+        padding: 40px 0;
+    }
+    
+    .defcon-aws-hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .defcon-aws-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .defcon-aws-process-step {
+        width: 100%;
+    }
+    
+    .defcon-aws-process-step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<!-- AWS Migration Service Page Content -->
+<section class="defcon-aws-section">
+    <!-- Hero Section -->
+    <div class="defcon-aws-hero">
+        <div class="defcon-aws-container">
+            <div class="defcon-aws-hero-content">
+                <h1 class="defcon-aws-hero-title defcon-aws-animate defcon-aws-animate-slide">AWS Migration Services</h1>
+                <p class="defcon-aws-hero-subtitle defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.2s">
+                    Seamlessly transition your infrastructure to AWS with our expert migration services. Minimize downtime, maximize performance, and unlock the full potential of cloud computing.
+                </p>
+                <a href="#defcon-aws-packages" class="defcon-aws-hero-cta defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.4s">View Packages</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="defcon-aws-features">
+        <div class="defcon-aws-container">
+            <h2 class="defcon-aws-section-title defcon-aws-animate defcon-aws-animate-fade">Our AWS Migration Expertise</h2>
+            
+            <div class="defcon-aws-features-grid">
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.1s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Lift & Shift Migration</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Quickly move your existing applications to AWS with minimal changes, reducing costs while maintaining current functionality.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.2s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Replatforming</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Optimize your applications for the cloud by making targeted cloud-friendly improvements during migration.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.3s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Refactoring</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Modernize your applications by rearchitecting them to take full advantage of cloud-native AWS services.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.4s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Database Migration</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Specialized migration of SQL, NoSQL, and data warehouse solutions to AWS database services with zero downtime.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.5s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Security & Compliance</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Ensure your migrated workloads meet industry security standards and compliance requirements.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-feature-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.6s">
+                    <div class="defcon-aws-feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="defcon-aws-feature-title">Performance Optimization</h3>
+                    <p class="defcon-aws-feature-desc">
+                        Fine-tune your AWS environment for maximum performance and cost-efficiency post-migration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="defcon-aws-packages" id="defcon-aws-packages">
+        <div class="defcon-aws-container">
+            <h2 class="defcon-aws-section-title defcon-aws-animate defcon-aws-animate-fade">Migration Packages</h2>
+            <p class="defcon-aws-section-subtitle" style="text-align: center; margin-bottom: 50px; color: #555;">
+                Choose the package that fits your migration needs. All packages include post-migration support and optimization.
+            </p>
+            
+            <div class="defcon-aws-packages-grid">
+                <div class="defcon-aws-package-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.1s">
+                    <h3 class="defcon-aws-package-title">Starter Migration</h3>
+                    <div class="defcon-aws-package-price">$5,000 <span>/ one-time</span></div>
+                    <div class="defcon-aws-package-features">
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Up to 5 servers
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Basic security configuration
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> 1 TB data transfer
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> 2 weeks support
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-aws-package-cta defcon-aws-open-modal" data-modal="defcon-aws-modal-consult">Get Started</a>
+                </div>
+                
+                <div class="defcon-aws-package-card popular defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.2s">
+                    <h3 class="defcon-aws-package-title">Business Migration</h3>
+                    <div class="defcon-aws-package-price">$15,000 <span>/ one-time</span></div>
+                    <div class="defcon-aws-package-features">
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Up to 20 servers
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Advanced security & compliance
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> 5 TB data transfer
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Load balancing setup
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> 1 month support
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-aws-package-cta defcon-aws-open-modal" data-modal="defcon-aws-modal-consult">Get Started</a>
+                </div>
+                
+                <div class="defcon-aws-package-card defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.3s">
+                    <h3 class="defcon-aws-package-title">Enterprise Migration</h3>
+                    <div class="defcon-aws-package-price">$35,000+ <span>/ one-time</span></div>
+                    <div class="defcon-aws-package-features">
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Unlimited servers
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Enterprise-grade security
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Custom data transfer
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> High availability setup
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> Disaster recovery
+                        </div>
+                        <div class="defcon-aws-package-feature">
+                            <i class="fas fa-check"></i> 3 months support
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-aws-package-cta defcon-aws-open-modal" data-modal="defcon-aws-modal-consult">Get Started</a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 40px; color: #555;">
+                Need a custom solution? <a href="#" class="defcon-aws-open-modal" data-modal="defcon-aws-modal-consult" style="color: #0091ff; text-decoration: none;">Contact us</a> for a tailored migration plan.
+            </p>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="defcon-aws-process">
+        <div class="defcon-aws-container">
+            <h2 class="defcon-aws-section-title defcon-aws-animate defcon-aws-animate-fade">Our Migration Process</h2>
+            
+            <div class="defcon-aws-process-steps">
+                <div class="defcon-aws-process-step defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.1s">
+                    <div class="defcon-aws-process-step-number">1</div>
+                    <h3 class="defcon-aws-process-step-title">Assessment</h3>
+                    <p class="defcon-aws-process-step-desc">
+                        Comprehensive analysis of your current infrastructure and workloads.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-process-step defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.2s">
+                    <div class="defcon-aws-process-step-number">2</div>
+                    <h3 class="defcon-aws-process-step-title">Planning</h3>
+                    <p class="defcon-aws-process-step-desc">
+                        Custom migration strategy with timeline and cost estimation.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-process-step defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.3s">
+                    <div class="defcon-aws-process-step-number">3</div>
+                    <h3 class="defcon-aws-process-step-title">Proof of Concept</h3>
+                    <p class="defcon-aws-process-step-desc">
+                        Small-scale migration to validate the approach.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-process-step defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.4s">
+                    <div class="defcon-aws-process-step-number">4</div>
+                    <h3 class="defcon-aws-process-step-title">Migration</h3>
+                    <p class="defcon-aws-process-step-desc">
+                        Execution of the full migration with minimal downtime.
+                    </p>
+                </div>
+                
+                <div class="defcon-aws-process-step defcon-aws-animate defcon-aws-animate-slide" style="animation-delay: 0.5s">
+                    <div class="defcon-aws-process-step-number">5</div>
+                    <h3 class="defcon-aws-process-step-title">Optimization</h3>
+                    <p class="defcon-aws-process-step-desc">
+                        Performance tuning and cost optimization post-migration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="defcon-aws-cta">
+        <div class="defcon-aws-container">
+            <h2 class="defcon-aws-cta-title defcon-aws-animate defcon-aws-animate-fade">Ready to Migrate to AWS?</h2>
+            <p class="defcon-aws-cta-subtitle defcon-aws-animate defcon-aws-animate-fade" style="animation-delay: 0.2s">
+                Our AWS certified experts will guide you through every step of the migration process to ensure a smooth transition to the cloud.
+            </p>
+            <a href="#" class="defcon-aws-cta-button defcon-aws-animate defcon-aws-animate-slide defcon-aws-open-modal" data-modal="defcon-aws-modal-consult" style="animation-delay: 0.4s">Schedule Free Consultation</a>
+        </div>
+    </section>
+</section>
+
+<!-- Consultation Modal -->
+<div class="defcon-aws-modal" id="defcon-aws-modal-consult">
+    <div class="defcon-aws-modal-content">
+        <span class="defcon-aws-modal-close">&times;</span>
+        <h3 class="defcon-aws-modal-title">Schedule AWS Migration Consultation</h3>
+        <form class="defcon-aws-consult-form">
+            <div class="defcon-aws-form-group">
+                <label class="defcon-aws-form-label" for="defcon-aws-consult-name">Full Name</label>
+                <input type="text" class="defcon-aws-form-input" id="defcon-aws-consult-name" required>
+            </div>
+            
+            <div class="defcon-aws-form-group">
+                <label class="defcon-aws-form-label" for="defcon-aws-consult-email">Email</label>
+                <input type="email" class="defcon-aws-form-input" id="defcon-aws-consult-email" required>
+            </div>
+            
+            <div class="defcon-aws-form-group">
+                <label class="defcon-aws-form-label" for="defcon-aws-consult-phone">Phone</label>
+                <input type="tel" class="defcon-aws-form-input" id="defcon-aws-consult-phone">
+            </div>
+            
+            <div class="defcon-aws-form-group">
+                <label class="defcon-aws-form-label" for="defcon-aws-consult-company">Company</label>
+                <input type="text" class="defcon-aws-form-input" id="defcon-aws-consult-company">
+            </div>
+            
+            <div class="defcon-aws-form-group">
+                <label class="defcon-aws-form-label" for="defcon-aws-consult-message">Your Migration Needs</label>
+                <textarea class="defcon-aws-form-input" id="defcon-aws-consult-message" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="defcon-aws-form-submit">Request Consultation</button>
+        </form>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="defcon-aws-modal" id="defcon-aws-modal-success">
+    <div class="defcon-aws-modal-content">
+        <span class="defcon-aws-modal-close">&times;</span>
+        <div style="text-align: center; padding: 30px;">
+            <div style="font-size: 4rem; color: #0091ff; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="defcon-aws-modal-title">Thank You!</h3>
+            <p>Your consultation request has been submitted. Our AWS migration specialist will contact you within 24 hours to schedule your session.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize animations when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Add animation classes to elements when they come into view
+    const animateElements = document.querySelectorAll('.defcon-aws-animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const animationType = element.classList.contains('defcon-aws-animate-fade') ? 'defcon-aws-animate-fade' : 'defcon-aws-animate-slide';
+                element.style.animationName = animationType === 'defcon-aws-animate-fade' ? 'defcon-aws-fadeIn' : 'defcon-aws-slideUp';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Modal functionality
+    const openModalButtons = document.querySelectorAll('.defcon-aws-open-modal');
+    const closeModalButtons = document.querySelectorAll('.defcon-aws-modal-close');
+    const modals = document.querySelectorAll('.defcon-aws-modal');
+    
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.defcon-aws-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Form submission
+    const consultForm = document.querySelector('.defcon-aws-consult-form');
+    if (consultForm) {
+        consultForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For demo purposes, we'll just show the success modal
+            
+            // Close the consultation modal
+            document.getElementById('defcon-aws-modal-consult').classList.remove('active');
+            
+            // Show success modal
+            document.getElementById('defcon-aws-modal-success').classList.add('active');
+            
+            // Reset form
+            this.reset();
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+// Load Font Awesome if not already loaded
+if (!document.querySelector('link[href*="font-awesome"]')) {
+    const faLink = document.createElement('link');
+    faLink.rel = 'stylesheet';
+    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+    document.head.appendChild(faLink);
+}
+</script>

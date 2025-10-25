@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEF CON About Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to precisely match the new image and theme */
+        .dc-about-body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .dc-about-heading {
+            font-weight: 800;
+            font-size: 3.5rem; /* Font size from the image */
+            color: #0d2a3a; /* Dark teal/blue from the image */
+            line-height: 1.2;
+        }
+        .dc-about-subheading {
+            color: #5f6c7b; /* Muted gray for the subheading */
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+        .dc-about-text {
+            color: #3a4a5b; /* Standard text color */
+        }
+        .dc-about-list-item {
+            color: #0d2a3a;
+            font-weight: 500;
+        }
+        /* Style for positioning the overlapping image */
+        .dc-about-image-container {
+            position: relative;
+        }
+        .dc-about-image-overlap {
+            position: absolute;
+            bottom: -10%; /* Overlap effect */
+            right: -10%;
+            width: 50%; /* Smaller image size */
+            border: 6px solid white; /* Border to separate images */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dc-about-heading {
+                font-size: 2.5rem;
+            }
+            .dc-about-image-overlap {
+                bottom: -5%;
+                right: -5%;
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+<body class="dc-about-body">
+
+    <defcon-about-component class="dc-about-component-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Left Column: Images -->
+                <div class="dc-about-image-container pr-8 pb-8 md:pr-12 md:pb-12">
+                    <img src="https://placehold.co/800x600/3b82f6/ffffff?text=DEF+CON+Venue" alt="DEF CON Conference Venue" class="rounded-2xl shadow-xl w-full h-auto object-cover">
+                    <img src="https://placehold.co/400x400/1a1a1a/d93737?text=Hackers" alt="Hackers at DEF CON" class="dc-about-image-overlap rounded-2xl">
+                </div>
+
+                <!-- Right Column: Text Content -->
+                <div>
+                    <p class="dc-about-subheading text-sm mb-4">ABOUT DEF CON</p>
+                    <h2 class="dc-about-heading mb-6">
+                        The World's Premier Hacker Conference.
+                    </h2>
+                    <p class="dc-about-text text-base leading-relaxed mb-8">
+                        At DEF CON, we're proud to serve the global hacker community with reliable, high-quality content and challenges. From custom hardware villages to worldwide CTF competitions, our expertise ensures every event is done right. We build with integrity, creativity, and a commitment to your vision of hacking.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-[#0d2a3a] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="dc-about-list-item">30+ Years of Events</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-[#0d2a3a] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="dc-about-list-item">Licensed & ISO Certified</span>
+                            <span class="dc-about-list-item">Global & Inclusive Community</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-[#0d2a3a] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="dc-about-list-item">Cutting-Edge Research & Talks</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </defcon-about-component>
+
+</body>
+</html>

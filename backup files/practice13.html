@@ -1,0 +1,1214 @@
+<!-- Web Design & Development Service Page -->
+<style>
+.defcon-web-service-container {
+    font-family: "Times New Roman", serif;
+    background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.defcon-animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 145, 255, 0.02) 0%, rgba(6, 39, 62, 0.03) 100%);
+    z-index: 1;
+}
+
+.defcon-animated-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 145, 255, 0.1), transparent);
+    animation: defcon-sweep 8s infinite;
+}
+
+@keyframes defcon-sweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.defcon-hero-section {
+    position: relative;
+    z-index: 2;
+    padding: 80px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    margin: 0;
+    box-shadow: 0 20px 60px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-hero-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    padding: 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: defcon-fade-up 1s ease-out;
+}
+
+.defcon-hero-subtitle {
+    font-size: 1.4em;
+    color: #e5e5e5;
+    margin: 0 0 40px 0;
+    padding: 0;
+    animation: defcon-fade-up 1s ease-out 0.3s both;
+}
+
+.defcon-hero-description {
+    font-size: 1.1em;
+    color: #ffffff;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    padding: 0;
+    line-height: 1.8;
+    animation: defcon-fade-up 1s ease-out 0.6s both;
+}
+
+@keyframes defcon-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.defcon-stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 50px 0 0 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.defcon-stat-item {
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    animation: defcon-fade-up 1s ease-out 0.9s both;
+}
+
+.defcon-stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-stat-label {
+    font-size: 0.9em;
+    margin: 5px 0 0 0;
+    padding: 0;
+    opacity: 0.9;
+}
+
+.defcon-services-grid {
+    position: relative;
+    z-index: 2;
+    padding: 100px 40px;
+    margin: 0;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.defcon-section-title {
+    text-align: center;
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #06273e;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.defcon-section-subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #0091ff;
+    margin: 0 0 80px 0;
+    padding: 0;
+}
+
+.defcon-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.defcon-service-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    margin: 0;
+    box-shadow: 0 15px 50px rgba(6, 39, 62, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.defcon-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 145, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.defcon-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 80px rgba(0, 145, 255, 0.2);
+    border-color: #0091ff;
+}
+
+.defcon-service-card:hover::before {
+    left: 100%;
+}
+
+.defcon-service-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #0091ff, #06273e);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 25px 0;
+    padding: 0;
+    font-size: 24px;
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-service-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #06273e;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+.defcon-service-description {
+    color: #06273e;
+    line-height: 1.7;
+    margin: 0 0 25px 0;
+    padding: 0;
+    opacity: 0.8;
+}
+
+.defcon-service-features {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
+}
+
+.defcon-feature-item {
+    color: #06273e;
+    margin: 0 0 8px 0;
+    padding: 0 0 0 20px;
+    position: relative;
+    font-size: 0.95em;
+}
+
+.defcon-feature-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.defcon-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0 0 0;
+    padding: 20px 0 0 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.defcon-price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #0091ff;
+    margin: 0;
+    padding: 0;
+}
+
+.defcon-price-label {
+    font-size: 0.85em;
+    color: #06273e;
+    opacity: 0.7;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.defcon-cta-button {
+    background: linear-gradient(135deg, #0091ff, #06273e);
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-family: "Times New Roman", serif;
+    font-size: 0.95em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-premium-section {
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    margin: 100px 0 0 0;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-premium-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: defcon-rotate 20s linear infinite;
+}
+
+@keyframes defcon-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.defcon-premium-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-premium-description {
+    font-size: 1.2em;
+    color: #e5e5e5;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    padding: 0;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-premium-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-premium-feature {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 25px;
+    border-radius: 15px;
+    margin: 0;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.defcon-premium-feature-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+.defcon-premium-feature-text {
+    color: #e5e5e5;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.defcon-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 39, 62, 0.9);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.defcon-modal-content {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+    animation: defcon-modal-appear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes defcon-modal-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.defcon-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #06273e;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.defcon-modal-close:hover {
+    background: #0091ff;
+    color: #ffffff;
+}
+
+.defcon-modal-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #06273e;
+    margin: 0 0 25px 0;
+    padding: 0;
+}
+
+.defcon-modal-text {
+    color: #06273e;
+    line-height: 1.7;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.defcon-process-section {
+    padding: 100px 40px;
+    margin: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 50%, #ffffff 100%);
+}
+
+.defcon-process-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #06273e;
+    margin: 0 0 80px 0;
+    padding: 0;
+}
+
+.defcon-process-steps {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.defcon-process-step {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.defcon-step-number {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #0091ff, #06273e);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-step-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #06273e;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+.defcon-step-description {
+    color: #06273e;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.defcon-contact-section {
+    background: #06273e;
+    padding: 80px 40px;
+    margin: 0;
+    text-align: center;
+}
+
+.defcon-contact-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 25px 0;
+    padding: 0;
+}
+
+.defcon-contact-description {
+    font-size: 1.2em;
+    color: #e5e5e5;
+    margin: 0 0 50px 0;
+    padding: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.defcon-contact-button {
+    background: linear-gradient(135deg, #0091ff, #ffffff);
+    color: #06273e;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-family: "Times New Roman", serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin: 0;
+    box-shadow: 0 8px 30px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-contact-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 50px rgba(0, 145, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .defcon-hero-title {
+        font-size: 2.5em;
+    }
+    
+    .defcon-hero-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .defcon-stats-container {
+        gap: 30px;
+    }
+    
+    .defcon-grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .defcon-process-steps {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .defcon-premium-features {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<div class="defcon-web-service-container">
+    <div class="defcon-animated-bg"></div>
+    
+    <!-- Hero Section -->
+    <div class="defcon-hero-section">
+        <h1 class="defcon-hero-title">Web Design & Development</h1>
+        <p class="defcon-hero-subtitle">Crafting Digital Excellence Through Innovation</p>
+        <p class="defcon-hero-description">
+            Transform your digital presence with our cutting-edge web solutions. From stunning visual designs to robust backend systems, we deliver exceptional websites that drive results and exceed expectations. Our expert team combines creativity with technical expertise to build digital experiences that captivate your audience and grow your business.
+        </p>
+        
+        <div class="defcon-stats-container">
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number">500+</div>
+                <div class="defcon-stat-label">Projects Completed</div>
+            </div>
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number">98%</div>
+                <div class="defcon-stat-label">Client Satisfaction</div>
+            </div>
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number">24/7</div>
+                <div class="defcon-stat-label">Support Available</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="defcon-services-grid">
+        <h2 class="defcon-section-title">Our Web Development Services</h2>
+        <p class="defcon-section-subtitle">Comprehensive solutions tailored to your business needs</p>
+        
+        <div class="defcon-grid-container">
+            <!-- Custom Website Development -->
+            <div class="defcon-service-card" onclick="openModal('customWebDev')">
+                <div class="defcon-service-icon">🌐</div>
+                <h3 class="defcon-service-title">Custom Website Development</h3>
+                <p class="defcon-service-description">
+                    Bespoke websites built from the ground up with modern technologies, optimized for performance, security, and user experience.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">Responsive design across all devices</li>
+                    <li class="defcon-feature-item">SEO-optimized architecture</li>
+                    <li class="defcon-feature-item">Advanced security implementation</li>
+                    <li class="defcon-feature-item">Performance optimization</li>
+                    <li class="defcon-feature-item">Content management system</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$2,500 - $8,000</div>
+                        <div class="defcon-price-label">Starting price</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- E-commerce Solutions -->
+            <div class="defcon-service-card" onclick="openModal('ecommerce')">
+                <div class="defcon-service-icon">🛒</div>
+                <h3 class="defcon-service-title">E-commerce Solutions</h3>
+                <p class="defcon-service-description">
+                    Complete online store solutions with payment integration, inventory management, and advanced analytics to boost your sales.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">Secure payment gateway integration</li>
+                    <li class="defcon-feature-item">Inventory management system</li>
+                    <li class="defcon-feature-item">Multi-currency support</li>
+                    <li class="defcon-feature-item">Analytics and reporting</li>
+                    <li class="defcon-feature-item">Mobile-optimized checkout</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$3,500 - $12,000</div>
+                        <div class="defcon-price-label">Starting price</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- Progressive Web Apps -->
+            <div class="defcon-service-card" onclick="openModal('pwa')">
+                <div class="defcon-service-icon">📱</div>
+                <h3 class="defcon-service-title">Progressive Web Apps</h3>
+                <p class="defcon-service-description">
+                    Next-generation web applications that work like native mobile apps, providing seamless user experiences across all platforms.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">Offline functionality</li>
+                    <li class="defcon-feature-item">Push notifications</li>
+                    <li class="defcon-feature-item">App-like experience</li>
+                    <li class="defcon-feature-item">Fast loading times</li>
+                    <li class="defcon-feature-item">Cross-platform compatibility</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$4,000 - $15,000</div>
+                        <div class="defcon-price-label">Starting price</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- Enterprise Web Solutions -->
+            <div class="defcon-service-card" onclick="openModal('enterprise')">
+                <div class="defcon-service-icon">🏢</div>
+                <h3 class="defcon-service-title">Enterprise Web Solutions</h3>
+                <p class="defcon-service-description">
+                    Scalable, robust web platforms designed for large organizations with complex requirements and high-traffic demands.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">Scalable architecture</li>
+                    <li class="defcon-feature-item">Advanced security protocols</li>
+                    <li class="defcon-feature-item">Integration capabilities</li>
+                    <li class="defcon-feature-item">Load balancing</li>
+                    <li class="defcon-feature-item">24/7 monitoring</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$10,000 - $50,000</div>
+                        <div class="defcon-price-label">Starting price</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- API Development -->
+            <div class="defcon-service-card" onclick="openModal('api')">
+                <div class="defcon-service-icon">⚡</div>
+                <h3 class="defcon-service-title">API Development & Integration</h3>
+                <p class="defcon-service-description">
+                    Custom API development and third-party integrations to enhance functionality and streamline business processes.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">RESTful API development</li>
+                    <li class="defcon-feature-item">Third-party integrations</li>
+                    <li class="defcon-feature-item">API documentation</li>
+                    <li class="defcon-feature-item">Authentication systems</li>
+                    <li class="defcon-feature-item">Rate limiting & security</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$1,800 - $6,000</div>
+                        <div class="defcon-price-label">Starting price</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+
+            <!-- Website Maintenance -->
+            <div class="defcon-service-card" onclick="openModal('maintenance')">
+                <div class="defcon-service-icon">🔧</div>
+                <h3 class="defcon-service-title">Website Maintenance & Support</h3>
+                <p class="defcon-service-description">
+                    Comprehensive ongoing support to keep your website secure, updated, and performing at its best with regular monitoring.
+                </p>
+                <ul class="defcon-service-features">
+                    <li class="defcon-feature-item">Regular security updates</li>
+                    <li class="defcon-feature-item">Performance monitoring</li>
+                    <li class="defcon-feature-item">Backup management</li>
+                    <li class="defcon-feature-item">Bug fixes & updates</li>
+                    <li class="defcon-feature-item">Priority support</li>
+                </ul>
+                <div class="defcon-price-container">
+                    <div>
+                        <div class="defcon-price">$200 - $800</div>
+                        <div class="defcon-price-label">Monthly</div>
+                    </div>
+                    <button class="defcon-cta-button">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Section -->
+    <div class="defcon-premium-section">
+        <h2 class="defcon-premium-title">Why Choose Defcon for Web Development?</h2>
+        <p class="defcon-premium-description">
+            We don't just build websites – we craft digital experiences that drive business growth. Our team combines cutting-edge technology with creative excellence to deliver solutions that exceed expectations.
+        </p>
+        
+        <div class="defcon-premium-features">
+            <div class="defcon-premium-feature">
+                <h3 class="defcon-premium-feature-title">Latest Technologies</h3>
+                <p class="defcon-premium-feature-text">We use the most advanced frameworks and tools to ensure your website is future-proof and performs exceptionally.</p>
+            </div>
+            <div class="defcon-premium-feature">
+                <h3 class="defcon-premium-feature-title">Agile Development</h3>
+                <p class="defcon-premium-feature-text">Our iterative approach ensures rapid delivery while maintaining the highest quality standards and flexibility.</p>
+            </div>
+            <div class="defcon-premium-feature">
+                <h3 class="defcon-premium-feature-title">Expert Team</h3>
+                <p class="defcon-premium-feature-text">Certified developers and designers with years of experience in creating award-winning digital solutions.</p>
+            </div>
+            <div class="defcon-premium-feature">
+                <h3 class="defcon-premium-feature-title">Ongoing Support</h3>
+                <p class="defcon-premium-feature-text">Comprehensive post-launch support ensures your website continues to perform optimally as your business grows.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="defcon-process-section">
+        <h2 class="defcon-process-title">Our Development Process</h2>
+        <div class="defcon-process-steps">
+            <div class="defcon-process-step">
+                <div class="defcon-step-number">1</div>
+                <h3 class="defcon-step-title">Discovery & Planning</h3>
+                <p class="defcon-step-description">We analyze your requirements, target audience, and business goals to create a comprehensive project roadmap.</p>
+            </div>
+            <div class="defcon-process-step">
+                <div class="defcon-step-number">2</div>
+                <h3 class="defcon-step-title">Design & Prototyping</h3>
+                <p class="defcon-step-description">Creating wireframes, mockups, and interactive prototypes to visualize the final product before development.</p>
+            </div>
+            <div class="defcon-process-step">
+                <div class="defcon-step-number">3</div>
+                <h3 class="defcon-step-title">Development & Testing</h3>
+                <p class="defcon-step-description">Building your website with clean, optimized code and rigorous testing across all devices and browsers.</p>
+            </div>
+            <div class="defcon-process-step">
+                <div class="defcon-step-number">4</div>
+                <h3 class="defcon-step-title">Launch & Optimization</h3>
+                <p class="defcon-step-description">Deploying your website with performance optimization and ongoing monitoring to ensure peak performance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="defcon-contact-section">
+        <h2 class="defcon-contact-title">Ready to Transform Your Digital Presence?</h2>
+        <p class="defcon-contact-description">
+            Let's discuss your project requirements and create a custom solution that drives your business forward. Our team is ready to bring your vision to life with cutting-edge web development.
+        </p>
+        <button class="defcon-contact-button" onclick="openModal('contact')">Start Your Project Today</button>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="defcon-modal-overlay" id="modalOverlay">
+        <div class="defcon-modal-content" id="modalContent">
+            <button class="defcon-modal-close" onclick="closeModal()">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Modal functionality
+function openModal(serviceType) {
+    const modal = document.getElementById('modalOverlay');
+    const modalBody = document.getElementById('modalBody');
+    
+    const modalContent = {
+        customWebDev: {
+            title: 'Custom Website Development',
+            content: `
+                <h2 class="defcon-modal-title">Custom Website Development</h2>
+                <p class="defcon-modal-text">
+                    Our custom website development service creates unique, tailored solutions that perfectly align with your brand identity and business objectives. We build websites from the ground up using the latest technologies and best practices.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • Custom design and user interface development<br>
+                    • Responsive design for all devices and screen sizes<br>
+                    • Search engine optimization (SEO) implementation<br>
+                    • Content management system integration<br>
+                    • Performance optimization and speed enhancement<br>
+                    • Security implementation and SSL certificate<br>
+                    • Cross-browser compatibility testing<br>
+                    • 3 rounds of revisions included<br>
+                    • 30-day post-launch support
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Timeline:</strong> 3-6 weeks depending on complexity<br>
+                    <strong>Technologies:</strong> HTML5, CSS3, JavaScript, React, Node.js, PHP, MySQL
+                </p>
+                <p class="defcon-modal-text">
+                    Perfect for businesses looking to establish a strong online presence with a unique, professional website that stands out from the competition.
+                </p>
+            `
+        },
+        ecommerce: {
+            title: 'E-commerce Solutions',
+            content: `
+                <h2 class="defcon-modal-title">E-commerce Solutions</h2>
+                <p class="defcon-modal-text">
+                    Transform your business with our comprehensive e-commerce solutions. We build powerful online stores that drive sales and provide exceptional shopping experiences for your customers.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • Custom e-commerce website design<br>
+                    • Secure payment gateway integration (PayPal, Stripe, etc.)<br>
+                    • Inventory management system<br>
+                    • Product catalog with advanced search and filtering<br>
+                    • Shopping cart and checkout optimization<br>
+                    • Order management and tracking system<br>
+                    • Customer account management<br>
+                    • Mobile-responsive design<br>
+                    • SSL security and PCI compliance<br>
+                    • Analytics and reporting dashboard<br>
+                    • SEO optimization for product pages
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Timeline:</strong> 4-8 weeks depending on catalog size<br>
+                    <strong>Platforms:</strong> WooCommerce, Shopify, Magento, Custom Solutions
+                </p>
+                <p class="defcon-modal-text">
+                    Ideal for retailers, manufacturers, and service providers looking to sell products or services online with a professional, scalable platform.
+                </p>
+            `
+        },
+        pwa: {
+            title: 'Progressive Web Apps',
+            content: `
+                <h2 class="defcon-modal-title">Progressive Web Apps (PWA)</h2>
+                <p class="defcon-modal-text">
+                    Bridge the gap between web and mobile apps with our Progressive Web App development. PWAs provide native app-like experiences while maintaining the reach and accessibility of web applications.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • App-like user interface and navigation<br>
+                    • Offline functionality and data synchronization<br>
+                    • Push notification system<br>
+                    • Home screen installation capability<br>
+                    • Fast loading with service worker caching<br>
+                    • Responsive design across all devices<br>
+                    • Background sync capabilities<br>
+                    • Secure HTTPS implementation<br>
+                    • Cross-platform compatibility<br>
+                    • App store submission assistance<br>
+                    • Performance optimization
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Timeline:</strong> 6-10 weeks<br>
+                    <strong>Technologies:</strong> React, Vue.js, Angular, Service Workers, Web App Manifest
+                </p>
+                <p class="defcon-modal-text">
+                    Perfect for businesses wanting to provide mobile app experiences without the complexity and cost of native app development.
+                </p>
+            `
+        },
+        enterprise: {
+            title: 'Enterprise Web Solutions',
+            content: `
+                <h2 class="defcon-modal-title">Enterprise Web Solutions</h2>
+                <p class="defcon-modal-text">
+                    Scalable, robust web platforms designed for large organizations with complex requirements, high traffic volumes, and enterprise-level security needs.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • Custom enterprise architecture design<br>
+                    • Scalable cloud infrastructure setup<br>
+                    • Advanced security implementation<br>
+                    • Multi-user role management system<br>
+                    • API development and integration<br>
+                    • Database optimization and management<br>
+                    • Load balancing and performance optimization<br>
+                    • 24/7 monitoring and alerting<br>
+                    • Backup and disaster recovery planning<br>
+                    • Compliance with industry standards<br>
+                    • Integration with existing enterprise systems<br>
+                    • Comprehensive documentation and training
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Timeline:</strong> 12-24 weeks depending on scope<br>
+                    <strong>Technologies:</strong> Microservices, Docker, Kubernetes, AWS/Azure, Enterprise Databases
+                </p>
+                <p class="defcon-modal-text">
+                    Designed for large corporations, government agencies, and organizations requiring enterprise-grade web solutions with maximum security and scalability.
+                </p>
+            `
+        },
+        api: {
+            title: 'API Development & Integration',
+            content: `
+                <h2 class="defcon-modal-title">API Development & Integration</h2>
+                <p class="defcon-modal-text">
+                    Connect your systems and enhance functionality with our custom API development and third-party integration services. We create robust, secure APIs that streamline your business processes.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • Custom RESTful API development<br>
+                    • GraphQL API implementation<br>
+                    • Third-party service integrations<br>
+                    • API documentation and testing<br>
+                    • Authentication and authorization systems<br>
+                    • Rate limiting and security measures<br>
+                    • Data validation and error handling<br>
+                    • Webhook implementation<br>
+                    • API versioning and maintenance<br>
+                    • Performance optimization<br>
+                    • SDK development for easy integration
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Timeline:</strong> 2-6 weeks depending on complexity<br>
+                    <strong>Technologies:</strong> Node.js, Python, PHP, REST, GraphQL, OAuth, JWT
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Popular Integrations:</strong> Payment gateways, CRM systems, email marketing platforms, social media APIs, shipping services, and more.
+                </p>
+            `
+        },
+        maintenance: {
+            title: 'Website Maintenance & Support',
+            content: `
+                <h2 class="defcon-modal-title">Website Maintenance & Support</h2>
+                <p class="defcon-modal-text">
+                    Keep your website running smoothly with our comprehensive maintenance and support services. We handle all the technical aspects so you can focus on your business.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What's Included:</strong><br>
+                    • Regular security updates and patches<br>
+                    • Performance monitoring and optimization<br>
+                    • Automated backup management<br>
+                    • Uptime monitoring and alerting<br>
+                    • Bug fixes and troubleshooting<br>
+                    • Content updates and modifications<br>
+                    • Plugin and theme updates<br>
+                    • Security scanning and malware removal<br>
+                    • Database optimization<br>
+                    • Priority technical support<br>
+                    • Monthly performance reports
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Support Levels:</strong><br>
+                    • Basic: $200/month - Essential updates and monitoring<br>
+                    • Professional: $400/month - Includes content updates and priority support<br>
+                    • Enterprise: $800/month - Full-service maintenance with 24/7 support
+                </p>
+                <p class="defcon-modal-text">
+                    Essential for businesses that want to ensure their website remains secure, fast, and up-to-date without dedicating internal resources to technical maintenance.
+                </p>
+            `
+        },
+        contact: {
+            title: 'Start Your Project',
+            content: `
+                <h2 class="defcon-modal-title">Let's Build Something Amazing Together</h2>
+                <p class="defcon-modal-text">
+                    Ready to transform your digital presence? Our team of expert developers and designers is here to bring your vision to life. Whether you need a simple website or a complex web application, we have the expertise to deliver exceptional results.
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Get Started Today:</strong><br>
+                    📧 Email: info@defcon.com<br>
+                    📞 Phone: +1 (555) 123-4567<br>
+                    💬 Live Chat: Available 24/7 on our website<br>
+                    📍 Office: 123 Tech Street, Digital City, DC 12345
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>What Happens Next:</strong><br>
+                    1. Free consultation to discuss your requirements<br>
+                    2. Detailed project proposal and timeline<br>
+                    3. Contract signing and project kickoff<br>
+                    4. Regular updates throughout development<br>
+                    5. Launch and ongoing support
+                </p>
+                <p class="defcon-modal-text">
+                    <strong>Free Consultation Includes:</strong><br>
+                    • Project scope analysis<br>
+                    • Technology recommendations<br>
+                    • Timeline and budget estimation<br>
+                    • Strategy discussion<br>
+                    • No obligation proposal
+                </p>
+            `
+        }
+    };
+    
+    if (modalContent[serviceType]) {
+        modalBody.innerHTML = modalContent[serviceType].content;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Add entrance animation
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('modalOverlay');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe all service cards for scroll animations
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.defcon-service-card');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+        card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(card);
+    });
+    
+    // Add hover sound effect simulation
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+
+// Smooth scrolling for internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add dynamic background particles effect
+function createParticle() {
+    const particle = document.createElement('div');
+    particle.style.position = 'absolute';
+    particle.style.width = '2px';
+    particle.style.height = '2px';
+    particle.style.background = 'rgba(0, 145, 255, 0.3)';
+    particle.style.borderRadius = '50%';
+    particle.style.pointerEvents = 'none';
+    particle.style.left = Math.random() * window.innerWidth + 'px';
+    particle.style.top = '-10px';
+    particle.style.zIndex = '1';
+    
+    document.querySelector('.defcon-web-service-container').appendChild(particle);
+    
+    const duration = Math.random() * 3000 + 2000;
+    const drift = (Math.random() - 0.5) * 100;
+    
+    particle.animate([
+        { transform: 'translateY(0px) translateX(0px)', opacity: 0 },
+        { transform: `translateY(${window.innerHeight + 100}px) translateX(${drift}px)`, opacity: 1 }
+    ], {
+        duration: duration,
+        easing: 'linear'
+    }).addEventListener('finish', () => {
+        particle.remove();
+    });
+}
+
+// Create particles at intervals
+setInterval(createParticle, 300);
+
+// Add performance metrics counter animation
+function animateCounters() {
+    const counters = document.querySelectorAll('.defcon-stat-number');
+    const speed = 50;
+    
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = counter.innerText.replace(/[^0-9]/g, '');
+            const count = +counter.getAttribute('data-count') || 0;
+            const increment = Math.ceil(target / speed);
+            
+            if (count < target) {
+                counter.setAttribute('data-count', count + increment);
+                if (counter.innerText.includes('%')) {
+                    counter.innerText = (count + increment) + '%';
+                } else if (counter.innerText.includes('/')) {
+                    counter.innerText = '24/7';
+                } else {
+                    counter.innerText = (count + increment) + '+';
+                }
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = counter.innerText;
+            }
+        };
+        
+        // Start animation when element is in view
+        const counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCount();
+                    counterObserver.disconnect();
+                }
+            });
+        });
+        
+        counterObserver.observe(counter);
+    });
+}
+
+// Initialize counter animation
+document.addEventListener('DOMContentLoaded', animateCounters);

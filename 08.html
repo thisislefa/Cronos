@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asymmetrical Contact Section</title>
+    <!-- Load Inter Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Define Color Variables and Font */
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-blue: #0091f1; /* Your primary accent color */
+            --color-light-gray: #f4f4f4; /* Your background color for the form */
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-light-gray);
+            /* Added padding-top to prevent content hiding behind the fixed header */
+            padding-top: 80px; 
+        }
+
+        /* ------------------------------------------
+           FLOATING HEADER & NAVIGATION (NEW)
+           ------------------------------------------ */
+        .pc-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-black); /* Black background for high contrast */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .pc-nav-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 80px; /* Fixed height */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pc-logo a {
+            color: var(--color-blue);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .pc-nav-menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pc-nav-menu > li {
+            position: relative;
+            margin-left: 2.5rem;
+        }
+
+        .pc-nav-menu > li > a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .pc-nav-menu > li > a:hover {
+            color: var(--color-blue);
+        }
+        
+        /* ------------------------------------------
+           MEGA MENU STYLES
+           ------------------------------------------ */
+        .mega-menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%; /* Positions below the main nav item */
+            width: 800px; /* Wide menu for the 'mega' effect */
+            background-color: var(--color-white);
+            color: var(--color-black);
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            display: flex; /* For column layout */
+        }
+
+        .pc-nav-menu > li:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mega-menu-column {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        /* Highlight the middle column for visual flair */
+        .mega-menu-column:nth-child(2) {
+            border-left: 1px solid var(--color-light-gray);
+            border-right: 1px solid var(--color-light-gray);
+        }
+
+        .mega-menu-column h4 {
+            color: var(--color-blue);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .mega-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mega-menu ul li a {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--color-black);
+            text-decoration: none;
+            font-weight: 400;
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .mega-menu ul li a:hover {
+            background-color: var(--color-light-gray);
+            color: var(--color-blue);
+            padding-left: 0.5rem; /* subtle animation on hover */
+        }
+        
+        /* Mobile Hamburger Icon (hidden on desktop) */
+        .menu-toggle {
+            display: none;
+            color: var(--color-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* End of new header styles */
+
+        /* ------------------------------------------
+           MAIN ASYMMETRICAL CONTAINER (EXISTING)
+           ------------------------------------------ */
+        .contact-section-container {
+            min-height: 80vh; /* Ensures it takes up a good amount of screen space */
+            display: flex;
+            align-items: stretch;
+            max-width: 1400px;
+            margin: 4rem auto;
+            border-radius: 12px;
+            overflow: hidden; /* To keep the border-radius clean */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ------------------------------------------
+           LEFT COLUMN: Dark, High-Impact Info (35% Width)
+           ------------------------------------------ */
+        .contact-info-panel {
+            flex: 0 0 35%; /* Fixed 35% width for asymmetrical look */
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 3rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info-panel h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .contact-info-panel p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail-item .icon {
+            color: var(--color-blue);
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            transform: translateY(3px);
+        }
+
+        .contact-detail-item a, 
+        .contact-detail-item p {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            transition: color 0.2s;
+        }
+
+        .contact-detail-item a:hover {
+            color: var(--color-blue);
+        }
+
+        /* ------------------------------------------
+           RIGHT COLUMN: Light Form Area (65% Width)
+           ------------------------------------------ */
+        .contact-form-panel {
+            flex: 1; /* Takes up the remaining 65% space */
+            background-color: var(--color-light-gray);
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form-panel h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--color-black);
+            background-color: var(--color-white);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(0, 145, 241, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background-color: var(--color-blue);
+            color: var(--color-white);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-button:hover {
+            background-color: #007acd; /* Slightly darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        /* ------------------------------------------
+           SVG Icons for details
+           ------------------------------------------ */
+        .icon-svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        /* ------------------------------------------
+           RESPONSIVE DESIGN
+           ------------------------------------------ */
+        @media (max-width: 1024px) {
+            .contact-info-panel {
+                flex: 0 0 40%; /* Adjusting asymmetry for smaller desktops */
+            }
+            .contact-form-panel {
+                padding: 2.5rem;
+            }
+            
+            /* Header Mobile Adjustments */
+            .pc-nav-menu {
+                display: none; /* Hide complex menu */
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger */
+            }
+            .pc-nav-wrapper {
+                height: 60px;
+                padding: 0 1rem;
+            }
+            .mega-menu {
+                display: none; /* Hide mega menu on mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section-container {
+                flex-direction: column; /* Stacks the columns on mobile */
+                margin: 2rem 1rem;
+            }
+
+            .contact-info-panel {
+                flex: none; /* Disables flex basis */
+                width: 100%; /* Takes full width */
+                padding: 2.5rem;
+                text-align: center; /* Center content on mobile */
+            }
+
+            .contact-info-panel h2 {
+                font-size: 2rem;
+            }
+
+            .contact-info-panel p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .contact-form-panel {
+                width: 100%;
+                padding: 2rem 1.5rem;
+            }
+            
+            .contact-detail-item {
+                justify-content: center; /* Center icons and text */
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+        *** FLOATING HEADER WITH MEGA MENU ***
+    -->
+    <header class="pc-header">
+        <nav class="pc-nav-wrapper">
+            <div class="pc-logo">
+                <a href="#">PC LOGO</a>
+            </div>
+            
+            <ul class="pc-nav-menu">
+                <li><a href="#">Home</a></li>
+                
+                <!-- Mega Menu Item - Use hover to reveal -->
+                <li>
+                    <a href="#">Services</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-column">
+                            <h4>Design & Strategy</h4>
+                            <ul>
+                                <li><a href="#">UI/UX Prototyping</a></li>
+                                <li><a href="#">Brand Identity</a></li>
+                                <li><a href="#">Digital Strategy</a></li>
+                                <li><a href="#">Market Analysis</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column">
+                            <h4>Development</h4>
+                            <ul>
+                                <li><a href="#">Web Applications</a></li>
+                                <li><a href="#">Mobile Development</a></li>
+                                <li><a href="#">API Integration</a></li>
+                                <li><a href="#">Cloud Solutions</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column">
+                            <h4>Consulting</h4>
+                            <ul>
+                                <li><a href="#">Agile Transformation</a></li>
+                                <li><a href="#">Tech Audits</a></li>
+                                <li><a href="#">Training & Workshops</a></li>
+                                <li><a href="#">Security Review</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li style="margin-right: 0;"><a href="#" style="color: var(--color-blue);">Contact</a></li>
+            </ul>
+            
+            <!-- Simple hamburger icon for mobile view placeholder -->
+            <div class="menu-toggle">
+                <!-- Using a simple SVG for the hamburger icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 24px; height: 24px; fill: currentColor;"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+            </div>
+        </nav>
+    </header>
+    <!-- End of Floating Header -->
+
+    <div class="contact-section-container">
+        <!-- 
+            *** LEFT PANEL: INFO AND TEXT (ASYMMETRICAL, DARK) ***
+        -->
+        <div class="contact-info-panel">
+            <h2>Let's Build Together.</h2>
+            <p>
+                Ready to discuss your next project? Drop us a line, and a specialist will get back to you within one business day.
+            </p>
+
+            <div class="contact-details">
+                <!-- Email Detail -->
+                <div class="contact-detail-item">
+                    <span class="icon">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V400c0 26.5 21.5 48 48 48H464c26.5 0 48-21.5 48-48V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
+                        </svg>
+                    </span>
+                    <div>
+                        <a href="mailto:info@yourcompany.com">info@yourcompany.com</a>
+                        <p style="font-weight: 300; margin: 0;">General Inquiries</p>
+                    </div>
+                </div>
+
+                <!-- Phone Detail -->
+                <div class="contact-detail-item">
+                    <span class="icon">
+                        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M164.9 24.6c-5.7-22.3-25.7-38.3-49.8-39.6C34.3-1.8 0 40.8 0 83.1v346.7c0 42.4 34.3 83.1 115.1 81.3c24.1-1.3 43.9-17.3 49.6-39.6l17.8-67c4.6-17.2-2.1-34.5-16.1-46.1l-68.2-54.6c-25.9-20.8-21.7-65.7 6.4-83.8l67.8-42.3c20.3-12.7 34.9-35.3 36.3-60.3l1.8-31c1.3-22.3-18.7-43.5-42.8-44.8L164.9 24.6zM294.4 200c25.1 0 48.7 9.8 66.3 27.5L412 284.7c4.7 4.7 4.7 12.3 0 17l-15.6 15.6c-4.7 4.7-12.3 4.7-17 0L336 288c-18.4 0-33.3 14.9-33.3 33.3s14.9 33.3 33.3 33.3l50.3 50.3c4.7 4.7 4.7 12.3 0 17l-15.6 15.6c-4.7 4.7-12.3 4.7-17 0L294.4 366.7c-25.1 0-48.7-9.8-66.3-27.5L188 313.3c-4.7-4.7-4.7-12.3 0-17l15.6-15.6c4.7-4.7 12.3-4.7 17 0l42.6 42.6c18.4 0 33.3-14.9 33.3-33.3s-14.9-33.3-33.3-33.3l-50.3-50.3c-4.7-4.7-4.7-12.3 0-17l15.6-15.6c4.7-4.7 12.3-4.7 17 0L294.4 200z"/>
+                        </svg>
+                    </span>
+                    <div>
+                        <a href="tel:+12345678900">+1 (234) 567-8900</a>
+                        <p style="font-weight: 300; margin: 0;">Sales & Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 
+            *** RIGHT PANEL: CONTACT FORM (65% WIDER, LIGHT) ***
+        -->
+        <div class="contact-form-panel">
+            <h3>Send a Message</h3>
+            
+            <form action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@company.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message / Requirements</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your needs..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

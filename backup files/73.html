@@ -1,0 +1,1387 @@
+<style>
+/* Reset and base styles */
+.defcon-crypto-service-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.defcon-crypto-service-container {
+    background-color: #ffffff;
+    color: #06273e;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header Section */
+.defcon-crypto-service-header {
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: #ffffff;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-crypto-service-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('thumbnails/pexels-pixabay-270669.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.defcon-crypto-service-header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-crypto-service-header p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.defcon-crypto-service-header-btn {
+    display: inline-block;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid #0091ff;
+}
+
+.defcon-crypto-service-header-btn:hover {
+    background-color: transparent;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Introduction Section */
+.defcon-crypto-service-intro {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-crypto-service-intro h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    margin: 20px auto;
+}
+
+.defcon-crypto-service-intro-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.defcon-crypto-service-intro-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.defcon-crypto-service-intro-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.defcon-crypto-service-intro-image {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-crypto-service-intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.defcon-crypto-service-intro-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Features Section */
+.defcon-crypto-service-features {
+    background-color: #e5e5e5;
+    padding: 80px 20px;
+}
+
+.defcon-crypto-service-features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-crypto-service-features h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    margin: 20px auto;
+}
+
+.defcon-crypto-service-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.defcon-crypto-service-feature-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    padding: 30px;
+    text-align: center;
+}
+
+.defcon-crypto-service-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-crypto-service-feature-icon {
+    font-size: 3rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+}
+
+.defcon-crypto-service-feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.defcon-crypto-service-feature-card p {
+    color: #666;
+}
+
+/* Packages Section */
+.defcon-crypto-service-packages {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-packages h2 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-crypto-service-packages h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    margin: 20px auto;
+}
+
+.defcon-crypto-service-packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.defcon-crypto-service-package-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+    position: relative;
+}
+
+.defcon-crypto-service-package-card.popular {
+    border: 2px solid #0091ff;
+    transform: scale(1.05);
+}
+
+.defcon-crypto-service-package-card.popular::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.defcon-crypto-service-package-header {
+    background-color: #06273e;
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+}
+
+.defcon-crypto-service-package-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.defcon-crypto-service-package-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.defcon-crypto-service-package-price span {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.defcon-crypto-service-package-body {
+    padding: 30px;
+}
+
+.defcon-crypto-service-package-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.defcon-crypto-service-package-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+}
+
+.defcon-crypto-service-package-features li::before {
+    content: '✓';
+    color: #0091ff;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.defcon-crypto-service-package-btn {
+    display: block;
+    text-align: center;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.defcon-crypto-service-package-btn:hover {
+    background-color: #06273e;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Security Section */
+.defcon-crypto-service-security {
+    background-color: #06273e;
+    color: #ffffff;
+    padding: 80px 20px;
+}
+
+.defcon-crypto-service-security-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-security h2 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-crypto-service-security h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    margin: 20px auto;
+}
+
+.defcon-crypto-service-security-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.defcon-crypto-service-security-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.defcon-crypto-service-security-card:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.defcon-crypto-service-security-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0091ff;
+}
+
+.defcon-crypto-service-security-card p {
+    opacity: 0.9;
+}
+
+/* Case Studies Section */
+.defcon-crypto-service-cases {
+    background-color: #e5e5e5;
+    padding: 80px 20px;
+}
+
+.defcon-crypto-service-cases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-cases h2 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-crypto-service-cases h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    margin: 20px auto;
+}
+
+.defcon-crypto-service-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.defcon-crypto-service-case-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.defcon-crypto-service-case-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-crypto-service-case-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.defcon-crypto-service-case-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.defcon-crypto-service-case-card:hover .defcon-crypto-service-case-image img {
+    transform: scale(1.1);
+}
+
+.defcon-crypto-service-case-body {
+    padding: 30px;
+}
+
+.defcon-crypto-service-case-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.defcon-crypto-service-case-body p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.defcon-crypto-service-case-link {
+    display: inline-block;
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.defcon-crypto-service-case-link:hover {
+    color: #06273e;
+    text-decoration: underline;
+}
+
+/* CTA Section */
+.defcon-crypto-service-cta {
+    background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+    color: #ffffff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.defcon-crypto-service-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.defcon-crypto-service-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.defcon-crypto-service-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.defcon-crypto-service-cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.defcon-crypto-service-cta-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.defcon-crypto-service-cta-btn.primary {
+    background-color: #ffffff;
+    color: #0091ff;
+    border: 2px solid #ffffff;
+}
+
+.defcon-crypto-service-cta-btn.secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.defcon-crypto-service-cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.defcon-crypto-service-cta-btn.primary:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.defcon-crypto-service-cta-btn.secondary:hover {
+    background-color: #ffffff;
+    color: #0091ff;
+}
+
+/* Modal Styles */
+.defcon-crypto-service-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.defcon-crypto-service-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.defcon-crypto-service-modal-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.defcon-crypto-service-modal.active .defcon-crypto-service-modal-content {
+    transform: translateY(0);
+}
+
+.defcon-crypto-service-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.defcon-crypto-service-modal-close:hover {
+    color: #0091ff;
+}
+
+.defcon-crypto-service-modal h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #06273e;
+}
+
+.defcon-crypto-service-modal p {
+    margin-bottom: 30px;
+}
+
+.defcon-crypto-service-modal-form-group {
+    margin-bottom: 20px;
+}
+
+.defcon-crypto-service-modal-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #06273e;
+}
+
+.defcon-crypto-service-modal-form-group input,
+.defcon-crypto-service-modal-form-group textarea,
+.defcon-crypto-service-modal-form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.defcon-crypto-service-modal-form-group input:focus,
+.defcon-crypto-service-modal-form-group textarea:focus,
+.defcon-crypto-service-modal-form-group select:focus {
+    border-color: #0091ff;
+    outline: none;
+}
+
+.defcon-crypto-service-modal-form-submit {
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.defcon-crypto-service-modal-form-submit:hover {
+    background-color: #06273e;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mini Form Styles */
+.defcon-crypto-service-mini-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 40px 0;
+}
+
+.defcon-crypto-service-mini-form h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #06273e;
+    text-align: center;
+}
+
+.defcon-crypto-service-mini-form-group {
+    margin-bottom: 15px;
+}
+
+.defcon-crypto-service-mini-form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.defcon-crypto-service-mini-form-submit {
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.defcon-crypto-service-mini-form-submit:hover {
+    background-color: #06273e;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .defcon-crypto-service-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .defcon-crypto-service-header p {
+        font-size: 1.2rem;
+    }
+    
+    .defcon-crypto-service-intro h2,
+    .defcon-crypto-service-features h2,
+    .defcon-crypto-service-packages h2,
+    .defcon-crypto-service-security h2,
+    .defcon-crypto-service-cases h2,
+    .defcon-crypto-service-cta h2 {
+        font-size: 2rem;
+    }
+    
+    .defcon-crypto-service-package-card.popular {
+        transform: none;
+    }
+    
+    .defcon-crypto-service-cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .defcon-crypto-service-cta-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .defcon-crypto-service-header {
+        padding: 60px 20px;
+    }
+    
+    .defcon-crypto-service-header h1 {
+        font-size: 2rem;
+    }
+    
+    .defcon-crypto-service-header p {
+        font-size: 1rem;
+    }
+    
+    .defcon-crypto-service-intro,
+    .defcon-crypto-service-features,
+    .defcon-crypto-service-packages,
+    .defcon-crypto-service-security,
+    .defcon-crypto-service-cases,
+    .defcon-crypto-service-cta {
+        padding: 60px 20px;
+    }
+    
+    .defcon-crypto-service-intro h2,
+    .defcon-crypto-service-features h2,
+    .defcon-crypto-service-packages h2,
+    .defcon-crypto-service-security h2,
+    .defcon-crypto-service-cases h2,
+    .defcon-crypto-service-cta h2 {
+        font-size: 1.8rem;
+    }
+    
+    .defcon-crypto-service-modal-content {
+        padding: 30px 20px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.defcon-crypto-service-animate {
+    animation: fadeIn 1s ease forwards;
+}
+
+.defcon-crypto-service-animate-up {
+    animation: slideUp 0.8s ease forwards;
+}
+
+.defcon-crypto-service-delay-1 {
+    animation-delay: 0.2s;
+}
+
+.defcon-crypto-service-delay-2 {
+    animation-delay: 0.4s;
+}
+
+.defcon-crypto-service-delay-3 {
+    animation-delay: 0.6s;
+}
+
+.defcon-crypto-service-delay-4 {
+    animation-delay: 0.8s;
+}
+
+/* Blockchain Animation */
+.defcon-crypto-service-blockchain-animation {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    margin: 40px 0;
+}
+
+.defcon-crypto-service-blockchain-node {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #0091ff;
+    border-radius: 50%;
+    animation: blockchainNode 8s linear infinite;
+}
+
+@keyframes blockchainNode {
+    0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)) translateY(40px); opacity: 0; }
+}
+</style>
+
+<div class="defcon-crypto-service-container">
+    <!-- Header Section -->
+    <header class="defcon-crypto-service-header defcon-crypto-service-animate">
+        <div class="defcon-crypto-service-header-content">
+            <h1>Cryptocurrency & Digital Wallet Solutions</h1>
+            <p>Secure, innovative blockchain solutions tailored to your business needs. From wallet integration to crypto payment systems, we've got you covered.</p>
+            <a href="#consultation" class="defcon-crypto-service-header-btn defcon-crypto-service-animate-up defcon-crypto-service-delay-1">Secure Your Crypto Future</a>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="defcon-crypto-service-intro">
+        <h2 class="defcon-crypto-service-animate">Your Trusted Crypto Technology Partner</h2>
+        <div class="defcon-crypto-service-intro-content">
+            <div class="defcon-crypto-service-intro-text defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                <p>In the rapidly evolving world of cryptocurrency, having a reliable technology partner is essential. Defcon provides comprehensive cryptocurrency and digital wallet solutions that combine cutting-edge technology with enterprise-grade security.</p>
+                <p>Our team of blockchain experts specializes in creating secure digital wallet solutions, cryptocurrency payment gateways, and blockchain integration services that help businesses navigate the complex crypto landscape with confidence.</p>
+                <p>Whether you're looking to accept crypto payments, build a custom wallet solution, or integrate blockchain technology into your existing systems, we have the expertise to deliver secure, scalable solutions tailored to your specific requirements.</p>
+            </div>
+            <div class="defcon-crypto-service-intro-image defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Cryptocurrency Technology">
+            </div>
+        </div>
+
+        <!-- Mini Consultation Form -->
+        <div class="defcon-crypto-service-mini-form defcon-crypto-service-animate defcon-crypto-service-delay-3">
+            <h3>Start Your Crypto Journey</h3>
+            <form id="defcon-crypto-service-quick-consult">
+                <div class="defcon-crypto-service-mini-form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="defcon-crypto-service-mini-form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="defcon-crypto-service-mini-form-group">
+                    <input type="tel" placeholder="Your Phone Number">
+                </div>
+                <button type="submit" class="defcon-crypto-service-mini-form-submit">Get Free Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="defcon-crypto-service-features">
+        <div class="defcon-crypto-service-features-container">
+            <h2 class="defcon-crypto-service-animate">Our Cryptocurrency Services</h2>
+            <div class="defcon-crypto-service-features-grid">
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                    <div class="defcon-crypto-service-feature-icon">💰</div>
+                    <h3>Digital Wallet Development</h3>
+                    <p>Custom secure wallet solutions for individuals and businesses with multi-currency support and advanced security features.</p>
+                </div>
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                    <div class="defcon-crypto-service-feature-icon">🔄</div>
+                    <h3>Crypto Payment Gateways</h3>
+                    <p>Seamlessly accept cryptocurrency payments with our secure, low-fee payment processing solutions.</p>
+                </div>
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                    <div class="defcon-crypto-service-feature-icon">🔗</div>
+                    <h3>Blockchain Integration</h3>
+                    <p>Integrate blockchain technology into your existing systems for enhanced transparency and security.</p>
+                </div>
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                    <div class="defcon-crypto-service-feature-icon">📊</div>
+                    <h3>Crypto Exchange Solutions</h3>
+                    <p>Custom exchange platforms with liquidity solutions, trading tools, and secure transaction processing.</p>
+                </div>
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                    <div class="defcon-crypto-service-feature-icon">🔒</div>
+                    <h3>Security & Compliance</h3>
+                    <p>Comprehensive security audits and compliance solutions to protect your crypto assets and meet regulations.</p>
+                </div>
+                <div class="defcon-crypto-service-feature-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                    <div class="defcon-crypto-service-feature-icon">🤖</div>
+                    <h3>Smart Contract Development</h3>
+                    <p>Custom smart contracts for DeFi, NFTs, DAOs, and other blockchain applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="defcon-crypto-service-packages">
+        <h2 class="defcon-crypto-service-animate">Our Crypto Solutions Packages</h2>
+        <div class="defcon-crypto-service-packages-grid">
+            <div class="defcon-crypto-service-package-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                <div class="defcon-crypto-service-package-header">
+                    <h3>Starter</h3>
+                    <div class="defcon-crypto-service-package-price">$2,499 <span>/month</span></div>
+                    <p>For small businesses entering crypto</p>
+                </div>
+                <div class="defcon-crypto-service-package-body">
+                    <ul class="defcon-crypto-service-package-features">
+                        <li>Basic crypto payment integration</li>
+                        <li>Up to 3 cryptocurrency options</li>
+                        <li>Standard wallet security</li>
+                        <li>Monthly transaction reports</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="defcon-crypto-service-package-btn defcon-crypto-service-open-modal" data-modal="package-starter">Get Started</a>
+                </div>
+            </div>
+            <div class="defcon-crypto-service-package-card defcon-crypto-service-animate defcon-crypto-service-delay-2 popular">
+                <div class="defcon-crypto-service-package-header">
+                    <h3>Professional</h3>
+                    <div class="defcon-crypto-service-package-price">$5,999 <span>/month</span></div>
+                    <p>Our most comprehensive package</p>
+                </div>
+                <div class="defcon-crypto-service-package-body">
+                    <ul class="defcon-crypto-service-package-features">
+                        <li>Advanced crypto payment system</li>
+                        <li>Up to 10 cryptocurrency options</li>
+                        <li>Enhanced wallet security</li>
+                        <li>Multi-signature support</li>
+                        <li>Smart contract integration</li>
+                        <li>Priority support</li>
+                        <li>Weekly transaction reports</li>
+                    </ul>
+                    <a href="#" class="defcon-crypto-service-package-btn defcon-crypto-service-open-modal" data-modal="package-professional">Get Started</a>
+                </div>
+            </div>
+            <div class="defcon-crypto-service-package-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                <div class="defcon-crypto-service-package-header">
+                    <h3>Enterprise</h3>
+                    <div class="defcon-crypto-service-package-price">Custom</div>
+                    <p>For large-scale crypto operations</p>
+                </div>
+                <div class="defcon-crypto-service-package-body">
+                    <ul class="defcon-crypto-service-package-features">
+                        <li>Custom crypto payment solution</li>
+                        <li>Unlimited cryptocurrency options</li>
+                        <li>Military-grade wallet security</li>
+                        <li>Full blockchain integration</li>
+                        <li>Custom smart contracts</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Real-time analytics dashboard</li>
+                        <li>Compliance consulting</li>
+                    </ul>
+                    <a href="#" class="defcon-crypto-service-package-btn defcon-crypto-service-open-modal" data-modal="package-enterprise">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="defcon-crypto-service-security">
+        <div class="defcon-crypto-service-security-container">
+            <h2 class="defcon-crypto-service-animate">Bank-Grade Security for Your Crypto Assets</h2>
+            <div class="defcon-crypto-service-security-grid">
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                    <h3>Multi-Signature Wallets</h3>
+                    <p>Our solutions implement multi-signature technology requiring multiple approvals for transactions, significantly reducing fraud risk.</p>
+                </div>
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                    <h3>Cold Storage Options</h3>
+                    <p>We offer secure offline storage solutions for your crypto assets, protecting them from online threats.</p>
+                </div>
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                    <h3>Regular Security Audits</h3>
+                    <p>Our systems undergo frequent penetration testing and security audits to identify and address vulnerabilities.</p>
+                </div>
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                    <h3>Two-Factor Authentication</h3>
+                    <p>All access points are protected with mandatory 2FA to prevent unauthorized access to your accounts.</p>
+                </div>
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                    <h3>Encrypted Transactions</h3>
+                    <p>All transactions are encrypted end-to-end using industry-standard protocols to ensure data integrity.</p>
+                </div>
+                <div class="defcon-crypto-service-security-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                    <h3>Compliance Ready</h3>
+                    <p>Our solutions are designed to help you meet regulatory requirements in multiple jurisdictions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="defcon-crypto-service-cases">
+        <div class="defcon-crypto-service-cases-container">
+            <h2 class="defcon-crypto-service-animate">Crypto Success Stories</h2>
+            <div class="defcon-crypto-service-cases-grid">
+                <div class="defcon-crypto-service-case-card defcon-crypto-service-animate defcon-crypto-service-delay-1">
+                    <div class="defcon-crypto-service-case-image">
+                        <img src="https://placeholder.com/600x400" alt="E-Commerce Crypto Integration">
+                    </div>
+                    <div class="defcon-crypto-service-case-body">
+                        <h3>E-Commerce Crypto Payments</h3>
+                        <p>Implemented a crypto payment gateway for an online retailer, resulting in 25% new customer acquisition from crypto users.</p>
+                        <a href="#" class="defcon-crypto-service-case-link defcon-crypto-service-open-modal" data-modal="case-ecommerce">Read Case Study →</a>
+                    </div>
+                </div>
+                <div class="defcon-crypto-service-case-card defcon-crypto-service-animate defcon-crypto-service-delay-2">
+                    <div class="defcon-crypto-service-case-image">
+                        <img src="https://placeholder.com/600x400" alt="Crypto Wallet App">
+                    </div>
+                    <div class="defcon-crypto-service-case-body">
+                        <h3>Custom Wallet Application</h3>
+                        <p>Developed a secure multi-currency wallet app for a fintech startup that achieved 50,000+ downloads in first 3 months.</p>
+                        <a href="#" class="defcon-crypto-service-case-link defcon-crypto-service-open-modal" data-modal="case-wallet">Read Case Study →</a>
+                    </div>
+                </div>
+                <div class="defcon-crypto-service-case-card defcon-crypto-service-animate defcon-crypto-service-delay-3">
+                    <div class="defcon-crypto-service-case-image">
+                        <img src="https://placeholder.com/600x400" alt="Blockchain Integration">
+                    </div>
+                    <div class="defcon-crypto-service-case-body">
+                        <h3>Supply Chain Blockchain</h3>
+                        <p>Integrated blockchain technology into a logistics company's supply chain, reducing verification time by 70%.</p>
+                        <a href="#" class="defcon-crypto-service-case-link defcon-crypto-service-open-modal" data-modal="case-blockchain">Read Case Study →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="defcon-crypto-service-cta" id="consultation">
+        <div class="defcon-crypto-service-cta-container defcon-crypto-service-animate">
+            <h2>Ready to Embrace Cryptocurrency?</h2>
+            <p>Schedule a free consultation with our blockchain experts to discuss how we can secure and optimize your crypto operations.</p>
+            <div class="defcon-crypto-service-cta-btns">
+                <a href="#" class="defcon-crypto-service-cta-btn primary defcon-crypto-service-open-modal" data-modal="consultation">Book a Consultation</a>
+                <a href="#" class="defcon-crypto-service-cta-btn secondary defcon-crypto-service-open-modal" data-modal="contact">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Windows -->
+    <div class="defcon-crypto-service-modal" id="defcon-crypto-service-modal-package-starter">
+        <div class="defcon-crypto-service-modal-content">
+            <span class="defcon-crypto-service-modal-close">&times;</span>
+            <h3>Starter Package</h3>
+            <p>Our Starter Package is ideal for businesses making their first foray into cryptocurrency. This package includes:</p>
+            <ul class="defcon-crypto-service-package-features">
+                <li>Basic cryptocurrency payment integration</li>
+                <li>Support for up to 3 cryptocurrencies</li>
+                <li>Standard digital wallet security</li>
+                <li>Monthly transaction reporting</li>
+                <li>Email support with 48-hour response</li>
+            </ul>
+            <form class="defcon-crypto-service-modal-form">
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="starter-name">Your Name</label>
+                    <input type="text" id="starter-name" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="starter-email">Email Address</label>
+                    <input type="email" id="starter-email" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="starter-phone">Phone Number</label>
+                    <input type="tel" id="starter-phone">
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="starter-business">Business Name</label>
+                    <input type="text" id="starter-business">
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="starter-crypto">Preferred Cryptocurrencies</label>
+                    <select id="starter-crypto">
+                        <option value="btc">Bitcoin (BTC)</option>
+                        <option value="eth">Ethereum (ETH)</option>
+                        <option value="ltc">Litecoin (LTC)</option>
+                    </select>
+                </div>
+                <button type="submit" class="defcon-crypto-service-modal-form-submit">Get Started with Starter Package</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="defcon-crypto-service-modal" id="defcon-crypto-service-modal-package-professional">
+        <div class="defcon-crypto-service-modal-content">
+            <span class="defcon-crypto-service-modal-close">&times;</span>
+            <h3>Professional Package</h3>
+            <p>Our Professional Package offers comprehensive cryptocurrency solutions for growing businesses. This package includes:</p>
+            <ul class="defcon-crypto-service-package-features">
+                <li>Advanced cryptocurrency payment system</li>
+                <li>Support for up to 10 cryptocurrencies</li>
+                <li>Enhanced wallet security features</li>
+                <li>Multi-signature transaction support</li>
+                <li>Basic smart contract integration</li>
+                <li>Priority support with 24-hour response</li>
+                <li>Weekly detailed transaction reports</li>
+            </ul>
+            <form class="defcon-crypto-service-modal-form">
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-name">Your Name</label>
+                    <input type="text" id="professional-name" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-email">Email Address</label>
+                    <input type="email" id="professional-email" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-phone">Phone Number</label>
+                    <input type="tel" id="professional-phone" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-business">Business Name</label>
+                    <input type="text" id="professional-business" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-crypto">Preferred Cryptocurrencies</label>
+                    <select id="professional-crypto" multiple>
+                        <option value="btc">Bitcoin (BTC)</option>
+                        <option value="eth">Ethereum (ETH)</option>
+                        <option value="ltc">Litecoin (LTC)</option>
+                        <option value="xrp">Ripple (XRP)</option>
+                        <option value="bch">Bitcoin Cash (BCH)</option>
+                        <option value="usdt">Tether (USDT)</option>
+                        <option value="ada">Cardano (ADA)</option>
+                        <option value="doge">Dogecoin (DOGE)</option>
+                    </select>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="professional-needs">Describe Your Crypto Needs</label>
+                    <textarea id="professional-needs" rows="3"></textarea>
+                </div>
+                <button type="submit" class="defcon-crypto-service-modal-form-submit">Get Started with Professional Package</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="defcon-crypto-service-modal" id="defcon-crypto-service-modal-package-enterprise">
+        <div class="defcon-crypto-service-modal-content">
+            <span class="defcon-crypto-service-modal-close">&times;</span>
+            <h3>Enterprise Solution</h3>
+            <p>Our Enterprise Solution provides custom cryptocurrency and blockchain solutions for large-scale operations. Pricing is tailored to your specific requirements.</p>
+            <p>This solution typically includes:</p>
+            <ul class="defcon-crypto-service-package-features">
+                <li>Custom cryptocurrency payment solution</li>
+                <li>Support for unlimited cryptocurrencies</li>
+                <li>Military-grade wallet security</li>
+                <li>Full blockchain integration</li>
+                <li>Custom smart contract development</li>
+                <li>24/7 dedicated support team</li>
+                <li>Real-time analytics dashboard</li>
+                <li>Regulatory compliance consulting</li>
+                <li>Custom API development</li>
+                <li>Ongoing maintenance and updates</li>
+            </ul>
+            <form class="defcon-crypto-service-modal-form">
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-name">Your Name</label>
+                    <input type="text" id="enterprise-name" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-email">Email Address</label>
+                    <input type="email" id="enterprise-email" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-phone">Phone Number</label>
+                    <input type="tel" id="enterprise-phone" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-company">Company Name</label>
+                    <input type="text" id="enterprise-company" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-role">Your Role</label>
+                    <input type="text" id="enterprise-role" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-needs">Describe Your Cryptocurrency Needs</label>
+                    <textarea id="enterprise-needs" rows="4" required></textarea>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="enterprise-budget">Estimated Budget</label>
+                    <select id="enterprise-budget" required>
+                        <option value="">Select Range</option>
+                        <option value="25-50">$25,000 - $50,000</option>
+                        <option value="50-100">$50,000 - $100,000</option>
+                        <option value="100-250">$100,000 - $250,000</option>
+                        <option value="250+">$250,000+</option>
+                    </select>
+                </div>
+                <button type="submit" class="defcon-crypto-service-modal-form-submit">Request Enterprise Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="defcon-crypto-service-modal" id="defcon-crypto-service-modal-consultation">
+        <div class="defcon-crypto-service-modal-content">
+            <span class="defcon-crypto-service-modal-close">&times;</span>
+            <h3>Schedule a Consultation</h3>
+            <p>Book a free 30-minute consultation with our cryptocurrency experts to discuss your business needs and how we can help.</p>
+            <form class="defcon-crypto-service-modal-form">
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-name">Your Name</label>
+                    <input type="text" id="consult-name" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-email">Email Address</label>
+                    <input type="email" id="consult-email" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-phone">Phone Number</label>
+                    <input type="tel" id="consult-phone" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-company">Company Name</label>
+                    <input type="text" id="consult-company">
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-date">Preferred Date</label>
+                    <input type="date" id="consult-date" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-time">Preferred Time</label>
+                    <input type="time" id="consult-time" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="consult-needs">Briefly Describe Your Crypto Needs</label>
+                    <textarea id="consult-needs" rows="3"></textarea>
+                </div>
+                <button type="submit" class="defcon-crypto-service-modal-form-submit">Schedule Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="defcon-crypto-service-modal" id="defcon-crypto-service-modal-contact">
+        <div class="defcon-crypto-service-modal-content">
+            <span class="defcon-crypto-service-modal-close">&times;</span>
+            <h3>Contact Our Crypto Team</h3>
+            <p>Have questions about our cryptocurrency and digital wallet services? Reach out to our team and we'll get back to you within 24 hours.</p>
+            <form class="defcon-crypto-service-modal-form">
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-name">Your Name</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" id="contact-email" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone">
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-company">Company Name</label>
+                    <input type="text" id="contact-company">
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-subject">Subject</label>
+                    <input type="text" id="contact-subject" required>
+                </div>
+                <div class="defcon-crypto-service-modal-form-group">
+                    <label for="contact-message">Your Message</label>
+                    <textarea id="contact-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="defcon-crypto-service-modal-form-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal functionality
+    const modalTriggers = document.querySelectorAll('.defcon-crypto-service-open-modal');
+    const modals = document.querySelectorAll('.defcon-crypto-service-modal');
+    const closeButtons = document.querySelectorAll('.defcon-crypto-service-modal-close');
+    
+    // Open modal
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(`defcon-crypto-service-modal-${modalId}`);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    // Close modal with button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.defcon-crypto-service-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close modal when clicking outside content
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            modals.forEach(modal => {
+                if (modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    });
+    
+    // Form submission handling
+    const forms = document.querySelectorAll('.defcon-crypto-service-modal-form, #defcon-crypto-service-quick-consult');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            // For demo purposes, we'll just show an alert
+            alert('Thank you for your submission! Our crypto team will contact you shortly.');
+            
+            // Close the modal if this is a modal form
+            const modal = this.closest('.defcon-crypto-service-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Reset the form
+            this.reset();
+        });
+    });
+    
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.defcon-crypto-service-animate, .defcon-crypto-service-animate-up');
+    
+    function checkAnimation() {
+        animateElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.style.opacity = '1';
+            }
+        });
+    }
+    
+    // Initial check
+    checkAnimation();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkAnimation);
+    
+    // Create blockchain animation nodes
+    const blockchainAnimation = document.createElement('div');
+    blockchainAnimation.className = 'defcon-crypto-service-blockchain-animation';
+    document.querySelector('.defcon-crypto-service-header-content').appendChild(blockchainAnimation);
+    
+    for (let i = 0; i < 15; i++) {
+        const node = document.createElement('div');
+        node.className = 'defcon-crypto-service-blockchain-node';
+        node.style.left = `${Math.random() * 100}%`;
+        node.style.top = `${Math.random() * 50}px`;
+        node.style.animationDelay = `${Math.random() * 8}s`;
+        blockchainAnimation.appendChild(node);
+    }
+});
+</script>

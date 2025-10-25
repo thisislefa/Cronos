@@ -1,0 +1,745 @@
+<style>
+
+/* Base Styles */
+.ecosystem-workspace-container {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hero Section */
+.ecosystem-workspace-hero {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 140px 40px;
+    text-align: center;
+    position: relative;
+}
+
+.ecosystem-workspace-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.ecosystem-workspace-hero-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #06273e;
+    line-height: 1.2;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.ecosystem-workspace-hero-title.animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ecosystem-workspace-hero-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transition: opacity 1s ease-out 0.3s;
+}
+
+.ecosystem-workspace-hero-subtitle.animate {
+    opacity: 0.8;
+}
+
+/* Platform Comparison Section */
+.ecosystem-workspace-comparison {
+    padding: 100px 40px;
+    background-color: #ffffff;
+}
+
+.ecosystem-workspace-section-title {
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 70px;
+    color: #06273e;
+    position: relative;
+}
+
+.ecosystem-workspace-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #0091ff;
+}
+
+.ecosystem-workspace-platforms {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.ecosystem-workspace-platform {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 50px 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.ecosystem-workspace-platform::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+}
+
+.ecosystem-workspace-platform:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.ecosystem-workspace-platform.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ecosystem-workspace-platform.microsoft {
+    border-top: 5px solid #0078d4;
+}
+
+.ecosystem-workspace-platform.google {
+    border-top: 5px solid #4285f4;
+}
+
+.ecosystem-workspace-platform-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.ecosystem-workspace-platform-icon.microsoft {
+    background-color: #0078d4;
+    box-shadow: 0 10px 30px rgba(0, 120, 212, 0.3);
+}
+
+.ecosystem-workspace-platform-icon.google {
+    background-color: #4285f4;
+    box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+}
+
+.ecosystem-workspace-platform-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #06273e;
+}
+
+.ecosystem-workspace-platform-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: #06273e;
+    opacity: 0.8;
+}
+
+.ecosystem-workspace-features {
+    margin-top: 40px;
+}
+
+.ecosystem-workspace-feature {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(6, 39, 62, 0.1);
+}
+
+.ecosystem-workspace-feature:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.ecosystem-workspace-feature-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    color: #0091ff;
+    flex-shrink: 0;
+}
+
+.ecosystem-workspace-feature-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #06273e;
+}
+
+/* Integration Section */
+.ecosystem-workspace-integration {
+    padding: 100px 40px;
+    background-color: #f9f9f9;
+}
+
+.ecosystem-workspace-integration-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ecosystem-workspace-integration-title {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    color: #06273e;
+}
+
+.ecosystem-workspace-integration-desc {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    color: #06273e;
+    opacity: 0.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ecosystem-workspace-integration-diagram {
+    width: 100%;
+    max-width: 800px;
+    margin: 60px auto;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.ecosystem-workspace-integration-diagram.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Use Cases Section */
+.ecosystem-workspace-usecases {
+    padding: 100px 40px;
+    background-color: #ffffff;
+}
+
+.ecosystem-workspace-usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.ecosystem-workspace-usecase {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.ecosystem-workspace-usecase:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.ecosystem-workspace-usecase.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ecosystem-workspace-usecase-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgba(0, 145, 255, 0.1);
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    line-height: 1;
+}
+
+.ecosystem-workspace-usecase-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #06273e;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.ecosystem-workspace-usecase-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #0091ff;
+}
+
+.ecosystem-workspace-usecase-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #06273e;
+    opacity: 0.8;
+}
+
+/* Decision Guide Section */
+.ecosystem-workspace-decision {
+    padding: 100px 40px;
+    background-color: #06273e;
+    color: #ffffff;
+}
+
+.ecosystem-workspace-decision-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ecosystem-workspace-decision-title {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+}
+
+.ecosystem-workspace-decision-desc {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+.ecosystem-workspace-factors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+    text-align: left;
+}
+
+.ecosystem-workspace-factor {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.ecosystem-workspace-factor:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.ecosystem-workspace-factor-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.ecosystem-workspace-factor-icon {
+    margin-right: 12px;
+    color: #0091ff;
+}
+
+.ecosystem-workspace-factor-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* CTA Section */
+.ecosystem-workspace-cta {
+    padding: 120px 40px;
+    background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+    color: #ffffff;
+    text-align: center;
+}
+
+.ecosystem-workspace-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ecosystem-workspace-cta-title {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+}
+
+.ecosystem-workspace-cta-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+.ecosystem-workspace-cta-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0091ff;
+    padding: 18px 50px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.ecosystem-workspace-cta-button:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .ecosystem-workspace-platforms {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ecosystem-workspace-platform {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .ecosystem-workspace-hero {
+        padding: 100px 20px;
+    }
+    
+    .ecosystem-workspace-hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .ecosystem-workspace-hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .ecosystem-workspace-comparison,
+    .ecosystem-workspace-integration,
+    .ecosystem-workspace-usecases,
+    .ecosystem-workspace-decision,
+    .ecosystem-workspace-cta {
+        padding: 70px 20px;
+    }
+    
+    .ecosystem-workspace-section-title {
+        font-size: 2.2rem;
+    }
+    
+    .ecosystem-workspace-platform {
+        padding: 40px 30px;
+    }
+    
+    .ecosystem-workspace-cta-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Animation Classes */
+.ecosystem-workspace-animate {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.ecosystem-workspace-animate.animate {
+    opacity: 1;
+}
+
+</style>
+
+<div class="ecosystem-workspace-container">
+    <!-- Hero Section -->
+    <section class="ecosystem-workspace-hero">
+        <div class="ecosystem-workspace-hero-content">
+            <h1 class="ecosystem-workspace-hero-title ecosystem-workspace-animate">Microsoft Ecosystem & Google Workspace Integration</h1>
+            <p class="ecosystem-workspace-hero-subtitle ecosystem-workspace-animate">Seamlessly connect your enterprise productivity tools for maximum efficiency and collaboration across platforms</p>
+        </div>
+    </section>
+
+    <!-- Platform Comparison Section -->
+    <section class="ecosystem-workspace-comparison">
+        <h2 class="ecosystem-workspace-section-title ecosystem-workspace-animate">Comprehensive Platform Solutions</h2>
+        
+        <div class="ecosystem-workspace-platforms">
+            <div class="ecosystem-workspace-platform microsoft ecosystem-workspace-animate">
+                <div class="ecosystem-workspace-platform-icon microsoft">M</div>
+                <h3 class="ecosystem-workspace-platform-title">Microsoft Ecosystem</h3>
+                <p class="ecosystem-workspace-platform-desc">
+                    The Microsoft ecosystem offers a tightly integrated suite of enterprise-grade productivity, collaboration, and business applications designed for organizations of all sizes.
+                </p>
+                
+                <div class="ecosystem-workspace-features">
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Deep integration with Windows OS and Office applications</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Enterprise-grade security and compliance features</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Comprehensive business applications (Dynamics 365, Power Platform)</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Hybrid deployment options with Azure cloud services</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ecosystem-workspace-platform google ecosystem-workspace-animate" style="transition-delay: 0.2s">
+                <div class="ecosystem-workspace-platform-icon google">G</div>
+                <h3 class="ecosystem-workspace-platform-title">Google Workspace</h3>
+                <p class="ecosystem-workspace-platform-desc">
+                    Google Workspace provides cloud-native productivity and collaboration tools with simplicity and accessibility at their core, ideal for agile and distributed teams.
+                </p>
+                
+                <div class="ecosystem-workspace-features">
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Real-time collaboration and document sharing</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Simple, intuitive interface with minimal learning curve</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">Seamless integration with other Google services</p>
+                    </div>
+                    <div class="ecosystem-workspace-feature">
+                        <div class="ecosystem-workspace-feature-icon">✓</div>
+                        <p class="ecosystem-workspace-feature-text">AI-powered search and smart features</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Section -->
+    <section class="ecosystem-workspace-integration">
+        <div class="ecosystem-workspace-integration-content">
+            <h2 class="ecosystem-workspace-integration-title ecosystem-workspace-animate">Bridging the Best of Both Worlds</h2>
+            <p class="ecosystem-workspace-integration-desc ecosystem-workspace-animate">
+                Many organizations find value in leveraging both Microsoft and Google solutions for different needs. Our integration expertise ensures seamless interoperability between these platforms, allowing you to maximize productivity without compromise.
+            </p>
+            
+            <div class="ecosystem-workspace-integration-diagram ecosystem-workspace-animate">
+                <!-- Placeholder for integration diagram -->
+                <div style="background-color: #e5e5e5; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #06273e; font-size: 1.2rem;">
+                    Integration Architecture Diagram
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="ecosystem-workspace-usecases">
+        <h2 class="ecosystem-workspace-section-title ecosystem-workspace-animate">Enterprise Use Cases</h2>
+        
+        <div class="ecosystem-workspace-usecases-grid">
+            <div class="ecosystem-workspace-usecase ecosystem-workspace-animate">
+                <div class="ecosystem-workspace-usecase-number">01</div>
+                <h3 class="ecosystem-workspace-usecase-title">Hybrid Workforce Enablement</h3>
+                <p class="ecosystem-workspace-usecase-desc">
+                    Support both Microsoft-centric and Google-preferred users within the same organization, allowing teams to work with their tools of choice while maintaining collaboration and data consistency.
+                </p>
+            </div>
+            
+            <div class="ecosystem-workspace-usecase ecosystem-workspace-animate" style="transition-delay: 0.1s">
+                <div class="ecosystem-workspace-usecase-number">02</div>
+                <h3 class="ecosystem-workspace-usecase-title">Mergers & Acquisitions</h3>
+                <p class="ecosystem-workspace-usecase-desc">
+                    Bridge technology stacks when companies with different productivity platforms merge, minimizing disruption while planning long-term standardization.
+                </p>
+            </div>
+            
+            <div class="ecosystem-workspace-usecase ecosystem-workspace-animate" style="transition-delay: 0.2s">
+                <div class="ecosystem-workspace-usecase-number">03</div>
+                <h3 class="ecosystem-workspace-usecase-title">Department-Specific Solutions</h3>
+                <p class="ecosystem-workspace-usecase-desc">
+                    Leverage Microsoft's strength in enterprise applications for finance and operations while using Google's collaboration tools for creative and engineering teams.
+                </p>
+            </div>
+            
+            <div class="ecosystem-workspace-usecase ecosystem-workspace-animate" style="transition-delay: 0.3s">
+                <div class="ecosystem-workspace-usecase-number">04</div>
+                <h3 class="ecosystem-workspace-usecase-title">Cloud Migration Strategy</h3>
+                <p class="ecosystem-workspace-usecase-desc">
+                    Implement a phased approach to cloud adoption, mixing Google's SaaS simplicity with Microsoft's hybrid capabilities as your organization evolves.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decision Guide Section -->
+    <section class="ecosystem-workspace-decision">
+        <div class="ecosystem-workspace-decision-content">
+            <h2 class="ecosystem-workspace-decision-title ecosystem-workspace-animate">Choosing the Right Solution</h2>
+            <p class="ecosystem-workspace-decision-desc ecosystem-workspace-animate">
+                The choice between Microsoft and Google ecosystems—or a combination of both—depends on multiple organizational factors. Here are key considerations for your decision-making process:
+            </p>
+            
+            <div class="ecosystem-workspace-factors">
+                <div class="ecosystem-workspace-factor ecosystem-workspace-animate">
+                    <h3 class="ecosystem-workspace-factor-title">
+                        <span class="ecosystem-workspace-factor-icon">◈</span> Existing Infrastructure
+                    </h3>
+                    <p class="ecosystem-workspace-factor-desc">
+                        Evaluate your current technology investments, user familiarity, and integration requirements with legacy systems.
+                    </p>
+                </div>
+                
+                <div class="ecosystem-workspace-factor ecosystem-workspace-animate" style="transition-delay: 0.1s">
+                    <h3 class="ecosystem-workspace-factor-title">
+                        <span class="ecosystem-workspace-factor-icon">◈</span> Security & Compliance
+                    </h3>
+                    <p class="ecosystem-workspace-factor-desc">
+                        Consider industry regulations, data residency requirements, and your organization's specific security needs.
+                    </p>
+                </div>
+                
+                <div class="ecosystem-workspace-factor ecosystem-workspace-animate" style="transition-delay: 0.2s">
+                    <h3 class="ecosystem-workspace-factor-title">
+                        <span class="ecosystem-workspace-factor-icon">◈</span> Collaboration Patterns
+                    </h3>
+                    <p class="ecosystem-workspace-factor-desc">
+                        Analyze how your teams work together—real-time collaboration needs, document sharing practices, and communication flows.
+                    </p>
+                </div>
+                
+                <div class="ecosystem-workspace-factor ecosystem-workspace-animate" style="transition-delay: 0.3s">
+                    <h3 class="ecosystem-workspace-factor-title">
+                        <span class="ecosystem-workspace-factor-icon">◈</span> Business Applications
+                    </h3>
+                    <p class="ecosystem-workspace-factor-desc">
+                        Assess requirements for CRM, ERP, and other business systems that may influence your productivity platform choice.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="ecosystem-workspace-cta">
+        <div class="ecosystem-workspace-cta-content">
+            <h2 class="ecosystem-workspace-cta-title ecosystem-workspace-animate">Optimize Your Productivity Ecosystem</h2>
+            <p class="ecosystem-workspace-cta-subtitle ecosystem-workspace-animate">
+                Our consultants specialize in helping organizations navigate the Microsoft and Google landscape to create tailored solutions that drive productivity and collaboration.
+            </p>
+            <a href="#contact" class="ecosystem-workspace-cta-button ecosystem-workspace-animate">Schedule Consultation</a>
+        </div>
+    </section>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.ecosystem-workspace-animate');
+    
+    const animateOnScroll = function() {
+        animateElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('animate');
+            }
+        });
+    };
+    
+    // Initial check
+    animateOnScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Hero animation triggers
+    setTimeout(() => {
+        document.querySelector('.ecosystem-workspace-hero-title').classList.add('animate');
+    }, 300);
+    
+    setTimeout(() => {
+        document.querySelector('.ecosystem-workspace-hero-subtitle').classList.add('animate');
+    }, 600);
+    
+    // Stagger animations for platform cards
+    const platforms = document.querySelectorAll('.ecosystem-workspace-platform');
+    platforms.forEach((platform, index) => {
+        setTimeout(() => {
+            platform.classList.add('animate');
+        }, 300 + (index * 200));
+    });
+    
+    // Stagger animations for use cases
+    const useCases = document.querySelectorAll('.ecosystem-workspace-usecase');
+    useCases.forEach((useCase, index) => {
+        setTimeout(() => {
+            useCase.classList.add('animate');
+        }, 300 + (index * 150));
+    });
+    
+    // Stagger animations for decision factors
+    const factors = document.querySelectorAll('.ecosystem-workspace-factor');
+    factors.forEach((factor, index) => {
+        setTimeout(() => {
+            factor.classList.add('animate');
+        }, 300 + (index * 100));
+    });
+    
+    // Integration diagram animation
+    setTimeout(() => {
+        document.querySelector('.ecosystem-workspace-integration-diagram').classList.add('animate');
+    }, 800);
+    
+    // CTA button hover effect
+    const ctaButton = document.querySelector('.ecosystem-workspace-cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
+        });
+        
+        ctaButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+        });
+    }
+});
+
+</script>

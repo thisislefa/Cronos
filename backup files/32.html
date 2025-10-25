@@ -1,0 +1,385 @@
+<style>
+.tabbed-services-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #06273e 0%, #003087 100%);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.tabbed-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.tabbed-services-header {
+    font-size: 48px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.tabbed-services-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tabbed-services-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.tabbed-services-tab {
+    background-color: #e5e5e5;
+    color: #06273e;
+    padding: 12px 24px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.tabbed-services-tab:hover {
+    background-color: #0091ff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.tabbed-services-tab.active {
+    background-color: #0091ff;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.3);
+}
+
+.tabbed-services-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.2);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tabbed-services-content.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tabbed-services-content-header {
+    font-size: 32px;
+    color: #06273e;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.tabbed-services-content-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.tabbed-services-content:hover .tabbed-services-content-icon {
+    transform: scale(1.1);
+}
+
+.tabbed-services-content-description {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.tabbed-services-content-features {
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.tabbed-services-content-feature-item {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.tabbed-services-content-feature-item::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-size: 16px;
+}
+
+.tabbed-services-content-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tabbed-services-content-cta:hover {
+    background-color: #0078d4;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.tabbed-services-content-cta::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.tabbed-services-content-cta:hover::after {
+    margin-left: 15px;
+}
+
+.tabbed-services-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://via.placeholder.com/1920x1080?text=Background+Texture');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.15;
+    transform: translateZ(0);
+}
+
+@media (max-width: 768px) {
+    .tabbed-services-header {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+
+    .tabbed-services-tab {
+        padding: 10px 20px;
+        font-size: 14px;
+        margin: 3px;
+    }
+
+    .tabbed-services-content {
+        padding: 20px;
+    }
+
+    .tabbed-services-content-header {
+        font-size: 26px;
+    }
+
+    .tabbed-services-content-description {
+        font-size: 16px;
+    }
+
+    .tabbed-services-content-feature-item {
+        font-size: 14px;
+    }
+
+    .tabbed-services-content-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tabbed-services-content-cta {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabbed-services-container {
+        padding: 0 15px;
+    }
+
+    .tabbed-services-header {
+        font-size: 30px;
+    }
+
+    .tabbed-services-tab {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .tabbed-services-content-header {
+        font-size: 22px;
+    }
+}
+</style>
+
+<div class="tabbed-services-section">
+    <div class="tabbed-services-background"></div>
+    <div class="tabbed-services-container">
+        <h1 class="tabbed-services-header">Our Expert Services</h1>
+        
+        <div class="tabbed-services-nav">
+            <button class="tabbed-services-tab active" data-tab="web-design">Web Design</button>
+            <button class="tabbed-services-tab" data-tab="tech-support">Tech Support</button>
+            <button class="tabbed-services-tab" data-tab="it-consulting">IT Consulting</button>
+            <button class="tabbed-services-tab" data-tab="digital-marketing">Digital Marketing</button>
+            <button class="tabbed-services-tab" data-tab="graphic-design">Graphic Design</button>
+            <button class="tabbed-services-tab" data-tab="photography">Photography</button>
+            <button class="tabbed-services-tab" data-tab="videography">Videography</button>
+        </div>
+
+        <div class="tabbed-services-content active" data-tab-content="web-design">
+            <img src="https://via.placeholder.com/70x70?text=Web+Icon" class="tabbed-services-content-icon" alt="Web Design Icon">
+            <h2 class="tabbed-services-content-header">Web Design & Development</h2>
+            <p class="tabbed-services-content-description">Create a stunning online presence with our bespoke web solutions, designed to captivate and convert.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">Responsive and mobile-optimized designs</li>
+                <li class="tabbed-services-content-feature-item">Advanced SEO integration</li>
+                <li class="tabbed-services-content-feature-item">Custom CMS development</li>
+                <li class="tabbed-services-content-feature-item">E-commerce solutions</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="tech-support">
+            <img src="https://via.placeholder.com/70x70?text=Tech+Icon" class="tabbed-services-content-icon" alt="Tech Support Icon">
+            <h2 class="tabbed-services-content-header">Tech Support</h2>
+            <p class="tabbed-services-content-description">Ensure seamless operations with our 24/7 technical support and maintenance services.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">24/7 system monitoring</li>
+                <li class="tabbed-services-content-feature-item">Rapid issue resolution</li>
+                <li class="tabbed-services-content-feature-item">Software updates and patches</li>
+                <li class="tabbed-services-content-feature-item">Hardware troubleshooting</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="it-consulting">
+            <img src="https://via.placeholder.com/70x70?text=IT+Icon" class="tabbed-services-content-icon" alt="IT Consulting Icon">
+            <h2 class="tabbed-services-content-header">IT Consulting</h2>
+            <p class="tabbed-services-content-description">Transform your IT infrastructure with strategic consulting tailored to your business goals.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">IT strategy and planning</li>
+                <li class="tabbed-services-content-feature-item">Cloud integration services</li>
+                <li class="tabbed-services-content-feature-item">Cybersecurity assessments</li>
+                <li class="tabbed-services-content-feature-item">Workflow optimization</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="digital-marketing">
+            <img src="https://via.placeholder.com/70x70?text=Marketing+Icon" class="tabbed-services-content-icon" alt="Digital Marketing Icon">
+            <h2 class="tabbed-services-content-header">Digital Marketing</h2>
+            <p class="tabbed-services-content-description">Drive growth with targeted digital marketing strategies that deliver measurable results.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">SEO and content marketing</li>
+                <li class="tabbed-services-content-feature-item">Social media campaigns</li>
+                <li class="tabbed-services-content-feature-item">PPC advertising</li>
+                <li class="tabbed-services-content-feature-item">Analytics and reporting</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="graphic-design">
+            <img src="https://via.placeholder.com/70x70?text=Graphic+Icon" class="tabbed-services-content-icon" alt="Graphic Design Icon">
+            <h2 class="tabbed-services-content-header">Graphic Design</h2>
+            <p class="tabbed-services-content-description">Elevate your brand with visually stunning designs crafted for impact and consistency.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">Logo and brand identity</li>
+                <li class="tabbed-services-content-feature-item">Marketing collateral</li>
+                <li class="tabbed-services-content-feature-item">UI/UX design</li>
+                <li class="tabbed-services-content-feature-item">Print and digital graphics</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="photography">
+            <img src="https://via.placeholder.com/70x70?text=Photo+Icon" class="tabbed-services-content-icon" alt="Photography Icon">
+            <h2 class="tabbed-services-content-header">Photography</h2>
+            <p class="tabbed-services-content-description">Capture your brand’s essence with professional photography that tells your story.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">Product photography</li>
+                <li class="tabbed-services-content-feature-item">Corporate headshots</li>
+                <li class="tabbed-services-content-feature-item">Event coverage</li>
+                <li class="tabbed-services-content-feature-item">Lifestyle photography</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+
+        <div class="tabbed-services-content" data-tab-content="videography">
+            <img src="https://via.placeholder.com/70x70?text=Video+Icon" class="tabbed-services-content-icon" alt="Videography Icon">
+            <h2 class="tabbed-services-content-header">Videography</h2>
+            <p class="tabbed-services-content-description">Engage your audience with cinematic videos that bring your brand to life.</p>
+            <ul class="tabbed-services-content-features">
+                <li class="tabbed-services-content-feature-item">Promotional videos</li>
+                <li class="tabbed-services-content-feature-item">Corporate films</li>
+                <li class="tabbed-services-content-feature-item">Event videography</li>
+                <li class="tabbed-services-content-feature-item">Post-production editing</li>
+            </ul>
+            <a href="#contact" class="tabbed-services-content-cta">Get Started</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tabbed-services-tab');
+    const contents = document.querySelectorAll('.tabbed-services-content');
+    const header = document.querySelector('.tabbed-services-header');
+
+    // Show header on load
+    setTimeout(() => {
+        header.classList.add('visible');
+    }, 100);
+
+    // Tab switching logic
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            const tabContent = document.querySelector(`[data-tab-content="${tab.dataset.tab}"]`);
+            tabContent.classList.add('active');
+        });
+    });
+
+    // Intersection Observer for content animation
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.classList.contains('active')) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach(content => {
+        observer.observe(content);
+    });
+
+    // Ensure first tab content is visible on load
+    contents[0].classList.add('visible');
+});
+</script>

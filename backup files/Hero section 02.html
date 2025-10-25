@@ -1,0 +1,484 @@
+<div class="defcon-hero-section">
+  <div class="defcon-hero-container">
+    <div class="defcon-hero-cards">
+      <!-- Card 1 -->
+      <div class="defcon-hero-card defcon-hero-card-active" data-card="1">
+        <div class="defcon-hero-card-bg" style="background-image: url('thumbnails/pexels-altabena-10142683.jpg')"></div>
+        <div class="defcon-hero-card-content">
+          <h3 class="defcon-hero-card-title">Enterprise Cloud Solutions</h3>
+          <p class="defcon-hero-card-desc">Scalable cloud infrastructure tailored to your business needs with 99.99% uptime guarantee.</p>
+          <a href="#" class="defcon-hero-card-cta">Explore Solutions</a>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="defcon-hero-card" data-card="2">
+        <div class="defcon-hero-card-bg" style="background-image: url('thumbnails/pexels-resourceboy-18541715.jpg')"></div>
+        <div class="defcon-hero-card-content">
+          <h3 class="defcon-hero-card-title">AI-Powered Analytics</h3>
+          <p class="defcon-hero-card-desc">Transform your data into actionable insights with our cutting-edge machine learning platforms.</p>
+          <a href="#" class="defcon-hero-card-cta">Discover AI Tools</a>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="defcon-hero-card" data-card="3">
+        <div class="defcon-hero-card-bg" style="background-image: url('thumbnails/pexels-pixabay-270669.jpg')"></div>
+        <div class="defcon-hero-card-content">
+          <h3 class="defcon-hero-card-title">Cybersecurity Suite</h3>
+          <p class="defcon-hero-card-desc">Enterprise-grade protection against evolving threats with 24/7 monitoring and response.</p>
+          <a href="#" class="defcon-hero-card-cta">Secure Your Business</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="defcon-hero-controls">
+      <button class="defcon-hero-prev" aria-label="Previous card">
+        <svg class="defcon-hero-arrow-icon" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <div class="defcon-hero-indicator">
+        <span class="defcon-hero-current">1</span> / <span class="defcon-hero-total">3</span>
+      </div>
+      <button class="defcon-hero-next" aria-label="Next card">
+        <svg class="defcon-hero-arrow-icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ================ */
+/* HERO SECTION STYLES */
+/* ================ */
+.defcon-hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 1000px;
+  overflow: hidden;
+  background-color: #06273e;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.defcon-hero-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.defcon-hero-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  perspective: 2000px;
+}
+
+.defcon-hero-card {
+  position: relative;
+  width: calc(33.333% - 20px);
+  height: 80%;
+  min-height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(0.9) translateZ(-100px);
+}
+
+.defcon-hero-card-active {
+  width: 60%;
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+  z-index: 10;
+}
+
+.defcon-hero-card-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.defcon-hero-card-active .defcon-hero-card-bg {
+  transform: scale(1.05);
+}
+
+.defcon-hero-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(6, 39, 62, 0.9) 0%, rgba(6, 39, 62, 0) 100%);
+  color: #ffffff;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.defcon-hero-card-active .defcon-hero-card-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.defcon-hero-card-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-hero-card-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 80%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-hero-card-cta {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  float: right;
+  box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-hero-card-cta:hover {
+  background-color: #0077cc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+/* Navigation Controls */
+.defcon-hero-controls {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  z-index: 20;
+}
+
+.defcon-hero-prev,
+.defcon-hero-next {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.defcon-hero-prev:hover,
+.defcon-hero-next:hover {
+  background-color: rgba(0, 145, 255, 0.3);
+  border-color: #0091ff;
+}
+
+.defcon-hero-arrow-icon {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+}
+
+.defcon-hero-indicator {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* ================ */
+/* ANIMATIONS */
+/* ================ */
+@keyframes defconCardFocus {
+  0% { transform: scale(0.9) translateZ(-100px); opacity: 0.7; }
+  100% { transform: scale(1) translateZ(0); opacity: 1; }
+}
+
+@keyframes defconCardBlur {
+  0% { transform: scale(1) translateZ(0); opacity: 1; }
+  100% { transform: scale(0.9) translateZ(-100px); opacity: 0.7; }
+}
+
+/* ================ */
+/* RESPONSIVE STYLES */
+/* ================ */
+@media (max-width: 1024px) {
+  .defcon-hero-section {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .defcon-hero-card {
+    width: calc(40% - 15px);
+    min-height: 400px;
+  }
+  
+  .defcon-hero-card-active {
+    width: 70%;
+  }
+  
+  .defcon-hero-card-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-hero-card-desc {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-hero-section {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .defcon-hero-cards {
+    gap: 10px;
+  }
+  
+  .defcon-hero-card {
+    width: calc(45% - 10px);
+    min-height: 350px;
+  }
+  
+  .defcon-hero-card-active {
+    width: 80%;
+  }
+  
+  .defcon-hero-card-content {
+    padding: 25px;
+  }
+  
+  .defcon-hero-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .defcon-hero-card-desc {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    max-width: 100%;
+  }
+  
+  .defcon-hero-card-cta {
+    padding: 10px 20px;
+  }
+  
+  .defcon-hero-controls {
+    bottom: 20px;
+    gap: 20px;
+  }
+  
+  .defcon-hero-prev,
+  .defcon-hero-next {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .defcon-hero-arrow-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-hero-section {
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .defcon-hero-card {
+    width: calc(50% - 5px);
+    min-height: 250px;
+  }
+  
+  .defcon-hero-card-active {
+    width: 90%;
+  }
+  
+  .defcon-hero-card-content {
+    padding: 15px;
+  }
+  
+  .defcon-hero-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .defcon-hero-card-desc {
+    font-size: 0.8rem;
+  }
+  
+  .defcon-hero-card-cta {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .defcon-hero-controls {
+    gap: 15px;
+  }
+  
+  .defcon-hero-prev,
+  .defcon-hero-next {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .defcon-hero-arrow-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const heroSection = document.querySelector('.defcon-hero-section');
+  const cards = document.querySelectorAll('.defcon-hero-card');
+  const prevBtn = document.querySelector('.defcon-hero-prev');
+  const nextBtn = document.querySelector('.defcon-hero-next');
+  const currentIndicator = document.querySelector('.defcon-hero-current');
+  const totalIndicator = document.querySelector('.defcon-hero-total');
+  
+  let currentCardIndex = 0;
+  let autoRotateInterval;
+  const rotationSpeed = 3000; // 3 seconds
+  
+  // Set total cards indicator
+  totalIndicator.textContent = cards.length;
+  
+  // Initialize cards
+  function initCards() {
+    cards.forEach((card, index) => {
+      card.classList.remove('defcon-hero-card-active');
+      if (index === currentCardIndex) {
+        card.classList.add('defcon-hero-card-active');
+      }
+    });
+    updateIndicator();
+  }
+  
+  // Update position indicator
+  function updateIndicator() {
+    currentIndicator.textContent = currentCardIndex + 1;
+  }
+  
+  // Go to specific card
+  function goToCard(index) {
+    // Don't do anything if we're already on this card
+    if (index === currentCardIndex) return;
+    
+    // Remove active class from all cards
+    cards.forEach(card => {
+      card.classList.remove('defcon-hero-card-active');
+    });
+    
+    // Update current index
+    currentCardIndex = index;
+    
+    // Add active class to new card
+    cards[currentCardIndex].classList.add('defcon-hero-card-active');
+    
+    // Update indicator
+    updateIndicator();
+    
+    // Reset auto-rotation timer
+    resetAutoRotate();
+  }
+  
+  // Go to next card
+  function nextCard() {
+    const nextIndex = (currentCardIndex + 1) % cards.length;
+    goToCard(nextIndex);
+  }
+  
+  // Go to previous card
+  function prevCard() {
+    const prevIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    goToCard(prevIndex);
+  }
+  
+  // Start auto-rotation
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(nextCard, rotationSpeed);
+  }
+  
+  // Reset auto-rotation timer
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+  
+  // Event listeners
+  nextBtn.addEventListener('click', nextCard);
+  prevBtn.addEventListener('click', prevCard);
+  
+  // Pause auto-rotation on hover
+  heroSection.addEventListener('mouseenter', () => {
+    clearInterval(autoRotateInterval);
+  });
+  
+  // Resume auto-rotation when mouse leaves
+  heroSection.addEventListener('mouseleave', () => {
+    resetAutoRotate();
+  });
+  
+  // Touch events for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  heroSection.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    clearInterval(autoRotateInterval);
+  }, {passive: true});
+  
+  heroSection.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+    resetAutoRotate();
+  }, {passive: true});
+  
+  function handleSwipe() {
+    const threshold = 50; // Minimum swipe distance
+    if (touchEndX < touchStartX - threshold) {
+      nextCard(); // Swipe left
+    } else if (touchEndX > touchStartX + threshold) {
+      prevCard(); // Swipe right
+    }
+  }
+  
+  // Initialize
+  initCards();
+  startAutoRotate();
+});
+</script>

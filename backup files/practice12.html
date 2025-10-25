@@ -1,0 +1,436 @@
+<style>
+    /* Services Page Styles */
+        .services-page {
+            background: rgb(0, 44, 69);      
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-stretch: normal;
+            font-weight: normal;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            justify-content: center;
+        }
+
+        /* Background overlay */
+        .services-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('thumbnails/pexels-shvetsa-5614119.jpg') repeat center;
+        opacity: 0.1;
+        z-index: 0;  
+        }
+
+        /* Hero section */
+        .services-hero {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        }
+
+        .services-hero h1 {
+        font-size: 3rem;
+        color: #0091ff;
+        margin-bottom: 1rem;
+        animation: fadeInScale 1s ease-in-out;
+        text-shadow: #0091ff;
+        margin-top: 0px;
+        }
+
+        /* Services grid */
+        .services-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+        
+        }
+
+        /* Service card */
+        .service-card {
+        perspective: 1000px;
+        position: relative;
+        height: 300px;
+        }
+
+        .service-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card:hover .service-card-inner {
+        transform: rotateY(180deg);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+
+        .service-card-front,.service-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 12px;
+        }
+
+        .service-card-front {
+        animation: slideInLeft 1s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .service-card-back {
+        transform: rotateY(180deg);
+        animation: slideInRight 1s ease-in-out;
+        background: rgba(44, 62, 80, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .service-card img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+        }
+
+        .service-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        }
+
+        .service-card p {
+        font-size: 1rem;
+        line-height: 1.5;
+        }
+
+        .service-btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background: #0091ff;
+        color: #fafbfb;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 1rem;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 1rem;
+        transition: transform 0.2s ease;
+        }
+
+        .service-btn:hover {
+        background: rgb(255, 255, 255);
+        color: #1da8ff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        animation: none;
+        }
+
+        .service-btn:active {
+        animation: bounce 0.3s ease;
+        }
+
+        /* Call-to-action section */
+        .services-cta {
+        text-align: center;
+        padding: 3rem 2rem;
+        position: relative;
+        z-index: 2;
+        }
+
+        .services-cta h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        animation: fadeInScale 1s ease-in-out;
+        }
+
+        .cta-btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: #de2727;
+        color: #ecf0f1;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease;
+        }
+
+        .cta-btn:hover {
+        background: linear-gradient(135deg, #c02b2b, #1a252f);
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        animation: none;
+        }
+
+        .cta-btn:active {
+        animation: bounce 0.5s ease;
+        }
+
+        /* Why choose section */
+        .services-why {
+        text-align: center;
+        padding: 1rem 1rem;
+        position: relative;
+        z-index: 2;
+        }
+
+        .services-why h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        }
+
+
+    .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 40px;
+                margin-top: 80px;
+                
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+                font-weight: 900;
+                background: #0091ff;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: block;
+            }
+
+            .stat-label {
+                color: rgba(240, 240, 240, 0.8);
+                font-size: 1.1rem;
+                margin-top: 10px;
+            }
+
+
+
+        @keyframes countUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+        }
+
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+        .services-hero h1 {
+            font-size: 2.2rem;
+        }
+
+        .services-container {
+            grid-template-columns: 1fr;
+        }
+
+        .service-card {
+            height: 250px;
+        }
+
+        .services-cta h2 {
+            font-size: 1.8rem;
+        }
+
+        .services-why h2 {
+            justify-content: center;
+        }
+
+        .stat-item .count {
+            font-size: 2rem;
+        }
+        }
+</style>
+
+ <!-- Service page -->
+    <section class="services-page" id="services">
+        <div>
+            <div class="services-overlay"></div>
+        <div class="services-hero">
+                <h1 class="services-heading">Our Services: Powering Your Digital Future</h1>
+            <div class="circuit-wave"></div>
+            <div class="services-container">
+
+            <div class="service-card">
+            <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/code.png" alt="Web Icon">
+                <h3>Web Design & Development</h3>
+                <p>Custom, responsive websites tailored to your brand.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>From sleek portfolios to e-commerce platforms, we build websites that captivate and convert. Let’s create your digital jol!</p>
+                <a href="webdesign.html" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+
+            <div class="service-card">
+            <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/troubleshooting.png" alt="Cyber Icon">
+                <h3>Technical Support</h3>
+                <p>Protect your business with cutting-edge security.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>Our expert solutions safeguard against phishing, malware, and more. Secure your digital world with Lupoid!</p>
+                <a href="techsupport.html" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/consultation.png" alt="Marketing Icon">
+                <h3>IT Consulting</h3>
+                <p>Boost your brand with targeted campaigns.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>From SEO to social media, we drive engagement and growth. Let’s make your brand shine online!</p>
+                <a href="itconsulting.html" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/services.png" alt="Marketing Icon">
+                <h3>Digital Marketing</h3>
+                <p>Boost your brand with targeted campaigns.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>From SEO to social media, we drive engagement and growth. Let’s make your brand shine online!</p>
+                <a href="digitalmarketing.html" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/graphic-design.png" alt="Marketing Icon">
+                <h3>Graphic Design</h3>
+                <p>Boost your brand with targeted campaigns.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>Get custom designed logos, brochures, certificates and many more from graphic design experts</p>
+                <a href="graphicdesign.html" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-inner">
+                <div class="service-card-front">
+                <img src="thumbnails/services.png" alt="Marketing Icon">
+                <h3>Photography & Videography</h3>
+                <p>Give your business a look with high quality images and videos.</p>
+            </div>
+
+            <div class="service-card-back">
+                <p>From SEO to social media, we drive engagement and growth. Let’s make your brand shine online!</p>
+                <a href="https://example.com/service-details" class="service-btn">View Details</a>
+            </div>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="services-cta">
+            <h2>Ready to Transform Your Business? Let’s Build Your Digital Jol!</h2>
+            <a href="contactus.html" class="cta-btn">Contact Us Now</a>
+        </div>
+
+            <div class="services-why">
+                <h2>Why Choose Defcon?</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Successful Campaigns</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">Average ROI Increase</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Client Retention Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Support & Monitoring</span>
+                </div>
+            </div>
+
+            <script>
+                // Animated numbers
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(num => {
+                        const finalNumber = num.textContent;
+                        num.textContent = '0';
+                        
+                        const numValue = parseInt(finalNumber.replace(/\D/g, ''));
+                        const suffix = finalNumber.replace(/\d/g, '');
+                        
+                        let current = 0;
+                        const increment = numValue / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= numValue) {
+                                num.textContent = finalNumber;
+                                clearInterval(timer);
+                            } else {
+                                num.textContent = Math.floor(current) + suffix;
+                            }
+                        }, 30);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(document.querySelector('.stats-grid'));
+            </script>
+
+        </section> 

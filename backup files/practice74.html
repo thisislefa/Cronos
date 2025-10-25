@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced AI Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10a37f;
+            --primary-dark: #0d8a6a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Chat bubble animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chat-message {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Typing indicator */
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Chatbot Trigger Button -->
+    <button id="chatbot-trigger" class="fixed bottom-6 right-6 bg-[var(--primary)] text-white p-4 rounded-full shadow-lg hover:bg-[var(--primary-dark)] transition-all duration-300 z-50">
+        <i class="fas fa-robot text-xl"></i>
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="fixed bottom-24 right-6 w-96 bg-white rounded-lg shadow-xl flex flex-col border border-gray-200 transition-all duration-300 opacity-0 invisible max-h-[70vh] z-40">
+        <!-- Chatbot Header -->
+        <div class="bg-[var(--primary)] text-white p-4 rounded-t-lg flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-robot"></i>
+                <h3 class="font-semibold">AI Assistant</h3>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button id="minimize-chat" class="hover:bg-white/10 p-1 rounded">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button id="close-chat" class="hover:bg-white/10 p-1 rounded">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-4">
+            <!-- Welcome message -->
+            <div class="chat-message">
+                <div class="flex items-start space-x-2">
+                    <div class="bg-gray-100 p-2 rounded-full">
+                        <i class="fas fa-robot text-[var(--primary)]"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-100 rounded-lg p-3 text-sm">
+                            <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                            <div class="mt-1 text-xs text-gray-500">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Typing Indicator (hidden by default) -->
+        <div id="typing-indicator" class="hidden px-4 pb-3">
+            <div class="flex items-start space-x-2">
+                <div class="bg-gray-100 p-2 rounded-full">
+                    <i class="fas fa-robot text-[var(--primary)]"></i>
+                </div>
+                <div class="typing-indicator flex space-x-1 bg-gray-100 rounded-lg p-3">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="border-t border-gray-200 p-3 bg-white rounded-b-lg">
+            <form id="chat-form" class="flex space-x-2">
+                <input 
+                    id="user-input" 
+                    type="text" 
+                    placeholder="Type your message..." 
+                    class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent"
+                    autocomplete="off"
+                >
+                <button 
+                    type="submit" 
+                    class="bg-[var(--primary)] text-white rounded-full p-2 hover:bg-[var(--primary-dark)] transition-colors"
+                >
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <div class="text-xs text-gray-500 mt-2 text-center">
+                AI Assistant v1.0 · May occasionally generate incorrect information
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const chatbotTrigger = document.getElementById('chatbot-trigger');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChat = document.getElementById('close-chat');
+    const minimizeChat = document.getElementById('minimize-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const typingIndicator = document.getElementById('typing-indicator');
+    const chatForm = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+    
+    // State variables
+    let isChatOpen = false;
+    let isMinimized = false;
+    let messageHistory = [];
+    
+    // Toggle chat visibility
+    chatbotTrigger.addEventListener('click', () => {
+        if (isMinimized) {
+            unminimizeChat();
+        } else {
+            toggleChat();
+        }
+    });
+    
+    // Close chat
+    closeChat.addEventListener('click', () => {
+        closeChatWindow();
+    });
+    
+    // Minimize chat
+    minimizeChat.addEventListener('click', () => {
+        minimizeChatWindow();
+    });
+    
+    // Handle form submission
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = userInput.value.trim();
+        if (message) {
+            addUserMessage(message);
+            userInput.value = '';
+            simulateAIResponse(message);
+        }
+    });
+    
+    // Functions
+    function toggleChat() {
+        isChatOpen = !isChatOpen;
+        if (isChatOpen) {
+            chatbotContainer.classList.remove('opacity-0', 'invisible');
+            chatbotContainer.classList.add('opacity-100', 'visible');
+            userInput.focus();
+        } else {
+            chatbotContainer.classList.remove('opacity-100', 'visible');
+            chatbotContainer.classList.add('opacity-0', 'invisible');
+        }
+    }
+    
+    function closeChatWindow() {
+        isChatOpen = false;
+        isMinimized = false;
+        chatbotContainer.classList.remove('opacity-100', 'visible', 'h-16');
+        chatbotContainer.classList.add('opacity-0', 'invisible');
+    }
+    
+    function minimizeChatWindow() {
+        isMinimized = true;
+        chatbotContainer.classList.add('h-16');
+        chatMessages.classList.add('hidden');
+        typingIndicator.classList.add('hidden');
+        document.querySelector('#chatbot-container > div:last-child').classList.add('hidden');
+    }
+    
+    function unminimizeChat() {
+        isMinimized = false;
+        chatbotContainer.classList.remove('h-16');
+        chatMessages.classList.remove('hidden');
+        document.querySelector('#chatbot-container > div:last-child').classList.remove('hidden');
+    }
+    
+    function addUserMessage(message) {
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const messageElement = `
+            <div class="chat-message">
+                <div class="flex items-start space-x-2 justify-end">
+                    <div class="flex-1 max-w-xs">
+                        <div class="bg-[var(--primary)] text-white rounded-lg p-3 text-sm">
+                            <p>${message}</p>
+                            <div class="mt-1 text-xs text-white/70 text-right">${timestamp}</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-full">
+                        <i class="fas fa-user text-gray-600"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        chatMessages.insertAdjacentHTML('beforeend', messageElement);
+        scrollToBottom();
+        messageHistory.push({ role: 'user', content: message, timestamp });
+    }
+    
+    function addBotMessage(message) {
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const messageElement = `
+            <div class="chat-message">
+                <div class="flex items-start space-x-2">
+                    <div class="bg-gray-100 p-2 rounded-full">
+                        <i class="fas fa-robot text-[var(--primary)]"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-100 rounded-lg p-3 text-sm">
+                            <p>${message}</p>
+                            <div class="mt-1 text-xs text-gray-500">${timestamp}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        chatMessages.insertAdjacentHTML('beforeend', messageElement);
+        scrollToBottom();
+        messageHistory.push({ role: 'assistant', content: message, timestamp });
+    }
+    
+    function showTypingIndicator() {
+        typingIndicator.classList.remove('hidden');
+        scrollToBottom();
+    }
+    
+    function hideTypingIndicator() {
+        typingIndicator.classList.add('hidden');
+    }
+    
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Simulate AI response (in a real app, you would call an API here)
+    function simulateAIResponse(userMessage) {
+        showTypingIndicator();
+        
+        // Simulate API delay
+        setTimeout(() => {
+            hideTypingIndicator();
+            
+            // Simple response logic - replace with actual API call
+            let response;
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                response = "Hello there! How can I assist you today?";
+            } else if (lowerMessage.includes('help')) {
+                response = "I'm here to help! What do you need assistance with?";
+            } else if (lowerMessage.includes('thank')) {
+                response = "You're welcome! Is there anything else I can help you with?";
+            } else if (lowerMessage.includes('bye') || lowerMessage.includes('goodbye')) {
+                response = "Goodbye! Feel free to come back if you have more questions.";
+            } else {
+                // Default response - in a real app, this would be your AI API response
+                response = `I understand you're asking about "${userMessage}". As an AI assistant, I can help with a variety of topics. Could you provide more details about what you need?`;
+            }
+            
+            addBotMessage(response);
+        }, 1500 + Math.random() * 2000); // Random delay between 1.5-3.5 seconds
+    }
+    
+    // Initialize with chat closed
+    closeChatWindow();
+});
+</script>

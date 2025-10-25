@@ -1,0 +1,1220 @@
+<style>
+  /* Base Styles - Unique to prevent conflicts */
+  .defcon-cloud-security {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: #06273e;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .defcon-cloud-security.dark-mode {
+    background-color: #06273e;
+    color: #e5e5e5;
+  }
+
+  /* Color Variables */
+  .defcon-cloud-security {
+    --primary: #0091ff;
+    --secondary: #06273e;
+    --accent: #ff7d00;
+    --light: #ffffff;
+    --light-gray: #e5e5e5;
+    --dark: #06273e;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+  }
+
+  /* Typography */
+  .defcon-cloud-security .dc-heading {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .defcon-cloud-security .dc-heading-xl {
+    font-size: 2.8rem;
+    line-height: 1.2;
+  }
+
+  .defcon-cloud-security .dc-heading-lg {
+    font-size: 2.2rem;
+  }
+
+  .defcon-cloud-security .dc-heading-md {
+    font-size: 1.8rem;
+  }
+
+  .defcon-cloud-security .dc-heading-sm {
+    font-size: 1.4rem;
+  }
+
+  .defcon-cloud-security .dc-text-lead {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    opacity: 0.9;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-text-lead {
+    color: var(--light-gray);
+  }
+
+  .defcon-cloud-security .dc-text {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  /* Layout */
+  .defcon-cloud-security .dc-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .defcon-cloud-security .dc-section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .defcon-cloud-security .dc-section-sm {
+    padding: 50px 0;
+  }
+
+  .defcon-cloud-security .dc-section-lg {
+    padding: 120px 0;
+  }
+
+  .defcon-cloud-security .dc-flex {
+    display: flex;
+  }
+
+  .defcon-cloud-security .dc-flex-col {
+    flex-direction: column;
+  }
+
+  .defcon-cloud-security .dc-items-center {
+    align-items: center;
+  }
+
+  .defcon-cloud-security .dc-justify-between {
+    justify-content: space-between;
+  }
+
+  .defcon-cloud-security .dc-grid {
+    display: grid;
+    gap: 30px;
+  }
+
+  .defcon-cloud-security .dc-grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .defcon-cloud-security .dc-grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Buttons */
+  .defcon-cloud-security .dc-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-cloud-security .dc-btn-primary {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+  }
+
+  .defcon-cloud-security .dc-btn-primary:hover {
+    background-color: #007acc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+  }
+
+  .defcon-cloud-security .dc-btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .defcon-cloud-security .dc-btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  .defcon-cloud-security .dc-btn-accent {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  .defcon-cloud-security .dc-btn-accent:hover {
+    background-color: #e67000;
+  }
+
+  /* Hero Section */
+  .defcon-cloud-security .dc-hero {
+    background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-hero {
+    background: linear-gradient(135deg, rgba(0, 145, 255, 0.05) 0%, rgba(6, 39, 62, 0.3) 100%);
+  }
+
+  .defcon-cloud-security .dc-hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .defcon-cloud-security .dc-hero-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background: url('https://via.placeholder.com/800x600/0091ff/ffffff?text=Cloud+Security') no-repeat center center;
+    background-size: cover;
+    opacity: 0.2;
+    z-index: 1;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-hero-bg {
+    opacity: 0.1;
+  }
+
+  /* Feature Cards */
+  .defcon-cloud-security .dc-feature-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-feature-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .defcon-cloud-security .dc-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+  }
+
+  .defcon-cloud-security.dark-mode .dc-feature-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.2);
+  }
+
+  .defcon-cloud-security .dc-feature-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 145, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-size: 24px;
+  }
+
+  /* Pricing Cards */
+  .defcon-cloud-security .dc-pricing-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-pricing-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .defcon-cloud-security .dc-pricing-card-popular {
+    border: 2px solid var(--primary);
+  }
+
+  .defcon-cloud-security .dc-pricing-card-popular::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background-color: var(--primary);
+    color: white;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .defcon-cloud-security .dc-pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+  }
+
+  .defcon-cloud-security.dark-mode .dc-pricing-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.2);
+  }
+
+  .defcon-cloud-security .dc-pricing-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 20px 0;
+  }
+
+  .defcon-cloud-security .dc-pricing-features {
+    margin: 30px 0;
+  }
+
+  .defcon-cloud-security .dc-pricing-feature {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  .defcon-cloud-security .dc-pricing-feature::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+  }
+
+  /* Testimonials */
+  .defcon-cloud-security .dc-testimonial-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-testimonial-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .defcon-cloud-security .dc-testimonial-quote {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 60px;
+    color: rgba(0, 145, 255, 0.1);
+    line-height: 1;
+  }
+
+  .defcon-cloud-security .dc-testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .defcon-cloud-security .dc-testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+  }
+
+  /* Process Steps */
+  .defcon-cloud-security .dc-process-step {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 40px;
+  }
+
+  .defcon-cloud-security .dc-process-step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .defcon-cloud-security .dc-process-step::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 50px;
+    height: calc(100% - 30px);
+    width: 2px;
+    background-color: var(--primary);
+    opacity: 0.3;
+  }
+
+  .defcon-cloud-security .dc-process-step:last-child::after {
+    display: none;
+  }
+
+  /* Contact Form */
+  .defcon-cloud-security .dc-contact-form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .defcon-cloud-security.dark-mode .dc-contact-form {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .defcon-cloud-security .dc-form-group {
+    margin-bottom: 20px;
+  }
+
+  .defcon-cloud-security .dc-form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .defcon-cloud-security .dc-form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-cloud-security .dc-form-control:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.2);
+  }
+
+  .defcon-cloud-security.dark-mode .dc-form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  /* Modal */
+  .defcon-cloud-security .dc-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-cloud-security .dc-modal-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .defcon-cloud-security .dc-modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .defcon-cloud-security.dark-mode .dc-modal-content {
+    background-color: var(--dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .defcon-cloud-security .dc-modal-active .dc-modal-content {
+    transform: translateY(0);
+  }
+
+  .defcon-cloud-security .dc-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-cloud-security .dc-modal-close:hover {
+    color: var(--danger);
+  }
+
+  /* Toggle Switch */
+  .defcon-cloud-security .dc-theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+  }
+
+  .defcon-cloud-security .dc-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .defcon-cloud-security .dc-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .defcon-cloud-security .dc-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+
+  .defcon-cloud-security .dc-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  .defcon-cloud-security input:checked + .dc-toggle-slider {
+    background-color: var(--primary);
+  }
+
+  .defcon-cloud-security input:checked + .dc-toggle-slider:before {
+    transform: translateX(26px);
+  }
+
+  /* Animations */
+  @keyframes dc-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes dc-slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .defcon-cloud-security .dc-animate-fade {
+    animation: dc-fadeIn 1s ease forwards;
+  }
+
+  .defcon-cloud-security .dc-animate-slide {
+    animation: dc-slideUp 0.8s ease forwards;
+  }
+
+  .defcon-cloud-security .dc-delay-1 {
+    animation-delay: 0.2s;
+  }
+
+  .defcon-cloud-security .dc-delay-2 {
+    animation-delay: 0.4s;
+  }
+
+  .defcon-cloud-security .dc-delay-3 {
+    animation-delay: 0.6s;
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .defcon-cloud-security .dc-grid-cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .defcon-cloud-security .dc-hero-bg {
+      width: 100%;
+      opacity: 0.1;
+    }
+
+    .defcon-cloud-security .dc-hero-content {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .defcon-cloud-security .dc-grid-cols-2,
+    .defcon-cloud-security .dc-grid-cols-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .defcon-cloud-security .dc-heading-xl {
+      font-size: 2.2rem;
+    }
+
+    .defcon-cloud-security .dc-section {
+      padding: 60px 0;
+    }
+
+    .defcon-cloud-security .dc-section-lg {
+      padding: 80px 0;
+    }
+
+    .defcon-cloud-security .dc-contact-form {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<div class="defcon-cloud-security">
+  <!-- Theme Toggle -->
+  <div class="dc-theme-toggle">
+    <label class="dc-toggle-switch">
+      <input type="checkbox" id="dc-theme-toggle">
+      <span class="dc-toggle-slider"></span>
+    </label>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="dc-hero dc-section">
+    <div class="dc-hero-bg"></div>
+    <div class="dc-container">
+      <div class="dc-hero-content">
+        <h1 class="dc-heading dc-heading-xl dc-animate-slide">Enterprise-Grade <span style="color: var(--primary);">Cloud Security</span> Solutions</h1>
+        <p class="dc-text-lead dc-animate-slide dc-delay-1">Protect your cloud infrastructure with our comprehensive security services designed to safeguard your data, applications, and systems from evolving threats.</p>
+        <div class="dc-flex dc-animate-slide dc-delay-2" style="gap: 15px; margin-top: 30px;">
+          <button class="dc-btn dc-btn-primary dc-modal-trigger" data-modal="dc-consult-modal">Get a Free Consultation</button>
+          <button class="dc-btn dc-btn-outline dc-scroll-to" data-target="dc-pricing">View Pricing</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="dc-section">
+    <div class="dc-container">
+      <div class="dc-text-center" style="max-width: 800px; margin: 0 auto 60px;">
+        <h2 class="dc-heading dc-heading-lg dc-animate-fade">Comprehensive Cloud Security Services</h2>
+        <p class="dc-text dc-animate-fade dc-delay-1">Our multi-layered approach ensures your cloud environment is protected at every level, from infrastructure to application.</p>
+      </div>
+
+      <div class="dc-grid dc-grid-cols-3">
+        <div class="dc-feature-card dc-animate-slide">
+          <div class="dc-feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Cloud Infrastructure Protection</h3>
+          <p class="dc-text">Advanced security for your cloud infrastructure including network segmentation, intrusion detection, and vulnerability management.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">Firewall configuration & management</li>
+            <li class="dc-text">DDoS protection</li>
+            <li class="dc-text">Network security monitoring</li>
+          </ul>
+        </div>
+
+        <div class="dc-feature-card dc-animate-slide dc-delay-1">
+          <div class="dc-feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Data Encryption & Protection</h3>
+          <p class="dc-text">End-to-end encryption solutions to protect your sensitive data at rest and in transit across all cloud platforms.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">Data encryption implementation</li>
+            <li class="dc-text">Key management services</li>
+            <li class="dc-text">Tokenization solutions</li>
+          </ul>
+        </div>
+
+        <div class="dc-feature-card dc-animate-slide dc-delay-2">
+          <div class="dc-feature-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Identity & Access Management</h3>
+          <p class="dc-text">Robust IAM solutions to ensure only authorized users have appropriate access to your cloud resources.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">Multi-factor authentication</li>
+            <li class="dc-text">Role-based access control</li>
+            <li class="dc-text">Privileged access management</li>
+          </ul>
+        </div>
+
+        <div class="dc-feature-card dc-animate-slide">
+          <div class="dc-feature-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Continuous Monitoring</h3>
+          <p class="dc-text">24/7 monitoring of your cloud environment with real-time alerts and automated response capabilities.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">SIEM integration</li>
+            <li class="dc-text">Anomaly detection</li>
+            <li class="dc-text">Threat intelligence feeds</li>
+          </ul>
+        </div>
+
+        <div class="dc-feature-card dc-animate-slide dc-delay-1">
+          <div class="dc-feature-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Compliance Management</h3>
+          <p class="dc-text">Ensure your cloud environment meets industry standards and regulatory requirements.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">HIPAA, GDPR, PCI DSS compliance</li>
+            <li class="dc-text">Audit preparation & support</li>
+            <li class="dc-text">Policy development</li>
+          </ul>
+        </div>
+
+        <div class="dc-feature-card dc-animate-slide dc-delay-2">
+          <div class="dc-feature-icon">
+            <i class="fas fa-bug"></i>
+          </div>
+          <h3 class="dc-heading dc-heading-md">Penetration Testing</h3>
+          <p class="dc-text">Simulate real-world attacks to identify vulnerabilities before malicious actors can exploit them.</p>
+          <ul style="margin-top: 15px; padding-left: 20px;">
+            <li class="dc-text">Cloud infrastructure testing</li>
+            <li class="dc-text">Web application testing</li>
+            <li class="dc-text">API security testing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="dc-section dc-section-sm" style="background-color: var(--light-gray);">
+    <div class="dc-container">
+      <div class="dc-text-center" style="max-width: 800px; margin: 0 auto 60px;">
+        <h2 class="dc-heading dc-heading-lg dc-animate-fade">Our Security Implementation Process</h2>
+        <p class="dc-text dc-animate-fade dc-delay-1">A structured approach to ensuring your cloud environment is secure from day one.</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="dc-process-step dc-animate-slide">
+          <div class="dc-process-step-number">1</div>
+          <h3 class="dc-heading dc-heading-md">Assessment & Planning</h3>
+          <p class="dc-text">We begin with a comprehensive assessment of your current cloud environment, identifying security gaps and developing a tailored security roadmap.</p>
+        </div>
+
+        <div class="dc-process-step dc-animate-slide dc-delay-1">
+          <div class="dc-process-step-number">2</div>
+          <h3 class="dc-heading dc-heading-md">Architecture Review</h3>
+          <p class="dc-text">Our experts review your cloud architecture to ensure security is built into the foundation, not bolted on as an afterthought.</p>
+        </div>
+
+        <div class="dc-process-step dc-animate-slide dc-delay-2">
+          <div class="dc-process-step-number">3</div>
+          <h3 class="dc-heading dc-heading-md">Implementation</h3>
+          <p class="dc-text">We deploy security controls across all layers of your cloud environment, from network to application level.</p>
+        </div>
+
+        <div class="dc-process-step dc-animate-slide">
+          <div class="dc-process-step-number">4</div>
+          <h3 class="dc-heading dc-heading-md">Testing & Validation</h3>
+          <p class="dc-text">Rigorous testing ensures all security measures are functioning as intended and effectively protecting your assets.</p>
+        </div>
+
+        <div class="dc-process-step dc-animate-slide dc-delay-1">
+          <div class="dc-process-step-number">5</div>
+          <h3 class="dc-heading dc-heading-md">Ongoing Management</h3>
+          <p class="dc-text">Continuous monitoring, regular updates, and proactive threat hunting keep your environment secure as threats evolve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="dc-section" id="dc-pricing">
+    <div class="dc-container">
+      <div class="dc-text-center" style="max-width: 800px; margin: 0 auto 60px;">
+        <h2 class="dc-heading dc-heading-lg dc-animate-fade">Flexible Security Packages</h2>
+        <p class="dc-text dc-animate-fade dc-delay-1">Choose the level of protection that matches your business needs and budget.</p>
+      </div>
+
+      <div class="dc-grid dc-grid-cols-3">
+        <div class="dc-pricing-card dc-animate-slide">
+          <h3 class="dc-heading dc-heading-md">Essential Security</h3>
+          <p class="dc-text">Basic protection for small cloud environments</p>
+          <div class="dc-pricing-price">$1,499<span class="dc-text" style="font-size: 1rem;">/month</span></div>
+          <div class="dc-pricing-features">
+            <div class="dc-pricing-feature">Cloud Infrastructure Protection</div>
+            <div class="dc-pricing-feature">Basic IAM Configuration</div>
+            <div class="dc-pricing-feature">Monthly Vulnerability Scanning</div>
+            <div class="dc-pricing-feature">24/7 Basic Monitoring</div>
+            <div class="dc-pricing-feature">Email Support</div>
+          </div>
+          <button class="dc-btn dc-btn-outline dc-btn-block dc-modal-trigger" data-modal="dc-consult-modal">Get Started</button>
+        </div>
+
+        <div class="dc-pricing-card dc-pricing-card-popular dc-animate-slide dc-delay-1">
+          <h3 class="dc-heading dc-heading-md">Advanced Security</h3>
+          <p class="dc-text">Comprehensive protection for growing businesses</p>
+          <div class="dc-pricing-price">$3,999<span class="dc-text" style="font-size: 1rem;">/month</span></div>
+          <div class="dc-pricing-features">
+            <div class="dc-pricing-feature">All Essential Features</div>
+            <div class="dc-pricing-feature">Advanced IAM with MFA</div>
+            <div class="dc-pricing-feature">Data Encryption Services</div>
+            <div class="dc-pricing-feature">Weekly Vulnerability Scanning</div>
+            <div class="dc-pricing-feature">SIEM Integration</div>
+            <div class="dc-pricing-feature">24/7 Advanced Monitoring</div>
+            <div class="dc-pricing-feature">Phone & Email Support</div>
+          </div>
+          <button class="dc-btn dc-btn-primary dc-btn-block dc-modal-trigger" data-modal="dc-consult-modal">Get Started</button>
+        </div>
+
+        <div class="dc-pricing-card dc-animate-slide dc-delay-2">
+          <h3 class="dc-heading dc-heading-md">Enterprise Security</h3>
+          <p class="dc-text">Complete protection for mission-critical systems</p>
+          <div class="dc-pricing-price">$7,999<span class="dc-text" style="font-size: 1rem;">/month</span></div>
+          <div class="dc-pricing-features">
+            <div class="dc-pricing-feature">All Advanced Features</div>
+            <div class="dc-pricing-feature">Custom Security Architecture</div>
+            <div class="dc-pricing-feature">Daily Vulnerability Scanning</div>
+            <div class="dc-pricing-feature">Penetration Testing (Quarterly)</div>
+            <div class="dc-pricing-feature">Compliance Management</div>
+            <div class="dc-pricing-feature">24/7 Premium Monitoring</div>
+            <div class="dc-pricing-feature">Dedicated Security Engineer</div>
+            <div class="dc-pricing-feature">Priority Support</div>
+          </div>
+          <button class="dc-btn dc-btn-outline dc-btn-block dc-modal-trigger" data-modal="dc-consult-modal">Get Started</button>
+        </div>
+      </div>
+
+      <div class="dc-text-center" style="margin-top: 50px;">
+        <p class="dc-text dc-animate-fade">Need custom solutions? We tailor security packages to your specific requirements.</p>
+        <button class="dc-btn dc-btn-accent dc-modal-trigger dc-animate-fade dc-delay-1" data-modal="dc-consult-modal" style="margin-top: 15px;">Request Custom Quote</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="dc-section" style="background-color: var(--light-gray);">
+    <div class="dc-container">
+      <div class="dc-text-center" style="max-width: 800px; margin: 0 auto 60px;">
+        <h2 class="dc-heading dc-heading-lg dc-animate-fade">Trusted by Industry Leaders</h2>
+        <p class="dc-text dc-animate-fade dc-delay-1">Don't just take our word for it. Here's what our clients say about our cloud security services.</p>
+      </div>
+
+      <div class="dc-grid dc-grid-cols-2">
+        <div class="dc-testimonial-card dc-animate-slide">
+          <div class="dc-testimonial-quote">"</div>
+          <p class="dc-text">Defcon's cloud security team transformed our AWS environment from a compliance nightmare to a model of security best practices. Their expertise and attention to detail are unmatched.</p>
+          <div class="dc-testimonial-author">
+            <img src="https://via.placeholder.com/150" alt="Sarah Johnson" class="dc-testimonial-avatar">
+            <div>
+              <h4 class="dc-heading dc-heading-sm">Sarah Johnson</h4>
+              <p class="dc-text">CTO, FinTech Solutions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dc-testimonial-card dc-animate-slide dc-delay-1">
+          <div class="dc-testimonial-quote">"</div>
+          <p class="dc-text">After a security breach at our previous provider, we switched to Defcon for our Azure security needs. Their proactive approach has given us peace of mind and significantly reduced our risk exposure.</p>
+          <div class="dc-testimonial-author">
+            <img src="https://via.placeholder.com/150" alt="Michael Chen" class="dc-testimonial-avatar">
+            <div>
+              <h4 class="dc-heading dc-heading-sm">Michael Chen</h4>
+              <p class="dc-text">Director of IT, HealthCare Plus</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dc-testimonial-card dc-animate-slide">
+          <div class="dc-testimonial-quote">"</div>
+          <p class="dc-text">The compliance expertise Defcon brought to our multi-cloud environment helped us pass our PCI DSS audit with flying colors. Their team became an extension of our own security department.</p>
+          <div class="dc-testimonial-author">
+            <img src="https://via.placeholder.com/150" alt="David Rodriguez" class="dc-testimonial-avatar">
+            <div>
+              <h4 class="dc-heading dc-heading-sm">David Rodriguez</h4>
+              <p class="dc-text">Security Manager, Global Retail Inc.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dc-testimonial-card dc-animate-slide dc-delay-1">
+          <div class="dc-testimonial-quote">"</div>
+          <p class="dc-text">Defcon's penetration testing uncovered critical vulnerabilities in our cloud applications that our internal team had missed. Their detailed reports and remediation guidance were invaluable.</p>
+          <div class="dc-testimonial-author">
+            <img src="https://via.placeholder.com/150" alt="Emily Wilson" class="dc-testimonial-avatar">
+            <div>
+              <h4 class="dc-heading dc-heading-sm">Emily Wilson</h4>
+              <p class="dc-text">VP of Engineering, SaaS Platform</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="dc-section dc-section-sm" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
+    <div class="dc-container">
+      <div class="dc-grid dc-grid-cols-2 dc-items-center">
+        <div class="dc-animate-slide">
+          <h2 class="dc-heading dc-heading-lg">Ready to Secure Your Cloud?</h2>
+          <p class="dc-text">Schedule a free consultation with our cloud security experts today.</p>
+        </div>
+        <div class="dc-text-right dc-animate-slide dc-delay-1">
+          <button class="dc-btn dc-btn-accent dc-modal-trigger">Get Started Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="dc-section">
+    <div class="dc-container">
+      <div class="dc-text-center" style="max-width: 800px; margin: 0 auto 60px;">
+        <h2 class="dc-heading dc-heading-lg dc-animate-fade">Frequently Asked Questions</h2>
+        <p class="dc-text dc-animate-fade dc-delay-1">Answers to common questions about our cloud security services.</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="dc-faq-item dc-animate-slide">
+          <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 10px;">What cloud platforms do you secure?</h3>
+          <p class="dc-text">We provide comprehensive security solutions for all major cloud platforms including AWS, Azure, Google Cloud, and hybrid cloud environments. Our expertise extends to containerized environments like Kubernetes as well.</p>
+        </div>
+
+        <div class="dc-faq-item dc-animate-slide dc-delay-1" style="margin-top: 30px;">
+          <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 10px;">How quickly can you implement security measures?</h3>
+          <p class="dc-text">Basic security controls can typically be implemented within 1-2 weeks for most environments. More complex implementations may take 4-6 weeks depending on the size of your cloud footprint and specific requirements.</p>
+        </div>
+
+        <div class="dc-faq-item dc-animate-slide" style="margin-top: 30px;">
+          <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 10px;">Do you provide 24/7 security monitoring?</h3>
+          <p class="dc-text">Yes, our Advanced and Enterprise packages include 24/7 monitoring by our Security Operations Center (SOC). We also offer SOC services as a standalone option for clients who need monitoring but handle other security aspects internally.</p>
+        </div>
+
+        <div class="dc-faq-item dc-animate-slide dc-delay-1" style="margin-top: 30px;">
+          <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 10px;">Can you help with compliance requirements?</h3>
+          <p class="dc-text">Absolutely. Our team has extensive experience helping clients meet HIPAA, GDPR, PCI DSS, SOC 2, ISO 27001, and other compliance standards. We can assess your current compliance status, identify gaps, and implement controls to meet requirements.</p>
+        </div>
+
+        <div class="dc-faq-item dc-animate-slide" style="margin-top: 30px;">
+          <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 10px;">What happens if we experience a security incident?</h3>
+          <p class="dc-text">Our Incident Response team is available 24/7 to contain and investigate security incidents. All Enterprise clients and Advanced clients with our add-on IR package receive immediate response. We'll work to mitigate the threat, preserve evidence, and help you recover securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="dc-section dc-section-lg" style="background-color: var(--light-gray);">
+    <div class="dc-container">
+      <div class="dc-grid dc-grid-cols-2">
+        <div class="dc-animate-slide">
+          <h2 class="dc-heading dc-heading-lg">Contact Our Security Experts</h2>
+          <p class="dc-text" style="margin-bottom: 30px;">Have questions or ready to get started? Reach out to our team for a consultation.</p>
+          
+          <div style="margin-bottom: 30px;">
+            <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 15px;">Contact Information</h3>
+            <p class="dc-text"><strong>Email:</strong> security@defcon.example.com</p>
+            <p class="dc-text"><strong>Phone:</strong> (555) 123-4567</p>
+            <p class="dc-text"><strong>Emergency Support:</strong> (555) 987-6543</p>
+          </div>
+
+          <div>
+            <h3 class="dc-heading dc-heading-sm" style="margin-bottom: 15px;">Office Hours</h3>
+            <p class="dc-text"><strong>Monday-Friday:</strong> 8:00 AM - 6:00 PM EST</p>
+            <p class="dc-text"><strong>24/7 Support:</strong> Available for Enterprise clients</p>
+          </div>
+        </div>
+
+        <div class="dc-contact-form dc-animate-slide dc-delay-1">
+          <h3 class="dc-heading dc-heading-md" style="margin-bottom: 20px;">Send Us a Message</h3>
+          <form id="dc-contact-form">
+            <div class="dc-form-group">
+              <label class="dc-form-label">Name</label>
+              <input type="text" class="dc-form-control" required>
+            </div>
+            <div class="dc-form-group">
+              <label class="dc-form-label">Email</label>
+              <input type="email" class="dc-form-control" required>
+            </div>
+            <div class="dc-form-group">
+              <label class="dc-form-label">Company</label>
+              <input type="text" class="dc-form-control">
+            </div>
+            <div class="dc-form-group">
+              <label class="dc-form-label">Cloud Platform</label>
+              <select class="dc-form-control">
+                <option value="">Select Platform</option>
+                <option value="aws">AWS</option>
+                <option value="azure">Azure</option>
+                <option value="gcp">Google Cloud</option>
+                <option value="multi">Multi-Cloud</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="dc-form-group">
+              <label class="dc-form-label">Message</label>
+              <textarea class="dc-form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="dc-btn dc-btn-primary" style="width: 100%; margin-top: 15px;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation Modal -->
+  <div class="dc-modal" id="dc-consult-modal">
+    <div class="dc-modal-content">
+      <span class="dc-modal-close">&times;</span>
+      <h2 class="dc-heading dc-heading-md" style="margin-bottom: 20px;">Schedule a Free Consultation</h2>
+      <form id="dc-consult-form">
+        <div class="dc-form-group">
+          <label class="dc-form-label">Name</label>
+          <input type="text" class="dc-form-control" required>
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Email</label>
+          <input type="email" class="dc-form-control" required>
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Company</label>
+          <input type="text" class="dc-form-control">
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Phone</label>
+          <input type="tel" class="dc-form-control">
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Preferred Date/Time</label>
+          <input type="datetime-local" class="dc-form-control">
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Security Needs</label>
+          <select class="dc-form-control" multiple style="height: 100px;">
+            <option value="assessment">Security Assessment</option>
+            <option value="implementation">Security Implementation</option>
+            <option value="monitoring">24/7 Monitoring</option>
+            <option value="compliance">Compliance Assistance</option>
+            <option value="pentesting">Penetration Testing</option>
+            <option value="training">Security Training</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button type="submit" class="dc-btn dc-btn-primary" style="width: 100%; margin-top: 15px;">Schedule Consultation</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quick Quote Modal -->
+  <div class="dc-modal" id="dc-quote-modal">
+    <div class="dc-modal-content">
+      <span class="dc-modal-close">&times;</span>
+      <h2 class="dc-heading dc-heading-md" style="margin-bottom: 20px;">Request a Custom Quote</h2>
+      <form id="dc-quote-form">
+        <div class="dc-form-group">
+          <label class="dc-form-label">Name</label>
+          <input type="text" class="dc-form-control" required>
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Email</label>
+          <input type="email" class="dc-form-control" required>
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Company</label>
+          <input type="text" class="dc-form-control">
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Cloud Environment Size</label>
+          <select class="dc-form-control">
+            <option value="">Select Size</option>
+            <option value="small">Small (1-50 servers)</option>
+            <option value="medium">Medium (51-200 servers)</option>
+            <option value="large">Large (201-1000 servers)</option>
+            <option value="enterprise">Enterprise (1000+ servers)</option>
+          </select>
+        </div>
+        <div class="dc-form-group">
+          <label class="dc-form-label">Security Requirements</label>
+          <textarea class="dc-form-control" rows="4" placeholder="Describe your security needs and any compliance requirements"></textarea>
+        </div>
+        <button type="submit" class="dc-btn dc-btn-primary" style="width: 100%; margin-top: 15px;">Request Quote</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Unique prefix for all Defcon Cloud Security functionality
+    const dc = {
+      // Theme Toggle
+      initThemeToggle: function() {
+        const toggle = document.getElementById('dc-theme-toggle');
+        const cloudSecuritySection = document.querySelector('.defcon-cloud-security');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('dc-theme');
+        if (savedTheme === 'dark') {
+          cloudSecuritySection.classList.add('dark-mode');
+          toggle.checked = true;
+        }
+        
+        // Toggle theme
+        toggle.addEventListener('change', function() {
+          if (this.checked) {
+            cloudSecuritySection.classList.add('dark-mode');
+            localStorage.setItem('dc-theme', 'dark');
+          } else {
+            cloudSecuritySection.classList.remove('dark-mode');
+            localStorage.setItem('dc-theme', 'light');
+          }
+        });
+      },
+      
+      // Modal Handling
+      initModals: function() {
+        // Get all modal triggers
+        const modalTriggers = document.querySelectorAll('.dc-modal-trigger');
+        
+        // Add click event to each trigger
+        modalTriggers.forEach(trigger => {
+          trigger.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            
+            if (modal) {
+              modal.classList.add('dc-modal-active');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+        
+        // Close modals when clicking X
+        const closeButtons = document.querySelectorAll('.dc-modal-close');
+        closeButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const modal = this.closest('.dc-modal');
+            modal.classList.remove('dc-modal-active');
+            document.body.style.overflow = '';
+          });
+        });
+        
+        // Close modals when clicking outside content
+        const modals = document.querySelectorAll('.dc-modal');
+        modals.forEach(modal => {
+          modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+              this.classList.remove('dc-modal-active');
+              document.body.style.overflow = '';
+            }
+          });
+        });
+      },
+      
+      // Smooth scrolling
+      initSmoothScroll: function() {
+        const scrollLinks = document.querySelectorAll('.dc-scroll-to');
+        
+        scrollLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      },
+      
+      // Form handling
+      initForms: function() {
+        const forms = document.querySelectorAll('#dc-contact-form, #dc-consult-form, #dc-quote-form');
+        
+        forms.forEach(form => {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For this example, we'll just show an alert
+            alert('Thank you for your submission! Our team will contact you shortly.');
+            
+            // Close modal if this is a modal form
+            const modal = this.closest('.dc-modal');
+            if (modal) {
+              modal.classList.remove('dc-modal-active');
+              document.body.style.overflow = '';
+            }
+            
+            // Reset form
+            this.reset();
+          });
+        });
+      },
+      
+      // Initialize all functionality
+      init: function() {
+        this.initThemeToggle();
+        this.initModals();
+        this.initSmoothScroll();
+        this.initForms();
+        
+        // Add animation classes as elements come into view
+        const animateElements = document.querySelectorAll('.dc-animate-fade, .dc-animate-slide');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('dc-animate-active');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        animateElements.forEach(element => {
+          observer.observe(element);
+        });
+      }
+    };
+    
+    // Initialize Defcon Cloud Security functionality
+    dc.init();
+  });
+</script>

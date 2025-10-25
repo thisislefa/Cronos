@@ -1,0 +1,298 @@
+<div class="defcon-blob-container">
+  <div class="defcon-blob-background">
+    <div class="defcon-blob defcon-blob-1"></div>
+    <div class="defcon-blob defcon-blob-2"></div>
+    <div class="defcon-blob defcon-blob-3"></div>
+    <div class="defcon-blob-overlay"></div>
+  </div>
+  
+  <div class="defcon-content-wrapper">
+    <section class="defcon-card">
+      <h2 class="defcon-card-title">Innovative Design</h2>
+      <p class="defcon-card-text">Experience cutting-edge web solutions that push creative boundaries while maintaining professional excellence.</p>
+      <a href="#" class="defcon-card-link">Explore More</a>
+    </section>
+    
+    <section class="defcon-card">
+      <h2 class="defcon-card-title">Technical Mastery</h2>
+      <p class="defcon-card-text">Our expertise delivers flawless performance across all devices with pixel-perfect precision.</p>
+      <a href="#" class="defcon-card-link">Learn More</a>
+    </section>
+  </div>
+</div>
+
+<style>
+.defcon-blob-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.defcon-blob-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.defcon-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.8;
+  transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.defcon-blob-1 {
+  width: 60vmax;
+  height: 60vmax;
+  background: #0091ff;
+  top: -10%;
+  left: -10%;
+  animation: defcon-morph-1 15s infinite alternate, defcon-move-1 25s infinite alternate;
+}
+
+.defcon-blob-2 {
+  width: 50vmax;
+  height: 50vmax;
+  background: #06273e;
+  bottom: -15%;
+  right: -10%;
+  animation: defcon-morph-2 18s infinite alternate, defcon-move-2 30s infinite alternate;
+}
+
+.defcon-blob-3 {
+  width: 40vmax;
+  height: 40vmax;
+  background: #e5e5e5;
+  top: 50%;
+  left: 30%;
+  animation: defcon-morph-3 20s infinite alternate, defcon-move-3 20s infinite alternate;
+}
+
+.defcon-blob-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(6, 39, 62, 0.2) 0%, rgba(0, 145, 255, 0.1) 100%);
+  animation: defcon-gradient-shift 30s infinite alternate;
+  z-index: 2;
+}
+
+.defcon-content-wrapper {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.defcon-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(6, 39, 62, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+.defcon-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(6, 39, 62, 0.15);
+}
+
+.defcon-card-title {
+  color: #06273e;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.defcon-card-text {
+  color: #06273e;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.defcon-card-link {
+  display: inline-block;
+  color: #0091ff;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.defcon-card-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #0091ff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.defcon-card-link:hover {
+  color: #06273e;
+}
+
+.defcon-card-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@keyframes defcon-morph-1 {
+  0% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+  50% { border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%; }
+  100% { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; }
+}
+
+@keyframes defcon-morph-2 {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+  100% { border-radius: 30% 70% 40% 60% / 40% 60% 30% 70%; }
+}
+
+@keyframes defcon-morph-3 {
+  0% { border-radius: 30% 70% 40% 60% / 40% 60% 30% 70%; }
+  50% { border-radius: 60% 40% 70% 30% / 70% 30% 60% 40%; }
+  100% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+}
+
+@keyframes defcon-move-1 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(5%, 10%); }
+  100% { transform: translate(-5%, -5%); }
+}
+
+@keyframes defcon-move-2 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-8%, 5%); }
+  100% { transform: translate(5%, -10%); }
+}
+
+@keyframes defcon-move-3 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(10%, -5%); }
+  100% { transform: translate(-5%, 8%); }
+}
+
+@keyframes defcon-gradient-shift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@media (max-width: 768px) {
+  .defcon-content-wrapper {
+    padding: 2rem 1rem;
+  }
+  
+  .defcon-card {
+    padding: 1.5rem;
+  }
+  
+  .defcon-card-title {
+    font-size: 1.5rem;
+  }
+  
+  .defcon-card-text {
+    font-size: 1rem;
+  }
+  
+  .defcon-blob {
+    filter: blur(40px);
+  }
+}
+
+@media (min-width: 992px) {
+  .defcon-content-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .defcon-card {
+    width: calc(50% - 1rem);
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const blobContainer = document.querySelector('.defcon-blob-container');
+  const blobs = document.querySelectorAll('.defcon-blob');
+  const cards = document.querySelectorAll('.defcon-card');
+  
+  // Parallax effect
+  blobContainer.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    
+    blobs[0].style.transform = `translate(${x * 30}px, ${y * 20}px)`;
+    blobs[1].style.transform = `translate(${x * -40}px, ${y * -30}px)`;
+    blobs[2].style.transform = `translate(${x * 20}px, ${y * -20}px)`;
+  });
+  
+  // Interactive blob reactions
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      blobs.forEach(blob => {
+        const blobRect = blob.getBoundingClientRect();
+        const blobCenterX = blobRect.left + blobRect.width / 2;
+        const blobCenterY = blobRect.top + blobRect.height / 2;
+        
+        const distanceX = centerX - blobCenterX;
+        const distanceY = centerY - blobCenterY;
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        
+        if (distance < 500) {
+          const intensity = 1 - (distance / 500);
+          blob.style.transform = `scale(${1 + intensity * 0.2})`;
+          blob.style.opacity = `${0.8 + intensity * 0.1}`;
+          blob.style.filter = `blur(${60 - intensity * 20}px)`;
+        }
+      });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      blobs.forEach(blob => {
+        blob.style.transform = '';
+        blob.style.opacity = '';
+        blob.style.filter = '';
+      });
+    });
+  });
+  
+  // Mobile touch support
+  blobContainer.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    const x = touch.clientX / window.innerWidth;
+    const y = touch.clientY / window.innerHeight;
+    
+    blobs[0].style.transform = `translate(${x * 30}px, ${y * 20}px)`;
+    blobs[1].style.transform = `translate(${x * -40}px, ${y * -30}px)`;
+    blobs[2].style.transform = `translate(${x * 20}px, ${y * -20}px)`;
+  });
+});
+</script>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions Dashboard</title>
+    <!-- Load Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for the icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Use Inter font for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Styles for the Dark, High-Contrast Theme (Matching the requested style) */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Deep blue/black gradient background */
+            background: linear-gradient(135deg, #0f172a 0%, #030a21 100%); 
+            color: #e5e7eb; /* Light gray text for contrast */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #1a202c;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #2d3748;
+        }
+        .header img {
+            height: 30px; /* Adjust as needed */
+            margin-right: 10px;
+        }
+        .header span {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #e2e8f0;
+        }
+
+        .notice-container {
+            max-width: 1050px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 0; /* Responsive padding */
+        }
+        
+        .header-section {
+            padding: 2rem 0 10rem 0; /* Adjusted padding to match spacing */
+            color: white;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1050px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10rem;
+            grid-template-areas:
+                "title-area"
+                "description-area";
+        }
+
+        @media (min-width: 1024px) {
+            .header-content {
+                grid-template-columns: 350px 1fr; /* Custom width split */
+                grid-template-areas: "title-area description-area";
+            }
+        }
+
+        .header-content > div:nth-child(1) { grid-area: title-area; }
+        .header-content > div:nth-child(2) { grid-area: description-area; }
+        
+        .title h1 {
+            /* Adjusted font size and weight to match the source image */
+            font-size: 54px; 
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        @media (min-width: 640px) {
+            .title {
+                font-size: 4.5rem;
+            }
+        }
+
+        .description-box {
+            font-size: 0.9rem; /* Slightly smaller text */
+            line-height: 1.6;
+            color: #9ca3af; 
+        }
+        
+        .dashboard-card {
+            background-color: #ffffff; 
+            color: #1f2937; 
+            border-radius: 1px; /* Slightly less rounded corners */
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+            margin-top: -8rem; 
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Specific styles for the text within the white card */
+        .select-jurisdiction {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1f2937;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        
+        .region-title {
+            font-size: 1.8rem; /* Larger than before */
+            font-weight: 700;
+            color: #1f2937;
+            padding: 1.5rem 0 0.5rem 0; /* Adjusted padding to be only vertical */
+            margin-top: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .city-grid {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1rem 0 1.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .city-link-wrapper {
+            width: 50%;
+            padding: 0.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .city-link-wrapper {
+                width: 33.333%;
+            }
+        }
+
+        .city-link {
+            font-weight: 500;
+            color: #0084ff; /* Stronger blue, representing brand color */
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 1.3rem;
+        }
+        .city-link:hover {
+            color: #006dd9;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="notice-container">
+
+        <!-- New Header Section with Two Columns -->
+        <div class="header-section">
+            <div class="header-content">
+                <div class="title">
+                    <h1>Services Dashboard</h1>
+                </div>
+                <div class="description-box">
+                    <p>Welcome to our comprehensive IT solutions dashboard. Browse through our curated selection of enterprise-grade services spanning cloud infrastructure, cybersecurity, software development, and data analytics. Each solution is designed to drive digital transformation and operational excellence for your organization. Click on any service to explore detailed offerings, pricing models, and implementation timelines.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Card (White Foreground) -->
+        <div class="dashboard-card max-w-7xl mx-auto p-20">
+
+            <div>
+                <p class="select-jurisdiction">
+                    Explore Solutions by Category:
+                </p>
+            </div>
+
+            <!-- 1. Cloud & Infrastructure -->
+            <div class="mb-6">
+                <h3 class="region-title">
+                    Cloud & Infrastructure
+                </h3>
+                <div class="city-grid">
+                    <div class="city-link-wrapper"><a href="#" class="city-link">AWS Migration</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Azure Optimization</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Hybrid Cloud Setup</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Managed Hosting</a></div>
+                </div>
+            </div>
+
+            <!-- 2. Cybersecurity & Risk Management -->
+            <div class="mb-6">
+                <h3 class="region-title">
+                    Cybersecurity & Risk Management
+                </h3>
+                <div class="city-grid">
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Endpoint Protection</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Vulnerability Assessment</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Managed Detection & Response (MDR)</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Compliance (GDPR, HIPAA)</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Security Training</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Incident Response</a></div>
+                </div>
+            </div>
+
+            <!-- 3. Software Development & Integration -->
+            <div class="mb-6">
+                <h3 class="region-title">
+                    Software Development & Integration
+                </h3>
+                <div class="city-grid">
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Custom App Development</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Legacy System Modernization</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">API & Microservices</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">DevOps Implementation</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Quality Assurance (QA)</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Mobile Applications</a></div>
+                </div>
+            </div>
+            
+            <!-- 4. Data & Analytics -->
+            <div class="mb-6">
+                <h3 class="region-title">
+                    Data & Analytics
+                </h3>
+                <div class="city-grid">
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Data Warehousing</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Business Intelligence (BI)</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Predictive Modeling (AI/ML)</a></div>
+                    <div class="city-link-wrapper"><a href="#" class="city-link">Data Governance</a></div>
+                </div>
+            </div>
+
+            <div class="pt-4 mt-2">
+                <p class="text-xs text-gray-500">
+                    <i class="fas fa-info-circle mr-2 text-blue-400"></i>
+                    All services are provided under our Master Services Agreement (MSA). Please click on a solution to view a detailed service offering document.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Placeholder JavaScript for link demonstration
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("IT Solutions Dashboard loaded successfully.");
+            
+            // Example of adding functionality: Clicking a solution link
+            const solutionLinks = document.querySelectorAll('.city-link');
+            solutionLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // NOTE: This uses the required non-alert method for demonstration in an iframe environment.
+                    // In a real application, you would load the detailed service page or a modal here.
+                    const solutionName = e.target.textContent;
+                    console.log(`Navigating to service page for: ${solutionName}`);
+                    
+                    const infoBox = document.querySelector('.text-xs.text-gray-500');
+                    infoBox.innerHTML = `<i class="fas fa-check-circle mr-2 text-green-500"></i> Request sent for details on: <strong>${solutionName}</strong>. Our team will follow up shortly.`;
+
+                    // Reset the message after a few seconds
+                    setTimeout(() => {
+                        infoBox.innerHTML = '<i class="fas fa-info-circle mr-2 text-blue-400"></i> All services are provided under our Master Services Agreement (MSA). Please click on a solution to view a detailed service offering document.';
+                    }, 5000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

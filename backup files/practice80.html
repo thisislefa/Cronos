@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEFCON QUANTUM | Next-Gen Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== BASE STYLES ========== */
+        :root {
+            --quantum-blue: #00f2ff;
+            --neon-purple: #b300ff;
+            --cyber-dark: #06273e;
+            --matrix-green: #00ff41;
+            --glow-pink: #ff00f7;
+            --dark-space: #0a0e17;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-space);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ========== CYBER GRID BACKGROUND ========== */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* ========== FLOATING PARTICLES ========== */
+        .cyber-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--quantum-blue);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: float-particle 15s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translate(100vw, 100vh); opacity: 0; }
+        }
+
+        /* ========== MAIN CONTAINER ========== */
+        .quantum-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== CYBER HERO SECTION ========== */
+        .cyber-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-glitch {
+            font-size: 5rem;
+            font-weight: bold;
+            color: var(--quantum-blue);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            animation: text-flicker 3s infinite alternate;
+            position: relative;
+        }
+
+        .hero-glitch::before,
+        .hero-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .hero-glitch::before {
+            color: var(--matrix-green);
+            z-index: -1;
+            animation: glitch-effect 3s infinite;
+        }
+
+        .hero-glitch::after {
+            color: var(--neon-purple);
+            z-index: -2;
+            animation: glitch-effect 2s infinite reverse;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .cyber-cta {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary {
+            background: linear-gradient(90deg, var(--quantum-blue), var(--neon-purple));
+            color: var(--cyber-dark);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--quantum-blue);
+            border: 2px solid var(--quantum-blue);
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+        }
+
+        /* ========== CYBER STATS ========== */
+        .cyber-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--quantum-blue);
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--quantum-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .cyber-services {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--quantum-blue);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--quantum-blue), transparent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(6, 39, 62, 0.5);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 48%, rgba(0, 242, 255, 0.1) 49%, rgba(0, 242, 255, 0.1) 51%, transparent 52%);
+            background-size: 10px 10px;
+            animation: glitch-scan 2s linear infinite;
+            opacity: 0.3;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.1);
+            border-color: var(--quantum-blue);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--quantum-blue);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .service-desc {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--quantum-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        /* ========== QUANTUM SHOWCASE ========== */
+        .quantum-showcase {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .showcase-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .showcase-content {
+            flex: 1;
+        }
+
+        .showcase-media {
+            flex: 1;
+            position: relative;
+        }
+
+        .showcase-video {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid var(--quantum-blue);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+        }
+
+        .tech-badge {
+            position: absolute;
+            background: rgba(0, 242, 255, 0.2);
+            border: 1px solid var(--quantum-blue);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            animation: float-badge 5s infinite ease-in-out;
+        }
+
+        .badge-1 {
+            top: -20px;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            bottom: 30px;
+            right: -20px;
+            animation-delay: 0.5s;
+        }
+
+        .badge-3 {
+            top: 50%;
+            right: -30px;
+            animation-delay: 1s;
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ========== CYBER FOOTER ========== */
+        .cyber-footer {
+            padding: 80px 0 30px;
+            background: rgba(6, 39, 62, 0.3);
+            border-top: 1px solid rgba(0, 242, 255, 0.2);
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--quantum-blue);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 242, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--quantum-blue);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--quantum-blue);
+            color: var(--cyber-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+        }
+
+        .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-link a:hover {
+            color: var(--quantum-blue);
+            transform: translateX(5px);
+        }
+
+        .footer-link a::before {
+            content: '>';
+            color: var(--quantum-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 242, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes text-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 10px var(--quantum-blue),
+                    0 0 20px var(--quantum-blue),
+                    0 0 30px var(--quantum-blue);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(-5px, -5px); }
+            60% { transform: translate(5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
+        }
+
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 1024px) {
+            .hero-glitch {
+                font-size: 4rem;
+            }
+            
+            .showcase-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-glitch {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cyber-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .cyber-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-glitch {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cyber Background Elements -->
+    <div class="cyber-grid"></div>
+    <div class="cyber-particles" id="particles"></div>
+
+    <!-- Cyber Header -->
+    <header class="cyber-header">
+        <!-- Insert your futuristic header here -->
+    </header>
+
+    <!-- Cyber Hero Section -->
+    <section class="cyber-hero">
+        <div class="quantum-container">
+            <div class="hero-content">
+                <h1 class="hero-glitch" data-text="DEFCON QUANTUM">DEFCON QUANTUM</h1>
+                <p class="hero-subtitle">Harness the power of quantum computing and AI-driven solutions to revolutionize your digital presence. We build the future today.</p>
+                <div class="cyber-cta">
+                    <button class="cta-btn cta-primary">GET STARTED</button>
+                    <button class="cta-btn cta-secondary">EXPLORE TECH</button>
+                </div>
+                <div class="cyber-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10x</div>
+                        <div class="stat-label">Faster Performance</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyber Services Section -->
+    <section class="cyber-services">
+        <div class="quantum-container">
+            <h2 class="section-title">OUR QUANTUM SERVICES</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="service-title">Quantum Web Development</h3>
+                    <p class="service-desc">Next-generation websites powered by quantum computing principles for unmatched speed and security.</p>
+                    <a href="#" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-desc">Implement cutting-edge artificial intelligence to automate and optimize your business processes.</p>
+                    <a href="#" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-title">Cybersecurity</h3>
+                    <p class="service-desc">Military-grade protection for your digital assets using quantum encryption technologies.</p>
+                    <a href="#" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quantum Showcase Section -->
+    <section class="quantum-showcase">
+        <div class="quantum-container">
+            <div class="showcase-container">
+                <div class="showcase-content">
+                    <h2 class="section-title">QUANTUM SHOWCASE</h2>
+                    <p>Experience the power of our quantum computing platform through this interactive demonstration. See how we're solving problems considered impossible with classical computing.</p>
+                    <ul style="margin-top: 20px; list-style: none;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: var(--quantum-blue); margin-right: 10px;"></i>
+                            <span>Exponential processing power</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: var(--quantum-blue); margin-right: 10px;"></i>
+                            <span>Unbreakable quantum encryption</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: var(--quantum-blue); margin-right: 10px;"></i>
+                            <span>AI-driven predictive analytics</span>
+                        </li>
+                    </ul>
+                    <button class="cta-btn cta-primary" style="margin-top: 30px;">REQUEST DEMO</button>
+                </div>
+                <div class="showcase-media">
+                    <video class="showcase-video" autoplay muted loop>
+                        <source src="videos/background-video.mp4" type="video/mp4">
+                    </video>
+                    <div class="tech-badge badge-1">Qubit Technology</div>
+                    <div class="tech-badge badge-2">AI Neural Net</div>
+                    <div class="tech-badge badge-3">Blockchain Secure</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyber Footer -->
+    <footer class="cyber-footer">
+        <div class="quantum-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="DEFCON Quantum">
+                        <span class="footer-logo-text">DEFCON Q</span>
+                    </div>
+                    <p class="footer-about">Pushing the boundaries of technology to create solutions for tomorrow's challenges.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Solutions</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Quantum Computing</a></li>
+                        <li class="footer-link"><a href="#">AI Integration</a></li>
+                        <li class="footer-link"><a href="#">Cybersecurity</a></li>
+                        <li class="footer-link"><a href="#">Blockchain</a></li>
+                        <li class="footer-link"><a href="#">IoT Networks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">About Us</a></li>
+                        <li class="footer-link"><a href="#">Careers</a></li>
+                        <li class="footer-link"><a href="#">Press</a></li>
+                        <li class="footer-link"><a href="#">Partners</a></li>
+                        <li class="footer-link"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Resources</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">Whitepapers</a></li>
+                        <li class="footer-link"><a href="#">Case Studies</a></li>
+                        <li class="footer-link"><a href="#">Webinars</a></li>
+                        <li class="footer-link"><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 DEFCON Quantum Technologies. All rights reserved. | <a href="#" style="color: var(--quantum-blue);">Privacy Policy</a> | <a href="#" style="color: var(--quantum-blue);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 1px and 5px
+            const size = Math.random() * 4 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation duration
+            particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.5;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Add glitch effect to elements
+        const glitchElements = document.querySelectorAll('.hero-glitch');
+        glitchElements.forEach(el => {
+            el.setAttribute('data-text', el.textContent);
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.service-card, .showcase-content');
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        };
+        
+        // Set initial state
+        document.querySelectorAll('.service-card, .showcase-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.5s ease';
+        });
+        
+        // Run on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

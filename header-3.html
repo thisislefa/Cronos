@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Advanced Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* =============================================
+           CSS VARIABLES (Custom Properties)
+           ============================================= */
+        :root {
+            /* Color Palette */
+            --dc-color-header-bg: #07071e;
+            --dc-color-accent: #0091ff;
+            --dc-color-text-light: #fff;
+            --dc-color-background-dark: #000;
+            --dc-color-off-white: #f4f4f4;
+            --dc-color-text-muted: #b5b5d9;
+            --dc-color-menu-bg: #10102a;
+            --dc-color-menu-border: rgba(0, 145, 255, 0.2);
+            --dc-color-menu-hover-bg: rgba(70, 70, 110, 0.3);
+            --dc-color-button-primary: #0077cc;
+            --dc-color-button-hover: #0081ff;
+            --dc-color-panel-bg: #171a2e;
+            
+            /* Sizing */
+            --dc-header-height: 70px;
+            --dc-content-max-width: 1500px;
+            --dc-border-radius: 8px;
+            --dc-transition-speed: 0.3s;
+            
+            /* Z-index layers */
+            --dc-z-header: 1000;
+            --dc-z-mobile-nav: 900;
+            --dc-z-mobile-toggle: 1010;
+        }
+
+        /* =============================================
+           BASE STYLES
+           ============================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding-top: var(--dc-header-height);
+            background-color: var(--dc-color-background-dark);
+            color: var(--dc-color-text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =============================================
+           HEADER CONTAINER
+           ============================================= */
+        .dc-header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--dc-z-header);
+            background-color: var(--dc-color-header-bg);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dc-header {
+            height: var(--dc-header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-header-container {
+            max-width: var(--dc-content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* =============================================
+           LOGO STYLES
+           ============================================= */
+        .dc-logo-container {
+            flex-shrink: 0;
+            z-index: var(--dc-z-mobile-toggle);
+        }
+
+        .dc-logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-logo-image {
+            height: 40px;
+            vertical-align: middle;
+            transition: opacity var(--dc-transition-speed) ease;
+        }
+
+        .dc-logo-link:hover .dc-logo-image {
+            opacity: 0.8;
+        }
+
+        /* =============================================
+           DESKTOP NAVIGATION
+           ============================================= */
+        .dc-main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .dc-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .dc-nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .dc-nav-link {
+            text-decoration: none;
+            color: var(--dc-color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 16px;
+            align-items: center;
+            transition: color var(--dc-transition-speed) ease;
+            position: relative;
+        }
+
+        .dc-nav-link:hover,
+        .dc-nav-item--has-megamenu.active > .dc-nav-link {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           ACTION BUTTONS
+           ============================================= */
+        .buttons-cta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+
+        .dc-header-action-btn {
+            background: var(--dc-color-button-primary);
+            color: var(--dc-color-text-light);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all var(--dc-transition-speed) ease;
+            white-space: nowrap;
+        }
+
+        .dc-header-action-btn:hover {
+            background-color: var(--dc-color-button-hover);
+            transform: translateY(-2px);
+        }
+
+        .dc-header-action-btn-cta {
+            background: rgba(98, 184, 250, 0.2);
+            color: #95d1ff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 550;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all var(--dc-transition-speed) ease;
+            white-space: nowrap;
+        }
+
+        .dc-header-action-btn-cta:hover {
+            background-color: rgba(98, 184, 250, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           MEGA MENU CONTAINERS
+           ============================================= */
+        .dc-mega-menu-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--dc-color-menu-bg);
+            border-radius: var(--dc-border-radius);
+            backface-visibility: hidden;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity var(--dc-transition-speed) ease, 
+                        transform var(--dc-transition-speed) ease, 
+                        visibility var(--dc-transition-speed);
+            transform: translateY(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            min-width: 280px;
+            overflow: hidden;
+        }
+
+        .dc-nav-item--has-megamenu:hover .dc-mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dc-mega-menu-panel {
+            display: none;
+        }
+
+        .dc-mega-menu-panel.active {
+            display: block;
+        }
+
+        /* =============================================
+           SERVICES MEGA MENU
+           ============================================= */
+        .dc-mega-menu-container--services {
+            width: 900px;
+            left: -250%;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        .dc-nav-item--has-megamenu:hover .dc-mega-menu-container--services {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dc-services-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Services Categories Panel */
+        .dc-services-categories {
+            list-style: none;
+            width: 40%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dc-color-menu-bg);
+        }
+
+        .dc-services-category-item {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dc-services-category-item:last-child {
+            border-bottom: none;
+        }
+
+        .dc-services-category-link {
+            display: flex;
+            align-items: center;
+            color: var(--dc-color-text-light);
+            gap: 15px;
+            padding: 20px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all var(--dc-transition-speed) ease;
+            position: relative;
+        }
+
+        .dc-services-category-link:hover,
+        .dc-services-category-item.active .dc-services-category-link {
+            background-color: var(--dc-color-panel-bg);
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--dc-color-text-light);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dc-services-category-item.active .dc-services-category-icon,
+        .dc-services-category-link:hover .dc-services-category-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-text {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .dc-services-category-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .dc-services-category-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.3;
+        }
+
+        /* Services Submenu Panel */
+        .dc-services-submenu-container {
+            width: 60%;
+            background-color: var(--dc-color-panel-bg);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-panel {
+            display: none;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dc-submenu-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dc-color-text-light);
+            margin: 0 0 8px 0;
+        }
+
+        .dc-submenu-desc {
+            font-size: 14px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .dc-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-item {
+            padding: 0;
+            margin: 0;
+        }
+
+        .dc-submenu-link {
+            display: block;
+            padding: 12px;
+            border-radius: 6px;
+            transition: all var(--dc-transition-speed) ease;
+            height: 100%;
+            border: 1px solid transparent;
+        }
+
+        .dc-submenu-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 145, 255, 0.2);
+        }
+
+        .dc-submenu-link:hover .dc-mega-menu-link-title {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-mega-menu-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .dc-mega-menu-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* =============================================
+           DISCOVER MEGA MENU
+           ============================================= */
+        .dc-mega-menu-container--discover {
+            width: 800px;
+            left: -250%;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        .dc-nav-item--has-megamenu:hover .dc-mega-menu-container--discover {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dc-discover-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Discover Main Links Panel */
+        .dc-discover-main-links {
+            width: 35%;
+            background-color: var(--dc-color-menu-bg);
+            padding: 30px 0;
+        }
+
+        .dc-discover-main-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            transition: all var(--dc-transition-speed) ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dc-discover-main-link:hover {
+            background-color: var(--dc-color-panel-bg);
+            border-left-color: var(--dc-color-accent);
+        }
+
+        .dc-discover-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            color: var(--dc-color-text-light);
+        }
+
+        .dc-discover-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .dc-discover-main-link:hover .dc-discover-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-discover-text-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .dc-discover-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* Discover Submenu Panel */
+        .dc-discover-submenu-container {
+            width: 65%;
+            background-color: var(--dc-color-panel-bg);
+            padding: 30px;
+        }
+
+        .dc-discover-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dc-discover-menu-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-group-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dc-color-text-muted);
+            margin: 0 0 16px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dc-discover-group-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dc-discover-group-link {
+            font-size: 15px;
+            color: var(--dc-color-text-light);
+            transition: color var(--dc-transition-speed) ease;
+            padding: 4px 0;
+        }
+
+        .dc-discover-group-link:hover {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           DROPDOWN INDICATOR
+           ============================================= */
+        .dc-dropdown-indicator {
+            margin-left: 8px;
+            transition: transform var(--dc-transition-speed);
+        }
+
+        .dc-nav-item--has-megamenu:hover > .dc-nav-link .dc-dropdown-indicator {
+            transform: rotate(180deg);
+        }
+
+        /* =============================================
+           MOBILE TOGGLE
+           ============================================= */
+        .dc-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: var(--dc-z-mobile-toggle);
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dc-mobile-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dc-color-text-light);
+            border-radius: 3px;
+            transition: all var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(1) {
+            transform: translateY(10.5px) rotate(45deg);
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(3) {
+            transform: translateY(-10.5px) rotate(-45deg);
+        }
+
+        /* =============================================
+           MOBILE RESPONSIVE STYLES
+           ============================================= */
+        @media (max-width: 1024px) {
+            .dc-header-container {
+                padding: 0 20px;
+            }
+            
+            .dc-mobile-toggle {
+                display: flex;
+            }
+            
+            .dc-main-nav {
+                position: fixed;
+                top: var(--dc-header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--dc-header-height));
+                background-color: var(--dc-color-header-bg);
+                overflow-y: auto;
+                padding: 20px 0;
+                transform: translateX(100%);
+                transition: transform var(--dc-transition-speed) ease;
+                display: block;
+                z-index: var(--dc-z-mobile-nav);
+            }
+
+            .dc-header-wrapper.mobile-menu-open .dc-main-nav {
+                transform: translateX(0);
+            }
+
+            .dc-nav-list {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px;
+                width: 100%;
+            }
+
+            .dc-nav-item {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--dc-color-menu-border);
+            }
+
+            .dc-nav-link {
+                padding: 18px 0;
+                font-size: 18px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .buttons-cta {
+                flex-direction: column;
+                width: 100%;
+                margin: 20px 0 0 0;
+                gap: 12px;
+            }
+            
+            .dc-header-action-btn,
+            .dc-header-action-btn-cta {
+                width: 100%;
+                margin: 0;
+                padding: 16px;
+                text-align: center;
+                font-size: 16px;
+            }
+            
+            /* Mobile Mega Menu */
+            .dc-mega-menu-container {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                transition: max-height var(--dc-transition-speed) ease-out;
+                overflow: hidden;
+                max-height: 0;
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                background: none;
+                margin-top: 10px;
+            }
+            
+            .dc-nav-item--has-megamenu.active .dc-mega-menu-container {
+                max-height: 2000px;
+            }
+            
+            .dc-mega-menu-panel {
+                padding: 10px 0 20px 15px;
+                display: block !important;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+            }
+            
+            .dc-services-categories,
+            .dc-discover-main-links {
+                display: none;
+            }
+
+            .dc-services-menu-layout,
+            .dc-discover-menu-layout {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            /* Services Menu Mobile */
+            .dc-services-submenu-container {
+                display: block;
+                width: 100%;
+                padding: 0;
+                background-color: transparent;
+            }
+            
+            .dc-submenu-panel {
+                display: block;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            .dc-submenu-panel::before {
+                content: attr(data-mobile-title);
+                display: block;
+                font-weight: 600;
+                font-size: 16px;
+                color: var(--dc-color-text-muted);
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid var(--dc-color-menu-border);
+            }
+            
+            .dc-submenu-content {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .dc-submenu-link {
+                padding: 16px 0;
+            }
+            
+            .dc-mega-menu-link-title {
+                font-size: 16px;
+            }
+            
+            .dc-mega-menu-link-desc {
+                display: none;
+            }
+            
+            /* Discover Menu Mobile */
+            .dc-discover-submenu-container {
+                display: block;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .dc-discover-submenu-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .dc-discover-group-links {
+                gap: 12px;
+            }
+            
+            .dc-discover-group-link {
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            /* Hide dropdown indicators on mobile */
+            .dc-dropdown-indicator {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dc-header-container {
+                padding: 0 15px;
+            }
+            
+            .dc-nav-list {
+                padding: 0 15px;
+            }
+            
+            .dc-logo-image {
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dc-header-container {
+                padding: 0 10px;
+            }
+            
+            .dc-nav-list {
+                padding: 0 10px;
+            }
+            
+            .dc-nav-link {
+                font-size: 16px;
+                padding: 16px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- =============================================
+     HEADER WRAPPER
+     ============================================= -->
+<div class="dc-header-wrapper">
+    
+    <!-- MAIN HEADER BAR -->
+    <header class="dc-header">
+        <div class="dc-header-container">
+            
+            <!-- LOGO SECTION -->
+            <div class="dc-logo-container">
+                <a href="index.html" class="dc-logo-link">
+                    <img src="https://via.placeholder.com/150x40/07071e/0091ff?text=DEFCON" alt="Defcon Logo" class="dc-logo-image">
+                </a>
+            </div>
+
+            <!-- DESKTOP NAVIGATION -->
+            <nav class="dc-main-nav">
+                <ul class="dc-nav-list">
+                    <!-- LEVEL UP LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Level Up</a>
+                    </li>
+                    
+                    <!-- SUPPORT LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Support</a>
+                    </li>
+                    
+                    <!-- PROJECTS LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Projects</a>
+                    </li>
+                    
+                    <!-- SERVICES MEGA MENU -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="services">
+                            <span>Services</span>
+                            <span class="dc-dropdown-indicator"><i class="fas fa-chevron-down"></i></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--services">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="services">
+                                <div class="dc-services-menu-layout">
+                                    <!-- SERVICES CATEGORIES -->
+                                    <ul class="dc-services-categories">
+                                        <li class="dc-services-category-item active" data-submenu-trigger="software">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <i class="fas fa-code"></i>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Software Development</span>
+                                                    <span class="dc-services-category-desc">Custom applications & platforms</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="infra">
+                                            <a href="#" class="dc-services-category-link">
+                                                 <span class="dc-services-category-icon">
+                                                    <i class="fas fa-server"></i>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">IT Infrastructure</span>
+                                                    <span class="dc-services-category-desc">Networks, cloud & security</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="creative">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <i class="fas fa-paint-brush"></i>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Marketing & Creative</span>
+                                                    <span class="dc-services-category-desc">Branding & digital campaigns</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <!-- SERVICES SUBMENU -->
+                                    <div class="dc-services-submenu-container">
+                                        <div class="dc-submenu-panel active" data-submenu-panel="software" data-mobile-title="Software Development">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Web Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Resilient, high-performance platforms tailored to your needs.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Mobile Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Native experiences for iOS and Android with seamless UX.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">AI & Machine Learning</span>
+                                                        <div class="dc-mega-menu-link-desc">Intelligent systems that automate and optimize workflows.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">API Development</span>
+                                                        <div class="dc-mega-menu-link-desc">Secure, documented APIs for seamless integration.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">API Development</span>
+                                                        <div class="dc-mega-menu-link-desc">Secure, documented APIs for seamless integration.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">API Development</span>
+                                                        <div class="dc-mega-menu-link-desc">Secure, documented APIs for seamless integration.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="infra" data-mobile-title="IT Infrastructure">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Support & Infrastructure</span>
+                                                        <div class="dc-mega-menu-link-desc">Comprehensive assistance and network security solutions.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Consulting</span>
+                                                        <div class="dc-mega-menu-link-desc">Strategic advisory for digital transformation initiatives.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="creative" data-mobile-title="Marketing & Creative">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Digital Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">SEO, PPC, and performance marketing strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Graphic Design</span>
+                                                        <div class="dc-mega-menu-link-desc">Complete brand identity and visual design assets.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                                 <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                                 <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                                 <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- DISCOVER MEGA MENU -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="discover">
+                            <span>Discover</span>
+                            <span class="dc-dropdown-indicator"><i class="fas fa-chevron-down"></i></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--discover">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="discover">
+                                <div class="dc-discover-menu-layout">
+                                    <!-- DISCOVER MAIN LINKS -->
+                                    <div class="dc-discover-main-links">
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <i class="fas fa-building"></i>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Defcon</span>
+                                                <span class="dc-discover-link-desc">Our vision, team, and history</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <i class="fas fa-book"></i>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Resources</span>
+                                                <span class="dc-discover-link-desc">Case studies, insights, and docs</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <i class="fas fa-users"></i>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Connect</span>
+                                                <span class="dc-discover-link-desc">Join our team or get in touch</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- DISCOVER SUBMENU -->
+                                    <div class="dc-discover-submenu-container">
+                                        <div class="dc-discover-submenu-content">
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Advanced</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Level Up</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Developers</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Resources</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Market Updates</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Product News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Events</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Company</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">About Us</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Company News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Roadmap</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Innovations</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Partners</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Careers</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Security</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Licenses & Registrations</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- ACTION BUTTONS -->
+                <div class="buttons-cta">
+                    <button class="dc-header-action-btn-cta">Contact Us</button>
+                    <button class="dc-header-action-btn">Get Started</button>
+                </div>
+            </nav>
+            
+            <!-- MOBILE TOGGLE BUTTON -->
+            <button class="dc-mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+</div>
+
+<!-- =============================================
+     JAVASCRIPT FOR INTERACTIVITY
+     ============================================= -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.dc-mobile-toggle');
+        const headerWrapper = document.querySelector('.dc-header-wrapper');
+        const navLinks = document.querySelectorAll('.dc-nav-link');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function() {
+                headerWrapper.classList.toggle('mobile-menu-open');
+            });
+        }
+        
+        // Mobile menu close when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dc-header-container') && headerWrapper.classList.contains('mobile-menu-open')) {
+                headerWrapper.classList.remove('mobile-menu-open');
+            }
+        });
+        
+        // Mega menu functionality
+        const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+        
+        megaMenuTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parentItem = this.closest('.dc-nav-item--has-megamenu');
+                    parentItem.classList.toggle('active');
+                    
+                    // Close other open mega menus
+                    document.querySelectorAll('.dc-nav-item--has-megamenu').forEach(item => {
+                        if (item !== parentItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Services submenu functionality
+        const serviceCategoryLinks = document.querySelectorAll('[data-submenu-trigger]');
+        const submenuPanels = document.querySelectorAll('[data-submenu-panel]');
+        
+        serviceCategoryLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 1024) {
+                    const targetPanel = this.getAttribute('data-submenu-trigger');
+                    
+                    // Remove active class from all categories
+                    serviceCategoryLinks.forEach(item => {
+                        item.closest('.dc-services-category-item').classList.remove('active');
+                    });
+                    
+                    // Hide all submenu panels
+                    submenuPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Activate current category and panel
+                    this.closest('.dc-services-category-item').classList.add('active');
+                    document.querySelector(`[data-submenu-panel="${targetPanel}"]`).classList.add('active');
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking on a link (except mega menu triggers)
+        navLinks.forEach(link => {
+            if (!link.hasAttribute('data-megamenu-trigger')) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 1024) {
+                        headerWrapper.classList.remove('mobile-menu-open');
+                    }
+                });
+            }
+        });
+        
+        // Close mobile menu when clicking action button
+        const actionBtns = document.querySelectorAll('.dc-header-action-btn, .dc-header-action-btn-cta');
+        actionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                }
+            });
+        });
+        
+        // Close mega menus when clicking elsewhere on desktop
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth > 1024) {
+                if (!event.target.closest('.dc-nav-item--has-megamenu')) {
+                    document.querySelectorAll('.dc-nav-item--has-megamenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

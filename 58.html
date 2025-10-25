@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Hero Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .defcon-slider-container {
+            position: relative;
+            width: 1200px;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .defcon-slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .defcon-slider-slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px;
+            overflow: hidden;
+        }
+
+        .defcon-slide-bg-accent {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .defcon-slide-1 .defcon-slide-bg-accent {
+            width: 800px;
+            height: 800px;
+            top: -200px;
+            right: -300px;
+            background: #00ff88;
+        }
+
+        .defcon-slide-2 .defcon-slide-bg-accent {
+            width: 600px;
+            height: 600px;
+            bottom: -150px;
+            left: -200px;
+            background: #ff0055;
+        }
+
+        .defcon-slide-3 .defcon-slide-bg-accent {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            right: -250px;
+            background: #00aaff;
+        }
+
+        .defcon-slider-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+            animation: defcon-content-in 0.8s ease-out forwards;
+        }
+
+        @keyframes defcon-content-in {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .defcon-slider-subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .defcon-slider-title {
+            font-size: 72px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .defcon-slider-description {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .defcon-slider-play-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .defcon-slider-play-btn:hover {
+            border-color: #00ff88;
+            transform: scale(1.1);
+        }
+
+        .defcon-slider-play-btn::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #fff;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-left: 3px;
+            transition: border-left-color 0.3s ease;
+        }
+
+        .defcon-slider-play-btn:hover::after {
+            border-left-color: #00ff88;
+        }
+
+        .defcon-slider-card {
+            flex: 0 0 380px;
+            height: 500px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 2;
+            animation: defcon-card-in 0.8s ease-out 0.1s forwards;
+            opacity: 0;
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.1);
+            overflow: hidden;
+        }
+
+        @keyframes defcon-card-in {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .defcon-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            margin-bottom: 20px;
+            border-radius: 0;
+            object-fit: cover;
+        }
+
+        .defcon-card-content {
+            padding: 0 40px 40px;
+        }
+
+        .defcon-card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 12px;
+        }
+
+        .defcon-card-text {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .defcon-card-btn {
+            padding: 14px 32px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-card-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .defcon-slider-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .defcon-slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .defcon-slider-dot.active {
+            background: #00ff88;
+            border-color: #00ff88;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .defcon-slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .defcon-slider-nav:hover {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+
+        .defcon-slider-nav.prev {
+            left: 30px;
+        }
+
+        .defcon-slider-nav.next {
+            right: 30px;
+        }
+
+        .defcon-slider-nav::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-top: 2px solid #00ff88;
+            border-right: 2px solid #00ff88;
+        }
+
+        .defcon-slider-nav.prev::before {
+            transform: rotate(-135deg);
+        }
+
+        .defcon-slider-nav.next::before {
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 1200px) {
+            .defcon-slider-container {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .defcon-slider-slide {
+                flex-direction: column;
+                justify-content: center;
+                padding: 60px 40px;
+            }
+
+            .defcon-slider-card {
+                flex: 0 0 100%;
+                width: 100%;
+                max-width: 400px;
+                margin-top: 40px;
+            }
+
+            .defcon-slider-title {
+                font-size: 48px;
+            }
+
+            .defcon-slider-content {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-slider-slide {
+                padding: 40px 30px;
+            }
+
+            .defcon-slider-title {
+                font-size: 36px;
+            }
+
+            .defcon-slider-description {
+                font-size: 14px;
+            }
+
+            .defcon-slider-nav {
+                display: none !important;
+            }
+
+            .defcon-slider-controls {
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="defcon-slider-container">
+        <div class="defcon-slider-wrapper" id="defcon-slider-wrapper">
+            <!-- Slide 1 -->
+            <div class="defcon-slider-slide defcon-slide-1">
+                <div class="defcon-slide-bg-accent"></div>
+                <div class="defcon-slider-content">
+                    <div class="defcon-slider-subtitle">Advanced Security</div>
+                    <h1 class="defcon-slider-title">Threat Detection</h1>
+                    <p class="defcon-slider-description">Harness cutting-edge AI-driven threat detection to identify and neutralize security risks in real-time. Our platform delivers unmatched precision and speed.</p>
+                    <button class="defcon-slider-play-btn"></button>
+                </div>
+                <div class="defcon-slider-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Threat Detection" class="defcon-card-image">
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Real-Time Analytics</h3>
+                        <p class="defcon-card-text">Monitor threats across your infrastructure with live dashboards and instant alerts. Stay ahead of potential breaches.</p>
+                        <button class="defcon-card-btn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="defcon-slider-slide defcon-slide-2">
+                <div class="defcon-slide-bg-accent"></div>
+                <div class="defcon-slider-content">
+                    <div class="defcon-slider-subtitle">Infrastructure Protection</div>
+                    <h1 class="defcon-slider-title">Enterprise Firewall</h1>
+                    <p class="defcon-slider-description">Enterprise-grade firewall solutions designed for maximum uptime and zero-trust architecture. Protect every layer of your network infrastructure.</p>
+                    <button class="defcon-slider-play-btn"></button>
+                </div>
+                <div class="defcon-slider-card">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Firewall Protection" class="defcon-card-image">
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Advanced Protection</h3>
+                        <p class="defcon-card-text">Multi-layered defense mechanisms with automated threat response and compliance management built-in.</p>
+                        <button class="defcon-card-btn">Explore</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="defcon-slider-slide defcon-slide-3">
+                <div class="defcon-slide-bg-accent"></div>
+                <div class="defcon-slider-content">
+                    <div class="defcon-slider-subtitle">Compliance & Audit</div>
+                    <h1 class="defcon-slider-title">Compliance Suite</h1>
+                    <p class="defcon-slider-description">Automate compliance tracking and auditing across all regulatory frameworks. Maintain continuous compliance without the complexity.</p>
+                    <button class="defcon-slider-play-btn"></button>
+                </div>
+                <div class="defcon-slider-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Compliance Audit" class="defcon-card-image">
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Automated Audits</h3>
+                        <p class="defcon-card-text">Streamline your audit process with automated reporting and real-time compliance verification across standards.</p>
+                        <button class="defcon-card-btn">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="defcon-slider-nav prev" id="defcon-prev"></div>
+        <div class="defcon-slider-nav next" id="defcon-next"></div>
+
+        <div class="defcon-slider-controls">
+            <div class="defcon-slider-dot active" data-slide="0"></div>
+            <div class="defcon-slider-dot" data-slide="1"></div>
+            <div class="defcon-slider-dot" data-slide="2"></div>
+        </div>
+    </div>
+
+    <script>
+        class DefconSlider {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = document.querySelectorAll('.defcon-slider-slide').length;
+                this.wrapper = document.getElementById('defcon-slider-wrapper');
+                this.dots = document.querySelectorAll('.defcon-slider-dot');
+                this.prevBtn = document.getElementById('defcon-prev');
+                this.nextBtn = document.getElementById('defcon-next');
+                this.autoPlayInterval = null;
+
+                this.init();
+            }
+
+            init() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                this.dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => this.goToSlide(parseInt(e.target.dataset.slide)));
+                });
+
+                this.startAutoPlay();
+                this.wrapper.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.wrapper.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            goToSlide(n) {
+                this.currentSlide = n;
+                this.updateSlider();
+                this.resetAutoPlay();
+            }
+
+            next() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlider();
+                this.resetAutoPlay();
+            }
+
+            prev() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateSlider();
+                this.resetAutoPlay();
+            }
+
+            updateSlider() {
+                this.wrapper.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+                this.dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            startAutoPlay() {
+                this.autoPlayInterval = setInterval(() => this.next(), 3000);
+            }
+
+            stopAutoPlay() {
+                clearInterval(this.autoPlayInterval);
+            }
+
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
+            }
+        }
+
+        window.addEventListener('load', () => {
+            new DefconSlider();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+
+<div class="defcon-premium-container">
+  <!-- Background Image with Gradient Overlay -->
+  <div class="defcon-bg-image"></div>
+  <div class="defcon-overlay"></div>
+
+  <!-- Main Content -->
+  <div class="defcon-content">
+    <!-- Badge -->
+
+    <!-- Headline -->
+    <h1 class="defcon-headline">Elevate Your Digital Presence</h1>
+
+    <!-- Description -->
+    <p class="defcon-description">
+      Defcon delivers <strong>cutting-edge digital solutions</strong> for enterprises that demand excellence. 
+      Our premium suite merges <strong>innovative technology</strong> with <strong>flawless execution</strong> to transform your digital footprint.
+    </p>
+
+    <!-- Interactive Button -->
+    <button class="defcon-explore-button">
+      <span>Explore Premium Products</span>
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Floating Tech Elements (Decorative) -->
+    <div class="defcon-tech-element defcon-tech-1"></div>
+    <div class="defcon-tech-element defcon-tech-2"></div>
+    <div class="defcon-tech-element defcon-tech-3"></div>
+  </div>
+</div>
+
+<style>
+
+/* ===== DEFCON PREMIUM STYLES ===== */
+.defcon-premium-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
+  isolation: isolate;
+}
+
+/* Background Image & Overlay */
+.defcon-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('thumbnails/pexels-altabena-10142683.jpg') center/cover no-repeat;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.defcon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+background: linear-gradient(135deg, #06273e 0%, rgba(6, 39, 62, 0.9) 100%);
+z-index: -1;
+}
+
+/* Main Content */
+.defcon-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: defcon-fade-in 1.2s ease-out forwards;
+}
+
+/* Badge */
+.defcon-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  
+  color: #0091ff;
+  background: rgba(0, 145, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  animation: defcon-slide-up 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Headline */
+.defcon-headline {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  max-width: 700px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: defcon-slide-up 0.8s ease-out 0.4s forwards;
+}
+
+/* Description */
+.defcon-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  max-width: 600px;
+  margin: 0 0 40px 0;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: defcon-slide-up 0.8s ease-out 0.5s forwards;
+}
+
+/* Explore Button */
+.defcon-explore-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #0091ff, #0066cc);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: defcon-slide-up 0.8s ease-out 0.6s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-explore-button svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.defcon-explore-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-explore-button:hover svg {
+  transform: translateX(5px);
+}
+
+.defcon-explore-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
+}
+
+.defcon-explore-button:hover::before {
+  left: 100%;
+  top: 100%;
+}
+
+/* Floating Tech Elements (Decorative) */
+.defcon-tech-element {
+  position: absolute;
+  background: rgba(0, 145, 255, 0.1);
+  border: 1px solid rgba(0, 145, 255, 0.3);
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0;
+  animation: defcon-fade-in 1s ease-out 1s forwards;
+}
+
+.defcon-tech-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0.8s;
+}
+
+.defcon-tech-2 {
+  width: 120px;
+  height: 120px;
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+.defcon-tech-3 {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  right: 20%;
+  animation-delay: 1.2s;
+}
+
+/* Animations */
+@keyframes defcon-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes defcon-slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .defcon-content {
+    padding: 60px 24px;
+  }
+  
+  .defcon-headline {
+    font-size: 36px;
+  }
+  
+  .defcon-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-headline {
+    font-size: 28px;
+  }
+  
+  .defcon-explore-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const button = document.querySelector('.defcon-explore-button');
+  
+  // Button hover effect
+  if (button) {
+    button.addEventListener('mouseenter', () => {
+      button.style.boxShadow = '0 10px 30px rgba(0, 145, 255, 0.5)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      button.style.boxShadow = '0 10px 20px rgba(0, 145, 255, 0.4)';
+    });
+    
+    button.addEventListener('click', () => {
+      // Replace with your link or modal trigger
+      console.log('Explore Premium Products clicked');
+      // window.location.href = '/premium';
+    });
+  }
+  
+  // Floating tech elements animation
+  const techElements = document.querySelectorAll('.defcon-tech-element');
+  techElements.forEach(el => {
+    el.addEventListener('mouseover', () => {
+      el.style.transform = 'scale(1.1)';
+      el.style.transition = 'transform 0.3s ease';
+    });
+    
+    el.addEventListener('mouseout', () => {
+      el.style.transform = 'scale(1)';
+    });
+  });
+  
+  // Scroll-triggered animations (optional)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('.defcon-content *').forEach(el => {
+    observer.observe(el);
+  });
+});
+</script>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | IT Consulting Services</title>
+    <style>
+        
+        /* DEFCON IT CONSULTING SPECIFIC STYLES */
+        .defcon-itconsulting-container {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #e5e5e5;
+            color: #06273e;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-itconsulting-hero {
+            background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+            color: #ffffff;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-itconsulting-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .defcon-itconsulting-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-itconsulting-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+
+        .defcon-itconsulting-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        .defcon-itconsulting-cta {
+            display: inline-block;
+            background-color: #0091ff;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.6s forwards;
+        }
+
+        .defcon-itconsulting-cta:hover {
+            background-color: #0077cc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-itconsulting-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .defcon-itconsulting-section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #06273e;
+            position: relative;
+            display: inline-block;
+        }
+
+        .defcon-itconsulting-section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #0091ff;
+        }
+
+        .defcon-itconsulting-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .defcon-itconsulting-service-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+
+        .defcon-itconsulting-card-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .defcon-itconsulting-card-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .defcon-itconsulting-service-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .defcon-itconsulting-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-itconsulting-service-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .defcon-itconsulting-service-content {
+            padding: 1.5rem;
+        }
+
+        .defcon-itconsulting-service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #06273e;
+        }
+
+        .defcon-itconsulting-service-desc {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .defcon-itconsulting-service-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #0091ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-itconsulting-service-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid #0091ff;
+            color: #0091ff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-service-btn:hover {
+            background-color: #0091ff;
+            color: white;
+        }
+
+        .defcon-itconsulting-features {
+            background-color: #ffffff;
+            padding: 5rem 2rem;
+        }
+
+        .defcon-itconsulting-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .defcon-itconsulting-feature-item {
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-feature-icon {
+            font-size: 2.5rem;
+            color: #0091ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-itconsulting-feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #06273e;
+        }
+
+        .defcon-itconsulting-testimonials {
+            background-color: #06273e;
+            color: #ffffff;
+            padding: 5rem 2rem;
+        }
+
+        .defcon-itconsulting-testimonials .defcon-itconsulting-section-title {
+            color: #ffffff;
+        }
+
+        .defcon-itconsulting-testimonials .defcon-itconsulting-section-title::after {
+            background-color: #ffffff;
+        }
+
+        .defcon-itconsulting-testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .defcon-itconsulting-testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .defcon-itconsulting-testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .defcon-itconsulting-testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .defcon-itconsulting-testimonial-author {
+            font-weight: bold;
+        }
+
+        .defcon-itconsulting-testimonial-position {
+            color: #0091ff;
+            font-size: 0.9rem;
+        }
+
+        .defcon-itconsulting-testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .defcon-itconsulting-testimonial-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-testimonial-dot.active {
+            background-color: #ffffff;
+        }
+
+        .defcon-itconsulting-cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            color: #ffffff;
+        }
+
+        .defcon-itconsulting-cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-itconsulting-cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .defcon-itconsulting-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .defcon-itconsulting-modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-50px);
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-modal.active .defcon-itconsulting-modal-content {
+            transform: translateY(0);
+        }
+
+        .defcon-itconsulting-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #06273e;
+        }
+
+        .defcon-itconsulting-modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #06273e;
+        }
+
+        .defcon-itconsulting-form-group {
+            margin-bottom: 1.5rem;
+            padding-right: 1.5rem;
+            
+            
+        }
+
+        .defcon-itconsulting-form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #06273e;
+        }
+
+        .defcon-itconsulting-form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .defcon-itconsulting-form-submit {
+            background-color: #0091ff;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-form-submit:hover {
+            background-color: #0077cc;
+        }
+
+
+        .defcon-itconsulting-faq {
+            padding: 5rem 2rem;
+        }
+
+        .defcon-itconsulting-faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .defcon-itconsulting-faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .defcon-itconsulting-faq-question {
+            padding: 1.5rem;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-faq-question:hover {
+            background-color: #f5f5f5;
+        }
+
+        .defcon-itconsulting-faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #0091ff;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-itconsulting-faq-item.active .defcon-itconsulting-faq-question::after {
+            content: "-";
+        }
+
+        .defcon-itconsulting-faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .defcon-itconsulting-faq-item.active .defcon-itconsulting-faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .defcon-itconsulting-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-itconsulting-services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-itconsulting-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="defcon-itconsulting-container">
+        <!-- Hero Section -->
+        <div class="defcon-itconsulting-hero">
+            <div class="defcon-itconsulting-hero-content">
+                <h1>Strategic IT Consulting</h1>
+                <p>Transform your business with our expert IT consulting services. We provide tailored technology solutions that drive growth, efficiency, and competitive advantage.</p>
+                <a href="#" class="defcon-itconsulting-cta" id="defcon-itconsulting-cta-btn">Get Free Consultation</a>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="defcon-itconsulting-section">
+            <h2 class="defcon-itconsulting-section-title">Our IT Consulting Services</h2>
+            <p>We offer comprehensive IT consulting services designed to meet your unique business needs. Here's how we can help:</p>
+            
+            <div class="defcon-itconsulting-services-grid">
+                <!-- Service 1 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IT Strategy Consulting" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">IT Strategy Consulting</h3>
+                        <p class="defcon-itconsulting-service-desc">Develop a comprehensive IT roadmap aligned with your business objectives and growth plans.</p>
+                        <div class="defcon-itconsulting-service-price">From $5,000</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="IT Strategy Consulting">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cloud Migration" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">Cloud Migration</h3>
+                        <p class="defcon-itconsulting-service-desc">Seamlessly transition your infrastructure to the cloud with minimal downtime and maximum efficiency.</p>
+                        <div class="defcon-itconsulting-service-price">From $8,000</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="Cloud Migration">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cybersecurity Assessment" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">Cybersecurity Assessment</h3>
+                        <p class="defcon-itconsulting-service-desc">Identify vulnerabilities and strengthen your defenses with our comprehensive security audit.</p>
+                        <div class="defcon-itconsulting-service-price">From $6,500</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="Cybersecurity Assessment">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Transformation" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">Digital Transformation</h3>
+                        <p class="defcon-itconsulting-service-desc">Modernize your operations and customer experience with cutting-edge digital solutions.</p>
+                        <div class="defcon-itconsulting-service-price">From $12,000</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="Digital Transformation">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Analytics" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">Data Analytics</h3>
+                        <p class="defcon-itconsulting-service-desc">Unlock valuable insights from your data to drive smarter business decisions.</p>
+                        <div class="defcon-itconsulting-service-price">From $7,500</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="Data Analytics">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="defcon-itconsulting-service-card">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IT Infrastructure Audit" class="defcon-itconsulting-service-img">
+                    <div class="defcon-itconsulting-service-content">
+                        <h3 class="defcon-itconsulting-service-title">IT Infrastructure Audit</h3>
+                        <p class="defcon-itconsulting-service-desc">Comprehensive evaluation of your current IT setup with actionable recommendations.</p>
+                        <div class="defcon-itconsulting-service-price">From $4,500</div>
+                        <a href="#" class="defcon-itconsulting-service-btn defcon-itconsulting-service-modal-btn" data-service="IT Infrastructure Audit">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="defcon-itconsulting-features">
+            <div class="defcon-itconsulting-section">
+                <h2 class="defcon-itconsulting-section-title">Why Choose Our IT Consulting?</h2>
+                
+                <div class="defcon-itconsulting-features-grid">
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">✓</div>
+                        <h3 class="defcon-itconsulting-feature-title">Industry Expertise</h3>
+                        <p>Our consultants have deep knowledge across multiple industries and stay ahead of technology trends.</p>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">⚡</div>
+                        <h3 class="defcon-itconsulting-feature-title">Proven Methodologies</h3>
+                        <p>We use established frameworks and best practices to deliver measurable results.</p>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">🔒</div>
+                        <h3 class="defcon-itconsulting-feature-title">Security Focus</h3>
+                        <p>All our solutions are designed with security and compliance as top priorities.</p>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">🔄</div>
+                        <h3 class="defcon-itconsulting-feature-title">Agile Approach</h3>
+                        <p>We adapt quickly to changing requirements and deliver solutions iteratively.</p>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">📈</div>
+                        <h3 class="defcon-itconsulting-feature-title">ROI-Driven</h3>
+                        <p>We focus on solutions that deliver tangible business value and measurable returns.</p>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-feature-item">
+                        <div class="defcon-itconsulting-feature-icon">🤝</div>
+                        <h3 class="defcon-itconsulting-feature-title">Partnership Model</h3>
+                        <p>We become an extension of your team, invested in your long-term success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- FAQ Section -->
+        <div class="defcon-itconsulting-faq">
+            <div class="defcon-itconsulting-section">
+                <h2 class="defcon-itconsulting-section-title">Frequently Asked Questions</h2>
+                
+                <div class="defcon-itconsulting-faq-container">
+                    <!-- FAQ Item 1 -->
+                    <div class="defcon-itconsulting-faq-item">
+                        <div class="defcon-itconsulting-faq-question">
+                            What's the typical duration of an IT consulting engagement?
+                        </div>
+                        <div class="defcon-itconsulting-faq-answer">
+                            <p>The duration varies based on the scope of work. Strategy engagements typically take 4-6 weeks, while implementation projects can range from 3 months to a year. Our CIO advisory services are often ongoing monthly retainers.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="defcon-itconsulting-faq-item">
+                        <div class="defcon-itconsulting-faq-question">
+                            How do you ensure your recommendations align with our business goals?
+                        </div>
+                        <div class="defcon-itconsulting-faq-answer">
+                            <p>We begin every engagement with deep discovery sessions to understand your business objectives, challenges, and KPIs. Our recommendations are always tied to measurable business outcomes, not just technical improvements.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="defcon-itconsulting-faq-item">
+                        <div class="defcon-itconsulting-faq-question">
+                            Do you work with specific industries or business sizes?
+                        </div>
+                        <div class="defcon-itconsulting-faq-answer">
+                            <p>We serve clients across industries, from startups to enterprises. Our team has particular expertise in financial services, healthcare, e-commerce, and professional services, but we customize our approach for each client's unique needs.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="defcon-itconsulting-faq-item">
+                        <div class="defcon-itconsulting-faq-question">
+                            What happens after the consulting engagement ends?
+                        </div>
+                        <div class="defcon-itconsulting-faq-answer">
+                            <p>We offer various ongoing support options, from quarterly strategy reviews to full implementation management. Many clients transition to our managed services or retain us for periodic advisory sessions.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 5 -->
+                    <div class="defcon-itconsulting-faq-item">
+                        <div class="defcon-itconsulting-faq-question">
+                            How do you measure the success of your consulting work?
+                        </div>
+                        <div class="defcon-itconsulting-faq-answer">
+                            <p>We establish clear success metrics at the start of each engagement, which may include cost savings, performance improvements, security enhancements, or business growth metrics. We provide regular progress reports against these KPIs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- CTA Section -->
+        <div class="defcon-itconsulting-cta-section">
+            <h2>Ready to Transform Your IT Strategy?</h2>
+            <p>Contact us today for a free consultation and discover how our IT consulting services can propel your business forward.</p>
+            <a href="#" class="defcon-itconsulting-cta" id="defcon-itconsulting-bottom-cta">Get Started Now</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="defcon-itconsulting-modal" id="defcon-itconsulting-modal">
+            <div class="defcon-itconsulting-modal-content">
+                <span class="defcon-itconsulting-modal-close" id="defcon-itconsulting-modal-close">&times;</span>
+                <h3 class="defcon-itconsulting-modal-title" id="defcon-itconsulting-modal-title">Request Consultation</h3>
+                <form id="defcon-itconsulting-form">
+                    <div class="defcon-itconsulting-form-group">
+                        <label for="defcon-itconsulting-name" class="defcon-itconsulting-form-label">Name</label>
+                        <input type="text" id="defcon-itconsulting-name" class="defcon-itconsulting-form-input" required>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-form-group">
+                        <label for="defcon-itconsulting-email" class="defcon-itconsulting-form-label">Email</label>
+                        <input type="email" id="defcon-itconsulting-email" class="defcon-itconsulting-form-input" required>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-form-group">
+                        <label for="defcon-itconsulting-phone" class="defcon-itconsulting-form-label">Phone</label>
+                        <input type="tel" id="defcon-itconsulting-phone" class="defcon-itconsulting-form-input">
+                    </div>
+                    
+                    <div class="defcon-itconsulting-form-group">
+                        <label for="defcon-itconsulting-service" class="defcon-itconsulting-form-label">Service Interested In</label>
+                        <input type="text" id="defcon-itconsulting-service" class="defcon-itconsulting-form-input" readonly>
+                    </div>
+                    
+                    <div class="defcon-itconsulting-form-group">
+                        <label for="defcon-itconsulting-message" class="defcon-itconsulting-form-label">Message</label>
+                        <textarea id="defcon-itconsulting-message" class="defcon-itconsulting-form-input" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="defcon-itconsulting-form-submit">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+         // DEFCON IT CONSULTING SPECIFIC SCRIPTS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate service cards on scroll
+            const serviceCards = document.querySelectorAll('.defcon-itconsulting-service-card');
+            
+            const animateOnScroll = () => {
+                serviceCards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Testimonial slider
+            const testimonials = document.querySelectorAll('.defcon-itconsulting-testimonial');
+            const dots = document.querySelectorAll('.defcon-itconsulting-testimonial-dot');
+            let currentTestimonial = 0;
+            
+            function showTestimonial(index) {
+                testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                testimonials[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentTestimonial = index;
+            }
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showTestimonial(index));
+            });
+            
+            // Auto-rotate testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+            
+            // Modal functionality
+            const modal = document.getElementById('defcon-itconsulting-modal');
+            const modalTitle = document.getElementById('defcon-itconsulting-modal-title');
+            const modalService = document.getElementById('defcon-itconsulting-service');
+            const openModalBtns = document.querySelectorAll('.defcon-itconsulting-service-modal-btn, #defcon-itconsulting-cta-btn, #defcon-itconsulting-bottom-cta');
+            const closeModalBtn = document.getElementById('defcon-itconsulting-modal-close');
+            
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    if (btn.dataset.service) {
+                        modalTitle.textContent = `Consultation for ${btn.dataset.service}`;
+                        modalService.value = btn.dataset.service;
+                    } else {
+                        modalTitle.textContent = 'Request Consultation';
+                        modalService.value = 'General IT Consulting';
+                    }
+                    
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Form submission
+            const form = document.getElementById('defcon-itconsulting-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would typically send the form data to your server
+                alert('Thank you for your request! We will contact you shortly.');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                form.reset();
+            });
+        });
+
+         // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.defcon-itconsulting-faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.defcon-itconsulting-faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+    </script>
+</body>
+</html>

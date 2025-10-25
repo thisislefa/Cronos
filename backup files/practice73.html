@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Services Grid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #10B981;
+            --dark-bg: #111827;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --text-light: #F3F4F6;
+            --text-muted: #9CA3AF;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .services-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 15px 45px rgba(79, 70, 229, 0.4), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            color: var(--secondary-color);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .service-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .learn-more-btn {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            opacity: 0;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .service-card:hover .learn-more-btn {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="services-container">
+        <h1 class="services-title">Our Premium Services</h1>
+        
+        <div class="services-grid">
+            <!-- Web Design Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="service-title">Web Design</h3>
+                <p class="service-description">
+                    Custom, responsive websites tailored to your brand with cutting-edge design 
+                    and optimal user experience.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            
+            <!-- Cybersecurity Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="service-title">Cybersecurity</h3>
+                <p class="service-description">
+                    Comprehensive protection for your digital assets with advanced threat 
+                    detection and prevention systems.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            
+            <!-- IT Consulting Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="service-title">IT Consulting</h3>
+                <p class="service-description">
+                    Strategic technology guidance to optimize your infrastructure and 
+                    align IT with business objectives.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            
+            <!-- Cloud Solutions Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="service-title">Cloud Solutions</h3>
+                <p class="service-description">
+                    Scalable cloud infrastructure and migration services to enhance 
+                    performance and reduce costs.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            
+            <!-- Data Analytics Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="service-title">Data Analytics</h3>
+                <p class="service-description">
+                    Transform raw data into actionable insights with our advanced 
+                    analytics and visualization tools.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            
+            <!-- AI Integration Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="service-title">AI Integration</h3>
+                <p class="service-description">
+                    Leverage artificial intelligence to automate processes and gain 
+                    competitive advantage in your industry.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

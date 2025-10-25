@@ -1,0 +1,90 @@
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles can be added here if needed */
+        .dev {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A very light gray, similar to the image background */
+        }
+        /* Custom class names to avoid conflicts as requested */
+        .dc-component-wrapper {
+            /* This is the main container for the entire section */
+        }
+        .dc-grid-container {
+             /* This controls the overall grid layout */
+        }
+        .dc-image-cluster {
+            /* This is the container for the two images and the badge */
+        }
+        .dc-left-image, .dc-right-image {
+             /* Specific classes for the two images */
+        }
+        .dc-badge {
+            /* The circular badge style */
+        }
+        .dc-text-content {
+            /* Container for the text on the right */
+        }
+        .dc-pre-header {
+            /* Small text above the main header */
+        }
+        .dc-main-header {
+            /* The large H1 title */
+        }
+        .dc-body-text {
+            /* The paragraph text */
+        }
+        .dc-action-button {
+            /* The call-to-action button */
+        }
+    </style>
+
+<dev class="flex items-center justify-center min-h-screen">
+
+    <div class="dc-component-wrapper w-full max-w-6xl p-4 sm:p-6 lg:p-8">
+        <div class="dc-grid-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-8 items-center">
+
+            <!-- Image Cluster Section -->
+            <div class="dc-image-cluster lg:col-span-5 relative w-full flex items-center justify-center gap-4">
+                <!-- Left Image -->
+                <div class="w-1/2">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" 
+                         alt="People collaborating at a tech conference" 
+                         class="dc-left-image w-full h-[350px] md:h-[450px] object-cover rounded-2xl shadow-lg">
+                </div>
+
+                <!-- Right Image -->
+                <div class="w-1/2">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                         alt="Close up of server room hardware" 
+                         class="dc-right-image w-full h-[300px] md:h-[380px] object-cover rounded-2xl shadow-lg">
+                </div>
+                
+                <!-- Badge -->
+                <div class="dc-badge absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-36 md:h-36 bg-[#0c1a1e] flex flex-col items-center justify-center rounded-full text-white shadow-2xl border-4 border-white">
+                    <span class="text-3xl md:text-4xl font-bold">30+</span>
+                    <span class="text-sm md:text-base font-semibold">Villages</span>
+                </div>
+            </div>
+
+            <!-- Text Content Section -->
+            <div class="dc-text-content lg:col-span-5 md:pl-8">
+                <p class="dc-pre-header text-sm font-bold tracking-widest text-[#15803d] uppercase mb-4">HACKING WITH PURPOSE</p>
+                <h1 class="dc-main-header text-4xl lg:text-5xl font-extrabold text-[#0c1a1e] leading-tight mb-6">
+                    Join the Community That Redefines Security.
+                </h1>
+                <p class="dc-body-text text-gray-600 mb-4 text-base lg:text-lg">
+                    At DEFCON, we're not just a conference; we're a global community. We bring together hackers, researchers, and professionals who are passionate about technology, eager to share knowledge, and dedicated to exploring the future of security.
+                </p>
+                <p class="dc-body-text text-gray-600 mb-8 text-base lg:text-lg">
+                    Whether you're exploring the villages, competing in a CTF, or attending a talk, every individual plays a role in shaping the conversations that push our industry forward.
+                </p>
+                <a href="#" class="dc-action-button inline-block bg-[#a3e635] text-[#0c1a1e] font-bold py-3 px-8 rounded-full text-lg hover:bg-[#bef264] transition-colors duration-300 shadow-md hover:shadow-lg">
+                    EVENT SCHEDULE
+                </a>
+            </div>
+
+        </div>
+    </div>
+</dev>

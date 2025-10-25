@@ -1,0 +1,474 @@
+<!-- Glassmorphism Hero Section -->
+<div class="defcon-glass-hero">
+    <!-- Multi-layered background -->
+    <div class="defcon-glass-bg">
+        <div class="defcon-glass-bg-layer defcon-glass-bg-layer-1"></div>
+        <div class="defcon-glass-bg-layer defcon-glass-bg-layer-2"></div>
+        <div class="defcon-glass-bg-layer defcon-glass-bg-layer-3"></div>
+    </div>
+    
+    <!-- Floating glass elements -->
+    <div class="defcon-glass-sphere defcon-glass-sphere-1"></div>
+    <div class="defcon-glass-sphere defcon-glass-sphere-2"></div>
+    <div class="defcon-glass-sphere defcon-glass-sphere-3"></div>
+    
+    <!-- Main content container -->
+    <div class="defcon-glass-container">
+        <!-- Primary glass panel -->
+        <div class="defcon-glass-panel defcon-glass-main-panel">
+            <h1 class="defcon-glass-headline">Innovative Digital Solutions</h1>
+            <p class="defcon-glass-subhead">Crafting premium digital experiences with cutting-edge technology</p>
+        </div>
+        
+        <!-- Secondary glass cards -->
+        <div class="defcon-glass-card defcon-glass-card-1">
+            <h2 class="defcon-glass-card-title">Strategy</h2>
+            <p class="defcon-glass-card-text">Data-driven approach to digital transformation</p>
+        </div>
+        
+        <div class="defcon-glass-card defcon-glass-card-2">
+            <h2 class="defcon-glass-card-title">Design</h2>
+            <p class="defcon-glass-card-text">Award-winning UI/UX design principles</p>
+        </div>
+        
+        <div class="defcon-glass-card defcon-glass-card-3">
+            <h2 class="defcon-glass-card-title">Technology</h2>
+            <p class="defcon-glass-card-text">Future-proof tech stack implementation</p>
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="defcon-glass-cta">
+            <span class="defcon-glass-cta-text">Explore Our Work</span>
+            <div class="defcon-glass-cta-glow"></div>
+        </button>
+    </div>
+    
+    <!-- Environmental effects -->
+    <div class="defcon-glass-fog"></div>
+</div>
+
+<!-- Styles -->
+<style>
+/* Base styles for glassmorphism hero section */
+.defcon-glass-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    color: #06273e;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    isolation: isolate;
+}
+
+/* Background layers */
+.defcon-glass-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.defcon-glass-bg-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.defcon-glass-bg-layer-1 {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    z-index: 1;
+}
+
+.defcon-glass-bg-layer-2 {
+    background: radial-gradient(circle at 70% 30%, rgba(0, 145, 255, 0.1) 0%, transparent 40%);
+    z-index: 2;
+}
+
+.defcon-glass-bg-layer-3 {
+    background: url('https://example.com/placeholder-abstract-shapes.svg') no-repeat center center;
+    background-size: 150%;
+    opacity: 0.1;
+    z-index: 3;
+}
+
+/* Glass spheres */
+.defcon-glass-sphere {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.6;
+    z-index: 4;
+}
+
+.defcon-glass-sphere-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 30% 30%, #0091ff, transparent 70%);
+    top: 10%;
+    left: 10%;
+    animation: defcon-float 15s ease-in-out infinite;
+}
+
+.defcon-glass-sphere-2 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at 70% 30%, #06273e, transparent 70%);
+    bottom: 15%;
+    right: 15%;
+    animation: defcon-float 12s ease-in-out infinite reverse;
+}
+
+.defcon-glass-sphere-3 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 50% 50%, #ffffff, transparent 70%);
+    top: 60%;
+    left: 50%;
+    animation: defcon-float 18s ease-in-out infinite 2s;
+}
+
+/* Main container */
+.defcon-glass-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Glass panels */
+.defcon-glass-panel,
+.defcon-glass-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-glass-panel::before,
+.defcon-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    z-index: -1;
+    border-radius: inherit;
+}
+
+/* Main panel */
+.defcon-glass-main-panel {
+    grid-column: 1 / span 12;
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.defcon-glass-headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #06273e;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.defcon-glass-headline::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0091ff, transparent);
+}
+
+.defcon-glass-subhead {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin: 0;
+    color: #06273e;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Glass cards */
+.defcon-glass-card {
+    padding: 30px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.defcon-glass-card:hover {
+    transform: translateY(-5px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.defcon-glass-card-1 {
+    grid-column: 1 / span 4;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.defcon-glass-card-2 {
+    grid-column: 5 / span 4;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.defcon-glass-card-3 {
+    grid-column: 9 / span 4;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.defcon-glass-card-title {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    color: #06273e;
+    position: relative;
+    display: inline-block;
+}
+
+.defcon-glass-card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #0091ff;
+}
+
+.defcon-glass-card-text {
+    font-size: 1rem;
+    margin: 0;
+    color: #06273e;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* CTA Button */
+.defcon-glass-cta {
+    grid-column: 1 / span 12;
+    margin: 40px auto 0;
+    padding: 15px 40px;
+    background: rgba(0, 145, 255, 0.7);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+    z-index: 1;
+    max-width: 250px;
+}
+
+.defcon-glass-cta:hover {
+    background: rgba(0, 145, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-glass-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.defcon-glass-cta:hover::before {
+    transform: translateX(100%);
+}
+
+.defcon-glass-cta-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle at center, rgba(0, 145, 255, 0.3), transparent 70%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.defcon-glass-cta:hover .defcon-glass-cta-glow {
+    opacity: 1;
+}
+
+/* Environmental effects */
+.defcon-glass-fog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes defcon-float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-20px) translateX(10px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .defcon-glass-card-1,
+    .defcon-glass-card-2,
+    .defcon-glass-card-3 {
+        grid-column: 1 / span 12;
+        margin-bottom: 20px;
+    }
+    
+    .defcon-glass-main-panel {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .defcon-glass-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .defcon-glass-sphere {
+        filter: blur(20px);
+    }
+    
+    .defcon-glass-sphere-1 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .defcon-glass-sphere-2 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .defcon-glass-sphere-3 {
+        width: 100px;
+        height: 100px;
+    }
+}
+</style>
+
+<!-- JavaScript for interactive effects -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all glass cards
+    const glassCards = document.querySelectorAll('.defcon-glass-card');
+    const mainPanel = document.querySelector('.defcon-glass-main-panel');
+    
+    // Add hover effects to cards
+    glassCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Increase blur on other cards
+            glassCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.style.backdropFilter = 'blur(20px)';
+                    otherCard.style.webkitBackdropFilter = 'blur(20px)';
+                    otherCard.style.opacity = '0.8';
+                }
+            });
+            
+            // Make main panel slightly blurry
+            mainPanel.style.backdropFilter = 'blur(30px)';
+            mainPanel.style.webkitBackdropFilter = 'blur(30px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            // Reset all cards
+            glassCards.forEach(otherCard => {
+                otherCard.style.backdropFilter = '';
+                otherCard.style.webkitBackdropFilter = '';
+                otherCard.style.opacity = '';
+            });
+            
+            // Reset main panel
+            mainPanel.style.backdropFilter = '';
+            mainPanel.style.webkitBackdropFilter = '';
+        });
+    });
+    
+    // Add subtle floating animation to main panel
+    function floatPanel() {
+        const panel = document.querySelector('.defcon-glass-main-panel');
+        const time = Date.now() * 0.001;
+        const yPos = Math.sin(time * 0.5) * 3;
+        panel.style.transform = `translateY(${yPos}px)`;
+        requestAnimationFrame(floatPanel);
+    }
+    
+    floatPanel();
+    
+    // Add floating animation to cards
+    function floatCards() {
+        const cards = document.querySelectorAll('.defcon-glass-card');
+        const time = Date.now() * 0.001;
+        
+        cards.forEach((card, index) => {
+            const delay = index * 0.3;
+            const yPos = Math.sin(time * 0.5 + delay) * 5;
+            card.style.transform = `translateY(${yPos}px)`;
+        });
+        
+        requestAnimationFrame(floatCards);
+    }
+    
+    floatCards();
+});
+</script>

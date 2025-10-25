@@ -1,0 +1,346 @@
+<div class="dch-hero-container">
+  <div class="dch-cards-wrapper">
+    <div class="dch-card" data-index="0" style="background-image: url('thumbnails/pexels-resourceboy-18541715');">
+      <div class="dch-card-overlay"></div>
+      <div class="dch-card-content">
+        <h2 class="dch-card-heading">Strategic Innovation</h2>
+        <p class="dch-card-description">We merge cutting-edge technology with market insights to drive strategic growth and digital transformation for your business.</p>
+        <a href="#your-link" class="dch-card-button">Learn More</a>
+      </div>
+    </div>
+    <div class="dch-card" data-index="1" style="background-image: url('thumbnails/pexels-resourceboy-18541715.jpg');">
+      <div class="dch-card-overlay"></div>
+      <div class="dch-card-content">
+        <h2 class="dch-card-heading">Bespoke Solutions</h2>
+        <p class="dch-card-description">Our team architects custom digital platforms tailored to your unique operational needs and long-term objectives.</p>
+        <a href="#your-link" class="dch-card-button">Discover Solutions</a>
+      </div>
+    </div>
+    <div class="dch-card" data-index="2" style="background-image: url('thumbnails/pexels-pixabay-270669.jpg');">
+      <div class="dch-card-overlay"></div>
+      <div class="dch-card-content">
+        <h2 class="dch-card-heading">User-Centric Design</h2>
+        <p class="dch-card-description">Experience design that captivates users, enhances usability, and converts visitors into loyal customers.</p>
+        <a href="#your-link" class="dch-card-button">Explore Designs</a>
+      </div>
+    </div>
+    <div class="dch-card" data-index="3" style="background-image: url('thumbnails/pexels-inspiredimages-5626726.jpg');">
+      <div class="dch-card-overlay"></div>
+      <div class="dch-card-content">
+        <h2 class="dch-card-heading">Data & Analytics</h2>
+        <p class="dch-card-description">Leverage powerful analytics to unlock actionable intelligence and make data-driven decisions that propel you ahead.</p>
+        <a href="#your-link" class="dch-card-button">View Analytics</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dch-controls-container">
+    <div class="dch-counter-wrapper">
+      <div class="dch-counter-reel">
+        <div class="dch-counter-num">1</div>
+        <div class="dch-counter-num">2</div>
+        <div class="dch-counter-num">3</div>
+        <div class="dch-counter-num">4</div>
+      </div>
+    </div>
+    <button class="dch-nav-button dch-nav-prev" aria-label="Previous Card">
+      <svg class="dch-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="dch-nav-button dch-nav-next" aria-label="Next Card">
+      <svg class="dch-nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+  <style>
+  /* --- Hero Container --- */
+  .dch-hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    background-color: #06273e;
+    overflow: hidden;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
+  /* --- Cards --- */
+  .dch-cards-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dch-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 1.2s cubic-bezier(0.6, 0.01, 0, 0.9), opacity 1.2s cubic-bezier(0.6, 0.01, 0, 0.9);
+    overflow: hidden;
+  }
+
+  .dch-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(6, 39, 62, 0.8), rgba(6, 39, 62, 0) 50%);
+    transition: opacity 0.8s ease;
+  }
+
+  /* States for cards based on JS classes */
+  .dch-card-active .dch-card-overlay {
+    opacity: 1;
+  }
+  .dch-card-inactive .dch-card-overlay {
+    opacity: 0;
+  }
+
+  .dch-card-active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  .dch-card-inactive {
+    transform: translateY(calc(95vh - var(--bottom-offset, 150px))) scale(0.65) translateX(calc(var(--h-offset, 0) * 1%));
+    transform-origin: bottom center;
+    opacity: 1;
+    z-index: calc(5 - var(--stack-order, 1));
+    pointer-events: none;
+  }
+
+  /* --- Card Content --- */
+  .dch-card-content {
+    position: absolute;
+    bottom: 10vh;
+    right: 10vw;
+    width: 100%;
+    max-width: 450px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: rgba(6, 39, 62, 0.7);
+    border-top: 2px solid #0091ff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 6px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.10s, opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0.10s;
+  }
+  
+  .dch-card-active .dch-card-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .dch-card-heading {
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .dch-card-description {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e5e5e5;
+  }
+  
+  .dch-card-button {
+    display: inline-block;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #0091ff;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .dch-card-button:hover {
+    background-color: #007ce6;
+    transform: translateY(-2px);
+  }
+
+  /* --- Controls --- */
+  .dch-controls-container {
+    position: absolute;
+    bottom: 5vh;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+  }
+
+  .dch-counter-wrapper {
+    width: 28px;
+    height: 48px;
+    overflow: hidden;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+  }
+  
+  .dch-counter-reel {
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .dch-counter-num {
+    text-align: center;
+    height: 48px;
+  }
+
+  .dch-nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-left: 16px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .dch-nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+  }
+  
+  .dch-nav-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+  }
+
+  /* --- Mobile Responsive Styles --- */
+  @media (max-width: 768px) {
+    .dch-card-inactive {
+      /* Stack inactive cards closer on mobile */
+      transform: translateY(calc(95vh - var(--bottom-offset, 100px))) scale(0.6) translateX(calc(var(--h-offset, 0) * 1%));
+    }
+    
+    .dch-controls-container {
+      left: 50%;
+      bottom: 2vh;
+      transform: translateX(-50%);
+      width: 90vw;
+      justify-content: center;
+    }
+    
+    .dch-card-content {
+      left: 5vw;
+      right: 5vw;
+      bottom: auto;
+      top: 55vh;
+      max-width: none;
+      width: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+    }
+    
+    .dch-card-heading {
+      font-size: 24px;
+    }
+
+    .dch-card-description {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const dchCards = document.querySelectorAll('.dch-card');
+    const dchNextBtn = document.querySelector('.dch-nav-next');
+    const dchPrevBtn = document.querySelector('.dch-nav-prev');
+    const dchCounterReel = document.querySelector('.dch-counter-reel');
+    const dchNumHeight = document.querySelector('.dch-counter-num').clientHeight;
+    
+    let dchCurrentIndex = 0;
+    let dchInterval;
+    const dchTotalCards = dchCards.length;
+
+    const dchUpdateCards = (newIndex) => {
+        dchCurrentIndex = (newIndex + dchTotalCards) % dchTotalCards;
+
+        // Animate counter
+        if (dchCounterReel) {
+            dchCounterReel.style.transform = `translateY(-${dchCurrentIndex * dchNumHeight}px)`;
+        }
+
+        // Update card classes and styles
+        dchCards.forEach((card, i) => {
+            card.classList.remove('dch-card-active', 'dch-card-inactive');
+
+            if (i === dchCurrentIndex) {
+                card.classList.add('dch-card-active');
+            } else {
+                card.classList.add('dch-card-inactive');
+                
+                // Calculate position for stacked preview cards
+                let relativePos = (i - dchCurrentIndex + dchTotalCards) % dchTotalCards;
+                let hOffset = (relativePos - (dchTotalCards / 2)) * 15;
+                let stackOrder = dchTotalCards - relativePos;
+
+                card.style.setProperty('--h-offset', hOffset);
+                card.style.setProperty('--stack-order', stackOrder);
+            }
+        });
+    };
+
+    const dchStartAutoCycle = () => {
+        clearInterval(dchInterval); // Clear existing interval
+        dchInterval = setInterval(() => {
+            dchUpdateCards(dchCurrentIndex + 1);
+        }, 3000);
+    };
+
+    // Event Listeners for manual navigation
+    if (dchNextBtn) {
+        dchNextBtn.addEventListener('click', () => {
+            dchUpdateCards(dchCurrentIndex + 1);
+            dchStartAutoCycle(); // Reset timer on manual click
+        });
+    }
+
+    if (dchPrevBtn) {
+        dchPrevBtn.addEventListener('click', () => {
+            dchUpdateCards(dchCurrentIndex - 1);
+            dchStartAutoCycle(); // Reset timer on manual click
+        });
+    }
+
+    // Initial setup
+    dchUpdateCards(0);
+    dchStartAutoCycle();
+});
+</script>

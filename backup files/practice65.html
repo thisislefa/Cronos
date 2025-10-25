@@ -1,0 +1,372 @@
+<div class="defcon-premium-intro">
+    <div class="defcon-premium-container">
+        <div class="defcon-premium-content">
+            <div class="defcon-premium-text">
+                <div class="defcon-premium-badge">PREMIUM SOLUTIONS</div>
+                <h2 class="defcon-premium-title">Engineering Digital Excellence</h2>
+                <p class="defcon-premium-description">Defcon's premium suite delivers unmatched technical sophistication. Our elite team crafts bespoke solutions that transform digital infrastructure into competitive advantage.</p>
+                <div class="defcon-premium-stats">
+                    <div class="defcon-premium-stat">
+                        <div class="defcon-premium-stat-number" data-count="300">0</div>
+                        <div class="defcon-premium-stat-label">Enterprise Clients</div>
+                    </div>
+                    <div class="defcon-premium-stat">
+                        <div class="defcon-premium-stat-number" data-count="24">0</div>
+                        <div class="defcon-premium-stat-label">Hour Support</div>
+                    </div>
+                    <div class="defcon-premium-stat">
+                        <div class="defcon-premium-stat-number" data-count="99">0</div>
+                        <div class="defcon-premium-stat-label">% Uptime</div>
+                    </div>
+                </div>
+                <button class="defcon-premium-cta">
+                    <span>Explore Premium Products</span>
+                    <svg class="defcon-premium-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="defcon-premium-visual">
+                <div class="defcon-premium-card defcon-premium-card-1">
+                    <div class="defcon-premium-card-icon">💻</div>
+                    <h3 class="defcon-premium-card-title">Web Architecture</h3>
+                </div>
+                <div class="defcon-premium-card defcon-premium-card-2">
+                    <div class="defcon-premium-card-icon">📱</div>
+                    <h3 class="defcon-premium-card-title">Digital Strategy</h3>
+                </div>
+                <div class="defcon-premium-card defcon-premium-card-3">
+                    <div class="defcon-premium-card-icon">🔒</div>
+                    <h3 class="defcon-premium-card-title">Security</h3>
+                </div>
+                <div class="defcon-premium-globe"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ===== BASE STYLES ===== */
+.defcon-premium-intro {
+    --defcon-premium-primary: #0066ff;
+    --defcon-premium-dark: #0a192f;
+    --defcon-premium-light: #f8fafc;
+    --defcon-premium-accent: #00d4ff;
+    --defcon-premium-border: rgba(255, 255, 255, 0.08);
+    
+    background: linear-gradient(135deg, var(--defcon-premium-dark) 0%, #162a47 100%);
+    color: white;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-premium-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.defcon-premium-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-premium-text {
+    flex: 1;
+    max-width: 580px;
+}
+
+.defcon-premium-visual {
+    flex: 1;
+    position: relative;
+    min-height: 500px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.defcon-premium-badge {
+    display: inline-block;
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--defcon-premium-accent);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.defcon-premium-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(90deg, white 0%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.defcon-premium-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+}
+
+/* ===== STATS ===== */
+.defcon-premium-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.defcon-premium-stat {
+    position: relative;
+}
+
+.defcon-premium-stat:not(:last-child):after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.defcon-premium-stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.defcon-premium-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== CTA BUTTON ===== */
+.defcon-premium-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--defcon-premium-primary);
+    color: white;
+    border: none;
+    padding: 18px 36px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.defcon-premium-cta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--defcon-premium-primary) 0%, var(--defcon-premium-accent) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.defcon-premium-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+}
+
+.defcon-premium-cta:hover:before {
+    opacity: 1;
+}
+
+.defcon-premium-arrow {
+    transition: transform 0.4s ease;
+}
+
+.defcon-premium-cta:hover .defcon-premium-arrow {
+    transform: translateX(5px);
+}
+
+/* ===== VISUAL ELEMENTS ===== */
+.defcon-premium-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--defcon-premium-border);
+    border-radius: 16px;
+    padding: 30px;
+    width: 220px;
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.defcon-premium-card-1 {
+    top: 0;
+    left: 0;
+    animation: defcon-premium-fadeIn 0.6s forwards 0.2s;
+}
+
+.defcon-premium-card-2 {
+    top: 120px;
+    right: 0;
+    animation: defcon-premium-fadeIn 0.6s forwards 0.4s;
+}
+
+.defcon-premium-card-3 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    animation: defcon-premium-fadeIn 0.6s forwards 0.6s;
+}
+
+.defcon-premium-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-10px) !important;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.defcon-premium-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.defcon-premium-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.defcon-premium-globe {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: defcon-premium-pulse 8s infinite alternate;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes defcon-premium-fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes defcon-premium-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .defcon-premium-content {
+        flex-direction: column;
+        gap: 60px;
+    }
+    
+    .defcon-premium-text {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .defcon-premium-stats {
+        justify-content: center;
+    }
+    
+    .defcon-premium-visual {
+        min-height: 400px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .defcon-premium-title {
+        font-size: 2.2rem;
+    }
+    
+    .defcon-premium-stats {
+        gap: 20px;
+    }
+    
+    .defcon-premium-stat-number {
+        font-size: 2rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate counting numbers
+    const counters = document.querySelectorAll('.defcon-premium-stat-number');
+    const speed = 200;
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if(count < target) {
+            const updateCount = () => {
+                const newCount = Math.ceil(count + increment);
+                counter.innerText = newCount;
+                
+                if(newCount < target) {
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        }
+    });
+    
+    // Add hover effect to cards
+    const cards = document.querySelectorAll('.defcon-premium-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const angleX = (y - centerY) / 20;
+            const angleY = (centerX - x) / 20;
+            
+            card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+});
+</script>

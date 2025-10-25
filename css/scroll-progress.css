@@ -1,0 +1,107 @@
+.scroll-progress-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.scroll-progress-container.show-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.progress-circle-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 3;
+  r: 27;
+  cx: 30;
+  cy: 30;
+}
+
+.progress-circle-fill {
+  fill: none;
+  stroke: #007bff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  r: 27;
+  cx: 30;
+  cy: 30;
+  stroke-dasharray: 169.65;
+  stroke-dashoffset: 169.65;
+  transition: stroke-dashoffset 0.1s ease;
+}
+
+.back-to-top-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-top-btn:hover {
+  background-color: #0056b3;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.back-to-top-btn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.arrow-icon-svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.demo-content-section {
+  padding: 40px 20px;
+  margin: 20px 0;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.demo-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.demo-paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.demo-header {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin: 40px 0;
+}

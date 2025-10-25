@@ -1,0 +1,163 @@
+<!-- Premium Showcase Section -->
+<section class="defcon-premium-showcase">
+  <!-- Background Elements -->
+  <div class="defcon-particles-container">
+    <div class="defcon-particle defcon-particle-1"></div>
+    <div class="defcon-particle defcon-particle-2"></div>
+    <div class="defcon-particle defcon-particle-3"></div>
+    <div class="defcon-particle defcon-particle-4"></div>
+    <div class="defcon-particle defcon-particle-5"></div>
+  </div>
+  
+  <!-- New Header Section -->
+  <div class="defcon-header-container-hd">
+    <div class="defcon-hero-preheading">Innovating Digital Experiences</div>
+    <h2 class="defcon-main-heading" style="font-size: 54px;">Trusted Local Technology Partner in South Africa.</h2>
+    
+    
+    <!-- Feature List Section -->
+    <div class="defcon-feature-list-hd">
+      <ul class="defcon-feature-items-hd">
+        <li class="defcon-feature-item-hd">
+          <div class="defcon-feature-icon-hd">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span>Over <span class="defcon-highlight">100+ clients</span> supported nationwide</span>
+        </li>
+
+        <li class="defcon-feature-item-hd">
+          <div class="defcon-feature-icon-hd">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span>Providing <span class="defcon-highlight">24/7 monitoring</span> and real-time alerts</span>
+        </li>
+
+        <li class="defcon-feature-item-hd">
+          <div class="defcon-feature-icon-hd"></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L9 17L4 12" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span style="text-align: left;">Achieving <span class="defcon-highlight">zero security breaches</span> in managed environments</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Live Stats Section -->
+  <div class="defcon-live-stats-section" id="defconLiveStats">
+    <div class="defcon-live-stats-container">
+      <div class="defcon-live-stat">
+        <div class="defcon-live-stat-label">Founded In</div>
+        <div class="defcon-live-stat-number" data-target="2025">0</div>
+      </div>
+      <div class="defcon-live-stat">
+        <div class="defcon-live-stat-label">Clients</div>
+        <div class="defcon-live-stat-number" data-target="95+">0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Crypto CTA Button -->
+  <button class="defcon-crypto-cta">
+    <span class="defcon-crypto-text">Start Your Project</span>
+    <span class="defcon-crypto-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+
+</section>
+
+<style>
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Parallax effect on scroll
+  const showcaseSection = document.querySelector('.defcon-premium-showcase');
+  const particles = document.querySelectorAll('.defcon-particle');
+  const contentArea = document.querySelector('.defcon-content-area');
+  
+  if (showcaseSection) {
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      const sectionOffset = showcaseSection.offsetTop;
+      const sectionHeight = showcaseSection.offsetHeight;
+      
+      if (scrollPosition > sectionOffset - window.innerHeight && 
+          scrollPosition < sectionOffset + sectionHeight) {
+        const scrollPercent = (scrollPosition - sectionOffset) / sectionHeight;
+        
+        // Apply different parallax speeds
+        
+        if (contentArea) {
+          contentArea.style.transform = `translateY(${scrollPercent * -20}px)`;
+        }
+        
+        // Move particles at different rates
+        particles.forEach((particle, index) => {
+          const speed = (index + 1) * 0.5;
+          particle.style.transform = `translateY(${scrollPercent * 50 * speed}px)`;
+        });
+      }
+    });
+  }
+});
+
+
+// Script for Stats
+document.addEventListener('DOMContentLoaded', function() {
+    let statsPlayed = false;
+    function animateStat(el, target, duration = 1500) {
+      let start = 0;
+      let startTime = null;
+      target = parseInt(target, 10);
+      if (target === 0) {
+        el.textContent = '0';
+        return;
+      }
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let progress = Math.min((timestamp - startTime) / duration, 1);
+        let value = Math.floor(progress * (target - start) + start);
+        el.textContent = value;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function playStats() {
+      if (statsPlayed) return;
+      statsPlayed = true;
+      document.querySelectorAll('.defcon-live-stat-number').forEach(stat => {
+        animateStat(stat, stat.getAttribute('data-target'));
+      });
+    }
+
+    // Intersection Observer to trigger animation on scroll
+    const statsSection = document.getElementById('defconLiveStats');
+    if (statsSection) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            playStats();
+            observer.unobserve(statsSection);
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(statsSection);
+    }
+  });
+</script>
+

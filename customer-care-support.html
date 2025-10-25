@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Customer Support Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="support-hub.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="light-theme">
+
+    <header class="defcon-support-hero">
+        <h1 class="support-main-title">The Resolution Hub</h1>
+        <p class="support-tagline">
+            Get the expert help you need, exactly when you need it. We guarantee a response tailored to your priority level.
+        </p>
+    </header>
+
+    <main class="support-portal-container">
+
+        <section class="priority-triage-section">
+            <h2 class="section-heading"><i class="fas fa-filter"></i> 1. Triage Your Need</h2>
+            <p class="section-context">Select the severity of your issue to ensure your request reaches the right team at the right speed.</p>
+            
+            <div class="triage-selector-grid">
+                
+                <div class="triage-option" data-priority="critical">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Critical (System Down)</h3>
+                    <p>Production environment is inaccessible or a core service is completely failing.</p>
+                </div>
+
+                <div class="triage-option" data-priority="urgent">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Urgent (Degraded)</h3>
+                    <p>Service performance is significantly impacted, but clients can still partially operate.</p>
+                </div>
+
+                <div class="triage-option" data-priority="general">
+                    <i class="fas fa-envelope"></i>
+                    <h3>General (Question/Bug)</h3>
+                    <p>Standard inquiries, non-critical bugs, or feature request submissions.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="contact-channels-section">
+            <h2 class="section-heading"><i class="fas fa-headset"></i> 2. Select Your Channel</h2>
+            
+            <div id="channelDisplay" class="channel-display">
+                <div class="initial-prompt-box">
+                    <i class="fas fa-arrow-up"></i>
+                    <p>Please select a priority level above to reveal the recommended support channel and response time guarantee.</p>
+                </div>
+            </div>
+        </section>
+        
+        ---
+        
+        <section class="self-service-section">
+            <h2 class="section-heading"><i class="fas fa-book"></i> Self-Service & Documentation</h2>
+            <p class="section-context">Need a quick answer? Our extensive documentation can often resolve issues faster than a direct contact.</p>
+            
+            <div class="resource-grid">
+                
+                <a href="/faqs" class="resource-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>FAQs & Common Issues</h3>
+                    <p>Find instant answers to billing, setup, and general operational questions.</p>
+                </a>
+                
+                <a href="/docs/api" class="resource-card">
+                    <i class="fas fa-code"></i>
+                    <h3>API & Developer Docs</h3>
+                    <p>Detailed technical documentation, SDK guides, and integration tutorials.</p>
+                </a>
+                
+                <a href="/status" class="resource-card">
+                    <i class="fas fa-signal"></i>
+                    <h3>System Status Checker</h3>
+                    <p>View real-time operational status for all core Defcon services.</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="support-hub.js"></script>
+</body>
+</html>
+
+<style>
+    /* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.light-theme {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f8f8; /* Soft light background */
+    color: #333;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #0091ff;
+    transition: color 0.3s ease;
+}
+
+/* Status Colors */
+:root {
+    --color-defcon-blue: #0091ff;
+    --color-critical: #dc3545;      /* Red */
+    --color-urgent: #ffc107;        /* Yellow */
+    --color-general: #28a745;       /* Green */
+    --color-primary-text: #000;
+}
+
+/* --- HERO SECTION --- */
+.defcon-support-hero {
+    background-color: #fff;
+    padding: 80px 40px 40px;
+    text-align: center;
+    border-bottom: 3px solid var(--color-defcon-blue);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.support-main-title {
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--color-primary-text);
+    margin-bottom: 10px;
+}
+
+.support-tagline {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- MAIN PORTAL CONTAINER --- */
+.support-portal-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.section-heading {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-defcon-blue);
+    margin-bottom: 15px;
+}
+.section-heading i {
+    margin-right: 10px;
+}
+.section-context {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* SECTION 1: Priority Triage Selector */
+.priority-triage-section {
+    margin-bottom: 60px;
+}
+
+.triage-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.triage-option {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 3px solid #eee;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.triage-option:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-defcon-blue);
+}
+
+.triage-option.active-critical { border-color: var(--color-critical); box-shadow: 0 0 20px rgba(220, 53, 69, 0.5); }
+.triage-option.active-urgent { border-color: var(--color-urgent); box-shadow: 0 0 20px rgba(255, 193, 7, 0.5); }
+.triage-option.active-general { border-color: var(--color-general); box-shadow: 0 0 20px rgba(40, 167, 69, 0.5); }
+
+
+.triage-option i {
+    font-size: 2.5rem;
+    color: var(--color-defcon-blue);
+    margin-bottom: 10px;
+}
+.triage-option h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--color-primary-text);
+}
+.triage-option p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* SECTION 2: Contact Channels (Dynamic Area) */
+.contact-channels-section {
+    margin-bottom: 60px;
+}
+
+.channel-display {
+    min-height: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.initial-prompt-box {
+    color: #999;
+    font-style: italic;
+}
+.initial-prompt-box i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Dynamic Channel Content Styling */
+.channel-content {
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.channel-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+.channel-info-row:last-child { border-bottom: none; }
+
+.channel-details {
+    text-align: left;
+}
+.channel-details h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.channel-details p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.channel-cta-button {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: #fff;
+    transition: opacity 0.3s ease;
+}
+.channel-cta-button:hover { opacity: 0.9; }
+
+/* Dynamic Colors */
+.cta-critical { background-color: var(--color-critical); }
+.cta-urgent { background-color: var(--color-urgent); color: var(--color-primary-text); }
+.cta-general { background-color: var(--color-general); }
+
+.sla-guarantee {
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* SECTION 3: Self-Service */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.resource-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-defcon-blue);
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.1);
+}
+
+.resource-card i {
+    font-size: 2rem;
+    color: var(--color-defcon-blue);
+    margin-bottom: 10px;
+}
+.resource-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--color-primary-text);
+}
+.resource-card p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+    .triage-option h3 { font-size: 1.1rem; }
+    .triage-option p { font-size: 0.85rem; }
+}
+
+@media (max-width: 768px) {
+    .support-portal-container {
+        padding: 0 20px;
+    }
+    .triage-selector-grid {
+        grid-template-columns: 1fr;
+    }
+    .channel-info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .channel-cta-button {
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    const triageOptions = document.querySelectorAll('.triage-option');
+    const channelDisplay = document.getElementById('channelDisplay');
+
+    // Define the content for each priority level
+    const channelTemplates = {
+        critical: {
+            title: "24/7 Phone & Live Chat Escalation",
+            description: "Immediate action required. Our dedicated emergency response team operates 24/7/365 for system outages.",
+            sla: "Response Guarantee: <span style='color: var(--color-critical);'>15 Minutes</span>",
+            buttonText: "Start Live Chat Now",
+            buttonClass: "cta-critical",
+            buttonLink: "/live-chat-critical"
+        },
+        urgent: {
+            title: "Priority Ticketing System",
+            description: "Direct access to Tier 2 support. Best for major bugs, degraded service, or high-priority technical questions.",
+            sla: "Response Guarantee: <span style='color: var(--color-urgent);'>1 Hour</span>",
+            buttonText: "Open Priority Ticket",
+            buttonClass: "cta-urgent",
+            buttonLink: "/submit-priority-ticket"
+        },
+        general: {
+            title: "Standard Ticketing & Email",
+            description: "For questions, documentation requests, non-critical bugs, or billing inquiries.",
+            sla: "Response Guarantee: <span style='color: var(--color-general);'>4 Hours</span>",
+            buttonText: "Submit General Inquiry",
+            buttonClass: "cta-general",
+            buttonLink: "/submit-general-ticket"
+        }
+    };
+
+    /**
+     * Handles the click event on a triage option
+     */
+    triageOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const priority = option.dataset.priority;
+            const template = channelTemplates[priority];
+
+            // 1. Visually update the selection (remove all active classes)
+            triageOptions.forEach(opt => {
+                opt.classList.remove('active-critical', 'active-urgent', 'active-general');
+            });
+            option.classList.add(`active-${priority}`);
+
+            // 2. Build the dynamic content
+            const htmlContent = `
+                <div class="channel-content">
+                    <div class="channel-info-row">
+                        <div class="channel-details">
+                            <h4>${template.title}</h4>
+                            <p>${template.description}</p>
+                            <p class="sla-guarantee">${template.sla}</p>
+                        </div>
+                        <a href="${template.buttonLink}" class="channel-cta-button ${template.buttonClass}">
+                            ${template.buttonText}
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            // 3. Insert and display the content
+            channelDisplay.innerHTML = htmlContent;
+        });
+    });
+
+});
+</script>

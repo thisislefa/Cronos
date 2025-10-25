@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Advanced Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /*
+        =============================================
+        0. ROOT & FONT STYLES
+        =============================================
+        */
+        :root {
+            /* Palette */
+            --color-header-bg: #07071e;   /* Very Dark Blue/Indigo */
+            --color-accent: #0091ff;      /* Bright Blue Accent */
+            --color-text-light: #fff;
+            --color-background-dark: #000;
+            --color-off-white: #f4f4f4;
+            --color-text-muted: #a0a0c0;  /* Lighter blue for subtle text */
+            --color-menu-bg: #0d0b25;     /* Slightly lighter dark blue for menu backdrop */
+            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
+            
+            /* Sizing */
+            --header-height: 55px;
+            --content-max-width: 1300px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--header-height); /* Space for fixed header */
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /*
+        =============================================
+        1. HEADER WRAPPER (FIXED & DARK BLUE)
+        =============================================
+        */
+        .header-wrapper {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            z-index: 1000;
+            background-color: var(--color-header-bg);
+        }
+
+        .custom-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-header-container {
+            max-width: var(--content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .custom-logo-text img{
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 35px; /* Space between logo and links */
+        }
+        
+        .custom-logo-text:hover {
+             color: var(--color-accent);
+        }
+
+        /* Desktop Navigation - MOVED TO THE LEFT */
+        .custom-main-nav {
+            /* Remove flex-grow so it only occupies space for the links */
+            /* Removed flex-grow: 1; */ 
+            display: flex;
+            justify-content: flex-start; /* Aligns links to the start (left) */
+            align-items: center;
+            /* Added margin-left to push the group right, removed by using flex-grow on new container */
+        }
+        
+        /* New container to hold logo and links on the left */
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Pushes the action group to the far right */
+        }
+
+        .custom-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .custom-nav-list li {
+            margin-left: 35px; /* Spacing between links */
+            position: relative;
+        }
+
+        .custom-nav-link {
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 15px;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .custom-nav-link:hover {
+            color: var(--color-accent);
+        }
+        
+        /* Action Group on the RIGHT */
+        .header-action-group {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between Language Selector and Button */
+        }
+        
+        /* Contact Button */
+        .header-action-btn {
+            background: var(--color-accent); /* Used blue accent for button as per screenshot */
+            color: var(--color-text-light);
+            border: none;
+            padding: 9px 15px;
+            border-radius: 6px; /* Slightly squared corners as per screenshot */
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 0; /* Removed old margin */
+            line-height: 1;
+        }
+
+        .header-action-btn:hover {
+            background-color: #0077cc;
+        }
+        
+        .header-action-btn a {
+            padding: 0; /* Remove padding added by link element */
+        }
+
+        /*
+        =============================================
+        2. LANGUAGE SELECTOR STYLES (NEW)
+        =============================================
+        */
+        .language-selector {
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: 1px solid var(--color-menu-border); /* Dark/Subtle border */
+            padding: 9px 15px;
+            border-radius: 6px;
+            color: var(--color-text-light);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: border-color 0.3s, background-color 0.3s;
+            line-height: 1;
+        }
+        
+        .language-toggle:hover {
+            border-color: var(--color-accent);
+        }
+        
+        .language-toggle i {
+            margin-right: 8px;
+            color: var(--color-accent);
+            font-size: 16px;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background-color: var(--color-menu-bg);
+            border: 1px solid var(--color-menu-border);
+            border-radius: 6px;
+            width: 150px;
+            padding: 10px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        }
+        
+        .language-selector.active .language-dropdown {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .language-dropdown a {
+            display: block;
+            padding: 8px 15px;
+            font-size: 14px;
+            color: var(--color-text-light);
+            transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .language-dropdown a:hover {
+            background-color: rgba(0, 145, 255, 0.15);
+            color: var(--color-accent);
+        }
+        
+        /*
+        =============================================
+        3. MEGA MENU CONTAINER (Look-Alike Styles)
+        =============================================
+        */
+        .mega-menu-container {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--color-menu-bg);
+            border-top: 1px solid var(--color-menu-border);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        }
+
+        .header-wrapper.mega-menu-open .mega-menu-container.desktop-mega-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-panel {
+            display: none;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .mega-menu-panel.active {
+            display: block;
+        }
+        
+        /* Consistent 3-Column Grid for BOTH Menus */
+        .megamenu-3-column-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .menu-group-card {
+            padding: 0;
+            border-radius: 8px; 
+        }
+
+        .menu-group-card h3 {
+            color: #a0a9be;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: none;
+            letter-spacing: 0.1px;
+            cursor: default;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mega-menu-group-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Link Items inside Mega Menu - High Contrast */
+        .mega-menu-group-list a {
+            display: block;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .mega-menu-group-list a:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+
+        .mega-menu-link-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--color-text-light);
+            margin-bottom: 2px;
+        }
+        
+        .mega-menu-group-list a:hover .mega-menu-link-title {
+            color: var(--color-accent);
+        }
+
+        .mega-menu-link-desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+        
+        /*
+        =============================================
+        4. MOBILE AND RESPONSIVENESS
+        =============================================
+        */
+        
+        /* Dropdown Icon - simple CSS triangle */
+        .dropdown-indicator {
+            width: 0;
+            height: 0;
+            margin-left: 8px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--color-text-light);
+            transition: transform 0.3s, border-top-color 0.3s;
+            display: inline-block;
+        }
+
+        .custom-nav-link.active .dropdown-indicator {
+             transform: rotate(180deg);
+             border-top-color: var(--color-accent);
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: 1010;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--color-text-light);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Mobile Overrides */
+        @media (max-width: 1024px) {
+            
+            .custom-header-container {
+                padding: 0 20px;
+            }
+            
+            .custom-logo-text img {
+                margin-right: 0;
+            }
+
+            .mobile-toggle {
+                display: block; 
+            }
+            
+            /* Hide the entire desktop action group */
+            .header-action-group {
+                display: none; 
+            }
+            
+            /* Remove flex-grow on mobile nav since it's now block */
+            .custom-main-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-header-bg);
+                overflow-y: auto;
+                padding: 20px 0;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                display: block; 
+                z-index: 900;
+            }
+            
+            .header-left-group {
+                flex-grow: unset; /* Remove flex-grow on mobile */
+            }
+
+            .header-wrapper.mobile-menu-open .custom-main-nav {
+                transform: translateX(0);
+            }
+
+            .custom-nav-list {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px;
+            }
+
+            .custom-nav-list li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            }
+
+            .custom-nav-link {
+                padding: 15px 0;
+                font-size: 1.1rem;
+                width: 100%;
+            }
+            
+            .header-action-btn {
+                width: 100%;
+                margin: 20px 0 0 0;
+                padding: 15px 20px;
+                text-align: center;
+                border-radius: 6px; /* Match mobile list item look */
+            }
+            
+            /* Mobile Mega Menu */
+            .mega-menu-container {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                transition: max-height 0.3s ease;
+                overflow: hidden;
+                max-height: 0;
+                background-color: var(--color-menu-bg);
+                border-top: none;
+            }
+            
+            .custom-nav-item--has-megamenu.active .mega-menu-container {
+                max-height: 2000px;
+                padding: 0;
+            }
+            
+            .mega-menu-panel {
+                padding: 15px 20px;
+            }
+
+            .megamenu-3-column-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .menu-group-card h3 {
+                margin-top: 5px;
+            }
+            
+            .mega-menu-group-list a {
+                margin: 15px 0;
+            }
+
+            /* Mobile only elements */
+            .mobile-only-section {
+                display: block !important;
+                padding: 20px;
+                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            }
+            
+            .mobile-only-section .language-toggle {
+                width: 100%;
+                justify-content: space-between;
+                border-color: var(--color-accent); /* Make border visible in mobile menu */
+                background-color: rgba(0, 145, 255, 0.05);
+            }
+
+            .mobile-only-section .language-dropdown {
+                position: static;
+                width: 100%;
+                margin: 10px 0 0 0;
+                box-shadow: none;
+                background-color: transparent;
+                border: none;
+                padding: 0;
+            }
+            
+            .mobile-only-section .language-dropdown a {
+                padding: 8px 15px 8px 30px; /* Indent mobile links */
+            }
+        }
+        
+        /* For large screens, hide the mobile-only container */
+        .mobile-only-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-wrapper">
+    
+    <header class="custom-header">
+        <div class="custom-header-container">
+            
+            <div class="header-left-group">
+                
+                <div class="custom-logo-container">
+                    <a href="index.html" class="custom-logo-link custom-logo-text">
+                        <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" alt="Defcon Logo">
+                    </a>
+                </div>
+
+                <nav class="custom-main-nav">
+                    <ul class="custom-nav-list">
+                        <li>
+                            <a href="#" class="custom-nav-link">Level Up</a>
+                        </li>
+                        <li>
+                            <a href="#" class="custom-nav-link">Support</a>
+                        </li>
+                        <li>
+                            <a href="#" class="custom-nav-link">Projects</a>
+                        </li>
+                        <li class="custom-nav-item--has-megamenu">
+                            <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
+                                Services
+                                <span class="dropdown-indicator"></span>
+                            </a>
+                            <div class="mega-menu-container mobile-only-mega-menu">
+                                <div class="mega-menu-panel" data-megamenu-panel="services">
+                                    <div class="megamenu-3-column-grid">
+                                        <div class="menu-group-card">
+                                            <h3>Software Development</h3>
+                                            <ul class="mega-menu-group-list">
+                                                <li><a href="#"><span class="mega-menu-link-title">Web Applications</span><div class="mega-menu-link-desc">Resilient, high-performance platforms built for scale.</div></a></li>
+                                                <li><a href="#"><span class="mega-menu-link-title">Mobile Apps</span><div class="mega-menu-link-desc">Native and cross-platform experiences.</div></a></li>
+                                                <li><a href="#"><span class="mega-menu-link-title">API Development</span><div class="mega-menu-link-desc">Secure, documented APIs for seamless integration.</div></a></li>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="custom-nav-item--has-megamenu">
+                            <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                                Discover
+                                <span class="dropdown-indicator"></span>
+                            </a>
+                            <div class="mega-menu-container mobile-only-mega-menu">
+                                <div class="mega-menu-panel" data-megamenu-panel="discover">
+                                    <div class="megamenu-3-column-grid">
+                                        <div class="menu-group-card">
+                                            <h3>About Defcon</h3>
+                                            <ul class="mega-menu-group-list">
+                                                <li><a href="#"><span class="mega-menu-link-title">Our Vision</span><div class="mega-menu-link-desc">Our commitment to innovation and future tech.</div></a></li>
+                                                <li><a href="#"><span class="mega-menu-link-title">Leadership Team</span><div class="mega-menu-link-desc">Meet the executives driving our strategy.</div></a></li>
+                                                <li><a href="#"><span class="mega-menu-link-title">History & Milestones</span><div class="mega-menu-link-desc">Our achievements and breakthroughs.</div></a></li>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="mobile-only-section">
+                            <div class="language-selector" id="mobileLangSelector">
+                                <button class="language-toggle">
+                                    <i class="fas fa-globe"></i>
+                                    <span>English</span>
+                                </button>
+                                <div class="language-dropdown">
+                                    <a href="#" data-lang="en">English</a>
+                                    <a href="#" data-lang="es">Español</a>
+                                    <a href="#" data-lang="fr">Français</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="mobile-only-section">
+                            <button class="header-action-btn">
+                                <a href="contact-us.html">Contact Us</a>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="header-action-group">
+                <div class="language-selector" id="desktopLangSelector">
+                    <button class="language-toggle">
+                        <i class="fas fa-globe"></i>
+                        <span>English</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="es">Español</a>
+                        <a href="#" data-lang="fr">Français</a>
+                    </div>
+                </div>
+
+                <button class="header-action-btn">
+                    <a href="contact-us.html">Contact Us</a>
+                </button>
+            </div>
+
+
+            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mega-menu-container desktop-mega-menu">
+        
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>Software Development</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">Web Applications</span><div class="mega-menu-link-desc">Resilient, high-performance platforms built for scale.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Mobile Applications</span><div class="mega-menu-link-desc">Native and cross-platform experiences for iOS and Android.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">API Development</span><div class="mega-menu-link-desc">Secure, documented APIs for seamless integration.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">E-commerce Solutions</span><div class="mega-menu-link-desc">Custom storefronts with secure payment gateways.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">DevOps & CI/CD</span><div class="mega-menu-link-desc">Automated pipelines and infrastructure-as-code.</div></a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>IT Infrastructure</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">IT Support & Infrastructure</span><div class="mega-menu-link-desc">Technical assistance and network security management.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">IT Consulting</span><div class="mega-menu-link-desc">Strategic advisory for digital transformation.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Cloud Computing</span><div class="mega-menu-link-desc">Migration and optimization across major cloud providers.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Automation & AI</span><div class="mega-menu-link-desc">Cognitive systems and automated workflows.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Smart Home Technology</span><div class="mega-menu-link-desc">Intelligent, secure residential technology ecosystems.</div></a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>Marketing & Creative Studio</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">Digital Marketing</span><div class="mega-menu-link-desc">SEO, performance marketing, and lead generation.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Graphic Design</span><div class="mega-menu-link-desc">Brand identity and custom design assets creation.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Copywriting & Content</span><div class="mega-menu-link-desc">Compelling narratives for web and advertising.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Multimedia Production</span><div class="mega-menu-link-desc">High-definition video and motion graphics creation.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Advertising Campaigns</span><div class="mega-menu-link-desc">Targeted campaigns across digital and traditional media.</div></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu-panel" data-megamenu-panel="discover">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>About Defcon</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">Our Vision</span><div class="mega-menu-link-desc">Our commitment to innovation and future technology.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Leadership Team</span><div class="mega-menu-link-desc">Meet the executives driving our strategic direction.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">History & Milestones</span><div class="mega-menu-link-desc">Our achievements and technological breakthroughs.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Social Responsibility</span><div class="mega-menu-link-desc">Sustainability and positive community impact initiatives.</div></a></li>
+                    </ul>
+                </div>
+                
+                <div class="menu-group-card">
+                    <h3>Resources</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">Case Studies</span><div class="mega-menu-link-desc">In-depth analysis of successful projects and results.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Blog & Insights</span><div class="mega-menu-link-desc">Expert articles on tech trends and industry predictions.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Documentation</span><div class="mega-menu-link-desc">Comprehensive guides and technical specifications.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">White Papers</span><div class="mega-menu-link-desc">Detailed research on innovative solutions.</div></a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>Connect & Careers</h3>
+                    <ul class="mega-menu-group-list">
+                        <li><a href="#"><span class="mega-menu-link-title">Careers at Defcon</span><div class="mega-menu-link-desc">Explore open positions and join our team.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Partnerships</span><div class="mega-menu-link-desc">Collaboration opportunities with technology partners.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Media & Press</span><div class="mega-menu-link-desc">Latest press releases and media contact information.</div></a></li>
+                        <li><a href="#"><span class="mega-menu-link-title">Find a Local Office</span><div class="mega-menu-link-desc">Location details for our global branches.</div></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// =============================================
+// JAVASCRIPT FOR MENU FUNCTIONALITY
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
+    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const body = document.body;
+    const desktopLangSelector = document.getElementById('desktopLangSelector');
+    const mobileLangSelector = document.getElementById('mobileLangSelector');
+
+    let closeTimer = null;
+
+    // =============================================
+    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // =============================================
+    
+    // Function to set the active state on trigger and panel
+    function setActiveMenu(trigger, panel) {
+        // Deactivate all others first
+        megaMenuTriggers.forEach(t => t.classList.remove('active'));
+        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+
+        if (trigger && panel) {
+            trigger.classList.add('active');
+            panel.classList.add('active');
+            headerWrapper.classList.add('mega-menu-open');
+        } else {
+            // Close all
+            headerWrapper.classList.remove('mega-menu-open');
+        }
+    }
+
+    function handleOpen(trigger) {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+            // Close language selector when mega menu opens
+            if (desktopLangSelector) desktopLangSelector.classList.remove('active');
+
+            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
+            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
+            setActiveMenu(trigger, targetMenuPanel);
+        }
+    }
+
+    function handleClose() {
+        if (window.innerWidth > 1024) {
+            // Set a slight delay to allow mouse transition from trigger to menu
+            closeTimer = setTimeout(() => {
+                setActiveMenu(null, null); // Close all
+            }, 150); 
+        }
+    }
+
+    // Attach mouse event listeners for desktop
+    megaMenuTriggers.forEach(trigger => {
+        // Open on mouse enter
+        trigger.addEventListener('mouseenter', () => {
+            handleOpen(trigger);
+        });
+        
+        // Use the common container as the exit point for the entire menu system
+        trigger.parentElement.addEventListener('mouseleave', () => {
+            handleClose();
+        });
+    });
+
+    // Prevent menu from closing when mouse is over the menu container
+    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+        }
+    });
+
+    // Close menu when mouse leaves the menu container
+    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        handleClose();
+    });
+
+    // =============================================
+    // LANGUAGE SELECTOR LOGIC (Click to toggle)
+    // =============================================
+    
+    // Function to handle language selection toggle
+    function toggleLanguageSelector(selectorElement) {
+        selectorElement.classList.toggle('active');
+        
+        // Close mega menu when language selector opens (desktop only)
+        if (window.innerWidth > 1024 && selectorElement === desktopLangSelector) {
+            setActiveMenu(null, null);
+        }
+    }
+
+    // Desktop Language Selector
+    if (desktopLangSelector) {
+        desktopLangSelector.querySelector('.language-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleLanguageSelector(desktopLangSelector);
+        });
+        
+        // Change language on click
+        desktopLangSelector.querySelectorAll('.language-dropdown a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const newLang = this.textContent;
+                desktopLangSelector.querySelector('.language-toggle span').textContent = newLang;
+                toggleLanguageSelector(desktopLangSelector);
+            });
+        });
+    }
+
+    // Mobile Language Selector
+    if (mobileLangSelector) {
+        mobileLangSelector.querySelector('.language-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleLanguageSelector(mobileLangSelector);
+        });
+        
+        // Change language on click
+        mobileLangSelector.querySelectorAll('.language-dropdown a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const newLang = this.textContent;
+                mobileLangSelector.querySelector('.language-toggle span').textContent = newLang;
+                toggleLanguageSelector(mobileLangSelector);
+            });
+        });
+    }
+
+
+    // Close language selectors and mega menus when clicking anywhere else on the document
+    document.addEventListener('click', function(e) {
+        if (desktopLangSelector && !desktopLangSelector.contains(e.target)) {
+            desktopLangSelector.classList.remove('active');
+        }
+        if (mobileLangSelector && !mobileLangSelector.contains(e.target)) {
+            mobileLangSelector.classList.remove('active');
+        }
+    });
+
+    // =============================================
+    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // =============================================
+    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    
+    // Mobile hamburger toggle
+    mobileMenuToggle.addEventListener('click', function() {
+        headerWrapper.classList.toggle('mobile-menu-open');
+        body.classList.toggle('mobile-menu-active');
+        
+        // If closing the mobile menu, ensure all mega menu active states are cleared
+        if (!headerWrapper.classList.contains('mobile-menu-open')) {
+             mobileDropdownItems.forEach(item => item.classList.remove('active'));
+             if (mobileLangSelector) mobileLangSelector.classList.remove('active');
+        }
+    });
+
+    // Mobile dropdown toggle (for Services and Discover links)
+    mobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.custom-nav-link');
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation(); 
+
+                // Close all other dropdowns
+                mobileDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current dropdown
+                item.classList.toggle('active');
+            }
+        });
+    });
+    
+    // Close mobile menu when a standard link is clicked
+    document.querySelectorAll('.custom-nav-list a').forEach(link => {
+        // Exclude mega menu triggers and any links within a mega menu/dropdown
+        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container') && !link.closest('.language-dropdown')) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                    body.classList.remove('mobile-menu-active');
+                }
+            });
+        }
+    });
+    
+    // =============================================
+    // WINDOW RESIZE HANDLER
+    // =============================================
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth > 1024) {
+                // Reset desktop/mobile states
+                headerWrapper.classList.remove('mobile-menu-open');
+                body.classList.remove('mobile-menu-active');
+                mobileDropdownItems.forEach(item => item.classList.remove('active'));
+                if (mobileLangSelector) mobileLangSelector.classList.remove('active');
+                setActiveMenu(null, null); // Close any open mega menu
+            }
+        }, 250);
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Feature Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* -------------------------------------------
+        BASE STYLES - DESKTOP FIRST
+        ------------------------------------------- */
+        .hero-section-dv {
+            position: relative;
+            min-height: 100vh;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 100px 0; /* Adjusted padding */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            line-height: 1.7;
+        }
+
+        .container-dv {
+            max-width: 1200px;
+            width: 90%; /* Use 90% width for better margins */
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .content-left {
+            flex: 1;
+            max-width: 500px; /* Reduced max width to give more space to image */
+            z-index: 2;
+        }
+
+        .main-heading {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #06273e;
+            margin-bottom: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .description {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #4B5563;
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        /* Image Container & Decorations */
+        .image-container {
+            position: relative;
+            flex: 1;
+            max-width: 600px;
+            height: 400px;
+            margin-right: -50px; /* Pull image slightly to the right edge */
+            z-index: 2;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -40px;
+            width: 50%;
+            height: 50%;
+            background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
+            background-size: 20px 20px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .main-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats-card {
+            position: absolute;
+            bottom: -50px;
+            left: -40px;
+            background: #ffd700;
+            padding: 25px 30px;
+            border-radius: 6px;
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            z-index: 3;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #06273e;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stats-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        /* Underline Scribble */
+        .highlight-word {
+            position: relative;
+            color: #0091ff;
+        }
+
+        .underline-svg {
+            position: absolute;
+            bottom: -15px;
+            left: -5%;
+            width: 110%;
+            height: 25px;
+            overflow: visible;
+        }
+
+        .underline-svg path {
+            stroke: #0091ff;
+            stroke-width: 5;
+            stroke-linecap: round;
+            fill: none;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: draw 1.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Animated Button Styles */
+        .animated-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid;
+            border-color: #06273e;
+            font-size: 16px;
+            background-color: #06273e;
+            border-radius: 100px;
+            font-weight: 600;
+            box-shadow: 0 0 0 2px #06273e;
+            color: white;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button svg {
+            position: absolute;
+            width: 24px;
+            fill: white;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button .arr-1 { right: 16px; }
+        .animated-button .arr-2 { left: -25%; }
+
+        .animated-button .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: #0091ff; /* Changed circle color for contrast */
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .animated-button:hover .arr-1 { right: -25%; }
+        .animated-button:hover .arr-2 { left: 16px; }
+        .animated-button:hover .text { transform: translateX(12px); }
+        .animated-button:hover svg { fill: white; }
+
+        .animated-button:active {
+            scale: 0.95;
+            box-shadow: 0 0 0 4px #0091ff;
+        }
+
+        .animated-button:hover .circle {
+            width: 220px;
+            height: 220px;
+            opacity: 1;
+        }
+        
+        /* -------------------------------------------
+        RESPONSIVENESS
+        ------------------------------------------- */
+
+        /* Tablet Landscape/Small Desktop (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            .hero-section-dv {
+                min-height: auto;
+                padding: 80px 0;
+            }
+
+            .container-dv {
+                flex-direction: column;
+                text-align: center;
+                gap: 60px;
+                width: 95%;
+            }
+
+            .content-left {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .content-left > p, .description {
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .main-heading {
+                font-size: 48px;
+            }
+            
+            /* Center the button */
+            .content-left > div:last-child {
+                display: flex;
+                justify-content: center;
+            }
+            
+            /* Image stack/center adjustments */
+            .image-container {
+                max-width: 90%;
+                height: 350px;
+                margin: 0 auto;
+            }
+
+            /* Remove decorative offsets and position stats card below the image */
+            .image-container::after {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: 15px 15px; /* Smaller dots */
+                opacity: 0.15;
+            }
+            
+            .stats-card {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 30px;
+                display: block;
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        /* Tablet Portrait / Large Phone (max-width: 768px) */
+        @media (max-width: 768px) {
+            .hero-section-dv {
+                padding: 60px 0;
+            }
+            
+            .main-heading {
+                font-size: 38px;
+                margin-bottom: 20px;
+            }
+
+            .description {
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .image-container {
+                height: 300px;
+                max-width: 95%;
+            }
+            
+            .stats-card {
+                padding: 20px 25px;
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+            
+            .stats-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Small Phones (max-width: 480px) */
+        @media (max-width: 480px) {
+            .hero-section-dv {
+                padding: 40px 0;
+            }
+            
+            .main-heading {
+                font-size: 30px;
+                line-height: 1.3;
+            }
+            
+            /* Adjust underline width for smaller screen */
+            .underline-svg {
+                bottom: -10px;
+                height: 20px;
+            }
+
+            .underline-svg path {
+                stroke-width: 4;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+            
+            .animated-button {
+                padding: 14px 30px;
+                font-size: 15px;
+            }
+            
+            .image-container {
+                height: 250px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section-dv rb-fade-in">
+        <div class="container-dv">
+            <div class="content-left">
+                <p style="text-transform: uppercase; color: #06273e; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
+                <h1 class="main-heading">
+                    Innovate, Integrate <br> and 
+                    <span class="highlight-word">
+                        Elevate.
+                        <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
+                        </svg>
+                    </span>
+                </h1>
+                
+                <div class="description">
+                <p>
+                We're more than just developers – we're your trusted digital partner. From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence. 
+                </p>
+                </div>
+
+                <div style="position: relative; display: flex;"> <button class="animated-button">
+                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                        ></path>
+                    </svg>
+                    <span class="text">Explore</span>
+                    <span class="circle"></span>
+                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                        ></path>
+                    </svg>
+                </button>
+              </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="main-image">
+                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stats-number">53%</div>
+                    <div class="stats-text">High Conversions<br>Everything</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

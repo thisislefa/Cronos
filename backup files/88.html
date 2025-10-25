@@ -1,0 +1,889 @@
+<style>
+  /* Base Styles */
+  .defcon-access-service {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Container Styles */
+  .defcon-service-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Header Section */
+  .defcon-service-header {
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-service-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .defcon-header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .defcon-service-title {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease;
+  }
+
+  .defcon-service-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    opacity: 0.9;
+    animation: fadeIn 1.5s ease;
+  }
+
+  .defcon-header-cta {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0091ff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .defcon-header-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Intro Section */
+  .defcon-intro-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    position: relative;
+  }
+
+  .defcon-intro-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .defcon-intro-text {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .defcon-intro-title {
+    font-size: 2.2rem;
+    color: #06273e;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  .defcon-intro-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background-color: #0091ff;
+  }
+
+  .defcon-intro-description {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #555;
+  }
+
+  .defcon-intro-image {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+  }
+
+  .defcon-intro-image:hover {
+    transform: scale(1.02);
+  }
+
+  .defcon-intro-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Access Types Section */
+  .defcon-access-types {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+  }
+
+  .defcon-section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #06273e;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .defcon-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #0091ff;
+  }
+
+  .defcon-access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .defcon-access-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .defcon-access-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+
+  .defcon-access-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: #0091ff;
+    transition: width 0.3s ease;
+  }
+
+  .defcon-access-card:hover::before {
+    width: 100%;
+    opacity: 0.1;
+  }
+
+  .defcon-access-icon {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+  }
+
+  .defcon-access-title {
+    font-size: 1.4rem;
+    color: #06273e;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .defcon-access-description {
+    color: #666;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Solutions Section */
+  .defcon-solutions-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+  }
+
+  .defcon-solutions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .defcon-solution-box {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-solution-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #0091ff;
+  }
+
+  .defcon-solution-title {
+    font-size: 1.6rem;
+    color: #06273e;
+    margin-bottom: 20px;
+  }
+
+  .defcon-solution-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .defcon-solution-item {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+  }
+
+  .defcon-solution-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-weight: bold;
+  }
+
+  /* Case Studies Section */
+  .defcon-cases-section {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+  }
+
+  .defcon-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .defcon-case-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .defcon-case-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+
+  .defcon-case-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .defcon-case-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .defcon-case-card:hover .defcon-case-image img {
+    transform: scale(1.1);
+  }
+
+  .defcon-case-content {
+    padding: 25px;
+  }
+
+  .defcon-case-title {
+    font-size: 1.4rem;
+    color: #06273e;
+    margin-bottom: 15px;
+  }
+
+  .defcon-case-description {
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .defcon-case-link {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .defcon-case-link::after {
+    content: '→';
+    margin-left: 5px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .defcon-case-link:hover::after {
+    margin-left: 10px;
+  }
+
+  /* CTA Section */
+  .defcon-cta-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .defcon-cta-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .defcon-cta-description {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    opacity: 0.9;
+  }
+
+  .defcon-cta-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .defcon-cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-cta-primary {
+    background-color: #ffffff;
+    color: #0091ff;
+  }
+
+  .defcon-cta-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+  }
+
+  .defcon-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .defcon-cta-secondary:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  /* Modal Styles */
+  .defcon-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .defcon-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .defcon-modal-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .defcon-modal.active .defcon-modal-content {
+    transform: translateY(0);
+  }
+
+  .defcon-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  .defcon-modal-close:hover {
+    color: #0091ff;
+  }
+
+  .defcon-modal-title {
+    font-size: 1.8rem;
+    color: #06273e;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .defcon-form-group {
+    margin-bottom: 20px;
+  }
+
+  .defcon-form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #06273e;
+    font-weight: 700;
+  }
+
+  .defcon-form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    transition: border-color 0.3s ease;
+  }
+
+  .defcon-form-input:focus {
+    border-color: #0091ff;
+    outline: none;
+  }
+
+  .defcon-form-submit {
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .defcon-form-submit:hover {
+    background-color: #0077cc;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInDown {
+    from { 
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .defcon-service-title {
+      font-size: 2.2rem;
+    }
+    
+    .defcon-service-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .defcon-cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .defcon-cta-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .defcon-service-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<div class="defcon-access-service">
+  <!-- Header Section -->
+  <section class="defcon-service-header">
+    <div class="defcon-header-content">
+      <h1 class="defcon-service-title">Enterprise Access Solutions</h1>
+      <p class="defcon-service-subtitle">Secure, scalable access management systems tailored to your organization's unique needs</p>
+      <a href="#consultation" class="defcon-header-cta" id="defcon-header-cta-btn">Request Access Audit</a>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="defcon-intro-section">
+    <div class="defcon-service-container">
+      <div class="defcon-intro-content">
+        <div class="defcon-intro-text">
+          <h2 class="defcon-intro-title">Comprehensive Access Management</h2>
+          <p class="defcon-intro-description">At Defcon, we specialize in designing and implementing robust access control systems that protect your critical assets while ensuring seamless accessibility for authorized personnel. Our solutions combine cutting-edge technology with industry best practices to create secure yet flexible access environments.</p>
+          <p class="defcon-intro-description">From physical security systems to sophisticated digital access controls, we provide end-to-end solutions that adapt to your evolving business requirements while maintaining the highest security standards.</p>
+          <button class="defcon-header-cta" id="defcon-learn-more-btn">Explore Our Access Solutions</button>
+        </div>
+        <div class="defcon-intro-image">
+          <img src="https://via.placeholder.com/600x400" alt="Access Management System">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Access Types Section -->
+  <section class="defcon-access-types">
+    <div class="defcon-service-container">
+      <h2 class="defcon-section-title">Our Access Management Services</h2>
+      <div class="defcon-access-grid">
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">🔐</div>
+          <h3 class="defcon-access-title">Identity & Access Management (IAM)</h3>
+          <p class="defcon-access-description">Comprehensive solutions for user authentication, authorization, and identity governance across all your systems and applications.</p>
+        </div>
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">🏢</div>
+          <h3 class="defcon-access-title">Physical Access Control</h3>
+          <p class="defcon-access-description">State-of-the-art systems for managing entry to facilities, including biometric scanners, keycard systems, and mobile access solutions.</p>
+        </div>
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">☁️</div>
+          <h3 class="defcon-access-title">Cloud Access Security</h3>
+          <p class="defcon-access-description">Protect your cloud resources with granular access controls, multi-factor authentication, and continuous monitoring.</p>
+        </div>
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">🔍</div>
+          <h3 class="defcon-access-title">Privileged Access Management</h3>
+          <p class="defcon-access-description">Secure and monitor access to critical systems with just-in-time privileges and session recording capabilities.</p>
+        </div>
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">🔄</div>
+          <h3 class="defcon-access-title">Single Sign-On (SSO)</h3>
+          <p class="defcon-access-description">Simplify user access while enhancing security with centralized authentication across all enterprise applications.</p>
+        </div>
+        <div class="defcon-access-card">
+          <div class="defcon-access-icon">📊</div>
+          <h3 class="defcon-access-title">Access Auditing & Compliance</h3>
+          <p class="defcon-access-description">Comprehensive logging and reporting to meet regulatory requirements and maintain security posture.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+  <section class="defcon-solutions-section">
+    <div class="defcon-service-container">
+      <h2 class="defcon-section-title">Tailored Access Solutions</h2>
+      
+      <div class="defcon-solutions-container">
+        <div class="defcon-solution-box">
+          <h3 class="defcon-solution-title">For Enterprises</h3>
+          <ul class="defcon-solution-list">
+            <li class="defcon-solution-item">Enterprise-wide IAM implementation</li>
+            <li class="defcon-solution-item">Custom role-based access controls</li>
+            <li class="defcon-solution-item">Multi-factor authentication systems</li>
+            <li class="defcon-solution-item">Access governance frameworks</li>
+            <li class="defcon-solution-item">Integration with existing HR systems</li>
+          </ul>
+        </div>
+        
+        <div class="defcon-solution-box">
+          <h3 class="defcon-solution-title">For Healthcare</h3>
+          <ul class="defcon-solution-list">
+            <li class="defcon-solution-item">HIPAA-compliant access controls</li>
+            <li class="defcon-solution-item">Patient data protection systems</li>
+            <li class="defcon-solution-item">Break-the-glass emergency access</li>
+            <li class="defcon-solution-item">Clinical workstation security</li>
+            <li class="defcon-solution-item">Audit trails for compliance</li>
+          </ul>
+        </div>
+        
+        <div class="defcon-solution-box">
+          <h3 class="defcon-solution-title">For Financial Services</h3>
+          <ul class="defcon-solution-list">
+            <li class="defcon-solution-item">SOX-compliant access management</li>
+            <li class="defcon-solution-item">Privileged account security</li>
+            <li class="defcon-solution-item">Transaction authorization systems</li>
+            <li class="defcon-solution-item">Fraud detection integration</li>
+            <li class="defcon-solution-item">Tiered access for sensitive data</li>
+          </ul>
+        </div>
+        
+        <div class="defcon-solution-box">
+          <h3 class="defcon-solution-title">For Government</h3>
+          <ul class="defcon-solution-list">
+            <li class="defcon-solution-item">FISMA-compliant solutions</li>
+            <li class="defcon-solution-item">Clearance-based access controls</li>
+            <li class="defcon-solution-item">Secure facility access systems</li>
+            <li class="defcon-solution-item">Cross-agency authentication</li>
+            <li class="defcon-solution-item">Secure mobile access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section class="defcon-cases-section">
+    <div class="defcon-service-container">
+      <h2 class="defcon-section-title">Success Stories</h2>
+      
+      <div class="defcon-cases-grid">
+        <div class="defcon-case-card">
+          <div class="defcon-case-image">
+            <img src="https://via.placeholder.com/600x400" alt="Financial Institution Case Study">
+          </div>
+          <div class="defcon-case-content">
+            <h3 class="defcon-case-title">Global Bank Access Transformation</h3>
+            <p class="defcon-case-description">Implemented enterprise-wide IAM solution across 25 countries, reducing access-related incidents by 78% while improving user experience.</p>
+            <a href="#" class="defcon-case-link">Read Case Study</a>
+          </div>
+        </div>
+        
+        <div class="defcon-case-card">
+          <div class="defcon-case-image">
+            <img src="https://via.placeholder.com/600x400" alt="Hospital Case Study">
+          </div>
+          <div class="defcon-case-content">
+            <h3 class="defcon-case-title">Hospital Network Security</h3>
+            <p class="defcon-case-description">Deployed HIPAA-compliant access controls across 12 hospitals, enabling secure sharing of patient data while maintaining strict privacy controls.</p>
+            <a href="#" class="defcon-case-link">Read Case Study</a>
+          </div>
+        </div>
+        
+        <div class="defcon-case-card">
+          <div class="defcon-case-image">
+            <img src="https://via.placeholder.com/600x400" alt="Tech Company Case Study">
+          </div>
+          <div class="defcon-case-content">
+            <h3 class="defcon-case-title">Tech Company Cloud Migration</h3>
+            <p class="defcon-case-description">Secured cloud infrastructure with granular access controls during major cloud migration, achieving 100% compliance with industry standards.</p>
+            <a href="#" class="defcon-case-link">Read Case Study</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="defcon-cta-section" id="consultation">
+    <div class="defcon-service-container">
+      <h2 class="defcon-cta-title">Ready to Secure Your Access Infrastructure?</h2>
+      <p class="defcon-cta-description">Schedule a free access audit with our security experts to identify vulnerabilities and optimize your access management strategy.</p>
+      
+      <div class="defcon-cta-buttons">
+        <a href="#" class="defcon-cta-button defcon-cta-primary" id="defcon-schedule-consultation">Schedule Audit</a>
+        <a href="tel:+18005551234" class="defcon-cta-button defcon-cta-secondary">Call Security Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation Modal -->
+  <div class="defcon-modal" id="defcon-consultation-modal">
+    <div class="defcon-modal-content">
+      <span class="defcon-modal-close">&times;</span>
+      <h3 class="defcon-modal-title">Request Access Audit</h3>
+      <form class="defcon-consultation-form">
+        <div class="defcon-form-group">
+          <label for="defcon-name" class="defcon-form-label">Full Name</label>
+          <input type="text" id="defcon-name" class="defcon-form-input" required>
+        </div>
+        <div class="defcon-form-group">
+          <label for="defcon-company" class="defcon-form-label">Company Name</label>
+          <input type="text" id="defcon-company" class="defcon-form-input" required>
+        </div>
+        <div class="defcon-form-group">
+          <label for="defcon-email" class="defcon-form-label">Email Address</label>
+          <input type="email" id="defcon-email" class="defcon-form-input" required>
+        </div>
+        <div class="defcon-form-group">
+          <label for="defcon-phone" class="defcon-form-label">Phone Number</label>
+          <input type="tel" id="defcon-phone" class="defcon-form-input" required>
+        </div>
+        <div class="defcon-form-group">
+          <label for="defcon-access-type" class="defcon-form-label">Primary Access Concern</label>
+          <select id="defcon-access-type" class="defcon-form-input" required>
+            <option value="">Select an option</option>
+            <option value="physical">Physical Access Control</option>
+            <option value="digital">Digital/Network Access</option>
+            <option value="cloud">Cloud Access Security</option>
+            <option value="compliance">Compliance Requirements</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="defcon-form-group">
+          <label for="defcon-message" class="defcon-form-label">Additional Details</label>
+          <textarea id="defcon-message" class="defcon-form-input" rows="4"></textarea>
+        </div>
+        <button type="submit" class="defcon-form-submit">Request Audit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Consultation modal
+    const consultationModal = document.getElementById('defcon-consultation-modal');
+    const consultationBtn = document.getElementById('defcon-schedule-consultation');
+    const headerCtaBtn = document.getElementById('defcon-header-cta-btn');
+    const learnMoreBtn = document.getElementById('defcon-learn-more-btn');
+    const closeBtns = document.querySelectorAll('.defcon-modal-close');
+    
+    // Open consultation modal
+    function openConsultationModal() {
+      consultationModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close modal
+    function closeModal() {
+      consultationModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Event listeners
+    consultationBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openConsultationModal();
+    });
+    
+    headerCtaBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openConsultationModal();
+    });
+    
+    learnMoreBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openConsultationModal();
+    });
+    
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', closeModal);
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+      if (e.target === consultationModal) {
+        closeModal();
+      }
+    });
+    
+    // Form submission
+    const form = document.querySelector('.defcon-consultation-form');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to your server
+      alert('Thank you for your request! Our security team will contact you shortly to schedule your access audit.');
+      closeModal();
+      this.reset();
+    });
+    
+    // Animate elements when they come into view
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.defcon-access-card, .defcon-solution-box, .defcon-case-card');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Set initial state for animation
+    const accessCards = document.querySelectorAll('.defcon-access-card');
+    const solutionBoxes = document.querySelectorAll('.defcon-solution-box');
+    const caseCards = document.querySelectorAll('.defcon-case-card');
+    
+    accessCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+    });
+    
+    solutionBoxes.forEach((box, index) => {
+      box.style.opacity = '0';
+      box.style.transform = 'translateY(20px)';
+      box.style.transition = `all 0.5s ease ${index * 0.1}s`;
+    });
+    
+    caseCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+    });
+    
+    // Run once on load
+    animateOnScroll();
+    
+    // Run on scroll
+    window.addEventListener('scroll', animateOnScroll);
+  });
+</script>

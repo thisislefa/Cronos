@@ -1,0 +1,417 @@
+<style>
+  /* DEFCON SERVICES SHOWCASE - CUSTOM STYLES */
+  .defcon-services-section {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .defcon-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .defcon-services-header {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .defcon-services-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .defcon-services-title {
+    font-size: 2.8rem;
+    color: #06273e;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .defcon-services-subtitle {
+    font-size: 1.2rem;
+    color: #0091ff;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  .defcon-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    perspective: 1000px;
+  }
+  
+  .defcon-service-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px) rotateX(15deg);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    border: 1px solid #e5e5e5;
+  }
+  
+  .defcon-service-card.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+  
+  .defcon-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 145, 255, 0.1);
+  }
+  
+  .defcon-service-image-container {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .defcon-service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  
+  .defcon-service-card:hover .defcon-service-image {
+    transform: scale(1.05);
+  }
+  
+  .defcon-service-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(6, 39, 62, 0.1), rgba(6, 39, 62, 0.7));
+    opacity: 0.7;
+  }
+  
+  .defcon-service-content {
+    padding: 30px;
+    position: relative;
+  }
+  
+  .defcon-service-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #0091ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: absolute;
+    top: -30px;
+    left: 30px;
+    box-shadow: 0 10px 20px rgba(0, 145, 255, 0.3);
+  }
+  
+  .defcon-service-icon i {
+    color: #ffffff;
+    font-size: 1.5rem;
+  }
+  
+  .defcon-service-name {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin-bottom: 15px;
+    font-weight: 700;
+    padding-top: 10px;
+  }
+  
+  .defcon-service-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  
+  .defcon-service-explore {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .defcon-service-explore::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+  }
+  
+  .defcon-service-explore:hover::before {
+    left: 100%;
+  }
+  
+  .defcon-service-explore:hover {
+    background-color: #0077cc;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+  }
+  
+  /* Animation for cards staggered appearance */
+  .defcon-service-card:nth-child(1) { transition-delay: 0.1s; }
+  .defcon-service-card:nth-child(2) { transition-delay: 0.2s; }
+  .defcon-service-card:nth-child(3) { transition-delay: 0.3s; }
+  .defcon-service-card:nth-child(4) { transition-delay: 0.4s; }
+  .defcon-service-card:nth-child(5) { transition-delay: 0.5s; }
+  .defcon-service-card:nth-child(6) { transition-delay: 0.6s; }
+  .defcon-service-card:nth-child(7) { transition-delay: 0.7s; }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    .defcon-services-title {
+      font-size: 2.4rem;
+    }
+    
+    .defcon-service-card {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .defcon-services-title {
+      font-size: 2rem;
+    }
+    
+    .defcon-services-subtitle {
+      font-size: 1rem;
+    }
+    
+    .defcon-service-name {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<div class="defcon-services-section">
+  <div class="defcon-services-container">
+    <div class="defcon-services-header">
+      <h2 class="defcon-services-title">Our Premium Services</h2>
+      <p class="defcon-services-subtitle">Cutting-edge solutions tailored to elevate your digital presence and drive business growth</p>
+    </div>
+    
+    <div class="defcon-services-grid">
+      <!-- Service 1: Web Design & Development -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="Web Design" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="defcon-service-name">Web Design & Development</h3>
+          <p class="defcon-service-description">Custom, responsive websites that captivate audiences and deliver seamless user experiences across all devices.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 2: Tech Support -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/06273e/ffffff?text=Tech+Support" alt="Tech Support" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="defcon-service-name">Tech Support</h3>
+          <p class="defcon-service-description">24/7 expert technical assistance to keep your systems running smoothly and your business operational.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 3: IT Consulting -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=IT+Consulting" alt="IT Consulting" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="defcon-service-name">IT Consulting</h3>
+          <p class="defcon-service-description">Strategic technology guidance to optimize your infrastructure, security, and digital transformation.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 4: Digital Marketing -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/0091ff/ffffff?text=Digital+Marketing" alt="Digital Marketing" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3 class="defcon-service-name">Digital Marketing</h3>
+          <p class="defcon-service-description">Data-driven campaigns that increase visibility, engagement, and conversions across all digital channels.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 5: Graphic Design -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/06273e/ffffff?text=Graphic+Design" alt="Graphic Design" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3 class="defcon-service-name">Graphic Design</h3>
+          <p class="defcon-service-description">Visually stunning designs that communicate your brand message effectively and leave a lasting impression.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 6: Photography -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=Photography" alt="Photography" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h3 class="defcon-service-name">Photography</h3>
+          <p class="defcon-service-description">Professional photography services that capture your brand's essence with compelling visual storytelling.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+      
+      <!-- Service 7: Videography -->
+      <div class="defcon-service-card">
+        <div class="defcon-service-image-container">
+          <img src="https://via.placeholder.com/600x400/0091ff/ffffff?text=Videography" alt="Videography" class="defcon-service-image">
+          <div class="defcon-service-overlay"></div>
+        </div>
+        <div class="defcon-service-content">
+          <div class="defcon-service-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3 class="defcon-service-name">Videography</h3>
+          <p class="defcon-service-description">Cinematic video production that engages audiences and elevates your brand's visual communication.</p>
+          <button class="defcon-service-explore">Explore Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // DEFCON SERVICES - INTERACTIVITY AND ANIMATIONS
+  document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for scroll animations
+    const animateOnScroll = function() {
+      const header = document.querySelector('.defcon-services-header');
+      const serviceCards = document.querySelectorAll('.defcon-service-card');
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+      
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+      
+      // Observe header
+      observer.observe(header);
+      
+      // Observe each service card with staggered delay
+      serviceCards.forEach((card, index) => {
+        observer.observe(card);
+      });
+    };
+    
+    // Initialize animations
+    animateOnScroll();
+    
+    // Service card hover effects
+    const serviceCards = document.querySelectorAll('.defcon-service-card');
+    serviceCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.zIndex = '10';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.zIndex = '1';
+      });
+    });
+    
+    // Explore button click effects
+    const exploreButtons = document.querySelectorAll('.defcon-service-explore');
+    exploreButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Ripple effect
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple-effect');
+        this.appendChild(ripple);
+        
+        // Get click position
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Position ripple
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+          ripple.remove();
+          
+          // Here you would normally navigate to the service page
+          console.log(`Navigating to ${this.parentElement.querySelector('.defcon-service-name').textContent} service page`);
+        }, 600);
+      });
+    });
+  });
+</script>

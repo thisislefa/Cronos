@@ -1,0 +1,446 @@
+<div class="defcon-hero-container">
+  <div class="defcon-hero-content">
+    <h1 class="defcon-hero-title">Intelligent Digital Solutions</h1>
+    <p class="defcon-hero-subtitle">Harnessing the power of neural networks for your business</p>
+    <a href="#" class="defcon-hero-button">Explore Our Technology</a>
+  </div>
+  <canvas class="defcon-neural-network" id="defconNeuralNetwork"></canvas>
+</div>
+
+<style>
+  /* Base styles */
+  .defcon-hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .defcon-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 40px;
+    text-align: center;
+    color: #06273e;
+  }
+
+  .defcon-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: defcon-fadeInUp 0.8s ease-out forwards;
+  }
+
+  .defcon-hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: defcon-fadeInUp 0.8s ease-out 0.2s forwards;
+  }
+
+  .defcon-hero-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: defcon-fadeInUp 0.8s ease-out 0.4s forwards;
+  }
+
+  .defcon-hero-button:hover {
+    background-color: #0077cc;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+  }
+
+  .defcon-neural-network {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* Animations */
+  @keyframes defcon-fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .defcon-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .defcon-hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .defcon-hero-button {
+      padding: 12px 25px;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .defcon-hero-title {
+      font-size: 2rem;
+    }
+
+    .defcon-hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .defcon-hero-content {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('defconNeuralNetwork');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Configuration
+    const config = {
+      nodeCount: 30,
+      baseRadius: 3,
+      activeRadius: 6,
+      connectionDistance: 250,
+      impulseSpeed: 0.02,
+      impulseDecay: 0.95,
+      activationDistance: 100,
+      sensitiveDistance: 150,
+      sensitiveNodesRatio: 0.3,
+      baseColor: '#e5e5e5',
+      activeColor: '#0091ff',
+      secondaryColor: '#06273e',
+      noiseIntensity: 0.2,
+      memoryFadeSpeed: 0.01,
+      connectionWidth: 0.5,
+      activeConnectionWidth: 2
+    };
+    
+    // Network elements
+    let nodes = [];
+    let connections = [];
+    let impulses = [];
+    let memoryTraces = [];
+    
+    // Mouse position
+    let mouse = { x: -1000, y: -1000 };
+    
+    // Initialize network
+    function initNetwork() {
+      nodes = [];
+      connections = [];
+      
+      // Create nodes
+      for (let i = 0; i < config.nodeCount; i++) {
+        const isSensitive = Math.random() < config.sensitiveNodesRatio;
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: config.baseRadius,
+          baseRadius: config.baseRadius,
+          targetRadius: config.baseRadius,
+          active: 0,
+          isSensitive: isSensitive,
+          connections: []
+        });
+      }
+      
+      // Create connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const nodeA = nodes[i];
+          const nodeB = nodes[j];
+          const distance = Math.sqrt(Math.pow(nodeA.x - nodeB.x, 2) + Math.pow(nodeA.y - nodeB.y, 2));
+          
+          if (distance < config.connectionDistance) {
+            const connection = {
+              nodeA: nodeA,
+              nodeB: nodeB,
+              strength: 1 - (distance / config.connectionDistance),
+              active: 0,
+              width: config.connectionWidth
+            };
+            connections.push(connection);
+            nodeA.connections.push(connection);
+            nodeB.connections.push(connection);
+          }
+        }
+      }
+    }
+    
+    // Update network
+    function updateNetwork() {
+      // Update mouse interaction
+      for (let node of nodes) {
+        const distance = Math.sqrt(Math.pow(node.x - mouse.x, 2) + Math.pow(node.y - mouse.y, 2));
+        const activationDist = node.isSensitive ? config.sensitiveDistance : config.activationDistance;
+        
+        if (distance < activationDist) {
+          const influence = 1 - (distance / activationDist);
+          node.targetRadius = config.baseRadius + (config.activeRadius - config.baseRadius) * influence;
+          
+          // Create impulse if close enough
+          if (distance < activationDist * 0.7 && Math.random() < influence * 0.3) {
+            createImpulse(node);
+          }
+        } else {
+          node.targetRadius = config.baseRadius;
+        }
+        
+        // Animate radius
+        node.radius += (node.targetRadius - node.radius) * 0.1;
+        node.active = Math.max(0, node.active - 0.01);
+      }
+      
+      // Update impulses
+      for (let i = impulses.length - 1; i >= 0; i--) {
+        const impulse = impulses[i];
+        impulse.progress += config.impulseSpeed;
+        impulse.active = Math.pow(impulse.progress, 0.5) * (1 - impulse.progress);
+        
+        // Strengthen connection
+        if (impulse.connection) {
+          impulse.connection.active = Math.max(impulse.connection.active, impulse.active);
+          impulse.connection.width = config.connectionWidth + 
+            (config.activeConnectionWidth - config.connectionWidth) * impulse.connection.active;
+        }
+        
+        // Activate next node if impulse reached the end
+        if (impulse.progress >= 1) {
+          if (impulse.targetNode && Math.random() < 0.7) {
+            impulse.targetNode.active = 1;
+            createImpulse(impulse.targetNode);
+          }
+          impulses.splice(i, 1);
+        }
+      }
+      
+      // Update connections
+      for (let connection of connections) {
+        connection.active = Math.max(0, connection.active - 0.005);
+        connection.width = config.connectionWidth + 
+          (config.activeConnectionWidth - config.connectionWidth) * connection.active;
+        
+        // Strengthen frequently used connections
+        if (connection.active > 0.5) {
+          connection.strength = Math.min(1, connection.strength + 0.001);
+        } else {
+          connection.strength = Math.max(0.1, connection.strength - 0.0005);
+        }
+      }
+      
+      // Update memory traces
+      for (let i = memoryTraces.length - 1; i >= 0; i--) {
+        memoryTraces[i].alpha -= config.memoryFadeSpeed;
+        if (memoryTraces[i].alpha <= 0) {
+          memoryTraces.splice(i, 1);
+        }
+      }
+    }
+    
+    // Create impulse
+    function createImpulse(node) {
+      if (node.connections.length === 0) return;
+      
+      // Add memory trace
+      memoryTraces.push({
+        x: node.x,
+        y: node.y,
+        alpha: 1
+      });
+      
+      // Find best connection to activate
+      let bestConnection = null;
+      let maxStrength = 0;
+      
+      for (let connection of node.connections) {
+        const otherNode = connection.nodeA === node ? connection.nodeB : connection.nodeA;
+        const angleToMouse = Math.atan2(mouse.y - node.y, mouse.x - node.x);
+        const angleToOther = Math.atan2(otherNode.y - node.y, otherNode.x - node.x);
+        const angleDiff = Math.abs(angleToMouse - angleToOther);
+        const angleScore = angleDiff < Math.PI ? 1 - (angleDiff / Math.PI) : 0;
+        
+        const strength = connection.strength * (0.5 + angleScore * 0.5);
+        
+        if (strength > maxStrength) {
+          maxStrength = strength;
+          bestConnection = connection;
+        }
+      }
+      
+      if (bestConnection) {
+        const targetNode = bestConnection.nodeA === node ? bestConnection.nodeB : bestConnection.nodeA;
+        
+        impulses.push({
+          connection: bestConnection,
+          startNode: node,
+          targetNode: targetNode,
+          progress: 0,
+          active: 1,
+          color: config.activeColor
+        });
+      }
+    }
+    
+    // Render network
+    function renderNetwork() {
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw connections
+      for (let connection of connections) {
+        const alpha = 0.2 + connection.active * 0.8;
+        ctx.beginPath();
+        ctx.moveTo(connection.nodeA.x, connection.nodeA.y);
+        ctx.lineTo(connection.nodeB.x, connection.nodeB.y);
+        ctx.lineWidth = connection.width;
+        ctx.strokeStyle = `rgba(6, 39, 62, ${alpha * connection.strength})`;
+        ctx.stroke();
+      }
+      
+      // Draw impulses
+      for (let impulse of impulses) {
+        if (impulse.connection) {
+          const startX = impulse.connection.nodeA.x;
+          const startY = impulse.connection.nodeA.y;
+          const endX = impulse.connection.nodeB.x;
+          const endY = impulse.connection.nodeB.y;
+          
+          const currentX = startX + (endX - startX) * impulse.progress;
+          const currentY = startY + (endY - startY) * impulse.progress;
+          
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, 3 * impulse.active, 0, Math.PI * 2);
+          ctx.fillStyle = impulse.color;
+          ctx.fill();
+        }
+      }
+      
+      // Draw memory traces
+      for (let trace of memoryTraces) {
+        ctx.beginPath();
+        ctx.arc(trace.x, trace.y, 5 * trace.alpha, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 145, 255, ${trace.alpha * 0.3})`;
+        ctx.fill();
+      }
+      
+      // Draw nodes
+      for (let node of nodes) {
+        // Node glow
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+        const gradient = ctx.createRadialGradient(
+          node.x, node.y, node.radius * 0.5,
+          node.x, node.y, node.radius * 3
+        );
+        gradient.addColorStop(0, `rgba(0, 145, 255, ${node.active * 0.8})`);
+        gradient.addColorStop(1, 'rgba(0, 145, 255, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Node core
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = node.active > 0.5 ? config.activeColor : config.secondaryColor;
+        ctx.fill();
+      }
+      
+      // Add subtle noise
+      addNoise();
+    }
+    
+    // Add subtle noise effect
+    function addNoise() {
+      const imageData = ctx.getImageData(0, 0, width, height);
+      const pixels = imageData.data;
+      
+      for (let i = 0; i < pixels.length; i += 4) {
+        if (Math.random() < config.noiseIntensity) {
+          const noise = Math.random() * 10 - 5;
+          pixels[i] = Math.min(255, Math.max(0, pixels[i] + noise));
+          pixels[i + 1] = Math.min(255, Math.max(0, pixels[i + 1] + noise));
+          pixels[i + 2] = Math.min(255, Math.max(0, pixels[i + 2] + noise));
+        }
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+    }
+    
+    // Animation loop
+    function animate() {
+      updateNetwork();
+      renderNetwork();
+      requestAnimationFrame(animate);
+    }
+    
+    // Handle mouse movement
+    function handleMouseMove(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }
+    
+    // Handle touch movement
+    function handleTouchMove(e) {
+      e.preventDefault();
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }
+    
+    // Handle resize
+    function handleResize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initNetwork();
+    }
+    
+    // Initialize
+    initNetwork();
+    animate();
+    
+    // Event listeners
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup function to remove event listeners when needed
+    function cleanup() {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('resize', handleResize);
+    }
+    
+    // Expose cleanup if needed
+    window.defconNeuralNetworkCleanup = cleanup;
+  });
+</script>

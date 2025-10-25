@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Sitemap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #0091ff;
+            --primary-dark: #0077cc;
+            --dark: #06273e;
+            --light: #e5e5e5;
+            --gray: #5a6a7d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .sitemap-hero {
+            background: linear-gradient(rgba(6, 39, 62, 0.8), rgba(6, 39, 62, 0.8)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .sitemap-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .sitemap-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        
+        /* Sitemap Container */
+        .sitemap-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 50px;
+        }
+        
+        /* Category Selector */
+        .category-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Links Container */
+        .links-container {
+            background-color: white;
+            border-radius: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Category Section */
+        .category-section {
+            display: none;
+            padding: 30px;
+        }
+        
+        .category-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .category-title {
+            color: #0091ff;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            display: inline-block;
+            font-weight: 300;
+            padding-left: 2rem;
+        }
+        
+        /* Links Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 70px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            
+        }
+        
+        .link-group {
+            margin-bottom: 25px;
+        }
+        
+        .link-group-title {
+            color: #06273e;
+            font-size: 1rem;
+            font-weight: 200;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            position: relative;
+
+        }
+
+        .link-group-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1.9px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #0091ff;
+            }
+        
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .link-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 0%;
+        }
+        
+        .link-list a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 4px 0;
+        }
+        
+        .link-list a:hover {
+            color: #0091ff;
+            transform: translateX(6px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sitemap-hero {
+                padding: 70px 20px;
+            }
+            
+            .sitemap-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="sitemap-hero">
+        <h1>Defcon Sitemap</h1>
+        <p>Navigate through our complete website structure to find exactly what you're looking for</p>
+    </section>
+
+    <!-- Sitemap Container -->
+    <div class="sitemap-container">
+        <!-- Category Selector -->
+        
+        <div class="category-selector">
+            <button class="category-btn active" data-category="store">Defcon Store</button>
+            <button class="category-btn" data-category="business">Business Solutions</button>
+            <button class="category-btn" data-category="services">Our Services</button>
+            <button class="category-btn" data-category="developer">Developer & ICT</button>
+            <button class="category-btn" data-category="company">Company</button>
+        </div>
+
+        <!-- Links Container -->
+        <div class="links-container">
+            <!-- Store Category -->
+            <div class="category-section active" id="store">
+                <h2 class="category-title">Defcon Store</h2>
+                <div class="links-grid">
+                    <div class="link-group">
+                        <h3 class="link-group-title">Premium Solutions</h3>
+                        <ul class="link-list">
+                            <li><a href="#solution1">Business Suite</a></li>
+                            <li><a href="#solution2">Enterprise Package</a></li>
+                            <li><a href="#solution3">Professional Tools</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Software Tools</h3>
+                        <ul class="link-list">
+                            <li><a href="software.html">Productivity Software</a></li>
+                            <li><a href="#software2">Security Tools</a></li>
+                            <li><a href="#software3">Development Kits</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Hardware</h3>
+                        <ul class="link-list">
+                            <li><a href="#hardware1">Laptops</a></li>
+                            <li><a href="#hardware2">Desktop Components</a></li>
+                            <li><a href="#hardware3">Tablets</a></li>
+                            <li><a href="#hardware4">Networking Equipment</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Gaming</h3>
+                        <ul class="link-list">
+                            <li><a href="#gaming1">Xbox Games</a></li>
+                            <li><a href="#gaming2">Playstation Games</a></li>
+                            <li><a href="#gaming3">Gaming Accessories</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="link-group">
+                        <h3 class="link-group-title">Gaming</h3>
+                        <ul class="link-list">
+                            <li><a href="#gaming1">Xbox Games</a></li>
+                            <li><a href="#gaming2">Playstation Games</a></li>
+                            <li><a href="#gaming3">Gaming Accessories</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="link-group">
+                        <h3 class="link-group-title">Gaming</h3>
+                        <ul class="link-list">
+                            <li><a href="#gaming1">Xbox Games</a></li>
+                            <li><a href="#gaming2">Playstation Games</a></li>
+                            <li><a href="#gaming3">Gaming Accessories</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+
+            <!-- Business Solutions Category -->
+            <div class="category-section" id="business">
+                <h2 class="category-title">Business Solutions</h2>
+                <div class="links-grid">
+                    <div class="link-group">
+                        <h3 class="link-group-title">Microsoft Ecosystem</h3>
+                        <ul class="link-list">
+                            <li><a href="#microsoft1">Office 365 Solutions</a></li>
+                            <li><a href="#microsoft2">Azure Integration</a></li>
+                            <li><a href="#microsoft3">SharePoint Solutions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Custom Solutions</h3>
+                        <ul class="link-list">
+                            <li><a href="#custom1">Business Software</a></li>
+                            <li><a href="#custom2">Workflow Automation</a></li>
+                            <li><a href="#custom3">CRM Solutions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Cloud & Data</h3>
+                        <ul class="link-list">
+                            <li><a href="#cloud1">Cloud Migration</a></li>
+                            <li><a href="#cloud2">Business Intelligence</a></li>
+                            <li><a href="#cloud3">Data Analytics</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Integration</h3>
+                        <ul class="link-list">
+                            <li><a href="#integration1">ERP Solutions</a></li>
+                            <li><a href="#integration2">Accounting Systems</a></li>
+                            <li><a href="#integration3">API Development</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Category -->
+            <div class="category-section" id="services">
+                <h2 class="category-title">Our Services</h2>
+                <div class="links-grid">
+                    <div class="link-group">
+                        <h3 class="link-group-title">Web Solutions</h3>
+                        <ul class="link-list">
+                            <li><a href="webdev.html">Web Design & Development</a></li>
+                            <li><a href="ecommerce.html">E-commerce Solutions</a></li>
+                            <li><a href="#web3">CMS Development</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">IT Services</h3>
+                        <ul class="link-list">
+                            <li><a href="technicalsupport.html">IT Support</a></li>
+                            <li><a href="itconsultingsolutions.html">IT Consulting</a></li>
+                            <li><a href="#it3">Network Infrastructure</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Digital Marketing</h3>
+                        <ul class="link-list">
+                            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+                            <li><a href="#marketing2">SEO Services</a></li>
+                            <li><a href="#marketing3">Social Media Management</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Creative Services</h3>
+                        <ul class="link-list">
+                            <li><a href="graphicdesigning.html">Graphic Design</a></li>
+                            <li><a href="#creative2">Branding</a></li>
+                            <li><a href="videography.html">Video Production</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer & ICT Category -->
+            <div class="category-section" id="developer">
+                <h2 class="category-title">Developer & ICT</h2>
+                <div class="links-grid">
+                    <div class="link-group">
+                        <h3 class="link-group-title">AI Solutions</h3>
+                        <ul class="link-list">
+                            <li><a href="#ai1">AI Agents</a></li>
+                            <li><a href="#ai2">Machine Learning</a></li>
+                            <li><a href="#ai3">Natural Language Processing</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Cloud Systems</h3>
+                        <ul class="link-list">
+                            <li><a href="#cloudsys1">Hybrid Cloud</a></li>
+                            <li><a href="#cloudsys2">Multi-Cloud Architecture</a></li>
+                            <li><a href="#cloudsys3">Cloud Security</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Connectivity</h3>
+                        <ul class="link-list">
+                            <li><a href="#connect1">5G Solutions</a></li>
+                            <li><a href="#connect2">IoT Integration</a></li>
+                            <li><a href="#connect3">Edge Computing</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Security</h3>
+                        <ul class="link-list">
+                            <li><a href="#security1">Zero Trust Architecture</a></li>
+                            <li><a href="#security2">Cybersecurity</a></li>
+                            <li><a href="#security3">Compliance Solutions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Category -->
+            <div class="category-section" id="company">
+                <h2 class="category-title">Company</h2>
+                <div class="links-grid">
+                    <div class="link-group">
+                        <h3 class="link-group-title">About Defcon</h3>
+                        <ul class="link-list">
+                            <li><a href="#about1">Our Story</a></li>
+                            <li><a href="#about2">Leadership Team</a></li>
+                            <li><a href="#about3">Our Approach</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Innovation</h3>
+                        <ul class="link-list">
+                            <li><a href="Betaprogram.html">Beta Program</a></li>
+                            <li><a href="#innovate2">Research & Development</a></li>
+                            <li><a href="roadmap.html">Technology Roadmap</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Resources</h3>
+                        <ul class="link-list">
+                            <li><a href="webinars&livedemos.html">Webinars & Demos</a></li>
+                            <li><a href="#resource2">Case Studies</a></li>
+                            <li><a href="#resource3">White Papers</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3 class="link-group-title">Connect</h3>
+                        <ul class="link-list">
+                            <li><a href="#connect1">Contact Us</a></li>
+                            <li><a href="#connect2">Careers</a></li>
+                            <li><a href="#connect3">Partnerships</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category selection functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const categorySections = document.querySelectorAll('.category-section');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    categorySections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const categoryId = this.getAttribute('data-category');
+                    document.getElementById(categoryId).classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

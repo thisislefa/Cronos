@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sales | Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --defcon-primary-dark: #0a192f;
+            --defcon-secondary-dark: #112240;
+            --defcon-accent: #64ffda;
+            --defcon-text-primary: #e6f1ff;
+            --defcon-text-secondary: #8892b0;
+            --defcon-card-bg: #112240;
+            --defcon-input-bg: #0a192f;
+            --defcon-error: #ff6b6b;
+            --defcon-success: #64ffda;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-primary-dark);
+            color: var(--defcon-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .defcon-contact-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .defcon-contact-header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .defcon-contact-logo {
+            color: var(--defcon-accent);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .defcon-contact-header-line {
+            height: 3px;
+            width: 50px;
+            background: var(--defcon-accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .defcon-contact-hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .defcon-contact-hero-title {
+            font-size: 3.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.5s;
+        }
+        
+        .defcon-contact-hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.8s;
+        }
+        
+        /* Contact Section */
+        .defcon-contact-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .defcon-contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        
+        .defcon-contact-info {
+            flex: 1;
+            min-width: 300px;
+           
+           
+           
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 1s ease;
+        }
+        
+        .defcon-contact-info.defcon-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .defcon-contact-info-title {
+            font-size: 1.8rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+       
+        .defcon-contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .defcon-contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .defcon-contact-icon i {
+            color: var(--defcon-accent);
+            font-size: 1.2rem;
+        }
+        
+        .defcon-contact-details h3 {
+            color: var(--defcon-text-primary);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .defcon-contact-details p {
+            margin-bottom: 3px;
+        }
+        
+        .defcon-contact-details a {
+            color: var(--defcon-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .defcon-contact-details a:hover {
+            color: var(--defcon-accent);
+        }
+        
+        /* Form Styles */
+        .defcon-contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--defcon-card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 1s ease;
+        }
+        
+        .defcon-contact-form.defcon-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .defcon-form-title {
+            font-size: 1.8rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .defcon-form-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--defcon-accent);
+        }
+        
+        .defcon-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .defcon-form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--defcon-text-primary);
+            font-weight: 500;
+        }
+        
+        .defcon-form-input {
+            width: 100%;
+            padding: 15px;
+            background: var(--defcon-input-bg);
+            border: 1px solid rgba(136, 146, 176, 0.3);
+            border-radius: 5px;
+            color: var(--defcon-text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-form-input:focus {
+            outline: none;
+            border-color: var(--defcon-accent);
+            box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.2);
+        }
+        
+        .defcon-form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .defcon-form-select {
+            appearance: none;
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .defcon-form-submit {
+            background: var(--defcon-accent);
+            color: var(--defcon-primary-dark);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .defcon-form-submit:hover {
+            background: #4dfcd4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        }
+        
+        .defcon-form-submit i {
+            margin-left: 10px;
+        }
+        
+        /* FAQ Section */
+        .defcon-contact-faq {
+            padding: 80px 0;
+            background: var(--defcon-secondary-dark);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+        
+        .defcon-faq-title {
+            font-size: 2.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .defcon-faq-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--defcon-accent);
+        }
+        
+        .defcon-faq-item {
+            background: var(--defcon-card-bg);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-faq-item.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--defcon-text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .defcon-faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .defcon-faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-faq-item.active .defcon-faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+        
+        .defcon-faq-item.active .defcon-faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Footer */
+        .defcon-contact-footer {
+            background-color: var(--defcon-primary-dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .defcon-contact-footer-text {
+            color: var(--defcon-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes defcon-fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-contact-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-contact-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .defcon-contact-faq {
+                clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+                padding: 60px 0;
+            }
+            
+            .defcon-faq-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="defcon-contact-header">
+        <div class="defcon-contact-container">
+            <div class="defcon-contact-logo">DEFCON</div>
+            <div class="defcon-contact-header-line"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="defcon-contact-hero">
+        <div class="defcon-contact-container">
+            <h1 class="defcon-contact-hero-title">Connect With Our Sales Team</h1>
+            <p class="defcon-contact-hero-subtitle">Ready to strengthen your cybersecurity? Our experts are here to understand your needs and craft the perfect security solution for your organization.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="defcon-contact-section">
+        <div class="defcon-contact-container">
+            <div class="defcon-contact-wrapper">
+                <!-- Contact Information -->
+                <div class="defcon-contact-info">
+                    <h2 class="defcon-contact-info-title">Get In Touch</h2>
+                    
+                    <div class="defcon-contact-method">
+                        <div class="defcon-contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="defcon-contact-details">
+                            <h3>Call Us</h3>
+                            <p>+1 (888) 333-8765</p>
+                            <p>Mon-Fri, 8:00 AM - 6:00 PM EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-contact-method">
+                        <div class="defcon-contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="defcon-contact-details">
+                            <h3>Email Us</h3>
+                            <p><a href="mailto:sales@defcon.com">sales@defcon.com</a></p>
+                            <p>Response within 2 business hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-contact-method">
+                        <div class="defcon-contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="defcon-contact-details">
+                            <h3>Visit Us</h3>
+                            <p>123 Cybersecurity Avenue</p>
+                            <p>San Francisco, CA 94107</p>
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-contact-method">
+                        <div class="defcon-contact-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="defcon-contact-details">
+                            <h3>Live Chat</h3>
+                            <p>Available 24/7 for urgent inquiries</p>
+                            <p>Look for the chat icon in the corner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="defcon-contact-form">
+                    <h2 class="defcon-form-title">Contact Sales</h2>
+                    <form id="defconSalesForm">
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-name">Full Name *</label>
+                            <input type="text" id="defcon-name" class="defcon-form-input" required>
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-email">Work Email *</label>
+                            <input type="email" id="defcon-email" class="defcon-form-input" required>
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-company">Company Name *</label>
+                            <input type="text" id="defcon-company" class="defcon-form-input" required>
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-phone">Phone Number</label>
+                            <input type="tel" id="defcon-phone" class="defcon-form-input">
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-employees">Company Size *</label>
+                            <select id="defcon-employees" class="defcon-form-input defcon-form-select" required>
+                                <option value="">Select number of employees</option>
+                                <option value="1-10">1-10 employees</option>
+                                <option value="11-50">11-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-500">201-500 employees</option>
+                                <option value="501-1000">501-1000 employees</option>
+                                <option value="1000+">1000+ employees</option>
+                            </select>
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-interest">Interest Area *</label>
+                            <select id="defcon-interest" class="defcon-form-input defcon-form-select" required>
+                                <option value="">Select your interest</option>
+                                <option value="enterprise">Enterprise Security</option>
+                                <option value="cloud">Cloud Security</option>
+                                <option value="network">Network Protection</option>
+                                <option value="consulting">Security Consulting</option>
+                                <option value="training">Security Training</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label" for="defcon-message">How can we help? *</label>
+                            <textarea id="defcon-message" class="defcon-form-input defcon-form-textarea" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="defcon-form-submit">
+                            Submit Request <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="defcon-contact-faq">
+        <div class="defcon-contact-container">
+            <h2 class="defcon-faq-title">Frequently Asked Questions</h2>
+            
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">
+                    What happens after I submit the form? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="defcon-faq-answer">
+                    <p>Our sales team will contact you within 2 business hours to discuss your needs in detail. We'll schedule a personalized demo and provide you with a tailored solution that addresses your specific security challenges.</p>
+                </div>
+            </div>
+            
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">
+                    Do you offer customized enterprise solutions? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="defcon-faq-answer">
+                    <p>Yes, we specialize in creating customized security solutions for enterprises of all sizes. Our team will work closely with you to understand your infrastructure, compliance requirements, and security goals to design a solution that fits your organization perfectly.</p>
+                </div>
+            </div>
+            
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">
+                    What is your typical response time for support? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="defcon-faq-answer">
+                    <p>For enterprise clients, we provide 24/7 support with a guaranteed response time of under 15 minutes for critical issues. Standard inquiries are typically addressed within 2 hours during business days.</p>
+                </div>
+            </div>
+            
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">
+                    Can I schedule a product demo before purchasing? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="defcon-faq-answer">
+                    <p>Absolutely! We highly recommend scheduling a demo to see our solutions in action. You can request a demo through the form above or by contacting our sales team directly. We'll tailor the demo to focus on your specific use cases.</p>
+                </div>
+            </div>
+            
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">
+                    What industries do you specialize in? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="defcon-faq-answer">
+                    <p>We have extensive experience across multiple industries including finance, healthcare, government, technology, and education. Our solutions are adaptable to meet the specific regulatory and security requirements of each sector.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-contact-footer">
+        <div class="defcon-contact-container">
+            <p class="defcon-contact-footer-text">&copy; 2023 Defcon. All rights reserved. | Protecting the digital world.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const defconElements = document.querySelectorAll('.defcon-contact-info, .defcon-contact-form, .defcon-faq-item');
+            
+            const defconObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('defcon-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            defconElements.forEach(element => {
+                defconObserver.observe(element);
+            });
+            
+            // FAQ accordion functionality
+            const defconFaqItems = document.querySelectorAll('.defcon-faq-item');
+            
+            defconFaqItems.forEach(item => {
+                const question = item.querySelector('.defcon-faq-question');
+                
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items
+                    defconFaqItems.forEach(faqItem => {
+                        faqItem.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't already active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Form submission
+            const defconSalesForm = document.getElementById('defconSalesForm');
+            
+            defconSalesForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const requiredFields = defconSalesForm.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = 'var(--defcon-error)';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = 'rgba(136, 146, 176, 0.3)';
+                    }
+                });
+                
+                if (isValid) {
+                    // In a real implementation, you would send the form data to a server
+                    // This is just a simulation
+                    const submitButton = defconSalesForm.querySelector('button[type="submit"]');
+                    submitButton.innerHTML = 'Sending <i class="fas fa-spinner fa-spin"></i>';
+                    submitButton.disabled = true;
+                    
+                    setTimeout(() => {
+                        submitButton.innerHTML = 'Message Sent <i class="fas fa-check"></i>';
+                        submitButton.style.background = 'var(--defcon-success)';
+                        submitButton.style.color = 'var(--defcon-primary-dark)';
+                        
+                        // Reset form after success
+                        setTimeout(() => {
+                            defconSalesForm.reset();
+                            submitButton.innerHTML = 'Submit Request <i class="fas fa-arrow-right"></i>';
+                            submitButton.disabled = false;
+                            submitButton.style.background = 'var(--defcon-accent)';
+                        }, 2000);
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

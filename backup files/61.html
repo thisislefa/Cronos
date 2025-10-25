@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Morphing Hero Section</title>
+    <style>
+        .liquid-hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+            font-family: 'Times New Roman', serif;
+            cursor: none;
+        }
+
+        .liquid-background-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .liquid-content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .liquid-main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #06273e;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: liquidText 8s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .liquid-subtitle {
+            font-size: 1.5rem;
+            color: #0091ff;
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: floatText 6s ease-in-out infinite;
+        }
+
+        .liquid-cta-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .liquid-cta-button {
+            position: relative;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 145, 255, 0.3);
+            overflow: hidden;
+            z-index: 20;
+        }
+
+        .liquid-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .liquid-cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .liquid-cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 145, 255, 0.4);
+        }
+
+        .liquid-floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .liquid-bubble {
+            position: absolute;
+            background: radial-gradient(circle, rgba(0, 145, 255, 0.6) 0%, rgba(0, 145, 255, 0.2) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: bubbleRise 8s linear infinite;
+            opacity: 0.7;
+        }
+
+        .liquid-droplet {
+            position: absolute;
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            border-radius: 50%;
+            animation: dropletFall 3s ease-in infinite;
+            opacity: 0.8;
+        }
+
+        .liquid-ripple {
+            position: absolute;
+            border: 2px solid rgba(0, 145, 255, 0.6);
+            border-radius: 50%;
+            animation: rippleExpand 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .liquid-particle {
+            position: absolute;
+            background: #0091ff;
+            border-radius: 50%;
+            animation: particleExplode 1s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .liquid-wave-distortion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="wave"><feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/></filter></defs><rect width="100%" height="100%" filter="url(%23wave)" fill="transparent"/></svg>');
+            opacity: 0.3;
+            animation: waveDistortion 10s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .liquid-cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(0, 145, 255, 0.8) 0%, rgba(0, 145, 255, 0.2) 70%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            transition: all 0.1s ease;
+        }
+
+        @keyframes liquidText {
+            0%, 100% { transform: scale(1) skew(0deg); }
+            25% { transform: scale(1.02) skew(1deg); }
+            50% { transform: scale(0.98) skew(-1deg); }
+            75% { transform: scale(1.01) skew(0.5deg); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 0.7;
+                transform: translateY(-10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20vh) scale(0);
+            }
+        }
+
+        @keyframes dropletFall {
+            0% {
+                transform: translateY(-20px) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes particleExplode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) translate(var(--dx), var(--dy));
+                opacity: 0;
+            }
+        }
+
+        @keyframes waveDistortion {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-2px) translateY(2px); }
+            50% { transform: translateX(2px) translateY(-2px); }
+            75% { transform: translateX(-1px) translateY(1px); }
+        }
+
+        @media (max-width: 768px) {
+            .liquid-main-title {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .liquid-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+            
+            .liquid-cta-container {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .liquid-cta-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .liquid-main-title {
+                font-size: 2rem;
+            }
+            
+            .liquid-subtitle {
+                font-size: 1rem;
+            }
+            
+            .liquid-content-wrapper {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-hero-container">
+        <canvas class="liquid-background-canvas"></canvas>
+        <div class="liquid-wave-distortion"></div>
+        <div class="liquid-floating-elements"></div>
+        <div class="liquid-cursor"></div>
+        
+        <div class="liquid-content-wrapper">
+            <h1 class="liquid-main-title">Liquid Innovation</h1>
+            <p class="liquid-subtitle">Where Technology Flows Seamlessly</p>
+            
+            <div class="liquid-cta-container">
+                <a href="#" class="liquid-cta-button">Explore Solutions</a>
+                <a href="#" class="liquid-cta-button">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class LiquidHero {
+            constructor() {
+                this.canvas = document.querySelector('.liquid-background-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.container = document.querySelector('.liquid-hero-container');
+                this.cursor = document.querySelector('.liquid-cursor');
+                this.floatingElements = document.querySelector('.liquid-floating-elements');
+                
+                this.mouse = { x: 0, y: 0 };
+                this.blobs = [];
+                this.ripples = [];
+                this.particles = [];
+                this.time = 0;
+                this.colorPhase = 0;
+                
+                this.init();
+            }
+
+            init() {
+                this.setupCanvas();
+                this.createBlobs();
+                this.setupEventListeners();
+                this.startAnimation();
+                this.createFloatingElements();
+                this.startRainEffect();
+            }
+
+            setupCanvas() {
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+
+            resizeCanvas() {
+                this.canvas.width = this.container.offsetWidth;
+                this.canvas.height = this.container.offsetHeight;
+            }
+
+            createBlobs() {
+                const blobCount = window.innerWidth < 768 ? 3 : 5;
+                this.blobs = [];
+                
+                for (let i = 0; i < blobCount; i++) {
+                    this.blobs.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        radius: Math.random() * 150 + 100,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        color: this.getRandomColor(),
+                        opacity: 0.4 + Math.random() * 0.3,
+                        morphSpeed: Math.random() * 0.02 + 0.01
+                    });
+                }
+            }
+
+            getRandomColor() {
+                const colors = [
+                    'rgba(0, 145, 255, 0.6)',
+                    'rgba(6, 39, 62, 0.5)',
+                    'rgba(229, 229, 229, 0.4)',
+                    'rgba(255, 255, 255, 0.3)'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            setupEventListeners() {
+                this.container.addEventListener('mousemove', (e) => {
+                    const rect = this.container.getBoundingClientRect();
+                    this.mouse.x = e.clientX - rect.left;
+                    this.mouse.y = e.clientY - rect.top;
+                    
+                    this.cursor.style.left = this.mouse.x - 10 + 'px';
+                    this.cursor.style.top = this.mouse.y - 10 + 'px';
+                    
+                    this.createWaveEffect(this.mouse.x, this.mouse.y);
+                });
+
+                this.container.addEventListener('click', (e) => {
+                    const rect = this.container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    this.createSplashEffect(x, y);
+                    this.createRippleEffect(x, y);
+                });
+
+                this.container.addEventListener('mouseleave', () => {
+                    this.cursor.style.opacity = '0';
+                });
+
+                this.container.addEventListener('mouseenter', () => {
+                    this.cursor.style.opacity = '1';
+                });
+            }
+
+            createWaveEffect(x, y) {
+                this.blobs.forEach(blob => {
+                    const distance = Math.sqrt((blob.x - x) ** 2 + (blob.y - y) ** 2);
+                    if (distance < 200) {
+                        const force = (200 - distance) / 200;
+                        blob.vx += (blob.x - x) * force * 0.001;
+                        blob.vy += (blob.y - y) * force * 0.001;
+                    }
+                });
+            }
+
+            createSplashEffect(x, y) {
+                for (let i = 0; i < 8; i++) {
+                    const angle = (i / 8) * Math.PI * 2;
+                    const velocity = Math.random() * 100 + 50;
+                    const particle = document.createElement('div');
+                    particle.className = 'liquid-particle';
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.width = '4px';
+                    particle.style.height = '4px';
+                    particle.style.setProperty('--dx', Math.cos(angle) * velocity + 'px');
+                    particle.style.setProperty('--dy', Math.sin(angle) * velocity + 'px');
+                    
+                    this.floatingElements.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1000);
+                }
+            }
+
+            createRippleEffect(x, y) {
+                const ripple = document.createElement('div');
+                ripple.className = 'liquid-ripple';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.marginLeft = '-1px';
+                ripple.style.marginTop = '-1px';
+                
+                this.floatingElements.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 2000);
+            }
+
+            createFloatingElements() {
+                this.createBubbles();
+                setInterval(() => this.createBubbles(), 2000);
+            }
+
+            createBubbles() {
+                const bubbleCount = Math.random() * 3 + 1;
+                
+                for (let i = 0; i < bubbleCount; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'liquid-bubble';
+                    
+                    const size = Math.random() * 30 + 10;
+                    bubble.style.width = size + 'px';
+                    bubble.style.height = size + 'px';
+                    bubble.style.left = Math.random() * this.canvas.width + 'px';
+                    bubble.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                    bubble.style.animationDelay = Math.random() * 2 + 's';
+                    
+                    this.floatingElements.appendChild(bubble);
+                    
+                    setTimeout(() => {
+                        if (bubble.parentNode) {
+                            bubble.parentNode.removeChild(bubble);
+                        }
+                    }, 10000);
+                }
+            }
+
+            startRainEffect() {
+                setInterval(() => {
+                    if (Math.random() < 0.3) {
+                        this.createRainDroplet();
+                    }
+                }, 1000);
+            }
+
+            createRainDroplet() {
+                const droplet = document.createElement('div');
+                droplet.className = 'liquid-droplet';
+                
+                const size = Math.random() * 8 + 4;
+                droplet.style.width = size + 'px';
+                droplet.style.height = size + 'px';
+                droplet.style.left = Math.random() * this.canvas.width + 'px';
+                droplet.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                this.floatingElements.appendChild(droplet);
+                
+                setTimeout(() => {
+                    if (droplet.parentNode) {
+                        droplet.parentNode.removeChild(droplet);
+                    }
+                }, 4000);
+            }
+
+            updateBlobs() {
+                this.blobs.forEach(blob => {
+                    blob.x += blob.vx;
+                    blob.y += blob.vy;
+                    
+                    blob.vx *= 0.99;
+                    blob.vy *= 0.99;
+                    
+                    if (blob.x < 0 || blob.x > this.canvas.width) blob.vx *= -1;
+                    if (blob.y < 0 || blob.y > this.canvas.height) blob.vy *= -1;
+                    
+                    blob.x = Math.max(0, Math.min(this.canvas.width, blob.x));
+                    blob.y = Math.max(0, Math.min(this.canvas.height, blob.y));
+                    
+                    blob.radius += Math.sin(this.time * blob.morphSpeed) * 5;
+                });
+            }
+
+            drawBlobs() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.blobs.forEach(blob => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(blob.x, blob.y, blob.radius, 0, Math.PI * 2);
+                    
+                    const gradient = this.ctx.createRadialGradient(
+                        blob.x, blob.y, 0,
+                        blob.x, blob.y, blob.radius
+                    );
+                    
+                    const hue = (this.colorPhase + blob.x * 0.1) % 360;
+                    gradient.addColorStop(0, `hsla(${hue}, 70%, 60%, ${blob.opacity})`);
+                    gradient.addColorStop(1, `hsla(${hue}, 70%, 60%, 0)`);
+                    
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.fill();
+                });
+                
+                this.drawMetaballs();
+            }
+
+            drawMetaballs() {
+                const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                const data = imageData.data;
+                
+                for (let y = 0; y < this.canvas.height; y += 4) {
+                    for (let x = 0; x < this.canvas.width; x += 4) {
+                        let sum = 0;
+                        
+                        this.blobs.forEach(blob => {
+                            const distance = Math.sqrt((x - blob.x) ** 2 + (y - blob.y) ** 2);
+                            if (distance < blob.radius) {
+                                sum += (blob.radius - distance) / blob.radius;
+                            }
+                        });
+                        
+                        if (sum > 0.5) {
+                            const index = (y * this.canvas.width + x) * 4;
+                            data[index] = 0;
+                            data[index + 1] = 145;
+                            data[index + 2] = 255;
+                            data[index + 3] = Math.min(255, sum * 100);
+                        }
+                    }
+                }
+                
+                this.ctx.putImageData(imageData, 0, 0);
+            }
+
+            startAnimation() {
+                const animate = () => {
+                    this.time += 0.016;
+                    this.colorPhase += 0.5;
+                    
+                    this.updateBlobs();
+                    this.drawBlobs();
+                    
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new LiquidHero();
+        });
+    </script>
+</body>
+</html>

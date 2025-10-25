@@ -1,0 +1,684 @@
+<div class="defcon-hero-container">
+  <!-- Particle Canvas -->
+  <canvas class="defcon-particle-canvas"></canvas>
+  
+  <!-- Parallax Background Elements -->
+  <div class="defcon-parallax-layer defcon-parallax-layer-1"></div>
+  <div class="defcon-parallax-layer defcon-parallax-layer-2"></div>
+  <div class="defcon-parallax-layer defcon-parallax-layer-3"></div>
+  
+  <!-- Content -->
+  <div class="defcon-hero-content">
+    <h1 class="defcon-headline">Innovative <span class="defcon-headline-accent">Tech</span> Solutions</h1>
+    <p class="defcon-subheadline">Connecting your business to the future with cutting-edge IT infrastructure and web solutions</p>
+    <button class="defcon-cta-button">Explore Our Services</button>
+  </div>
+  
+  <!-- Service Icons -->
+  <div class="defcon-service-icons-container">
+    <div class="defcon-service-icon" data-service="web-design">
+      <div class="defcon-service-icon-inner">
+        <svg class="defcon-service-icon-svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+        <span class="defcon-service-icon-label">Web Design</span>
+      </div>
+    </div>
+    
+    <div class="defcon-service-icon" data-service="tech-support">
+      <div class="defcon-service-icon-inner">
+        <svg class="defcon-service-icon-svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z"/>
+        </svg>
+        <span class="defcon-service-icon-label">Tech Support</span>
+      </div>
+    </div>
+    
+    <div class="defcon-service-icon" data-service="it-consulting">
+      <div class="defcon-service-icon-inner">
+        <svg class="defcon-service-icon-svg" viewBox="0 0 24 24">
+          <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+        </svg>
+        <span class="defcon-service-icon-label">IT Consulting</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Service Modal -->
+  <div class="defcon-service-modal">
+    <div class="defcon-service-modal-content">
+      <button class="defcon-service-modal-close">&times;</button>
+      <h3 class="defcon-service-modal-title">Service Title</h3>
+      <div class="defcon-service-modal-video">
+        <!-- Placeholder for video embed -->
+        <div class="defcon-service-modal-video-placeholder"></div>
+      </div>
+      <p class="defcon-service-modal-description">Service description will appear here with detailed information about what we offer.</p>
+      <button class="defcon-service-modal-cta">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base Styles */
+  .defcon-hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 1200px;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .defcon-particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Parallax Layers */
+  .defcon-parallax-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1;
+    z-index: 2;
+  }
+  
+  .defcon-parallax-layer-1 {
+    background-image: url('https://via.placeholder.com/800x600/e5e5e5/e5e5e5?text=DEFCON');
+    background-size: 80%;
+    transform: translateZ(-3px) scale(1.3);
+  }
+  
+  .defcon-parallax-layer-2 {
+    background-image: url('https://via.placeholder.com/800x600/06273e/06273e?text=+');
+    background-size: 60%;
+    transform: translateZ(-2px) scale(1.2);
+  }
+  
+  .defcon-parallax-layer-3 {
+    background-image: url('https://via.placeholder.com/800x600/e5e5e5/e5e5e5?text=+');
+    background-size: 40%;
+    transform: translateZ(-1px) scale(1.1);
+  }
+  
+  /* Content Styles */
+  .defcon-hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: defconFadeUp 1s ease-out 0.3s forwards;
+  }
+  
+  .defcon-headline {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    transform: scale(0.95);
+    animation: defconScaleUp 0.8s ease-out 0.8s forwards;
+  }
+  
+  .defcon-headline-accent {
+    color: #0091ff;
+  }
+  
+  .defcon-subheadline {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: defconFadeUp 0.8s ease-out 1s forwards;
+  }
+  
+  .defcon-cta-button {
+    background-color: #0091ff;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+    opacity: 0;
+    animation: defconFadeUp 0.8s ease-out 1.2s forwards;
+  }
+  
+  .defcon-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+  }
+  
+  .defcon-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 145, 255, 0.5);
+  }
+  
+  .defcon-cta-button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  /* Service Icons */
+  .defcon-service-icons-container {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 5;
+    flex-wrap: wrap;
+  }
+  
+  .defcon-service-icon {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .defcon-service-icon-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(6, 39, 62, 0.15);
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+  
+  .defcon-service-icon:hover .defcon-service-icon-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .defcon-service-icon-svg {
+    width: 40px;
+    height: 40px;
+    fill: #0091ff;
+    margin-bottom: 5px;
+  }
+  
+  .defcon-service-icon-label {
+    font-size: 0.9rem;
+    color: #06273e;
+    font-weight: 600;
+  }
+  
+  /* Service Modal */
+  .defcon-service-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .defcon-service-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .defcon-service-modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    border-radius: 8px;
+    position: relative;
+    transform: translateY(50px);
+    transition: transform 0.3s ease;
+  }
+  
+  .defcon-service-modal.active .defcon-service-modal-content {
+    transform: translateY(0);
+  }
+  
+  .defcon-service-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #06273e;
+  }
+  
+  .defcon-service-modal-title {
+    color: #0091ff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .defcon-service-modal-video {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #e5e5e5;
+  }
+  
+  .defcon-service-modal-video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #06273e;
+    font-size: 1.2rem;
+  }
+  
+  .defcon-service-modal-description {
+    color: #06273e;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .defcon-service-modal-cta {
+    background-color: #0091ff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .defcon-service-modal-cta:hover {
+    background-color: #0077cc;
+    transform: translateY(-2px);
+  }
+  
+  /* Animations */
+  @keyframes defconFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes defconScaleUp {
+    from {
+      transform: scale(0.95);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .defcon-hero-container {
+      min-height: 800px;
+      height: auto;
+      padding-bottom: 150px;
+    }
+    
+    .defcon-headline {
+      font-size: 2.5rem;
+    }
+    
+    .defcon-subheadline {
+      font-size: 1.2rem;
+    }
+    
+    .defcon-service-icons-container {
+      position: relative;
+      bottom: auto;
+      margin-top: 60px;
+      gap: 20px;
+    }
+    
+    .defcon-service-icon {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .defcon-service-icon-svg {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .defcon-service-icon-label {
+      font-size: 0.8rem;
+    }
+    
+    .defcon-parallax-layer-1,
+    .defcon-parallax-layer-2,
+    .defcon-parallax-layer-3 {
+      opacity: 0.05;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .defcon-hero-content {
+      padding: 20px;
+    }
+    
+    .defcon-headline {
+      font-size: 2rem;
+    }
+    
+    .defcon-subheadline {
+      font-size: 1rem;
+    }
+    
+    .defcon-cta-button {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+    
+    .defcon-service-icons-container {
+      gap: 10px;
+    }
+    
+    .defcon-service-icon {
+      width: 70px;
+      height: 70px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Particle System
+    const canvas = document.querySelector('.defcon-particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = window.innerWidth < 768 ? 60 : 120;
+    const mouse = { x: null, y: null, radius: 100 };
+    
+    // Set canvas size
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 30) + 1;
+        this.color = '#0091ff';
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      
+      update() {
+        // Mouse collision detection
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let maxDistance = mouse.radius;
+        let force = (maxDistance - distance) / maxDistance;
+        let directionX = forceDirectionX * force * this.density * 0.6;
+        let directionY = forceDirectionY * force * this.density * 0.6;
+        
+        if (distance < mouse.radius) {
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          if (this.x !== this.baseX) {
+            let dx = this.x - this.baseX;
+            this.x -= dx / 10;
+          }
+          if (this.y !== this.baseY) {
+            let dy = this.y - this.baseY;
+            this.y -= dy / 10;
+          }
+        }
+        
+        // Draw lines between close particles
+        for (let i = 0; i < particles.length; i++) {
+          let dx = this.x - particles[i].x;
+          let dy = this.y - particles[i].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#0091ff';
+            ctx.lineWidth = 0.3;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(particles[i].x, particles[i].y);
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+      }
+    }
+    
+    // Initialize particles
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].draw();
+        particles[i].update();
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    initParticles();
+    animate();
+    
+    // Mouse movement tracking
+    window.addEventListener('mousemove', function(event) {
+      mouse.x = event.x;
+      mouse.y = event.y;
+    });
+    
+    // Touch movement tracking for mobile
+    window.addEventListener('touchmove', function(event) {
+      event.preventDefault();
+      mouse.x = event.touches[0].clientX;
+      mouse.y = event.touches[0].clientY;
+    });
+    
+    // Reset mouse position when leaving canvas
+    window.addEventListener('mouseout', function() {
+      mouse.x = null;
+      mouse.y = null;
+    });
+    
+    // Service Icons Interaction
+    const serviceIcons = document.querySelectorAll('.defcon-service-icon');
+    const serviceModal = document.querySelector('.defcon-service-modal');
+    const modalClose = document.querySelector('.defcon-service-modal-close');
+    const modalTitle = document.querySelector('.defcon-service-modal-title');
+    const modalDescription = document.querySelector('.defcon-service-modal-description');
+    
+    // Service data
+    const services = {
+      'web-design': {
+        title: 'Web Design',
+        description: 'Our expert web design team creates stunning, responsive websites that captivate your audience and drive conversions. We combine aesthetics with functionality to deliver exceptional user experiences.',
+        video: 'https://example.com/web-design-video'
+      },
+      'tech-support': {
+        title: 'Tech Support',
+        description: '24/7 professional technical support to keep your systems running smoothly. Our certified technicians provide quick resolutions to minimize downtime and maximize productivity.',
+        video: 'https://example.com/tech-support-video'
+      },
+      'it-consulting': {
+        title: 'IT Consulting',
+        description: 'Strategic IT consulting services to align your technology with business goals. We analyze, plan, and implement solutions that give you a competitive edge in your industry.',
+        video: 'https://example.com/it-consulting-video'
+      }
+    };
+    
+    // Open modal when service icon is clicked
+    serviceIcons.forEach(icon => {
+      icon.addEventListener('click', function() {
+        const service = this.getAttribute('data-service');
+        const serviceData = services[service];
+        
+        modalTitle.textContent = serviceData.title;
+        modalDescription.textContent = serviceData.description;
+        // In a real implementation, you would load the video here
+        // document.querySelector('.defcon-service-modal-video-placeholder').innerHTML = `<iframe src="${serviceData.video}" frameborder="0" allowfullscreen></iframe>`;
+        
+        serviceModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close modal
+    modalClose.addEventListener('click', function() {
+      serviceModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Magnetic effect for service icons
+    serviceIcons.forEach(icon => {
+      icon.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(20px)`;
+        this.style.transition = 'transform 0.1s ease';
+      });
+      
+      icon.addEventListener('mouseleave', function() {
+        this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        this.style.transition = 'transform 0.5s ease';
+      });
+    });
+    
+    // Parallax effect
+    const parallaxLayers = document.querySelectorAll('[class*="defcon-parallax-layer"]');
+    
+    window.addEventListener('mousemove', function(e) {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      parallaxLayers.forEach((layer, index) => {
+        const speed = (index + 1) * 0.5;
+        const xPos = x * speed * 100;
+        const yPos = y * speed * 100;
+        
+        layer.style.transform = `translate(calc(-50% + ${xPos}px), calc(-50% + ${yPos}px))`;
+      });
+    });
+    
+    // Mobile touch handling for particles
+    if ('ontouchstart' in window) {
+      // Reduce particle count for mobile
+      initParticles();
+      
+      // Handle swipe gestures
+      let touchStartX = 0;
+      let touchStartY = 0;
+      
+      window.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      });
+      
+      window.addEventListener('touchend', function(e) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        
+        // Apply swipe momentum to particles
+        particles.forEach(particle => {
+          particle.x -= diffX * 0.1;
+          particle.y -= diffY * 0.1;
+        });
+      });
+    }
+  });
+</script>

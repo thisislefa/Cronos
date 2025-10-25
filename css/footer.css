@@ -1,0 +1,194 @@
+ /* * CUSTOM FOOTER STYLES
+         * All class names are prefixed with 'pc-footer-' to prevent conflicts 
+         * with your existing codebase.
+        */
+
+        /* Main container for the footer */
+        .pc-footer-container {
+            font-family: 'Inter', sans-serif;
+            background-color: #03121e; /* Dark navy background from the image */
+            color: #a8b2d1; /* A light grayish-blue for the text */
+            width: 100%;
+            padding: 5rem 0; /* Padding for smaller screens */
+            box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+        }
+
+        .image-logo {
+          height: 30px;
+          align-items: center;
+          align-self: center;
+          vertical-align: middle;
+          cursor: pointer;
+        }
+
+        /* Inner wrapper to control max-width and centering */
+        .pc-footer-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.2rem;
+        }
+
+        /* Top section: logo, line, and icons */
+        .pc-footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        /* The decorative line between logo and icons */
+        .pc-footer-line {
+            flex-grow: 1; /* Allows the line to fill available space */
+            height: 1px;
+            background-color: #303c55; /* A subtle border color */
+            min-width: 50px; /* Ensures line is visible even on small screens */
+            border: none; /* Reset default hr border */
+        }
+
+        /* Container for social media icons */
+        .pc-footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* Space between icons */
+        }
+
+        /* Individual social icon link */
+        .pc-footer-social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 1px solid #0091ff;
+            border-radius: 9999px; /* Makes it a perfect circle */
+            color: #0091ff;
+            transition: background-color 0s ease, color 0s ease;
+            text-decoration: none;
+        }
+        .pc-footer-social-link:hover {
+            background-color: #0091ff;
+            color: #0a192f; /* Dark navy for the icon on hover */
+        }
+        .pc-footer-social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Middle content section with paragraphs */
+        .pc-footer-content {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .pc-footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Bottom section with copyright */
+        .pc-footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #0091ff; /* Cyan color */
+        }
+        .pc-footer-bottom span {
+            flex-shrink: 0; /* Prevents text from shrinking */
+        }
+        
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .pc-footer-top {
+                justify-content: center; /* Center items on mobile */
+                flex-direction: column; /* Stack items vertically */
+            }
+            .pc-footer-line {
+                display: none; /* Hide the long line on mobile */
+            }
+            .pc-footer-bottom {
+                justify-content: center; /* Center copyright on mobile */
+            }
+
+            .pc-footer-content {
+              padding: 2rem;
+            }
+        }
+
+        /* From Uiverse.io by _7754 */ 
+        .container {
+          display: flex;
+          column-gap: 18px;
+          padding: 0;
+          margin: 0;
+        }
+
+        .icon {
+          display: inline-flex;
+          width: 35px;
+          height: 35px;
+          text-decoration: none;
+          font-size: 15px;
+          outline: 1.7px solid #ffffff;
+          border-radius: 50%;
+          transition-property: outline-offset, outline-color, background-color;
+          transition-duration: 0.25s;
+          color: #ffffff;
+        }
+
+        .icon:hover {
+          outline-offset: 4px;
+          color: white;
+        }
+
+        .icon svg {
+          margin: auto;
+          width: 19px;
+        }
+
+        .icon-instagram:hover {
+          background-color: red;
+          outline-color: red;
+        }
+
+        .icon-dis:hover {
+          background-color: rgb(76, 0, 255);
+          outline-color: rgb(76, 0, 255);
+        }
+
+        .icon-github:hover {
+          background-color: #302f2f;
+          outline-color: #302f2f;
+        }
+
+        .icon-in:hover {
+          background-color: #0a66c2;
+          outline-color: #0a66c2;
+        }
+
+        .icon-twitter:hover {
+          background-color: #000000;
+          outline-color: #000000;
+        }
+
+        .icon-facebook:hover {
+          background-color: #1877f2;
+          outline-color: #1877f2;
+        }
+
+        .icon:hover svg {
+          animation: shake 0.25s;
+        }
+
+        @keyframes shake {
+          10% {
+            transform: rotate(15deg);
+          }
+          20% {
+            transform: rotate(-15deg);
+          }
+        }

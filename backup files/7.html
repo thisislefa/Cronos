@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Hero</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: #0a0a12;
+            color: #00fffc;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .cyber-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 80, 120, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(120, 0, 80, 0.15) 0%, transparent 30%),
+                linear-gradient(to bottom, #0a0a12 0%, #121225 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            perspective: 1000px;
+        }
+        
+        .digital-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 252, 0) 0px,
+                rgba(0, 255, 252, 0) 3px,
+                rgba(0, 255, 252, 0.03) 4px,
+                rgba(0, 255, 252, 0.03) 5px
+            );
+            animation: rainAnimation 0.8s linear infinite;
+        }
+        
+        .hero-card {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(10, 15, 30, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 252, 0.2);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 252, 0.1),
+                inset 0 0 20px rgba(0, 255, 252, 0.1);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 255, 252, 0) 45%,
+                rgba(0, 255, 252, 0.1) 50%,
+                rgba(0, 255, 252, 0) 55%
+            );
+            transform: rotate(30deg);
+            animation: holographicEffect 6s linear infinite;
+            z-index: -1;
+        }
+        
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            border: 1px solid transparent;
+            background: linear-gradient(45deg, #00fffc, #ff00f7) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .glitch-headline {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 
+                0 0 10px #00fffc,
+                0 0 20px rgba(0, 255, 252, 0.5);
+            animation: glitchEffect 5s infinite alternate;
+        }
+        
+        .glitch-headline span {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .glitch-headline span::before,
+        .glitch-headline span::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 30, 0.8);
+        }
+        
+        .glitch-headline span::before {
+            color: #ff00f7;
+            z-index: -1;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch-headline span::after {
+            color: #00fffc;
+            z-index: -2;
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        
+        .cyber-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 30px;
+            color: #a0f0ff;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+        
+        .cyber-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00fffc, #0084ff);
+            border: none;
+            border-radius: 50px;
+            color: #0a0a12;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 252, 0.5),
+                0 0 30px rgba(0, 132, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 252, 0.8),
+                0 0 40px rgba(0, 132, 255, 0.5);
+            animation: pulse 1s infinite alternate;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff00f7, #00fffc);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cyber-button:hover::before {
+            opacity: 1;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 252, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 252, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 255, 252, 0) 0%,
+                rgba(0, 255, 252, 0.2) 50%,
+                rgba(0, 255, 252, 0) 100%
+            );
+            animation: scanline 4s linear infinite;
+            z-index: 4;
+        }
+        
+        @keyframes rainAnimation {
+            from { background-position: 0 0; }
+            to { background-position: 0 20px; }
+        }
+        
+        @keyframes holographicEffect {
+            from { transform: rotate(30deg) translateY(-100%); }
+            to { transform: rotate(30deg) translateY(100%); }
+        }
+        
+        @keyframes glitchEffect {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { transform: translate(0); opacity: 1; }
+            20% { transform: translate(-5px, -5px); opacity: 0.8; }
+            40% { transform: translate(-5px, 5px); opacity: 0.6; }
+            60% { transform: translate(5px, -5px); opacity: 0.4; }
+            80% { transform: translate(5px, 5px); opacity: 0.2; }
+            100% { transform: translate(0); opacity: 0; }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { transform: translate(0); opacity: 1; }
+            20% { transform: translate(5px, 5px); opacity: 0.8; }
+            40% { transform: translate(5px, -5px); opacity: 0.6; }
+            60% { transform: translate(-5px, 5px); opacity: 0.4; }
+            80% { transform: translate(-5px, -5px); opacity: 0.2; }
+            100% { transform: translate(0); opacity: 0; }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            from { box-shadow: 0 0 25px rgba(0, 255, 252, 0.8), 0 0 40px rgba(0, 132, 255, 0.5); }
+            to { box-shadow: 0 0 35px rgba(0, 255, 252, 1), 0 0 50px rgba(0, 132, 255, 0.8); }
+        }
+        
+        @keyframes scanline {
+            from { top: -10px; }
+            to { top: 100%; }
+        }
+        
+        /* 3D card tilt effect */
+        .hero-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-card {
+                padding: 30px 20px;
+            }
+            
+            .glitch-headline {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="cyber-hero">
+        <div class="digital-rain"></div>
+        <div class="grid-overlay"></div>
+        <div class="scanline"></div>
+        
+        <div class="hero-card">
+            <h1 class="glitch-headline">
+                <span data-text="SYSTEMS">SYSTEMS</span> <span data-text="ONLINE">ONLINE</span>
+            </h1>
+            <p class="cyber-subtitle">
+                Access granted to next-generation digital experiences.<br>
+                Security protocols engaged. All systems operational.
+            </p>
+            <a href="#" class="cyber-button">Engage Systems</a>
+        </div>
+    </section>
+    
+    <script>
+        // 3D tilt effect for the card
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.hero-card');
+            
+            if (card) {
+                card.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                    card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+                
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'transform 0.1s ease';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transition = 'transform 0.5s ease';
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                });
+            }
+            
+            // Random glitch effect
+            setInterval(() => {
+                const glitch = document.querySelector('.glitch-headline');
+                if (glitch) {
+                    glitch.style.animation = 'none';
+                    void glitch.offsetWidth; // Trigger reflow
+                    glitch.style.animation = 'glitchEffect 5s infinite alternate';
+                }
+            }, 8000);
+        });
+    </script>
+</body>
+</html>

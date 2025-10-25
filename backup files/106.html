@@ -1,0 +1,838 @@
+<style>
+  /* Container Styles */
+  .defcon-timeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    background-color: #ffffff;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .defcon-timeline-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .defcon-timeline-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 1rem;
+  }
+
+  .defcon-timeline-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #06273e;
+    opacity: 0.8;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Timeline Structure */
+  .defcon-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .defcon-timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #e5e5e5;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .defcon-timeline-progress {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    background-color: #0091ff;
+    transform: translateX(-50%);
+    z-index: 2;
+    height: 0;
+    transition: height 0.5s ease;
+  }
+
+  /* Timeline Items */
+  .defcon-timeline-item {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 60px;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+
+  .defcon-timeline-item.defcon-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .defcon-timeline-item-left {
+    margin-right: auto;
+    padding-right: 60px;
+  }
+
+  .defcon-timeline-item-right {
+    margin-left: auto;
+    padding-left: 60px;
+  }
+
+  /* Timeline Markers */
+  .defcon-timeline-marker {
+    position: absolute;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 4px solid #0091ff;
+    box-shadow: 0 0 0 6px rgba(0, 145, 255, 0.2);
+    z-index: 4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .defcon-timeline-item-left .defcon-timeline-marker {
+    right: -12px;
+  }
+
+  .defcon-timeline-item-right .defcon-timeline-marker {
+    left: -12px;
+  }
+
+  .defcon-timeline-marker:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 8px rgba(0, 145, 255, 0.3);
+  }
+
+  .defcon-timeline-marker-active {
+    background-color: #0091ff;
+    box-shadow: 0 0 0 8px rgba(0, 145, 255, 0.3);
+  }
+
+  .defcon-timeline-marker-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 145, 255, 0.4);
+    animation: defconPulse 2s infinite;
+    z-index: -1;
+  }
+
+  @keyframes defconPulse {
+    0% { transform: scale(0.8); opacity: 0.7; }
+    70% { transform: scale(1.3); opacity: 0; }
+    100% { transform: scale(0.8); opacity: 0; }
+  }
+
+  /* Timeline Content */
+  .defcon-timeline-content {
+    position: relative;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(6, 39, 62, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .defcon-timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(6, 39, 62, 0.15);
+  }
+
+  .defcon-timeline-date {
+    position: absolute;
+    top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0091ff;
+  }
+
+  .defcon-timeline-item-left .defcon-timeline-date {
+    right: 25px;
+  }
+
+  .defcon-timeline-item-right .defcon-timeline-date {
+    left: 25px;
+  }
+
+  .defcon-timeline-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 10px;
+    padding-top: 5px;
+  }
+
+  .defcon-timeline-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #06273e;
+    opacity: 0.8;
+    margin-bottom: 15px;
+  }
+
+  .defcon-timeline-readmore {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0091ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-timeline-readmore:hover {
+    color: #0065b3;
+    text-decoration: underline;
+  }
+
+  /* Expanded Panel */
+  .defcon-timeline-expanded {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background-color: #f8fafc;
+    margin-top: -15px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .defcon-timeline-expanded-content {
+    padding: 20px;
+  }
+
+  .defcon-timeline-expanded-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #06273e;
+    margin-bottom: 20px;
+  }
+
+  .defcon-timeline-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .defcon-timeline-gallery-item {
+    aspect-ratio: 1;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .defcon-timeline-gallery-item:hover {
+    transform: scale(1.03);
+  }
+
+  .defcon-timeline-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Floating Date Label */
+  .defcon-timeline-floating-date {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8px 15px;
+    background-color: #06273e;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    transition: opacity 0.3s ease;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  .defcon-timeline-floating-date::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #06273e;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* Modal Styles */
+  .defcon-timeline-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 39, 62, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .defcon-timeline-modal-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .defcon-timeline-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: auto;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .defcon-timeline-modal-active .defcon-timeline-modal-content {
+    transform: translateY(0);
+  }
+
+  .defcon-timeline-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: #06273e;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-timeline-modal-close:hover {
+    background-color: #0091ff;
+    transform: rotate(90deg);
+  }
+
+  .defcon-timeline-modal-header {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .defcon-timeline-modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .defcon-timeline-modal-body {
+    padding: 30px;
+  }
+
+  .defcon-timeline-modal-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 15px;
+  }
+
+  .defcon-timeline-modal-date {
+    font-size: 1rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .defcon-timeline-modal-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #06273e;
+    margin-bottom: 25px;
+  }
+
+  .defcon-timeline-modal-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #e5e5e5;
+    margin-bottom: 25px;
+  }
+
+  /* Category Filters */
+  .defcon-timeline-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .defcon-timeline-filter {
+    padding: 8px 20px;
+    background-color: #ffffff;
+    border: 2px solid #e5e5e5;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #06273e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-timeline-filter:hover {
+    border-color: #0091ff;
+    color: #0091ff;
+  }
+
+  .defcon-timeline-filter-active {
+    background-color: #0091ff;
+    border-color: #0091ff;
+    color: #ffffff;
+  }
+
+  /* Particle Effects */
+  .defcon-timeline-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 145, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-timeline-line,
+    .defcon-timeline-progress {
+      left: 20px;
+    }
+
+    .defcon-timeline-item {
+      width: calc(100% - 40px);
+      margin-left: 40px;
+      padding-right: 0 !important;
+      padding-left: 30px !important;
+    }
+
+    .defcon-timeline-marker {
+      left: -16px !important;
+      right: auto !important;
+    }
+
+    .defcon-timeline-date {
+      left: 25px !important;
+      right: auto !important;
+    }
+
+    .defcon-timeline-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .defcon-timeline-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .defcon-timeline-modal-header {
+      height: 200px;
+    }
+  }
+</style>
+
+<div class="defcon-timeline-container">
+  <div class="defcon-timeline-header">
+    <h2 class="defcon-timeline-title">Our Journey</h2>
+    <p class="defcon-timeline-subtitle">Explore the key milestones that shaped our success and innovation</p>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="defcon-timeline-filters">
+    <div class="defcon-timeline-filter defcon-timeline-filter-active" data-category="all">All</div>
+    <div class="defcon-timeline-filter" data-category="development">Development</div>
+    <div class="defcon-timeline-filter" data-category="design">Design</div>
+    <div class="defcon-timeline-filter" data-category="strategy">Strategy</div>
+  </div>
+
+  <!-- Timeline Structure -->
+  <div class="defcon-timeline">
+    <div class="defcon-timeline-line"></div>
+    <div class="defcon-timeline-progress"></div>
+
+    <!-- Floating Date Label -->
+    <div class="defcon-timeline-floating-date"></div>
+
+    <!-- Timeline Items -->
+    <div class="defcon-timeline-item defcon-timeline-item-left" data-date="January 2023" data-category="development">
+      <div class="defcon-timeline-marker">
+        <div class="defcon-timeline-marker-pulse"></div>
+      </div>
+      <div class="defcon-timeline-content">
+        <div class="defcon-timeline-date">January 2023</div>
+        <h3 class="defcon-timeline-title">Platform Launch</h3>
+        <p class="defcon-timeline-description">Successfully launched our flagship product with groundbreaking features that revolutionized the industry.</p>
+        <a href="#" class="defcon-timeline-readmore">Read more</a>
+        <div class="defcon-timeline-expanded">
+          <div class="defcon-timeline-expanded-content">
+            <p class="defcon-timeline-expanded-text">Our team worked tirelessly to develop a platform that addresses core industry challenges. The launch event attracted over 500 attendees and generated significant media coverage.</p>
+            <div class="defcon-timeline-gallery">
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image1.jpg" alt="Event photo" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image2.jpg" alt="Product screenshot" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image3.jpg" alt="Team photo" class="defcon-timeline-gallery-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defcon-timeline-item defcon-timeline-item-right" data-date="March 2023" data-category="design">
+      <div class="defcon-timeline-marker">
+        <div class="defcon-timeline-marker-pulse"></div>
+      </div>
+      <div class="defcon-timeline-content">
+        <div class="defcon-timeline-date">March 2023</div>
+        <h3 class="defcon-timeline-title">UI/UX Overhaul</h3>
+        <p class="defcon-timeline-description">Complete redesign of our user interface based on extensive customer feedback and usability testing.</p>
+        <a href="#" class="defcon-timeline-readmore">Read more</a>
+        <div class="defcon-timeline-expanded">
+          <div class="defcon-timeline-expanded-content">
+            <p class="defcon-timeline-expanded-text">The redesign focused on simplifying complex workflows and improving accessibility. Our new design system increased user engagement by 42% and reduced support requests by 35%.</p>
+            <div class="defcon-timeline-gallery">
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image4.jpg" alt="Before design" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image5.jpg" alt="After design" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image6.jpg" alt="Design process" class="defcon-timeline-gallery-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defcon-timeline-item defcon-timeline-item-left" data-date="June 2023" data-category="strategy">
+      <div class="defcon-timeline-marker">
+        <div class="defcon-timeline-marker-pulse"></div>
+      </div>
+      <div class="defcon-timeline-content">
+        <div class="defcon-timeline-date">June 2023</div>
+        <h3 class="defcon-timeline-title">Market Expansion</h3>
+        <p class="defcon-timeline-description">Successfully entered three new international markets with localized solutions.</p>
+        <a href="#" class="defcon-timeline-readmore">Read more</a>
+        <div class="defcon-timeline-expanded">
+          <div class="defcon-timeline-expanded-content">
+            <p class="defcon-timeline-expanded-text">Our strategic expansion into Europe and Asia required careful planning and cultural adaptation. We established local partnerships and customized our offerings for each region, resulting in 120% growth in international revenue.</p>
+            <div class="defcon-timeline-gallery">
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image7.jpg" alt="International office" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image8.jpg" alt="Team meeting" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image9.jpg" alt="Market data" class="defcon-timeline-gallery-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defcon-timeline-item defcon-timeline-item-right" data-date="September 2023" data-category="development">
+      <div class="defcon-timeline-marker">
+        <div class="defcon-timeline-marker-pulse"></div>
+      </div>
+      <div class="defcon-timeline-content">
+        <div class="defcon-timeline-date">September 2023</div>
+        <h3 class="defcon-timeline-title">AI Integration</h3>
+        <p class="defcon-timeline-description">Implemented advanced machine learning algorithms to enhance platform capabilities.</p>
+        <a href="#" class="defcon-timeline-readmore">Read more</a>
+        <div class="defcon-timeline-expanded">
+          <div class="defcon-timeline-expanded-content">
+            <p class="defcon-timeline-expanded-text">Our AI integration reduced processing times by 78% and improved prediction accuracy to industry-leading levels. The technology was awarded "Innovation of the Year" by TechForward magazine.</p>
+            <div class="defcon-timeline-gallery">
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image10.jpg" alt="AI interface" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image11.jpg" alt="Award ceremony" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image12.jpg" alt="Development team" class="defcon-timeline-gallery-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defcon-timeline-item defcon-timeline-item-left" data-date="December 2023" data-category="design">
+      <div class="defcon-timeline-marker">
+        <div class="defcon-timeline-marker-pulse"></div>
+      </div>
+      <div class="defcon-timeline-content">
+        <div class="defcon-timeline-date">December 2023</div>
+        <h3 class="defcon-timeline-title">Brand Refresh</h3>
+        <p class="defcon-timeline-description">Updated our visual identity to better reflect our evolved company vision.</p>
+        <a href="#" class="defcon-timeline-readmore">Read more</a>
+        <div class="defcon-timeline-expanded">
+          <div class="defcon-timeline-expanded-content">
+            <p class="defcon-timeline-expanded-text">The rebranding included a new logo, color palette, and messaging framework. Our research showed a 65% improvement in brand recognition and a 40% increase in positive sentiment among target audiences.</p>
+            <div class="defcon-timeline-gallery">
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image13.jpg" alt="Old branding" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image14.jpg" alt="New branding" class="defcon-timeline-gallery-img">
+              </div>
+              <div class="defcon-timeline-gallery-item">
+                <img src="https://example.com/placeholder-image15.jpg" alt="Brand guidelines" class="defcon-timeline-gallery-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div class="defcon-timeline-modal">
+  <div class="defcon-timeline-modal-content">
+    <button class="defcon-timeline-modal-close">&times;</button>
+    <div class="defcon-timeline-modal-header">
+      <img src="https://example.com/placeholder-modal.jpg" alt="Modal header image" class="defcon-timeline-modal-img">
+    </div>
+    <div class="defcon-timeline-modal-body">
+      <h3 class="defcon-timeline-modal-title">Modal Title</h3>
+      <div class="defcon-timeline-modal-date">January 2023</div>
+      <p class="defcon-timeline-modal-text">Detailed modal content will be loaded here dynamically when a timeline item is clicked.</p>
+      <div class="defcon-timeline-modal-video">
+        <!-- Video placeholder -->
+      </div>
+      <p class="defcon-timeline-modal-text">Additional content and media can be displayed here in the expanded modal view.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    const timelineItems = document.querySelectorAll('.defcon-timeline-item');
+    const markers = document.querySelectorAll('.defcon-timeline-marker');
+    const expandedPanels = document.querySelectorAll('.defcon-timeline-expanded');
+    const readMoreLinks = document.querySelectorAll('.defcon-timeline-readmore');
+    const timelineLine = document.querySelector('.defcon-timeline-line');
+    const progressLine = document.querySelector('.defcon-timeline-progress');
+    const floatingDate = document.querySelector('.defcon-timeline-floating-date');
+    const modal = document.querySelector('.defcon-timeline-modal');
+    const modalClose = document.querySelector('.defcon-timeline-modal-close');
+    const modalTitle = document.querySelector('.defcon-timeline-modal-title');
+    const modalDate = document.querySelector('.defcon-timeline-modal-date');
+    const modalText = document.querySelector('.defcon-timeline-modal-text');
+    const modalHeader = document.querySelector('.defcon-timeline-modal-header');
+    const filters = document.querySelectorAll('.defcon-timeline-filter');
+    let activeMarker = null;
+    
+    // Create particles along the timeline
+    function createParticles() {
+      const timelineHeight = timelineLine.offsetHeight;
+      const particleCount = Math.floor(timelineHeight / 20);
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'defcon-timeline-particle';
+        particle.style.top = `${(i / particleCount) * 100}%`;
+        particle.style.left = '50%';
+        particle.style.transform = 'translateX(-50%)';
+        timelineLine.appendChild(particle);
+      }
+    }
+    
+    createParticles();
+    
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('defcon-visible');
+          
+          // Animate the progress line
+          const timelineHeight = timelineLine.offsetHeight;
+          const itemTop = entry.target.offsetTop;
+          const progress = (itemTop / timelineHeight) * 100;
+          progressLine.style.height = `${progress}%`;
+          
+          // Show particles near visible items
+          const particles = document.querySelectorAll('.defcon-timeline-particle');
+          particles.forEach(particle => {
+            const particlePos = parseFloat(particle.style.top);
+            const itemPos = (itemTop / timelineHeight) * 100;
+            
+            if (Math.abs(particlePos - itemPos) < 10) {
+              particle.style.opacity = '1';
+              setTimeout(() => {
+                particle.style.opacity = '0';
+              }, 1000);
+            }
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    timelineItems.forEach(item => {
+      observer.observe(item);
+    });
+    
+    // Marker hover effects
+    markers.forEach(marker => {
+      marker.addEventListener('mouseenter', function() {
+        if (activeMarker !== this) {
+          this.classList.add('defcon-timeline-marker-active');
+          const pulse = this.querySelector('.defcon-timeline-marker-pulse');
+          pulse.style.animation = 'defconPulse 1s infinite';
+          
+          // Show floating date
+          const item = this.closest('.defcon-timeline-item');
+          const date = item.getAttribute('data-date');
+          floatingDate.textContent = date;
+          floatingDate.style.opacity = '1';
+        }
+      });
+      
+      marker.addEventListener('mouseleave', function() {
+        if (activeMarker !== this) {
+          this.classList.remove('defcon-timeline-marker-active');
+          const pulse = this.querySelector('.defcon-timeline-marker-pulse');
+          pulse.style.animation = '';
+          
+          // Hide floating date
+          floatingDate.style.opacity = '0';
+        }
+      });
+      
+      marker.addEventListener('click', function() {
+        // Close any currently open expanded panel
+        if (activeMarker) {
+          const currentlyExpanded = activeMarker.closest('.defcon-timeline-item').querySelector('.defcon-timeline-expanded');
+          currentlyExpanded.style.maxHeight = '0';
+          activeMarker.classList.remove('defcon-timeline-marker-active');
+        }
+        
+        // Open the clicked item
+        const item = this.closest('.defcon-timeline-item');
+        const expandedPanel = item.querySelector('.defcon-timeline-expanded');
+        
+        if (activeMarker === this) {
+          // Clicking the same marker closes it
+          expandedPanel.style.maxHeight = '0';
+          activeMarker = null;
+        } else {
+          // Open new panel
+          expandedPanel.style.maxHeight = expandedPanel.scrollHeight + 'px';
+          this.classList.add('defcon-timeline-marker-active');
+          activeMarker = this;
+          
+          // Scroll to center the item
+          item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+    
+    // Read more links (opens modal)
+    readMoreLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const item = this.closest('.defcon-timeline-item');
+        const title = item.querySelector('.defcon-timeline-title').textContent;
+        const date = item.getAttribute('data-date');
+        const description = item.querySelector('.defcon-timeline-description').textContent;
+        const expandedText = item.querySelector('.defcon-timeline-expanded-text').textContent;
+        
+        // Update modal content
+        modalTitle.textContent = title;
+        modalDate.textContent = date;
+        modalText.textContent = expandedText;
+        
+        // Show modal
+        modal.classList.add('defcon-timeline-modal-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close modal
+    modalClose.addEventListener('click', function() {
+      modal.classList.remove('defcon-timeline-modal-active');
+      document.body.style.overflow = '';
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('defcon-timeline-modal-active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Floating date follows mouse
+    document.addEventListener('mousemove', function(e) {
+      if (floatingDate.style.opacity === '1') {
+        floatingDate.style.left = e.clientX + 'px';
+        floatingDate.style.top = (e.clientY - 20) + 'px';
+      }
+    });
+    
+    // Category filtering
+    filters.forEach(filter => {
+      filter.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        
+        // Update active filter
+        filters.forEach(f => f.classList.remove('defcon-timeline-filter-active'));
+        this.classList.add('defcon-timeline-filter-active');
+        
+        // Filter items
+        timelineItems.forEach(item => {
+          if (category === 'all' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

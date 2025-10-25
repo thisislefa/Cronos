@@ -1,0 +1,684 @@
+<style>
+    /* FONT FAMILY */
+    .defcon-ecom-page-container, .defcon-ecom-page-container * {
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    /* MAIN CONTAINER */
+    .defcon-ecom-page-container {
+        background-color: #ffffff;
+        color: #06273e;
+        overflow-x: hidden; /* Prevents horizontal scrollbar from animations */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    /* UTILITY & ANIMATION CLASSES */
+    .defcon-ecom-reveal {
+        position: relative;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: 1s all ease;
+    }
+
+    .defcon-ecom-reveal.defcon-ecom-active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* HERO SECTION */
+    .defcon-ecom-hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 80px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .defcon-ecom-hero-content {
+        flex: 1;
+        padding-right: 40px;
+    }
+
+    .defcon-ecom-hero-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: #06273e;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .defcon-ecom-hero-title-highlight {
+        color: #0091ff;
+    }
+
+    .defcon-ecom-hero-subtitle {
+        font-size: 18px;
+        color: #06273e;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .defcon-ecom-hero-image-container {
+        flex: 1;
+        max-width: 550px;
+        perspective: 1500px;
+    }
+
+    .defcon-ecom-hero-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transform: rotateY(-20deg) rotateX(10deg);
+        box-shadow: -20px 20px 40px rgba(6, 39, 62, 0.2);
+        transition: transform 0.6s ease;
+    }
+
+    .defcon-ecom-hero-image-container:hover .defcon-ecom-hero-image {
+        transform: rotateY(0) rotateX(0);
+    }
+
+    /* SERVICES GRID SECTION */
+    .defcon-ecom-services-section {
+        background-color: #ffffff;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .defcon-ecom-section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .defcon-ecom-section-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #06273e;
+        margin-bottom: 10px;
+    }
+
+    .defcon-ecom-section-divider {
+        width: 80px;
+        height: 4px;
+        background-color: #0091ff;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .defcon-ecom-services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .defcon-ecom-service-card {
+        background-color: #ffffff;
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .defcon-ecom-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(6, 39, 62, 0.1);
+    }
+
+    .defcon-ecom-service-icon {
+        width: 60px;
+        height: auto;
+        margin-bottom: 20px;
+        filter: invert(16%) sepia(49%) saturate(855%) hue-rotate(167deg) brightness(95%) contrast(92%); /* Converts to #06273e */
+    }
+
+    .defcon-ecom-service-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #06273e;
+        margin-bottom: 15px;
+    }
+
+    .defcon-ecom-service-description {
+        font-size: 16px;
+        color: #06273e;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .defcon-ecom-cta-button {
+        background-color: #0091ff;
+        color: #ffffff;
+        border: none;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 25px;
+        padding-right: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .defcon-ecom-cta-button:hover {
+        background-color: #06273e;
+        transform: scale(1.05);
+    }
+
+    /* PRICING SECTION */
+    .defcon-ecom-pricing-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-color: #f8f9fa; /* A slightly off-white for contrast */
+    }
+
+    .defcon-ecom-pricing-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .defcon-ecom-pricing-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        padding: 40px;
+        text-align: center;
+        border-top: 5px solid #06273e;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .defcon-ecom-pricing-card.defcon-ecom-featured {
+        border-top-color: #0091ff;
+        transform: scale(1.05);
+    }
+
+    .defcon-ecom-pricing-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(6, 39, 62, 0.1);
+    }
+    
+    .defcon-ecom-pricing-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #06273e;
+        margin-bottom: 15px;
+    }
+
+    .defcon-ecom-pricing-price {
+        font-size: 42px;
+        font-weight: bold;
+        color: #0091ff;
+        margin-bottom: 10px;
+    }
+
+    .defcon-ecom-pricing-price-period {
+        font-size: 14px;
+        color: #06273e;
+        opacity: 0.7;
+    }
+    
+    .defcon-ecom-pricing-features {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .defcon-ecom-pricing-feature {
+        font-size: 16px;
+        color: #06273e;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .defcon-ecom-pricing-feature-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+
+    /* MODAL STYLES */
+    .defcon-ecom-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(6, 39, 62, 0.8);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .defcon-ecom-modal-content {
+        background-color: #ffffff;
+        margin: 8% auto;
+        padding: 40px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        position: relative;
+        transform: translateY(-50px);
+        transition: transform 0.4s ease;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .defcon-ecom-modal-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #06273e;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    
+    .defcon-ecom-modal-body {
+        font-size: 17px;
+        color: #06273e;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+    
+    .defcon-ecom-close-button {
+        color: #06273e;
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .defcon-ecom-close-button:hover {
+        color: #0091ff;
+    }
+
+    /* CONSULTATION FORM SECTION */
+    .defcon-ecom-consultation-section {
+        padding-top: 60px;
+        padding-bottom: 80px;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-color: #06273e;
+        color: #ffffff;
+    }
+
+    .defcon-ecom-consultation-container {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .defcon-ecom-consultation-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 15px;
+    }
+
+    .defcon-ecom-consultation-text {
+        font-size: 18px;
+        color: #e5e5e5;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .defcon-ecom-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .defcon-ecom-form-row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .defcon-ecom-form-input {
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #e5e5e5;
+        background-color: #ffffff;
+        color: #06273e;
+        font-family: "Times New Roman", Times, serif;
+    }
+
+    .defcon-ecom-form-input::placeholder {
+        color: #06273e;
+        opacity: 0.6;
+    }
+    
+    .defcon-ecom-form-button {
+        background-color: #0091ff;
+        color: #ffffff;
+        border: none;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        width: 100%;
+        max-width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    .defcon-ecom-form-button:hover {
+        background-color: #ffffff;
+        color: #0091ff;
+        transform: scale(1.05);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .defcon-ecom-hero-section {
+            flex-direction: column;
+            text-align: center;
+        }
+        .defcon-ecom-hero-content {
+            padding-right: 0;
+            margin-bottom: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .defcon-ecom-hero-title {
+            font-size: 38px;
+        }
+        .defcon-ecom-section-title, .defcon-ecom-consultation-title {
+            font-size: 30px;
+        }
+        .defcon-ecom-form-row {
+            flex-direction: column;
+        }
+        .defcon-ecom-modal-content {
+            width: 90%;
+            padding: 25px;
+            margin: 15% auto;
+        }
+    }
+</style>
+
+<div class="defcon-ecom-page-container">
+
+    <section class="defcon-ecom-hero-section defcon-ecom-reveal">
+        <div class="defcon-ecom-hero-content">
+            <h1 class="defcon-ecom-hero-title">
+                Advanced <span class="defcon-ecom-hero-title-highlight">E-commerce Solutions</span>
+            </h1>
+            <p class="defcon-ecom-hero-subtitle">
+                We build powerful, scalable, and secure online stores that drive sales and accelerate growth. From bespoke storefronts to complex marketplace integrations, our solutions are engineered for peak performance and exceptional user experience.
+            </p>
+            <a href="#defcon-ecom-consultation" class="defcon-ecom-cta-button">Book a Free Consultation</a>
+        </div>
+        <div class="defcon-ecom-hero-image-container">
+            <img src="https://via.placeholder.com/600x400.png/06273e/ffffff?text=Defcon+E-commerce" alt="Advanced E-commerce Platform Showcase" class="defcon-ecom-hero-image">
+        </div>
+    </section>
+
+    <hr style="border: 0; height: 1px; background-color: #e5e5e5; max-width: 1400px; margin: auto;">
+
+    <section class="defcon-ecom-services-section">
+        <div class="defcon-ecom-section-header defcon-ecom-reveal">
+            <h2 class="defcon-ecom-section-title">Our Comprehensive Offerings</h2>
+            <div class="defcon-ecom-section-divider"></div>
+        </div>
+        <div class="defcon-ecom-services-grid">
+            <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="Custom Storefront Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">Custom Storefront Development</h3>
+                <p class="defcon-ecom-service-description">Bespoke e-commerce websites built from the ground up to reflect your unique brand identity and business needs.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal1">Learn More</button>
+            </div>
+            <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="Platform Migration Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">Platform Migration</h3>
+                <p class="defcon-ecom-service-description">Seamlessly migrate your existing store to a more robust and scalable platform like Shopify, Magento, or WooCommerce.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal2">Learn More</button>
+            </div>
+            <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="Payment Gateway Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">Payment Gateway Integration</h3>
+                <p class="defcon-ecom-service-description">Integrate secure and reliable payment solutions, including credit cards, digital wallets, and financing options.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal3">Learn More</button>
+            </div>
+            <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="Performance Optimization Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">Performance Optimization</h3>
+                <p class="defcon-ecom-service-description">Enhance your site's speed, responsiveness, and overall performance to reduce bounce rates and increase conversions.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal4">Learn More</button>
+            </div>
+             <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="Security & Compliance Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">Security & Compliance</h3>
+                <p class="defcon-ecom-service-description">Implement robust security protocols and ensure your platform is fully compliant with PCI DSS and other regulations.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal5">Learn More</button>
+            </div>
+            <div class="defcon-ecom-service-card defcon-ecom-reveal">
+                <img src="https://via.placeholder.com/100x100.png/0091ff/ffffff?text=Icon" alt="API Integration Icon" class="defcon-ecom-service-icon">
+                <h3 class="defcon-ecom-service-title">API & Systems Integration</h3>
+                <p class="defcon-ecom-service-description">Connect your e-commerce platform with ERP, CRM, and other essential business systems for streamlined operations.</p>
+                <button class="defcon-ecom-cta-button" data-modal="modal6">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="defcon-ecom-pricing-section">
+        <div class="defcon-ecom-section-header defcon-ecom-reveal">
+            <h2 class="defcon-ecom-section-title">Transparent Pricing Plans</h2>
+            <div class="defcon-ecom-section-divider"></div>
+        </div>
+        <div class="defcon-ecom-pricing-container">
+            <div class="defcon-ecom-pricing-card defcon-ecom-reveal">
+                <h3 class="defcon-ecom-pricing-title">Starter</h3>
+                <div class="defcon-ecom-pricing-price">$3,500<span class="defcon-ecom-pricing-price-period"> / one-time</span></div>
+                <ul class="defcon-ecom-pricing-features">
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">WooCommerce/Shopify Setup</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Up to 50 Products</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Standard Payment Integration</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Basic Security Setup</li>
+                </ul>
+                <a href="#defcon-ecom-consultation" class="defcon-ecom-cta-button">Get Started</a>
+            </div>
+            <div class="defcon-ecom-pricing-card defcon-ecom-featured defcon-ecom-reveal">
+                <h3 class="defcon-ecom-pricing-title">Professional</h3>
+                <div class="defcon-ecom-pricing-price">$7,000<span class="defcon-ecom-pricing-price-period"> / one-time</span></div>
+                <ul class="defcon-ecom-pricing-features">
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Custom Shopify/Magento Theme</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Up to 500 Products</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Advanced Payment Gateways</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Performance Optimization</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">CRM/ERP Integration</li>
+                </ul>
+                <a href="#defcon-ecom-consultation" class="defcon-ecom-cta-button">Get Started</a>
+            </div>
+            <div class="defcon-ecom-pricing-card defcon-ecom-reveal">
+                <h3 class="defcon-ecom-pricing-title">Enterprise</h3>
+                <div class="defcon-ecom-pricing-price">Custom<span class="defcon-ecom-pricing-price-period"> / project-based</span></div>
+                 <ul class="defcon-ecom-pricing-features">
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Fully Bespoke Platform</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Unlimited Products & Scalability</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Multi-Vendor Marketplace</li>
+                    <li class="defcon-ecom-pricing-feature"><img src="https://via.placeholder.com/20x20.png/0091ff/ffffff?text=+" alt="check" class="defcon-ecom-pricing-feature-icon">Full PCI DSS Compliance</li>
+                </ul>
+                <a href="#defcon-ecom-consultation" class="defcon-ecom-cta-button">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="defcon-ecom-consultation-section" id="defcon-ecom-consultation">
+        <div class="defcon-ecom-consultation-container defcon-ecom-reveal">
+            <h2 class="defcon-ecom-consultation-title">Ready to Build Your Online Empire?</h2>
+            <p class="defcon-ecom-consultation-text">Let's discuss your project. Fill out the form below to schedule a complimentary consultation with one of our e-commerce specialists. We'll help you define a strategy for success.</p>
+            <form class="defcon-ecom-form" action="#" method="POST">
+                <div class="defcon-ecom-form-row">
+                    <input type="text" class="defcon-ecom-form-input" name="name" placeholder="Your Name" required>
+                    <input type="email" class="defcon-ecom-form-input" name="email" placeholder="Your Email" required>
+                </div>
+                 <div class="defcon-ecom-form-row">
+                    <input type="text" class="defcon-ecom-form-input" name="company" placeholder="Company Name" required>
+                    <input type="tel" class="defcon-ecom-form-input" name="phone" placeholder="Phone Number" required>
+                </div>
+                <button type="submit" class="defcon-ecom-form-button">Schedule My Consultation</button>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<div id="modal1" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">Custom Storefront Development</h3>
+        <p class="defcon-ecom-modal-body">We don't use templates. We build unique, high-performance e-commerce sites tailored to your brand's story and goals. Our process involves in-depth analysis of your target market, resulting in a visually stunning and conversion-optimized storefront. We focus on creating an intuitive user journey, from product discovery to a frictionless checkout, ensuring your customers have an exceptional shopping experience that builds loyalty.</p>
+    </div>
+</div>
+<div id="modal2" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">Platform Migration</h3>
+        <p class="defcon-ecom-modal-body">Outgrowing your current platform? Our expert migration service ensures a zero-downtime transition to a more powerful system like Shopify Plus, Magento, or BigCommerce. We handle everything: data transfer (customers, orders, products), SEO preservation (URL redirects), and theme recreation. Your business operations continue uninterrupted while we upgrade your technical infrastructure for future growth and scalability.</p>
+    </div>
+</div>
+<div id="modal3" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">Payment Gateway Integration</h3>
+        <p class="defcon-ecom-modal-body">Offering diverse and secure payment options is crucial for maximizing conversions. We integrate a wide array of gateways, from industry standards like Stripe and PayPal to "Buy Now, Pay Later" services and international payment solutions. Our integrations are secure, reliable, and configured to provide a seamless checkout experience, reducing cart abandonment and building customer trust.</p>
+    </div>
+</div>
+<div id="modal4" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">Performance Optimization</h3>
+        <p class="defcon-ecom-modal-body">A one-second delay in page load time can impact conversions by up to 7%. We conduct a comprehensive performance audit, focusing on image optimization, code minification, server response time, and advanced caching strategies. The result is a lightning-fast website that provides a superior user experience, improves SEO rankings, and directly boosts your sales.</p>
+    </div>
+</div>
+<div id="modal5" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">Security & Compliance</h3>
+        <p class="defcon-ecom-modal-body">Protecting customer data is non-negotiable. We implement multi-layered security protocols, including SSL certificates, firewalls, and regular vulnerability scanning. We ensure your store is fully compliant with PCI DSS standards for secure payment processing, safeguarding your business and your customers from threats and building a reputation for trustworthiness.</p>
+    </div>
+</div>
+<div id="modal6" class="defcon-ecom-modal">
+    <div class="defcon-ecom-modal-content">
+        <span class="defcon-ecom-close-button">&times;</span>
+        <h3 class="defcon-ecom-modal-title">API & Systems Integration</h3>
+        <p class="defcon-ecom-modal-body">Automate and streamline your business by connecting your e-commerce platform with your other critical systems. We develop robust API integrations for your ERP (inventory management), CRM (customer relationships), 3PL (logistics), and marketing automation software. This creates a unified ecosystem that reduces manual work, eliminates errors, and provides a single source of truth for your business data.</p>
+    </div>
+</div>
+
+
+<script>
+    // Self-invoking function to avoid global scope pollution
+    (function() {
+        // --- MODAL FUNCTIONALITY ---
+        const modalButtons = document.querySelectorAll('.defcon-ecom-cta-button[data-modal]');
+        const closeButtons = document.querySelectorAll('.defcon-ecom-close-button');
+        const modals = document.querySelectorAll('.defcon-ecom-modal');
+
+        // Function to open a modal
+        const openModal = (modal) => {
+            if (modal == null) return;
+            modal.style.display = 'block';
+            // Use a short timeout to allow the display property to apply before starting the transition
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.querySelector('.defcon-ecom-modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        };
+
+        // Function to close a modal
+        const closeModal = (modal) => {
+            if (modal == null) return;
+            modal.style.opacity = '0';
+            modal.querySelector('.defcon-ecom-modal-content').style.transform = 'translateY(-50px)';
+             // Wait for transition to finish before setting display to none
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
+        };
+
+        // Add click event to all modal buttons
+        modalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = document.getElementById(button.dataset.modal);
+                openModal(modal);
+            });
+        });
+
+        // Add click event to all close buttons
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.defcon-ecom-modal');
+                closeModal(modal);
+            });
+        });
+
+        // Close modal when clicking outside the content
+        window.addEventListener('click', (event) => {
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        // --- SCROLL REVEAL ANIMATION ---
+        const revealOnScroll = () => {
+            const reveals = document.querySelectorAll('.defcon-ecom-reveal');
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150; // Distance from the bottom of the viewport to trigger the animation
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('defcon-ecom-active');
+                } else {
+                    // Optional: remove the class to re-trigger animation on scroll up
+                    // reveal.classList.remove('defcon-ecom-active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger on load as well
+        revealOnScroll();
+
+    })();
+</script>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium FAQ Section</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #06273e;
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+        }
+
+        /* FAQ Container */
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            position: relative;
+        }
+
+        /* Background decoration */
+        .faq-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.05) 0%, rgba(6, 39, 62, 0.02) 100%);
+            border-radius: 0 0 50px 50px;
+            z-index: -1;
+        }
+
+        /* Left Column - Heading */
+        .faq-heading-column {
+            flex: 0 0 300px;
+            position: sticky;
+            top: 100px;
+            z-index: 10;
+        }
+
+        .faq-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06273e;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 0.3s forwards;
+        }
+
+        .faq-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: expandLine 0.8s ease-out 1.5s forwards;
+        }
+
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: #06273e;
+            opacity: 0.8;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 1s ease-out 0.6s forwards;
+        }
+
+        /* Right Column - Accordion */
+        .faq-accordion-column {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 145, 255, 0.08);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+            position: relative;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.8s; }
+        .faq-item:nth-child(2) { animation-delay: 1.0s; }
+        .faq-item:nth-child(3) { animation-delay: 1.2s; }
+        .faq-item:nth-child(4) { animation-delay: 1.4s; }
+        .faq-item:nth-child(5) { animation-delay: 1.6s; }
+        .faq-item:nth-child(6) { animation-delay: 1.8s; }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #0091ff 0%, transparent 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 145, 255, 0.15);
+        }
+
+        .faq-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .faq-item.active {
+            box-shadow: 0 8px 32px rgba(0, 145, 255, 0.12);
+        }
+
+        .faq-item.active::before {
+            transform: scaleX(1);
+        }
+
+        .faq-question {
+            padding: 24px 28px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #06273e;
+            transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(229, 229, 229, 0.1) 100%);
+        }
+
+        .faq-question:hover {
+            color: #0091ff;
+        }
+
+        .faq-question-text {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #0091ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: #0091ff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-icon::before {
+            width: 12px;
+            height: 2px;
+            transform: rotate(0deg);
+        }
+
+        .faq-icon::after {
+            width: 2px;
+            height: 12px;
+            transform: rotate(0deg);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            background: #0091ff;
+            border-color: #0091ff;
+        }
+
+        .faq-item.active .faq-icon::before,
+        .faq-item.active .faq-icon::after {
+            background: #ffffff;
+        }
+
+        .faq-item.active .faq-icon::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.02) 0%, rgba(229, 229, 229, 0.1) 100%);
+        }
+
+        .faq-answer-content {
+            padding: 0 28px 28px 28px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #06273e;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease 0.1s;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-answer-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-link {
+            color: #0091ff;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .faq-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0091ff;
+            transition: width 0.3s ease;
+        }
+
+        .faq-link:hover {
+            color: #06273e;
+        }
+
+        .faq-link:hover::after {
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .faq-container {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .faq-heading-column {
+                flex: none;
+                position: static;
+                text-align: center;
+            }
+
+            .faq-heading {
+                font-size: 2rem;
+            }
+
+            .faq-question {
+                padding: 20px 24px;
+                font-size: 1.1rem;
+            }
+
+            .faq-answer-content {
+                padding: 0 24px 24px 24px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-container {
+                padding: 30px 15px;
+            }
+
+            .faq-heading {
+                font-size: 1.75rem;
+            }
+
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+
+            .faq-answer-content {
+                padding: 0 20px 20px 20px;
+                font-size: 0.9rem;
+            }
+
+            .faq-item {
+                border-radius: 12px;
+            }
+        }
+
+        /* Enhanced hover effects for desktop */
+        @media (min-width: 769px) {
+            .faq-item {
+                position: relative;
+                overflow: visible;
+            }
+
+            .faq-item::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 16px;
+                background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.05) 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: -1;
+            }
+
+            .faq-item:hover::after {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <!-- Left Column - Heading -->
+        <div class="faq-heading-column">
+            <h1 class="faq-heading">Frequently Asked Questions</h1>
+            <p class="faq-subtitle">Find answers to common questions about our services and solutions.</p>
+        </div>
+
+        <!-- Right Column - Accordion -->
+        <div class="faq-accordion-column">
+            <div class="faq-accordion">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What services does your company provide?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We provide comprehensive digital solutions including web development, mobile app development, UI/UX design, and digital marketing services. Our team specializes in creating custom solutions tailored to your business needs. For more information about our services, please visit our <a href="#" class="faq-link">services page</a> or <a href="#" class="faq-link">contact our team</a> directly.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long does a typical project take to complete?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Project timelines vary depending on complexity and scope. A simple website typically takes 2-4 weeks, while complex web applications can take 2-6 months. We provide detailed project timelines during our initial consultation and keep you updated throughout the development process. You can view our <a href="#" class="faq-link">project portfolio</a> to see examples of completed work.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Do you offer ongoing support and maintenance?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes, we offer comprehensive support and maintenance packages to ensure your digital solutions continue to perform optimally. Our support includes regular updates, security monitoring, performance optimization, and technical assistance. Learn more about our <a href="#" class="faq-link">support packages</a> and choose the plan that best fits your needs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What is your pricing structure?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our pricing is project-based and depends on the specific requirements, complexity, and timeline of your project. We offer transparent pricing with no hidden fees and provide detailed quotes after understanding your needs. Contact us for a <a href="#" class="faq-link">free consultation</a> and personalized quote for your project.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Can you work with existing teams and technologies?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We're experienced in collaborating with existing development teams and can seamlessly integrate with your current technology stack. Whether you need additional resources, specialized expertise, or full project takeover, we adapt to your working style and requirements. Check out our <a href="#" class="faq-link">collaboration case studies</a> to see how we've successfully worked with other teams.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do you ensure project quality and security?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We follow industry best practices and rigorous quality assurance processes throughout development. Our security measures include code reviews, automated testing, security audits, and compliance with industry standards. We also provide documentation and training to ensure your team can maintain the solution effectively. Read more about our <a href="#" class="faq-link">quality assurance process</a> and <a href="#" class="faq-link">security standards</a>.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const answerContent = item.querySelector('.faq-answer-content');
+                
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items with smooth animation
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            const otherAnswer = otherItem.querySelector('.faq-answer');
+                            const otherContent = otherItem.querySelector('.faq-answer-content');
+                            
+                            // Animate content out
+                            otherContent.style.opacity = '0';
+                            otherContent.style.transform = 'translateY(-10px)';
+                            
+                            setTimeout(() => {
+                                otherAnswer.style.maxHeight = '0';
+                            }, 100);
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        // Close current item
+                        item.classList.remove('active');
+                        answerContent.style.opacity = '0';
+                        answerContent.style.transform = 'translateY(-10px)';
+                        
+                        setTimeout(() => {
+                            answer.style.maxHeight = '0';
+                        }, 100);
+                    } else {
+                        // Open current item
+                        item.classList.add('active');
+                        answer.style.maxHeight = answerContent.scrollHeight + 28 + 'px';
+                        
+                        setTimeout(() => {
+                            answerContent.style.opacity = '1';
+                            answerContent.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                });
+                
+                // Enhanced hover effects for desktop
+                if (window.innerWidth > 768) {
+                    question.addEventListener('mouseenter', function() {
+                        if (!item.classList.contains('active')) {
+                            item.style.transform = 'translateY(-2px)';
+                        }
+                    });
+                    
+                    question.addEventListener('mouseleave', function() {
+                        if (!item.classList.contains('active')) {
+                            item.style.transform = 'translateY(0)';
+                        }
+                    });
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('.faq-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Add a subtle click animation
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                    
+                    // Here you would typically handle the navigation
+                    console.log('Link clicked:', this.href);
+                });
+            });
+
+            // Intersection Observer for enhanced animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe FAQ items for scroll animations
+            faqItems.forEach(item => {
+                observer.observe(item);
+            });
+
+            // Add subtle parallax effect to the heading on scroll
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const heading = document.querySelector('.faq-heading-column');
+                
+                if (heading && window.innerWidth > 768) {
+                    const speed = scrolled * 0.05;
+                    heading.style.transform = `translateY(${speed}px)`;
+                }
+                
+                ticking = false;
+            }
+
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', requestTick);
+
+            // Handle window resize for responsive behavior
+            window.addEventListener('resize', function() {
+                faqItems.forEach(item => {
+                    if (item.classList.contains('active')) {
+                        const answer = item.querySelector('.faq-answer');
+                        const answerContent = item.querySelector('.faq-answer-content');
+                        answer.style.maxHeight = answerContent.scrollHeight + 28 + 'px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

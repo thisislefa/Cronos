@@ -1,0 +1,1020 @@
+<!-- Data Visualization Hero Section -->
+<div class="defcon-analytics-hero">
+    <!-- Animated data stream background -->
+    <div class="defcon-data-stream">
+        <div class="defcon-data-line defcon-data-line-1"></div>
+        <div class="defcon-data-line defcon-data-line-2"></div>
+        <div class="defcon-data-line defcon-data-line-3"></div>
+        <div class="defcon-data-grid"></div>
+    </div>
+    
+    <!-- Main content container -->
+    <div class="defcon-analytics-container">
+        <!-- Headline with integrated data visualization -->
+        <div class="defcon-analytics-headline">
+            <h1 class="defcon-main-headline">
+                <span class="defcon-headline-part">Data-Driven </span>
+                <span class="defcon-headline-part defcon-headline-highlight">Decisions
+                    <div class="defcon-headline-chart"></div>
+                </span>
+                <span class="defcon-headline-part"> for </span>
+                <span class="defcon-headline-part defcon-headline-highlight">Business
+                    <div class="defcon-headline-gauge"></div>
+                </span>
+                <span class="defcon-headline-part"> Excellence</span>
+            </h1>
+            <p class="defcon-analytics-subhead">Transform raw data into actionable insights with our advanced analytics platform</p>
+        </div>
+        
+        <!-- Live stats ticker -->
+        <div class="defcon-stats-ticker">
+            <div class="defcon-ticker-track">
+                <div class="defcon-ticker-item">
+                    <span class="defcon-ticker-value">87%</span>
+                    <span class="defcon-ticker-label">Client Satisfaction</span>
+                </div>
+                <div class="defcon-ticker-item">
+                    <span class="defcon-ticker-value">1.2M</span>
+                    <span class="defcon-ticker-label">Data Points Analyzed</span>
+                </div>
+                <div class="defcon-ticker-item">
+                    <span class="defcon-ticker-value">42%</span>
+                    <span class="defcon-ticker-label">ROI Improvement</span>
+                </div>
+                <div class="defcon-ticker-item">
+                    <span class="defcon-ticker-value">24/7</span>
+                    <span class="defcon-ticker-label">Real-Time Monitoring</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dashboard visualization -->
+        <div class="defcon-analytics-dashboard">
+            <!-- Main chart panel -->
+            <div class="defcon-dashboard-panel defcon-main-chart">
+                <div class="defcon-chart-container">
+                    <canvas class="defcon-line-chart"></canvas>
+                </div>
+                <div class="defcon-chart-legend"></div>
+            </div>
+            
+            <!-- Secondary visualizations -->
+            <div class="defcon-dashboard-panel defcon-bar-chart">
+                <div class="defcon-chart-container">
+                    <canvas class="defcon-bar-chart-canvas"></canvas>
+                </div>
+            </div>
+            
+            <div class="defcon-dashboard-panel defcon-pie-chart">
+                <div class="defcon-chart-container">
+                    <canvas class="defcon-pie-chart-canvas"></canvas>
+                </div>
+            </div>
+            
+            <!-- Data metric cards -->
+            <div class="defcon-metric-card defcon-metric-card-1">
+                <div class="defcon-metric-value">$4.8M</div>
+                <div class="defcon-metric-label">Annual Revenue</div>
+                <div class="defcon-metric-sparkline"></div>
+            </div>
+            
+            <div class="defcon-metric-card defcon-metric-card-2">
+                <div class="defcon-metric-value">328%</div>
+                <div class="defcon-metric-label">Growth YoY</div>
+                <div class="defcon-metric-gauge"></div>
+            </div>
+            
+            <div class="defcon-metric-card defcon-metric-card-3">
+                <div class="defcon-metric-value">94%</div>
+                <div class="defcon-metric-label">Uptime</div>
+                <div class="defcon-metric-progress"></div>
+            </div>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="defcon-analytics-cta">
+            <button class="defcon-data-cta defcon-export-cta">
+                <span class="defcon-cta-icon"></span>
+                <span class="defcon-cta-text">Export Report</span>
+                <span class="defcon-cta-loader"></span>
+            </button>
+            <button class="defcon-data-cta defcon-analyze-cta">
+                <span class="defcon-cta-icon"></span>
+                <span class="defcon-cta-text">Analyze Data</span>
+                <span class="defcon-cta-loader"></span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Connection lines animation -->
+    <svg class="defcon-connections" width="100%" height="100%" viewBox="0 0 100% 100%" preserveAspectRatio="none">
+        <path class="defcon-connection-line defcon-connection-1" d=""></path>
+        <path class="defcon-connection-line defcon-connection-2" d=""></path>
+        <path class="defcon-connection-line defcon-connection-3" d=""></path>
+    </svg>
+    
+    <!-- Tooltip/popup container -->
+    <div class="defcon-data-tooltip"></div>
+</div>
+
+<!-- Styles -->
+<style>
+/* Base styles for analytics hero section */
+.defcon-analytics-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    color: #06273e;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    isolation: isolate;
+    background-color: #ffffff;
+    background-image: linear-gradient(#e5e5e5 1px, transparent 1px),
+                      linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Animated data stream background */
+.defcon-data-stream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.defcon-data-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #0091ff, transparent);
+    opacity: 0.2;
+    animation: defcon-data-flow 20s linear infinite;
+}
+
+.defcon-data-line-1 {
+    top: 15%;
+    width: 120%;
+    animation-delay: 0s;
+}
+
+.defcon-data-line-2 {
+    top: 45%;
+    width: 150%;
+    animation-delay: -5s;
+}
+
+.defcon-data-line-3 {
+    top: 75%;
+    width: 130%;
+    animation-delay: -10s;
+}
+
+.defcon-data-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at center, transparent 95%, rgba(0, 145, 255, 0.03) 100%),
+        linear-gradient(to right, rgba(6, 39, 62, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 39, 62, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px, 20px 20px, 20px 20px;
+    z-index: 2;
+}
+
+/* Main container */
+.defcon-analytics-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Headline styles */
+.defcon-analytics-headline {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.defcon-main-headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #06273e;
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+}
+
+.defcon-headline-part {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.defcon-headline-highlight {
+    color: #0091ff;
+    margin: 0 5px;
+}
+
+.defcon-headline-chart,
+.defcon-headline-gauge {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #0091ff, #06273e);
+    border-radius: 5px;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.defcon-headline-gauge {
+    background: radial-gradient(circle at center, #0091ff 0%, transparent 70%);
+    height: 15px;
+    bottom: -20px;
+}
+
+.defcon-analytics-subhead {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin: 0 auto;
+    color: #06273e;
+    opacity: 0.8;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* Stats ticker */
+.defcon-stats-ticker {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    margin: 20px 0;
+}
+
+.defcon-ticker-track {
+    display: flex;
+    gap: 40px;
+    animation: defcon-ticker-scroll 30s linear infinite;
+    width: max-content;
+}
+
+.defcon-ticker-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+}
+
+.defcon-ticker-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0091ff;
+    margin-bottom: 5px;
+}
+
+.defcon-ticker-label {
+    font-size: 0.9rem;
+    color: #06273e;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* Dashboard styles */
+.defcon-analytics-dashboard {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.defcon-dashboard-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.defcon-dashboard-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.defcon-main-chart {
+    grid-column: 1 / span 8;
+    grid-row: 1 / span 2;
+    height: 400px;
+}
+
+.defcon-bar-chart {
+    grid-column: 9 / span 4;
+    height: 180px;
+}
+
+.defcon-pie-chart {
+    grid-column: 9 / span 4;
+    height: 180px;
+    margin-top: 20px;
+}
+
+.defcon-chart-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Metric cards */
+.defcon-metric-card {
+    grid-column: span 4;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.defcon-metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #0091ff;
+}
+
+.defcon-metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0091ff;
+    margin-bottom: 5px;
+}
+
+.defcon-metric-label {
+    font-size: 0.9rem;
+    color: #06273e;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.defcon-metric-sparkline,
+.defcon-metric-gauge,
+.defcon-metric-progress {
+    width: 100%;
+    height: 4px;
+    margin-top: 15px;
+    background: rgba(6, 39, 62, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.defcon-metric-sparkline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0091ff, #06273e);
+    animation: defcon-sparkline-animate 2s ease-in-out infinite;
+}
+
+.defcon-metric-gauge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100%;
+    background: #0091ff;
+}
+
+.defcon-metric-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    height: 100%;
+    background: #0091ff;
+}
+
+/* CTA buttons */
+.defcon-analytics-cta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.defcon-data-cta {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.defcon-export-cta {
+    background: #0091ff;
+    color: white;
+}
+
+.defcon-analyze-cta {
+    background: #06273e;
+    color: white;
+}
+
+.defcon-data-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.defcon-data-cta:hover .defcon-cta-loader {
+    width: 20px;
+    opacity: 1;
+}
+
+.defcon-cta-icon {
+    width: 18px;
+    height: 18px;
+    background: white;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+
+.defcon-export-cta .defcon-cta-icon {
+    mask-image: url('https://example.com/placeholder-export-icon.svg');
+}
+
+.defcon-analyze-cta .defcon-cta-icon {
+    mask-image: url('https://example.com/placeholder-analyze-icon.svg');
+}
+
+.defcon-cta-loader {
+    width: 0;
+    height: 2px;
+    background: white;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+/* Connection lines */
+.defcon-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.defcon-connection-line {
+    stroke: #0091ff;
+    stroke-width: 1;
+    stroke-dasharray: 5;
+    opacity: 0.3;
+    animation: defcon-connection-pulse 3s ease-in-out infinite;
+}
+
+/* Tooltip styles */
+.defcon-data-tooltip {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #06273e;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    z-index: 100;
+    max-width: 250px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+@keyframes defcon-data-flow {
+    0% {
+        transform: translateX(-20%);
+    }
+    100% {
+        transform: translateX(20%);
+    }
+}
+
+@keyframes defcon-ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes defcon-sparkline-animate {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes defcon-connection-pulse {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .defcon-main-chart {
+        grid-column: 1 / span 12;
+        grid-row: auto;
+    }
+    
+    .defcon-bar-chart,
+    .defcon-pie-chart {
+        grid-column: span 6;
+    }
+    
+    .defcon-metric-card {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 768px) {
+    .defcon-analytics-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .defcon-main-chart,
+    .defcon-bar-chart,
+    .defcon-pie-chart,
+    .defcon-metric-card {
+        grid-column: 1 / span 12;
+    }
+    
+    .defcon-analytics-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .defcon-data-cta {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .defcon-main-headline {
+        white-space: normal;
+    }
+    
+    .defcon-headline-part {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 480px) {
+    .defcon-ticker-item {
+        min-width: 120px;
+    }
+    
+    .defcon-ticker-value {
+        font-size: 1.4rem;
+    }
+}
+</style>
+
+<!-- JavaScript for interactive visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize line chart
+    const lineCtx = document.querySelector('.defcon-line-chart').getContext('2d');
+    const lineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Revenue',
+                data: [12000, 19000, 15000, 22000, 18000, 25000, 30000, 28000, 32000, 35000, 38000, 42000],
+                borderColor: '#0091ff',
+                backgroundColor: 'rgba(0, 145, 255, 0.1)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: 'Clients',
+                data: [80, 95, 110, 105, 120, 135, 150, 145, 160, 175, 185, 200],
+                borderColor: '#06273e',
+                backgroundColor: 'rgba(6, 39, 62, 0.1)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: 'Times New Roman',
+                            size: 12
+                        },
+                        color: '#06273e'
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    titleColor: '#06273e',
+                    bodyColor: '#06273e',
+                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 1,
+                    padding: 12,
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
+                    cornerRadius: 8,
+                    displayColors: true,
+                    usePointStyle: true,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += context.datasetIndex === 0 ? '$' + context.parsed.y.toLocaleString() : context.parsed.y;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(6, 39, 62, 0.05)'
+                    },
+                    ticks: {
+                        color: '#06273e',
+                        font: {
+                            family: 'Times New Roman'
+                        }
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(6, 39, 62, 0.05)'
+                    },
+                    ticks: {
+                        color: '#06273e',
+                        font: {
+                            family: 'Times New Roman'
+                        },
+                        callback: function(value) {
+                            return this.options.ticks.suggestedMax > 1000 ? '$' + value.toLocaleString() : value;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeOutQuart'
+            }
+        }
+    });
+    
+    // Initialize bar chart
+    const barCtx = document.querySelector('.defcon-bar-chart-canvas').getContext('2d');
+    const barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [{
+                label: 'Performance',
+                data: [85, 72, 90, 95],
+                backgroundColor: [
+                    'rgba(0, 145, 255, 0.7)',
+                    'rgba(0, 145, 255, 0.5)',
+                    'rgba(0, 145, 255, 0.7)',
+                    'rgba(0, 145, 255, 0.9)'
+                ],
+                borderColor: [
+                    '#0091ff',
+                    '#0091ff',
+                    '#0091ff',
+                    '#0091ff'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + '% performance';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#06273e',
+                        font: {
+                            family: 'Times New Roman'
+                        }
+                    }
+                },
+                y: {
+                    min: 50,
+                    max: 100,
+                    grid: {
+                        color: 'rgba(6, 39, 62, 0.05)'
+                    },
+                    ticks: {
+                        color: '#06273e',
+                        font: {
+                            family: 'Times New Roman'
+                        },
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeOutQuart'
+            }
+        }
+    });
+    
+    // Initialize pie chart
+    const pieCtx = document.querySelector('.defcon-pie-chart-canvas').getContext('2d');
+    const pieChart = new Chart(pieCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+            datasets: [{
+                data: [35, 25, 20, 20],
+                backgroundColor: [
+                    'rgba(0, 145, 255, 0.9)',
+                    'rgba(0, 145, 255, 0.7)',
+                    'rgba(0, 145, 255, 0.5)',
+                    'rgba(0, 145, 255, 0.3)'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: '#06273e',
+                        font: {
+                            family: 'Times New Roman',
+                            size: 12
+                        },
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.raw || 0;
+                            const total = context.dataset.data.reduce((acc, data) => acc + data, 0);
+                            const percentage = Math.round((value / total) * 100);
+                            return `${label}: ${percentage}% (${value})`;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeOutQuart'
+            }
+        }
+    });
+    
+    // Animate connection lines
+    function updateConnectionLines() {
+        const svg = document.querySelector('.defcon-connections');
+        const panels = [
+            document.querySelector('.defcon-main-chart'),
+            document.querySelector('.defcon-bar-chart'),
+            document.querySelector('.defcon-pie-chart'),
+            document.querySelector('.defcon-metric-card-1'),
+            document.querySelector('.defcon-metric-card-2'),
+            document.querySelector('.defcon-metric-card-3')
+        ];
+        
+        // Get positions of panels
+        const panelPositions = panels.map(panel => {
+            if (!panel) return null;
+            const rect = panel.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }).filter(pos => pos !== null);
+        
+        // Update connection paths
+        const paths = [
+            document.querySelector('.defcon-connection-1'),
+            document.querySelector('.defcon-connection-2'),
+            document.querySelector('.defcon-connection-3')
+        ];
+        
+        if (panelPositions.length >= 4) {
+            paths[0].setAttribute('d', `M${panelPositions[0].x},${panelPositions[0].y} C${panelPositions[0].x + 100},${panelPositions[0].y} ${panelPositions[1].x - 100},${panelPositions[1].y} ${panelPositions[1].x},${panelPositions[1].y}`);
+            paths[1].setAttribute('d', `M${panelPositions[0].x},${panelPositions[0].y} C${panelPositions[0].x + 50},${panelPositions[0].y + 100} ${panelPositions[2].x - 50},${panelPositions[2].y - 100} ${panelPositions[2].x},${panelPositions[2].y}`);
+            paths[2].setAttribute('d', `M${panelPositions[0].x},${panelPositions[0].y} C${panelPositions[0].x - 50},${panelPositions[0].y + 50} ${panelPositions[3].x + 50},${panelPositions[3].y - 50} ${panelPositions[3].x},${panelPositions[3].y}`);
+        }
+    }
+    
+    // Update connections on load and resize
+    window.addEventListener('load', updateConnectionLines);
+    window.addEventListener('resize', updateConnectionLines);
+    
+    // Tooltip functionality
+    const tooltip = document.querySelector('.defcon-data-tooltip');
+    const interactiveElements = document.querySelectorAll('.defcon-dashboard-panel, .defcon-metric-card');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top - 10}px`;
+            tooltip.style.transform = 'translate(-50%, -100%)';
+            tooltip.style.opacity = '1';
+            
+            // Set tooltip content based on element
+            if (this.classList.contains('defcon-main-chart')) {
+                tooltip.innerHTML = '<strong>Revenue & Clients</strong><br>Annual growth trends with monthly breakdown';
+            } else if (this.classList.contains('defcon-bar-chart')) {
+                tooltip.innerHTML = '<strong>Quarterly Performance</strong><br>Key metrics by quarter with targets';
+            } else if (this.classList.contains('defcon-pie-chart')) {
+                tooltip.innerHTML = '<strong>Product Distribution</strong><br>Revenue share by product line';
+            } else if (this.classList.contains('defcon-metric-card-1')) {
+                tooltip.innerHTML = '<strong>Annual Revenue</strong><br>Total revenue for the current fiscal year';
+            } else if (this.classList.contains('defcon-metric-card-2')) {
+                tooltip.innerHTML = '<strong>Year-over-Year Growth</strong><br>Percentage increase from previous year';
+            } else if (this.classList.contains('defcon-metric-card-3')) {
+                tooltip.innerHTML = '<strong>System Uptime</strong><br>Percentage of time services are available';
+            }
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            tooltip.style.opacity = '0';
+        });
+    });
+    
+    // Simulate real-time data updates
+    function updateData() {
+        // Update line chart
+        const newLineData = lineChart.data.datasets[0].data.map(value => {
+            const change = (Math.random() - 0.5) * 2000;
+            return Math.max(10000, value + change);
+        });
+        lineChart.data.datasets[0].data = newLineData;
+        
+        // Update bar chart
+        const newBarData = barChart.data.datasets[0].data.map(value => {
+            const change = (Math.random() - 0.3) * 10;
+            return Math.min(100, Math.max(60, value + change));
+        });
+        barChart.data.datasets[0].data = newBarData;
+        
+        // Update pie chart
+        const newPieData = pieChart.data.datasets[0].data.map(value => {
+            const change = (Math.random() - 0.5) * 5;
+            return Math.max(10, value + change);
+        });
+        pieChart.data.datasets[0].data = newPieData;
+        
+        // Update charts
+        lineChart.update();
+        barChart.update();
+        pieChart.update();
+        
+        // Update metric cards
+        const metricCards = document.querySelectorAll('.defcon-metric-card');
+        metricCards.forEach((card, index) => {
+            const valueElement = card.querySelector('.defcon-metric-value');
+            if (valueElement) {
+                const currentValue = parseFloat(valueElement.textContent.replace(/[^0-9.]/g, ''));
+                let newValue;
+                
+                if (index === 0) { // Revenue
+                    const change = (Math.random() - 0.3) * 0.2;
+                    newValue = currentValue * (1 + change);
+                    valueElement.textContent = '$' + Math.round(newValue / 100000) / 10 + 'M';
+                } else if (index === 1) { // Growth
+                    const change = (Math.random() - 0.4) * 5;
+                    newValue = Math.min(400, Math.max(250, currentValue + change));
+                    valueElement.textContent = Math.round(newValue) + '%';
+                    card.querySelector('.defcon-metric-gauge::after').style.width = newValue / 4 + '%';
+                } else if (index === 2) { // Uptime
+                    const change = (Math.random() - 0.5) * 0.5;
+                    newValue = Math.min(99.9, Math.max(90, currentValue + change));
+                    valueElement.textContent = Math.round(newValue * 10) / 10 + '%';
+                    card.querySelector('.defcon-metric-progress::after').style.width = newValue + '%';
+                }
+            }
+        });
+    }
+    
+    // Update data every 5 seconds
+    setInterval(updateData, 5000);
+    
+    // Typewriter effect for ticker
+    const tickerItems = document.querySelectorAll('.defcon-ticker-item');
+    tickerItems.forEach(item => {
+        const valueElement = item.querySelector('.defcon-ticker-value');
+        const originalValue = valueElement.textContent;
+        valueElement.textContent = '';
+        
+        let i = 0;
+        const typeWriter = setInterval(() => {
+            if (i < originalValue.length) {
+                valueElement.textContent += originalValue.charAt(i);
+                i++;
+            } else {
+                clearInterval(typeWriter);
+            }
+        }, 100);
+    });
+});
+</script>

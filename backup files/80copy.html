@@ -1,0 +1,1343 @@
+<div class="defcon-ai-assistant-container">
+  <!-- Main Assistant UI -->
+  <div class="defcon-ai-main">
+    <div class="defcon-ai-header">
+      <div class="defcon-ai-header-content">
+        <div class="defcon-ai-logo">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#0091ff"/>
+          </svg>
+          <span>Sentinel</span>
+        </div>
+        <div class="defcon-ai-controls">
+          <button class="defcon-ai-control-btn defcon-ai-voice-btn" aria-label="Voice input">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" fill="#ffffff"/>
+              <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" fill="#ffffff"/>
+            </svg>
+          </button>
+          <button class="defcon-ai-control-btn defcon-ai-settings-btn" aria-label="Settings">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="#ffffff"/>
+            </svg>
+          </button>
+          <button class="defcon-ai-control-btn defcon-ai-close-btn" aria-label="Close assistant">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#ffffff"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-ai-content">
+      <div class="defcon-ai-welcome">
+        <div class="defcon-ai-welcome-text">
+          <h1 class="defcon-ai-welcome-title">Welcome back</h1>
+          <p class="defcon-ai-welcome-message">I'm Defcon's AI Assistant—here to help you make smarter, safer tech decisions.</p>
+        </div>
+        <div class="defcon-ai-welcome-illustration">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="80" fill="#06273e"/>
+            <circle cx="100" cy="80" r="40" fill="#0091ff"/>
+            <path d="M100 120 Q140 180 60 180" stroke="#0091ff" stroke-width="8" fill="none"/>
+            <circle cx="80" cy="70" r="5" fill="#ffffff"/>
+            <circle cx="120" cy="70" r="5" fill="#ffffff"/>
+          </svg>
+        </div>
+      </div>
+      
+      <div class="defcon-ai-conversation">
+        <!-- Messages will be dynamically inserted here -->
+      </div>
+      
+      <div class="defcon-ai-quick-actions">
+        <h3 class="defcon-ai-quick-actions-title">Quick Actions</h3>
+        <div class="defcon-ai-quick-actions-grid">
+          <button class="defcon-ai-quick-action">
+            <div class="defcon-ai-quick-action-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="#0091ff"/>
+              </svg>
+            </div>
+            <span class="defcon-ai-quick-action-text">Run Security Check</span>
+          </button>
+          <button class="defcon-ai-quick-action">
+            <div class="defcon-ai-quick-action-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z" fill="#0091ff"/>
+              </svg>
+            </div>
+            <span class="defcon-ai-quick-action-text">Book Consultation</span>
+          </button>
+          <button class="defcon-ai-quick-action">
+            <div class="defcon-ai-quick-action-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#0091ff"/>
+              </svg>
+            </div>
+            <span class="defcon-ai-quick-action-text">Download Resources</span>
+          </button>
+          <button class="defcon-ai-quick-action">
+            <div class="defcon-ai-quick-action-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" fill="#0091ff"/>
+              </svg>
+            </div>
+            <span class="defcon-ai-quick-action-text">Pricing Inquiry</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-ai-input-container">
+      <div class="defcon-ai-input-wrapper">
+        <input type="text" class="defcon-ai-input" placeholder="Ask me anything about cybersecurity, services, or resources..." aria-label="Ask the AI assistant">
+        <button class="defcon-ai-send-btn" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#ffffff"/>
+          </svg>
+        </button>
+      </div>
+      <div class="defcon-ai-input-options">
+        <span class="defcon-ai-input-hint">Press Enter to send or Shift+Enter for new line</span>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- Right Side Menu -->
+  <div class="defcon-ai-side-menu">
+    <button class="defcon-ai-menu-toggle">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="#ffffff"/>
+      </svg>
+    </button>
+    <div class="defcon-ai-menu-content">
+      <h3 class="defcon-ai-menu-title">Security Resources</h3>
+      <div class="defcon-ai-menu-section">
+        <h4 class="defcon-ai-menu-section-title">Quick Links</h4>
+        <ul class="defcon-ai-menu-list">
+          <li><a href="#" class="defcon-ai-menu-link">Threat Intelligence</a></li>
+          <li><a href="#" class="defcon-ai-menu-link">Security Whitepapers</a></li>
+          <li><a href="#" class="defcon-ai-menu-link">Compliance Guides</a></li>
+          <li><a href="#" class="defcon-ai-menu-link">Incident Response</a></li>
+        </ul>
+      </div>
+      <div class="defcon-ai-menu-section">
+        <h4 class="defcon-ai-menu-section-title">Tools</h4>
+        <ul class="defcon-ai-menu-list">
+          <li><a href="#" class="defcon-ai-menu-link">Risk Assessment</a></li>
+          <li><a href="#" class="defcon-ai-menu-link">Vulnerability Scanner</a></li>
+          <li><a href="#" class="defcon-ai-menu-link">Security Audit</a></li>
+        </ul>
+      </div>
+      <div class="defcon-ai-menu-footer">
+        <button class="defcon-ai-menu-close">Close Menu</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Settings Panel (hidden by default) -->
+  <div class="defcon-ai-settings-panel">
+    <div class="defcon-ai-settings-header">
+      <h2 class="defcon-ai-settings-title">Assistant Settings</h2>
+      <button class="defcon-ai-settings-close-btn" aria-label="Close settings">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#ffffff"/>
+        </svg>
+      </button>
+    </div>
+    <div class="defcon-ai-settings-content">
+      <div class="defcon-ai-settings-section">
+        <h3 class="defcon-ai-settings-section-title">Communication Style</h3>
+        <div class="defcon-ai-settings-options">
+          <label class="defcon-ai-settings-option">
+            <input type="radio" name="assistant-tone" value="professional" checked>
+            <span class="defcon-ai-settings-option-label">Professional</span>
+          </label>
+          <label class="defcon-ai-settings-option">
+            <input type="radio" name="assistant-tone" value="technical">
+            <span class="defcon-ai-settings-option-label">Technical</span>
+          </label>
+          <label class="defcon-ai-settings-option">
+            <input type="radio" name="assistant-tone" value="friendly">
+            <span class="defcon-ai-settings-option-label">Friendly</span>
+          </label>
+        </div>
+      </div>
+      <div class="defcon-ai-settings-section">
+        <h3 class="defcon-ai-settings-section-title">Appearance</h3>
+        <div class="defcon-ai-settings-options">
+          <label class="defcon-ai-settings-option">
+            <input type="radio" name="assistant-theme" value="dark" checked>
+            <span class="defcon-ai-settings-option-label">Dark Theme</span>
+          </label>
+          <label class="defcon-ai-settings-option">
+            <input type="radio" name="assistant-theme" value="light">
+            <span class="defcon-ai-settings-option-label">Light Theme</span>
+          </label>
+        </div>
+      </div>
+      <div class="defcon-ai-settings-section">
+        <h3 class="defcon-ai-settings-section-title">Preferences</h3>
+        <div class="defcon-ai-settings-options">
+          <label class="defcon-ai-settings-option defcon-ai-settings-option-toggle">
+            <input type="checkbox" name="assistant-sounds" checked>
+            <span class="defcon-ai-settings-option-toggle-slider"></span>
+            <span class="defcon-ai-settings-option-label">Enable Sounds</span>
+          </label>
+          <label class="defcon-ai-settings-option defcon-ai-settings-option-toggle">
+            <input type="checkbox" name="assistant-animations" checked>
+            <span class="defcon-ai-settings-option-toggle-slider"></span>
+            <span class="defcon-ai-settings-option-label">Enable Animations</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="defcon-ai-settings-footer">
+      <button class="defcon-ai-settings-reset-btn">Reset to Defaults</button>
+    </div>
+  </div>
+  
+  <!-- Voice Input UI (hidden by default) -->
+  <div class="defcon-ai-voice-ui">
+    <div class="defcon-ai-voice-header">
+      <h2 class="defcon-ai-voice-title">Voice Input</h2>
+      <button class="defcon-ai-voice-close-btn" aria-label="Close voice input">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#ffffff"/>
+        </svg>
+      </button>
+    </div>
+    <div class="defcon-ai-voice-visualizer">
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+      <div class="defcon-ai-voice-bar"></div>
+    </div>
+    <div class="defcon-ai-voice-instruction">
+      <p class="defcon-ai-voice-instruction-text">Listening... Speak now</p>
+    </div>
+    <button class="defcon-ai-voice-stop-btn">Stop Listening</button>
+  </div>
+</div>
+
+<style>
+
+/* Right Side Menu Styles */
+.defcon-ai-side-menu {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  right: auto;
+  width: 320px;
+  height: 100%;
+  z-index: 10001;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-side-menu.defcon-ai-menu-open {
+  right: auto;
+  left: 0;
+}
+
+.defcon-ai-menu-toggle {
+  position: absolute;
+  right: -48px;
+  left: auto;
+  top: 24px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--defcon-ai-primary);
+  border: none;
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-menu-toggle:hover {
+  background-color: #007acc;
+}
+
+.defcon-ai-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.defcon-ai-menu-content {
+  height: 100%;
+  background-color: var(--defcon-ai-dark);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.defcon-ai-menu-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--defcon-ai-primary);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-menu-section {
+  margin-bottom: 24px;
+}
+
+.defcon-ai-menu-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--defcon-ai-gray);
+  margin-bottom: 12px;
+}
+
+.defcon-ai-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.defcon-ai-menu-link {
+  display: block;
+  padding: 10px 12px;
+  color: var(--defcon-ai-light);
+  text-decoration: none;
+  border-radius: var(--defcon-ai-border-radius);
+  transition: var(--defcon-ai-transition);
+  font-size: 14px;
+}
+
+.defcon-ai-menu-link:hover {
+  background-color: rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-menu-footer {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-menu-close {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--defcon-ai-primary);
+  border: none;
+  border-radius: var(--defcon-ai-border-radius);
+  color: var(--defcon-ai-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-menu-close:hover {
+  background-color: #007acc;
+}
+
+/* Scrollbar Styles */
+.defcon-ai-content::-webkit-scrollbar,
+.defcon-ai-menu-content::-webkit-scrollbar,
+.defcon-ai-settings-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.defcon-ai-content::-webkit-scrollbar-track,
+.defcon-ai-menu-content::-webkit-scrollbar-track,
+.defcon-ai-settings-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.defcon-ai-content::-webkit-scrollbar-thumb,
+.defcon-ai-menu-content::-webkit-scrollbar-thumb,
+.defcon-ai-settings-content::-webkit-scrollbar-thumb {
+  background: var(--defcon-ai-primary);
+  border-radius: 4px;
+}
+
+/* Light Theme Overrides */
+.defcon-ai-assistant-container.light-theme {
+  --defcon-ai-dark-bg: #f5f7fa;
+  --defcon-ai-darker-bg: #e5e9f0;
+  --defcon-ai-card-bg: rgba(255, 255, 255, 0.9);
+  --defcon-ai-light: #2d3748;
+  --defcon-ai-gray: #4a5568;
+  --defcon-ai-input-bg: rgba(0, 0, 0, 0.05);
+}
+
+.defcon-ai-assistant-container.light-theme .defcon-ai-control-btn:hover,
+.defcon-ai-assistant-container.light-theme .defcon-ai-settings-option:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.defcon-ai-assistant-container.light-theme .defcon-ai-menu-content,
+.defcon-ai-assistant-container.light-theme .defcon-ai-settings-panel {
+  background-color: #ffffff;
+  border-left-color: rgba(0, 0, 0, 0.1);
+}
+
+.defcon-ai-assistant-container.light-theme .defcon-ai-header,
+.defcon-ai-assistant-container.light-theme .defcon-ai-input-container {
+  background-color: #e5e9f0;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.defcon-ai-assistant-container.light-theme .defcon-ai-input {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: var(--defcon-ai-light);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Reset and base styles */
+.defcon-ai-assistant-container {
+  --defcon-ai-primary: #0091ff;
+  --defcon-ai-dark: #06273e;
+  --defcon-ai-light: #ffffff;
+  --defcon-ai-gray: #e5e5e5;
+  --defcon-ai-dark-bg: #041a2c;
+  --defcon-ai-darker-bg: #031421;
+  --defcon-ai-input-bg: rgba(255, 255, 255, 0.1);
+  --defcon-ai-card-bg: rgba(6, 39, 62, 0.6);
+  --defcon-ai-border-radius: 12px;
+  --defcon-ai-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --defcon-ai-transition: all 0.3s ease;
+  
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: var(--defcon-ai-dark-bg);
+  color: var(--defcon-ai-light);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: defconAiFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes defconAiFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main assistant UI */
+.defcon-ai-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+.defcon-ai-header {
+  padding: 16px 24px;
+  background-color: var(--defcon-ai-darker-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.defcon-ai-header-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.defcon-ai-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--defcon-ai-primary);
+}
+
+.defcon-ai-logo svg {
+  width: 24px;
+  height: 24px;
+}
+
+.defcon-ai-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.defcon-ai-control-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+  color: var(--defcon-ai-light);
+}
+
+.defcon-ai-control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.defcon-ai-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.defcon-ai-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 0;
+  margin-bottom: 24px;
+  animation: defconAiSlideUp 0.6s ease-out;
+}
+
+@keyframes defconAiSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.defcon-ai-welcome-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--defcon-ai-light);
+  line-height: 1.2;
+}
+
+.defcon-ai-welcome-message {
+  font-size: 18px;
+  color: var(--defcon-ai-gray);
+  max-width: 600px;
+  margin: 0 auto 24px;
+  line-height: 1.5;
+}
+
+.defcon-ai-welcome-illustration svg {
+  width: 150px;
+  height: 150px;
+  opacity: 0.9;
+}
+
+.defcon-ai-conversation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  max-width: 800px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.defcon-ai-message {
+  padding: 5px 24px;
+  border-radius: var(--defcon-ai-border-radius);
+  max-width: 80%;
+  position: relative;
+  animation: defconAiMessageAppear 0.3s ease-out;
+  line-height: 1.5;
+}
+
+@keyframes defconAiMessageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.defcon-ai-message-user {
+  background-color: var(--defcon-ai-primary);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.defcon-ai-message-assistant {
+  background-color: var(--defcon-ai-card-bg);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.defcon-ai-message-time {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 8px;
+  display: block;
+  text-align: right;
+}
+
+.defcon-ai-quick-actions {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.defcon-ai-quick-actions-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--defcon-ai-gray);
+  text-align: center;
+}
+
+.defcon-ai-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.defcon-ai-quick-action {
+  background-color: var(--defcon-ai-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--defcon-ai-border-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+  text-align: center;
+}
+
+.defcon-ai-quick-action:hover {
+  background-color: rgba(0, 145, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.defcon-ai-quick-action-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 145, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.defcon-ai-quick-action-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.defcon-ai-quick-action-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.defcon-ai-input-container {
+  padding: 16px 24px;
+  background-color: var(--defcon-ai-darker-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-input-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.defcon-ai-input {
+  width: 100%;
+  padding: 16px 56px 16px 24px;
+  border-radius: var(--defcon-ai-border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: var(--defcon-ai-input-bg);
+  color: var(--defcon-ai-light);
+  font-size: 16px;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-input:focus {
+  outline: none;
+  border-color: var(--defcon-ai-primary);
+  box-shadow: 0 0 0 2px rgba(0, 145, 255, 0.2);
+}
+
+.defcon-ai-send-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--defcon-ai-primary);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-send-btn:hover {
+  background-color: #007acc;
+}
+
+.defcon-ai-send-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.defcon-ai-input-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.defcon-ai-input-hint {
+  font-size: 12px;
+  color: var(--defcon-ai-gray);
+  opacity: 0.7;
+}
+
+/* Settings panel */
+.defcon-ai-settings-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background-color: var(--defcon-ai-dark);
+  z-index: 10000;
+  transition: var(--defcon-ai-transition);
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.defcon-ai-settings-panel.defcon-ai-settings-open {
+  right: 0;
+}
+
+.defcon-ai-settings-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.defcon-ai-settings-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.defcon-ai-settings-close-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+  color: var(--defcon-ai-light);
+}
+
+.defcon-ai-settings-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-settings-close-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.defcon-ai-settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.defcon-ai-settings-section {
+  margin-bottom: 32px;
+}
+
+.defcon-ai-settings-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--defcon-ai-gray);
+}
+
+.defcon-ai-settings-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.defcon-ai-settings-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--defcon-ai-border-radius);
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-settings-option:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-settings-option input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--defcon-ai-gray);
+  border-radius: 50%;
+  transition: var(--defcon-ai-transition);
+  position: relative;
+}
+
+.defcon-ai-settings-option input[type="radio"]:checked {
+  border-color: var(--defcon-ai-primary);
+}
+
+.defcon-ai-settings-option input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--defcon-ai-primary);
+  border-radius: 50%;
+}
+
+.defcon-ai-settings-option-label {
+  font-size: 14px;
+}
+
+.defcon-ai-settings-option-toggle {
+  justify-content: space-between;
+}
+
+.defcon-ai-settings-option-toggle-slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-settings-option-toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--defcon-ai-light);
+  border-radius: 50%;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-settings-option input[type="checkbox"]:checked + .defcon-ai-settings-option-toggle-slider {
+  background-color: var(--defcon-ai-primary);
+}
+
+.defcon-ai-settings-option input[type="checkbox"]:checked + .defcon-ai-settings-option-toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.defcon-ai-settings-option input[type="checkbox"] {
+  display: none;
+}
+
+.defcon-ai-settings-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-settings-reset-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: var(--defcon-ai-border-radius);
+  color: var(--defcon-ai-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-settings-reset-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Voice UI */
+.defcon-ai-voice-ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--defcon-ai-dark);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-voice-ui.defcon-ai-voice-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.defcon-ai-voice-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.defcon-ai-voice-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.defcon-ai-voice-close-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+  color: var(--defcon-ai-light);
+}
+
+.defcon-ai-voice-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.defcon-ai-voice-close-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.defcon-ai-voice-visualizer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  height: 120px;
+  margin: 40px 0;
+}
+
+.defcon-ai-voice-bar {
+  width: 8px;
+  height: 20px;
+  background-color: var(--defcon-ai-primary);
+  border-radius: 4px;
+  animation: defconAiVoiceBarPulse 1.5s infinite ease-in-out;
+}
+
+.defcon-ai-voice-bar:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.defcon-ai-voice-bar:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.defcon-ai-voice-bar:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.defcon-ai-voice-bar:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.defcon-ai-voice-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.defcon-ai-voice-bar:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.defcon-ai-voice-bar:nth-child(7) {
+  animation-delay: 0.3s;
+}
+.defcon-ai-voice-bar:nth-child(8) {
+  animation-delay: 0.5s;
+}
+
+@keyframes defconAiVoiceBarPulse {
+  0%, 100% {
+    height: 20px;
+  }
+  50% {
+    height: 80px;
+  }
+}
+
+.defcon-ai-voice-instruction {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.defcon-ai-voice-instruction-text {
+  font-size: 18px;
+  color: var(--defcon-ai-gray);
+}
+
+.defcon-ai-voice-stop-btn {
+  padding: 12px 32px;
+  background-color: var(--defcon-ai-primary);
+  border: none;
+  border-radius: var(--defcon-ai-border-radius);
+  color: var(--defcon-ai-light);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--defcon-ai-transition);
+}
+
+.defcon-ai-voice-stop-btn:hover {
+  background-color: #007acc;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .defcon-ai-content {
+    padding: 16px;
+  }
+  
+  .defcon-ai-welcome-title {
+    font-size: 24px;
+  }
+  
+  .defcon-ai-welcome-message {
+    font-size: 16px;
+  }
+  
+  .defcon-ai-message {
+    max-width: 90%;
+    padding: 12px 16px;
+  }
+  
+  .defcon-ai-quick-actions-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .defcon-ai-input-container {
+    padding: 12px 16px;
+  }
+  
+  .defcon-ai-settings-panel {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-ai-quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .defcon-ai-welcome-illustration svg {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Elements
+  const assistantContainer = document.querySelector('.defcon-ai-assistant-container');
+  const closeBtn = document.querySelector('.defcon-ai-close-btn');
+  const settingsBtn = document.querySelector('.defcon-ai-settings-btn');
+  const settingsPanel = document.querySelector('.defcon-ai-settings-panel');
+  const settingsCloseBtn = document.querySelector('.defcon-ai-settings-close-btn');
+  const voiceBtn = document.querySelector('.defcon-ai-voice-btn');
+  const voiceUI = document.querySelector('.defcon-ai-voice-ui');
+  const voiceCloseBtn = document.querySelector('.defcon-ai-voice-close-btn');
+  const voiceStopBtn = document.querySelector('.defcon-ai-voice-stop-btn');
+  const conversation = document.querySelector('.defcon-ai-conversation');
+  const inputField = document.querySelector('.defcon-ai-input');
+  const sendBtn = document.querySelector('.defcon-ai-send-btn');
+  const quickActions = document.querySelectorAll('.defcon-ai-quick-action');
+  
+  // New elements for side menu
+  const menuToggle = document.querySelector('.defcon-ai-menu-toggle');
+  const sideMenu = document.querySelector('.defcon-ai-side-menu');
+  const menuCloseBtn = document.querySelector('.defcon-ai-menu-close');
+
+  // Professional response database
+  const responseDatabase = {
+    "greeting": "Welcome back. I'm Defcon's AI Security Assistant. With over 15 years of enterprise security experience, I'm here to provide expert guidance on your cybersecurity needs. How may I assist you today?",
+    "security": {
+      "check": "Based on our security framework (aligned with NIST SP 800-53), I recommend checking: 1) Patch levels on all systems (last 30 days), 2) Firewall rule review (especially Rule #1073), 3) Backup integrity tests. Would you like me to initiate our automated security checklist?",
+      "audit": "Our comprehensive security audits follow ISO 27001 standards and typically include: 1) Asset inventory, 2) Vulnerability scanning (CVSS scoring), 3) Penetration testing, 4) Compliance gap analysis. Average engagement duration: 2-4 weeks."
+    },
+    "consultation": {
+      "general": "Our certified security consultants (CISSP/CISM) are available for 60-minute sessions at $300/hr. Next available slot: Thursday at 2:15pm EST.",
+      "emergency": "For critical security incidents, contact our 24/7 SOC team immediately at soc@defcon.example.com or +1 (555) 789-4561 (Case ID will be generated)"
+    },
+    "resources": {
+      "general": "Available resources (all v3.4 compliant): [1] Enterprise Security Playbook (85 pages), [2] Cloud Security Reference Architecture, [3] Zero Trust Implementation Guide",
+      "download": "Please provide your corporate email for secure document delivery. All downloads are logged per our infosec policy (Ref: DC-INF-2023-07)."
+    },
+    "default": "Based on analysis of 500+ security engagements, I recommend prioritizing patch management. 68% of breaches exploit known vulnerabilities with patches available >30 days."
+  };
+
+  // Initialize assistant
+  function initAssistant() {
+    addMessage('assistant', responseDatabase.greeting);
+    setCurrentDate();
+  }
+
+  // Add message to conversation
+  function addMessage(sender, text) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('defcon-ai-message', `defcon-ai-message-${sender}`);
+    
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    messageElement.innerHTML = `
+      <p>${text}</p>
+      <span class="defcon-ai-message-time">${time}</span>
+    `;
+    
+    conversation.appendChild(messageElement);
+    conversation.scrollTop = conversation.scrollHeight;
+    
+    // Add animation
+    setTimeout(() => {
+      messageElement.style.animation = 'defconAiMessageAppear 0.3s ease-out';
+    }, 10);
+  }
+
+  // Set current date in conversation
+  function setCurrentDate() {
+    const dateElement = document.createElement('div');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date().toLocaleDateString(undefined, options);
+    
+    dateElement.classList.add('defcon-ai-date-separator');
+    dateElement.textContent = today;
+    
+    conversation.appendChild(dateElement);
+  }
+
+  // Handle user input with professional responses
+  function handleUserInput() {
+    const message = inputField.value.trim();
+    if (message) {
+      addMessage('user', message);
+      inputField.value = '';
+      
+      // Show professional typing indicator
+      const typingIndicator = document.createElement('div');
+      typingIndicator.classList.add('defcon-ai-message', 'defcon-ai-message-assistant');
+      typingIndicator.innerHTML = '<p>Analyzing with threat intelligence database...</p>';
+      conversation.appendChild(typingIndicator);
+      conversation.scrollTop = conversation.scrollHeight;
+      
+      setTimeout(() => {
+        conversation.removeChild(typingIndicator);
+        
+        let response;
+        const msg = message.toLowerCase();
+        
+        if (msg.includes('security') || msg.includes('audit')) {
+          response = msg.includes('check') ? 
+            responseDatabase.security.check : 
+            responseDatabase.security.audit;
+        } 
+        else if (msg.includes('consult') || msg.includes('meeting')) {
+          response = msg.includes('emergency') ? 
+            responseDatabase.consultation.emergency : 
+            responseDatabase.consultation.general;
+        } 
+        else if (msg.includes('resource') || msg.includes('download')) {
+          response = msg.includes('download') ? 
+            responseDatabase.resources.download : 
+            responseDatabase.resources.general;
+        } 
+        else {
+          response = responseDatabase.default;
+        }
+        
+        addMessage('assistant', response);
+      }, 1500 + Math.random() * 2000);
+    }
+  }
+
+  // Toggle side menu
+  menuToggle.addEventListener('click', function() {
+    sideMenu.classList.add('defcon-ai-menu-open');
+  });
+
+  menuCloseBtn.addEventListener('click', function() {
+    sideMenu.classList.remove('defcon-ai-menu-open');
+  });
+
+  // Handle theme changes
+  document.querySelectorAll('input[name="assistant-theme"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.value === 'light') {
+        assistantContainer.classList.add('light-theme');
+      } else {
+        assistantContainer.classList.remove('light-theme');
+      }
+    });
+  });
+
+  // Event listeners
+  closeBtn.addEventListener('click', function() {
+    assistantContainer.style.animation = 'defconAiFadeIn 0.4s ease-out reverse forwards';
+    setTimeout(() => {
+      assistantContainer.style.display = 'none';
+    }, 400);
+  });
+
+  settingsBtn.addEventListener('click', function() {
+    settingsPanel.classList.add('defcon-ai-settings-open');
+  });
+
+  settingsCloseBtn.addEventListener('click', function() {
+    settingsPanel.classList.remove('defcon-ai-settings-open');
+  });
+
+  voiceBtn.addEventListener('click', function() {
+    voiceUI.classList.add('defcon-ai-voice-active');
+  });
+
+  voiceCloseBtn.addEventListener('click', function() {
+    voiceUI.classList.remove('defcon-ai-voice-active');
+  });
+
+  voiceStopBtn.addEventListener('click', function() {
+    voiceUI.classList.remove('defcon-ai-voice-active');
+    addMessage('assistant', 'Voice analysis complete. How can I help with this inquiry?');
+  });
+
+  inputField.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleUserInput();
+    }
+  });
+
+  sendBtn.addEventListener('click', handleUserInput);
+
+  quickActions.forEach(action => {
+    action.addEventListener('click', function() {
+      const actionText = this.querySelector('.defcon-ai-quick-action-text').textContent;
+      addMessage('user', actionText);
+      
+      const typingIndicator = document.createElement('div');
+      typingIndicator.classList.add('defcon-ai-message', 'defcon-ai-message-assistant');
+      typingIndicator.innerHTML = '<p>Accessing security protocols...</p>';
+      conversation.appendChild(typingIndicator);
+      conversation.scrollTop = conversation.scrollHeight;
+      
+      setTimeout(() => {
+        conversation.removeChild(typingIndicator);
+        
+        let response;
+        if (actionText.includes('Security Check')) {
+          response = responseDatabase.security.check;
+        } else if (actionText.includes('Consultation')) {
+          response = responseDatabase.consultation.general;
+        } else if (actionText.includes('Resources')) {
+          response = responseDatabase.resources.general;
+        } else if (actionText.includes('Pricing')) {
+          response = "Our enterprise security packages start at $15,000/month (includes continuous monitoring and quarterly audits). Would you like a detailed breakdown?";
+        } else {
+          response = responseDatabase.default;
+        }
+        
+        addMessage('assistant', response);
+      }, 1500 + Math.random() * 2000);
+    });
+  });
+
+  // Initialize the assistant
+  initAssistant();
+});
+</script>

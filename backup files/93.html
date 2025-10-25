@@ -1,0 +1,862 @@
+<style>
+  /* Base Styles */
+  .defcon-api-service-container {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  .defcon-api-heading {
+    font-size: 2.5rem;
+    color: #06273e;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  .defcon-api-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: #0091ff;
+    border-radius: 2px;
+  }
+
+  .defcon-api-subheading {
+    font-size: 1.8rem;
+    color: #06273e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .defcon-api-text {
+    font-size: 1.1rem;
+    color: #06273e;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Hero Section */
+  .defcon-api-hero {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-api-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  .defcon-api-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .defcon-api-hero-title {
+    font-size: 3rem;
+    color: #06273e;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    animation: fadeInDown 1s ease;
+  }
+
+  .defcon-api-hero-subtitle {
+    font-size: 1.5rem;
+    color: #0091ff;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease 0.3s both;
+  }
+
+  /* Service Features */
+  .defcon-api-features {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+  }
+
+  .defcon-api-features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .defcon-api-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .defcon-api-feature-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e5e5e5;
+  }
+
+  .defcon-api-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 145, 255, 0.1);
+  }
+
+  .defcon-api-feature-icon {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 1.5rem;
+  }
+
+  .defcon-api-feature-title {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  /* Pricing Section */
+  .defcon-api-pricing {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+  }
+
+  .defcon-api-pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .defcon-api-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .defcon-api-pricing-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+  }
+
+  .defcon-api-pricing-card.popular {
+    border: 2px solid #0091ff;
+  }
+
+  .defcon-api-pricing-card.popular::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: 15px;
+    right: -30px;
+    background: #0091ff;
+    color: white;
+    padding: 0.25rem 2rem;
+    font-size: 0.8rem;
+    transform: rotate(45deg);
+    transform-origin: center;
+    width: 120px;
+    text-align: center;
+  }
+
+  .defcon-api-pricing-title {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .defcon-api-pricing-price {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .defcon-api-pricing-period {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .defcon-api-pricing-features {
+    margin-bottom: 2rem;
+  }
+
+  .defcon-api-pricing-feature {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .defcon-api-pricing-feature::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-weight: bold;
+  }
+
+  .defcon-api-pricing-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #0091ff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .defcon-api-pricing-button:hover {
+    background: #0077cc;
+  }
+
+  /* Process Section */
+  .defcon-api-process {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+  }
+
+  .defcon-api-process-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .defcon-api-process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .defcon-api-process-step {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .defcon-api-process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .defcon-api-process-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0091ff;
+    min-width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.2);
+  }
+
+  .defcon-api-process-content {
+    flex: 1;
+  }
+
+  .defcon-api-process-title {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  /* CTA Section */
+  .defcon-api-cta {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .defcon-api-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .defcon-api-cta-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1s ease;
+  }
+
+  .defcon-api-cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease 0.3s both;
+  }
+
+  .defcon-api-cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: white;
+    color: #0091ff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite 1s;
+  }
+
+  .defcon-api-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Modal Styles */
+  .defcon-api-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .defcon-api-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .defcon-api-modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  .defcon-api-modal.active .defcon-api-modal-content {
+    transform: scale(1);
+  }
+
+  .defcon-api-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .defcon-api-modal-title {
+    font-size: 1.5rem;
+    color: #06273e;
+    margin: 0;
+  }
+
+  .defcon-api-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  .defcon-api-modal-close:hover {
+    color: #0091ff;
+  }
+
+  .defcon-api-modal-body {
+    padding: 1.5rem;
+  }
+
+  /* Form Styles */
+  .defcon-api-form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .defcon-api-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #06273e;
+  }
+
+  .defcon-api-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+
+  .defcon-api-form-input:focus {
+    outline: none;
+    border-color: #0091ff;
+  }
+
+  .defcon-api-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    min-height: 120px;
+    resize: vertical;
+    transition: border 0.3s ease;
+  }
+
+  .defcon-api-form-textarea:focus {
+    outline: none;
+    border-color: #0091ff;
+  }
+
+  .defcon-api-form-submit {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #0091ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+
+  .defcon-api-form-submit:hover {
+    background: #0077cc;
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .defcon-api-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .defcon-api-hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .defcon-api-heading {
+      font-size: 2rem;
+    }
+
+    .defcon-api-subheading {
+      font-size: 1.5rem;
+    }
+
+    .defcon-api-process-step {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .defcon-api-process-number {
+      margin-bottom: 1rem;
+    }
+
+    .defcon-api-cta-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .defcon-api-hero-title {
+      font-size: 2rem;
+    }
+
+    .defcon-api-heading {
+      font-size: 1.8rem;
+    }
+
+    .defcon-api-pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .defcon-api-features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="defcon-api-service-container">
+  <!-- Hero Section -->
+  <section class="defcon-api-hero">
+    <div class="defcon-api-hero-content">
+      <h1 class="defcon-api-hero-title">Professional API Development Services</h1>
+      <p class="defcon-api-hero-subtitle">Build robust, scalable, and secure APIs that power your digital ecosystem and drive business growth</p>
+      <button class="defcon-api-cta-button defcon-api-modal-trigger" data-modal="contact-modal">Get Started Today</button>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="defcon-api-features">
+    <div class="defcon-api-features-container">
+      <h2 class="defcon-api-heading">Our API Development Expertise</h2>
+      <p class="defcon-api-text">We create custom API solutions that seamlessly connect your systems, applications, and services while ensuring security, performance, and scalability.</p>
+      
+      <div class="defcon-api-features-grid">
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">🔒</div>
+          <h3 class="defcon-api-feature-title">Secure API Development</h3>
+          <p class="defcon-api-text">Implement industry-standard security protocols including OAuth 2.0, JWT, and API keys to protect your data and systems.</p>
+        </div>
+        
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">🔄</div>
+          <h3 class="defcon-api-feature-title">RESTful API Design</h3>
+          <p class="defcon-api-text">Build clean, intuitive REST APIs following best practices for resource naming, HTTP methods, status codes, and versioning.</p>
+        </div>
+        
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">⚡</div>
+          <h3 class="defcon-api-feature-title">GraphQL Implementation</h3>
+          <p class="defcon-api-text">Develop flexible GraphQL APIs that allow clients to request exactly the data they need, reducing payload size and improving performance.</p>
+        </div>
+        
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">🔌</div>
+          <h3 class="defcon-api-feature-title">Third-Party API Integration</h3>
+          <p class="defcon-api-text">Connect your systems with popular third-party services like payment gateways, CRM platforms, and marketing automation tools.</p>
+        </div>
+        
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">📊</div>
+          <h3 class="defcon-api-feature-title">API Analytics & Monitoring</h3>
+          <p class="defcon-api-text">Implement comprehensive monitoring to track API usage, performance metrics, and error rates in real-time.</p>
+        </div>
+        
+        <div class="defcon-api-feature-card">
+          <div class="defcon-api-feature-icon">📝</div>
+          <h3 class="defcon-api-feature-title">API Documentation</h3>
+          <p class="defcon-api-text">Create developer-friendly documentation with interactive examples using tools like Swagger/OpenAPI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="defcon-api-pricing">
+    <div class="defcon-api-pricing-container">
+      <h2 class="defcon-api-heading">API Development Packages</h2>
+      <p class="defcon-api-text">Choose the package that fits your needs or contact us for a custom solution tailored to your specific requirements.</p>
+      
+      <div class="defcon-api-pricing-grid">
+        <div class="defcon-api-pricing-card">
+          <h3 class="defcon-api-pricing-title">Basic API</h3>
+          <div class="defcon-api-pricing-price">$2,499</div>
+          <div class="defcon-api-pricing-period">one-time development fee</div>
+          <div class="defcon-api-pricing-features">
+            <div class="defcon-api-pricing-feature">Single endpoint API</div>
+            <div class="defcon-api-pricing-feature">Basic authentication</div>
+            <div class="defcon-api-pricing-feature">RESTful design</div>
+            <div class="defcon-api-pricing-feature">Basic documentation</div>
+            <div class="defcon-api-pricing-feature">1 revision cycle</div>
+          </div>
+          <button class="defcon-api-pricing-button defcon-api-modal-trigger" data-modal="contact-modal">Get Started</button>
+        </div>
+        
+        <div class="defcon-api-pricing-card popular">
+          <h3 class="defcon-api-pricing-title">Professional API</h3>
+          <div class="defcon-api-pricing-price">$4,999</div>
+          <div class="defcon-api-pricing-period">one-time development fee</div>
+          <div class="defcon-api-pricing-features">
+            <div class="defcon-api-pricing-feature">Up to 5 endpoints</div>
+            <div class="defcon-api-pricing-feature">OAuth 2.0 security</div>
+            <div class="defcon-api-pricing-feature">REST or GraphQL</div>
+            <div class="defcon-api-pricing-feature">Comprehensive documentation</div>
+            <div class="defcon-api-pricing-feature">3 revision cycles</div>
+            <div class="defcon-api-pricing-feature">Basic monitoring</div>
+          </div>
+          <button class="defcon-api-pricing-button defcon-api-modal-trigger" data-modal="contact-modal">Get Started</button>
+        </div>
+        
+        <div class="defcon-api-pricing-card">
+          <h3 class="defcon-api-pricing-title">Enterprise API</h3>
+          <div class="defcon-api-pricing-price">$9,999+</div>
+          <div class="defcon-api-pricing-period">one-time development fee</div>
+          <div class="defcon-api-pricing-features">
+            <div class="defcon-api-pricing-feature">Unlimited endpoints</div>
+            <div class="defcon-api-pricing-feature">Advanced security</div>
+            <div class="defcon-api-pricing-feature">REST + GraphQL hybrid</div>
+            <div class="defcon-api-pricing-feature">Interactive documentation</div>
+            <div class="defcon-api-pricing-feature">Unlimited revisions</div>
+            <div class="defcon-api-pricing-feature">Advanced monitoring</div>
+            <div class="defcon-api-pricing-feature">Third-party integrations</div>
+          </div>
+          <button class="defcon-api-pricing-button defcon-api-modal-trigger" data-modal="contact-modal">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="defcon-api-process">
+    <div class="defcon-api-process-container">
+      <h2 class="defcon-api-heading">Our API Development Process</h2>
+      <p class="defcon-api-text">We follow a proven methodology to deliver high-quality API solutions that meet your business requirements.</p>
+      
+      <div class="defcon-api-process-steps">
+        <div class="defcon-api-process-step">
+          <div class="defcon-api-process-number">1</div>
+          <div class="defcon-api-process-content">
+            <h3 class="defcon-api-process-title">Requirement Analysis</h3>
+            <p class="defcon-api-text">We work closely with you to understand your business needs, technical requirements, and integration points to design the optimal API solution.</p>
+          </div>
+        </div>
+        
+        <div class="defcon-api-process-step">
+          <div class="defcon-api-process-number">2</div>
+          <div class="defcon-api-process-content">
+            <h3 class="defcon-api-process-title">API Design</h3>
+            <p class="defcon-api-text">Our architects design the API structure, endpoints, data models, and security protocols following industry best practices.</p>
+          </div>
+        </div>
+        
+        <div class="defcon-api-process-step">
+          <div class="defcon-api-process-number">3</div>
+          <div class="defcon-api-process-content">
+            <h3 class="defcon-api-process-title">Development</h3>
+            <p class="defcon-api-text">Our developers implement the API using modern frameworks and technologies, ensuring clean, maintainable code.</p>
+          </div>
+        </div>
+        
+        <div class="defcon-api-process-step">
+          <div class="defcon-api-process-number">4</div>
+          <div class="defcon-api-process-content">
+            <h3 class="defcon-api-process-title">Testing</h3>
+            <p class="defcon-api-text">We conduct rigorous testing including unit tests, integration tests, security tests, and performance tests.</p>
+          </div>
+        </div>
+        
+        <div class="defcon-api-process-step">
+          <div class="defcon-api-process-number">5</div>
+          <div class="defcon-api-process-content">
+            <h3 class="defcon-api-process-title">Deployment & Documentation</h3>
+            <p class="defcon-api-text">We deploy the API to your preferred environment and provide comprehensive documentation for developers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="defcon-api-cta">
+    <div class="defcon-api-cta-container">
+      <h2 class="defcon-api-cta-title">Ready to Build Your API?</h2>
+      <p class="defcon-api-cta-text">Contact our API specialists today to discuss your project requirements and get a custom quote.</p>
+      <button class="defcon-api-cta-button defcon-api-modal-trigger" data-modal="contact-modal">Request a Consultation</button>
+    </div>
+  </section>
+
+  <!-- Contact Modal -->
+  <div class="defcon-api-modal" id="contact-modal">
+    <div class="defcon-api-modal-content">
+      <div class="defcon-api-modal-header">
+        <h3 class="defcon-api-modal-title">Get in Touch</h3>
+        <button class="defcon-api-modal-close">&times;</button>
+      </div>
+      <div class="defcon-api-modal-body">
+        <form class="defcon-api-contact-form">
+          <div class="defcon-api-form-group">
+            <label class="defcon-api-form-label" for="name">Your Name</label>
+            <input class="defcon-api-form-input" type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="defcon-api-form-group">
+            <label class="defcon-api-form-label" for="email">Email Address</label>
+            <input class="defcon-api-form-input" type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="defcon-api-form-group">
+            <label class="defcon-api-form-label" for="phone">Phone Number</label>
+            <input class="defcon-api-form-input" type="tel" id="phone" name="phone">
+          </div>
+          
+          <div class="defcon-api-form-group">
+            <label class="defcon-api-form-label" for="service">Service Interest</label>
+            <select class="defcon-api-form-input" id="service" name="service">
+              <option value="API Development">API Development</option>
+              <option value="Custom API Solution">Custom API Solution</option>
+              <option value="API Integration">API Integration</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="defcon-api-form-group">
+            <label class="defcon-api-form-label" for="message">Project Details</label>
+            <textarea class="defcon-api-form-textarea" id="message" name="message" required></textarea>
+          </div>
+          
+          <button class="defcon-api-form-submit" type="submit">Submit Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Modal triggers
+    const modalTriggers = document.querySelectorAll('.defcon-api-modal-trigger');
+    const modals = document.querySelectorAll('.defcon-api-modal');
+    const closeButtons = document.querySelectorAll('.defcon-api-modal-close');
+    
+    // Show modal
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close modal
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const modal = this.closest('.defcon-api-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Close when clicking outside modal content
+    modals.forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        modals.forEach(modal => {
+          if (modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    });
+    
+    // Form submission
+    const contactForm = document.querySelector('.defcon-api-contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically send the form data to your server
+        alert('Thank you for your inquiry! We will contact you shortly.');
+        document.querySelectorAll('.defcon-api-modal.active').forEach(modal => {
+          modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+        this.reset();
+      });
+    }
+    
+    // Animate process steps on scroll
+    const processSteps = document.querySelectorAll('.defcon-api-process-step');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    processSteps.forEach(step => {
+      observer.observe(step);
+    });
+  });
+</script>

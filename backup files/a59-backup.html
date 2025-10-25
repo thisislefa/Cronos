@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --defcon-dark-blue: #06273e;
+            --defcon-primary-blue: #0091ff;
+            --defcon-white: #ffffff;
+            --defcon-light-gray: #e5e5e5;
+            --defcon-card-bg: rgba(6, 39, 62, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-dark-blue);
+            color: var(--defcon-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        /* Hero Section */
+        .defcon-hero {
+            background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .defcon-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .defcon-hero-title {
+            font-size: 70px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: defcon-fadeIn 1s ease;
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--defcon-light-gray);
+            margin-bottom: 40px;
+            animation: defcon-fadeIn 1s ease 0.3s forwards;
+            opacity: 0.3;
+        }
+
+        .defcon-hero-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--defcon-primary-blue);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: defcon-fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .defcon-hero-cta:hover {
+            background: #007ad6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Vision Section */
+        .defcon-vision {
+            padding: 150px 0;
+            background: var(--defcon-dark-blue);
+        }
+
+        .defcon-section-title {
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #0091ff;
+            text-transform: uppercase;
+        }
+
+        .defcon-section-subtitle {
+            text-align: center;
+            font-weight: 600; 
+            letter-spacing: -0.03em; 
+            font-size: 60px;
+            line-height: 1.2;
+            color: var(--defcon-dark-blue);
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .defcon-vision-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .defcon-vision-text {
+            flex: 1;
+        }
+
+        .defcon-vision-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--defcon-primary-blue);
+        }
+
+        .defcon-vision-desc {
+            color: var(--defcon-light-gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .defcon-vision-features {
+            list-style: none;
+        }
+
+        .defcon-vision-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .defcon-vision-icon {
+            color: var(--defcon-primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .defcon-vision-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .defcon-vision-image.defcon-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .defcon-vision-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Jobs Section */
+        .defcon-jobs {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .defcon-jobs-search {
+            background: #e5e5e5;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.101);
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .defcon-search-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--defcon-dark-blue);
+        }
+
+        .defcon-search-form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .defcon-search-input {
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--defcon-white);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-search-input:focus {
+            outline: none;
+            border-color: var(--defcon-primary-blue);
+            box-shadow: 0 0 0 2px rgba(0, 145, 255, 0.2);
+        }
+
+        .defcon-search-input::placeholder {
+            color: var(--defcon-light-gray);
+        }
+
+        .defcon-search-select {
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--defcon-white);
+            font-family: 'Inter', sans-serif;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e5e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-search-select:focus {
+            outline: none;
+            border-color: var(--defcon-primary-blue);
+            box-shadow: 0 0 0 2px rgba(0, 145, 255, 0.2);
+        }
+
+        .defcon-search-results {
+            margin-top: 20px;
+            color: var(--defcon-light-gray);
+            font-size: 0.9rem;
+        }
+
+        .defcon-jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-job-card {
+            background: #051c2c;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.101);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .defcon-job-card.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-job-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .defcon-job-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-white);
+        }
+
+        .defcon-job-department {
+            display: inline-block;
+            background: rgba(0, 145, 255, 0.2);
+            color: var(--defcon-primary-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .defcon-job-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--defcon-light-gray);
+            margin-bottom: 20px;
+        }
+
+        .defcon-job-desc {
+            color: var(--defcon-light-gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .defcon-job-cta {
+            display: inline-block;
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--defcon-primary-blue);
+            color: var(--defcon-primary-blue);
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .defcon-job-cta:hover {
+            background: rgba(0, 145, 255, 0.1);
+        }
+
+        .defcon-no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--defcon-light-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .defcon-footer {
+            background: #051c2c;
+            padding: 60px 0 30px;
+        }
+
+        .defcon-footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .defcon-footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--defcon-white);
+        }
+
+        .defcon-footer-links {
+            list-style: none;
+        }
+
+        .defcon-footer-link {
+            margin-bottom: 10px;
+        }
+
+        .defcon-footer-link a {
+            color: var(--defcon-light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .defcon-footer-link a:hover {
+            color: var(--defcon-primary-blue);
+        }
+
+        .defcon-footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--defcon-light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes defcon-fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .defcon-vision-content {
+                flex-direction: column;
+            }
+            
+            .defcon-footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .defcon-search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .defcon-footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-jobs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     HEADER WRAPPER
+     ============================================= -->
+<div class="header-wrapper">
+    <!-- Main Header Bar -->
+    <header class="custom-header">
+        <div class="custom-header-container">
+            <!-- Logo -->
+            <div class="custom-logo-container">
+                <a href="index.html" class="custom-logo-link" style="align-self: center; display: flex; justify-content: center;">
+                    <img src="thumbnails/binge.png" alt="Logo" class="custom-logo-img">
+                </a>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="custom-main-nav">
+                <ul class="custom-nav-list">
+                    <li><a href="#" class="custom-nav-link">Fintech <span class="hero-sec-span">NEW</span></a></li>
+                    <li><a href="#" class="custom-nav-link">Support</a></li>
+                    <li><a href="#portfolio" class="custom-nav-link">Projects</a></li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
+                            Services <i class="fas fa-chevron-down custom-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="resources">
+                            Company <i class="fas fa-chevron-down custom-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <button class="header-btn"><a href="contactus.html">Contact Us</a></button>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="custom-mobile-toggle">
+                <div class="custom-hamburger">
+                    <span class="custom-hamburger-line"></span>
+                    <span class="custom-hamburger-line"></span>
+                    <span class="custom-hamburger-line"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mega Menus Container -->
+    <div class="mega-menu-container">
+        <!-- Services Megamenu Panel -->
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="mega-menu-content">
+                <!-- Development Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Development</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-laptop-code"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Web Applications</span>
+                                    <span class="link-desc">Modern, responsive websites and web apps.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-shopping-cart"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">E-commerce</span>
+                                    <span class="link-desc">Online stores, payment integration, and more.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-cogs"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Custom Software</span>
+                                    <span class="link-desc">Tailored software for unique business needs.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                          <a href="api-development.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-plug"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">API Development</span>
+                                  <span class="link-desc">Custom APIs for seamless integrations.</span>
+                              </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="devops-implementation.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-sync-alt"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">DevOps Implementation</span>
+                                  <span class="link-desc">CI/CD, automation, and best practices.</span>
+                              </span>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Digital Solutions Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">IT Infrastructure</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-headset"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">IT Support & Infrastructure</span>
+                                    <span class="link-desc">24/7 support and robust IT infrastructure.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-user-tie"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">IT Consulting</span>
+                                    <span class="link-desc">Expert advice for digital transformation.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-network-wired"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Networking</span>
+                                    <span class="link-desc">Secure, scalable, and seamless connections.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-robot"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Automation & AI</span>
+                                    <span class="link-desc">Boost efficiency with smart automation.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                          <a href="smarthomesetup.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-home"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">Smart Home Setup</span>
+                                  <span class="link-desc">Connected, secure, and automated homes.</span>
+                          </span>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Creative Communications Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Marketing & Creative Studio</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-bullhorn"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Digital Marketing</span>
+                                    <span class="link-desc">SEO, social media, and online campaigns.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-paint-brush"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Graphic Design</span>
+                                    <span class="link-desc">Branding, logos, and visual storytelling.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-video"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Multimedia Production</span>
+                                    <span class="link-desc">Video, motion graphics, and audio.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-pen-nib"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Copywriting & Content</span>
+                                    <span class="link-desc">Engaging content for all platforms.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="advertising.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-ad"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Advertising</span>
+                                    <span class="link-desc">Targeted ads for maximum reach.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                 <!-- Cloud Infrastructure Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Cloud Computing</h3>
+                    <ul class="mega-menu-list">
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-aws"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">AWS Migration</span>
+                                    <span class="link-desc">Seamless migration to AWS cloud.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-microsoft"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Azure Integration</span>
+                                    <span class="link-desc">Integrate and scale with Microsoft Azure.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="google-cloud-platform.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-google"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Google Cloud Platform</span>
+                                    <span class="link-desc">Deploy and manage on Google Cloud.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="hybrid-cloud.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-cloud"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Hybrid Cloud</span>
+                                    <span class="link-desc">Flexible hybrid cloud environments.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-shield-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Cloud Security</span>
+                                    <span class="link-desc">Protect your cloud assets and data.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             
+        </div>
+
+        <!-- Resources Megamenu Panel -->
+        <div class="mega-menu-panel" data-megamenu-panel="resources">
+            <div class="mega-menu-content">
+                 <!-- First Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Company</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#about" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-building"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">About Defcon</span>
+                                    <span class="link-desc">Our mission, vision and team.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-map-marked-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Roadmap</span>
+                                    <span class="link-desc">Our product development timeline.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-map-marked-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Community</span>
+                                    <span class="link-desc">Join our growing community Slack, Discord and public support forums.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="a59.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-map-marked-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Careers</span>
+                                    <span class="link-desc">Join our esteemed team and grow your career.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-map-marked-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Legal</span>
+                                    <span class="link-desc">Learn more about our licensing agreements, privacy policy and terms.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                 <!-- Second Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Programs</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="Betaprogram.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-flask"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Beta Program</span>
+                                    <span class="link-desc">Test our latest features before release.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-lightbulb"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Innovations</span>
+                                    <span class="link-desc">Explore our cutting-edge tech.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-lightbulb"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Webinars</span>
+                                    <span class="link-desc">Explore tech trends and discussions.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-lightbulb"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Events</span>
+                                    <span class="link-desc">Attend our educational events for technology advancement. </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Third Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Resources</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-briefcase"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Blog</span>
+                                    <span class="link-desc">The latest industry news, insights & trends.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-check"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Free Ebooks</span>
+                                    <span class="link-desc">Helpful tools for developers.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-briefcase"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Business Solutions</span>
+                                    <span class="link-desc">Enterprise-grade solutions.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-briefcase"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Documentations</span>
+                                    <span class="link-desc">All the boring stuff you (hopefully won't) need, written by our team.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- =============================================
+     Mobile Menu (Structure remains for responsiveness)
+     ============================================= -->
+<div class="custom-mobile-menu">
+    <!-- Mobile menu content from original file -->
+</div>
+
+
+<!-- =============================================
+     CSS STYLES
+     ============================================= -->
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #fff;
+    text-rendering: optimizeLegibility;
+}
+
+/* =============================================
+   HEADER WRAPPER & FLOATING BAR
+   ============================================= */
+
+.header-btn {
+  background: #0091ff;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  padding: 0 1rem;
+  vertical-align: middle;
+  font-weight: 500;
+}
+
+.header-btn:hover {
+  background: #0081ff;
+}
+
+.header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    transform: translateY(0);
+}
+
+.header-wrapper.hidden {
+    transform: translateY(-100%);
+}
+
+.custom-header {
+    width: 100%;
+    pointer-events: auto;
+}
+
+.custom-header-container {
+    max-width: 1200px;
+    margin: 18px auto 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: background 0.2s, box-shadow 0.4s, border-radius 0.3s ease;
+}
+
+/* Style when header is scrolled or menu is open */
+.header-wrapper.scrolled .custom-header-container,
+.header-wrapper.menu-active .custom-header-container {
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+.header-wrapper.menu-active .custom-header-container {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* =============================================
+   LOGO & NAVIGATION STYLES
+   ============================================= */
+.custom-logo-img {
+    height: 30px;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+}
+.custom-main-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.custom-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.custom-nav-list > li {
+    margin: 0 5px;
+}
+.custom-nav-link {
+    color: #06273e;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 12px;
+    position: relative;
+    display: block;
+    align-items: center;
+    justify-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+    transition: color 0s ease, background-color 0s ease;
+}
+.custom-nav-link:hover,
+.custom-nav-link.active {
+    color: #0091ff;
+    
+}
+.custom-dropdown-icon {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+.custom-nav-link.active .custom-dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* =============================================
+   MEGA MENU CONTAINER & PANELS
+   ============================================= */
+.mega-menu-container {
+    background: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: none;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    clip-path: inset(0px -20px -20px -20px); /* hides the top shadow */
+
+    transition: max-height 0s ease, opacity 0s ease, visibility 0s 0.1s;
+}
+
+.header-wrapper.menu-active .mega-menu-container {
+    max-height: 600px; /* Adjust as needed */
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0s ease, opacity 0.1s ease, visibility 0s 0s;
+    margin-top: 0;
+}
+
+.mega-menu-panel {
+    display: none;
+    padding: 1rem 0;
+}
+.mega-menu-panel.active {
+    display: block;
+}
+
+/* =============================================
+   MEGA MENU CONTENT STYLING
+   ============================================= */
+.mega-menu-content {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+}
+
+.mega-menu-column {
+    flex: 1;
+    padding: 0 20px;
+    min-width: 200px; 
+}
+
+.mega-menu-title {
+    color: #6b7280;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 15px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mega-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu-list li {
+    margin-bottom: 12px;
+}
+
+.mega-menu-link {
+    color: #0091ff;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0s ease;
+}
+
+.mega-menu-link:hover {
+    background-color: #f3f4f6;
+}
+.mega-menu-link:hover .icon-container {
+    background-color: #e5e7eb;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    transition: background-color 0s ease;
+}
+
+.icon-container i {
+    font-size: 18px;
+    color: #0091ff;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-title {
+    font-weight: 550;
+    font-size: 13px;
+    color: #06273e;
+}
+
+.link-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 480;
+    margin-top: 1px;
+    line-height: 1.4;
+}
+
+.mega-menu-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+.mega-menu-footer a {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.mega-menu-footer a:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   MOBILE & RESPONSIVE STYLES
+   ============================================= */
+.custom-mobile-toggle { display: none; }
+
+@media (max-width: 1024px) {
+    .custom-main-nav { display: none; }
+    .custom-mobile-toggle { display: flex; /* Original mobile styles needed here */ }
+}
+@media (max-width: 768px) {
+    .custom-header-container { margin: 12px; padding: 0 20px; }
+}
+
+</style>
+
+<!-- =============================================
+     JAVASCRIPT
+     ============================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const triggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const panels = document.querySelectorAll('[data-megamenu-panel]');
+    let activeMenu = null;
+    let hideMenuTimer;
+
+    // --- Header Scroll Behavior ---
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            headerWrapper.classList.add('hidden');
+        } else {
+            headerWrapper.classList.remove('hidden');
+        }
+        headerWrapper.classList.toggle('scrolled', scrollTop > 10);
+        lastScrollTop = scrollTop;
+    });
+
+    // --- Mega Menu Logic ---
+    function showMenu(menuId) {
+        clearTimeout(hideMenuTimer); // Cancel any pending hide actions
+
+        // Deactivate previous menu if any
+        if (activeMenu && activeMenu !== menuId) {
+            deactivateCurrentMenu();
+        }
+
+        activeMenu = menuId;
+        
+        // Activate new menu
+        const trigger = document.querySelector(`[data-megamenu-trigger="${menuId}"]`);
+        const panel = document.querySelector(`[data-megamenu-panel="${menuId}"]`);
+
+        if (trigger && panel) {
+            headerWrapper.classList.add('menu-active');
+            trigger.classList.add('active');
+            panel.classList.add('active');
+        }
+    }
+
+    function hideMenu() {
+        // Use a timer to allow moving mouse from trigger to panel
+        hideMenuTimer = setTimeout(() => {
+            deactivateCurrentMenu();
+            activeMenu = null;
+        }, 200);
+    }
+    
+    function deactivateCurrentMenu() {
+        if (!activeMenu) return;
+        
+        const currentTrigger = document.querySelector(`[data-megamenu-trigger].active`);
+        const currentPanel = document.querySelector(`[data-megamenu-panel].active`);
+
+        headerWrapper.classList.remove('menu-active');
+        if (currentTrigger) currentTrigger.classList.remove('active');
+        if (currentPanel) currentPanel.classList.remove('active');
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => {
+            showMenu(trigger.dataset.megamenuTrigger);
+        });
+    });
+    
+    headerWrapper.addEventListener('mouseleave', () => {
+        hideMenu();
+    });
+
+    // Keep menu open when hovering over it
+    panels.forEach(panel => {
+        panel.addEventListener('mouseenter', () => {
+            clearTimeout(hideMenuTimer);
+        });
+    });
+
+    // --- Mobile Menu Logic (Placeholder) ---
+    // The original mobile menu JS would go here if needed.
+    // This example focuses on the desktop mega menu.
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Hero Section -->
+    <section class="defcon-hero">
+        <div class="defcon-hero-content">
+            <h1 class="defcon-hero-title">Find Your Dream Job</h1>
+
+            <a href="#jobs" class="defcon-hero-cta">View Open Positions</a>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="defcon-vision">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Vision</h2>
+            <p class="defcon-section-subtitle">Innovate, Create & Transform</p>
+            
+            <div class="defcon-vision-content">
+                <div class="defcon-vision-text">
+                    <h3 class="defcon-vision-title">Why Work With Us</h3>
+                    <p class="defcon-vision-desc">We are not just a company, we are a community of passionate individuals dedicated to innovation and excellence. We provide an environment where your ideas are valued, your growth is prioritized, and your impact is measurable.</p>
+                    
+                    <ul class="defcon-vision-features">
+                        <li class="defcon-vision-feature">
+                            <i class="fas fa-check-circle defcon-vision-icon"></i>
+                            <span>Competitive compensation and benefits</span>
+                        </li>
+                        <li class="defcon-vision-feature">
+                            <i class="fas fa-check-circle defcon-vision-icon"></i>
+                            <span>Flexible work arrangements</span>
+                        </li>
+                        <li class="defcon-vision-feature">
+                            <i class="fas fa-check-circle defcon-vision-icon"></i>
+                            <span>Continuous learning opportunities</span>
+                        </li>
+                        <li class="defcon-vision-feature">
+                            <i class="fas fa-check-circle defcon-vision-icon"></i>
+                            <span>Cutting-edge projects</span>
+                        </li>
+                        <li class="defcon-vision-feature">
+                            <i class="fas fa-check-circle defcon-vision-icon"></i>
+                            <span>Inclusive and diverse culture</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-vision-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Defcon team collaboration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="defcon-jobs" id="jobs">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Open Positions</h2>
+            <p class="defcon-section-subtitle">Find your perfect role and join our talented team</p>
+            
+            <div class="defcon-jobs-search">
+                <h3 class="defcon-search-title">Search Jobs</h3>
+                <div class="defcon-search-form">
+                    <input type="text" class="defcon-search-input" placeholder="Job title" id="defcon-search-title">
+                    
+                    <select class="defcon-search-select" id="defcon-search-department">
+                        <option value="">All Departments</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Design">Design</option>
+                        <option value="Security">Security</option>
+                        <option value="Data Analytics">Data Analytics</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Operations">Operations</option>
+                    </select>
+                    
+                    <input type="text" class="defcon-search-input" placeholder="Location" id="defcon-search-location">
+                </div>
+                <div class="defcon-search-results" id="defcon-search-results">Showing all <span id="defcon-jobs-count">8</span> jobs</div>
+            </div>
+            
+            <div class="defcon-jobs-grid" id="defcon-jobs-container">
+                <!-- Job 1 -->
+                <div class="defcon-job-card" data-department="Engineering" data-title="senior frontend developer" data-location="san francisco remote">
+                    <h3 class="defcon-job-title">Senior Frontend Developer</h3>
+                    <span class="defcon-job-department">Engineering</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco, CA / Remote</span>
+                    </div>
+                    <p class="defcon-job-desc">Design and implement user interfaces for our cutting-edge products using modern frameworks like React and Vue.js.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 2 -->
+                <div class="defcon-job-card" data-department="Security" data-title="cybersecurity specialist" data-location="new york">
+                    <h3 class="defcon-job-title">Cybersecurity Specialist</h3>
+                    <span class="defcon-job-department">Security</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY</span>
+                    </div>
+                    <p class="defcon-job-desc">Protect our systems and data from threats, implement security protocols, and conduct vulnerability assessments.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 3 -->
+                <div class="defcon-job-card" data-department="Data Analytics" data-title="data scientist" data-location="remote">
+                    <h3 class="defcon-job-title">Data Scientist</h3>
+                    <span class="defcon-job-department">Data Analytics</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Remote</span>
+                    </div>
+                    <p class="defcon-job-desc">Extract insights from complex datasets, build predictive models, and help drive data-informed decision making.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 4 -->
+                <div class="defcon-job-card" data-department="Design" data-title="ux ui designer" data-location="austin">
+                    <h3 class="defcon-job-title">UX/UI Designer</h3>
+                    <span class="defcon-job-department">Design</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Austin, TX</span>
+                    </div>
+                    <p class="defcon-job-desc">Create intuitive and beautiful user experiences for our products through research, prototyping, and testing.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 5 -->
+                <div class="defcon-job-card" data-department="Engineering" data-title="backend engineer" data-location="london remote">
+                    <h3 class="defcon-job-title">Backend Engineer</h3>
+                    <span class="defcon-job-department">Engineering</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>London, UK / Remote</span>
+                    </div>
+                    <p class="defcon-job-desc">Develop scalable server-side solutions and APIs to power our applications and services.</p>
+                    <a href="a60.html" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 6 -->
+                <div class="defcon-job-card" data-department="Marketing" data-title="digital marketing manager" data-location="los angeles">
+                    <h3 class="defcon-job-title">Digital Marketing Manager</h3>
+                    <span class="defcon-job-department">Marketing</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Los Angeles, CA</span>
+                    </div>
+                    <p class="defcon-job-desc">Develop and execute digital marketing strategies to increase brand awareness and drive customer engagement.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 7 -->
+                <div class="defcon-job-card" data-department="Sales" data-title="sales development representative" data-location="chicago remote">
+                    <h3 class="defcon-job-title">Sales Development Representative</h3>
+                    <span class="defcon-job-department">Sales</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Chicago, IL / Remote</span>
+                    </div>
+                    <p class="defcon-job-desc">Identify and qualify new sales opportunities through outbound prospecting and inbound lead follow-up.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+                
+                <!-- Job 8 -->
+                <div class="defcon-job-card" data-department="Operations" data-title="operations manager" data-location="boston">
+                    <h3 class="defcon-job-title">Operations Manager</h3>
+                    <span class="defcon-job-department">Operations</span>
+                    <div class="defcon-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Boston, MA</span>
+                    </div>
+                    <p class="defcon-job-desc">Oversee daily operations, optimize processes, and ensure efficient delivery of services to clients.</p>
+                    <a href="#" class="defcon-job-cta">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-footer">
+        <div class="defcon-container">
+            <div class="defcon-footer-content">
+                <div class="defcon-footer-col">
+                    <h3>Defcon</h3>
+                    <p style="color: #e5e5e5; margin-bottom: 20px;">Innovating for a better future through technology and creativity.</p>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Company</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">About Us</a></li>
+                        <li class="defcon-footer-link"><a href="#">Our Team</a></li>
+                        <li class="defcon-footer-link"><a href="#">Careers</a></li>
+                        <li class="defcon-footer-link"><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Resources</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">Blog</a></li>
+                        <li class="defcon-footer-link"><a href="#">FAQ</a></li>
+                        <li class="defcon-footer-link"><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Connect</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">Twitter</a></li>
+                        <li class="defcon-footer-link"><a href="#">LinkedIn</a></li>
+                        <li class="defcon-footer-link"><a href="#">Instagram</a></li>
+                        <li class="defcon-footer-link"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="defcon-footer-bottom">
+                <p>&copy; 2023 Defcon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal elements on scroll
+        function defconRevealElements() {
+            const elements = document.querySelectorAll('.defcon-vision-image, .defcon-job-card');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('defcon-visible');
+                }
+            });
+        }
+
+        // Live search functionality
+        function defconFilterJobs() {
+            const titleSearch = document.getElementById('defcon-search-title').value.toLowerCase();
+            const departmentSearch = document.getElementById('defcon-search-department').value;
+            const locationSearch = document.getElementById('defcon-search-location').value.toLowerCase();
+            
+            const jobCards = document.querySelectorAll('.defcon-job-card');
+            let visibleCount = 0;
+            
+            jobCards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                const department = card.getAttribute('data-department');
+                const location = card.getAttribute('data-location');
+                
+                const titleMatch = title.includes(titleSearch);
+                const departmentMatch = departmentSearch === '' || department === departmentSearch;
+                const locationMatch = location.includes(locationSearch);
+                
+                if (titleMatch && departmentMatch && locationMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            document.getElementById('defcon-jobs-count').textContent = visibleCount;
+            
+            // Show no results message if needed
+            const noResultsElement = document.querySelector('.defcon-no-results');
+            if (visibleCount === 0) {
+                if (!noResultsElement) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'defcon-no-results';
+                    noResults.innerHTML = '<p>No jobs match your search criteria. Try adjusting your filters.</p>';
+                    document.getElementById('defcon-jobs-container').appendChild(noResults);
+                }
+            } else if (noResultsElement) {
+                noResultsElement.remove();
+            }
+        }
+
+        // Set up event listeners for live search
+        document.getElementById('defcon-search-title').addEventListener('input', defconFilterJobs);
+        document.getElementById('defcon-search-department').addEventListener('change', defconFilterJobs);
+        document.getElementById('defcon-search-location').addEventListener('input', defconFilterJobs);
+
+        // Initial call to reveal elements
+        window.addEventListener('load', defconRevealElements);
+        // Call on scroll
+        window.addEventListener('scroll', defconRevealElements);
+    </script>
+</body>
+</html>

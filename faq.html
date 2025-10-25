@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium IT Services FAQ</title>
+
+    <style>
+        
+            
+        @import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap);
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(119, 124, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 149, 255, 0.1) 0%, transparent 50%);
+            animation: gradientShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { transform: translateX(-10px) translateY(-10px); }
+            100% { transform: translateX(10px) translateY(10px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+            margin-top: 7rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1da8ff);
+            border-radius: 2px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(0, 76, 255, 0.8), 0 0 30px rgba(255, 255, 0, 0.3); }
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #06273e 0%, #1da8ff 20%, #1da8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .faq-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .faq-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 255, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-category:hover::before {
+            opacity: 1;
+        }
+
+        .faq-category:hover {
+            transform: translateY(-10px);
+            
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #0091ff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 24px;
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 1px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #00d4ff, #ff00ff);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question:hover::before {
+            transform: scaleY(1);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            background: #0091ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: linear-gradient(135deg, #ff00ff, #ffff00);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            background: rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1rem;
+            border-left: 4px solid rgba(0, 212, 255, 0.3);
+            margin-left: 20px;
+        }
+
+        .highlight {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #00d4ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 15px;
+            }
+            
+            .faq-category {
+                padding: 25px;
+            }
+            
+            .category-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+             background: #06273e;
+            padding: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: auto;
+            animation: pulse 2s infinite;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img:hover {
+             transform: scale(1.1) rotate(2deg);
+        }
+
+        .footer-logo img:active {
+            animation: bounce 0.3s ease;
+        }
+
+        .footer-container h3 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ecf0f1; /* White for dark background */
+            text-align: left;
+            justify-content: center;
+        }
+
+        .footer-container p {
+            font-size: 1.2rem;
+            color: #ecf0f1; /* White for dark background */
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+
+        .footer-links {
+            list-style: none;
+            position: relative;
+            text-align: left;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #0091ff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+           
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            transform: scale(1.1) rotate(2deg);
+            transition: all 0.3s ease-out;
+        }
+
+
+        .footer-nav-item {
+            position: relative;
+        }
+
+        .footer-nav-link {
+            color: #1da8ff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-nav-link:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-dropdown-content {
+            display: none;
+            position: absolute;
+            background: #06273e;
+            min-width: 180px;
+            border-radius: 8px;
+            box-shadow: 0 -8px 16px rgba(0,0,0,0.4);
+            bottom: 100%; /* Position above for dropup */
+            left: 0;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .footer-nav-item:hover .footer-dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .footer-dropdown-content a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.1s ease;
+        }
+
+        .footer-dropdown-content a:hover {
+            background: #1da8ff;
+            border-radius: 6px;
+            transform: translateX(6px);
+        }
+
+        .footer-dropdown-content a:active {
+            animation: bounce 0.3s ease;
+        }
+
+        .footer-contactinfo {
+            text-align: left;
+            justify-content: center;  
+        }
+
+        .footer-contactinfo p {
+            font-size: medium;
+            display: flex;
+        }
+
+
+        .social-icons {
+            display: flex ;
+            gap: 1rem;
+            justify-content: left;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .social-icon:active{
+            animation: bounce 0.5s ease;
+        }
+
+        .footer-bottom {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+        }
+
+        .footer-bottom ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 1rem;
+            color: #ecf0f1; /* White for dark background */
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Frequently Asked Questions</h1>
+            <p class="subtitle">Everything you need to know about our premium IT services. Can't find what you're looking for? Contact our expert team.</p>
+        </div>
+
+        <div class="faq-grid">
+            <!-- Web Design & Development -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">🎨</div>
+                    <h2 class="category-title">Web Design & Development</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does it take to build a custom website?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our custom website development typically takes <span class="highlight">2-8 weeks</span> depending on complexity. Simple business websites take 2-3 weeks, while complex e-commerce or enterprise solutions may require 6-8 weeks. We provide detailed timelines during our initial consultation and keep you updated throughout the entire process.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide responsive design for mobile devices?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! Every website we create is <span class="highlight">fully responsive</span> and optimized for all devices - desktop, tablet, and mobile. We follow mobile-first design principles and test thoroughly across different screen sizes and browsers to ensure perfect functionality everywhere.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What technologies do you use for web development?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We use cutting-edge technologies including <span class="highlight">React, Next.js, Node.js, Python, PHP, WordPress, Shopify</span>, and modern cloud platforms. Our tech stack is chosen based on your specific needs, ensuring optimal performance, security, and scalability for your project.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Support -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">🔧</div>
+                    <h2 class="category-title">Tech Support</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What are your tech support response times?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer <span class="highlight">24/7 premium support</span> with response times of under 15 minutes for critical issues, 2 hours for high priority, and 24 hours for standard requests. Our support includes remote assistance, on-site visits, and emergency response services.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you provide remote tech support?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We provide secure remote support using enterprise-grade tools. Our technicians can access your systems safely to resolve issues, install software, perform maintenance, and provide training - all while you watch and learn.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What types of devices and systems do you support?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We support <span class="highlight">all major platforms</span>: Windows, macOS, Linux, iOS, Android, network equipment, servers, printers, and specialized business hardware. Our certified technicians handle everything from basic troubleshooting to complex enterprise systems.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IT Consulting -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">💼</div>
+                    <h2 class="category-title">IT Consulting</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do you assess our current IT infrastructure?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We conduct a comprehensive <span class="highlight">360-degree IT audit</span> covering security, performance, scalability, and cost-efficiency. Our assessment includes network analysis, security vulnerabilities, software licensing, hardware lifecycle, and strategic technology roadmap planning.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you help with digital transformation strategies?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We specialize in <span class="highlight">digital transformation</span> strategies that modernize your business processes, improve efficiency, and drive growth. This includes cloud migration, automation, data analytics, and emerging technology integration.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's included in your cybersecurity consulting?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our cybersecurity services include <span class="highlight">penetration testing, vulnerability assessments, security policy development, employee training, incident response planning</span>, and compliance assistance (GDPR, HIPAA, SOX). We provide ongoing monitoring and threat intelligence.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Marketing -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">📈</div>
+                    <h2 class="category-title">Digital Marketing</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do you measure digital marketing ROI?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We provide <span class="highlight">detailed analytics and reporting</span> tracking conversion rates, cost per acquisition, lifetime value, traffic growth, engagement metrics, and revenue attribution. You'll receive monthly reports with actionable insights and strategy adjustments.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Which digital marketing channels do you specialize in?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We excel in <span class="highlight">SEO, PPC advertising, social media marketing, content marketing, email campaigns, influencer partnerships</span>, and marketing automation. Our integrated approach ensures consistent messaging across all touchpoints.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long before we see results from digital marketing?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <span class="highlight">PPC and social media ads</span> show results within 1-2 weeks, while <span class="highlight">SEO and content marketing</span> typically take 3-6 months for significant impact. We provide quick wins early on while building long-term sustainable growth strategies.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative Services -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">📸</div>
+                    <h2 class="category-title">Creative Services</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's included in your graphic design services?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our design services include <span class="highlight">brand identity, logos, marketing materials, web graphics, social media assets, print design, packaging, and presentations</span>. We provide multiple concepts and unlimited revisions until you're completely satisfied.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer professional photography and videography?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We provide <span class="highlight">commercial photography, product shoots, corporate headshots, event coverage, promotional videos, testimonials, and animated content</span>. All content is professionally edited and optimized for various platforms and uses.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can you help with brand development and strategy?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We develop <span class="highlight">comprehensive brand strategies</span> including positioning, messaging, visual identity, brand guidelines, and market differentiation. Our approach ensures your brand resonates with your target audience and stands out from competitors.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing & Process -->
+            <div class="faq-category">
+                <div class="category-header">
+                    <div class="category-icon">💎</div>
+                    <h2 class="category-title">Pricing & Process</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do you structure your pricing?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We offer flexible pricing models: <span class="highlight">project-based, monthly retainers, and hourly consulting</span>. All pricing is transparent with detailed proposals outlining scope, deliverables, and timelines. We provide premium value with competitive rates and flexible payment terms.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer ongoing maintenance and support?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We provide <span class="highlight">comprehensive maintenance packages</span> including security updates, performance optimization, content updates, backup management, and priority support. Our proactive approach prevents issues before they impact your business.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What makes your company different from competitors?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We combine <span class="highlight">cutting-edge technology with personalized service</span>. Our team of certified experts provides strategic thinking, creative excellence, and technical mastery. We're not just service providers - we're your technology partners invested in your long-term success.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Business?</h2>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; margin-bottom: 30px;">
+                    Let's discuss how our premium IT services can elevate your business to the next level.
+                </p>
+                <a href="#contact" class="cta-button">Start Your Project Today</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">
+                    <a href="index.html"><img src="thumbnails/logoname.png" alt="Lupoid Logo"></a>
+                </div>
+
+                <p>Proudly South African, crafting innovative IT solutions from Johannesburg.</p>
+
+                <div class="social-icons">
+                    <a href="https://facebook.com/lupoid" class="social-icon"><img src="thumbnails/twitter-removebg-preview.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                    <a href="https://twitter.com/lupoid" class="social-icon"><img src="thumbnails/facebook-removebg-preview.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                    <a href="https://linkedin.com/company/lupoid" class="social-icon"><img src="thumbnails/linkedin.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                </div>
+
+            </div>
+
+               
+
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Newsletter</a></li>
+                    <li><a href="#products">Affiliate</a></li>
+                    <li><a href="#about">Tools</a></li>
+                    <li><a href="webinars.html">Webinars</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Web Design & Development</a></li>
+                    <li><a href="#services">Technical Support</a></li>
+                    <li><a href="#products">IT Consulting</a></li>
+                    <li><a href="#about">Digital Marketing</a></li>
+                    <li><a href="#graphic">Graphic Design</a></li>
+                    <li><a href="#graphic">Photography & Videography</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contactinfo">
+                <h3>Contact Us</h3>
+                <p><img src="thumbnails/twitter-removebg-preview.png" style="display: inline; vertical-align: middle; width: 20px; height: 20px; margin-right: 9px;"><a href="tel:+27119876543">+27 11 987 6543</a></p>
+                <p><img src="thumbnails/mail.png" style="display: inline; vertical-align: middle; width: 20px; height: 20px; margin-right: 9px;"><a href="mailto:support@lupoid.com">support@defcon.co.za</a></p>
+                <p><img src="thumbnails/twitter-removebg-preview.png" style="display: inline; vertical-align: middle; width: 20px; height: 20px; margin-right: 9px;">123 Phuthaditjhaba, Maluti Crescent Mall, Witsieshoek 9870</p>
+                <p><img src="thumbnails/twitter-removebg-preview.png" style="display: inline; vertical-align: middle; width: 20px; height: 20px; margin-right: 9px;">Mon-Fri: 8:00 - 16:00</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <ul class="footer-links">
+                <li class="footer-nav-item">
+                    <a href="#more" class="footer-nav-link">More</a>
+                    <div class="footer-dropdown-content">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#TCs">Terms & Conditions</a>
+                        <a href="faq.html">FAQs</a>
+                        <a href="community.html">Community</a>
+                        <a href="#blog">Blog</a>
+                        <a href="#events">Events</a>
+                        <a href="#careers">Careers</a>
+                    </div>
+                </li>
+            </ul>
+            <p>© 2025 Defcon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Add your contact section scroll or modal logic here
+            alert('Contact form would open here - integrate with your contact system');
+        });
+
+        // Add subtle parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bg = document.querySelector('.animated-bg');
+            bg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe FAQ categories for scroll animations
+        document.querySelectorAll('.faq-category').forEach(category => {
+            category.style.opacity = '0';
+            category.style.transform = 'translateY(30px)';
+            category.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(category);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!-- DEFCON INTERACTIVE SHOWCASE - START -->
+<style>
+  /* Unique Defcon Showcase Styles */
+  .defcon-showcase-container {
+    --defcon-primary: #0091ff;
+    --defcon-dark: #06273e;
+    --defcon-light: #ffffff;
+    --defcon-gray: #e5e5e5;
+    --defcon-transition: cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Times New Roman', Times, serif;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, #f9f9f9 0%, var(--defcon-light) 100%);
+  }
+
+  .defcon-showcase-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .defcon-showcase-title {
+    font-size: 2.5rem;
+    color: var(--defcon-dark);
+    margin-bottom: 20px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+  }
+
+  .defcon-showcase-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--defcon-primary);
+  }
+
+  .defcon-showcase-subtitle {
+    font-size: 1.2rem;
+    color: var(--defcon-dark);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .defcon-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .defcon-showcase-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(6, 39, 62, 0.1);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: transform 0.8s var(--defcon-transition), opacity 0.8s ease;
+    background: var(--defcon-light);
+  }
+
+  .defcon-showcase-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .defcon-showcase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(6, 39, 62, 0.15);
+  }
+
+  .defcon-showcase-img-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .defcon-showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--defcon-transition);
+  }
+
+  .defcon-showcase-card:hover .defcon-showcase-img {
+    transform: scale(1.1);
+  }
+
+  .defcon-showcase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(6, 39, 62, 0.8) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .defcon-showcase-card:hover .defcon-showcase-overlay {
+    opacity: 1;
+  }
+
+  .defcon-showcase-card-title {
+    color: var(--defcon-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+
+  .defcon-showcase-card:hover .defcon-showcase-card-title {
+    transform: translateY(0);
+  }
+
+  .defcon-showcase-card-desc {
+    color: var(--defcon-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+  }
+
+  .defcon-showcase-card:hover .defcon-showcase-card-desc {
+    transform: translateY(0);
+  }
+
+  .defcon-showcase-card-content {
+    padding: 20px;
+  }
+
+  .defcon-showcase-card-label {
+    display: inline-block;
+    background: var(--defcon-primary);
+    color: var(--defcon-light);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .defcon-showcase-card-text {
+    color: var(--defcon-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .defcon-showcase-card-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--defcon-primary);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .defcon-showcase-card-btn:hover {
+    color: var(--defcon-dark);
+  }
+
+  .defcon-showcase-card-btn svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
+
+  .defcon-showcase-card-btn:hover svg {
+    transform: translateX(5px);
+  }
+
+  /* Lightbox Styles */
+  .defcon-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 39, 62, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+
+  .defcon-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .defcon-lightbox-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: var(--defcon-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.4s var(--defcon-transition);
+  }
+
+  .defcon-lightbox.active .defcon-lightbox-content {
+    transform: scale(1);
+  }
+
+  .defcon-lightbox-img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+  }
+
+  .defcon-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 10;
+  }
+
+  .defcon-lightbox-close:hover {
+    background: var(--defcon-primary);
+  }
+
+  .defcon-lightbox-close svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--defcon-light);
+  }
+
+  .defcon-lightbox-text {
+    padding: 30px;
+  }
+
+  .defcon-lightbox-title {
+    font-size: 2rem;
+    color: var(--defcon-dark);
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .defcon-lightbox-desc {
+    font-size: 1.1rem;
+    color: var(--defcon-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .defcon-lightbox-video {
+    width: 100%;
+    height: 500px;
+    border: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-showcase-title {
+      font-size: 2rem;
+    }
+    
+    .defcon-showcase-subtitle {
+      font-size: 1rem;
+    }
+    
+    .defcon-showcase-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .defcon-lightbox-content {
+      width: 95%;
+    }
+    
+    .defcon-lightbox-video {
+      height: 300px;
+    }
+  }
+</style>
+
+<div class="defcon-showcase-container">
+  <div class="defcon-showcase-header">
+    <h2 class="defcon-showcase-title">Our Premium Services</h2>
+    <p class="defcon-showcase-subtitle">Explore our cutting-edge solutions designed to elevate your business with enterprise-grade security and innovation</p>
+  </div>
+  
+  <div class="defcon-showcase-grid">
+    <!-- Card 1 -->
+    <div class="defcon-showcase-card" data-lightbox="cyber-protection">
+      <div class="defcon-showcase-img-container">
+        <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Cyber Protection" class="defcon-showcase-img">
+        <div class="defcon-showcase-overlay">
+          <h3 class="defcon-showcase-card-title">Advanced Cyber Protection</h3>
+          <p class="defcon-showcase-card-desc">Comprehensive security solutions for modern threats</p>
+        </div>
+      </div>
+      <div class="defcon-showcase-card-content">
+        <span class="defcon-showcase-card-label">Security</span>
+        <p class="defcon-showcase-card-text">Enterprise-grade protection against sophisticated cyber attacks with 24/7 monitoring.</p>
+        <a href="#" class="defcon-showcase-card-btn">
+          Learn more
+          <svg viewBox="0 0 24 24">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Card 2 -->
+    <div class="defcon-showcase-card" data-lightbox="cloud-security">
+      <div class="defcon-showcase-img-container">
+        <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Cloud Security" class="defcon-showcase-img">
+        <div class="defcon-showcase-overlay">
+          <h3 class="defcon-showcase-card-title">Cloud Security</h3>
+          <p class="defcon-showcase-card-desc">Secure your cloud infrastructure with zero-trust architecture</p>
+        </div>
+      </div>
+      <div class="defcon-showcase-card-content">
+        <span class="defcon-showcase-card-label">Cloud</span>
+        <p class="defcon-showcase-card-text">End-to-end encrypted cloud solutions with multi-factor authentication.</p>
+        <a href="#" class="defcon-showcase-card-btn">
+          Learn more
+          <svg viewBox="0 0 24 24">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Card 3 -->
+    <div class="defcon-showcase-card" data-lightbox="data-encryption">
+      <div class="defcon-showcase-img-container">
+        <img src="thumbnails/pexels12.jpg" alt="Data Encryption" class="defcon-showcase-img">
+        <div class="defcon-showcase-overlay">
+          <h3 class="defcon-showcase-card-title">Data Encryption</h3>
+          <p class="defcon-showcase-card-desc">Military-grade encryption for sensitive business data</p>
+        </div>
+      </div>
+      <div class="defcon-showcase-card-content">
+        <span class="defcon-showcase-card-label">Encryption</span>
+        <p class="defcon-showcase-card-text">Protect your data with AES-256 encryption and secure key management.</p>
+        <a href="#" class="defcon-showcase-card-btn">
+          Learn more
+          <svg viewBox="0 0 24 24">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="defcon-lightbox">
+  <div class="defcon-lightbox-content">
+    <div class="defcon-lightbox-close">
+      <svg viewBox="0 0 24 24">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </div>
+    <div class="defcon-lightbox-media"></div>
+    <div class="defcon-lightbox-text">
+      <h3 class="defcon-lightbox-title">Service Title</h3>
+      <p class="defcon-lightbox-desc">Detailed description of the service will appear here. This can include multiple paragraphs, features, benefits, and technical specifications.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Unique Defcon Showcase Script
+    const defconShowcase = {
+      init() {
+        this.cards = document.querySelectorAll('.defcon-showcase-card');
+        this.lightbox = document.querySelector('.defcon-lightbox');
+        this.lightboxContent = document.querySelector('.defcon-lightbox-content');
+        this.lightboxMedia = document.querySelector('.defcon-lightbox-media');
+        this.lightboxTitle = document.querySelector('.defcon-lightbox-title');
+        this.lightboxDesc = document.querySelector('.defcon-lightbox-desc');
+        this.lightboxClose = document.querySelector('.defcon-lightbox-close');
+        
+        this.setupEventListeners();
+        this.setupScrollAnimations();
+      },
+      
+      setupEventListeners() {
+        // Card click for lightbox
+        this.cards.forEach(card => {
+          card.addEventListener('click', (e) => {
+            // Don't open lightbox if clicking on the "Learn more" link
+            if (e.target.closest('.defcon-showcase-card-btn')) return;
+            
+            const lightboxId = card.getAttribute('data-lightbox');
+            this.openLightbox(lightboxId);
+          });
+        });
+        
+        // Close lightbox
+        this.lightboxClose.addEventListener('click', () => this.closeLightbox());
+        this.lightbox.addEventListener('click', (e) => {
+          if (e.target === this.lightbox) this.closeLightbox();
+        });
+        
+        // Close with ESC key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') this.closeLightbox();
+        });
+      },
+      
+      openLightbox(id) {
+        // Set content based on which card was clicked
+        let mediaContent = '';
+        let title = '';
+        let description = '';
+        
+        switch(id) {
+          case 'cyber-protection':
+            mediaContent = '<img src="https://via.placeholder.com/1000x600/06273e/0091ff?text=Cyber+Protection+Details" class="defcon-lightbox-img" alt="Cyber Protection Details">';
+            title = 'Advanced Cyber Protection';
+            description = 'Our comprehensive cyber protection suite provides enterprise-grade security against modern threats. With 24/7 monitoring, real-time threat detection, and automated response systems, we ensure your infrastructure remains secure against even the most sophisticated attacks. Includes:<br><br>- Network intrusion prevention<br>- Endpoint protection<br>- Threat intelligence feeds<br>- Incident response team';
+            break;
+            
+          case 'cloud-security':
+            mediaContent = '<iframe class="defcon-lightbox-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            title = 'Cloud Security Solutions';
+            description = 'Secure your cloud infrastructure with our zero-trust architecture solutions. We provide end-to-end encryption, multi-factor authentication, and continuous vulnerability scanning for all major cloud platforms.<br><br>- AWS, Azure, GCP compatibility<br>- Data loss prevention<br>- Compliance auditing<br>- Secure API gateways';
+            break;
+            
+          case 'data-encryption':
+            mediaContent = '<img src="https://via.placeholder.com/1000x600/06273e/0091ff?text=Data+Encryption+Details" class="defcon-lightbox-img" alt="Data Encryption Details">';
+            title = 'Military-Grade Data Encryption';
+            description = 'Protect your sensitive business data with our AES-256 encryption solutions. Our secure key management system ensures that only authorized personnel can access critical information while maintaining compliance with industry regulations.<br><br>- AES-256 encryption standard<br>- Hardware security modules<br>- Key rotation policies<br>- Audit logging';
+            break;
+        }
+        
+        this.lightboxMedia.innerHTML = mediaContent;
+        this.lightboxTitle.textContent = title;
+        this.lightboxDesc.innerHTML = description;
+        
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      },
+      
+      closeLightbox() {
+        this.lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      },
+      
+      setupScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        this.cards.forEach((card, index) => {
+          // Stagger the animation delay
+          card.style.transitionDelay = `${index * 0.1}s`;
+          observer.observe(card);
+        });
+      }
+    };
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => defconShowcase.init());
+  })();
+</script>
+<!-- DEFCON INTERACTIVE SHOWCASE - END -->

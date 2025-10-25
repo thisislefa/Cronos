@@ -1,0 +1,497 @@
+<style>
+  /* Unique class names to prevent conflicts */
+  .defcon-hero-right-container {
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #06273e;
+  }
+
+  .defcon-hero-right-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('thumbnails/ChatGPT\ Image\ Jul\ 19\,\ 2025\,\ 01_53_09\ AM.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    opacity: 0.7;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+  }
+
+  .defcon-hero-right-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(6,39,62,0.8) 0%, rgba(6,39,62,0.5) 50%, rgba(6,39,62,0) 100%);
+  }
+
+  .defcon-hero-right-content {
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    padding: 4rem;
+    color: #ffffff;
+    transform: translateX(50px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+
+  .defcon-hero-right-content.visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .defcon-hero-right-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .defcon-hero-right-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #e5e5e5;
+    max-width: 90%;
+    line-height: 1.6;
+  }
+
+  .defcon-hero-right-divider {
+    width: 100px;
+    height: 4px;
+    background: #0091ff;
+    margin-bottom: 2rem;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s ease 0.3s;
+  }
+
+  .defcon-hero-right-divider.visible {
+    transform: scaleX(1);
+  }
+
+  .defcon-hero-right-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #0091ff;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .defcon-hero-right-button:hover {
+    background: #0077cc;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+  }
+
+  .defcon-hero-right-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.7s ease;
+  }
+
+  .defcon-hero-right-button:hover::after {
+    left: 100%;
+  }
+
+  /* Stats Grid */
+  .defcon-hero-right-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    opacity: 0;
+    transition: opacity 1s ease 0.6s;
+  }
+
+  .defcon-hero-right-stats.visible {
+    opacity: 1;
+  }
+
+  .defcon-hero-right-stat-item {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .defcon-hero-right-stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  .defcon-hero-right-stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0091ff;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .defcon-hero-right-stat-label {
+    font-size: 0.9rem;
+    color: #e5e5e5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Modal Styles */
+  .defcon-hero-right-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(6,39,62,0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .defcon-hero-right-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .defcon-hero-right-modal-content {
+    background: #ffffff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.5s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .defcon-hero-right-modal.active .defcon-hero-right-modal-content {
+    transform: scale(1);
+  }
+
+  .defcon-hero-right-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #06273e;
+    color: #ffffff;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .defcon-hero-right-modal-title {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .defcon-hero-right-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+
+  .defcon-hero-right-modal-close:hover {
+    color: #0091ff;
+  }
+
+  .defcon-hero-right-modal-body {
+    padding: 2rem;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .defcon-hero-right-content {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .defcon-hero-right-content {
+      width: 70%;
+    }
+    
+    .defcon-hero-right-title {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .defcon-hero-right-container {
+      min-height: 70vh;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .defcon-hero-right-content {
+      width: 90%;
+      padding: 2rem;
+    }
+    
+    .defcon-hero-right-title {
+      font-size: 2.5rem;
+    }
+    
+    .defcon-hero-right-subtitle {
+      font-size: 1.2rem;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .defcon-hero-right-divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .defcon-hero-right-stats {
+      grid-template-columns: 1fr;
+    }
+    
+    .defcon-hero-right-background::after {
+      background: linear-gradient(0deg, rgba(6,39,62,0.8) 0%, rgba(6,39,62,0.5) 50%, rgba(6,39,62,0) 100%);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .defcon-hero-right-title {
+      font-size: 2rem;
+    }
+    
+    .defcon-hero-right-subtitle {
+      font-size: 1rem;
+    }
+    
+    .defcon-hero-right-button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes defcon-hero-right-fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes defcon-hero-right-slideInRight {
+    from {
+      transform: translateX(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="defcon-hero-right-container">
+  <div class="defcon-hero-right-background"></div>
+  
+  <div class="defcon-hero-right-content">
+    <h1 class="defcon-hero-right-title">Elevate Your Digital Presence With Defcon</h1>
+    <div class="defcon-hero-right-divider"></div>
+    <p class="defcon-hero-right-subtitle">We craft premium digital experiences that drive results. Our expert team combines cutting-edge technology with strategic design to deliver solutions that outperform the competition.</p>
+    <a href="#" class="defcon-hero-right-button defcon-hero-right-modal-trigger">Schedule Consultation</a>
+    
+    <div class="defcon-hero-right-stats">
+      <div class="defcon-hero-right-stat-item">
+        <div class="defcon-hero-right-stat-number">250+</div>
+        <div class="defcon-hero-right-stat-label">Successful Projects</div>
+      </div>
+      <div class="defcon-hero-right-stat-item">
+        <div class="defcon-hero-right-stat-number">98%</div>
+        <div class="defcon-hero-right-stat-label">Client Satisfaction</div>
+      </div>
+      <div class="defcon-hero-right-stat-item">
+        <div class="defcon-hero-right-stat-number">15+</div>
+        <div class="defcon-hero-right-stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="defcon-hero-right-modal" id="defcon-hero-right-modal">
+  <div class="defcon-hero-right-modal-content">
+    <div class="defcon-hero-right-modal-header">
+      <h3 class="defcon-hero-right-modal-title">Schedule a Consultation</h3>
+      <button class="defcon-hero-right-modal-close">&times;</button>
+    </div>
+    <div class="defcon-hero-right-modal-body">
+      <form class="defcon-hero-right-form">
+        <div class="defcon-hero-right-form-group">
+          <label class="defcon-hero-right-form-label" for="defcon-hero-right-name">Your Name</label>
+          <input class="defcon-hero-right-form-input" type="text" id="defcon-hero-right-name" name="name" required>
+        </div>
+        
+        <div class="defcon-hero-right-form-group">
+          <label class="defcon-hero-right-form-label" for="defcon-hero-right-email">Email Address</label>
+          <input class="defcon-hero-right-form-input" type="email" id="defcon-hero-right-email" name="email" required>
+        </div>
+        
+        <div class="defcon-hero-right-form-group">
+          <label class="defcon-hero-right-form-label" for="defcon-hero-right-phone">Phone Number</label>
+          <input class="defcon-hero-right-form-input" type="tel" id="defcon-hero-right-phone" name="phone">
+        </div>
+        
+        <div class="defcon-hero-right-form-group">
+          <label class="defcon-hero-right-form-label" for="defcon-hero-right-service">Service Interest</label>
+          <select class="defcon-hero-right-form-input" id="defcon-hero-right-service" name="service">
+            <option value="Web Design">Web Design</option>
+            <option value="Development">Development</option>
+            <option value="Digital Marketing">Digital Marketing</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="defcon-hero-right-form-group">
+          <label class="defcon-hero-right-form-label" for="defcon-hero-right-message">Project Details</label>
+          <textarea class="defcon-hero-right-form-textarea" id="defcon-hero-right-message" name="message" rows="4" required></textarea>
+        </div>
+        
+        <button class="defcon-hero-right-form-submit" type="submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Animation triggers
+    const heroContent = document.querySelector('.defcon-hero-right-content');
+    const heroDivider = document.querySelector('.defcon-hero-right-divider');
+    const heroStats = document.querySelector('.defcon-hero-right-stats');
+    
+    // Make elements visible with delay
+    setTimeout(function() {
+      heroContent.classList.add('visible');
+    }, 300);
+    
+    setTimeout(function() {
+      heroDivider.classList.add('visible');
+    }, 600);
+    
+    setTimeout(function() {
+      heroStats.classList.add('visible');
+    }, 900);
+    
+    // Parallax effect on background
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.pageYOffset;
+      const background = document.querySelector('.defcon-hero-right-background');
+      if (background) {
+        background.style.transform = 'translateY(' + scrollPosition * 0.3 + 'px)';
+      }
+    });
+    
+    // Modal functionality
+    const modalTriggers = document.querySelectorAll('.defcon-hero-right-modal-trigger');
+    const modal = document.getElementById('defcon-hero-right-modal');
+    const closeButtons = document.querySelectorAll('.defcon-hero-right-modal-close');
+    
+    // Show modal
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close modal
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    // Close when clicking outside modal content
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Form submission
+    const form = document.querySelector('.defcon-hero-right-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically send the form data to your server
+        alert('Thank you for your inquiry! We will contact you shortly.');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        this.reset();
+      });
+    }
+    
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    const animatedElements = document.querySelectorAll('.defcon-hero-right-content, .defcon-hero-right-divider, .defcon-hero-right-stats');
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+</script>

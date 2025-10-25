@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .aboutus-page-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .aboutus-page-wrapper {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .aboutus-hero-section {
+            background: linear-gradient(135deg, rgba(6, 39, 62, 0.626) 100%, rgba(0, 145, 255, 0.85) 0%),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop') center/cover;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #fff;
+        }
+
+        .aboutus-hero-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .aboutus-hero-heading {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            animation: aboutusFadeInUp 1s ease;
+        }
+
+        .aboutus-hero-subheading {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #f4f4f4;
+            animation: aboutusFadeInUp 1.2s ease;
+        }
+
+        .aboutus-hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: #f4f4f4;
+            animation: aboutusFadeInUp 1.4s ease;
+        }
+
+        .aboutus-stats-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            animation: aboutusFadeInUp 1.6s ease;
+        }
+
+        .aboutus-stat-item {
+            text-align: center;
+        }
+
+        .aboutus-stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: #0091ff;
+            margin-bottom: 8px;
+        }
+
+        .aboutus-stat-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #f4f4f4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Executive Team Section */
+        .aboutus-team-section {
+            background-color: #ffffff;
+            padding: 120px 40px;
+        }
+
+        .aboutus-team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aboutus-section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #06273e;
+        }
+
+        .aboutus-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 5px;
+        }
+
+        .aboutus-team-card {
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+        .aboutus-team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .aboutus-team-image-wrapper {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            
+            position: relative;
+        }
+
+        .aboutus-team-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .aboutus-team-card:hover .aboutus-team-image-wrapper::after {
+            opacity: 1;
+        }
+
+        .aboutus-team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .aboutus-team-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #06273e;
+        }
+
+        .aboutus-team-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #0091ff;
+        }
+
+        /* Values Section */
+        .aboutus-values-section {
+            background-color: #06273e;
+            padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aboutus-values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aboutus-values-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 100px;
+            color: #fff;
+        }
+
+        .aboutus-values-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .aboutus-value-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible {
+            opacity: 1;
+        }
+
+        .aboutus-value-heading-col {
+            transform: translateY(100px);
+            transition: transform 0.8s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible .aboutus-value-heading-col {
+            transform: translateY(0);
+        }
+
+        .aboutus-value-content-col {
+            transform: translateY(-100px);
+            transition: transform 0.8s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible .aboutus-value-content-col {
+            transform: translateY(0);
+        }
+
+        .aboutus-value-heading {
+            font-size: 42px;
+            font-weight: 700;
+            color: #0091ff;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .aboutus-value-heading::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 60px;
+            background-color: #0091ff;
+        }
+
+        .aboutus-value-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #f4f4f4;
+            padding-left: 30px;
+            border-left: 2px solid rgba(0, 145, 255, 0.3);
+        }
+
+        /* Career CTA Section */
+        .aboutus-career-section {
+            background: linear-gradient(135deg, #f4f4f4 0%, #fff 100%);
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .aboutus-career-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aboutus-career-heading {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #06273e;
+        }
+
+        .aboutus-career-subheading {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #06273e;
+            opacity: 0.8;
+        }
+
+        .aboutus-career-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background-color: #0091ff;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+        }
+
+        .aboutus-career-button:hover {
+            background-color: #06273e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
+        }
+
+        /* Animations */
+        @keyframes aboutusFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes aboutusCountUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .aboutus-hero-heading {
+                font-size: 48px;
+            }
+
+            .aboutus-hero-subheading {
+                font-size: 20px;
+            }
+
+            .aboutus-stats-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .aboutus-value-row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .aboutus-section-title,
+            .aboutus-values-title,
+            .aboutus-career-heading {
+                font-size: 36px;
+            }
+
+            .aboutus-value-heading {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="aboutus-page-wrapper">
+        <!-- Hero Section -->
+        <section class="aboutus-hero-section">
+            <div class="aboutus-hero-container">
+                <h1 class="aboutus-hero-heading">About Our Journey</h1>
+                <h2 class="aboutus-hero-subheading">Building Tomorrow's Solutions Today</h2>
+                <p class="aboutus-hero-description">
+                    We are a team of passionate innovators dedicated to transforming businesses through cutting-edge technology and strategic solutions. Our commitment to excellence drives us to deliver exceptional results that exceed expectations.
+                </p>
+                <div class="aboutus-stats-wrapper">
+                    <div class="aboutus-stat-item">
+                        <div class="aboutus-stat-number" data-aboutus-target="2019">0</div>
+                        <div class="aboutus-stat-label">Year Founded</div>
+                    </div>
+                    <div class="aboutus-stat-item">
+                        <div class="aboutus-stat-number" data-aboutus-target="1500">0</div>
+                        <div class="aboutus-stat-label">Happy Clients</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Team Section -->
+        <section class="aboutus-team-section">
+            <div class="aboutus-team-container">
+                <h2 class="aboutus-section-title">Our Executive Team</h2>
+                <div class="aboutus-team-grid">
+                  <div class="aboutus-team-card">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Executive" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Michael Reynolds</h3>
+                        <p class="aboutus-team-title">Chief Executive Officer</p>
+                    </div>
+                    <div class="aboutus-team-card">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" alt="Executive" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Sarah Mitchell</h3>
+                        <p class="aboutus-team-title">Chief Technology Officer</p>
+                    </div>
+                    <div class="aboutus-team-card">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" alt="Executive" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">David Chen</h3>
+                        <p class="aboutus-team-title">Chief Operating Officer</p>
+                    </div>
+                    <div class="aboutus-team-card">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop" alt="Executive" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Emily Watson</h3>
+                        <p class="aboutus-team-title">Chief Marketing Officer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="aboutus-values-section">
+            <div class="aboutus-values-container">
+                <h2 class="aboutus-values-title">Our Core Values</h2>
+                <div class="aboutus-values-grid">
+                    <div class="aboutus-value-row">
+                        <div class="aboutus-value-heading-col">
+                            <h3 class="aboutus-value-heading">Innovation</h3>
+                        </div>
+                        <div class="aboutus-value-content-col">
+                            <p class="aboutus-value-description">
+                                We embrace creativity and forward-thinking approaches to solve complex challenges. Our team continuously explores emerging technologies and methodologies to deliver groundbreaking solutions that set industry standards.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="aboutus-value-row">
+                        <div class="aboutus-value-heading-col">
+                            <h3 class="aboutus-value-heading">Integrity</h3>
+                        </div>
+                        <div class="aboutus-value-content-col">
+                            <p class="aboutus-value-description">
+                                Trust forms the foundation of every relationship we build. We maintain the highest ethical standards in all our interactions, ensuring transparency, honesty, and accountability in everything we do.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="aboutus-value-row">
+                        <div class="aboutus-value-heading-col">
+                            <h3 class="aboutus-value-heading">Excellence</h3>
+                        </div>
+                        <div class="aboutus-value-content-col">
+                            <p class="aboutus-value-description">
+                                Quality is non-negotiable in our pursuit of perfection. We set ambitious goals and work relentlessly to exceed expectations, delivering superior results that create lasting value for our clients and stakeholders.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="aboutus-value-row">
+                        <div class="aboutus-value-heading-col">
+                            <h3 class="aboutus-value-heading">Collaboration</h3>
+                        </div>
+                        <div class="aboutus-value-content-col">
+                            <p class="aboutus-value-description">
+                                Together we achieve more than we ever could alone. We foster a culture of teamwork, open communication, and mutual respect, leveraging diverse perspectives to drive innovation and shared success.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="aboutus-value-row">
+                        <div class="aboutus-value-heading-col">
+                            <h3 class="aboutus-value-heading">Impact</h3>
+                        </div>
+                        <div class="aboutus-value-content-col">
+                            <p class="aboutus-value-description">
+                                We measure our success by the positive change we create in the world. Every project we undertake is driven by a commitment to make a meaningful difference for our clients, communities, and the planet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career CTA Section -->
+        <section class="aboutus-career-section">
+            <div class="aboutus-career-container">
+                <h2 class="aboutus-career-heading">Join Our Team</h2>
+                <p class="aboutus-career-subheading">Be part of something extraordinary and shape the future with us</p>
+                <a href="#careers" class="aboutus-career-button">Explore Careers</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Animated Counter for Stats
+        function aboutusAnimateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Initialize counters when hero section is visible
+        const aboutusObserverStats = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const aboutusStatNumbers = document.querySelectorAll('.aboutus-stat-number');
+                    aboutusStatNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-aboutus-target'));
+                        aboutusAnimateCounter(stat, target, 2000);
+                    });
+                    aboutusObserverStats.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const aboutusHeroSection = document.querySelector('.aboutus-hero-section');
+        if (aboutusHeroSection) {
+            aboutusObserverStats.observe(aboutusHeroSection);
+        }
+
+        // Values Section Slide Animation
+        const aboutusObserverValues = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('aboutus-slide-visible');
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const aboutusValueRows = document.querySelectorAll('.aboutus-value-row');
+        aboutusValueRows.forEach(row => {
+            aboutusObserverValues.observe(row);
+        });
+
+        // Smooth scroll for career button
+        document.querySelector('.aboutus-career-button')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Add your navigation logic here
+            console.log('Explore Careers clicked');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<style>
+  /* Gravitational Lensing Hero Container */
+  .dc-gravity-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background-color: #06273e;
+    font-family: "Times New Roman", serif;
+    color: #ffffff;
+    isolation: isolate;
+    perspective: 1000px;
+  }
+
+  /* Background Grid System */
+  .dc-gravity-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: 
+      linear-gradient(rgba(0,145,255,0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,145,255,0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    transform-origin: 0 0;
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  /* Background Nebula Layer */
+  .dc-gravity-nebula {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('thumbnails/pexels-inspiredimages-5626726.jpgn');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+
+  /* Content Container (Stable Reference Frame) */
+  .dc-gravity-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* Text Elements */
+  .dc-gravity-headline {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0,145,255,0.5);
+  }
+
+  .dc-gravity-subhead {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    color: #e5e5e5;
+  }
+
+  /* Button Style */
+  .dc-gravity-btn {
+    padding: 12px 30px;
+    background-color: rgba(0,145,255,0.3);
+    color: #ffffff;
+    border: 1px solid #0091ff;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    pointer-events: auto;
+  }
+
+  .dc-gravity-btn:hover {
+    background-color: rgba(0,145,255,0.5);
+    box-shadow: 0 0 20px rgba(0,145,255,0.5);
+  }
+
+  /* Gravitational Particles */
+  .dc-gravity-particle {
+    position: absolute;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    filter: blur(0.5px);
+    will-change: transform;
+  }
+
+  /* Event Horizon Effect */
+  .dc-gravity-horizon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,145,255,0.1) 0%, rgba(0,145,255,0) 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 8;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dc-gravity-hero {
+      perspective: none;
+    }
+    
+    .dc-gravity-grid,
+    .dc-gravity-nebula {
+      transition: none;
+      transform: none !important;
+    }
+    
+    .dc-gravity-headline {
+      font-size: 2.5rem;
+    }
+    
+    .dc-gravity-subhead {
+      font-size: 1.2rem;
+    }
+    
+    .dc-gravity-horizon {
+      display: none;
+    }
+  }
+</style>
+
+<div class="dc-gravity-hero">
+  <!-- Background Layers -->
+  <div class="dc-gravity-grid"></div>
+  <div class="dc-gravity-nebula"></div>
+  
+  <!-- Event Horizon Effect -->
+  <div class="dc-gravity-horizon"></div>
+  
+  <!-- Main Content (Stable Reference Frame) -->
+  <div class="dc-gravity-content">
+    <h1 class="dc-gravity-headline">Warp Your Digital Reality</h1>
+    <p class="dc-gravity-subhead">Experience the gravitational pull of innovative design solutions that bend expectations and reshape possibilities.</p>
+    <button class="dc-gravity-btn">Explore the Phenomenon</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const hero = document.querySelector('.dc-gravity-hero');
+    const grid = document.querySelector('.dc-gravity-grid');
+    const nebula = document.querySelector('.dc-gravity-nebula');
+    const horizon = document.querySelector('.dc-gravity-horizon');
+    
+    // Physics constants
+    const G = 6.67430e-11; // Gravitational constant
+    const SCALE_FACTOR = 1e15; // Scale up for visible effects
+    const MAX_DISTORTION = 100; // Max distortion in pixels
+    const PARTICLE_COUNT = 30;
+    
+    // Only enable on non-touch devices
+    if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let lastX = mouseX;
+      let lastY = mouseY;
+      let velocity = 0;
+      let particles = [];
+      
+      // Track mouse position
+      hero.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Calculate velocity for dynamic effects
+        const deltaX = mouseX - lastX;
+        const deltaY = mouseY - lastY;
+        velocity = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        lastX = mouseX;
+        lastY = mouseY;
+        
+        // Update event horizon
+        updateHorizon();
+        
+        // Calculate distortion for background layers
+        updateGravitationalLensing();
+      });
+      
+      // Create particles
+      createParticles();
+      animateParticles();
+      
+      function updateHorizon() {
+        // Scale horizon with velocity
+        const scale = Math.min(1, velocity * 0.02);
+        horizon.style.left = mouseX + 'px';
+        horizon.style.top = mouseY + 'px';
+        horizon.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        horizon.style.opacity = scale * 0.7;
+      }
+      
+      function updateGravitationalLensing() {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        // Calculate distortion for grid (closer layer = more distortion)
+        const gridDistortion = calculateDistortion(mouseX, mouseY, centerX, centerY, 1.5);
+        grid.style.transform = `translate(${-gridDistortion.x * 0.5}px, ${-gridDistortion.y * 0.5}px) rotate3d(${gridDistortion.y * 0.01}, ${-gridDistortion.x * 0.01}, 0, ${Math.atan2(gridDistortion.y, gridDistortion.x) * 0.2}rad)`;
+        
+        // Calculate distortion for nebula (farther layer = less distortion)
+        const nebulaDistortion = calculateDistortion(mouseX, mouseY, centerX, centerY, 0.7);
+        nebula.style.transform = `translate(${-nebulaDistortion.x * 0.3}px, ${-nebulaDistortion.y * 0.3}px) rotate(${Math.atan2(nebulaDistortion.y, nebulaDistortion.x) * 0.1}rad)`;
+      }
+      
+      function calculateDistortion(sourceX, sourceY, targetX, targetY, strength) {
+        // Calculate distance vector
+        const dx = targetX - sourceX;
+        const dy = targetY - sourceY;
+        const distanceSquared = dx * dx + dy * dy;
+        const distance = Math.sqrt(distanceSquared);
+        
+        // Inverse square law distortion
+        const force = (G * SCALE_FACTOR * strength) / (distanceSquared + 10000);
+        const angle = Math.atan2(dy, dx);
+        
+        // Calculate distortion vector
+        const distortionX = -Math.cos(angle) * force * MAX_DISTORTION;
+        const distortionY = -Math.sin(angle) * force * MAX_DISTORTION;
+        
+        return {
+          x: distortionX,
+          y: distortionY
+        };
+      }
+      
+      function createParticles() {
+        const heroRect = hero.getBoundingClientRect();
+        
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'dc-gravity-particle';
+          
+          // Random properties
+          const size = Math.random() * 3 + 1;
+          const x = Math.random() * heroRect.width;
+          const y = Math.random() * heroRect.height;
+          const opacity = Math.random() * 0.7 + 0.3;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${x}px`;
+          particle.style.top = `${y}px`;
+          particle.style.opacity = opacity;
+          
+          // Store initial position and velocity
+          particles.push({
+            element: particle,
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: size,
+            baseX: x,
+            baseY: y
+          });
+          
+          hero.appendChild(particle);
+        }
+      }
+      
+      function animateParticles() {
+        particles.forEach(particle => {
+          // Calculate distance to cursor
+          const dx = mouseX - particle.x;
+          const dy = mouseY - particle.y;
+          const distanceSquared = dx * dx + dy * dy;
+          const distance = Math.sqrt(distanceSquared);
+          
+          // Apply gravitational force (stronger when closer)
+          const force = (G * SCALE_FACTOR * 0.5) / (distanceSquared + 2500);
+          const angle = Math.atan2(dy, dx);
+          
+          // Update velocity
+          particle.vx += Math.cos(angle) * force * 0.1;
+          particle.vy += Math.sin(angle) * force * 0.1;
+          
+          // Apply friction
+          particle.vx *= 0.98;
+          particle.vy *= 0.98;
+          
+          // Update position
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          
+          // Apply boundary conditions
+          if (particle.x < 0 || particle.x > window.innerWidth) {
+            particle.vx *= -0.5;
+          }
+          if (particle.y < 0 || particle.y > window.innerHeight) {
+            particle.vy *= -0.5;
+          }
+          
+          // Apply position to element
+          particle.element.style.left = `${particle.x}px`;
+          particle.element.style.top = `${particle.y}px`;
+          
+          // Scale particle based on velocity (relativistic effect)
+          const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+          const scale = 1 + speed * 0.2;
+          particle.element.style.transform = `scale(${scale})`;
+        });
+        
+        requestAnimationFrame(animateParticles);
+      }
+    } else {
+      // Mobile fallback - static background with ambient particles
+      createStaticParticles();
+    }
+    
+    function createStaticParticles() {
+      const heroRect = hero.getBoundingClientRect();
+      
+      for (let i = 0; i < PARTICLE_COUNT / 2; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'dc-gravity-particle';
+        
+        const size = Math.random() * 3 + 1;
+        const x = Math.random() * heroRect.width;
+        const y = Math.random() * heroRect.height;
+        const opacity = Math.random() * 0.5 + 0.3;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.opacity = opacity;
+        particle.style.animation = `float${Math.ceil(Math.random() * 4)} ${10 + Math.random() * 20}s infinite linear`;
+        
+        hero.appendChild(particle);
+      }
+    }
+  });
+</script>
+<style>
+  /* Particle animations for mobile */
+  @keyframes float1 {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-30px) translateX(15px); }
+    100% { transform: translateY(0) translateX(0); }
+  }
+  
+  @keyframes float2 {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(20px) translateX(-10px); }
+    100% { transform: translateY(0) translateX(0); }
+  }
+  
+  @keyframes float3 {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    50% { transform: translateY(-15px) translateX(8px) scale(1.2); }
+    100% { transform: translateY(0) translateX(0) scale(1); }
+  }
+  
+  @keyframes float4 {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50% { transform: translateY(10px) translateX(-15px) rotate(180deg); }
+    100% { transform: translateY(0) translateX(0) rotate(360deg); }
+  }
+</style>

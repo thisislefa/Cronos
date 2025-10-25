@@ -1,0 +1,308 @@
+<style>
+  /* FAQ Container */
+  .defcon-faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Left Column */
+  .defcon-faq-header-col {
+    flex: 0 0 30%;
+    padding-right: 40px;
+    position: relative;
+  }
+
+  .defcon-faq-title {
+    color: #06273e;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 20px;
+  }
+
+  /* Right Column */
+  .defcon-faq-content-col {
+    flex: 0 0 70%;
+  }
+
+  /* Accordion Item */
+  .defcon-accordion-item {
+    border-bottom: 2px solid #e5e5e5;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .defcon-accordion-header {
+    background-color: #ffffff;
+    color: #06273e;
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+  }
+
+  .defcon-accordion-header:hover {
+    color: #0091ff;
+  }
+
+  .defcon-accordion-header.active {
+    color: #0091ff;
+  }
+
+  .defcon-accordion-icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .defcon-accordion-icon-line {
+    position: absolute;
+    background-color: #0091ff;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-accordion-icon-line-horizontal {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .defcon-accordion-icon-line-vertical {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .defcon-accordion-header.active .defcon-accordion-icon-line-vertical {
+    opacity: 0;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .defcon-accordion-header.active .defcon-accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .defcon-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background-color: #ffffff;
+  }
+
+  .defcon-accordion-content-inner {
+    padding: 0 0 25px 0;
+    color: #06273e;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+  }
+
+  .defcon-accordion-item.active .defcon-accordion-content {
+    max-height: 500px;
+  }
+
+  .defcon-accordion-item.active .defcon-accordion-content-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .defcon-faq-link {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .defcon-faq-link:hover {
+    border-bottom-color: #0091ff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-faq-container {
+      flex-direction: column;
+      padding: 30px 15px;
+    }
+
+    .defcon-faq-header-col {
+      flex: 0 0 100%;
+      padding-right: 0;
+      margin-bottom: 30px;
+    }
+
+    .defcon-faq-content-col {
+      flex: 0 0 100%;
+    }
+
+    .defcon-faq-title {
+      font-size: 2rem;
+      position: static;
+    }
+
+    .defcon-accordion-header {
+      font-size: 1.1rem;
+      padding: 15px 0;
+    }
+  }
+
+  /* Animation Enhancements */
+  @keyframes defcon-fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .defcon-faq-container {
+    animation: defcon-fadeIn 0.6s ease forwards;
+  }
+</style>
+
+<div class="defcon-faq-container">
+  <div class="defcon-faq-header-col">
+    <h2 class="defcon-faq-title">Frequently Asked Questions</h2>
+  </div>
+  
+  <div class="defcon-faq-content-col">
+    <div class="defcon-accordion-item">
+      <div class="defcon-accordion-header">
+        <span>What services does your company offer?</span>
+        <div class="defcon-accordion-icon">
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
+        </div>
+      </div>
+      <div class="defcon-accordion-content">
+        <div class="defcon-accordion-content-inner">
+          <p>We provide a comprehensive suite of professional services including web design, development, UX/UI design, branding, and digital strategy. Our team specializes in creating custom solutions tailored to your business needs. For specific examples, please visit our <a href="#" class="defcon-faq-link">portfolio page</a> or review our <a href="#" class="defcon-faq-link">services breakdown</a>.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-accordion-item">
+      <div class="defcon-accordion-header">
+        <span>How long does a typical project take?</span>
+        <div class="defcon-accordion-icon">
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
+        </div>
+      </div>
+      <div class="defcon-accordion-content">
+        <div class="defcon-accordion-content-inner">
+          <p>Project timelines vary based on scope and complexity. A standard website typically takes 6-8 weeks from kickoff to launch, while more complex applications may require 3-6 months. We provide a detailed timeline during our <a href="#" class="defcon-faq-link">discovery phase</a> after understanding your specific requirements.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-accordion-item">
+      <div class="defcon-accordion-header">
+        <span>What is your pricing structure?</span>
+        <div class="defcon-accordion-icon">
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
+        </div>
+      </div>
+      <div class="defcon-accordion-content">
+        <div class="defcon-accordion-content-inner">
+          <p>We offer both fixed-price projects for well-defined scopes and time-and-materials engagements for more flexible requirements. Our pricing is transparent and tailored to each project's needs. For a detailed quote, please <a href="#" class="defcon-faq-link">contact our sales team</a> or use our <a href="#" class="defcon-faq-link">project calculator</a>.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-accordion-item">
+      <div class="defcon-accordion-header">
+        <span>Do you provide ongoing support after launch?</span>
+        <div class="defcon-accordion-icon">
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
+        </div>
+      </div>
+      <div class="defcon-accordion-content">
+        <div class="defcon-accordion-content-inner">
+          <p>Yes, we offer several <a href="#" class="defcon-faq-link">maintenance plans</a> to ensure your digital solution continues to perform optimally. Our support services include security updates, performance optimization, content updates, and technical support. All new projects include 30 days of complimentary post-launch support.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="defcon-accordion-item">
+      <div class="defcon-accordion-header">
+        <span>What technologies do you specialize in?</span>
+        <div class="defcon-accordion-icon">
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
+          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
+        </div>
+      </div>
+      <div class="defcon-accordion-content">
+        <div class="defcon-accordion-content-inner">
+          <p>Our team is proficient in modern web technologies including React, Vue.js, Angular, Node.js, Python, PHP, and various CMS platforms. We stay at the forefront of technology trends to deliver cutting-edge solutions. View our complete <a href="#" class="defcon-faq-link">technology stack</a> for more details.</p>
+        </div>
+      </div>
+    </div>
+
+  <p style="margin-top: 4rem; margin-bottom: 3rem; font-size: 18px;">Have more questions? <a href="#" class="defcon-faq-link">Contact us</a> for more information.</p>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const accordionHeaders = document.querySelectorAll('.defcon-accordion-header');
+    
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const item = this.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other accordion items
+        document.querySelectorAll('.defcon-accordion-item').forEach(accordionItem => {
+          if (accordionItem !== item) {
+            accordionItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.defcon-accordion-item').forEach(item => {
+      observer.observe(item);
+    });
+  });
+</script>
+

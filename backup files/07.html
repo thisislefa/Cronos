@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid & Multi-Cloud Systems | Defcon Cloud Solutions</title>
+    <style>
+        :root {
+            --primary-teal: #00c1b5;
+            --dark-teal: #006d66;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background-color: var(--light-gray);
+            display: flex;
+        }
+
+        /* Navigation sidebar */
+        .nav-sidebar {
+            width: 280px;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            padding: 2.5rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.08);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-sidebar h2 {
+            color: var(--dark-teal);
+            margin-bottom: 2.5rem;
+            font-size: 1.6rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 193, 181, 0.1);
+            color: var(--dark-teal);
+            transform: translateX(8px);
+        }
+
+        .nav-links a.active {
+            background-color: rgba(0, 193, 181, 0.15);
+            color: var(--dark-teal);
+            font-weight: bold;
+            border-left: 3px solid var(--primary-teal);
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            background-color: var(--white);
+            padding: 4rem 6rem;
+        }
+
+        /* Header */
+        .article-header {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .article-header h1 {
+            font-size: 2.8rem;
+            color: var(--dark-teal);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .article-header p.subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .header-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--dark-teal));
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            color: var(--dark-teal);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-teal);
+        }
+
+        .section h3 {
+            color: var(--dark-teal);
+            font-size: 1.5rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .section li:before {
+            content: "•";
+            color: var(--primary-teal);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background-color: var(--light-gray);
+            border-left: 4px solid var(--primary-teal);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--dark-teal);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Diagram placeholder */
+        .diagram {
+            background-color: var(--light-gray);
+            border: 1px dashed var(--primary-teal);
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border-radius: 8px;
+            color: var(--dark-teal);
+            font-style: italic;
+        }
+
+        /* Footer */
+        .article-footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 3rem 4rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-sidebar {
+                width: 240px;
+                padding: 2rem 1rem;
+            }
+            
+            .main-content {
+                margin-left: 240px;
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .nav-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 2.5rem;
+            }
+            
+            .article-header h1 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .section {
+                padding: 1.8rem;
+            }
+            
+            .article-header h1 {
+                font-size: 2rem;
+            }
+            
+            .article-header p.subtitle {
+                font-size: 1.15rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes floatIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cloud icon decorations */
+        .cloud-icon {
+            color: var(--primary-teal);
+            margin-right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="nav-sidebar">
+        <h2><i class="fas fa-cloud cloud-icon"></i> Cloud Systems</h2>
+        <ul class="nav-links">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#definitions">Key Definitions</a></li>
+            <li><a href="#advantages">Business Advantages</a></li>
+            <li><a href="#architecture">Architecture Models</a></li>
+            <li><a href="#management">Management Strategies</a></li>
+            <li><a href="#security">Security Considerations</a></li>
+            <li><a href="#future">Future Trends</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="article-header">
+            <h1>Hybrid & Multi-Cloud Systems: Modern Infrastructure Strategy</h1>
+            <p class="subtitle">Optimizing performance, cost, and flexibility through strategic cloud adoption</p>
+            <div class="header-decoration"></div>
+        </header>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="section">
+            <h2>Introduction to Hybrid & Multi-Cloud</h2>
+            <p>In today's digital landscape, organizations are increasingly adopting hybrid and multi-cloud strategies to meet their diverse computing needs. These approaches combine the strengths of different cloud environments while mitigating their individual limitations, creating infrastructure that is both resilient and flexible.</p>
+            
+            <div class="highlight-box">
+                <h4>The Cloud Evolution</h4>
+                <p>From the early days of single-cloud adoption, enterprises have evolved to more sophisticated models:</p>
+                <ul>
+                    <li><strong>2006-2012:</strong> Early cloud adoption (primarily single provider)</li>
+                    <li><strong>2012-2018:</strong> Hybrid cloud emerges (on-prem + cloud)</li>
+                    <li><strong>2018-present:</strong> Multi-cloud becomes standard strategy</li>
+                    <li><strong>Future:</strong> Interconnected cloud ecosystems with seamless workload portability</li>
+                </ul>
+            </div>
+            
+            <p>The shift toward hybrid and multi-cloud architectures is driven by several factors:</p>
+            
+            <ul>
+                <li>Avoiding vendor lock-in and maintaining negotiation leverage</li>
+                <li>Meeting regulatory and data sovereignty requirements</li>
+                <li>Optimizing costs by leveraging different providers' strengths</li>
+                <li>Enhancing reliability through geographic and provider diversity</li>
+                <li>Supporting digital transformation initiatives</li>
+            </ul>
+            
+            <div class="diagram">
+                [Hybrid/Multi-Cloud Architecture Diagram]
+                <p>Typical hybrid multi-cloud deployment showing on-prem, private cloud, and multiple public cloud providers</p>
+            </div>
+        </section>
+
+        <!-- Definitions Section -->
+        <section id="definitions" class="section">
+            <h2>Key Definitions</h2>
+            <p>Understanding the terminology is essential for effective cloud strategy discussions:</p>
+            
+            <h3>Hybrid Cloud</h3>
+            <p>A computing environment that combines on-premises infrastructure (private cloud) with public cloud services, with orchestration between the two platforms. Key characteristics include:</p>
+            
+            <ul>
+                <li>Integration between different computing environments</li>
+                <li>Workload portability across environments</li>
+                <li>Unified management where possible</li>
+                <li>Common APIs and connectivity</li>
+            </ul>
+            
+            <h3>Multi-Cloud</h3>
+            <p>The use of cloud services from multiple vendors to meet different technical or business requirements. This can include:</p>
+            
+            <ul>
+                <li>Using different providers for different workloads (e.g., AWS for compute, Azure for AI)</li>
+                <li>Geographic distribution across providers</li>
+                <li>Redundancy across providers for critical systems</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Hybrid vs. Multi-Cloud</h4>
+                <p>While often used interchangeably, these terms describe distinct concepts:</p>
+                <ul>
+                    <li><strong>Hybrid Cloud:</strong> Mix of private (on-prem) and public cloud</li>
+                    <li><strong>Multi-Cloud:</strong> Use of multiple public cloud providers</li>
+                    <li><strong>Hybrid Multi-Cloud:</strong> Combination of both approaches</li>
+                </ul>
+            </div>
+            
+            <h3>Cloud Agnostic</h3>
+            <p>Designing applications and systems to be portable across different cloud environments without major modifications. Achieved through:</p>
+            
+            <ul>
+                <li>Containerization (Docker, Kubernetes)</li>
+                <li>Infrastructure-as-Code (Terraform, Pulumi)</li>
+                <li>Abstraction layers and middleware</li>
+                <li>Standardized APIs and services</li>
+            </ul>
+        </section>
+
+        <!-- Advantages Section -->
+        <section id="advantages" class="section">
+            <h2>Business Advantages</h2>
+            <p>Adopting hybrid and multi-cloud strategies offers organizations significant competitive advantages:</p>
+            
+            <h3>Strategic Flexibility</h3>
+            <p>Maintain the ability to shift workloads between environments as business needs, costs, or technologies change. This prevents vendor lock-in and preserves negotiating power with cloud providers.</p>
+            
+            <h3>Cost Optimization</h3>
+            <p>Leverage different providers' pricing models and strengths to minimize expenses:</p>
+            
+            <ul>
+                <li>Use spot instances for batch processing</li>
+                <li>Run predictable workloads on private infrastructure</li>
+                <li>Take advantage of regional pricing differences</li>
+                <li>Use specialized services from different providers</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Cost Savings Example</h4>
+                <p>A financial services company reduced cloud costs by 37% by:</p>
+                <ul>
+                    <li>Running core banking systems on private cloud</li>
+                    <li>Using AWS for AI/ML workloads</li>
+                    <li>Utilizing Azure for Office 365 integration</li>
+                    <li>Leveraging Google Cloud for analytics</li>
+                </ul>
+            </div>
+            
+            <h3>Improved Reliability</h3>
+            <p>Distribute workloads across multiple environments to enhance availability and disaster recovery capabilities. Multi-cloud architectures can achieve:</p>
+            
+            <ul>
+                <li>Higher uptime through geographic redundancy</li>
+                <li>Reduced impact from provider-specific outages</li>
+                <li>Flexible failover options</li>
+            </ul>
+            
+            <h3>Regulatory Compliance</h3>
+            <p>Meet data residency and sovereignty requirements by strategically placing workloads in appropriate jurisdictions while maintaining a cohesive architecture.</p>
+            
+            <h3>Performance Optimization</h3>
+            <p>Place workloads closer to end-users or data sources by leveraging different providers' regional strengths and network backbones.</p>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="section">
+            <h2>Architecture Models</h2>
+            <p>Several architectural patterns have emerged for hybrid and multi-cloud implementations:</p>
+            
+            <h3>1. Cloud Bursting</h3>
+            <p>Primarily operate in private cloud or on-prem, but "burst" into public cloud during peak demand periods. Ideal for:</p>
+            
+            <ul>
+                <li>Seasonal workloads</li>
+                <li>Unexpected traffic spikes</li>
+                <li>Batch processing jobs</li>
+            </ul>
+            
+            <h3>2. Active-Active Multi-Cloud</h3>
+            <p>Run identical workloads across multiple clouds simultaneously, distributing load and providing instant failover. Benefits include:</p>
+            
+            <ul>
+                <li>High availability</li>
+                <li>Geographic load distribution</li>
+                <li>Zero-downtime maintenance</li>
+            </ul>
+            
+            <div class="diagram">
+                [Active-Active Multi-Cloud Architecture Diagram]
+                <p>Workloads distributed across multiple cloud providers with synchronized data</p>
+            </div>
+            
+            <h3>3. Tiered Hybrid Cloud</h3>
+            <p>Place different application tiers in different environments based on requirements:</p>
+            
+            <ul>
+                <li><strong>Presentation tier:</strong> Public cloud (scalability)</li>
+                <li><strong>Application tier:</strong> Either environment</li>
+                <li><strong>Data tier:</strong> Private cloud/on-prem (security, compliance)</li>
+            </ul>
+            
+            <h3>4. Cloud-Specific Services Architecture</h3>
+            <p>Leverage each provider's unique services where they offer distinct advantages:</p>
+            
+            <ul>
+                <li>AWS for machine learning (SageMaker)</li>
+                <li>Azure for Windows workloads</li>
+                <li>Google Cloud for data analytics (BigQuery)</li>
+                <li>Oracle Cloud for database workloads</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Architecture Selection Criteria</h4>
+                <p>Consider these factors when choosing an architecture:</p>
+                <ul>
+                    <li><strong>Workload characteristics:</strong> Predictability, criticality</li>
+                    <li><strong>Data gravity:</strong> Where data originates and is consumed</li>
+                    <li><strong>Compliance requirements:</strong> Data sovereignty, regulations</li>
+                    <li><strong>Team skills:</strong> Existing expertise and training</li>
+                    <li><strong>Cost profile:</strong> Capex vs. opex preferences</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Management Section -->
+        <section id="management" class="section">
+            <h2>Management Strategies</h2>
+            <p>Effective management is critical for hybrid and multi-cloud success:</p>
+            
+            <h3>Unified Management Platforms</h3>
+            <p>Tools that provide a single pane of glass for multiple cloud environments:</p>
+            
+            <ul>
+                <li><strong>Cloud Management Platforms (CMPs):</strong> VMware Cloud Foundation, Nutanix Xi</li>
+                <li><strong>Container Orchestration:</strong> Kubernetes (EKS, AKS, GKE)</li>
+                <li><strong>Service Meshes:</strong> Istio, Linkerd, Consul</li>
+                <li><strong>Observability:</strong> Datadog, New Relic, Splunk</li>
+            </ul>
+            
+            <h3>Infrastructure as Code (IaC)</h3>
+            <p>Manage and provision infrastructure through machine-readable definition files:</p>
+            
+            <ul>
+                <li>Terraform (multi-cloud support)</li>
+                <li>AWS CloudFormation</li>
+                <li>Azure Resource Manager</li>
+                <li>Google Cloud Deployment Manager</li>
+                <li>Pulumi (general purpose languages)</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>IaC Best Practices</h4>
+                <ul>
+                    <li>Store definitions in version control</li>
+                    <li>Implement CI/CD for infrastructure changes</li>
+                    <li>Use modular designs for reuse</li>
+                    <li>Validate changes with policy-as-code</li>
+                    <li>Document dependencies clearly</li>
+                </ul>
+            </div>
+            
+            <h3>Cost Management</h3>
+            <p>Tools and practices for controlling cloud spend across multiple providers:</p>
+            
+            <ul>
+                <li>CloudHealth by VMware</li>
+                <li>Apptio Cloudability</li>
+                <li>Provider-native cost tools (AWS Cost Explorer, etc.)</li>
+                <li>Third-party optimization tools</li>
+            </ul>
+            
+            <h3>Governance Frameworks</h3>
+            <p>Establish policies and processes for consistent cloud operations:</p>
+            
+            <ul>
+                <li>Standardized tagging strategies</li>
+                <li>Centralized identity and access management</li>
+                <li>Cross-cloud security policies</li>
+                <li>Compliance monitoring</li>
+            </ul>
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="section">
+            <h2>Security Considerations</h2>
+            <p>Hybrid and multi-cloud environments introduce unique security challenges:</p>
+            
+            <h3>Identity and Access Management (IAM)</h3>
+            <p>Implement consistent access controls across environments:</p>
+            
+            <ul>
+                <li>Federated identity with single sign-on (SSO)</li>
+                <li>Role-based access control (RBAC)</li>
+                <li>Privileged access management (PAM)</li>
+                <li>Provider-specific IAM configurations</li>
+            </ul>
+            
+            <h3>Data Protection</h3>
+            <p>Secure data across multiple locations and in transit:</p>
+            
+            <ul>
+                <li>Encryption at rest and in transit</li>
+                <li>Key management strategies</li>
+                <li>Data loss prevention (DLP)</li>
+                <li>Tokenization for sensitive data</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Zero Trust in Hybrid Cloud</h4>
+                <p>Apply Zero Trust principles to hybrid/multi-cloud:</p>
+                <ul>
+                    <li>Microsegmentation across environments</li>
+                    <li>Continuous authentication</li>
+                    <li>Least privilege access</li>
+                    <li>Behavioral analytics</li>
+                </ul>
+            </div>
+            
+            <h3>Network Security</h3>
+            <p>Secure connectivity between environments:</p>
+            
+            <ul>
+                <li>Software-defined networking (SDN)</li>
+                <li>Virtual private clouds (VPCs)</li>
+                <li>Cloud-native firewalls</li>
+                <li>Private connectivity options (Direct Connect, ExpressRoute)</li>
+            </ul>
+            
+            <h3>Compliance Management</h3>
+            <p>Maintain compliance across jurisdictions and providers:</p>
+            
+            <ul>
+                <li>Automated compliance monitoring</li>
+                <li>Provider-specific compliance certifications</li>
+                <li>Audit logging across environments</li>
+                <li>Data residency controls</li>
+            </ul>
+        </section>
+
+        <!-- Future Section -->
+        <section id="future" class="section">
+            <h2>Future Trends</h2>
+            <p>The hybrid and multi-cloud landscape continues to evolve rapidly:</p>
+            
+            <h3>Edge Computing Integration</h3>
+            <p>Extending cloud architectures to edge locations for low-latency processing:</p>
+            
+            <ul>
+                <li>5G-enabled edge computing</li>
+                <li>IoT processing at the edge</li>
+                <li>Content delivery network integration</li>
+            </ul>
+            
+            <h3>AI-Driven Cloud Management</h3>
+            <p>Using machine learning to optimize hybrid and multi-cloud environments:</p>
+            
+            <ul>
+                <li>Automated workload placement</li>
+                <li>Predictive scaling</li>
+                <li>Anomaly detection</li>
+                <li>Cost optimization recommendations</li>
+            </ul>
+            
+            <div class="diagram">
+                [Future Cloud Architecture Diagram]
+                <p>Emerging architecture showing integration of core cloud, edge, and specialized processors</p>
+            </div>
+            
+            <h3>Serverless Across Clouds</h3>
+            <p>Abstraction layers enabling serverless functions to run across providers:</p>
+            
+            <ul>
+                <li>Cross-cloud function orchestration</li>
+                <li>Vendor-neutral serverless platforms</li>
+                <li>Event-driven architectures spanning environments</li>
+            </ul>
+            
+            <h3>Quantum Computing Readiness</h3>
+            <p>Preparing cloud architectures for future quantum integration:</p>
+            
+            <ul>
+                <li>Quantum-safe cryptography</li>
+                <li>Hybrid classical-quantum workflows</li>
+                <li>Specialized quantum cloud services</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion" class="section">
+            <h2>Conclusion</h2>
+            <p>Hybrid and multi-cloud architectures have become the standard for modern enterprise infrastructure, offering unparalleled flexibility, resilience, and strategic advantage. By thoughtfully combining different cloud environments, organizations can optimize costs, meet compliance requirements, and leverage best-of-breed services from multiple providers.</p>
+            
+            <p>Successful implementation requires careful planning in several key areas:</p>
+            
+            <ul>
+                <li><strong>Architecture design:</strong> Choosing the right model for your workloads</li>
+                <li><strong>Management strategy:</strong> Implementing effective governance and tooling</li>
+                <li><strong>Security framework:</strong> Protecting data and systems across environments</li>
+                <li><strong>Skills development:</strong> Building teams with cross-cloud expertise</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <h4>Getting Started with Hybrid/Multi-Cloud</h4>
+                <p>For organizations beginning their journey:</p>
+                <ol>
+                    <li>Assess current infrastructure and workloads</li>
+                    <li>Define clear business objectives for cloud adoption</li>
+                    <li>Start with non-critical workloads as proof-of-concept</li>
+                    <li>Implement strong governance from the beginning</li>
+                    <li>Develop skills through training and partnerships</li>
+                </ol>
+            </div>
+            
+            <p>As cloud technologies continue to evolve, hybrid and multi-cloud approaches will become even more sophisticated, with improved interoperability, management tools, and security frameworks. Organizations that master these architectures today will be well-positioned to capitalize on future innovations while maintaining flexibility in an ever-changing technological landscape.</p>
+        </section>
+
+        <footer class="article-footer">
+            <p>© 2023 Defcon Cloud Solutions. All rights reserved.</p>
+            <p>Contact our cloud architects to design your optimal hybrid/multi-cloud strategy.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 40,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without page jump
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // Highlight current section in navigation
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 400)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Initialize first section as visible
+        if (sections.length > 0) {
+            sections[0].classList.add('visible');
+        }
+        
+        // Add decorative cloud icons to headings
+        document.querySelectorAll('h2, h3').forEach(heading => {
+            if (heading.id !== 'introduction') {
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-cloud cloud-icon';
+                heading.insertBefore(icon, heading.firstChild);
+            }
+        });
+    </script>
+</body>
+</html>

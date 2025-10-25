@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - IT Solutions & Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blue: #0091ff;
+            --navy: #06273e;
+            --white: #ffffff;
+            --grey: #e5e5e5;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .defcon-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .services-heading {
+            padding-left: 9.5rem;
+            margin: 4rem 0 1rem;
+            margin-left: 20px;
+            width: 1200px;
+        }
+
+        .services-heading h1 {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0091ff;
+        }
+
+        .services-heading-text {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+             color: transparent;
+            -webkit-text-stroke: 2px var(--blue);
+            position: relative;
+            display: inline-block;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        
+        .defcon-hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #0a3554 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .defcon-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCwwIEwxMDAsMCBMMTAwLDEwMCBMMCwxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwOTFmZiIgc3Ryb2tlLXdpZHRoPSIwLjIiIHN0cm9rZS1kYXNoYXJyYXk9IjEwIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=');
+            opacity: 0.1;
+        }
+        
+        .defcon-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        
+        .defcon-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .defcon-services {
+            padding: 20px 0 100px;
+        }
+        
+        .service-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+        
+        .service-row.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .service-content {
+            flex: 1;
+            padding: 0 40px;
+            min-width: 300px;
+        }
+        
+        .service-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: var(--grey);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        
+        .service-content h2 {
+            font-size: 2.7rem;
+            margin-bottom: 20px;
+            color: var(--navy);
+            font-weight: 800;
+        }
+        
+        .service-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #4a5c6b;
+        }
+        
+        .defcon-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(6, 39, 62, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .defcon-modal.visible {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .defcon-modal.visible .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--navy);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            color: var(--blue);
+            transform: rotate(90deg);
+        }
+        
+        .modal-header {
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+        
+        .modal-body p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            padding: 20px;
+            background-color: var(--grey);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            background-color: var(--blue);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+       
+
+        .feature-item h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            background: white;
+            width: fit-content;
+            padding: 2px 8px;
+            color: #06273e;
+        }
+        
+        .modal-links a {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            padding: 12px 25px;
+            background-color: var(--navy);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .modal-links a:hover {
+            background-color: var(--blue);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .services-heading {
+                text-align: center;
+                margin-left: 0;
+            }
+            
+            .services-heading-text {
+                font-size: 3rem;
+            }
+            
+            .services-heading-text::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .service-row, .service-row:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .service-content, .service-image {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .service-image {
+                height: 300px;
+            }
+            
+            .defcon-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .service-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+
+
+
+
+
+
+
+        /* From Uiverse.io by cssbuttons-io */ 
+            button {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            background: transparent;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+            }
+
+            button.learn-more {
+            width: 12rem;
+            height: auto;
+            }
+
+            button.learn-more .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: #282936;
+            border-radius: 1.625rem;
+            }
+
+            button.learn-more .circle .icon {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+            }
+
+            button.learn-more .circle .icon.arrow {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+            }
+
+            button.learn-more .circle .icon.arrow::before {
+            position: absolute;
+            content: "";
+            top: -0.29rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+            }
+
+            button.learn-more .button-text {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: #282936;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+            }
+
+            button:hover .circle {
+            width: 100%;
+            }
+
+            button:hover .circle .icon.arrow {
+            background: #fff;
+            transform: translate(1rem, 0);
+            }
+
+            button:hover .button-text {
+            color: #fff;
+            }
+    </style>
+
+
+
+
+    <div class="defcon-services" id="services">
+        <div class="services-heading">
+            <h1>Our Services</h1>
+            <h2 class="services-heading-text">Our Services are tailored for your business needs.</h2>
+        </div>
+        
+        <div class="defcon-container">
+            <!-- Development Services -->
+            <div class="service-row" id="development">
+                <div class="service-content">
+                    
+                    <h2>Development</h2>
+                    <p>We build powerful, scalable, and secure web applications, e-commerce platforms, and custom software tailored to your business needs, ensuring seamless performance and future growth.</p>
+                    
+                    <!-- From Uiverse.io by cssbuttons-io --> 
+                    <button class="learn-more view-details" data-service="development">
+                    <span class="circle" aria-hidden="true">
+                    <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text" >Learn More</span>
+                    </button>
+
+                </div>
+                <div class="service-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Development Services">
+                </div>
+            </div>
+
+            <!-- Digital Solutions -->
+            <div class="service-row" id="digital">
+                <div class="service-content">
+                    
+                    <h2>Digital Solutions</h2>
+                    <p>Our experts provide comprehensive IT support, infrastructure management, and strategic consulting. We integrate AI and automation to streamline your operations and elevate your tech capabilities.</p>
+                    
+                    <button class="learn-more view-details" data-service="digital">
+                    <span class="circle" aria-hidden="true">
+                    <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text" >Learn More</span>
+                    </button>
+
+                </div>
+                <div class="service-image">
+                    <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Digital Solutions">
+                </div>
+            </div>
+
+            <!-- Marketing & Creative Studio -->
+            <div class="service-row" id="marketing">
+                <div class="service-content">
+                    
+                    <h2>Marketing & Creative Studio</h2>
+                    <p>Strategic marketing and compelling creative content that connects with your audience and drives growth.</p>
+                    
+                    <button class="learn-more view-details" data-service="marketing">
+                    <span class="circle" aria-hidden="true">
+                    <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text" >Learn More</span>
+                    </button>
+
+                </div>
+                <div class="service-image">
+                    <img src="thumbnails/pexels-fauxels-3184455.jpg" alt="Marketing & Creative">
+                </div>
+            </div>
+
+            <!-- Cloud Infrastructure -->
+            <div class="service-row" id="cloud">
+                <div class="service-content">
+                    
+                    <h2>Cloud Infrastructure</h2>
+                    <p>Secure, scalable cloud solutions with seamless migration and integration across all major platforms.</p>
+                    
+                    <button class="learn-more view-details" data-service="cloud">
+                    <span class="circle" aria-hidden="true">
+                    <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text" >Learn More</span>
+                    </button>
+
+                </div>
+                <div class="service-image">
+                    <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Cloud Infrastructure">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Development Modal -->
+    <div class="defcon-modal" id="modal-development">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Development Services</h2>
+                <p>Custom software solutions engineered for performance and scalability</p>
+            </div>
+            <div class="modal-body">
+                <p>Our development team creates robust, scalable applications tailored to your specific business needs. We leverage the latest technologies and methodologies to deliver solutions that drive growth and efficiency.</p>
+                
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <h4>Web Applications</h4>
+                        <p>Responsive, high-performance web apps with intuitive user interfaces</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>E-commerce Solutions</h4>
+                        <p>Custom online stores with seamless payment integration</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>API Development</h4>
+                        <p>RESTful APIs that enable seamless system integration</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Custom Software</h4>
+                        <p>Tailored solutions designed for your unique business processes</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>DevOps Implementation</h4>
+                        <p>Streamlined development and deployment workflows</p>
+                    </div>
+                </div>
+                
+                <p>Our development process emphasizes clean code, thorough testing, and continuous integration to ensure reliable, maintainable solutions that grow with your business.</p>
+            </div>
+            <div class="modal-links">
+                <a href="#contact">Request Consultation</a>
+                <a href="#portfolio">View Portfolio</a>
+                <a href="#pricing">See Pricing</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Digital Solutions Modal -->
+    <div class="defcon-modal" id="modal-digital">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Digital Solutions</h2>
+                <p>Comprehensive IT infrastructure and automation services</p>
+            </div>
+            <div class="modal-body">
+                <p>Our digital solutions transform how you do business by optimizing operations, enhancing security, and implementing cutting-edge technologies that give you a competitive edge.</p>
+                
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <h4>IT Support & Infrastructure</h4>
+                        <p>24/7 support and robust infrastructure management</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>IT Consulting</h4>
+                        <p>Strategic guidance to align technology with business goals</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Automation & AI Integration</h4>
+                        <p>Intelligent systems that streamline operations</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Smart Home Setup</h4>
+                        <p>Professional installation of connected home systems</p>
+                    </div>
+                </div>
+                
+                <p>We take a holistic approach to digital transformation, ensuring all components work together seamlessly to support your business objectives.</p>
+            </div>
+            <div class="modal-links">
+                <a href="#contact">Request Consultation</a>
+                <a href="#casestudies">View Case Studies</a>
+                <a href="#pricing">See Pricing</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marketing Modal -->
+    <div class="defcon-modal" id="modal-marketing">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Marketing & Creative Studio</h2>
+                <p>Strategic marketing and compelling creative content</p>
+            </div>
+            <div class="modal-body">
+                <p>Our marketing and creative team combines data-driven strategy with stunning visuals to create campaigns that resonate with your audience and deliver measurable results.</p>
+                
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <h4>Digital Marketing</h4>
+                        <p>Targeted campaigns across search, social, and display channels</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Graphic Design</h4>
+                        <p>Visually striking designs that communicate your brand identity</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Advertising</h4>
+                        <p>Strategic ad placements that maximize ROI</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Copywriting & Content</h4>
+                        <p>Compelling messaging that engages and converts</p>
+                    </div>
+                </div>
+                
+                <p>We create cohesive brand experiences that tell your story and connect with customers across all touchpoints, driving engagement and conversion.</p>
+            </div>
+            <div class="modal-links">
+                <a href="#contact">Request Consultation</a>
+                <a href="#portfolio">View Portfolio</a>
+                <a href="#pricing">See Pricing</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Modal -->
+    <div class="defcon-modal" id="modal-cloud">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2>Cloud Infrastructure</h2>
+                <p>Secure, scalable cloud solutions across all major platforms</p>
+            </div>
+            <div class="modal-body">
+                <p>Our cloud experts design, migrate, and manage infrastructure that provides flexibility, scalability, and security while optimizing costs and performance.</p>
+                
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <h4>AWS Migration</h4>
+                        <p>Seamless transition to Amazon Web Services</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Azure Integration</h4>
+                        <p>Microsoft Azure solutions tailored to your needs</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Google Cloud Platform</h4>
+                        <p>Leveraging Google's powerful cloud infrastructure</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Hybrid Cloud</h4>
+                        <p>Flexible solutions combining public and private clouds</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Cloud Security</h4>
+                        <p>Comprehensive protection for your cloud assets</p>
+                    </div>
+                </div>
+                
+                <p>We help you navigate the complexities of cloud computing with architecture designed for reliability, security, and future growth.</p>
+            </div>
+            <div class="modal-links">
+                <a href="#contact">Request Consultation</a>
+                <a href="#casestudies">View Case Studies</a>
+                <a href="#pricing">See Pricing</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal functionality
+            const viewDetailsButtons = document.querySelectorAll('.view-details');
+            const modals = document.querySelectorAll('.defcon-modal');
+            const closeButtons = document.querySelectorAll('.modal-close');
+            
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const service = this.getAttribute('data-service');
+                    document.getElementById(`modal-${service}`).classList.add('visible');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.defcon-modal');
+                    modal.classList.remove('visible');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close modal when clicking outside
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('visible');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+            
+            // Reveal animations on scroll
+            const serviceRows = document.querySelectorAll('.service-row');
+            
+            function checkScroll() {
+                serviceRows.forEach(row => {
+                    const rowTop = row.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (rowTop < windowHeight * 0.85) {
+                        row.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>

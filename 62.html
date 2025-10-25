@@ -1,0 +1,189 @@
+
+<style>
+
+     /* --- Global Variables & Main Container --- */
+.defcon-multisection-container {
+    --defcon-corp-primary: #0091ff;
+    --defcon-corp-dark: #06273e;
+    --defcon-corp-light: #ffffff;
+    --defcon-corp-accent: #e5e5e5;
+    --defcon-corp-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    font-family: 'Inter', sans-serif; /* Ensure you have 'Inter' font linked in your project */
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}
+  
+/* --- Section 1: Interactive Hero Section --- */
+.defcon-hero-section {
+    position: relative;
+    height: 92vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--defcon-corp-light);
+    background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1525945995886-0ede2bd49ab6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170') no-repeat center center/cover;
+    overflow: hidden;
+}
+.defcon-hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    animation: defcon-hero-pulse 5s infinite;
+}
+.defcon-hero-content {
+    z-index: 2;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.defcon-hero-headline {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    letter-spacing: -2px;
+}
+.defcon-hero-span-line {
+    display: block;
+    overflow: hidden;
+    animation: defcon-reveal-text 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    transform: translateY(110%);
+}
+.defcon-hero-headline .defcon-hero-span-line:nth-child(2) { animation-delay: 0.2s; }
+.defcon-hero-headline .defcon-hero-span-line:nth-child(3) { animation-delay: 0.4s; }
+.defcon-hero-subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 650px;
+    margin: 30px auto 40px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fade-in-up 1s ease 1s forwards;
+}
+.defcon-hero-cta-button {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--defcon-corp-light);
+    background-color: var(--defcon-corp-primary);
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fade-in-up 1s ease 1.2s forwards;
+}
+.defcon-hero-cta-button:hover {
+    background-color: var(--defcon-corp-light);
+    color: var(--defcon-corp-dark);
+    transform: scale(1.05) translateY(0);
+}
+
+/* --- Keyframe Animations --- */
+@keyframes defcon-hero-pulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+@keyframes defcon-reveal-text {
+    from { transform: translateY(110%); }
+    to { transform: translateY(0); }
+}
+@keyframes defcon-fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes defcon-scroll-animate {
+    0% { transform: translateY(0) translateX(-50%); opacity: 1; }
+    100% { transform: translateY(15px) translateX(-50%); opacity: 0; }
+}
+
+/* --- Responsive Design --- */
+/* Tablet View */
+@media (max-width: 992px) {
+    .defcon-why-us-grid {
+        grid-template-columns: 1fr;
+    }
+    .defcon-ceo-grid-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .defcon-ceo-image-container {
+        margin: 0 auto 40px;
+    }
+    .defcon-ceo-social-icons {
+        justify-content: center;
+    }
+}
+/* Mobile View */
+@media (max-width: 576px) {
+    .defcon-hero-headline {
+        letter-spacing: -1px;
+    }
+    .defcon-why-us-section, .defcon-ceo-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .defcon-section-main-subtitle {
+        margin-bottom: 50px;
+    }
+    .defcon-ceo-image-accent-shape {
+        top: -15px;
+        left: -15px;
+    }
+}
+</style>
+<div class="defcon-multisection-container">
+<div class="defcon-hero-section">
+    <div class="defcon-hero-background-overlay"></div>
+    <div class="defcon-hero-content">
+      <h1 class="defcon-hero-headline">
+        <span class="defcon-hero-span-line">Empowering Your</span>
+        <span class="defcon-hero-span-line">Digital Frontier</span>
+        
+      </h1>
+      <a href="#defcon-why-us-section" class="defcon-hero-cta-button">Discover Why Defcon</a>
+    </div>
+  </div>
+</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+    // Function to handle scroll-based reveal animations
+    const defconRevealOnScroll = () => {
+        const revealElements = document.querySelectorAll(
+            '.defcon-why-us-card, .defcon-ceo-image-container, .defcon-ceo-text-content'
+        );
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+    };
+
+    // Initialize animations
+    defconRevealOnScroll();
+});
+</script>
+
+
+
+
+
+
+

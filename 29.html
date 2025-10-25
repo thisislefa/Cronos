@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Innovation Ledger (Light)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="innovation-ledger-light.css">
+</head>
+<body class="light-theme">
+
+    <header class="defcon-ledger-hero-light">
+        <div class="ledger-background-image-light"></div>
+        <div class="ledger-content-wrapper-light">
+            <h1 class="ledger-main-title-light">The Innovation Ledger</h1>
+            <p class="ledger-subtitle-light">Tracking the evolution of technology and expertise at **Defcon**.</p>
+            <div class="hero-glow-effect-light glow-center-light"></div>
+        </div>
+    </header>
+
+    <main class="ledger-datastream-container-light">
+
+        <nav class="innovation-filter-bar-light">
+            <button class="filter-button-light active" data-filter="all">All Innovations</button>
+            <button class="filter-button-light" data-filter="software">Software Development</button>
+            <button class="filter-button-light" data-filter="infrastructure">IT Infrastructure</button>
+            <button class="filter-button-light" data-filter="marketing">Marketing & Creative</button>
+        </nav>
+
+        <section class="innovation-grid-display-light" id="innovation-grid-light">
+            
+            <article class="innovation-card-light software" data-category="software">
+                <div class="card-wave-accent"></div>
+                <span class="card-type-tag-light type-software">New Capability</span>
+                <h3 class="card-title-light">Launch of Defcon DEvOps Accelerator</h3>
+                <p class="card-excerpt-light">Seamless, automated deployment pipelines now standard for all web and API development projects, cutting time-to-market by 30%.</p>
+                <div class="card-footer-light">
+                    <span class="card-date-light">Oct 09, 2025</span>
+                    <a href="#" class="card-read-more-light">View Case Study &rarr;</a>
+                </div>
+            </article>
+
+            <article class="innovation-card-light infrastructure" data-category="infrastructure">
+                <div class="card-wave-accent"></div>
+                <span class="card-type-tag-light type-infrastructure">New Service</span>
+                <h3 class="card-title-light">Advanced AI-Driven Cloud Migration Framework</h3>
+                <p class="card-excerpt-light">We've integrated proprietary AI to predict and mitigate cloud environment risks, ensuring zero-downtime transitions for enterprise clients.</p>
+                <div class="card-footer-light">
+                    <span class="card-date-light">Sep 28, 2025</span>
+                    <a href="#" class="card-read-more-light">Explore Solution &rarr;</a>
+                </div>
+            </article>
+
+            <article class="innovation-card-light marketing" data-category="marketing">
+                <div class="card-wave-accent"></div>
+                <span class="card-type-tag-light type-marketing">Internal Product</span>
+                <h3 class="card-title-light">Multimedia Production Studio Upgrade: 8K Ready</h3>
+                <p class="card-excerpt-light">Our creative team is now equipped with state-of-the-art tools for immersive 8K video and interactive content for future-proof advertising campaigns.</p>
+                <div class="card-footer-light">
+                    <span class="card-date-light">Sep 15, 2025</span>
+                    <a href="#" class="card-read-more-light">See Examples &rarr;</a>
+                </div>
+            </article>
+
+            <article class="innovation-card-light infrastructure" data-category="infrastructure">
+                <div class="card-wave-accent"></div>
+                <span class="card-type-tag-light type-infrastructure">Featured Project</span>
+                <h3 class="card-title-light">Successfully Automated Client IT Support with LLMs</h3>
+                <p class="card-excerpt-light">A case study on deploying a large language model to handle tier-one IT support, reducing ticket response time to under 60 seconds.</p>
+                <div class="card-footer-light">
+                    <span class="card-date-light">Aug 20, 2025</span>
+                    <a href="#" class="card-read-more-light">Read Full Story &rarr;</a>
+                </div>
+            </article>
+
+            </section>
+
+    </main>
+
+    <script src="innovation-ledger-light.js"></script>
+</body>
+</html>
+
+<style>
+    /* GLOBAL STYLES - LIGHT THEME */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.light-theme {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4; /* Light Gray Background */
+    color: #000; /* Dark Text */
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #0091ff; /* Blue Accent */
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #000; /* Contrast on hover */
+}
+
+/* --- 1. HERO SECTION STYLING --- */
+
+.defcon-ledger-hero-light {
+    position: relative;
+    padding: 100px 40px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff; /* White header background for contrast */
+    border-bottom: 2px solid #0091ff1a;
+}
+
+.ledger-background-image-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Subtle geometric pattern/data lines in a light color */
+    background: url('light_geometric_pattern.svg') no-repeat center center/cover;
+    background-color: #fff; 
+    opacity: 0.1; /* Very subtle background texture */
+    z-index: 1;
+}
+
+.ledger-content-wrapper-light {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.ledger-main-title-light {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.ledger-subtitle-light {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #000;
+    opacity: 0.8;
+}
+
+/* Subtle Glow Effect (now more like a light diffusion) */
+.hero-glow-effect-light {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #0091ff33 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
+    opacity: 0.8;
+    animation: slowPulseLight 4s infinite alternate;
+}
+
+.glow-center-light {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes slowPulseLight {
+    from { opacity: 0.8; }
+    to { opacity: 1.0; }
+}
+
+/* --- 2. FILTER BAR STYLING --- */
+
+.ledger-datastream-container-light {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.innovation-filter-bar-light {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    padding: 5px;
+}
+
+.filter-button-light {
+    background: transparent;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+.filter-button-light:hover {
+    background-color: #0091ff1a; /* Very light blue highlight */
+    opacity: 1;
+}
+
+.filter-button-light.active {
+    color: #fff;
+    background-color: #0091ff;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.4);
+    opacity: 1;
+}
+
+/* --- 3. DATASREAM GRID STYLING --- */
+
+.innovation-grid-display-light {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.innovation-card-light {
+    position: relative;
+    padding: 30px;
+    background-color: #fff; /* White Card Background */
+    border: 1px solid #00000010; /* Very light, subtle shadow border */
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.innovation-card-light:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.15); /* Blue glow shadow on hover */
+}
+
+/* The NEW FEATURE: Card Corner Wave Accent */
+.card-wave-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: #0091ff;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0); /* Triangle shape */
+    transition: width 0.3s ease, height 0.3s ease;
+    opacity: 0.7;
+}
+
+.innovation-card-light:hover .card-wave-accent {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+}
+
+
+.card-type-tag-light {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+/* Type Tag Colors (using the accent blue for distinction) */
+.type-software {
+    background-color: #0091ff;
+    color: #fff;
+}
+.type-infrastructure {
+    background-color: #000000;
+    color: #f4f4f4;
+}
+.type-marketing {
+    background-color: #0091ff22;
+    color: #0091ff;
+}
+
+
+.card-title-light {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.card-excerpt-light {
+    font-size: 1rem;
+    color: #000;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.card-footer-light {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f4f4f4;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.card-date-light {
+    font-size: 0.85rem;
+    color: #000;
+    opacity: 0.6;
+}
+
+.card-read-more-light {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0091ff;
+}
+
+.card-read-more-light:hover {
+    color: #000;
+}
+
+/* Visibility Control for JavaScript Filtering */
+.innovation-card-light.hidden {
+    display: none;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    
+    const filterButtons = document.querySelectorAll('.filter-button-light');
+    const innovationCards = document.querySelectorAll('.innovation-card-light');
+
+    /**
+     * Handles the filtering logic when a button is clicked.
+     */
+    const handleFilter = (filterCategory) => {
+        
+        // 1. Hide all cards first
+        innovationCards.forEach(card => {
+            // Use a small delay for a subtle fade-out visual effect
+            setTimeout(() => {
+                 card.classList.add('hidden');
+            }, 50);
+        });
+        
+        // 2. Determine which cards to show
+        const targetCards = (filterCategory === 'all') 
+            ? innovationCards 
+            : document.querySelectorAll(`.innovation-card-light[data-category="${filterCategory}"]`);
+        
+        targetCards.forEach(card => {
+             // Remove the 'hidden' class after a brief delay for a fade-in effect
+             setTimeout(() => {
+                card.classList.remove('hidden');
+             }, 200);
+        });
+    };
+    
+    /**
+     * Adds event listeners to all filter buttons.
+     */
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            
+            const selectedFilter = event.target.dataset.filter;
+            
+            // Update active state in the UI
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Run the filter logic
+            handleFilter(selectedFilter);
+        });
+    });
+
+    // Initial load: Ensure 'All Innovations' is active and displayed
+    handleFilter('all'); 
+});
+</script>

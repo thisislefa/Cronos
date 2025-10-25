@@ -1,0 +1,330 @@
+<style>
+    /* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Main Portfolio Wrapper --- */
+/* This container holds all portfolio elements and sets the overall theme. */
+div.defcon-portfolio-wrapper {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a192f; /* Dark navy blue for a corporate feel */
+    color: #ccd6f6; /* Light, soft text color for readability */
+    overflow-x: hidden; /* Prevents horizontal scrollbars from animations */
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* --- Portfolio Header Section --- */
+div.defcon-portfolio-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+h1.defcon-portfolio-main-title {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p.defcon-portfolio-main-subtitle {
+    font-size: 18px;
+    color: #8892b0; /* Subtly muted color for the subtitle */
+    max-width: 600px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* --- Individual Project Item Container --- */
+/* This is the main flex container for a single project. */
+div.defcon-portfolio-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 100px;
+    opacity: 1; /* Set to 1 to prevent flash of unstyled content */
+    transform: translateY(0); /* Initial state for visible items */
+    transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* --- Animation Starting State --- */
+/* Elements with this class are hidden and will be revealed on scroll. */
+div.defcon-portfolio-item-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* --- Reversed Layout for Alternating Projects --- */
+div.defcon-portfolio-item-reverse {
+    flex-direction: row-reverse;
+}
+
+/* --- Image Container --- */
+/* Holds the image and the overlay. Position is relative for absolute positioning of the overlay. */
+div.defcon-portfolio-image-container {
+    position: relative;
+    flex-basis: 55%; /* Takes up slightly more than half the width */
+    max-width: 55%;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures the image zoom effect doesn't break the layout */
+    box-shadow: 0 20px 30px -15px rgba(2,12,27,0.7);
+}
+
+/* --- Project Image --- */
+img.defcon-portfolio-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease-out, filter 0.4s ease-out; /* Smooth transition for hover effects */
+    filter: grayscale(50%) contrast(110%);
+}
+
+/* --- Image Hover Effect --- */
+div.defcon-portfolio-image-container:hover img.defcon-portfolio-image {
+    transform: scale(1.05); /* Slight zoom on hover */
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* --- Image Overlay --- */
+/* This appears on hover over the image container. */
+a.defcon-portfolio-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 114, 189, 0.85); /* Professional blue overlay */
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* --- Overlay Hover Effect --- */
+div.defcon-portfolio-image-container:hover a.defcon-portfolio-image-overlay {
+    opacity: 1;
+}
+
+/* --- Overlay Text ("Visit Site") --- */
+span.defcon-portfolio-overlay-text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid #ffffff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+div.defcon-portfolio-image-container:hover span.defcon-portfolio-overlay-text {
+    transform: translateY(0);
+}
+
+/* --- Content Container (Text side) --- */
+div.defcon-portfolio-content-container {
+    flex-basis: 45%;
+    max-width: 45%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* --- Project Title --- */
+h2.defcon-portfolio-project-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Project Description --- */
+p.defcon-portfolio-project-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #a8b2d1;
+    background-color: #112240; /* Slightly lighter background for a card effect */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* --- Details List (for tags) --- */
+ul.defcon-portfolio-details-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* --- Detail Item (Tag/Pill) --- */
+li.defcon-portfolio-detail-item {
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace; /* Monospace for a techy feel */
+    font-size: 14px;
+    color: #64ffda; /* High-contrast accent color */
+    background-color: rgba(100, 255, 218, 0.1);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+
+/* --- Responsive Design for Mobile Devices --- */
+@media (max-width: 768px) {
+    div.defcon-portfolio-item,
+    div.defcon-portfolio-item-reverse {
+        flex-direction: column; /* Stack image and text vertically */
+        margin-bottom: 70px;
+    }
+
+    div.defcon-portfolio-image-container,
+    div.defcon-portfolio-content-container {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    div.defcon-portfolio-content-container {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+
+    h1.defcon-portfolio-main-title {
+        font-size: 32px;
+    }
+
+    h2.defcon-portfolio-project-title {
+        font-size: 24px;
+    }
+}
+</style>
+
+
+
+<div class="defcon-portfolio-wrapper">
+
+    <div class="defcon-portfolio-header">
+        <h1 class="defcon-portfolio-main-title">Our Work</h1>
+        <p class="defcon-portfolio-main-subtitle">We transform innovative ideas into exceptional digital experiences. Explore our recent projects.</p>
+    </div>
+
+    <div class="defcon-portfolio-item defcon-portfolio-item-hidden">
+        <div class="defcon-portfolio-image-container">
+            <img class="defcon-portfolio-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Corporate Analytics Dashboard Project">
+            <a class="defcon-portfolio-image-overlay" href="#" target="_blank">
+                <span class="defcon-portfolio-overlay-text">Visit Site</span>
+            </a>
+        </div>
+        <div class="defcon-portfolio-content-container">
+            <h2 class="defcon-portfolio-project-title">Project Alpha: Corporate Analytics Dashboard</h2>
+            <p class="defcon-portfolio-project-description">An advanced, real-time data visualization platform designed for enterprise clients to track key performance indicators. We developed a fully responsive interface with a focus on intuitive user experience and powerful data processing capabilities on the backend.</p>
+            <ul class="defcon-portfolio-details-list">
+                <li class="defcon-portfolio-detail-item">UI/UX Design</li>
+                <li class="defcon-portfolio-detail-item">React.js</li>
+                <li class="defcon-portfolio-detail-item">Node.js</li>
+                <li class="defcon-portfolio-detail-item">Data Visualization</li>
+            </ul>
+        </div>
+    </div>
+    <div class="defcon-portfolio-item defcon-portfolio-item-reverse defcon-portfolio-item-hidden">
+        <div class="defcon-portfolio-image-container">
+            <img class="defcon-portfolio-image" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop" alt="E-commerce Platform Project">
+            <a class="defcon-portfolio-image-overlay" href="#" target="_blank">
+                <span class="defcon-portfolio-overlay-text">Visit Site</span>
+            </a>
+        </div>
+        <div class="defcon-portfolio-content-container">
+            <h2 class="defcon-portfolio-project-title">Project Beta: Global E-commerce Platform</h2>
+            <p class="defcon-portfolio-project-description">A scalable and secure e-commerce solution built for an international fashion brand. The platform features multi-currency support, a streamlined checkout process, and a custom content management system for easy product updates.</p>
+            <ul class="defcon-portfolio-details-list">
+                <li class="defcon-portfolio-detail-item">Web Development</li>
+                <li class="defcon-portfolio-detail-item">Shopify Plus</li>
+                <li class="defcon-portfolio-detail-item">API Integration</li>
+                <li class="defcon-portfolio-detail-item">Payment Gateway</li>
+            </ul>
+        </div>
+    </div>
+    <div class="defcon-portfolio-item defcon-portfolio-item-hidden">
+        <div class="defcon-portfolio-image-container">
+            <img class="defcon-portfolio-image" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Creative Agency Website Project">
+            <a class="defcon-portfolio-image-overlay" href="#" target="_blank">
+                <span class="defcon-portfolio-overlay-text">Visit Site</span>
+            </a>
+        </div>
+        <div class="defcon-portfolio-content-container">
+            <h2 class="defcon-portfolio-project-title">Project Gamma: Creative Agency Portfolio</h2>
+            <p class="defcon-portfolio-project-description">A visually striking website for a leading creative agency. The design emphasizes motion and interactivity to showcase their work, featuring a bespoke animated portfolio gallery and a seamless, fluid navigation system that creates an immersive user journey.</p>
+            <ul class="defcon-portfolio-details-list">
+                <li class="defcon-portfolio-detail-item">Web Design</li>
+                <li class="defcon-portfolio-detail-item">GSAP Animation</li>
+                <li class="defcon-portfolio-detail-item">Headless CMS</li>
+                <li class="defcon-portfolio-detail-item">Brand Strategy</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+
+<script>
+// This script uses the Intersection Observer API to reveal portfolio items on scroll.
+// It's performant and avoids slowing down the page.
+
+// Wait for the entire HTML document to be fully loaded and parsed.
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Select all portfolio items that are meant to be hidden initially.
+    const hiddenElements = document.querySelectorAll('.defcon-portfolio-item-hidden');
+
+    // Configuration for the observer.
+    // root: null means it observes intersections relative to the viewport.
+    // rootMargin: '0px' means no margin around the root.
+    // threshold: 0.1 means the callback will trigger when 10% of the element is visible.
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    // Create a new Intersection Observer.
+    const observer = new IntersectionObserver((entries, observer) => {
+        // Loop over each entry that triggered the observer.
+        entries.forEach(entry => {
+            // If the element is intersecting (i.e., visible in the viewport).
+            if (entry.isIntersecting) {
+                // Remove the 'hidden' class. The CSS transition will handle the animation.
+                entry.target.classList.remove('defcon-portfolio-item-hidden');
+                
+                // Stop observing this element to prevent the animation from re-triggering.
+                // This improves performance.
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Tell the observer to start watching each of the hidden elements.
+    hiddenElements.forEach(element => {
+        observer.observe(element);
+    });
+
+});
+</script>

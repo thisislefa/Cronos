@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Up | DEFCON IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --light-bg: #f4f4f4;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .levelup-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Geometric Background Elements */
+        .geometric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            border: 2px solid var(--primary);
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            height: 200px;
+            transform: rotate(45deg);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            transform: rotate(30deg);
+            animation: float 25s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Header Styles */
+        .levelup-header {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .levelup-header h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .levelup-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .levelup-header p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .new-feature-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+            color: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 145, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: pulse 8s infinite ease-in-out;
+        }
+
+        .element-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .element-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -50px;
+            left: -50px;
+            animation-delay: 2s;
+        }
+
+        .element-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        /* Introduction Section */
+        .introduction-section {
+            padding: 120px 0;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+            font-weight: 400;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-content {
+            padding-right: 40px;
+        }
+
+        .intro-content h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .intro-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .intro-features {
+            list-style: none;
+        }
+
+        .intro-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-features i {
+            margin-right: 12px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .intro-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .levelup-graphic {
+            width: 80%;
+            height: 80%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 5rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .levelup-graphic::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* Tier Comparison Section */
+        .tier-section {
+            padding: 120px 0;
+            background: var(--light-bg);
+        }
+
+        .tier-comparison {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .tier-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+            color: var(--light);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .tier-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .tier-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tier-table {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tier-category {
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.02);
+            border-right: 1px solid #eee;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .tier-feature {
+            padding: 20px 30px;
+            border-right: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .tier-feature:hover {
+            background: rgba(0, 145, 255, 0.05);
+        }
+
+        .tier-feature:last-child {
+            border-right: none;
+        }
+
+        .feature-check {
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .feature-name {
+            flex: 1;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .tier-period {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tier-cta {
+            padding: 30px;
+            text-align: center;
+            border-right: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tier-cta:last-child {
+            border-right: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 20px;
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 145, 255, 0.2);
+        }
+
+        .tier-highlight {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-highlight::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        /* Service Packages Section */
+        .packages-section {
+            padding: 120px 0;
+            background: var(--light);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, #0066cc 100%);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .package-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .package-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .package-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .package-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .package-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .package-features i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .package-cta {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+        }
+
+        .package-cta:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #000 0%, #111 100%);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 145, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 145, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .process-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .step-number::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.3; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .step-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 0;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--light);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button-primary:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 145, 255, 0.2);
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--dark);
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--dark);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .levelup-footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .levelup-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 145, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .levelup-header h1 {
+                font-size: 4rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .levelup-header h1 {
+                font-size: 3.2rem;
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-content {
+                padding-right: 0;
+            }
+            
+            .tier-table {
+                grid-template-columns: 1fr;
+            }
+            
+            .tier-category, .tier-feature {
+                display: none;
+            }
+            
+            .tier-cta {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .levelup-header {
+                height: 80vh;
+            }
+
+            .levelup-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .levelup-header p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .levelup-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Geometric Background -->
+    <div class="geometric-bg">
+        <div class="geometric-shape shape-1"></div>
+        <div class="geometric-shape shape-2"></div>
+        <div class="geometric-shape shape-3"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="levelup-header">
+        <div class="floating-elements">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
+        </div>
+        <div class="header-content">
+            <div class="new-feature-badge">New Feature</div>
+            <h1>Level Up Your Business</h1>
+            <p>Unlock your company's full potential with DEFCON's tiered solutions. Scale efficiently with our structured approach to digital transformation.</p>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="introduction-section">
+        <div class="levelup-container">
+            <h2 class="section-title">What is Level Up?</h2>
+            <p class="section-subtitle">Our structured approach to digital transformation that grows with your business</p>
+            
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h3>Scale Your Digital Presence Methodically</h3>
+                    <p>DEFCON's Level Up program provides a clear pathway for businesses to evolve their digital capabilities. Whether you're a startup finding your footing or an enterprise optimizing operations, we have a tier that matches your ambition.</p>
+                    <p>Each level builds upon the last, ensuring seamless transitions as your needs grow more complex and sophisticated.</p>
+                    <ul class="intro-features">
+                        <li><i>✓</i> Structured growth path with clear milestones</li>
+                        <li><i>✓</i> Seamless transitions between service tiers</li>
+                        <li><i>✓</i> Dedicated resources at every level</li>
+                        <li><i>✓</i> Comprehensive support and consultation</li>
+                    </ul>
+                </div>
+                <div class="intro-visual">
+                    <div class="levelup-graphic">LEVEL UP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tier Comparison Section -->
+    <section class="tier-section">
+        <div class="levelup-container">
+            <h2 class="section-title">Choose Your Level</h2>
+            <p class="section-subtitle">Select the tier that matches your current needs with room to grow</p>
+            
+            <div class="tier-comparison">
+                <div class="tier-header">
+                    <h2>Service Tiers Comparison</h2>
+                    <p>Find the perfect fit for your business requirements</p>
+                </div>
+                
+                <!-- Tier Table Header -->
+                <div class="tier-table">
+                    <div class="tier-category">Features</div>
+                    <div class="tier-cta">
+                        <div class="tier-name">Personal</div>
+                        <div class="tier-price">$499</div>
+                        <div class="tier-period">per project</div>
+                        <a href="#" class="cta-button">Get Started</a>
+                    </div>
+                    <div class="tier-cta tier-highlight">
+                        <div class="tier-name">Startup</div>
+                        <div class="tier-price">$1,299</div>
+                        <div class="tier-period">per project</div>
+                        <a href="#" class="cta-button">Get Started</a>
+                    </div>
+                    <div class="tier-cta">
+                        <div class="tier-name">Enterprise</div>
+                        <div class="tier-price">Custom</div>
+                        <div class="tier-period">tailored solution</div>
+                        <a href="#" class="cta-button">Contact Sales</a>
+                    </div>
+                </div>
+                
+                <!-- Development Features -->
+                <div class="tier-table">
+                    <div class="tier-category">Development</div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Single Platform Development</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Multi-Platform Development</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Full-Stack Development</span>
+                    </div>
+                </div>
+                
+                <!-- Design Features -->
+                <div class="tier-table">
+                    <div class="tier-category">Design</div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Basic Design & UX</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Custom Design & UX</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Advanced UX/UI Design</span>
+                    </div>
+                </div>
+                
+                <!-- Support Features -->
+                <div class="tier-table">
+                    <div class="tier-category">Support</div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Standard Support</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Priority Support</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">24/7 Premium Support</span>
+                    </div>
+                </div>
+                
+                <!-- Additional Features -->
+                <div class="tier-table">
+                    <div class="tier-category">Additional Features</div>
+                    <div class="tier-feature">
+                        <span class="feature-check">-</span>
+                        <span class="feature-name">Marketing Integration</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Marketing Integration</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span class="feature-check">✓</span>
+                        <span class="feature-name">Ongoing Maintenance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Packages Section -->
+    <section class="packages-section">
+        <div class="levelup-container">
+            <h2 class="section-title">Service Packages</h2>
+            <p class="section-subtitle">Comprehensive solutions tailored to your business stage</p>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-icon">🚀</div>
+                    <h3 class="package-title">Launch Package</h3>
+                    <p class="package-description">Perfect for businesses starting their digital journey with essential services to establish online presence.</p>
+                    <ul class="package-features">
+                        <li><i>✓</i> Basic Website Development</li>
+                        <li><i>✓</i> Brand Identity Design</li>
+                        <li><i>✓</i> Social Media Setup</li>
+                        <li><i>✓</i> 3 Months Support</li>
+                    </ul>
+                    <a href="#" class="package-cta">Get Started</a>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-icon">📈</div>
+                    <h3 class="package-title">Growth Package</h3>
+                    <p class="package-description">For scaling businesses needing advanced digital solutions to accelerate growth and market presence.</p>
+                    <ul class="package-features">
+                        <li><i>✓</i> Multi-Platform Development</li>
+                        <li><i>✓</i> Digital Marketing Strategy</li>
+                        <li><i>✓</i> Analytics Implementation</li>
+                        <li><i>✓</i> 6 Months Priority Support</li>
+                    </ul>
+                    <a href="#" class="package-cta">Get Started</a>
+                </div>
+                
+                <div class="package-card">
+                    <div class="package-icon">🏢</div>
+                    <h3 class="package-title">Enterprise Package</h3>
+                    <p class="package-description">Comprehensive digital transformation for established businesses with complex operational needs.</p>
+                    <ul class="package-features">
+                        <li><i>✓</i> Full-Stack Development</li>
+                        <li><i>✓</i> Advanced Security Features</li>
+                        <li><i>✓</i> Custom Integrations</li>
+                        <li><i>✓</i> Ongoing Maintenance & Support</li>
+                    </ul>
+                    <a href="#" class="package-cta">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="levelup-container process-container">
+            <h2 class="section-title">How Level Up Works</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Our streamlined process ensures seamless progression through each level</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Assessment</h3>
+                    <p class="step-description">We analyze your current digital maturity and identify growth opportunities.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Strategy</h3>
+                    <p class="step-description">Develop a customized roadmap aligned with your business objectives.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Implementation</h3>
+                    <p class="step-description">Execute the plan with our expert team and cutting-edge technology.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Optimization</h3>
+                    <p class="step-description">Continuously monitor and refine to ensure maximum performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="levelup-container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Level Up Your Business?</h2>
+                <p class="cta-description">Join hundreds of businesses that have transformed their digital presence with DEFCON's structured approach. Our experts are ready to guide you to the next level.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button-primary">Start Your Journey</a>
+                    <a href="#" class="cta-button-secondary">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="levelup-footer">
+        <div class="levelup-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>DEFCON</h3>
+                    <p class="footer-info">Transforming businesses through innovative technology solutions. Our Level Up program provides structured growth for companies at every stage.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="GitHub">{} </a>
+                        <a href="#" aria-label="Dribbble">d</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Level Up Tiers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Personal Solutions</a></li>
+                        <li><a href="#">Startup Solutions</a></li>
+                        <li><a href="#">Enterprise Solutions</a></li>
+                        <li><a href="#">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:levelup@defcon.com">levelup@defcon.com</a></li>
+                        <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+                        <li><a href="#">Consultation Booking</a></li>
+                        <li><a href="#">Support Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 DEFCON IT Solutions. All rights reserved. | Level Up Program</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe package cards
+        document.querySelectorAll('.package-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Observe process steps
+        document.querySelectorAll('.process-step').forEach((step, index) => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(30px)';
+            step.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(step);
+        });
+
+        // Observe tier tables
+        document.querySelectorAll('.tier-table').forEach((table, index) => {
+            table.style.opacity = '0';
+            table.style.transform = 'translateX(-20px)';
+            table.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(table);
+        });
+    </script>
+</body>
+</html>

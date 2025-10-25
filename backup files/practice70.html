@@ -1,0 +1,236 @@
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Using a common font for a clean look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background for demo */
+            color: #F3F4F6;
+        }
+
+        /* * DEFCON FLOATING MENU STYLES
+         * These styles are self-contained to prevent conflicts.
+         */
+
+        /* Main container for the floating menu */
+        .defcon-float-menu-wrapper {
+            position: fixed;
+            bottom: 2rem; /* 32px */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            
+            /* Visibility is controlled by the 'is-visible' class */
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 20px); /* Start slightly lower for entry animation */
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        visibility 0.4s, 
+                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* The class that JavaScript will toggle */
+        .defcon-float-menu-wrapper.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%); /* Return to original position */
+        }
+
+        /* The navigation bar itself */
+        .defcon-float-nav {
+            display: flex;
+            gap: 1px; /* 4px - Reduced gap between items */
+            padding: 0.5rem; /* 8px */
+            background-color: rgba(23, 23, 23, 0.7); /* Dark, semi-transparent background */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem; /* 16px */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); /* For Safari */
+        }
+
+        /* Container for each menu item (button + popup) */
+        .defcon-nav-item {
+            position: relative;
+        }
+
+        /* The main trigger buttons (Personal, Business, etc.) */
+        .defcon-nav-trigger {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 with opacity */
+            color: #F3F4F6; /* text-gray-100 */
+            font-weight: 600;
+            border-radius: 0.75rem; /* 12px */
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        /* Hover and focus state for the trigger buttons */
+        .defcon-nav-trigger:hover,
+        .defcon-nav-trigger:focus {
+            background-color: #4F46E5; /* Indigo-600 */
+            color: white;
+            border-color: rgba(129, 140, 248, 0.5); /* Indigo-400 with opacity */
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+        }
+
+        /* The popup menu that appears on hover/focus */
+        .defcon-popup-content {
+            position: absolute;
+            bottom: calc(100% + 0.75rem); /* Position above the trigger, with a gap */
+            left: 50%;
+            
+            /* Hide by default */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            
+            /* Animation */
+            transform: translate(-50%, 10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            
+            /* Styling */
+            width: 220px;
+            padding: 0.75rem; /* 12px */
+            background-color: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem; /* 12px */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Show the popup when the parent item is hovered or focused-within */
+        .defcon-nav-item:hover .defcon-popup-content,
+        .defcon-nav-item:focus-within .defcon-popup-content {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+
+        /* Links inside the popup */
+        .defcon-popup-content a {
+            display: block;
+            padding: 0.75rem 1rem; /* 12px 16px */
+            color: #D1D5DB; /* text-gray-300 */
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 0.5rem; /* 8px */
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .defcon-popup-content a:hover,
+        .defcon-popup-content a:focus {
+            background-color: #4F46E5; /* Indigo-600 */
+            color: white;
+            outline: none;
+        }
+        
+        /* Optional: Add a small triangle pointing to the trigger button */
+        .defcon-popup-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: rgba(30, 30, 30, 0.8) transparent transparent transparent;
+        }
+
+        /* Demo content styles */
+        .demo-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 1px dashed #4B5563;
+        }
+    </style>
+
+    <!-- 
+      =====================================================
+      FLOATING MENU HTML - PASTE THIS INTO YOUR BODY TAG
+      =====================================================
+    -->
+    <div id="defcon-float-menu-container" class="defcon-float-menu-wrapper">
+        <nav class="defcon-float-nav">
+            <!-- Personal Menu Item -->
+            <div class="defcon-nav-item">
+                <button class="defcon-nav-trigger">Personal</button>
+                <div class="defcon-popup-content">
+                    <a href="#personal-startup">Startup Plan</a>
+                    <a href="#personal-pro">Pro Plan</a>
+                    <a href="#personal-creator">Creator Suite</a>
+                </div>
+            </div>
+
+            <!-- Business Menu Item -->
+            <div class="defcon-nav-item">
+                <button class="defcon-nav-trigger">Business</button>
+                <div class="defcon-popup-content">
+                    <a href="#business-team">Team Package</a>
+                    <a href="#business-growth">Growth Suite</a>
+                    <a href="#business-analytics">Advanced Analytics</a>
+                    <a href="#business-api">API Access</a>
+                </div>
+            </div>
+
+            <!-- Enterprise Menu Item -->
+            <div class="defcon-nav-item">
+                <button class="defcon-nav-trigger">Enterprise</button>
+                <div class="defcon-popup-content">
+                    <a href="#enterprise-platform">Platform Integration</a>
+                    <a href="#enterprise-security">Dedicated Security</a>
+                    <a href="#enterprise-support">Premium Support</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Self-contained JavaScript to control the menu visibility.
+        // It uses the Intersection Observer API for performance.
+        document.addEventListener('DOMContentLoaded', () => {
+            const servicesSection = document.getElementById('services');
+            const floatingMenu = document.getElementById('defcon-float-menu-container');
+
+            // Ensure both elements exist before proceeding
+            if (!servicesSection || !floatingMenu) {
+                console.warn('Floating Menu: Target section #services or menu container not found.');
+                return;
+            }
+
+            // Options for the observer
+            const observerOptions = {
+                root: null, // observes intersections relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Triggers when 10% of the section is visible
+            };
+
+            // The callback function to execute when the section's visibility changes
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Section is in view, show the menu
+                        floatingMenu.classList.add('is-visible');
+                    } else {
+                        // Section is out of view, hide the menu
+                        floatingMenu.classList.remove('is-visible');
+                    }
+                });
+            };
+
+            // Create and start the observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            observer.observe(servicesSection);
+        });
+    </script>

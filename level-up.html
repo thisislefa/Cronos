@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Up Your Business - Defcon</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ------------------------- */
+        /* --- GLOBAL STYLES & SETUP --- */
+        /* ------------------------- */
+
+        :root {
+            --primary-gold: #FFD700;
+            --primary-silver: #C0C0C0;
+            --primary-platinum: #E5E4E2;
+            --accent-bronze: #CD7F32;
+            --dark-navy: #0a1929;
+            --pure-black: #000;
+            --pure-white: #fff;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--pure-black);
+            color: var(--pure-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .level-up-page-container {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .section-wrapper {
+            width: 100%;
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+        p { font-size: 1.1rem; color: #ccc; }
+
+        /* Animation class */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ------------------------- */
+        /* --- HERO SECTION (Asymmetrical Layout) --- */
+        /* ------------------------- */
+        
+
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-navy);
+            color: var(--pure-white);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 215, 0, 0.1), transparent 30%),
+                radial-gradient(circle at 85% 75%, rgba(192, 192, 192, 0.15), transparent 40%);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-text .subtitle {
+            font-weight: 600;
+            color: var(--primary-gold);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .hero-cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            color: var(--pure-black);
+            margin-top: 1.5rem;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-visual-shape {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, var(--primary-gold), #FFA500);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
+            50% { border-radius: 60% 40% 30% 70% / 70% 50% 50% 30%; transform: rotate(180deg); }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(360deg); }
+        }
+
+        /* ------------------------- */
+        /* --- PLANS SECTION (F-Layout Implied) --- */
+        /* ------------------------- */
+
+        .plans-section {
+            background-color: var(--pure-black);
+        }
+        
+        .plans-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+        }
+
+        .plans-intro h2 {
+            margin-bottom: 15px;
+        }
+
+        .plan-tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background: var(--medium-gray);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .plan-tab-button {
+            padding: 12px 30px;
+            border: none;
+            background: transparent;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--pure-white);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .plan-tab-button.active {
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            color: var(--pure-black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .plan-content {
+            display: none;
+        }
+
+        .plan-content.active {
+            display: block;
+        }
+
+        .plan-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .plan-description .plan-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            color: var(--pure-black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        
+        .plan-description h3 {
+            margin-bottom: 15px;
+            color: var(--pure-white);
+        }
+        
+        .plan-description p {
+            margin-bottom: 25px;
+        }
+
+        .plan-features-list {
+            list-style: none;
+            padding: 2rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            border-radius: 20px;
+            width: 390px;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plan-features-list li {
+            padding-left: 30px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .plan-features-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+
+        /* ------------------------- */
+        /* --- PROCESS SECTION (Z-Layout) --- */
+        /* ------------------------- */
+
+        .process-section {
+            background-color: var(--pure-black);
+        }
+
+        .process-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 20px;
+            background: var(--medium-gray);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .process-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            border: 2px solid var(--primary-gold);
+            font-size: 2rem;
+            color: var(--pure-black);
+            font-weight: bold;
+        }
+
+        .process-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 0.95rem;
+        }
+
+        /* Z-Layout Connecting Lines */
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            width: 75%;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, var(--primary-gold), var(--primary-gold) 5px, transparent 5px, transparent 10px);
+            z-index: -1;
+        }
+        
+        /* ------------------------- */
+        /* --- COMPARISON TABLE SECTION --- */
+        /* ------------------------- */
+
+        .comparison-section {
+            background-color: var(--dark-navy);
+            color: var(--pure-white);
+        }
+
+        .comparison-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .comparison-intro h2 {
+            margin-bottom: 10px;
+        }
+
+        .comparison-intro p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+            background: var(--medium-gray);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .comparison-table thead th {
+            text-align: center;
+            font-size: 1.3rem;
+            background: var(--dark-gray);
+        }
+        
+        .comparison-table tbody th {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table td {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table .feature-category {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+            font-size: 1.1rem;
+            color: var(--pure-black);
+        }
+        
+        .comparison-table .check {
+            color: var(--primary-gold);
+        }
+        .comparison-table .cross {
+            color: #dc3545;
+        }
+
+        /* ------------------------- */
+        /* --- FINAL CTA SECTION --- */
+        /* ------------------------- */
+
+        .final-cta-section {
+            background-color: var(--pure-black);
+        }
+        
+        .final-cta-content {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, #1a2b3c 100%);
+            color: white;
+            padding: 80px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .final-cta-content h2 {
+            margin-bottom: 20px;
+        }
+        
+        .final-cta-content p {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ------------------------- */
+        /* --- RESPONSIVE DESIGN --- */
+        /* ------------------------- */
+
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .plan-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-features-list {
+                margin-top: 30px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .process-grid::before { display: none; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-wrapper { padding: 60px 5%; }
+            .plan-tabs-container {
+                flex-direction: column;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            .plan-tab-button { width: 100%; margin: 5px 0; }
+            .plan-features-list { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .final-cta-content { padding: 50px 30px; }
+        }
+
+        .plan-benefits {
+            margin: 25px 0;
+        }
+
+        .plan-benefits h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--pure-white);
+        }
+
+        .plan-benefits ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .plan-benefits li {
+            padding: 8px 0;
+            padding-left: 40px;
+            position: relative;
+            font-weight: 500;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 14px;
+            padding-top: 14px;
+        }
+
+        .plan-benefits li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plan-benefits li::after {
+            content: '✔';
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--pure-black);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Metallic plan styling */
+        .plan-personal .plan-badge {
+            background: linear-gradient(135deg, var(--primary-silver), #A0A0A0);
+        }
+        
+        .plan-startup .plan-badge {
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+        }
+        
+        .plan-pro .plan-badge {
+            background: linear-gradient(135deg, var(--primary-platinum), #C0C0C0);
+        }
+        
+        .plan-enterprise .plan-badge {
+            background: linear-gradient(135deg, var(--accent-bronze), #8B4513);
+        }
+        
+        .plan-personal .hero-cta-button {
+            background: linear-gradient(135deg, var(--primary-silver), #A0A0A0);
+        }
+        
+        .plan-startup .hero-cta-button {
+            background: linear-gradient(135deg, var(--primary-gold), #FFA500);
+        }
+        
+        .plan-pro .hero-cta-button {
+            background: linear-gradient(135deg, var(--primary-platinum), #C0C0C0);
+        }
+        
+        .plan-enterprise .hero-cta-button {
+            background: linear-gradient(135deg, var(--accent-bronze), #8B4513);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="level-up-page-container">
+
+        <section class="hero-section">
+            <div class="section-wrapper hero-content">
+                <div class="hero-text fade-in-up">
+                    <span class="subtitle">Defcon Growth Engine</span>
+                    <h1>Beyond Services. Your Evolution.</h1>
+                    <p>Stop buying individual services. Invest in a holistic growth strategy. Our "Level Up" plans are comprehensive solutions designed to propel your business to the next stage, whatever that may be.</p>
+                    <a href="#plans" class="hero-cta-button">Find Your Level</a>
+                </div>
+                <div class="hero-visual fade-in-up">
+                    <div class="hero-visual-shape">UP</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans" class="plans-section">
+            <div class="section-wrapper">
+                <div class="plans-intro fade-in-up">
+                    <h2>Find Your Level. Ignite Your Growth.</h2>
+                    <p>We've packaged our expertise into four distinct levels. Each is a powerful engine built with the precise combination of technology, marketing, and infrastructure you need right now. Select a level to see the blueprint for your success.</p>
+                </div>
+
+                <div class="plan-tabs-container fade-in-up">
+                    <button class="plan-tab-button active" data-plan="personal">Personal</button>
+                    <button class="plan-tab-button" data-plan="startup">Startup</button>
+                    <button class="plan-tab-button" data-plan="pro">Pro Business</button>
+                    <button class="plan-tab-button" data-plan="enterprise">Enterprise</button>
+                </div>
+
+                <div id="plan-personal" class="plan-content active fade-in-up plan-personal">
+                    <div class="plan-details-grid">
+                        <div class="plan-description">
+                            <span class="plan-badge">Foundation</span>
+                            <h3>The Personal Brand Engine</h3>
+                            <p>Perfect for consultants, freelancers, and creators. Establish a professional digital identity, automate your client intake, and build a platform to showcase your expertise and attract opportunities.</p>
+                        
+                            <div class="plan-benefits">
+                                <h4>Key Benefits:</h4>
+                                <ul>
+                                    <li>Establish professional credibility instantly</li>
+                                    <li>Automate client inquiries and lead generation</li>
+                                    <li>Showcase your work 24/7 to global audience</li>
+                                    <li>Streamline your personal brand management</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="plan-features-list">
+                                <span style="letter-spacing: 0.18em; font-size: 0.9rem; color: var(--primary-silver); text-transform: uppercase; font-weight: 700; border-bottom: 1px solid #858585; padding-bottom: 10px;">Personal</span>
+                                <h2 style="color: var(--pure-white); font-size: 2.4rem; font-weight: 800;">Starter</h2>
+                                <p style="font-size: 0.95rem; font-weight: 400;">This is the starting point for your personal brand journey. Give your brand the visibility it deserves with a tailored online presence.</p>
+                                <span style="font-size: 2.4rem; font-weight: 700; color: var(--primary-silver); margin-bottom: 20px; display: block;">R1200 <span style="font-size: 0.9rem; color: #ccc; font-weight: 600;">/month</span></span>
+                                <li>Portfolio Web Application</li>
+                                <li>Graphic Design (Branding Kit)</li>
+                                <li>Content Writing (Core Pages)</li>
+                                <li>IT Consulting (1-on-1)</li>
+                                <li>Smart Home Tech Setup</li>
+                                <li>Basic SEO & Analytics</li>
+                                <a href="#" class="hero-cta-button">Get Started</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="plan-startup" class="plan-content plan-startup">
+                    <div class="plan-details-grid">
+                        <div class="plan-description">
+                            <span class="plan-badge">Launchpad</span>
+                            <h3>The Startup Launch Engine</h3>
+                            <p>You have the idea, we build the machine. This package is designed for rapid market entry. We deliver a scalable MVP, foundational marketing, and the cloud infrastructure to grow without limits.</p>
+                            <div class="plan-benefits">
+                                <h4>Key Benefits:</h4>
+                                <ul>
+                                    <li>Launch to market 3x faster than traditional development</li>
+                                    <li>Validate your business idea with real users quickly</li>
+                                    <li>Scale seamlessly as your user base grows</li>
+                                    <li>Attract investors with professional MVP</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="plan-features-list">
+                                <span style="letter-spacing: 0.08em; font-size: 0.9rem; color: var(--primary-gold); text-transform: uppercase; font-weight: 700;">Startup</span>
+                                <h2 style="color: var(--pure-white); font-size: 2.2rem; font-weight: 800;">Launch</h2>
+                                <p style="font-size: 0.95rem; font-weight: 500;">This is the starting point for your startup journey. Give your business the launchpad it needs with a scalable MVP and foundational marketing.</p>
+                                <span style="font-size: 2.2rem; font-weight: 700; color: var(--primary-gold); margin-bottom: 20px; display: block;">R2500 <span style="font-size: 0.9rem; color: #ccc; font-weight: 600;">/month</span></span>
+                                
+                                <li>MVP Mobile/Web App Dev</li>
+                                <li>Cloud Computing Setup (AWS/GCP)</li>
+                                <li>Digital Marketing Campaign</li>
+                                <li>API Development (Core)</li>
+                                <li>IT Support Infrastructure</li>
+                                <li>Multimedia Production (Launch Video)</li>
+                                <a href="#" class="hero-cta-button">Get Started</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="plan-pro" class="plan-content plan-pro">
+                     <div class="plan-details-grid">
+                        <div class="plan-description">
+                            <span class="plan-badge">Accelerator</span>
+                            <h3>The Pro Business Engine</h3>
+                            <p>For established businesses ready to scale. We optimize your operations, expand your digital footprint, and implement automation to increase efficiency and market share. This is about transforming operations into a competitive advantage.</p>
+                            <div class="plan-benefits">
+                                <h4>Key Benefits:</h4>
+                                <ul>
+                                    <li>Increase operational efficiency by 40-60%</li>
+                                    <li>Expand market reach through digital channels</li>
+                                    <li>Reduce manual workload with smart automation</li>
+                                    <li>Gain competitive advantage with advanced technology</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="plan-features-list">
+                                <span style="letter-spacing: 0.08em; font-size: 0.9rem; color: var(--primary-platinum); text-transform: uppercase; font-weight: 700;">Pro Business</span>
+                                <h2 style="color: var(--pure-white); font-size: 2.2rem; font-weight: 800;">Scale</h2>
+                                <p style="font-size: 0.95rem; font-weight: 500;">This is the acceleration point for your business. Transform your operations with advanced automation and optimization.</p>
+                                <span style="font-size: 2.2rem; font-weight: 700; color: var(--primary-platinum); margin-bottom: 20px; display: block;">R4500 <span style="font-size: 0.9rem; color: #ccc; font-weight: 600;">/month</span></span>
+                                
+                                <li>E-commerce Platform Dev</li>
+                                <li>DevOps & CI/CD Implementation</li>
+                                <li>Advanced Digital Marketing</li>
+                                <li>Automation & AI Solutions</li>
+                                <li>Ongoing IT Support & Consulting</li>
+                                <li>Advanced API Development</li>
+                                <a href="#" class="hero-cta-button">Get Started</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="plan-enterprise" class="plan-content plan-enterprise">
+                    <div class="plan-details-grid">
+                        <div class="plan-description">
+                            <span class="plan-badge">Dominion</span>
+                            <h3>The Enterprise Engine</h3>
+                            <p>Lead your industry through technological dominance. This is a bespoke partnership focused on innovation, large-scale system architecture, enterprise-grade AI integration, and comprehensive multimedia advertising campaigns.</p>
+                            <div class="plan-benefits">
+                                <h4>Key Benefits:</h4>
+                                <ul>
+                                    <li>Achieve market leadership through innovation</li>
+                                    <li>Future-proof your technology infrastructure</li>
+                                    <li>Drive digital transformation across organization</li>
+                                    <li>Maximize ROI with enterprise-grade solutions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul class="plan-features-list">
+                                <span style="letter-spacing: 0.08em; font-size: 0.9rem; color: var(--accent-bronze); text-transform: uppercase; font-weight: 700;">Enterprise</span>
+                                <h2 style="color: var(--pure-white); font-size: 2.2rem; font-weight: 800;">Dominate</h2>
+                                <p style="font-size: 0.95rem; font-weight: 500;">This is the domination point for your industry. Lead through technological innovation and enterprise-grade solutions.</p>
+                                <span style="font-size: 2.2rem; font-weight: 700; color: var(--accent-bronze); margin-bottom: 20px; display: block;">R8500 <span style="font-size: 0.9rem; color: #ccc; font-weight: 600;">/month</span></span>
+                                
+                                <li>Custom Enterprise Software</li>
+                                <li>Full Cloud & IT Infrastructure Mgmt</li>
+                                <li>Enterprise AI & Automation</li>
+                                <li>Full-scale Advertising Campaigns</li>
+                                <li>Dedicated DevOps Team</li>
+                                <li>Priority IT & Strategic Consulting</li>
+                                <a href="#" class="hero-cta-button">Get Started</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+         <!-- ==================== INTRO SECTION - Z LAYOUT ==================== -->
+<section class="intro-section">
+    <div class="container">
+        <!-- Layout 1 -->
+        <div class="z-layout">
+            <div class="intro-content">
+                <h2>Designed for Growth at Every Stage</h2>
+                <p>
+                    Whether you're an individual creator, a growing startup, or an established enterprise, DEFCON's Level Up tiers provide the exact services and support you need to scale efficiently.
+                </p>
+                <ul class="feature-list">
+                    <li>Comprehensive service packages across all divisions</li>
+                    <li>Scalable solutions that grow with your business</li>
+                    <li>Expert support from strategy to execution</li>
+                    <li>Premium results without the enterprise complexity</li>
+                </ul>
+            </div>
+            <div class="intro-visual">
+                <div class="intro-visual-pattern">
+                    <img src="https://images.unsplash.com/photo-1496205856088-91b021308c54?q=80&w=1120&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Growth at Every Stage" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout 2 -->
+        <div class="z-layout">
+            <div class="intro-content">
+                <h2>Three Divisions, Infinite Possibilities</h2>
+                <p>
+                    DEFCON's unique approach combines Software Development, IT Infrastructure, and Marketing & Creative Studio services into seamless growth packages that deliver measurable results.
+                </p>
+                <ul class="feature-list">
+                    <li>Full-stack development capabilities</li>
+                    <li>Enterprise-grade infrastructure management</li>
+                    <li>Award-winning creative and marketing</li>
+                    <li>Integrated solutions for maximum impact</li>
+                </ul>
+            </div>
+            <div class="intro-visual">
+                <div class="intro-visual-pattern">
+                    <img src="https://images.unsplash.com/photo-1586592527426-1218645a16cc?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Three Divisions" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout 3 -->
+        <div class="z-layout">
+            <div class="intro-content">
+                <h2>Proven Results Across Industries</h2>
+                <p>
+                    Our methodology has been tested and refined across multiple sectors, delivering consistent growth and transformation for businesses of all sizes and industries.
+                </p>
+                <ul class="feature-list">
+                    <li>100+ successful project implementations</li>
+                    <li>Average 3.2x ROI within first year</li>
+                    <li>95% client retention rate</li>
+                    <li>Industry-specific expertise and insights</li>
+                </ul>
+            </div>
+            <div class="intro-visual">
+                <div class="intro-visual-pattern">
+                    <img src="https://images.unsplash.com/photo-1656231906673-23f902cf31e4?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Proven Results" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout 4 -->
+        <div class="z-layout">
+            <div class="intro-content">
+                <h2>Future-Proof Your Business</h2>
+                <p>
+                    Stay ahead of the curve with cutting-edge technology and forward-thinking strategies that prepare your business for tomorrow's challenges and opportunities.
+                </p>
+                <ul class="feature-list">
+                    <li>AI-powered automation and insights</li>
+                    <li>Scalable cloud infrastructure</li>
+                    <li>Continuous innovation and updates</li>
+                    <li>Strategic technology roadmap planning</li>
+                </ul>
+            </div>
+            <div class="intro-visual">
+                <div class="intro-visual-pattern">
+                    <img src="https://images.unsplash.com/photo-1638414154639-0fbc5bceb80f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Future-Proof Business" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ==================== INTRO SECTION - Z LAYOUT ==================== */
+    .intro-section {
+        padding: 120px 20px;
+        background: var(--white, #000000);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .z-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        margin-bottom: 100px;
+    }
+
+    .z-layout:last-child {
+        margin-bottom: 0;
+    }
+
+    .z-layout:nth-child(even) {
+        direction: rtl;
+    }
+
+    .z-layout:nth-child(even) > * {
+        direction: ltr;
+    }
+
+    .intro-content h2 {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--dark, #ffffff);
+        margin-bottom: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+    }
+
+    .intro-content p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 32px;
+        line-height: 1.8;
+    }
+
+    .feature-list {
+        list-style: none;
+    }
+
+    .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        color: var(--dark, #e7e7e7);
+    }
+
+    .feature-list li::before {
+        content: '✓';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: var(--primary, #ff8c00);
+        color: var(--white, #ffffff);
+        border-radius: 50%;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .intro-visual {
+        position: relative;
+        height: 400px;
+        
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .intro-visual-pattern {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .intro-visual-pattern img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Add subtle animation on hover */
+    .intro-visual {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+        .z-layout {
+            grid-template-columns: 1fr;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .z-layout:nth-child(even) {
+            direction: ltr;
+        }
+
+        .intro-content h2 {
+            font-size: 36px;
+        }
+
+        .intro-visual {
+            height: 300px;
+            order: -1;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .intro-section {
+            padding: 80px 20px;
+        }
+
+        .z-layout {
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .intro-content h2 {
+            font-size: 28px;
+        }
+
+        .intro-content p {
+            font-size: 16px;
+        }
+
+        .intro-visual {
+            height: 250px;
+        }
+    }
+</style>
+        
+        <section class="process-section">
+            <div class="section-wrapper">
+                <div class="process-intro fade-in-up">
+                    <h2>Your Growth Path, Simplified</h2>
+                    <p>Leveling up with Defcon is a strategic, transparent process designed for maximum impact and minimal friction.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-step fade-in-up">
+                        <div class="process-icon">1</div>
+                        <h4>Discover & Strategize</h4>
+                        <p>We align with your vision, analyze your current state, and define clear, measurable goals for your chosen level.</p>
+                    </div>
+                    <div class="process-step fade-in-up" style="transition-delay: 0.1s;">
+                        <div class="process-icon">2</div>
+                        <h4>Design & Develop</h4>
+                        <p>Our teams collaborate to build your solution—from code and infrastructure to creative assets and marketing campaigns.</p>
+                    </div>
+                    <div class="process-step fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="process-icon">3</div>
+                        <h4>Deploy & Launch</h4>
+                        <p>We execute a seamless launch, ensuring all systems are robust, scalable, and ready for your users and customers.</p>
+                    </div>
+                    <div class="process-step fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="process-icon">4</div>
+                        <h4>Optimize & Evolve</h4>
+                        <p>Your journey doesn't end at launch. We monitor performance, provide support, and identify the next steps to continue your ascent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="comparison-section">
+    <div class="section-wrapper">
+        <div class="comparison-intro fade-in-up">
+            <h2>Enterprise-Grade Feature Comparison</h2>
+            <p>Comprehensive analysis of capabilities across all service tiers. Compare features, limitations, and scalability options.</p>
+        </div>
+        
+        <div class="comparison-table-wrapper fade-in-up">
+            <div class="comparison-table-container">
+                <!-- Table Header -->
+                <div class="table-header">
+                    <div class="feature-column">
+                        <h3>Features & Capabilities</h3>
+                    </div>
+                    <div class="plan-column personal-plan">
+                        <div class="plan-header">
+                            <div class="plan-badge personal">Personal</div>
+                            <div class="plan-price">R1,200<span>/month</span></div>
+                            <div class="plan-desc">Individual Professional</div>
+                        </div>
+                    </div>
+                    <div class="plan-column startup-plan">
+                        <div class="plan-header">
+                            <div class="plan-badge startup">Startup</div>
+                            <div class="plan-price">R2,500<span>/month</span></div>
+                            <div class="plan-desc">Early Stage Business</div>
+                        </div>
+                    </div>
+                    <div class="plan-column pro-plan">
+                        <div class="plan-header">
+                            <div class="plan-badge pro">Pro Business</div>
+                            <div class="plan-price">R4,500<span>/month</span></div>
+                            <div class="plan-desc">Growing Organization</div>
+                        </div>
+                    </div>
+                    <div class="plan-column enterprise-plan">
+                        <div class="plan-header">
+                            <div class="plan-badge enterprise">Enterprise</div>
+                            <div class="plan-price">R8,500<span>/month</span></div>
+                            <div class="plan-desc">Market Leader</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Table Body -->
+                <div class="table-body">
+                    <!-- Development Category -->
+                    <div class="category-row">
+                        <div class="category-header">
+                            <div class="category-icon">💻</div>
+                            <h4>Software Development</h4>
+                        </div>
+                        <div class="plan-features personal-plan">
+                            <div class="feature-status limited">Limited</div>
+                        </div>
+                        <div class="plan-features startup-plan">
+                            <div class="feature-status basic">Basic</div>
+                        </div>
+                        <div class="plan-features pro-plan">
+                            <div class="feature-status advanced">Advanced</div>
+                        </div>
+                        <div class="plan-features enterprise-plan">
+                            <div class="feature-status enterprise">Enterprise</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Web Application</span>
+                            <span class="feature-desc">Custom responsive web application</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Portfolio Site</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>MVP Application</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>E-commerce Platform</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Custom Enterprise Platform</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Mobile Application</span>
+                            <span class="feature-desc">Native iOS/Android development</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Not Included</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Cross-platform MVP</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Native Applications</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Multi-platform Suite</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">API Development</span>
+                            <span class="feature-desc">REST/GraphQL API endpoints</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Not Included</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Core APIs</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced APIs</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Full API Ecosystem</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Database Management</span>
+                            <span class="feature-desc">Data storage and management solutions</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>Basic SQL</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Managed Database</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced DB Architecture</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Multi-database Cluster</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Infrastructure Category -->
+                    <div class="category-row">
+                        <div class="category-header">
+                            <div class="category-icon">⚙️</div>
+                            <h4>IT Infrastructure</h4>
+                        </div>
+                        <div class="plan-features personal-plan">
+                            <div class="feature-status limited">Limited</div>
+                        </div>
+                        <div class="plan-features startup-plan">
+                            <div class="feature-status basic">Basic</div>
+                        </div>
+                        <div class="plan-features pro-plan">
+                            <div class="feature-status advanced">Advanced</div>
+                        </div>
+                        <div class="plan-features enterprise-plan">
+                            <div class="feature-status enterprise">Enterprise</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Cloud Computing</span>
+                            <span class="feature-desc">Cloud infrastructure and hosting</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Shared Hosting</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Basic Cloud Setup</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Optimized Infrastructure</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Full Cloud Management</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">DevOps & CI/CD</span>
+                            <span class="feature-desc">Automated deployment pipelines</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Manual Deployment</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Basic CI/CD</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Pipeline</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Dedicated DevOps Team</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Security Features</span>
+                            <span class="feature-desc">Security protocols and compliance</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>Basic SSL</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Standard Security</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Security</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Enterprise Security Suite</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Backup & Recovery</span>
+                            <span class="feature-desc">Data protection and disaster recovery</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>Manual Backups</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Automated Backups</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Recovery</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Enterprise DR Plan</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Marketing Category -->
+                    <div class="category-row">
+                        <div class="category-header">
+                            <div class="category-icon">📈</div>
+                            <h4>Marketing & Creative</h4>
+                        </div>
+                        <div class="plan-features personal-plan">
+                            <div class="feature-status limited">Limited</div>
+                        </div>
+                        <div class="plan-features startup-plan">
+                            <div class="feature-status basic">Basic</div>
+                        </div>
+                        <div class="plan-features pro-plan">
+                            <div class="feature-status advanced">Advanced</div>
+                        </div>
+                        <div class="plan-features enterprise-plan">
+                            <div class="feature-status enterprise">Enterprise</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Digital Marketing</span>
+                            <span class="feature-desc">Online marketing campaigns</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>SEO Basics</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Launch Campaign</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Multi-channel Strategy</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Full Advertising Suite</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Content Strategy</span>
+                            <span class="feature-desc">Content planning and creation</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Not Included</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Basic Content Plan</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Strategy</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Enterprise Content Engine</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Social Media Management</span>
+                            <span class="feature-desc">Social presence and engagement</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator no">✗</div>
+                            <span>Not Included</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>Basic Setup</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Management</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Full Campaign Management</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-name">
+                            <span class="feature-title">Analytics & Reporting</span>
+                            <span class="feature-desc">Performance tracking and insights</span>
+                        </div>
+                        <div class="feature-value personal-plan">
+                            <div class="feature-indicator limited">~</div>
+                            <span>Basic Analytics</span>
+                        </div>
+                        <div class="feature-value startup-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Standard Reports</span>
+                        </div>
+                        <div class="feature-value pro-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Advanced Analytics</span>
+                        </div>
+                        <div class="feature-value enterprise-plan">
+                            <div class="feature-indicator yes">✓</div>
+                            <span>Enterprise Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Table Footer -->
+                <div class="table-footer">
+                    <div class="footer-column">
+                        <div class="support-note">Need custom features? <a href="#">Contact our team</a></div>
+                    </div>
+                    <div class="footer-column personal-plan">
+                        <a href="#" class="cta-button personal">Get Started</a>
+                    </div>
+                    <div class="footer-column startup-plan">
+                        <a href="#" class="cta-button startup">Start Free Trial</a>
+                    </div>
+                    <div class="footer-column pro-plan">
+                        <a href="#" class="cta-button pro">Schedule Demo</a>
+                    </div>
+                    <div class="footer-column enterprise-plan">
+                        <a href="#" class="cta-button enterprise">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-notes fade-in-up">
+            <div class="note">
+                <strong>Note:</strong> All plans include 24/7 customer support, regular updates, and access to our knowledge base.
+            </div>
+            <div class="note">
+                <strong>Enterprise:</strong> Custom solutions available with dedicated account management and SLAs.
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.comparison-section {
+    background: linear-gradient(135deg, #0a1929 0%, #1a2b3c 100%);
+    color: #fff;
+    padding: 100px 0;
+}
+
+.comparison-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.comparison-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.comparison-intro p {
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.comparison-table-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-column {
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.feature-column h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.plan-column {
+    padding: 25px 15px;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plan-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plan-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.plan-badge.personal {
+    background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+    color: #000;
+}
+
+.plan-badge.startup {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+}
+
+.plan-badge.pro {
+    background: linear-gradient(135deg, #E5E4E2, #C0C0C0);
+    color: #000;
+}
+
+.plan-badge.enterprise {
+    background: linear-gradient(135deg, #CD7F32, #8B4513);
+    color: #fff;
+}
+
+.plan-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.plan-price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ccc;
+}
+
+.plan-desc {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.category-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-header h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.plan-features {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-status {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.feature-status.limited {
+    background: rgba(192, 192, 192, 0.2);
+    color: #C0C0C0;
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.feature-status.basic {
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.feature-status.advanced {
+    background: rgba(229, 228, 226, 0.2);
+    color: #E5E4E2;
+    border: 1px solid rgba(229, 228, 226, 0.3);
+}
+
+.feature-status.enterprise {
+    background: rgba(205, 127, 50, 0.2);
+    color: #CD7F32;
+    border: 1px solid rgba(205, 127, 50, 0.3);
+}
+
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.feature-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.feature-name {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.feature-desc {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.feature-value {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.feature-indicator.yes {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.feature-indicator.no {
+    background: rgba(244, 67, 54, 0.2);
+    color: #F44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.feature-indicator.limited {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.feature-value span {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.table-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-column:first-child {
+    justify-content: flex-start;
+}
+
+.support-note {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.support-note a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.support-note a:hover {
+    color: #FFA500;
+    text-decoration: underline;
+}
+
+.cta-button {
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 140px;
+}
+
+.cta-button.personal {
+    background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+    color: #000;
+}
+
+.cta-button.startup {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+}
+
+.cta-button.pro {
+    background: linear-gradient(135deg, #E5E4E2, #C0C0C0);
+    color: #000;
+}
+
+.cta-button.enterprise {
+    background: linear-gradient(135deg, #CD7F32, #8B4513);
+    color: #fff;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-notes {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #aaa;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .comparison-table-container {
+        overflow-x: auto;
+    }
+    
+    .table-header,
+    .category-row,
+    .feature-row,
+    .table-footer {
+        min-width: 1000px;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-section {
+        padding: 60px 0;
+    }
+    
+    .comparison-intro h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+
+        <section class="final-cta-section">
+            <div class="section-wrapper">
+                <div class="final-cta-content fade-in-up">
+                    <h2>Ready to Level Up Your Business?</h2>
+                    <p>Don't just adapt to the future—define it. Our team is ready to build the growth engine your business deserves. Let's discuss which level is right for you.</p>
+                    <a href="#plans" class="hero-cta-button">Choose Your Level</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Tab functionality for plan switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.plan-tab-button');
+            const planContents = document.querySelectorAll('.plan-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    planContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Show corresponding content
+                    const planId = button.getAttribute('data-plan');
+                    document.getElementById(`plan-${planId}`).classList.add('active');
+                });
+            });
+            
+            // Scroll animation
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            
+            const fadeInOnScroll = () => {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

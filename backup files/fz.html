@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEFCON - Advanced IT Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0091ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 20px 0;
+        }
+
+        .main-nav {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333333;
+            text-decoration: none;
+            padding: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            color: #0091ff;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0091ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-icon {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Megamenu Styles */
+        .megamenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100vw;
+            background: #ffffff;
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 80vh;
+            overflow: hidden;
+        }
+
+        .nav-item:hover .megamenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .megamenu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .services-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .services-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .services-grid::-webkit-scrollbar-thumb {
+            background: #0091ff;
+            border-radius: 10px;
+        }
+
+        .service-category {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .service-category:hover {
+            background: #ffffff;
+            border-color: #0091ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 145, 255, 0.1);
+        }
+
+        .category-title {
+            color: #0091ff;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.3);
+        }
+
+        .service-links {
+            list-style: none;
+        }
+
+        .service-link {
+            display: block;
+            color: #555555;
+            text-decoration: none;
+            padding: 8px 0;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .service-link::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #0091ff;
+            font-size: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: #0091ff;
+            padding-left: 20px;
+        }
+
+        .service-link:hover::before {
+            opacity: 1;
+        }
+
+        .megamenu-sidebar {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            color: #0091ff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-content {
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #0091ff, #0066cc);
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        /* Mobile Styles */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #333333;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                flex-direction: column;
+                padding: 20px;
+                border-top: 1px solid #e0e0e0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .main-nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .megamenu {
+                position: static;
+                width: 100%;
+                max-height: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                margin-top: 10px;
+                display: none;
+                box-shadow: none;
+                border: none;
+            }
+
+            .nav-item.active .megamenu {
+                display: block;
+            }
+
+            .megamenu-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .services-grid {
+                gap: 15px;
+            }
+
+            .service-category {
+                padding: 20px;
+            }
+
+            .megamenu-sidebar {
+                padding: 20px;
+            }
+        }
+
+        /* Demo Content */
+        .demo-content {
+            min-height: 200vh;
+            padding: 60px 20px;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 48px;
+            color: #0091ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .demo-subtitle {
+            font-size: 18px;
+            color: #555555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">DEFCON</div>
+            
+            <ul class="main-nav" id="mainNav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Services
+                        <span class="dropdown-icon">▼</span>
+                    </a>
+                    <div class="megamenu">
+                        <div class="megamenu-container">
+                            <div class="services-grid">
+                                <div class="service-category">
+                                    <h3 class="category-title">Cloud Solutions</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">AWS Migration</a></li>
+                                        <li><a href="#" class="service-link">Azure Integration</a></li>
+                                        <li><a href="#" class="service-link">Google Cloud Platform</a></li>
+                                        <li><a href="#" class="service-link">Hybrid Cloud Setup</a></li>
+                                        <li><a href="#" class="service-link">Cloud Security</a></li>
+                                        <li><a href="#" class="service-link">Cost Optimization</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="service-category">
+                                    <h3 class="category-title">Cybersecurity</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">Penetration Testing</a></li>
+                                        <li><a href="#" class="service-link">Security Audits</a></li>
+                                        <li><a href="#" class="service-link">Vulnerability Assessment</a></li>
+                                        <li><a href="#" class="service-link">Incident Response</a></li>
+                                        <li><a href="#" class="service-link">SIEM Implementation</a></li>
+                                        <li><a href="#" class="service-link">Compliance Management</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="service-category">
+                                    <h3 class="category-title">Infrastructure</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">Server Management</a></li>
+                                        <li><a href="#" class="service-link">Network Design</a></li>
+                                        <li><a href="#" class="service-link">Data Center Setup</a></li>
+                                        <li><a href="#" class="service-link">Load Balancing</a></li>
+                                        <li><a href="#" class="service-link">Disaster Recovery</a></li>
+                                        <li><a href="#" class="service-link">Backup Solutions</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="service-category">
+                                    <h3 class="category-title">Development</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">Custom Software</a></li>
+                                        <li><a href="#" class="service-link">API Development</a></li>
+                                        <li><a href="#" class="service-link">Mobile Applications</a></li>
+                                        <li><a href="#" class="service-link">Web Applications</a></li>
+                                        <li><a href="#" class="service-link">DevOps Implementation</a></li>
+                                        <li><a href="#" class="service-link">CI/CD Pipelines</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="service-category">
+                                    <h3 class="category-title">Data & Analytics</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">Big Data Solutions</a></li>
+                                        <li><a href="#" class="service-link">Data Warehousing</a></li>
+                                        <li><a href="#" class="service-link">Business Intelligence</a></li>
+                                        <li><a href="#" class="service-link">Machine Learning</a></li>
+                                        <li><a href="#" class="service-link">Data Migration</a></li>
+                                        <li><a href="#" class="service-link">Analytics Consulting</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="service-category">
+                                    <h3 class="category-title">Consulting</h3>
+                                    <ul class="service-links">
+                                        <li><a href="#" class="service-link">IT Strategy</a></li>
+                                        <li><a href="#" class="service-link">Digital Transformation</a></li>
+                                        <li><a href="#" class="service-link">Technology Assessment</a></li>
+                                        <li><a href="#" class="service-link">Architecture Design</a></li>
+                                        <li><a href="#" class="service-link">Project Management</a></li>
+                                        <li><a href="#" class="service-link">Training & Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="megamenu-sidebar">
+                                <h3 class="sidebar-title">Need Help?</h3>
+                                <p class="sidebar-content">
+                                    Our experts are ready to discuss your specific requirements and provide tailored solutions for your business.
+                                </p>
+                                <button class="cta-button">Get Free Consultation</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Solutions</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileToggle">☰</button>
+        </nav>
+    </header>
+
+    <main class="demo-content">
+        <h1 class="demo-title">Advanced IT Solutions</h1>
+        <p class="demo-subtitle">
+            Hover over "Services" in the navigation to see the megamenu in action. 
+            The layout adapts intelligently to showcase all services without overwhelming the interface.
+        </p>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Mobile dropdown handling
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            const megamenu = item.querySelector('.megamenu');
+            
+            if (megamenu) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 1024) {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        navItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container')) {
+                mainNav.classList.remove('active');
+                navItems.forEach(item => item.classList.remove('active'));
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                mainNav.classList.remove('active');
+                navItems.forEach(item => item.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>

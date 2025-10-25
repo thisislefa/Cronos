@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Web Design & Development</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #06273e;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-web-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        .defcon-heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #06273e;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            text-align: left;
+        }
+
+        .defcon-heading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: #0091ff;
+        }
+
+        .defcon-subheading {
+            font-size: 1.5rem;
+            color: #06273e;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        .defcon-subheading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #06273e;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .defcon-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #0091ff;
+        }
+
+        /* Hero Section */
+        .defcon-web-hero {
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .defcon-hero-image {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60%;
+            max-width: 800px;
+            opacity: 0;
+            transition: opacity 1s ease 0.4s, right 1s ease 0.4s;
+        }
+
+        .defcon-hero-image.visible {
+            opacity: 1;
+            right: 0;
+        }
+
+        /* Service Cards */
+        .defcon-service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .defcon-service-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .defcon-service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-service-card-header {
+            background-color: #0091ff;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .defcon-service-card-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .defcon-service-card-body {
+            padding: 25px;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .defcon-service-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .defcon-service-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .defcon-service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0091ff;
+            font-weight: bold;
+        }
+
+        .defcon-service-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #06273e;
+            margin: 20px 0;
+        }
+
+        .defcon-service-price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .defcon-service-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0091ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .defcon-service-cta:hover {
+            background-color: #0077cc;
+            transform: translateY(-2px);
+        }
+
+        /* Process Section */
+        .defcon-process-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            margin: 80px 0;
+        }
+
+        .defcon-process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-process-step {
+            flex: 1;
+            min-width: 200px;
+            margin: 0 10px 30px;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-process-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #0091ff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .defcon-step-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #06273e;
+        }
+
+        .defcon-step-desc {
+            color: #666;
+        }
+
+        /* Testimonials */
+        .defcon-testimonials {
+            margin: 80px 0;
+        }
+
+        .defcon-testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .defcon-testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: #e5e5e5;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .defcon-testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .defcon-author-info h4 {
+            margin: 0;
+            color: #06273e;
+        }
+
+        .defcon-author-info p {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .defcon-faq-section {
+            margin: 80px 0;
+        }
+
+        .defcon-faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .defcon-faq-question {
+            padding: 20px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .defcon-faq-question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .defcon-faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .defcon-faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .defcon-faq-answer.open {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .defcon-cta-section {
+            background-color: #06273e;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .defcon-cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .defcon-cta-subheading {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #0091ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .defcon-cta-button:hover {
+            background-color: #0077cc;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .defcon-hero-image {
+                display: none;
+            }
+
+            .defcon-hero-content {
+                max-width: 100%;
+            }
+
+            .defcon-process-steps {
+                flex-direction: column;
+            }
+
+            .defcon-process-step {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-heading {
+                font-size: 2.2rem;
+            }
+
+            .defcon-subheading {
+                font-size: 1.2rem;
+            }
+
+            .defcon-service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="defcon-web-hero">
+        <div class="defcon-web-container">
+            <div class="defcon-hero-content">
+                <h1 class="defcon-heading">Web Design & Development</h1>
+                <p class="defcon-subheading">Engineering digital experiences that elevate your brand and drive measurable results. Our bespoke web solutions are crafted with precision and designed to outperform.</p>
+                <!-- Placeholder image - replace with your actual hero image -->
+                <img src="thumbnails/pexels-thelazyartist-1416971.jpg" alt="Defcon Web Design" class="defcon-hero-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="defcon-web-container">
+        <h2 class="defcon-section-title">Our Web Solutions</h2>
+        <p>From sleek brochure sites to complex web applications, we build digital experiences that convert. Every project receives our signature attention to detail and commitment to excellence.</p>
+
+        <div class="defcon-service-grid">
+            <!-- Basic Website Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Essential Website</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Perfect for startups and small businesses needing a professional online presence.</p>
+                    <ul class="defcon-service-features">
+                        <li>5-7 Custom Designed Pages</li>
+                        <li>Mobile-Responsive Design</li>
+                        <li>Basic SEO Optimization</li>
+                        <li>Contact Form Integration</li>
+                        <li>1 Round of Revisions</li>
+                        <li>CMS Integration (WordPress)</li>
+                    </ul>
+                    <div class="defcon-service-price">$3,500+ <span>one-time</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Advanced Website Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Advanced Website</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>For growing businesses that need more sophisticated features and functionality.</p>
+                    <ul class="defcon-service-features">
+                        <li>10-15 Custom Designed Pages</li>
+                        <li>Advanced Mobile Optimization</li>
+                        <li>Comprehensive SEO Setup</li>
+                        <li>Custom Contact Forms</li>
+                        <li>3 Rounds of Revisions</li>
+                        <li>Custom WordPress Theme</li>
+                        <li>Basic Analytics Setup</li>
+                    </ul>
+                    <div class="defcon-service-price">$7,500+ <span>one-time</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- E-Commerce Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>E-Commerce Solution</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Complete online store setup with secure payment processing and inventory management.</p>
+                    <ul class="defcon-service-features">
+                        <li>Custom Store Design</li>
+                        <li>Product Catalog Setup (Up to 50 products)</li>
+                        <li>Secure Payment Gateway Integration</li>
+                        <li>Mobile-Optimized Checkout</li>
+                        <li>Inventory Management System</li>
+                        <li>Basic SEO for Products</li>
+                        <li>Shipping Calculator</li>
+                        <li>WooCommerce or Shopify Pro</li>
+                    </ul>
+                    <div class="defcon-service-price">$12,000+ <span>one-time</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Web Application -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Custom Web Application</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Bespoke web applications built to solve your unique business challenges.</p>
+                    <ul class="defcon-service-features">
+                        <li>Custom Requirements Analysis</li>
+                        <li>User Experience Design</li>
+                        <li>Database Architecture</li>
+                        <li>API Development & Integration</li>
+                        <li>User Authentication System</li>
+                        <li>Admin Dashboard</li>
+                        <li>Ongoing Maintenance Plans</li>
+                        <li>React/Angular/Vue Framework</li>
+                    </ul>
+                    <div class="defcon-service-price">$25,000+ <span>starting at</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Enterprise Solution -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Enterprise Solution</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Large-scale web solutions for corporations with complex requirements.</p>
+                    <ul class="defcon-service-features">
+                        <li>Dedicated Project Manager</li>
+                        <li>Custom Software Development</li>
+                        <li>Enterprise-Grade Security</li>
+                        <li>Scalable Cloud Infrastructure</li>
+                        <li>Multi-Language Support</li>
+                        <li>Advanced Analytics Integration</li>
+                        <li>CRM/ERP Integration</li>
+                        <li>Ongoing Support & Maintenance</li>
+                    </ul>
+                    <div class="defcon-service-price">$50,000+ <span>starting at</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Add-On Services</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Enhance your website with these premium services.</p>
+                    <ul class="defcon-service-features">
+                        <li>Advanced SEO Package: $1,500/month</li>
+                        <li>Content Creation: $150/page</li>
+                        <li>Professional Photography: $1,000/day</li>
+                        <li>Video Production: $2,500/video</li>
+                        <li>Ongoing Maintenance: $150/hour</li>
+                        <li>Hosting & Security: $200/month</li>
+                        <li>Conversion Rate Optimization: $3,000 setup</li>
+                    </ul>
+                    <div class="defcon-service-price">Custom Pricing</div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="defcon-process-section">
+        <div class="defcon-web-container">
+            <h2 class="defcon-section-title">Our Proven Process</h2>
+            <p>We follow a meticulous approach to ensure every project exceeds expectations.</p>
+
+            <div class="defcon-process-steps">
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">1</div>
+                    <h3 class="defcon-step-title">Discovery</h3>
+                    <p class="defcon-step-desc">We dive deep into your business objectives, target audience, and technical requirements.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">2</div>
+                    <h3 class="defcon-step-title">Strategy</h3>
+                    <p class="defcon-step-desc">Our team crafts a comprehensive digital strategy tailored to your goals.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">3</div>
+                    <h3 class="defcon-step-title">Design</h3>
+                    <p class="defcon-step-desc">We create pixel-perfect designs that balance aesthetics with functionality.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">4</div>
+                    <h3 class="defcon-step-title">Development</h3>
+                    <p class="defcon-step-desc">Our engineers build robust, scalable solutions using cutting-edge technologies.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">5</div>
+                    <h3 class="defcon-step-title">Launch</h3>
+                    <p class="defcon-step-desc">We deploy your solution with precision and provide comprehensive training.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technologies Section -->
+    <div class="defcon-web-container">
+        <h2 class="defcon-section-title">Technologies We Master</h2>
+        <p>We work with industry-leading technologies to deliver exceptional results.</p>
+
+        <!-- Placeholder for technology logos - replace with actual images -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 50px 0;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 1" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 2" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 3" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 4" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 5" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 6" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 7" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+            <img src="https://via.placeholder.com/100x60" alt="Technology 8" style="height: 60px; opacity: 0.7; transition: opacity 0.3s ease;">
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="defcon-testimonials defcon-web-container">
+        <h2 class="defcon-section-title">Client Success Stories</h2>
+        <p>Don't just take our word for it. Here's what our clients say about working with us.</p>
+
+        <div class="defcon-testimonial-grid">
+            <div class="defcon-testimonial-card">
+                <div class="defcon-testimonial-content">
+                    Defcon transformed our online presence completely. Their attention to detail and strategic approach resulted in a 300% increase in lead generation within three months.
+                </div>
+                <div class="defcon-testimonial-author">
+                    <img src="https://via.placeholder.com/50x50" alt="Client 1">
+                    <div class="defcon-author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>CEO, TechCorp Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="defcon-testimonial-card">
+                <div class="defcon-testimonial-content">
+                    The custom web application Defcon built for our logistics company has streamlined our operations and reduced processing time by 40%. Their team is exceptionally talented.
+                </div>
+                <div class="defcon-testimonial-author">
+                    <img src="https://via.placeholder.com/50x50" alt="Client 2">
+                    <div class="defcon-author-info">
+                        <h4>Michael Chen</h4>
+                        <p>COO, Global Logistics Inc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="defcon-testimonial-card">
+                <div class="defcon-testimonial-content">
+                    We've worked with several web agencies before, but none delivered the level of sophistication and professionalism that Defcon brought to our e-commerce platform.
+                </div>
+                <div class="defcon-testimonial-author">
+                    <img src="https://via.placeholder.com/50x50" alt="Client 3">
+                    <div class="defcon-author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Marketing Director, Luxe Retail</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="defcon-faq-section defcon-web-container">
+        <h2 class="defcon-section-title">Frequently Asked Questions</h2>
+        <p>Answers to common questions about our web design and development services.</p>
+
+        <div class="defcon-faq-item">
+            <div class="defcon-faq-question">How long does a typical web design project take?</div>
+            <div class="defcon-faq-answer">
+                <p>Project timelines vary based on complexity. A basic website typically takes 4-6 weeks, while more complex projects can take 3-6 months. We provide a detailed timeline after our initial discovery phase.</p>
+            </div>
+        </div>
+
+        <div class="defcon-faq-item">
+            <div class="defcon-faq-question">Do you offer ongoing maintenance after launch?</div>
+            <div class="defcon-faq-answer">
+                <p>Yes, we offer comprehensive maintenance plans that include security updates, performance optimization, content updates, and technical support. Plans start at $200/month.</p>
+            </div>
+        </div>
+
+        <div class="defcon-faq-item">
+            <div class="defcon-faq-question">What CMS platforms do you work with?</div>
+            <div class="defcon-faq-answer">
+                <p>We specialize in WordPress, Shopify, and custom CMS solutions. We choose the platform that best fits your needs based on functionality requirements, scalability, and budget.</p>
+            </div>
+        </div>
+
+        <div class="defcon-faq-item">
+            <div class="defcon-faq-question">Can you redesign my existing website?</div>
+            <div class="defcon-faq-answer">
+                <p>Absolutely. We analyze your current site, identify areas for improvement, and create a redesign strategy that enhances both aesthetics and performance while preserving your SEO value.</p>
+            </div>
+        </div>
+
+        <div class="defcon-faq-item">
+            <div class="defcon-faq-question">What's included in your SEO services?</div>
+            <div class="defcon-faq-answer">
+                <p>Our SEO packages include technical optimization, keyword research, content strategy, on-page optimization, backlink analysis, and monthly performance reporting with actionable insights.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="defcon-cta-section">
+        <div class="defcon-web-container">
+            <h2 class="defcon-cta-heading">Ready to Elevate Your Digital Presence?</h2>
+            <p class="defcon-cta-subheading">Contact our team today to discuss your project. We'll craft a custom solution that drives results and positions your brand as an industry leader.</p>
+            <a href="#contact" class="defcon-cta-button">Schedule a Consultation</a>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.defcon-heading, .defcon-subheading, .defcon-service-card, .defcon-process-step, .defcon-testimonial-card, .defcon-hero-image');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // FAQ Accordion
+        const setupFAQ = () => {
+            const questions = document.querySelectorAll('.defcon-faq-question');
+            
+            questions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = answer.classList.contains('open');
+                    
+                    // Close all answers first
+                    document.querySelectorAll('.defcon-faq-answer').forEach(ans => {
+                        ans.classList.remove('open');
+                    });
+                    document.querySelectorAll('.defcon-faq-question').forEach(q => {
+                        q.classList.remove('active');
+                    });
+                    
+                    // Open current if it was closed
+                    if (!isOpen) {
+                        answer.classList.add('open');
+                        question.classList.add('active');
+                    }
+                });
+            });
+        };
+
+        // Smooth scrolling for anchor links
+        const smoothScroll = () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        };
+
+        // Initialize all functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            setupFAQ();
+            smoothScroll();
+        });
+
+        // Additional animation for hero text
+        window.addEventListener('load', () => {
+            const heading = document.querySelector('.defcon-heading');
+            const subheading = document.querySelector('.defcon-subheading');
+            
+            if (heading) heading.classList.add('visible');
+            if (subheading) subheading.classList.add('visible');
+        });
+    </script>
+</body>
+</html>

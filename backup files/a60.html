@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Engineer - Defcon Careers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --defcon-dark-blue: #06273e;
+            --defcon-primary-blue: #0091ff;
+            --defcon-white: #ffffff;
+            --defcon-light-gray: #e5e5e5;
+            --defcon-card-bg: rgba(6, 39, 62, 0.8);
+            --defcon-form-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-dark-blue);
+            color: var(--defcon-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        .defcon-header {
+            background: var(--defcon-dark-blue);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .defcon-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .defcon-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--defcon-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-logo-accent {
+            color: var(--defcon-primary-blue);
+            margin-left: 4px;
+        }
+
+        .defcon-nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .defcon-nav-link {
+            color: var(--defcon-light-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .defcon-nav-link:hover {
+            color: var(--defcon-primary-blue);
+        }
+
+        /* Hero Section */
+        .defcon-job-hero {
+            background: linear-gradient(rgba(6, 39, 62, 0.8), rgba(6, 39, 62, 0.9)), url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .defcon-job-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .defcon-job-hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--defcon-white);
+        }
+
+        .defcon-job-hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--defcon-light-gray);
+        }
+
+        .defcon-job-meta-icon {
+            color: var(--defcon-primary-blue);
+        }
+
+        .defcon-job-hero-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--defcon-primary-blue);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .defcon-job-hero-cta:hover {
+            background: #007ad6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Job Details Section */
+        .defcon-job-details {
+            padding: 80px 0;
+            background: #f4f4f4;
+        }
+
+        .defcon-job-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .defcon-job-main {
+            background: #f4f4f4;
+            border-radius: 3px;
+            border: 1px solid rgba(55, 55, 55, 0.196);
+            padding: 40px;
+        }
+
+        .defcon-job-section {
+            margin-bottom: 40px;
+        }
+
+        .defcon-job-section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--defcon-dark-blue);
+            padding-bottom: 10px;
+            border-bottom: 2px solid gray;
+        }
+
+        .defcon-job-section-content p {
+            margin-bottom: 20px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .defcon-job-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .defcon-job-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #333;
+        }
+
+        .defcon-job-list-icon {
+            color: var(--defcon-dark-blue);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .defcon-job-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .defcon-job-apply-card {
+            background: #f4f4f4;
+            border-radius: 3px;
+            padding: 30px;
+            border: 1px solid rgba(125, 125, 125, 0.464);
+            margin-bottom: 30px;
+        }
+
+        .defcon-job-apply-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--defcon-dark-blue);
+        }
+
+        .defcon-job-apply-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-job-apply-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #333;
+        }
+
+        .defcon-job-apply-icon {
+            color: var(--defcon-primary-blue);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .defcon-job-apply-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--defcon-primary-blue);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .defcon-job-apply-btn:hover {
+            background: #007ad6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .defcon-job-share {
+            background: #f4f4f4;
+            border-radius: 3px;
+            padding: 30px;
+            border: 1px solid rgba(57, 57, 57, 0.374);
+        }
+
+        .defcon-job-share-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #06273e;
+        }
+
+        .defcon-job-share-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .defcon-job-share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--defcon-white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .defcon-job-share-btn:hover {
+            background: var(--defcon-primary-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Application Form */
+        .defcon-application-form {
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 1px solid grey;
+        }
+
+        .defcon-form-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--defcon-white);
+            text-align: center;
+        }
+
+        .defcon-form-group {
+            margin-bottom: 25px;
+        }
+
+        .defcon-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--defcon-white);
+        }
+
+        .defcon-form-input,
+        .defcon-form-textarea,
+        .defcon-form-select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--defcon-white);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-form-input:focus,
+        .defcon-form-textarea:focus,
+        .defcon-form-select:focus {
+            outline: none;
+            border-color: var(--defcon-primary-blue);
+            box-shadow: 0 0 0 2px rgba(0, 145, 255, 0.2);
+        }
+
+        .defcon-form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .defcon-form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e5e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            background-color: #051c2c;
+        }
+
+        .defcon-form-file {
+            margin-top: 8px;
+        }
+
+        .defcon-form-file-label {
+            display: inline-block;
+            padding: 12px 20px;
+            background: rgba(0, 145, 255, 0.1);
+            color: var(--defcon-primary-blue);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-form-file-label:hover {
+            background: rgba(0, 145, 255, 0.2);
+        }
+
+        .defcon-form-submit {
+            display: block;
+            width: fit-content;
+            padding: 15px;
+            background: var(--defcon-primary-blue);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .defcon-form-submit:hover {
+            background: #007ad6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .defcon-footer {
+            background: #051c2c;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .defcon-footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .defcon-footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--defcon-white);
+        }
+
+        .defcon-footer-links {
+            list-style: none;
+        }
+
+        .defcon-footer-link {
+            margin-bottom: 10px;
+        }
+
+        .defcon-footer-link a {
+            color: var(--defcon-light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .defcon-footer-link a:hover {
+            color: var(--defcon-primary-blue);
+        }
+
+        .defcon-footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--defcon-light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .defcon-job-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-job-sidebar {
+                position: static;
+            }
+            
+            .defcon-footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-job-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-nav-links {
+                display: none;
+            }
+            
+            .defcon-job-hero-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .defcon-footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-job-main,
+            .defcon-application-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="defcon-header">
+        <div class="defcon-container">
+            <nav class="defcon-nav">
+                <a href="#" class="defcon-logo">defcon<span class="defcon-logo-accent">.</span></a>
+                <div class="defcon-nav-links">
+                    <a href="#" class="defcon-nav-link">Home</a>
+                    <a href="#" class="defcon-nav-link">About</a>
+                    <a href="#" class="defcon-nav-link">Services</a>
+                    <a href="#" class="defcon-nav-link">Careers</a>
+                    <a href="#" class="defcon-nav-link">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="defcon-job-hero">
+        <div class="defcon-container">
+            <div class="defcon-job-hero-content">
+                <h1 class="defcon-job-hero-title">Backend Engineer</h1>
+                <div class="defcon-job-hero-meta">
+                    <div class="defcon-job-meta-item">
+                        <i class="fas fa-building defcon-job-meta-icon"></i>
+                        <span>Engineering Department</span>
+                    </div>
+                    <div class="defcon-job-meta-item">
+                        <i class="fas fa-map-marker-alt defcon-job-meta-icon"></i>
+                        <span>London, UK / Remote</span>
+                    </div>
+                    <div class="defcon-job-meta-item">
+                        <i class="fas fa-clock defcon-job-meta-icon"></i>
+                        <span>Full-time</span>
+                    </div>
+                </div>
+                <a href="#apply" class="defcon-job-hero-cta">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Details Section -->
+    <section class="defcon-job-details">
+        <div class="defcon-container">
+            <div class="defcon-job-details-grid">
+                <div class="defcon-job-main">
+                    <div class="defcon-job-section">
+                        <h2 class="defcon-job-section-title">Job Description</h2>
+                        <div class="defcon-job-section-content">
+                            <p>We are seeking a talented Backend Engineer to join our growing engineering team. In this role, you will be responsible for designing, developing, and maintaining the server-side logic, databases, and APIs for our applications.</p>
+                            <p>You will work closely with frontend developers, product managers, and other stakeholders to deliver high-quality, scalable solutions that power our products and services.</p>
+                        </div>
+                    </div>
+
+                    <div class="defcon-job-section">
+                        <h2 class="defcon-job-section-title">Responsibilities</h2>
+                        <ul class="defcon-job-list">
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Design and implement scalable backend services and APIs</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Develop and maintain database schemas and queries</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Collaborate with frontend developers to integrate user-facing elements</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Implement security and data protection measures</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Optimize applications for maximum speed and scalability</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Participate in code reviews and provide constructive feedback</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Troubleshoot and debug issues in production environments</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="defcon-job-section">
+                        <h2 class="defcon-job-section-title">Requirements</h2>
+                        <ul class="defcon-job-list">
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>5+ years of professional experience in backend development</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Strong proficiency with Node.js, Python, or Java</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Experience with database systems such as PostgreSQL, MySQL, or MongoDB</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Knowledge of RESTful API design and development</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Familiarity with cloud platforms like AWS, Azure, or Google Cloud</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Experience with containerization technologies like Docker</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Understanding of CI/CD pipelines and DevOps practices</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Excellent problem-solving and communication skills</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="defcon-job-section">
+                        <h2 class="defcon-job-section-title">Nice to Have</h2>
+                        <ul class="defcon-job-list">
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Experience with microservices architecture</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Knowledge of message brokers like RabbitMQ or Kafka</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Familiarity with GraphQL</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Experience with serverless computing</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Contributions to open-source projects</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="defcon-job-section">
+                        <h2 class="defcon-job-section-title">Benefits</h2>
+                        <ul class="defcon-job-list">
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Competitive salary and equity package</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Comprehensive health, dental, and vision insurance</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Flexible work hours and remote work options</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Professional development budget</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>401(k) with company matching</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>Unlimited paid time off</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-right defcon-job-list-icon"></i>
+                                <span>State-of-the-art equipment</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="defcon-job-sidebar">
+                    <div class="defcon-job-apply-card">
+                        <h3 class="defcon-job-apply-title">Interested in this position?</h3>
+                        <ul class="defcon-job-apply-list">
+                            <li>
+                                <i class="fas fa-briefcase defcon-job-apply-icon"></i>
+                                <span>Full-time</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt defcon-job-apply-icon"></i>
+                                <span>London / Remote</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock defcon-job-apply-icon"></i>
+                                <span>Posted 2 days ago</span>
+                            </li>
+                        </ul>
+                        <a href="#apply" class="defcon-job-apply-btn">Apply Now</a>
+                    </div>
+
+                    <div class="defcon-job-share">
+                        <h3 class="defcon-job-share-title">Share this position</h3>
+                        <div class="defcon-job-share-buttons">
+                            <a href="#" class="defcon-job-share-btn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="defcon-job-share-btn">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="defcon-job-share-btn">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="defcon-job-share-btn">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Form -->
+        <div style="
+                    padding: 0;
+                    margin: 0;
+                    padding-top: 5rem;
+                    align-content: center;
+                    justify-items: center;">
+
+            <div class="defcon-application-form" id="apply">
+                <h2 class="defcon-form-title">Apply for Backend Engineer</h2>
+                <form id="defcon-job-application-form">
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-name" class="defcon-form-label">Full Name</label>
+                        <input type="text" id="defcon-form-name" class="defcon-form-input" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-email" class="defcon-form-label">Email Address</label>
+                        <input type="email" id="defcon-form-email" class="defcon-form-input" placeholder="Your email address" required>
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-phone" class="defcon-form-label">Phone Number</label>
+                        <input type="tel" id="defcon-form-phone" class="defcon-form-input" placeholder="Your phone number">
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-location" class="defcon-form-label">Location</label>
+                        <input type="text" id="defcon-form-location" class="defcon-form-input" placeholder="Your city and country">
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-linkedin" class="defcon-form-label">LinkedIn Profile</label>
+                        <input type="url" id="defcon-form-linkedin" class="defcon-form-input" placeholder="LinkedIn profile URL">
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-website" class="defcon-form-label">Personal Website/Portfolio</label>
+                        <input type="url" id="defcon-form-website" class="defcon-form-input" placeholder="Website URL">
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label for="defcon-form-coverletter" class="defcon-form-label">Cover Letter</label>
+                        <textarea id="defcon-form-coverletter" class="defcon-form-textarea" placeholder="Why are you interested in this position? What makes you a good fit?"></textarea>
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label class="defcon-form-label">Resume/CV</label>
+                        <input type="file" id="defcon-form-resume" class="defcon-form-file" accept=".pdf,.doc,.docx">
+                        <label for="defcon-form-resume" class="defcon-form-file-label">Choose File</label>
+                    </div>
+
+                    <div class="defcon-form-group">
+                        <label class="defcon-form-label">How did you hear about us?</label>
+                        <select class="defcon-form-select">
+                            <option value="">Select an option</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="job-board">Job Board</option>
+                            <option value="referral">Employee Referral</option>
+                            <option value="company-website">Company Website</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="defcon-form-submit">Submit Application</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-footer">
+        <div class="defcon-container">
+            <div class="defcon-footer-content">
+                <div class="defcon-footer-col">
+                    <h3>Defcon</h3>
+                    <p style="color: #e5e5e5; margin-bottom: 20px;">Innovating for a better future through technology and creativity.</p>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Company</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">About Us</a></li>
+                        <li class="defcon-footer-link"><a href="#">Our Team</a></li>
+                        <li class="defcon-footer-link"><a href="#">Careers</a></li>
+                        <li class="defcon-footer-link"><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Resources</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">Blog</a></li>
+                        <li class="defcon-footer-link"><a href="#">FAQ</a></li>
+                        <li class="defcon-footer-link"><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-footer-col">
+                    <h3>Connect</h3>
+                    <ul class="defcon-footer-links">
+                        <li class="defcon-footer-link"><a href="#">Twitter</a></li>
+                        <li class="defcon-footer-link"><a href="#">LinkedIn</a></li>
+                        <li class="defcon-footer-link"><a href="#">Instagram</a></li>
+                        <li class="defcon-footer-link"><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="defcon-footer-bottom">
+                <p>&copy; 2023 Defcon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('defcon-job-application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('defcon-form-name').value;
+            const email = document.getElementById('defcon-form-email').value;
+            
+            if (!name || !email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            alert('Thank you for your application! We will review your submission and get back to you soon.');
+            this.reset();
+        });
+
+        // File input styling
+        const fileInput = document.getElementById('defcon-form-resume');
+        const fileLabel = document.querySelector('[for="defcon-form-resume"]');
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileLabel.textContent = this.files[0].name;
+            } else {
+                fileLabel.textContent = 'Choose File';
+            }
+        });
+    </script>
+</body>
+</html>

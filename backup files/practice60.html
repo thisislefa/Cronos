@@ -1,0 +1,747 @@
+<!-- LEARN WITH DEFCON: MINI ACADEMY SECTION -->
+<section id="defcon-academy" style="background:#e5e5e5; font-family:'Times New Roman',serif; color:#06273e; padding:60px 0 80px 0; min-height:100vh; position:relative; overflow-x:hidden;">
+  <style>
+    #defcon-academy {
+      animation: fadeInBg 1.2s cubic-bezier(.77,0,.18,1) both;
+    }
+    @keyframes fadeInBg {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+    .academy-container {
+      max-width:1260px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+    .academy-title {
+      color:#0091ff;
+      font-size:3.2em;
+      font-weight:bold;
+      text-align:center;
+      margin-bottom:12px;
+      letter-spacing:1px;
+      text-shadow:0 4px 24px #0091ff22;
+      line-height:1.1;
+    }
+    .academy-subtitle {
+      font-size:1.25em;
+      text-align:center;
+      color:#06273e;
+      margin-bottom:48px;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+      letter-spacing:0.1px;
+    }
+    .academy-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:36px;
+      margin-bottom:60px;
+    }
+    .academy-card {
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 8px 40px #0091ff18, 0 2px 12px #06273e11;
+      padding:36px 26px 30px 26px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      transition:transform 0.34s cubic-bezier(.77,0,.18,1), box-shadow 0.32s;
+      cursor:pointer;
+      min-width:0;
+      min-height:420px;
+    }
+    .academy-card:hover {
+      transform:translateY(-12px) scale(1.03);
+      box-shadow:0 20px 60px #0091ff33, 0 4px 18px #06273e22;
+      z-index:2;
+    }
+    .academy-icon {
+      width:68px;
+      height:68px;
+      margin-bottom:18px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#0091ff 60%,#06273e 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 2px 16px #0091ff22;
+      transition:background 0.3s;
+    }
+    .academy-card:hover .academy-icon {
+      background:linear-gradient(135deg,#06273e 60%,#0091ff 100%);
+    }
+    .academy-icon img {
+      width:36px;
+      height:36px;
+      filter:invert(1) grayscale(1) brightness(2);
+    }
+    .academy-card h3 {
+      color:#06273e;
+      font-size:1.3em;
+      margin-bottom:10px;
+      font-weight:bold;
+      text-align:center;
+      letter-spacing:0.5px;
+    }
+    .academy-card p {
+      color:#06273e;
+      font-size:1.05em;
+      line-height:1.6;
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .academy-actions {
+      display:flex;
+      gap:12px;
+      margin-top:auto;
+      justify-content:center;
+      width:100%;
+    }
+    .academy-btn {
+      background:linear-gradient(90deg,#0091ff 60%,#06273e 100%);
+      color:#fff;
+      border:none;
+      padding:10px 22px;
+      font-size:1em;
+      font-family:'Times New Roman',serif;
+      border-radius:5px;
+      font-weight:bold;
+      letter-spacing:0.7px;
+      box-shadow:0 2px 12px #0091ff22;
+      cursor:pointer;
+      transition:background 0.3s, box-shadow 0.3s;
+      outline:none;
+      min-width:96px;
+    }
+    .academy-btn:hover {
+      background:linear-gradient(90deg,#06273e 60%,#0091ff 100%);
+      box-shadow:0 6px 24px #0091ff33;
+    }
+    .academy-card .academy-actions a {
+      text-decoration:none;
+      color:inherit;
+    }
+    .academy-reveal {
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .academy-reveal.active {
+      opacity:1;
+      transform:translateY(0);
+    }
+    /* Popup Modal */
+    .academy-modal {
+      display:none;
+      position:fixed;
+      z-index:1000;
+      left:0;
+      top:0;
+      width:100vw;
+      height:100vh;
+      background:rgba(6,39,62,0.87);
+      animation:fadeInModal 0.4s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes fadeInModal {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+    .academy-modal-content {
+      background:#fff;
+      margin:6% auto;
+      padding:38px 36px 30px 36px;
+      border-radius:12px;
+      max-width:540px;
+      box-shadow:0 8px 48px #06273e33;
+      position:relative;
+      font-family:'Times New Roman',serif;
+      color:#06273e;
+      animation:slideInModal 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes slideInModal {
+      from { transform:translateY(-60px) scale(0.95); opacity:0; }
+      to { transform:translateY(0) scale(1); opacity:1; }
+    }
+    .academy-close {
+      color:#0091ff;
+      position:absolute;
+      top:18px;
+      right:24px;
+      font-size:32px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:color 0.2s;
+    }
+    .academy-close:hover {
+      color:#06273e;
+    }
+    .academy-modal-content h2 {
+      color:#0091ff;
+      font-size:1.45em;
+      margin-top:0;
+      margin-bottom:18px;
+    }
+    .academy-modal-content video,
+    .academy-modal-content iframe {
+      width:100%;
+      max-width:100%;
+      border-radius:8px;
+      margin-bottom:18px;
+      box-shadow:0 2px 16px #0091ff11;
+      background:#e5e5e5;
+      min-height:220px;
+    }
+    .academy-modal-content .academy-download {
+      display:inline-block;
+      background:linear-gradient(90deg,#0091ff 60%,#06273e 100%);
+      color:#fff;
+      border-radius:6px;
+      padding:12px 26px;
+      font-size:1.1em;
+      font-family:'Times New Roman',serif;
+      font-weight:bold;
+      letter-spacing:0.7px;
+      box-shadow:0 2px 12px #0091ff22;
+      text-decoration:none;
+      margin-top:14px;
+      transition:background 0.3s, box-shadow 0.3s;
+    }
+    .academy-modal-content .academy-download:hover {
+      background:linear-gradient(90deg,#06273e 60%,#0091ff 100%);
+      box-shadow:0 6px 24px #0091ff33;
+    }
+    /* Lead Gen Form */
+    .academy-lead-form {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-top:10px;
+    }
+    .academy-lead-form input {
+      padding:12px 14px;
+      border:1.5px solid #0091ff;
+      border-radius:5px;
+      font-family:'Times New Roman',serif;
+      font-size:1em;
+      background:#e5e5e5;
+      color:#06273e;
+      transition:border 0.2s;
+    }
+    .academy-lead-form input:focus {
+      border:1.5px solid #06273e;
+      outline:none;
+    }
+    .academy-lead-form button {
+      background:linear-gradient(90deg,#0091ff 60%,#06273e 100%);
+      color:#fff;
+      border:none;
+      padding:12px;
+      font-size:1.07em;
+      font-family:'Times New Roman',serif;
+      border-radius:5px;
+      font-weight:bold;
+      letter-spacing:0.5px;
+      box-shadow:0 2px 12px #0091ff22;
+      cursor:pointer;
+      transition:background 0.3s, box-shadow 0.3s;
+    }
+    .academy-lead-form button:hover {
+      background:linear-gradient(90deg,#06273e 60%,#0091ff 100%);
+      box-shadow:0 6px 24px #0091ff33;
+    }
+    /* Responsive */
+    @media (max-width:1050px) {
+      .academy-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:800px) {
+      .academy-grid { grid-template-columns:1fr; }
+      .academy-card { min-height:unset; }
+    }
+  </style>
+  <div class="academy-container">
+    <h1 class="academy-title academy-reveal">Learn With Defcon</h1>
+    <div class="academy-subtitle academy-reveal">
+      <b>Mini Academy:</b> Your fast-track hub for mastering the essentials of <span style="color:#0091ff;">Web</span>, <span style="color:#0091ff;">Cybersecurity</span>, and <span style="color:#0091ff;">Digital Branding</span>. Interactive modules, expert videos, and downloadable resources—perfect for ambitious professionals and future leaders.
+    </div>
+    <div class="academy-grid">
+      <!-- Web Basics Card -->
+      <div class="academy-card academy-reveal" data-modal="web">
+        <div class="academy-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721292.png" alt="Web Basics Icon">
+        </div>
+        <h3>Web Basics Crash Course</h3>
+        <p>Discover how the web works, from HTML & CSS to responsive design. Start building your digital foundation.</p>
+        <div class="academy-actions">
+          <button class="academy-btn" data-modal="web">Watch Video</button>
+          <a href="#" class="academy-btn" data-modal="web-pdf">PDF Guide</a>
+        </div>
+      </div>
+      <!-- Cybersecurity Card -->
+      <div class="academy-card academy-reveal" data-modal="cyber">
+        <div class="academy-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Cybersecurity Icon">
+        </div>
+        <h3>Cybersecurity Essentials</h3>
+        <p>Protect yourself and your business. Learn about threats, best practices, and how to stay secure online.</p>
+        <div class="academy-actions">
+          <button class="academy-btn" data-modal="cyber">Watch Video</button>
+          <a href="#" class="academy-btn" data-modal="cyber-pdf">PDF Guide</a>
+        </div>
+      </div>
+      <!-- Digital Branding Card -->
+      <div class="academy-card academy-reveal" data-modal="branding">
+        <div class="academy-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Branding Icon">
+        </div>
+        <h3>Digital Branding 101</h3>
+        <p>Unlock the secrets of powerful online branding. Learn to stand out and connect with your audience.</p>
+        <div class="academy-actions">
+          <button class="academy-btn" data-modal="branding">Watch Video</button>
+          <a href="#" class="academy-btn" data-modal="branding-pdf">PDF Guide</a>
+        </div>
+      </div>
+    </div>
+    <!-- Lead Gen Call-to-Action -->
+    <div class="academy-lead academy-reveal" style="max-width:540px;margin:44px auto 0 auto;padding:36px 30px 30px 30px;background:#fff;border-radius:12px;box-shadow:0 8px 40px #0091ff18;">
+      <h2 style="color:#0091ff;font-size:1.3em;margin-top:0;margin-bottom:10px;text-align:center;">Get More Free Resources</h2>
+      <div style="text-align:center;font-size:1.08em;margin-bottom:16px;">
+        Sign up for exclusive crash courses, expert tips, and premium downloads.
+      </div>
+      <form class="academy-lead-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <button type="submit">Get Access</button>
+      </form>
+    </div>
+  </div>
+  <!-- MODALS -->
+  <!-- Web Modal -->
+  <div id="modal-web" class="academy-modal">
+    <div class="academy-modal-content">
+      <span class="academy-close" title="Close">&times;</span>
+      <h2>Web Basics Crash Course</h2>
+      <video controls poster="https://via.placeholder.com/540x300?text=Web+Basics+Video">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div style="font-size:1.05em;line-height:1.6;margin-bottom:12px;">
+        Learn the essentials of web development in under 15 minutes: HTML, CSS, and responsive design principles.
+      </div>
+      <a href="#" class="academy-download">Download PDF Guide</a>
+    </div>
+  </div>
+  <!-- Cybersecurity Modal -->
+  <div id="modal-cyber" class="academy-modal">
+    <div class="academy-modal-content">
+      <span class="academy-close" title="Close">&times;</span>
+      <h2>Cybersecurity Essentials</h2>
+      <iframe src="https://www.youtube.com/embed/2e--Jp5hB1g" frameborder="0" allowfullscreen></iframe>
+      <div style="font-size:1.05em;line-height:1.6;margin-bottom:12px;">
+        Discover the basics of online safety, password management, and how to defend against common cyber threats.
+      </div>
+      <a href="#" class="academy-download">Download PDF Guide</a>
+    </div>
+  </div>
+  <!-- Branding Modal -->
+  <div id="modal-branding" class="academy-modal">
+    <div class="academy-modal-content">
+      <span class="academy-close" title="Close">&times;</span>
+      <h2>Digital Branding 101</h2>
+      <video controls poster="https://via.placeholder.com/540x300?text=Branding+Video">
+        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div style="font-size:1.05em;line-height:1.6;margin-bottom:12px;">
+        Build a memorable digital brand and connect with your audience through authentic storytelling and design.
+      </div>
+      <a href="#" class="academy-download">Download PDF Guide</a>
+    </div>
+  </div>
+  <!-- PDF Modal (shared) -->
+  <div id="modal-pdf" class="academy-modal">
+    <div class="academy-modal-content">
+      <span class="academy-close" title="Close">&times;</span>
+      <h2>Download PDF Guide</h2>
+      <div style="font-size:1.07em;margin-bottom:18px;">Enter your email to receive the full PDF crash course instantly.</div>
+      <form class="academy-lead-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <button type="submit">Send PDF</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Reveal on scroll
+    function academyRevealOnScroll() {
+      var reveals = document.querySelectorAll('.academy-reveal');
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var revealPoint = 100;
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', academyRevealOnScroll);
+    window.addEventListener('load', academyRevealOnScroll);
+
+    // Modal logic
+    document.addEventListener('DOMContentLoaded', function() {
+      // Open modal
+      function openModal(id) {
+        document.getElementById(id).style.display = 'block';
+        setTimeout(function() {
+          var firstInput = document.querySelector('#'+id+' input');
+          if(firstInput) firstInput.focus();
+        }, 200);
+      }
+      // Close all modals
+      function closeModals() {
+        var modals = document.querySelectorAll('.academy-modal');
+        modals.forEach(function(m){ m.style.display = 'none'; });
+      }
+      // Card & button click
+      document.querySelectorAll('.academy-card .academy-btn').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          var modalType = btn.getAttribute('data-modal');
+          if(modalType.endsWith('-pdf')) {
+            document.getElementById('modal-pdf').style.display = 'block';
+          } else {
+            document.getElementById('modal-'+modalType).style.display = 'block';
+          }
+        });
+      });
+      // Card click (outer)
+      document.querySelectorAll('.academy-card').forEach(function(card){
+        card.addEventListener('click', function(e){
+          if(e.target.classList.contains('academy-btn')) return;
+          var modalType = card.getAttribute('data-modal');
+          document.getElementById('modal-'+modalType).style.display = 'block';
+        });
+      });
+      // Modal close buttons
+      document.querySelectorAll('.academy-close').forEach(function(closeBtn){
+        closeBtn.onclick = closeModals;
+      });
+      // Click outside modal content
+      window.onclick = function(event) {
+        document.querySelectorAll('.academy-modal').forEach(function(modal){
+          if(event.target === modal) modal.style.display = 'none';
+        });
+      }
+      // Prevent lead forms from submitting (demo)
+      document.querySelectorAll('.academy-lead-form').forEach(function(form){
+        form.onsubmit = function(e){
+          e.preventDefault();
+          alert('Thank you! (Demo only)');
+          closeModals();
+        }
+      });
+    });
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TECHNOLOGY PAGE SECTION - ULTRA PREMIUM, ADVANCED DESIGN -->
+<section id="technology-section" style="background-color: #e5e5e5; font-family: 'Times New Roman', serif; color: #06273e; padding: 40px 0; min-height: 100vh; position: relative; overflow-x: hidden;">
+  <style>
+    #technology-section {
+      /* Soft fade-in for section */
+      animation: fadeInBg 1.2s cubic-bezier(.77,0,.18,1) both;
+    }
+    @keyframes fadeInBg {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .tech-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .tech-title {
+      color: #0091ff;
+      font-size: 3.5em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 24px #0091ff22;
+    }
+    .tech-intro {
+      font-size: 1.25em;
+      line-height: 1.7;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px auto;
+      color: #06273e;
+      letter-spacing: 0.1px;
+    }
+    .expertise-cards {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 32px 0 #06273e14, 0 1.5px 8px #0091ff11;
+      flex: 1 1 320px;
+      min-width: 300px;
+      max-width: 370px;
+      padding: 36px 28px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.025);
+      box-shadow: 0 12px 48px 0 #0091ff33, 0 2px 12px #06273e22;
+      z-index: 2;
+    }
+    .card img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 16px #0091ff11;
+      transition: filter 0.3s;
+    }
+    .card:hover img {
+      filter: brightness(1.05) saturate(1.2);
+    }
+    .card h3 {
+      color: #06273e;
+      font-size: 1.35em;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .card p {
+      color: #06273e;
+      font-size: 1.05em;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .popup-button {
+      background: linear-gradient(90deg, #0091ff 60%, #06273e 100%);
+      color: #ffffff;
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.15em;
+      font-family: 'Times New Roman', serif;
+      border-radius: 6px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      box-shadow: 0 2px 12px #0091ff22;
+      cursor: pointer;
+      margin: 0 auto 44px auto;
+      display: block;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .popup-button:hover {
+      background: linear-gradient(90deg, #06273e 60%, #0091ff 100%);
+      box-shadow: 0 6px 24px #0091ff33;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 39, 62, 0.88);
+      animation: fadeInModal 0.4s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: #ffffff;
+      margin: 7% auto;
+      padding: 36px 32px 28px 32px;
+      border-radius: 10px;
+      max-width: 480px;
+      box-shadow: 0 8px 48px #06273e33;
+      position: relative;
+      font-family: 'Times New Roman', serif;
+      color: #06273e;
+      animation: slideInModal 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes slideInModal {
+      from { transform: translateY(-60px) scale(0.95); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .close {
+      color: #0091ff;
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close:hover {
+      color: #06273e;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      gap: 16px;
+    }
+    input, textarea {
+      padding: 12px 14px;
+      border: 1.5px solid #0091ff;
+      border-radius: 5px;
+      font-family: 'Times New Roman', serif;
+      font-size: 1em;
+      background: #e5e5e5;
+      color: #06273e;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid #06273e;
+      outline: none;
+    }
+    button.submit-btn {
+      background: linear-gradient(90deg, #0091ff 60%, #06273e 100%);
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      font-size: 1.1em;
+      font-family: 'Times New Roman', serif;
+      border-radius: 5px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 12px #0091ff22;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    button.submit-btn:hover {
+      background: linear-gradient(90deg, #06273e 60%, #0091ff 100%);
+      box-shadow: 0 6px 24px #0091ff33;
+    }
+    @media (max-width: 900px) {
+      .expertise-cards { flex-direction: column; align-items: center; }
+      .card { max-width: 98vw; }
+    }
+  </style>
+  <div class="tech-container">
+    <h1 class="tech-title reveal">Technology</h1>
+    <p class="tech-intro reveal">
+      Explore the <b>cutting-edge innovations</b> and <b>advanced solutions</b> that define the future of technology. Defcon delivers seamless, professional, and visually stunning digital experiences for elite brands.
+    </p>
+    <div class="expertise-cards">
+      <div class="card reveal">
+        <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="Innovation">
+        <h3>Innovation</h3>
+        <p>Leading the industry with <b>breakthrough technology</b> that drives success and growth for our clients.</p>
+      </div>
+      <div class="card reveal">
+        <img src="https://via.placeholder.com/300x200" alt="Design">
+        <h3>Design</h3>
+        <p>Crafting sleek, professional, and user-centric designs that <b>elevate brand presence</b> and engagement.</p>
+      </div>
+      <div class="card reveal">
+        <img src="https://via.placeholder.com/300x200" alt="Development">
+        <h3>Development</h3>
+        <p>Building robust, scalable, and advanced web solutions tailored to <b>unique business needs</b>.</p>
+      </div>
+    </div>
+    <button id="contact-btn" class="popup-button reveal">Contact Us</button>
+  </div>
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" title="Close">&times;</span>
+      <h2 style="margin-top:0; color:#0091ff; font-size:1.5em;">Contact Defcon</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="submit-btn">Send</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Reveal on scroll
+    function revealOnScroll() {
+      var reveals = document.querySelectorAll('.reveal');
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var revealPoint = 100;
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Modal logic
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('contact-modal');
+      var btn = document.getElementById('contact-btn');
+      var closeBtn = document.querySelector('.close');
+      btn.onclick = function() {
+        modal.style.display = 'block';
+        setTimeout(function() {
+          document.querySelector('#contact-modal input').focus();
+        }, 200);
+      }
+      closeBtn.onclick = function() {
+        modal.style.display = 'none';
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+      // Prevent form submit (demo)
+      document.querySelector('.modal-content form').onsubmit = function(e) {
+        e.preventDefault();
+        alert('Thank you for contacting Defcon! (Demo only)');
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</section>

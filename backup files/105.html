@@ -1,0 +1,340 @@
+<style>
+/* General container for the hero section */
+.hero-section-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #06273e 0%, #004d7a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Video background styling */
+.hero-video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Gradient overlay for video */
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 145, 255, 0.4), rgba(6, 39, 62, 0.7));
+  z-index: 2;
+}
+
+/* Content container for text and button */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+}
+
+/* Headline with typewriter animation */
+.hero-headline {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #0091ff;
+  animation: typewriter 4s steps(40) 1s 1 normal both,
+             blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #0091ff; }
+}
+
+/* Subheadline with fade-in animation */
+.hero-subheadline {
+  font-size: 24px;
+  font-weight: 400;
+  color: #e5e5e5;
+  margin: 20px 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up 1s ease-out 2s forwards;
+}
+
+@keyframes fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CTA button with morphing hover effect */
+.hero-cta-button {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #0091ff;
+  padding: 15px 30px;
+  margin: 20px 0;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-cta-button:hover {
+  background: #06273e;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 145, 255, 0.5);
+}
+
+.hero-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.hero-cta-button:hover::before {
+  left: 100%;
+}
+
+/* Canvas for particles */
+.hero-particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Scroll-triggered content section */
+.hero-scroll-content {
+  position: relative;
+  width: 100%;
+  padding: 50px 20px;
+  background: #ffffff;
+  color: #06273e;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
+}
+
+.hero-scroll-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll content heading */
+.hero-scroll-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Scroll content paragraph */
+.hero-scroll-paragraph {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 20px 0;
+  padding: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: 32px;
+  }
+
+  .hero-subheadline {
+    font-size: 18px;
+  }
+
+  .hero-cta-button {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+
+  .hero-scroll-heading {
+    font-size: 28px;
+  }
+
+  .hero-scroll-paragraph {
+    font-size: 16px;
+  }
+}
+</style>
+
+<div class="hero-section-container">
+  <video class="hero-video-background" autoplay muted loop>
+    <source src="https://example.com/placeholder-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <canvas class="hero-particles-canvas"></canvas>
+  <div class="hero-content-wrapper">
+    <h1 class="hero-headline">Innovate with Defcon</h1>
+    <p class="hero-subheadline">Crafting cutting-edge digital experiences for the modern world.</p>
+    <a href="#contact" class="hero-cta-button">Discover Our Expertise</a>
+  </div>
+</div>
+<div class="hero-scroll-content">
+  <h2 class="hero-scroll-heading">Why Choose Defcon?</h2>
+  <p class="hero-scroll-paragraph">We deliver unparalleled web solutions with a focus on innovation, precision, and excellence. Let us elevate your digital presence.</p>
+</div>
+
+<script>
+class Particle {
+  constructor(canvas, ctx) {
+    this.canvas = canvas;
+    this.ctx = ctx;
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 2;
+    this.vy = (Math.random() - 0.5) * 2;
+    this.size = Math.random() * 3 + 1;
+    this.baseSize = this.size;
+    this.hue = Math.random() * 60 + 180; // Blue hues
+  }
+
+  update(mouseX, mouseY) {
+    // Parallax effect
+    const dx = mouseX - this.x;
+    const dy = mouseY - this.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 150;
+
+    if (dist < maxDist) {
+      const force = (maxDist - dist) / maxDist;
+      this.vx -= force * dx * 0.02;
+      this.vy -= force * dy * 0.02;
+      this.size = this.baseSize + force * 2; // Pulse effect
+    } else {
+      this.size += (this.baseSize - this.size) * 0.1;
+    }
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce off edges
+    if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1;
+  }
+
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    this.ctx.fillStyle = `hsla(${this.hue}, 70%, 50%, 0.7)`;
+    this.ctx.fill();
+  }
+}
+
+class ParticleSystem {
+  constructor(canvasId) {
+    this.canvas = document.querySelector(`.${canvasId}`);
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.mouse = { x: 0, y: 0 };
+    this.numParticles = 50;
+
+    this.resizeCanvas();
+    this.initParticles();
+    this.bindEvents();
+    this.animate();
+  }
+
+  resizeCanvas() {
+    this.canvas.width = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+  }
+
+  initParticles() {
+    for (let i = 0; i < this.numParticles; i++) {
+      this.particles.push(new Particle(this.canvas, this.ctx));
+    }
+  }
+
+  bindEvents() {
+    window.addEventListener('resize', () => this.resizeCanvas());
+    this.canvas.addEventListener('mousemove', (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      this.mouse.x = e.clientX - rect.left;
+      this.mouse.y = e.clientY - rect.top;
+    });
+  }
+
+  drawConnections() {
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const p1 = this.particles[i];
+        const p2 = this.particles[j];
+        const dist = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+        if (dist < 100) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(p1.x, p1.y);
+          this.ctx.lineTo(p2.x, p2.y);
+          this.ctx.strokeStyle = `rgba(0, 145, 255, ${1 - dist / 100})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.stroke();
+        }
+      }
+    }
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.particles.forEach(particle => {
+      particle.update(this.mouse.x, this.mouse.y);
+      particle.draw();
+    });
+    this.drawConnections();
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// Initialize particle system
+new ParticleSystem('hero-particles-canvas');
+
+// Scroll-triggered animations
+const scrollContent = document.querySelector('.hero-scroll-content');
+window.addEventListener('scroll', () => {
+  const rect = scrollContent.getBoundingClientRect();
+  if (rect.top < window.innerHeight * 0.8) {
+    scrollContent.classList.add('visible');
+  }
+});
+</script>

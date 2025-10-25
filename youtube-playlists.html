@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlists | Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --dark-blue: #06273e;
+            --light-gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .youtube-hero-section {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            overflow: hidden;
+        }
+
+        .youtube-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary) 100%);
+            z-index: -2;
+        }
+
+        .youtube-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('thumbnails/pexels-shvetsa-5614119.jpg');
+            z-index: -1;
+        }
+
+        .youtube-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .youtube-hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .youtube-hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .youtube-hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Featured Playlists Section */
+        .youtube-featured-section {
+            background-color: var(--light);
+            position: relative;
+        }
+
+        .youtube-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .youtube-section-label {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .youtube-section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .youtube-section-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .youtube-featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .youtube-playlist-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .youtube-playlist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .youtube-playlist-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .youtube-playlist-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .youtube-playlist-card:hover .youtube-playlist-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .youtube-playlist-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 145, 255, 0.2), rgba(6, 39, 62, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .youtube-playlist-card:hover .youtube-playlist-overlay {
+            opacity: 1;
+        }
+
+        .youtube-play-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .youtube-play-icon:hover {
+            transform: scale(1.1);
+            background-color: var(--dark-blue);
+        }
+
+        .youtube-play-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--light);
+            margin-left: 3px;
+        }
+
+        .youtube-playlist-content {
+            padding: 25px;
+        }
+
+        .youtube-playlist-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .youtube-playlist-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .youtube-playlist-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .youtube-video-count {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .youtube-video-count svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--primary);
+        }
+
+        /* Categories Section */
+        .youtube-categories-section {
+            background-color: var(--light-gray);
+            position: relative;
+        }
+
+        .youtube-categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .youtube-category-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .youtube-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .youtube-category-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .youtube-category-card:hover .youtube-category-icon {
+            background-color: var(--primary);
+        }
+
+        .youtube-category-card:hover .youtube-category-icon svg {
+            fill: var(--light);
+        }
+
+        .youtube-category-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary);
+            transition: var(--transition);
+        }
+
+        .youtube-category-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .youtube-category-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Interactive Playlist Section */
+        .youtube-interactive-section {
+            background-color: var(--dark-blue);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .youtube-interactive-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .youtube-interactive-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .youtube-interactive-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .youtube-interactive-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .youtube-interactive-player {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .youtube-player-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .youtube-player-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('thumbnails/pexels-altabena-10142683.jpg');
+        }
+
+        .youtube-player-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .youtube-player-icon:hover {
+            transform: scale(1.1);
+            background-color: var(--light);
+        }
+
+        .youtube-player-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary);
+            margin-left: 5px;
+        }
+
+        .youtube-player-info {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .youtube-player-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .youtube-player-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .youtube-footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .youtube-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .youtube-interactive-container {
+                flex-direction: column;
+            }
+            
+            .youtube-section-title, .youtube-interactive-title {
+                font-size: 2rem;
+            }
+            
+            .youtube-featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="youtube-hero-section">
+        <div class="youtube-hero-bg"></div>
+        <div class="youtube-hero-overlay"></div>
+        <div class="youtube-hero-content">
+            <h1 class="youtube-hero-title">YouTube Playlists</h1>
+            <p class="youtube-hero-subtitle">Curated Video Collections for Learning & Inspiration</p>
+            <p class="youtube-hero-description">Explore our handpicked YouTube playlists featuring expert insights, tutorials, and thought-provoking content across various topics.</p>
+            <a href="#featured" class="btn">Explore Playlists</a>
+        </div>
+    </section>
+
+    <!-- Featured Playlists Section -->
+    <section class="youtube-featured-section" id="featured">
+        <div class="container">
+            <div class="youtube-section-header">
+                <div class="youtube-section-label">Featured Collections</div>
+                <h2 class="youtube-section-title">Curated Playlists</h2>
+                <p class="youtube-section-description">
+                    Handpicked video collections organized by topic for focused learning
+                </p>
+            </div>
+            <div class="youtube-featured-grid">
+                <!-- Playlist 1 -->
+                <div class="youtube-playlist-card">
+                    <div class="youtube-playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600&h=400&fit=crop" alt="Tech Innovation Playlist">
+                        <div class="youtube-playlist-overlay">
+                            <div class="youtube-play-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="youtube-playlist-content">
+                        <h3 class="youtube-playlist-title">Tech Innovation & Future Trends</h3>
+                        <p class="youtube-playlist-description">
+                            Explore the latest in technology, AI advancements, and future trends shaping our world.
+                        </p>
+                        <div class="youtube-playlist-meta">
+                            <span>Updated: Oct 2023</span>
+                            <div class="youtube-video-count">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                                </svg>
+                                <span>24 videos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Playlist 2 -->
+                <div class="youtube-playlist-card">
+                    <div class="youtube-playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Business Strategy Playlist">
+                        <div class="youtube-playlist-overlay">
+                            <div class="youtube-play-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="youtube-playlist-content">
+                        <h3 class="youtube-playlist-title">Business Strategy & Leadership</h3>
+                        <p class="youtube-playlist-description">
+                            Learn effective business strategies, leadership principles, and organizational management.
+                        </p>
+                        <div class="youtube-playlist-meta">
+                            <span>Updated: Sep 2023</span>
+                            <div class="youtube-video-count">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                                </svg>
+                                <span>18 videos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Playlist 3 -->
+                <div class="youtube-playlist-card">
+                    <div class="youtube-playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Creative Process Playlist">
+                        <div class="youtube-playlist-overlay">
+                            <div class="youtube-play-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="youtube-playlist-content">
+                        <h3 class="youtube-playlist-title">Creative Process & Design Thinking</h3>
+                        <p class="youtube-playlist-description">
+                            Discover creative methodologies, design thinking approaches, and innovation techniques.
+                        </p>
+                        <div class="youtube-playlist-meta">
+                            <span>Updated: Aug 2023</span>
+                            <div class="youtube-video-count">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                                </svg>
+                                <span>15 videos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="youtube-categories-section">
+        <div class="container">
+            <div class="youtube-section-header">
+                <div class="youtube-section-label">Browse by Category</div>
+                <h2 class="youtube-section-title">Explore by Topic</h2>
+                <p class="youtube-section-description">
+                    Find playlists organized by specific categories and interests
+                </p>
+            </div>
+            <div class="youtube-categories-container">
+                <!-- Category 1 -->
+                <div class="youtube-category-card">
+                    <div class="youtube-category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <h3 class="youtube-category-title">Technology</h3>
+                    <p class="youtube-category-description">
+                        Latest tech trends, coding tutorials, software development, and innovation insights.
+                    </p>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="youtube-category-card">
+                    <div class="youtube-category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.5 5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-3 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm6 10H7.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5h9c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="youtube-category-title">Business</h3>
+                    <p class="youtube-category-description">
+                        Entrepreneurship, marketing strategies, leadership, and business growth techniques.
+                    </p>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="youtube-category-card">
+                    <div class="youtube-category-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="youtube-category-title">Creative Arts</h3>
+                    <p class="youtube-category-description">
+                        Design, photography, music, writing, and other creative disciplines and processes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Playlist Section -->
+    <section class="youtube-interactive-section">
+        <div class="container">
+            <div class="youtube-interactive-container">
+                <div class="youtube-interactive-content">
+                    <h2 class="youtube-interactive-title">Interactive Learning Experience</h2>
+                    <p class="youtube-interactive-description">
+                        Our playlists are carefully curated to provide a progressive learning journey. Start with fundamentals and advance to expert-level content, with each video building on previous knowledge.
+                    </p>
+                    <p class="youtube-interactive-description">
+                        We regularly update our collections with the latest content from trusted creators and industry experts to ensure you're always learning from the best sources.
+                    </p>
+                    <a href="#" class="btn">View All Playlists</a>
+                </div>
+                <div class="youtube-interactive-player">
+                    <div class="youtube-player-placeholder">
+                        <div class="youtube-player-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="youtube-player-info">
+                        <h3 class="youtube-player-title">Featured: AI Revolution Series</h3>
+                        <div class="youtube-player-meta">
+                            <span>24 videos</span>
+                            <span>•</span>
+                            <span>8 hours of content</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="youtube-footer">
+        <div class="container">
+            <p>&copy; 2023 YouTube Playlists. Part of our Resources section.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Playlist card interaction
+        document.querySelectorAll('.youtube-play-icon').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = e.target.closest('.youtube-playlist-card');
+                const title = card.querySelector('.youtube-playlist-title').textContent;
+                alert(`Opening playlist: ${title}`);
+                // In a real implementation, this would open the YouTube playlist
+            });
+        });
+
+        // Category card interaction
+        document.querySelectorAll('.youtube-category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.youtube-category-title').textContent;
+                alert(`Filtering playlists by category: ${title}`);
+                // In a real implementation, this would filter the playlists
+            });
+        });
+
+        // Interactive player button
+        document.querySelector('.youtube-player-icon').addEventListener('click', () => {
+            alert('Playing featured playlist: AI Revolution Series');
+            // In a real implementation, this would play the featured playlist
+        });
+    </script>
+</body>
+</html>

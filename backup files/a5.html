@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binge - Premium IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .binge-container * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .binge-container {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #06273e;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .binge-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 229, 229, 0.3);
+        }
+
+        .binge-header.binge-scrolled {
+            background: #ffffff;
+            box-shadow: 0 2px 20px rgba(6, 39, 62, 0.1);
+        }
+
+        .binge-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .binge-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0091ff;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .binge-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .binge-nav-item {
+            position: relative;
+        }
+
+        .binge-nav-link {
+            text-decoration: none;
+            color: #06273e;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .binge-nav-link:hover {
+            color: #0091ff;
+        }
+
+        .binge-services-dropdown {
+            position: relative;
+        }
+
+        .binge-megamenu {
+            position: absolute;
+            top: 100%;
+            left: -450px;
+            width: 800px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            padding: 2rem;
+            border: 1px solid #e5e5e5;
+        }
+
+        .binge-services-dropdown:hover .binge-megamenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .binge-megamenu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .binge-service-category {
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .binge-service-category:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .binge-service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0091ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .binge-service-desc {
+            font-size: 0.9rem;
+            color: #06273e;
+            opacity: 0.8;
+        }
+
+        .binge-mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #06273e;
+            cursor: pointer;
+        }
+
+        .binge-cta-btn {
+            background: linear-gradient(135deg, #0091ff, #0078d4);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .binge-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .binge-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .binge-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .binge-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .binge-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .binge-hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .binge-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .binge-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .binge-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .binge-btn-primary {
+            background: #ffffff;
+            color: #0091ff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .binge-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .binge-btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .binge-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        .binge-hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        .binge-floating-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .binge-card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0091ff, #ffffff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #06273e;
+        }
+
+        .binge-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .binge-card-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .binge-services {
+            padding: 6rem 2rem;
+            background: #ffffff;
+        }
+
+        .binge-section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .binge-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .binge-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06273e;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .binge-section-subtitle {
+            font-size: 1.1rem;
+            color: #06273e;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .binge-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .binge-service-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .binge-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0091ff, #06273e);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .binge-service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.1);
+        }
+
+        .binge-service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .binge-service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0091ff, #06273e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+        }
+
+        .binge-service-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 1rem;
+        }
+
+        .binge-service-description {
+            color: #06273e;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .binge-about {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e5e5e5 100%);
+        }
+
+        .binge-about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .binge-about-content {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .binge-about-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06273e;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .binge-about-text {
+            font-size: 1.1rem;
+            color: #06273e;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .binge-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .binge-stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(6, 39, 62, 0.1);
+        }
+
+        .binge-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0091ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .binge-stat-label {
+            color: #06273e;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .binge-contact {
+            padding: 6rem 2rem;
+            background: #06273e;
+        }
+
+        .binge-contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .binge-contact-content {
+            color: #ffffff;
+        }
+
+        .binge-contact-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .binge-contact-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .binge-contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .binge-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .binge-form-label {
+            display: block;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .binge-form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .binge-form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .binge-form-input:focus {
+            outline: none;
+            border-color: #0091ff;
+            box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.2);
+        }
+
+        .binge-form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .binge-footer {
+            background: #000000;
+            padding: 3rem 2rem 1rem;
+            color: #ffffff;
+        }
+
+        .binge-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .binge-footer-section {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .binge-footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0091ff;
+        }
+
+        .binge-footer-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .binge-footer-link:hover {
+            color: #0091ff;
+        }
+
+        .binge-footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .binge-nav-menu {
+                display: none;
+            }
+
+            .binge-mobile-menu-toggle {
+                display: block;
+            }
+
+            .binge-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .binge-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .binge-section-title {
+                font-size: 2rem;
+            }
+
+            .binge-services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .binge-about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .binge-contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .binge-megamenu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .binge-megamenu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .binge-animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .binge-animate-on-scroll.binge-animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="binge-container">
+        <!-- Header -->
+        <header class="binge-header" id="bingeHeader">
+            <nav class="binge-nav">
+                <a href="#" class="binge-logo">Binge</a>
+                
+                <ul class="binge-nav-menu">
+                    <li class="binge-nav-item">
+                        <a href="#home" class="binge-nav-link">Home</a>
+                    </li>
+                    <li class="binge-nav-item binge-services-dropdown">
+                        <a href="#services" class="binge-nav-link">Services</a>
+                        <div class="binge-megamenu">
+                            <div class="binge-megamenu-grid">
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">Development</div>
+                                    <div class="binge-service-desc">Web Applications, Mobile Apps, Custom Software, API Development</div>
+                                </div>
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">Cloud & DevOps</div>
+                                    <div class="binge-service-desc">AWS Migration, Azure Integration, GCP, Hybrid Cloud, DevOps Implementation</div>
+                                </div>
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">Infrastructure</div>
+                                    <div class="binge-service-desc">Tech Support, IT Consulting, Smart Home Setup, Cloud Security</div>
+                                </div>
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">AI & Automation</div>
+                                    <div class="binge-service-desc">Automation Solutions, AI Integration, Process Optimization</div>
+                                </div>
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">Digital Marketing</div>
+                                    <div class="binge-service-desc">Digital Marketing, Media Advertising, Copywriting, Content Creation</div>
+                                </div>
+                                <div class="binge-service-category">
+                                    <div class="binge-service-title">Design</div>
+                                    <div class="binge-service-desc">Graphic Design, UI/UX Design, Brand Identity, Visual Communications</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="binge-nav-item">
+                        <a href="#about" class="binge-nav-link">About</a>
+                    </li>
+                    <li class="binge-nav-item">
+                        <a href="#contact" class="binge-nav-link">Contact</a>
+                    </li>
+                    <li class="binge-nav-item">
+                        <a href="#contact" class="binge-cta-btn">Get Started</a>
+                    </li>
+                </ul>
+
+                <button class="binge-mobile-menu-toggle">☰</button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="binge-hero" id="home">
+            <div class="binge-hero-content">
+                <div class="binge-hero-grid">
+                    <div class="binge-hero-text">
+                        <h1 class="binge-hero-title">Transform Your Digital Future</h1>
+                        <p class="binge-hero-subtitle">Premium IT solutions that drive innovation and accelerate growth. From cloud migration to AI integration, we deliver enterprise-grade technology solutions that scale with your business.</p>
+                        <div class="binge-hero-buttons">
+                            <a href="#services" class="binge-btn-primary">Explore Services →</a>
+                            <a href="#contact" class="binge-btn-secondary">Start Project</a>
+                        </div>
+                    </div>
+                    <div class="binge-hero-visual">
+                        <div class="binge-floating-card">
+                            <div class="binge-card-icon">🚀</div>
+                            <div class="binge-card-title">Enterprise Solutions</div>
+                            <div class="binge-card-desc">Scalable technology solutions built for tomorrow's challenges</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="binge-services" id="services">
+            <div class="binge-section-container">
+                <div class="binge-section-header binge-animate-on-scroll">
+                    <h2 class="binge-section-title">Our Premium Services</h2>
+                    <p class="binge-section-subtitle">Comprehensive IT solutions tailored to drive your business forward with cutting-edge technology and expert implementation.</p>
+                </div>
+                
+                <div class="binge-services-grid">
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">💻</div>
+                        <h3 class="binge-service-name">Web Applications</h3>
+                        <p class="binge-service-description">Custom web applications built with modern frameworks and scalable architecture for optimal performance and user experience.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">📱</div>
+                        <h3 class="binge-service-name">Mobile Applications</h3>
+                        <p class="binge-service-description">Native and cross-platform mobile apps that deliver seamless experiences across all devices and operating systems.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">⚙️</div>
+                        <h3 class="binge-service-name">DevOps Implementation</h3>
+                        <p class="binge-service-description">Streamline your development pipeline with automated CI/CD processes and infrastructure as code solutions.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🔧</div>
+                        <h3 class="binge-service-name">Custom Software</h3>
+                        <p class="binge-service-description">Bespoke software solutions designed to address your unique business requirements and operational challenges.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🛠️</div>
+                        <h3 class="binge-service-name">Tech Support & Infrastructure</h3>
+                        <p class="binge-service-description">24/7 technical support and robust infrastructure management to keep your systems running smoothly.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">💡</div>
+                        <h3 class="binge-service-name">IT Consulting</h3>
+                        <p class="binge-service-description">Strategic IT consulting to optimize your technology stack and align it with your business objectives.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🏠</div>
+                        <h3 class="binge-service-name">Smart Home Setup</h3>
+                        <p class="binge-service-description">Complete smart home integration with IoT devices and automation systems for modern living.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">📈</div>
+                        <h3 class="binge-service-name">Digital Marketing</h3>
+                        <p class="binge-service-description">Data-driven digital marketing strategies that increase brand visibility and drive meaningful engagement.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🎨</div>
+                        <h3 class="binge-service-name">Graphic Design</h3>
+                        <p class="binge-service-description">Creative visual solutions that communicate your brand message effectively across all digital and print media.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">📺</div>
+                        <h3 class="binge-service-name">Media Advertising</h3>
+                        <p class="binge-service-description">Comprehensive media campaigns across multiple channels to maximize your reach and conversion rates.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">✍️</div>
+                        <h3 class="binge-service-name">Copywriting & Content</h3>
+                        <p class="binge-service-description">Compelling content creation and copywriting that resonates with your audience and drives action.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🔌</div>
+                        <h3 class="binge-service-name">API Development</h3>
+                        <p class="binge-service-description">Robust API solutions that enable seamless integration and data exchange between systems and platforms.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">☁️</div>
+                        <h3 class="binge-service-name">Hybrid Cloud Setup</h3>
+                        <p class="binge-service-description">Flexible hybrid cloud solutions that combine the best of public and private cloud environments.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🌐</div>
+                        <h3 class="binge-service-name">Google Cloud Platform</h3>
+                        <p class="binge-service-description">Expert GCP implementation and migration services to leverage Google's powerful cloud infrastructure.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🤖</div>
+                        <h3 class="binge-service-name">Automation & AI Integration</h3>
+                        <p class="binge-service-description">Intelligent automation solutions and AI integration to streamline processes and enhance decision-making.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">☁️</div>
+                        <h3 class="binge-service-name">AWS Migration</h3>
+                        <p class="binge-service-description">Seamless migration to Amazon Web Services with minimal downtime and maximum efficiency.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🔵</div>
+                        <h3 class="binge-service-name">Azure Integration</h3>
+                        <p class="binge-service-description">Complete Microsoft Azure solutions integration for enterprise-grade cloud computing capabilities.</p>
+                    </div>
+                    
+                    <div class="binge-service-card binge-animate-on-scroll">
+                        <div class="binge-service-icon">🛡️</div>
+                        <h3 class="binge-service-name">Cloud Security</h3>
+                        <p class="binge-service-description">Comprehensive cloud security solutions to protect your data and applications in the cloud environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="binge-about" id="about">
+            <div class="binge-section-container">
+                <div class="binge-about-grid">
+                    <div class="binge-about-content binge-animate-on-scroll">
+                        <h2 class="binge-about-title">Why Choose Binge?</h2>
+                        <p class="binge-about-text">We're not just another IT company. We're your technology transformation partner, combining cutting-edge solutions with proven methodologies to deliver exceptional results that drive your business forward.</p>
+                        <p class="binge-about-text">Our team of expert developers, cloud architects, and digital strategists work collaboratively to understand your unique challenges and craft tailored solutions that scale with your growth.</p>
+                        <a href="#contact" class="binge-btn-primary">Start Your Project</a>
+                    </div>
+                    <div class="binge-stats-grid binge-animate-on-scroll">
+                        <div class="binge-stat-item">
+                            <div class="binge-stat-number">500+</div>
+                            <div class="binge-stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="binge-stat-item">
+                            <div class="binge-stat-number">98%</div>
+                            <div class="binge-stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="binge-stat-item">
+                            <div class="binge-stat-number">24/7</div>
+                            <div class="binge-stat-label">Support Available</div>
+                        </div>
+                        <div class="binge-stat-item">
+                            <div class="binge-stat-number">50+</div>
+                            <div class="binge-stat-label">Expert Team</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="binge-contact" id="contact">
+            <div class="binge-section-container">
+                <div class="binge-contact-grid">
+                    <div class="binge-contact-content binge-animate-on-scroll">
+                        <h2 class="binge-contact-title">Ready to Transform Your Business?</h2>
+                        <p class="binge-contact-text">Let's discuss how our premium IT solutions can accelerate your digital transformation and drive sustainable growth. Our team is ready to turn your vision into reality.</p>
+                        <div class="binge-hero-buttons">
+                            <a href="tel:+1234567890" class="binge-btn-primary">Call Us Now</a>
+                            <a href="mailto:info@binge.com" class="binge-btn-secondary">Send Email</a>
+                        </div>
+                    </div>
+                    <div class="binge-contact-form binge-animate-on-scroll">
+                        <form>
+                            <div class="binge-form-group">
+                                <label class="binge-form-label" for="bingeContactName">Full Name</label>
+                                <input type="text" id="bingeContactName" class="binge-form-input" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="binge-form-group">
+                                <label class="binge-form-label" for="bingeContactEmail">Email Address</label>
+                                <input type="email" id="bingeContactEmail" class="binge-form-input" placeholder="Enter your email address" required>
+                            </div>
+                            <div class="binge-form-group">
+                                <label class="binge-form-label" for="bingeContactCompany">Company</label>
+                                <input type="text" id="bingeContactCompany" class="binge-form-input" placeholder="Enter your company name">
+                            </div>
+                            <div class="binge-form-group">
+                                <label class="binge-form-label" for="bingeContactMessage">Project Details</label>
+                                <textarea id="bingeContactMessage" class="binge-form-input binge-form-textarea" placeholder="Tell us about your project requirements..." required></textarea>
+                            </div>
+                            <button type="submit" class="binge-cta-btn" style="width: 100%;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="binge-footer">
+            <div class="binge-section-container">
+                <div class="binge-footer-grid">
+                    <div class="binge-footer-section">
+                        <h3 class="binge-footer-title">Binge</h3>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Premium IT solutions that transform businesses through cutting-edge technology and innovation.</p>
+                        <div style="display: flex; gap: 1rem;">
+                            <a href="#" class="binge-footer-link">🔗 LinkedIn</a>
+                            <a href="#" class="binge-footer-link">🐦 Twitter</a>
+                            <a href="#" class="binge-footer-link">📧 Email</a>
+                        </div>
+                    </div>
+                    <div class="binge-footer-section">
+                        <h3 class="binge-footer-title">Development</h3>
+                        <a href="#" class="binge-footer-link">Web Applications</a>
+                        <a href="#" class="binge-footer-link">Mobile Applications</a>
+                        <a href="#" class="binge-footer-link">Custom Software</a>
+                        <a href="#" class="binge-footer-link">API Development</a>
+                    </div>
+                    <div class="binge-footer-section">
+                        <h3 class="binge-footer-title">Cloud & DevOps</h3>
+                        <a href="#" class="binge-footer-link">AWS Migration</a>
+                        <a href="#" class="binge-footer-link">Azure Integration</a>
+                        <a href="#" class="binge-footer-link">Google Cloud Platform</a>
+                        <a href="#" class="binge-footer-link">DevOps Implementation</a>
+                    </div>
+                    <div class="binge-footer-section">
+                        <h3 class="binge-footer-title">Digital Services</h3>
+                        <a href="#" class="binge-footer-link">Digital Marketing</a>
+                        <a href="#" class="binge-footer-link">Graphic Design</a>
+                        <a href="#" class="binge-footer-link">Content Creation</a>
+                        <a href="#" class="binge-footer-link">Media Advertising</a>
+                    </div>
+                </div>
+                <div class="binge-footer-bottom">
+                    <p>&copy; 2025 Binge. All rights reserved. | Privacy Policy | Terms of Service</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Header scroll effect
+        const bingeHeader = document.getElementById('bingeHeader');
+        let bingeScrolled = false;
+
+        function bingeHandleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50 && !bingeScrolled) {
+                bingeHeader.classList.add('binge-scrolled');
+                bingeScrolled = true;
+            } else if (scrollTop <= 50 && bingeScrolled) {
+                bingeHeader.classList.remove('binge-scrolled');
+                bingeScrolled = false;
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function bingeSmoothScroll() {
+            const bingeLinks = document.querySelectorAll('a[href^="#"]');
+            
+            bingeLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const bingeTargetId = this.getAttribute('href');
+                    const bingeTargetElement = document.querySelector(bingeTargetId);
+                    
+                    if (bingeTargetElement) {
+                        const bingeHeaderHeight = bingeHeader.offsetHeight;
+                        const bingeTargetPosition = bingeTargetElement.offsetTop - bingeHeaderHeight;
+                        
+                        window.scrollTo({
+                            top: bingeTargetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Scroll animations
+        function bingeScrollAnimations() {
+            const bingeAnimatedElements = document.querySelectorAll('.binge-animate-on-scroll');
+            
+            const bingeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('binge-animated');
+                        bingeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            bingeAnimatedElements.forEach(element => {
+                bingeObserver.observe(element);
+            });
+        }
+
+        // Form submission
+        function bingeFormHandler() {
+            const bingeContactForm = document.querySelector('.binge-contact-form form');
+            
+            if (bingeContactForm) {
+                bingeContactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const bingeFormData = new FormData(this);
+                    const bingeData = Object.fromEntries(bingeFormData);
+                    
+                    // Show success message (replace with actual form submission logic)
+                    alert('Thank you for your message! We will get back to you soon.');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+        }
+
+        // Mobile menu toggle (basic implementation)
+        function bingeMobileMenu() {
+            const bingeToggle = document.querySelector('.binge-mobile-menu-toggle');
+            const bingeMenu = document.querySelector('.binge-nav-menu');
+            
+            if (bingeToggle && bingeMenu) {
+                bingeToggle.addEventListener('click', function() {
+                    bingeMenu.style.display = bingeMenu.style.display === 'flex' ? 'none' : 'flex';
+                    bingeMenu.style.position = 'absolute';
+                    bingeMenu.style.top = '100%';
+                    bingeMenu.style.left = '0';
+                    bingeMenu.style.right = '0';
+                    bingeMenu.style.flexDirection = 'column';
+                    bingeMenu.style.background = '#ffffff';
+                    bingeMenu.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                    bingeMenu.style.padding = '1rem';
+                    bingeMenu.style.borderRadius = '0 0 12px 12px';
+                });
+            }
+        }
+
+        // Parallax effect for hero section
+        function bingeParallax() {
+            const bingeHero = document.querySelector('.binge-hero');
+            
+            window.addEventListener('scroll', () => {
+                const bingeScrolled = window.pageYOffset;
+                const bingeRate = bingeScrolled * -0.5;
+                
+                if (bingeHero) {
+                    bingeHero.style.transform = `translateY(${bingeRate}px)`;
+                }
+            });
+        }
+
+        // Initialize all functions
+        function bingeInit() {
+            window.addEventListener('scroll', bingeHandleScroll);
+            bingeSmoothScroll();
+            bingeScrollAnimations();
+            bingeFormHandler();
+            bingeMobileMenu();
+            bingeParallax();
+        }
+
+        // Start when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bingeInit);
+        } else {
+            bingeInit();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,586 @@
+<style>
+  /* Technology Stack Container */
+  .defcon-tech-stack {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 20px;
+  }
+
+  /* Header Section */
+  .defcon-tech-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .defcon-tech-title {
+    color: #06273e;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .defcon-tech-subtitle {
+    color: #5a6d80;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Stack Categories */
+  .defcon-stack-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 3rem;
+  }
+
+  .defcon-stack-category {
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: #f0f6ff;
+    color: #0091ff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-stack-category.active {
+    background: #0091ff;
+    color: white;
+  }
+
+  /* Stack Grid */
+  .defcon-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  /* Tech Card */
+  .defcon-tech-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+  }
+
+  .defcon-tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .defcon-tech-card-header {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background: #f9fbfe;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .defcon-tech-card-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .defcon-tech-card-icon img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  .defcon-tech-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 5px;
+  }
+
+  .defcon-tech-card-category {
+    font-size: 0.9rem;
+    color: #5a6d80;
+  }
+
+  .defcon-tech-card-body {
+    padding: 25px;
+  }
+
+  .defcon-tech-card-description {
+    color: #5a6d80;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .defcon-tech-card-features {
+    margin-top: 20px;
+  }
+
+  .defcon-tech-card-feature {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .defcon-tech-card-feature-icon {
+    color: #0091ff;
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+
+  .defcon-tech-card-feature-text {
+    color: #06273e;
+    line-height: 1.5;
+  }
+
+  /* Case Studies Section */
+  .defcon-case-studies {
+    margin-top: 6rem;
+    background: #f5f9ff;
+    padding: 4rem 0;
+    border-radius: 12px;
+  }
+
+  .defcon-case-studies-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .defcon-case-studies-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #06273e;
+    margin-bottom: 3rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-tech-title {
+      font-size: 2rem;
+    }
+    
+    .defcon-stack-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .defcon-tech-card-header {
+      padding: 20px;
+    }
+    
+    .defcon-tech-card-body {
+      padding: 20px;
+    }
+  }
+</style>
+
+<div class="defcon-tech-stack">
+  <div class="defcon-tech-header">
+    <h1 class="defcon-tech-title">Our Tech Support & Infrastructure Stack</h1>
+    <p class="defcon-tech-subtitle">
+      We utilize industry-leading technologies to deliver reliable, secure, and scalable IT infrastructure solutions. 
+      Here's the technology we rely on to keep your systems running smoothly and securely.
+    </p>
+  </div>
+
+  <div class="defcon-stack-categories">
+    <div class="defcon-stack-category active" data-category="all">All Technologies</div>
+    <div class="defcon-stack-category" data-category="monitoring">Monitoring</div>
+    <div class="defcon-stack-category" data-category="security">Security</div>
+    <div class="defcon-stack-category" data-category="networking">Networking</div>
+    <div class="defcon-stack-category" data-category="helpdesk">Helpdesk</div>
+    <div class="defcon-stack-category" data-category="backup">Backup</div>
+  </div>
+
+  <div class="defcon-stack-grid">
+    <!-- SolarWinds -->
+    <div class="defcon-tech-card" data-categories="monitoring">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/solarwinds-1.svg" alt="SolarWinds">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">SolarWinds</h3>
+          <div class="defcon-tech-card-category">Network Monitoring</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our comprehensive network monitoring solution that provides real-time visibility into your IT infrastructure. 
+          We use SolarWinds to proactively identify and resolve issues before they impact your business.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Real-time performance monitoring and alerting
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom dashboards for infrastructure health
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Historical data for capacity planning
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palo Alto -->
+    <div class="defcon-tech-card" data-categories="security networking">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/palo-alto-networks-1.svg" alt="Palo Alto">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Palo Alto Networks</h3>
+          <div class="defcon-tech-card-category">Network Security</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our enterprise-grade firewall solution that provides advanced threat protection for your network. 
+          We implement Palo Alto firewalls to secure your infrastructure against modern cyber threats.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Next-generation firewall protection
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Advanced threat prevention
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              URL filtering and application control
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Veeam -->
+    <div class="defcon-tech-card" data-categories="backup">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/veeam-1.svg" alt="Veeam">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Veeam</h3>
+          <div class="defcon-tech-card-category">Backup & Recovery</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our comprehensive backup solution that ensures your critical data is protected and recoverable. 
+          We implement Veeam to provide reliable, fast backup and recovery for your business.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Image-based backups for complete system recovery
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Cloud and local backup options
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Instant VM recovery for minimal downtime
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ServiceNow -->
+    <div class="defcon-tech-card" data-categories="helpdesk">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/servicenow-1.svg" alt="ServiceNow">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">ServiceNow</h3>
+          <div class="defcon-tech-card-category">IT Service Management</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our enterprise IT service management platform that streamlines your IT support operations. 
+          We implement ServiceNow to provide efficient, trackable IT support services.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Comprehensive ticketing system
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Knowledge base for self-service
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              SLA tracking and reporting
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cisco -->
+    <div class="defcon-tech-card" data-categories="networking">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/cisco-2.svg" alt="Cisco">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Cisco</h3>
+          <div class="defcon-tech-card-category">Networking Solutions</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our trusted networking hardware provider for enterprise-grade network infrastructure. 
+          We design and implement Cisco solutions to build reliable, high-performance networks.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Enterprise switches and routers
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Wireless networking solutions
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              SD-WAN for optimized connectivity
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CrowdStrike -->
+    <div class="defcon-tech-card" data-categories="security">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/crowdstrike-2.svg" alt="CrowdStrike">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">CrowdStrike</h3>
+          <div class="defcon-tech-card-category">Endpoint Protection</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our next-generation endpoint protection platform that provides comprehensive security for your devices. 
+          We deploy CrowdStrike to protect against advanced threats and malware.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Next-gen antivirus with AI detection
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Threat intelligence and hunting
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Lightweight agent with cloud management
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Microsoft Endpoint Manager -->
+    <div class="defcon-tech-card" data-categories="security helpdesk">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/microsoft-icon-1.svg" alt="Microsoft">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Microsoft Endpoint Manager</h3>
+          <div class="defcon-tech-card-category">Device Management</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our unified endpoint management solution for securing and managing all your organization's devices. 
+          We use Microsoft Endpoint Manager to simplify device management across platforms.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Unified management for Windows, macOS, iOS, Android
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Application deployment and management
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Conditional access and compliance policies
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const categories = document.querySelectorAll('.defcon-stack-category');
+    
+    categories.forEach(category => {
+      category.addEventListener('click', function() {
+        // Update active category
+        categories.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        
+        const selectedCategory = this.dataset.category;
+        const techCards = document.querySelectorAll('.defcon-tech-card');
+        
+        // Filter technologies
+        techCards.forEach(card => {
+          if (selectedCategory === 'all' || card.dataset.categories.includes(selectedCategory)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

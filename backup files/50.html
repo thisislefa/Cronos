@@ -1,0 +1,369 @@
+<style>
+  /* Unique class names to prevent conflicts */
+  .dcs-container {
+    font-family: "Times New Roman", serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .dcs-title {
+    text-align: center;
+    color: #06273e;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+
+  .dcs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    position: relative;
+  }
+
+  .dcs-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(20px);
+    opacity: 0;
+    height: 200px;
+  }
+
+  .dcs-card.dcs-loaded {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .dcs-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(6, 39, 62, 0.1) 0%, rgba(0, 145, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+
+  .dcs-card:hover {
+    transform: scale(1.03) !important;
+    box-shadow: 0 10px 25px rgba(0, 145, 255, 0.15);
+    z-index: 10;
+  }
+
+  .dcs-card:hover::before {
+    opacity: 1;
+  }
+
+  .dcs-card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    color: #0091ff;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .dcs-card:hover .dcs-card-icon {
+    transform: scale(1.2) rotate(10deg);
+    color: #06273e;
+  }
+
+  .dcs-card-title {
+    font-size: 1.4rem;
+    color: #06273e;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  .dcs-card:hover .dcs-card-title {
+    transform: translateX(5px);
+  }
+
+  .dcs-card-desc {
+    color: #06273e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+  }
+
+  .dcs-card-content {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .dcs-card-hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background: #ffffff;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 2;
+  }
+
+  .dcs-card:hover .dcs-card-hover-content {
+    transform: translateX(0);
+  }
+
+  .dcs-card-hover-title {
+    font-size: 1.3rem;
+    color: #0091ff;
+    margin-bottom: 15px;
+  }
+
+  .dcs-card-hover-desc {
+    color: #06273e;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .dcs-card-hover-link {
+    display: inline-block;
+    color: #0091ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #0091ff;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .dcs-card-hover-link:hover {
+    color: #06273e;
+    border-bottom-color: #06273e;
+  }
+
+  .dcs-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 145, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dcs-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dcs-card {
+      padding: 25px;
+      height: 180px;
+    }
+
+    .dcs-title {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .dcs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dcs-card {
+      height: auto;
+      min-height: 160px;
+    }
+
+    .dcs-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<div class="dcs-container">
+  <h2 class="dcs-title">Innovative Services</h2>
+  <div class="dcs-grid" id="dcsGrid">
+    <!-- Card 1 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <h3 class="dcs-card-title">Advanced Development</h3>
+        <p class="dcs-card-desc">Cutting-edge solutions tailored to your business needs.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">Advanced Development</h4>
+          <p class="dcs-card-hover-desc">Our team delivers robust, scalable solutions using the latest technologies to future-proof your business.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card 2 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <h3 class="dcs-card-title">Strategic Consulting</h3>
+        <p class="dcs-card-desc">Expert guidance to navigate complex digital landscapes.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">Strategic Consulting</h4>
+          <p class="dcs-card-hover-desc">We analyze your challenges and craft data-driven strategies to achieve measurable results.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card 3 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        <h3 class="dcs-card-title">UI/UX Excellence</h3>
+        <p class="dcs-card-desc">Beautiful, intuitive interfaces that drive engagement.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">UI/UX Excellence</h4>
+          <p class="dcs-card-hover-desc">Human-centered design that creates seamless, enjoyable experiences for your customers.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card 4 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <h3 class="dcs-card-title">Digital Transformation</h3>
+        <p class="dcs-card-desc">Comprehensive modernization of your digital ecosystem.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">Digital Transformation</h4>
+          <p class="dcs-card-hover-desc">End-to-end solutions to bring your business into the digital age with maximum efficiency.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card 5 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <h3 class="dcs-card-title">24/7 Support</h3>
+        <p class="dcs-card-desc">Reliable assistance whenever you need it.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">24/7 Support</h4>
+          <p class="dcs-card-hover-desc">Round-the-clock technical support to ensure your systems run smoothly at all times.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card 6 -->
+    <div class="dcs-card">
+      <div class="dcs-card-content">
+        <svg class="dcs-card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <h3 class="dcs-card-title">Data Analytics</h3>
+        <p class="dcs-card-desc">Actionable insights from your business data.</p>
+        <div class="dcs-card-hover-content">
+          <h4 class="dcs-card-hover-title">Data Analytics</h4>
+          <p class="dcs-card-hover-desc">Transform raw data into strategic assets with our advanced analytics platforms.</p>
+          <a href="#" class="dcs-card-hover-link">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Staggered card animation
+    const cards = document.querySelectorAll('.dcs-card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('dcs-loaded');
+      }, 150 * index);
+    });
+
+    // Particle effect
+    const grid = document.getElementById('dcsGrid');
+    const particles = [];
+    const particleCount = 12;
+    
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'dcs-particle';
+      grid.appendChild(particle);
+      particles.push(particle);
+    }
+    
+    // Animate particles
+    grid.addEventListener('mousemove', (e) => {
+      const rect = grid.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      particles.forEach((particle, index) => {
+        setTimeout(() => {
+          particle.style.left = `${x}px`;
+          particle.style.top = `${y}px`;
+          particle.style.opacity = '1';
+          particle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+          
+          setTimeout(() => {
+            particle.style.opacity = '0';
+            particle.style.transform = `translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px)`;
+          }, 500);
+        }, index * 50);
+      });
+    });
+    
+    // Dynamic background pattern effect
+    grid.addEventListener('mousemove', (e) => {
+      const rect = grid.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      
+      cards.forEach(card => {
+        card.style.setProperty('--mouse-x', x);
+        card.style.setProperty('--mouse-y', y);
+      });
+    });
+  });
+</script>

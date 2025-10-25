@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium IT Solutions - Transform Your Digital Presence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #005fb2 0%, #023364 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .premium-showcase {
+            position: relative;
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(15px) rotate(240deg); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: cardSlideIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-bestseller {
+            background: rgb(217, 55, 55);
+            color: white;
+        }
+
+        .badge-popular {
+            background: rgb(217, 55, 55);
+            color: white;
+        }
+
+        .badge-new {
+            background: rgb(217, 55, 55);
+            color: white;
+        }
+
+        .badge-premium {
+            background: rgb(217, 55, 55);
+            color: white;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .product-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #4fc3f7;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .product-features li {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4fc3f7;
+            font-weight: bold;
+        }
+
+        .view-details-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2196f3, #21cbf3);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-details-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .view-details-btn:hover:before {
+            left: 100%;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #1976d2, #1cb5e0);
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 30px 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1565c0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .modal-content {
+            padding: 20px 30px 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+            color: #333;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #2196f3, #21cbf3);
+            border-radius: 4px;
+        }
+
+        .detail-section {
+            margin-bottom: 30px;
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+            border-left: 4px solid #2196f3;
+            padding-left: 15px;
+        }
+
+        .detail-text {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .detail-list li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #2196f3;
+            font-size: 0.8rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .product-card {
+                padding: 30px 20px;
+            }
+            
+            .modal {
+                width: 95%;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="premium-showcase">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Premium IT Solutions</h2>
+            <p class="section-subtitle">Transform your digital presence with our cutting-edge technology solutions designed to elevate your business to new heights</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Business Starter Website -->
+            <div class="product-card">
+                <div class="product-badge badge-popular">Most Popular</div>
+                <div class="product-icon">🚀</div>
+                <h3 class="product-title">Business Starter Website</h3>
+                <p class="product-description">Perfect for startups and small businesses looking to establish a strong online presence with professional design and essential features.</p>
+                <div class="product-price">
+                    $899<span class="price-period">one-time</span>
+                </div>
+                <ul class="product-features">
+                    <li>Responsive Design</li>
+                    <li>SEO Optimized</li>
+                    <li>Contact Forms</li>
+                    <li>Social Media Integration</li>
+                </ul>
+                <button class="view-details-btn" onclick="openModal('business-starter')">View Full Details</button>
+            </div>
+
+            <!-- E-commerce Elite Package -->
+            <div class="product-card">
+                <div class="product-badge badge-bestseller">Best Seller</div>
+                <div class="product-icon">🛒</div>
+                <h3 class="product-title">E-commerce Elite Package</h3>
+                <p class="product-description">Complete e-commerce solution with advanced features, payment gateways, and inventory management for growing online businesses.</p>
+                <div class="product-price">
+                    $2,499<span class="price-period">one-time</span>
+                </div>
+                <ul class="product-features">
+                    <li>Custom E-commerce Platform</li>
+                    <li>Payment Gateway Integration</li>
+                    <li>Inventory Management</li>
+                    <li>Analytics Dashboard</li>
+                </ul>
+                <button class="view-details-btn" onclick="openModal('ecommerce-elite')">View Full Details</button>
+            </div>
+
+            <!-- Professional Web Package -->
+            <div class="product-card">
+                <div class="product-badge badge-new">New</div>
+                <div class="product-icon">💼</div>
+                <h3 class="product-title">Professional Web Package</h3>
+                <p class="product-description">Comprehensive web solution for established businesses requiring advanced functionality, custom development, and enterprise-grade features.</p>
+                <div class="product-price">
+                    $1,799<span class="price-period">one-time</span>
+                </div>
+                <ul class="product-features">
+                    <li>Custom Development</li>
+                    <li>CMS Integration</li>
+                    <li>Advanced Analytics</li>
+                    <li>Performance Optimization</li>
+                </ul>
+                <button class="view-details-btn" onclick="openModal('professional-web')">View Full Details</button>
+            </div>
+
+            <!-- Ultimate IT Support and Enterprise Solution -->
+            <div class="product-card">
+                <div class="product-badge badge-premium">Premium</div>
+                <div class="product-icon">🏢</div>
+                <h3 class="product-title">Ultimate IT Support & Enterprise Solution</h3>
+                <p class="product-description">Complete enterprise IT infrastructure with 24/7 support, cloud solutions, security, and scalable architecture for large organizations.</p>
+                <div class="product-price">
+                    $4,999<span class="price-period">/month</span>
+                </div>
+                <ul class="product-features">
+                    <li>24/7 IT Support</li>
+                    <li>Cloud Infrastructure</li>
+                    <li>Security Management</li>
+                    <li>Scalable Solutions</li>
+                </ul>
+                <button class="view-details-btn" onclick="openModal('enterprise-solution')">View Full Details</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Product Details</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productDetails = {
+            'business-starter': {
+                title: 'Business Starter Website',
+                content: `
+                    <div class="detail-section">
+                        <h4 class="detail-title">Perfect Launch Pad for Your Business</h4>
+                        <p class="detail-text">Our Business Starter Website package is meticulously crafted for entrepreneurs and small businesses ready to make their mark in the digital world. We understand that your online presence is often the first impression customers have of your business, which is why we've designed this package to deliver maximum impact while maintaining affordability.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">What's Included</h4>
+                        <ul class="detail-list">
+                            <li>Fully responsive design that looks stunning on all devices</li>
+                            <li>Professional homepage with compelling hero section</li>
+                            <li>About Us page that tells your story effectively</li>
+                            <li>Services/Products showcase pages</li>
+                            <li>Contact page with integrated contact form</li>
+                            <li>SEO optimization for better search engine visibility</li>
+                            <li>Social media integration and sharing buttons</li>
+                            <li>Google Analytics setup for tracking visitor behavior</li>
+                            <li>SSL certificate for security and trust</li>
+                            <li>2 rounds of revisions to ensure your satisfaction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Technical Specifications</h4>
+                        <p class="detail-text">Built using modern web technologies including HTML5, CSS3, and JavaScript. The website will be optimized for fast loading speeds (under 3 seconds) and will include clean, semantic code that search engines love. We ensure cross-browser compatibility and mobile-first design approach.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Timeline & Support</h4>
+                        <p class="detail-text">Project completion: 7-10 business days from approval. Includes 30 days of free post-launch support for any technical issues or minor content updates. Optional maintenance packages available for ongoing support.</p>
+                    </div>
+                `
+            },
+            'ecommerce-elite': {
+                title: 'E-commerce Elite Package',
+                content: `
+                    <div class="detail-section">
+                        <h4 class="detail-title">Your Complete Online Store Solution</h4>
+                        <p class="detail-text">Transform your business with our E-commerce Elite Package, a comprehensive solution that handles everything from product catalogs to payment processing. Whether you're launching your first online store or upgrading from a basic setup, this package provides enterprise-level functionality with user-friendly management.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Core Features</h4>
+                        <ul class="detail-list">
+                            <li>Custom e-commerce platform built on secure, scalable architecture</li>
+                            <li>Unlimited product listings with advanced categorization</li>
+                            <li>Integrated payment gateways (PayPal, Stripe, Square)</li>
+                            <li>Real-time inventory management system</li>
+                            <li>Automated order processing and email notifications</li>
+                            <li>Customer account creation and management</li>
+                            <li>Advanced search and filtering capabilities</li>
+                            <li>Wishlist and shopping cart abandonment recovery</li>
+                            <li>Multi-currency and multi-language support</li>
+                            <li>Comprehensive analytics and sales reporting dashboard</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Advanced Functionality</h4>
+                        <ul class="detail-list">
+                            <li>SEO-optimized product pages and blog integration</li>
+                            <li>Social media marketing integration</li>
+                            <li>Email marketing automation setup</li>
+                            <li>Review and rating system</li>
+                            <li>Discount codes and promotional tools</li>
+                            <li>Shipping calculator and multiple shipping options</li>
+                            <li>Tax calculation for different regions</li>
+                            <li>Mobile app-ready API integration</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Launch Package</h4>
+                        <p class="detail-text">Includes 3 months of free hosting, SSL certificate, initial product upload (up to 100 products), staff training sessions, and comprehensive documentation. Launch timeline: 14-21 business days with dedicated project manager.</p>
+                    </div>
+                `
+            },
+            'professional-web': {
+                title: 'Professional Web Package',
+                content: `
+                    <div class="detail-section">
+                        <h4 class="detail-title">Elevate Your Digital Presence</h4>
+                        <p class="detail-text">The Professional Web Package is designed for established businesses that need more than just a basic website. This comprehensive solution combines cutting-edge design with powerful functionality to create a digital experience that converts visitors into customers and positions your brand as an industry leader.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Premium Features</h4>
+                        <ul class="detail-list">
+                            <li>Custom web application development tailored to your needs</li>
+                            <li>Content Management System (CMS) for easy content updates</li>
+                            <li>Advanced user authentication and role management</li>
+                            <li>Database integration for dynamic content</li>
+                            <li>API development for third-party integrations</li>
+                            <li>Advanced forms with conditional logic</li>
+                            <li>Document management and file sharing capabilities</li>
+                            <li>Multi-user collaboration tools</li>
+                            <li>Advanced analytics and conversion tracking</li>
+                            <li>A/B testing framework for optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Performance & Security</h4>
+                        <ul class="detail-list">
+                            <li>Enterprise-grade security measures and encryption</li>
+                            <li>Performance optimization for lightning-fast loading</li>
+                            <li>CDN integration for global content delivery</li>
+                            <li>Automated backup systems</li>
+                            <li>Regular security updates and monitoring</li>
+                            <li>GDPR compliance and privacy protection</li>
+                            <li>Advanced caching strategies</li>
+                            <li>Server-side optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Ongoing Support</h4>
+                        <p class="detail-text">Includes 6 months of premium support, monthly performance reports, quarterly strategy consultations, and priority response for technical issues. Professional training provided for your team to maximize platform utilization.</p>
+                    </div>
+                `
+            },
+            'enterprise-solution': {
+                title: 'Ultimate IT Support & Enterprise Solution',
+                content: `
+                    <div class="detail-section">
+                        <h4 class="detail-title">Complete Enterprise IT Infrastructure</h4>
+                        <p class="detail-text">Our Ultimate IT Support & Enterprise Solution is a comprehensive managed service designed for organizations that require robust, scalable, and secure IT infrastructure. We become your dedicated IT department, handling everything from daily maintenance to strategic technology planning.</p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">24/7 IT Support Services</h4>
+                        <ul class="detail-list">
+                            <li>Round-the-clock technical support with guaranteed response times</li>
+                            <li>Dedicated account manager and technical team</li>
+                            <li>Remote monitoring and proactive issue resolution</li>
+                            <li>On-site support when required</li>
+                            <li>Help desk services for end-users</li>
+                            <li>Emergency response and disaster recovery</li>
+                            <li>Regular system maintenance and updates</li>
+                            <li>Performance monitoring and optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Cloud Infrastructure & Security</h4>
+                        <ul class="detail-list">
+                            <li>Scalable cloud architecture design and implementation</li>
+                            <li>Multi-cloud strategy and hybrid solutions</li>
+                            <li>Advanced cybersecurity measures and threat protection</li>
+                            <li>Data backup and disaster recovery solutions</li>
+                            <li>Network design and optimization</li>
+                            <li>Identity and access management</li>
+                            <li>Compliance management (HIPAA, SOX, GDPR)</li>
+                            <li>Security audits and vulnerability assessments</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Strategic IT Planning</h4>
+                        <ul class="detail-list">
+                            <li>Technology roadmap development</li>
+                            <li>Digital transformation consulting</li>
+                            <li>Software licensing management</li>
+                            <li>IT budget planning and cost optimization</li>
+                            <li>Vendor management and contract negotiation</li>
+                            <li>Staff training and development programs</li>
+                            <li>Technology integration and automation</li>
+                            <li>Business continuity planning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4 class="detail-title">Service Level Agreement</h4>
+                        <p class="detail-text">Guaranteed 99.9% uptime, 15-minute response time for critical issues, monthly strategic reviews, quarterly business alignment meetings, and annual technology assessments. Custom SLAs available based on specific business requirements.</p>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(productId) {
+            const modal = document.getElementById('modalOverlay');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const product = productDetails[productId];
+            title.textContent = product.title;
+            content.innerHTML = product.content;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Add smooth scrolling animation on load
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animationPlayState = 'running';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

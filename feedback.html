@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Feedback Stream</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="feedback-stream.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="light-theme">
+
+    <header class="defcon-feedback-hero">
+        <h1 class="feedback-main-title">The Input Stream: We're Listening</h1>
+        <p class="feedback-tagline">
+            Your insights drive our innovation. Please share your experience, suggestions, or concerns directly with our management team.
+        </p>
+    </header>
+
+    <main class="feedback-portal-container">
+        
+        <div class="feedback-form-card">
+            <h2 class="card-heading">1. Select Your Feedback Type</h2>
+
+            <form class="feedback-form" action="/submit-feedback" method="POST">
+                
+                <div class="form-group">
+                    <label for="feedbackCategory">Category of Submission*</label>
+                    <select id="feedbackCategory" name="category" required>
+                        <option value="" disabled selected>— Choose one option —</option>
+                        <option value="praise">Positive Feedback / Praise</option>
+                        <option value="suggestion">New Feature Suggestion</option>
+                        <option value="complaint">Complaint / Dissatisfaction</option>
+                        <option value="general">General Inquiry / Comment</option>
+                    </select>
+                </div>
+
+                <div id="dynamicFieldsContainer">
+                    <p class="initial-prompt">Select a category above to load the appropriate submission form.</p>
+                </div>
+
+                <div class="shared-fields-container">
+                    <h3 class="shared-heading">Contact Details (Optional, but recommended)</h3>
+                    <div class="form-group half-width">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button" disabled>Submit Feedback <i class="fas fa-arrow-right"></i></button>
+
+            </form>
+        </div>
+
+        <aside class="impact-statement-panel">
+            <h2 class="panel-heading"><i class="fas fa-bullhorn"></i> Your Impact</h2>
+            
+            <div id="impactText" class="impact-text">
+                <p>All submissions are reviewed daily by a dedicated team member. Depending on the category selected, your feedback will be channeled to the appropriate department (e.g., development, support, or management).</p>
+                
+                <ul class="impact-stats">
+                    <li><i class="fas fa-clock"></i> **Response Time:** 1-2 Business Days (for complaints/inquiries)</li>
+                    <li><i class="fas fa-check-circle"></i> **Improvement Rate:** 85% of critical feedback resulted in process changes last quarter.</li>
+                </ul>
+
+                <p class="policy-link">By submitting, you agree to our <a href="/privacy" target="_blank">Privacy Policy</a>.</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <div class="still-stuck-cta">
+        <p>Need urgent assistance? <a href="/support">Visit our Support Center instead <i class="fas fa-arrow-right"></i></a></p>
+    </div>
+
+    <script src="feedback-stream.js"></script>
+</body>
+</html>
+
+<style>
+    /* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.light-theme {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4; /* Soft gray background */
+    color: #000;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #0091ff;
+    transition: color 0.3s ease;
+}
+
+/* --- HERO SECTION --- */
+.defcon-feedback-hero {
+    background: linear-gradient(145deg, #0077cc, #06273e);
+    padding: 80px 40px;
+    text-align: center;
+    border-bottom: 4px solid #0091ff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-main-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: -0.04em;
+}
+
+.feedback-tagline {
+    font-size: 1.1rem;
+    color: #c8c8c8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- MAIN PORTAL CONTAINER --- */
+.feedback-portal-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.feedback-form-card {
+    flex: 2; /* Takes up more space */
+    background-color: #fff;
+    border-radius: 1px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0091ff1a;
+    padding-bottom: 10px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 25px;
+}
+.form-group.half-width {
+    flex: 1;
+}
+
+.shared-fields-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+    flex-wrap: wrap;
+}
+
+.shared-heading {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #0091ff;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #0091ff;
+    box-shadow: 0 0 5px rgba(0, 145, 255, 0.5);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.initial-prompt {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    padding: 30px 0;
+    border: 1px dashed #e0e0e0;
+    border-radius: 4px;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background-color: #0091ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #0077cc;
+}
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- IMPACT STATEMENT PANEL (ASIDE) --- */
+.impact-statement-panel {
+    flex: 1; /* Takes up less space */
+    background-color: #0091ff1a; /* Light blue accent background */
+    border-radius: 1px;
+    padding: 30px;
+    height: fit-content;
+    border-left: 5px solid #0091ff;
+}
+
+.panel-heading {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0091ff;
+    margin-bottom: 25px;
+}
+.panel-heading i {
+    margin-right: 10px;
+}
+
+.impact-text p {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.impact-stats {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    border-top: 1px solid #0091ff33;
+    padding-top: 15px;
+}
+.impact-stats li {
+    margin-bottom: 10px;
+    color: #000;
+}
+.impact-stats i {
+    color: #0091ff;
+    margin-right: 10px;
+}
+
+.policy-link a {
+    font-weight: 600;
+}
+
+/* Still Stuck CTA Footer */
+.still-stuck-cta {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+.still-stuck-cta p { margin: 0; }
+.still-stuck-cta a {
+    color: #0091ff;
+    font-weight: 700;
+}
+.still-stuck-cta a i { margin-left: 5px; }
+
+
+/* RESPONSIVENESS */
+@media (max-width: 992px) {
+    .feedback-portal-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .impact-statement-panel {
+        order: -1; /* Move impact panel above form on mobile/tablet */
+        height: auto;
+    }
+}
+@media (max-width: 600px) {
+    .feedback-form-card,
+    .impact-statement-panel {
+        padding: 20px;
+    }
+    .shared-fields-container {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group.half-width {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    const categorySelect = document.getElementById('feedbackCategory');
+    const dynamicContainer = document.getElementById('dynamicFieldsContainer');
+    const submitButton = document.querySelector('.submit-button');
+    const form = document.querySelector('.feedback-form');
+
+    // HTML templates for dynamic fields
+    const templates = {
+        praise: `
+            <h3 class="shared-heading">Share Your Positive Experience</h3>
+            <div class="form-group">
+                <label for="projectRef">Project Reference / Defcon Contact (Optional)</label>
+                <input type="text" id="projectRef" name="projectRef">
+            </div>
+            <div class="form-group">
+                <label for="praiseBody">Your Positive Comment*</label>
+                <textarea id="praiseBody" name="praiseBody" required placeholder="Tell us what we did well!"></textarea>
+            </div>
+        `,
+        suggestion: `
+            <h3 class="shared-heading">Tell Us How We Can Improve</h3>
+            <div class="form-group">
+                <label for="suggestionTitle">Suggestion Title (e.g., 'Better Documentation')*</label>
+                <input type="text" id="suggestionTitle" name="suggestionTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="suggestionBody">Detailed Suggestion*</label>
+                <textarea id="suggestionBody" name="suggestionBody" required placeholder="Describe your idea and the potential benefit."></textarea>
+            </div>
+        `,
+        complaint: `
+            <h3 class="shared-heading">Report an Issue (Urgent)</h3>
+            <div class="form-group">
+                <label for="issueRef">Relevant Service/Project ID*</label>
+                <input type="text" id="issueRef" name="issueRef" required placeholder="e.g., SVC-4567 or Project Zeus">
+            </div>
+            <div class="form-group">
+                <label for="issueBody">Detailed Description of Complaint*</label>
+                <textarea id="issueBody" name="issueBody" required placeholder="Please be factual and include relevant dates/names."></textarea>
+            </div>
+        `,
+        general: `
+            <h3 class="shared-heading">General Comment</h3>
+            <div class="form-group">
+                <label for="generalBody">Your Comment*</label>
+                <textarea id="generalBody" name="generalBody" required placeholder="Enter your general feedback here."></textarea>
+            </div>
+        `
+    };
+
+    /**
+     * Handles the dynamic loading of form fields.
+     */
+    categorySelect.addEventListener('change', (e) => {
+        const selectedCategory = e.target.value;
+        
+        if (templates[selectedCategory]) {
+            dynamicContainer.innerHTML = templates[selectedCategory];
+            submitButton.disabled = false;
+        } else {
+            dynamicContainer.innerHTML = '<p class="initial-prompt">Select a category above to load the appropriate submission form.</p>';
+            submitButton.disabled = true;
+        }
+        
+        // Ensure all new required fields are checked on form submission
+        validateForm();
+    });
+    
+    /**
+     * Basic client-side validation to enable/disable the submit button.
+     */
+    const validateForm = () => {
+        const requiredInputs = form.querySelectorAll('[required]');
+        let allRequiredFilled = true;
+
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                allRequiredFilled = false;
+            }
+        });
+
+        // The button is enabled only if a category is selected AND all required fields are filled.
+        submitButton.disabled = !allRequiredFilled;
+    };
+
+    // Attach validation to keyup/change events in the dynamic container
+    dynamicContainer.addEventListener('keyup', validateForm);
+    dynamicContainer.addEventListener('change', validateForm);
+    form.addEventListener('keyup', validateForm); 
+    form.addEventListener('change', validateForm); 
+    
+    // Initial state check
+    validateForm();
+});
+</script>

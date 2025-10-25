@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guides & Tutorials | Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --dark-blue: #06273e;
+            --light-gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section - Split Layout */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #000 100%);
+            color: var(--light);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Featured Section - Asymmetrical Layout */
+        .featured {
+            background-color: var(--light-gray);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .main-feature {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--light);
+            padding: 40px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-feature h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-feature p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .side-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-feature {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .side-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .side-feature h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .side-feature p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Tutorials Section - Newspaper Layout */
+        .tutorials {
+            background-color: var(--light);
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .tutorial-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .tutorial-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .tutorial-contents {
+            padding: 25px;
+        }
+
+        .tutorial-category {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-contents h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .tutorial-contents p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* Categories Section - Split Layout */
+        .categories {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #000 100%);
+            color: var(--light);
+        }
+
+        .categories-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .categories-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .categories-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .category-card:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content, .featured-grid, .categories-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .tutorials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero::before {
+                width: 100%;
+                opacity: 0.1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">TechLearn</a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Split Layout -->
+    <section class="hero section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master Technology with Our Expert Guides & Tutorials</h1>
+                    <p>Explore our comprehensive collection of video tutorials, step-by-step guides, and expert insights to accelerate your learning journey in technology and development.</p>
+                    <a href="#featured" class="btn">Explore Tutorials</a>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Tutorials</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Expert Instructors</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10k+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- Background image applied via CSS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section - Asymmetrical Layout -->
+    <section id="featured" class="featured section">
+        <div class="container">
+            <h2 class="section-title">Featured Tutorials</h2>
+            <div class="featured-grid">
+                <div class="main-feature">
+                    <h3>Complete Web Development Bootcamp 2023</h3>
+                    <p>Master HTML, CSS, JavaScript, React, Node.js and more with this comprehensive 40-hour course. Build 15+ real-world projects.</p>
+                    <a href="#" class="btn" style="width: fit-content;">Start Learning</a>
+                </div>
+                <div class="side-features">
+                    <div class="side-feature">
+                        <h4>Python for Data Science</h4>
+                        <p>Learn how to use Python for data analysis, visualization, and machine learning with practical examples.</p>
+                        <a href="#" class="btn">View Course</a>
+                    </div>
+                    <div class="side-feature">
+                        <h4>UI/UX Design Principles</h4>
+                        <p>Master the fundamentals of user interface and experience design with industry best practices.</p>
+                        <a href="#" class="btn">View Course</a>
+                    </div>
+                    <div class="side-feature">
+                        <h4>Mobile App Development</h4>
+                        <p>Build cross-platform mobile applications using React Native with hands-on projects.</p>
+                        <a href="#" class="btn">View Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Section - Newspaper Layout -->
+    <section class="tutorials section">
+        <div class="container">
+            <h2 class="section-title">Latest Tutorials</h2>
+            <div class="tutorials-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">Web Development</span>
+                        <h3>Building a Responsive Portfolio Website</h3>
+                        <p>Learn how to create a stunning portfolio website that works perfectly on all devices.</p>
+                        <div class="tutorial-meta">
+                            <span>45 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">JavaScript</span>
+                        <h3>Modern JavaScript ES6+ Features</h3>
+                        <p>Master the latest JavaScript features including arrow functions, destructuring, and modules.</p>
+                        <div class="tutorial-meta">
+                            <span>60 min</span>
+                            <span>Advanced</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">Data Science</span>
+                        <h3>Data Visualization with Python</h3>
+                        <p>Create stunning visualizations using Matplotlib, Seaborn, and Plotly libraries.</p>
+                        <div class="tutorial-meta">
+                            <span>75 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">Mobile Development</span>
+                        <h3>Building Your First React Native App</h3>
+                        <p>Step-by-step guide to creating a cross-platform mobile application from scratch.</p>
+                        <div class="tutorial-meta">
+                            <span>90 min</span>
+                            <span>Beginner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">Cloud Computing</span>
+                        <h3>Introduction to AWS Services</h3>
+                        <p>Learn the fundamentals of Amazon Web Services and how to deploy applications.</p>
+                        <div class="tutorial-meta">
+                            <span>55 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-image" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="tutorial-contents">
+                        <span class="tutorial-category">UI/UX Design</span>
+                        <h3>Creating User-Centered Designs</h3>
+                        <p>Learn how to design interfaces that prioritize user needs and improve experience.</p>
+                        <div class="tutorial-meta">
+                            <span>40 min</span>
+                            <span>Beginner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<!-- Interactive Tutorial Section -->
+<section class="interactive-tutorial section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Hands-On Learning</div>
+            <h2 class="section-title">Interactive Tutorial</h2>
+            <p class="section-description">Follow along with our step-by-step interactive tutorial</p>
+        </div>
+        
+        <div class="tutorial-container">
+            <div class="tutorial-sidebar">
+                <h3 class="tutorial-title">Getting Started with CSS Grid</h3>
+                <ul class="tutorial-steps">
+                    <li class="tutorial-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span>Introduction to CSS Grid</span>
+                    </li>
+                    <li class="tutorial-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span>Grid Container Properties</span>
+                    </li>
+                    <li class="tutorial-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span>Grid Item Properties</span>
+                    </li>
+                    <li class="tutorial-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span>Creating a Layout</span>
+                    </li>
+                    <li class="tutorial-step" data-step="5">
+                        <div class="step-number">5</div>
+                        <span>Responsive Grid</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tutorial-content">
+                <div class="step-content active" id="step1">
+                    <div class="step-header">
+                        <h3 class="step-title">Introduction to CSS Grid</h3>
+                        <p class="step-subtitle">Learn the fundamentals of CSS Grid Layout</p>
+                    </div>
+                    <div class="step-body">
+                        <p>CSS Grid Layout is a powerful tool that allows you to create complex, responsive web layouts with ease. Unlike Flexbox which is one-dimensional, Grid is two-dimensional, meaning it can handle both rows and columns simultaneously.</p>
+                        
+                        <p>To get started with CSS Grid, you first need to define a grid container:</p>
+                        
+                        <div class="code-block">
+                            .container {<br>
+                            &nbsp;&nbsp;display: grid;<br>
+                            &nbsp;&nbsp;grid-template-columns: 1fr 1fr 1fr;<br>
+                            &nbsp;&nbsp;grid-template-rows: auto;<br>
+                            &nbsp;&nbsp;gap: 20px;<br>
+                            }
+                        </div>
+                        
+                        <p>This creates a grid with three equal columns and automatically sized rows, with 20px gaps between grid items.</p>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn" onclick="nextStep(1)">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step2">
+                    <div class="step-header">
+                        <h3 class="step-title">Grid Container Properties</h3>
+                        <p class="step-subtitle">Master the properties that control the grid layout</p>
+                    </div>
+                    <div class="step-body">
+                        <p>The grid container is the parent element that holds all the grid items. Key properties include:</p>
+                        
+                        <ul>
+                            <li><strong>grid-template-columns</strong>: Defines the columns of the grid</li>
+                            <li><strong>grid-template-rows</strong>: Defines the rows of the grid</li>
+                            <li><strong>gap</strong>: Sets the gaps (gutters) between rows and columns</li>
+                            <li><strong>justify-items</strong>: Aligns grid items along the inline (row) axis</li>
+                            <li><strong>align-items</strong>: Aligns grid items along the block (column) axis</li>
+                        </ul>
+                        
+                        <div class="code-block">
+                            /* Example of a complex grid */<br>
+                            .container {<br>
+                            &nbsp;&nbsp;display: grid;<br>
+                            &nbsp;&nbsp;grid-template-columns: 200px 1fr 300px;<br>
+                            &nbsp;&nbsp;grid-template-rows: 100px auto 150px;<br>
+                            &nbsp;&nbsp;gap: 15px;<br>
+                            &nbsp;&nbsp;justify-items: center;<br>
+                            &nbsp;&nbsp;align-items: start;<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="prevStep(2)">Previous</button>
+                        <button class="btn" onclick="nextStep(2)">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step3">
+                    <div class="step-header">
+                        <h3 class="step-title">Grid Item Properties</h3>
+                        <p class="step-subtitle">Control how individual items behave within the grid</p>
+                    </div>
+                    <div class="step-body">
+                        <p>Grid items (direct children of the grid container) can be positioned and sized using specific properties:</p>
+                        
+                        <ul>
+                            <li><strong>grid-column</strong>: Specifies which column lines the item spans</li>
+                            <li><strong>grid-row</strong>: Specifies which row lines the item spans</li>
+                            <li><strong>grid-area</strong>: Shorthand for grid-row-start, grid-column-start, grid-row-end, and grid-column-end</li>
+                            <li><strong>justify-self</strong>: Aligns the item inside its cell along the inline axis</li>
+                            <li><strong>align-self</strong>: Aligns the item inside its cell along the block axis</li>
+                        </ul>
+                        
+                        <div class="code-block">
+                            /* Positioning items in the grid */<br>
+                            .header {<br>
+                            &nbsp;&nbsp;grid-column: 1 / 4;<br>
+                            &nbsp;&nbsp;grid-row: 1;<br>
+                            }<br><br>
+                            
+                            .sidebar {<br>
+                            &nbsp;&nbsp;grid-column: 1;<br>
+                            &nbsp;&nbsp;grid-row: 2;<br>
+                            }<br><br>
+                            
+                            .main-content {<br>
+                            &nbsp;&nbsp;grid-column: 2 / 4;<br>
+                            &nbsp;&nbsp;grid-row: 2;<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="prevStep(3)">Previous</button>
+                        <button class="btn" onclick="nextStep(3)">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step4">
+                    <div class="step-header">
+                        <h3 class="step-title">Creating a Layout</h3>
+                        <p class="step-subtitle">Build a complete webpage layout using CSS Grid</p>
+                    </div>
+                    <div class="step-body">
+                        <p>Now let's create a complete webpage layout with header, sidebar, main content, and footer:</p>
+                        
+                        <div class="code-block">
+                            .layout {<br>
+                            &nbsp;&nbsp;display: grid;<br>
+                            &nbsp;&nbsp;grid-template-areas:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"header header header"<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"sidebar main main"<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"footer footer footer";<br>
+                            &nbsp;&nbsp;grid-template-rows: 80px 1fr 60px;<br>
+                            &nbsp;&nbsp;grid-template-columns: 250px 1fr 1fr;<br>
+                            &nbsp;&nbsp;min-height: 100vh;<br>
+                            }<br><br>
+                            
+                            .header { grid-area: header; }<br>
+                            .sidebar { grid-area: sidebar; }<br>
+                            .main { grid-area: main; }<br>
+                            .footer { grid-area: footer; }
+                        </div>
+                        
+                        <p>This creates a clean, semantic layout that's easy to understand and maintain.</p>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="prevStep(4)">Previous</button>
+                        <button class="btn" onclick="nextStep(4)">Next Step</button>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step5">
+                    <div class="step-header">
+                        <h3 class="step-title">Responsive Grid</h3>
+                        <p class="step-subtitle">Make your grid layouts adapt to different screen sizes</p>
+                    </div>
+                    <div class="step-body">
+                        <p>CSS Grid works beautifully with media queries to create responsive layouts:</p>
+                        
+                        <div class="code-block">
+                            /* Default layout for larger screens */<br>
+                            .container {<br>
+                            &nbsp;&nbsp;display: grid;<br>
+                            &nbsp;&nbsp;grid-template-columns: 1fr 1fr 1fr;<br>
+                            &nbsp;&nbsp;gap: 20px;<br>
+                            }<br><br>
+                            
+                            /* Tablet layout */<br>
+                            @media (max-width: 768px) {<br>
+                            &nbsp;&nbsp;.container {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: 1fr 1fr;<br>
+                            &nbsp;&nbsp;}<br>
+                            }<br><br>
+                            
+                            /* Mobile layout */<br>
+                            @media (max-width: 480px) {<br>
+                            &nbsp;&nbsp;.container {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: 1fr;<br>
+                            &nbsp;&nbsp;}<br>
+                            }
+                        </div>
+                        
+                        <p>You can also use <code>auto-fit</code> and <code>minmax()</code> for more fluid responsive grids:</p>
+                        
+                        <div class="code-block">
+                            .container {<br>
+                            &nbsp;&nbsp;display: grid;<br>
+                            &nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));<br>
+                            &nbsp;&nbsp;gap: 20px;<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="prevStep(5)">Previous</button>
+                        <button class="btn" onclick="completeTutorial()">Complete Tutorial</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Interactive Tutorial Section */
+    .interactive-tutorial {
+        background-color: var(--light);
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-label {
+        display: inline-block;
+        background-color: var(--primary);
+        color: var(--light);
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .section-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--dark-blue);
+    }
+
+    .section-description {
+        font-size: 1.2rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .tutorial-container {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .tutorial-sidebar {
+        flex: 0 0 300px;
+        background-color: var(--light-gray);
+        border-radius: 2px;
+        padding: 30px;
+        position: sticky;
+        top: 120px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .tutorial-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+        color: var(--dark-blue);
+        font-weight: 600;
+    }
+
+    .tutorial-steps {
+        list-style: none;
+    }
+
+    .tutorial-step {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .tutorial-step:last-child {
+        border-bottom: none;
+    }
+
+    .tutorial-step:hover {
+        color: var(--primary);
+    }
+
+    .tutorial-step.active {
+        color: var(--primary);
+        font-weight: 600;
+    }
+
+    .step-number {
+        width: 32px;
+        height: 32px;
+        background-color: var(--light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 2px solid #e0e0e0;
+        transition: var(--transition);
+    }
+
+    .tutorial-step.active .step-number {
+        background-color: var(--primary);
+        color: var(--light);
+        border-color: var(--primary);
+    }
+
+    .tutorial-content {
+        flex: 1;
+        background-color: var(--light-gray);
+        border-radius: 2px;
+        padding: 40px;
+        min-height: 500px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .step-content {
+        display: none;
+    }
+
+    .step-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header {
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding-bottom: 20px;
+    }
+
+    .step-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--dark-blue);
+        font-weight: 700;
+    }
+
+    .step-subtitle {
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    .step-body {
+        margin-bottom: 40px;
+    }
+
+    .step-body p {
+        margin-bottom: 15px;
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    .step-body ul {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+    .step-body li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .code-block {
+        background-color: var(--dark-blue);
+        color: var(--light);
+        padding: 25px;
+        border-radius: 2px;
+        margin: 25px 0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .step-body code {
+        background-color: rgba(6, 39, 62, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+    }
+
+    .step-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        padding-top: 25px;
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-outline:hover {
+        background-color: var(--primary);
+        color: var(--light);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .tutorial-container {
+            flex-direction: column;
+        }
+        
+        .tutorial-sidebar {
+            position: static;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .step-title {
+            font-size: 1.6rem;
+        }
+        
+        .tutorial-content {
+            padding: 25px;
+        }
+    }
+</style>
+
+<script>
+    // Interactive tutorial functions
+    function showStep(stepNumber) {
+        // Update active step in sidebar
+        document.querySelectorAll('.tutorial-step').forEach(step => {
+            step.classList.remove('active');
+        });
+        document.querySelector(`.tutorial-step[data-step="${stepNumber}"]`).classList.add('active');
+        
+        // Show corresponding content
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(`step${stepNumber}`).classList.add('active');
+        
+        // Scroll to top of tutorial content
+        document.querySelector('.tutorial-content').scrollTop = 0;
+    }
+
+    function nextStep(currentStep) {
+        const nextStep = parseInt(currentStep) + 1;
+        if (nextStep <= 5) {
+            showStep(nextStep);
+        }
+    }
+
+    function prevStep(currentStep) {
+        const prevStep = parseInt(currentStep) - 1;
+        if (prevStep >= 1) {
+            showStep(prevStep);
+        }
+    }
+
+    function completeTutorial() {
+        alert('Congratulations! You have completed the CSS Grid tutorial.');
+        // Reset to first step
+        showStep(1);
+    }
+
+    // Add click event listeners to tutorial steps
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.tutorial-step').forEach(step => {
+            step.addEventListener('click', function() {
+                const stepNumber = this.getAttribute('data-step');
+                showStep(stepNumber);
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Categories Section - Split Layout -->
+    <section class="categories section">
+        <div class="container">
+            <div class="categories-content">
+                <div class="categories-text">
+                    <h2>Explore by Category</h2>
+                    <p>Browse our extensive library of tutorials organized by technology categories to find exactly what you're looking for.</p>
+                    <a href="#" class="btn">View All Categories</a>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-icon">💻</div>
+                        <h3>Web Development</h3>
+                        <p>HTML, CSS, JavaScript, Frameworks</p>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📱</div>
+                        <h3>Mobile Development</h3>
+                        <p>iOS, Android, Cross-platform</p>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">📊</div>
+                        <h3>Data Science</h3>
+                        <p>Python, ML, Analytics, Visualization</p>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">🎨</div>
+                        <h3>UI/UX Design</h3>
+                        <p>Wireframing, Prototyping, Research</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechLearn</h3>
+                    <p>Empowering learners worldwide with high-quality technology education and resources.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Development</a></li>
+                        <li><a href="#">Data Science</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Cloud Computing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 TechLearn. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add animation on scroll for tutorial cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply initial styles and observe tutorial cards
+            document.querySelectorAll('.tutorial-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

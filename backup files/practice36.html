@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Services - Defcon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap');
+        
+        .defcon-digital-marketing-container {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e5e5e5 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .defcon-digital-hero {
+            height: 80vh;
+            background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .defcon-digital-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: defcon-grid-move 20s linear infinite;
+        }
+
+        @keyframes defcon-grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 10px); }
+        }
+
+        .defcon-digital-hero-content {
+            text-align: center;
+            color: #ffffff;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .defcon-digital-hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0 0 30px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: defcon-fade-up 1s ease-out 0.5s forwards;
+            background: linear-gradient(45deg, #ffffff, #e5e5e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .defcon-digital-hero-subtitle {
+            font-size: 1.8rem;
+            margin: 0 0 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: defcon-fade-up 1s ease-out 0.8s forwards;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .defcon-digital-cta-button {
+            background: linear-gradient(45deg, #0091ff, #06273e);
+            color: #ffffff;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-family: 'Times New Roman', serif;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: defcon-fade-up 1s ease-out 1.1s forwards;
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+        }
+
+        .defcon-digital-cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 145, 255, 0.4);
+        }
+
+        @keyframes defcon-fade-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .defcon-digital-services-section {
+            padding: 120px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .defcon-digital-section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #06273e;
+            margin: 0 0 80px 0;
+            position: relative;
+        }
+
+        .defcon-digital-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #0091ff, #06273e);
+            border-radius: 2px;
+        }
+
+        .defcon-digital-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .defcon-digital-service-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 145, 255, 0.1);
+        }
+
+        .defcon-digital-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 145, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .defcon-digital-service-card:hover::before {
+            left: 100%;
+        }
+
+        .defcon-digital-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(6, 39, 62, 0.15);
+        }
+
+        .defcon-digital-service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #0091ff, #06273e);
+            border-radius: 20px;
+            margin: 0 0 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .defcon-digital-service-card h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #06273e;
+            margin: 0 0 20px 0;
+        }
+
+        .defcon-digital-service-card p {
+            font-size: 1.1rem;
+            color: #666666;
+            line-height: 1.8;
+            margin: 0 0 30px 0;
+        }
+
+        .defcon-digital-service-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0091ff;
+            margin: 0 0 30px 0;
+        }
+
+        .defcon-digital-service-features {
+            margin: 0 0 40px 0;
+        }
+
+        .defcon-digital-service-features li {
+            list-style: none;
+            padding: 8px 0;
+            color: #06273e;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .defcon-digital-service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0091ff;
+            font-weight: 700;
+        }
+
+        .defcon-digital-service-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-digital-btn-primary {
+            background: linear-gradient(45deg, #0091ff, #06273e);
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-family: 'Times New Roman', serif;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .defcon-digital-btn-secondary {
+            background: transparent;
+            color: #0091ff;
+            border: 2px solid #0091ff;
+            padding: 13px 30px;
+            font-size: 1rem;
+            font-family: 'Times New Roman', serif;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .defcon-digital-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 145, 255, 0.3);
+        }
+
+        .defcon-digital-btn-secondary:hover {
+            background: #0091ff;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .defcon-digital-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(6, 39, 62, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .defcon-digital-modal.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .defcon-digital-modal-content {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(6, 39, 62, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-digital-modal.active .defcon-digital-modal-content {
+            transform: scale(1);
+        }
+
+        .defcon-digital-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .defcon-digital-modal-content::-webkit-scrollbar-track {
+            background: #e5e5e5;
+            border-radius: 4px;
+        }
+
+        .defcon-digital-modal-content::-webkit-scrollbar-thumb {
+            background: #0091ff;
+            border-radius: 4px;
+        }
+
+        .defcon-digital-modal-close {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-digital-modal-close:hover {
+            background: #0091ff;
+            color: #ffffff;
+        }
+
+        .defcon-digital-modal h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #06273e;
+            margin: 0 0 30px 0;
+        }
+
+        .defcon-digital-modal p {
+            font-size: 1.1rem;
+            color: #666666;
+            line-height: 1.8;
+            margin: 0 0 20px 0;
+        }
+
+        .defcon-digital-form-container {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(6, 39, 62, 0.3);
+        }
+
+        .defcon-digital-form-group {
+            margin: 0 0 25px 0;
+        }
+
+        .defcon-digital-form-label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #06273e;
+            margin: 0 0 8px 0;
+        }
+
+        .defcon-digital-form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Times New Roman', serif;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .defcon-digital-form-input:focus {
+            outline: none;
+            border-color: #0091ff;
+        }
+
+        .defcon-digital-form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .defcon-digital-stats-section {
+            background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+            padding: 100px 20px;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-digital-stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            text-align: center;
+        }
+
+        .defcon-digital-stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .defcon-digital-stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-digital-stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            background: linear-gradient(45deg, #ffffff, #e5e5e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .defcon-digital-stat-label {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        .defcon-digital-testimonials {
+            padding: 120px 20px;
+            background: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .defcon-digital-testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 0 0 40px 0;
+            box-shadow: 0 15px 40px rgba(6, 39, 62, 0.1);
+            border-left: 5px solid #0091ff;
+        }
+
+        .defcon-digital-testimonial-text {
+            font-size: 1.2rem;
+            color: #06273e;
+            font-style: italic;
+            line-height: 1.8;
+            margin: 0 0 25px 0;
+        }
+
+        .defcon-digital-testimonial-author {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0091ff;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .defcon-digital-hero-title {
+                font-size: 3rem;
+            }
+            
+            .defcon-digital-hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .defcon-digital-services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-digital-service-card {
+                padding: 40px 30px;
+            }
+            
+            .defcon-digital-modal-content {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .defcon-digital-stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        .defcon-digital-floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .defcon-digital-floating-element {
+            position: absolute;
+            background: rgba(0, 145, 255, 0.1);
+            border-radius: 50%;
+            animation: defcon-float 6s ease-in-out infinite;
+        }
+
+        .defcon-digital-floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .defcon-digital-floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .defcon-digital-floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes defcon-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="defcon-digital-marketing-container">
+        <!-- Hero Section -->
+        <div class="defcon-digital-hero">
+            <div class="defcon-digital-floating-elements">
+                <div class="defcon-digital-floating-element"></div>
+                <div class="defcon-digital-floating-element"></div>
+                <div class="defcon-digital-floating-element"></div>
+            </div>
+            <div class="defcon-digital-hero-content">
+                <h1 class="defcon-digital-hero-title">Digital Marketing Excellence</h1>
+                <p class="defcon-digital-hero-subtitle">Transform your brand with data-driven strategies that deliver exceptional ROI</p>
+                <button class="defcon-digital-cta-button" onclick="scrollToServices()">Explore Our Services</button>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="defcon-digital-services-section" id="services">
+            <h2 class="defcon-digital-section-title">Premium Digital Marketing Services</h2>
+            
+            <div class="defcon-digital-services-grid">
+                <!-- SEO & Content Strategy -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">🚀</div>
+                    <h3>SEO & Content Strategy</h3>
+                    <p>Dominate search results with our advanced SEO techniques and content marketing strategies that drive organic traffic and boost conversions.</p>
+                    <div class="defcon-digital-service-price">From $2,500/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Comprehensive SEO Audit & Strategy</li>
+                        <li>Keyword Research & Competitor Analysis</li>
+                        <li>Content Creation & Optimization</li>
+                        <li>Technical SEO Implementation</li>
+                        <li>Monthly Performance Reports</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('seoModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('seoForm')">Get Quote</button>
+                    </div>
+                </div>
+
+                <!-- Social Media Management -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">📱</div>
+                    <h3>Social Media Management</h3>
+                    <p>Build a powerful social presence across all platforms with engaging content, community management, and targeted advertising campaigns.</p>
+                    <div class="defcon-digital-service-price">From $1,800/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Multi-Platform Content Strategy</li>
+                        <li>Daily Content Creation & Posting</li>
+                        <li>Community Management & Engagement</li>
+                        <li>Paid Social Advertising Campaigns</li>
+                        <li>Analytics & Performance Tracking</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('socialModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('socialForm')">Get Quote</button>
+                    </div>
+                </div>
+
+                <!-- PPC & Google Ads -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">🎯</div>
+                    <h3>PPC & Google Ads</h3>
+                    <p>Maximize your advertising ROI with expertly managed PPC campaigns across Google, Bing, and social media platforms.</p>
+                    <div class="defcon-digital-service-price">From $2,200/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Campaign Strategy & Setup</li>
+                        <li>Keyword Research & Ad Creation</li>
+                        <li>Landing Page Optimization</li>
+                        <li>Bid Management & Budget Optimization</li>
+                        <li>Conversion Tracking & Reporting</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('ppcModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('ppcForm')">Get Quote</button>
+                    </div>
+                </div>
+
+                <!-- Email Marketing -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">📧</div>
+                    <h3>Email Marketing Automation</h3>
+                    <p>Nurture leads and retain customers with sophisticated email marketing campaigns that deliver personalized experiences at scale.</p>
+                    <div class="defcon-digital-service-price">From $1,500/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Email Campaign Strategy & Design</li>
+                        <li>Marketing Automation Workflows</li>
+                        <li>List Segmentation & Personalization</li>
+                        <li>A/B Testing & Optimization</li>
+                        <li>Performance Analytics & Insights</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('emailModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('emailForm')">Get Quote</button>
+                    </div>
+                </div>
+
+                <!-- Brand Strategy -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">💎</div>
+                    <h3>Brand Strategy & Identity</h3>
+                    <p>Develop a compelling brand identity that resonates with your target audience and differentiates you from competitors.</p>
+                    <div class="defcon-digital-service-price">From $3,500/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Brand Audit & Positioning Strategy</li>
+                        <li>Visual Identity Development</li>
+                        <li>Brand Guidelines & Standards</li>
+                        <li>Marketing Collateral Design</li>
+                        <li>Brand Implementation Support</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('brandModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('brandForm')">Get Quote</button>
+                    </div>
+                </div>
+
+                <!-- Analytics & Reporting -->
+                <div class="defcon-digital-service-card">
+                    <div class="defcon-digital-service-icon">📊</div>
+                    <h3>Analytics & Data Intelligence</h3>
+                    <p>Make data-driven decisions with comprehensive analytics, custom dashboards, and actionable insights that drive growth.</p>
+                    <div class="defcon-digital-service-price">From $1,200/mo</div>
+                    <ul class="defcon-digital-service-features">
+                        <li>Analytics Setup & Configuration</li>
+                        <li>Custom Dashboard Creation</li>
+                        <li>Performance Tracking & Monitoring</li>
+                        <li>Data Analysis & Insights</li>
+                        <li>Monthly Strategy Recommendations</li>
+                    </ul>
+                    <div class="defcon-digital-service-buttons">
+                        <button class="defcon-digital-btn-primary" onclick="openModal('analyticsModal')">Learn More</button>
+                        <button class="defcon-digital-btn-secondary" onclick="openForm('analyticsForm')">Get Quote</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="defcon-digital-stats-section">
+            <div class="defcon-digital-stats-container">
+                <div class="defcon-digital-stat-item">
+                    <div class="defcon-digital-stat-number" data-count="500">0</div>
+                    <p class="defcon-digital-stat-label">Successful Campaigns</p>
+                </div>
+                <div class="defcon-digital-stat-item">
+                    <div class="defcon-digital-stat-number" data-count="250">0</div>
+                    <p class="defcon-digital-stat-label">Happy Clients</p>
+                </div>
+                <div class="defcon-digital-stat-item">
+                    <div class="defcon-digital-stat-number" data-count="150">0</div>
+                    <p class="defcon-digital-stat-label">ROI Improvement</p>
+                </div>
+                <div class="defcon-digital-stat-item">
+                    <div class="defcon-digital-stat-number" data-count="24">0</div>
+                    <p class="defcon-digital-stat-label">Hours Support</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="defcon-digital-testimonials">
+            <h2 class="defcon-digital-section-title">What Our Clients Say</h2>
+            <div class="defcon-digital-testimonial-card">
+                <p class="defcon-digital-testimonial-text">"Defcon transformed our digital presence completely. Our website traffic increased by 300% and conversions doubled within the first quarter. Their strategic approach and attention to detail is unmatched."</p>
+                <p class="defcon-digital-testimonial-author">— Sarah Johnson, CEO of TechVenture</p>
+            </div>
+            <div class="defcon-digital-testimonial-card">
+                <p class="defcon-digital-testimonial-text">"Working with Defcon has been a game-changer for our business. Their PPC campaigns delivered exceptional ROI, and their team's expertise in digital marketing is evident in every campaign they run."</p>
+                <p class="defcon-digital-testimonial-author">— Michael Chen, Founder of GrowthLabs</p>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="seoModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('seoModal')">&times;</span>
+                <h2>SEO & Content Strategy</h2>
+                <p>Our comprehensive SEO and content strategy service is designed to establish your brand as an industry authority while driving sustainable organic growth.</p>
+                <p><strong>What's Included:</strong></p>
+                <p>• Custom social media strategy tailored to your brand and audience<br>
+                • Daily content creation including graphics, videos, and copy<br>
+                • Multi-platform posting and scheduling optimization<br>
+                • Community management and real-time engagement<br>
+                • Influencer partnership coordination and management<br>
+                • Paid social advertising campaigns with A/B testing<br>
+                • Social media contests and promotional campaigns<br>
+                • Monthly analytics reports with growth insights</p>
+                <p><strong>Platforms Covered:</strong> Facebook, Instagram, Twitter, LinkedIn, TikTok, YouTube, and emerging platforms.</p>
+                <p><strong>Perfect For:</strong> Brands looking to build authentic relationships with their audience and drive engagement-based conversions.</p>
+            </div>
+        </div>
+
+        <div id="ppcModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('ppcModal')">&times;</span>
+                <h2>PPC & Google Ads</h2>
+                <p>Maximize your advertising investment with our data-driven PPC management service that focuses on delivering measurable ROI.</p>
+                <p><strong>What's Included:</strong></p>
+                <p>• Comprehensive account audit and competitive analysis<br>
+                • Campaign strategy development and implementation<br>
+                • Advanced keyword research and negative keyword management<br>
+                • Ad copy creation and A/B testing<br>
+                • Landing page optimization recommendations<br>
+                • Bid management and budget optimization<br>
+                • Conversion tracking and attribution modeling<br>
+                • Weekly performance monitoring and monthly detailed reports</p>
+                <p><strong>Platforms:</strong> Google Ads, Microsoft Advertising, Facebook Ads, LinkedIn Ads, and other relevant platforms.</p>
+                <p><strong>Perfect For:</strong> Businesses seeking immediate visibility and measurable results from their advertising spend.</p>
+            </div>
+        </div>
+
+        <div id="emailModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('emailModal')">&times;</span>
+                <h2>Email Marketing Automation</h2>
+                <p>Build lasting customer relationships and drive consistent revenue with our sophisticated email marketing automation service.</p>
+                <p><strong>What's Included:</strong></p>
+                <p>• Email marketing strategy and customer journey mapping<br>
+                • Custom email template design and development<br>
+                • Marketing automation workflow setup and optimization<br>
+                • List segmentation and personalization strategies<br>
+                • A/B testing for subject lines, content, and send times<br>
+                • Lead nurturing sequences and drip campaigns<br>
+                • E-commerce integration and abandoned cart recovery<br>
+                • Performance analytics and conversion tracking</p>
+                <p><strong>Typical Results:</strong> 25-40% increase in customer lifetime value and 15-30% improvement in repeat purchase rates.</p>
+                <p><strong>Perfect For:</strong> E-commerce businesses and service providers looking to nurture leads and maximize customer retention.</p>
+            </div>
+        </div>
+
+        <div id="brandModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('brandModal')">&times;</span>
+                <h2>Brand Strategy & Identity</h2>
+                <p>Establish a powerful brand identity that resonates with your target audience and drives business growth through strategic positioning.</p>
+                <p><strong>What's Included:</strong></p>
+                <p>• Comprehensive brand audit and market research<br>
+                • Brand positioning and messaging strategy development<br>
+                • Visual identity design including logo, colors, and typography<br>
+                • Brand guidelines and style guide creation<br>
+                • Marketing collateral design and templates<br>
+                • Brand voice and tone documentation<br>
+                • Implementation support across all touchpoints<br>
+                • Brand monitoring and reputation management</p>
+                <p><strong>Deliverables:</strong> Complete brand identity package, digital and print assets, brand guidelines document.</p>
+                <p><strong>Perfect For:</strong> New businesses, rebranding initiatives, or established companies looking to strengthen their market position.</p>
+            </div>
+        </div>
+
+        <div id="analyticsModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('analyticsModal')">&times;</span>
+                <h2>Analytics & Data Intelligence</h2>
+                <p>Transform raw data into actionable insights that drive strategic decision-making and accelerate business growth.</p>
+                <p><strong>What's Included:</strong></p>
+                <p>• Google Analytics 4 and Google Tag Manager setup<br>
+                • Custom dashboard creation and KPI tracking<br>
+                • E-commerce and conversion tracking implementation<br>
+                • Cross-platform data integration and analysis<br>
+                • Customer behavior analysis and user journey mapping<br>
+                • Performance benchmarking and competitive analysis<br>
+                • Monthly strategy sessions and recommendations<br>
+                • Data visualization and executive reporting</p>
+                <p><strong>Tools Used:</strong> Google Analytics, Google Data Studio, Adobe Analytics, and custom reporting solutions.</p>
+                <p><strong>Perfect For:</strong> Data-driven businesses looking to understand their customers better and optimize their marketing efforts.</p>
+            </div>
+        </div>
+
+        <!-- Form Modals -->
+        <div id="seoForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('seoForm')">&times;</span>
+                <h2>SEO & Content Strategy Quote</h2>
+                <form onsubmit="submitForm(event, 'SEO')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Current Website URL</label>
+                        <input type="url" class="defcon-digital-form-input">
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Monthly Marketing Budget</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Budget Range</option>
+                            <option value="2500-5000">$2,500 - $5,000</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000-25000">$10,000 - $25,000</option>
+                            <option value="25000+">$25,000+</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Tell us about your SEO goals, target keywords, and current challenges..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="socialForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('socialForm')">&times;</span>
+                <h2>Social Media Management Quote</h2>
+                <form onsubmit="submitForm(event, 'Social Media')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Platforms of Interest</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Primary Focus</option>
+                            <option value="facebook-instagram">Facebook & Instagram</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="twitter">Twitter</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="all-platforms">All Platforms</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Monthly Marketing Budget</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Budget Range</option>
+                            <option value="1800-3000">$1,800 - $3,000</option>
+                            <option value="3000-5000">$3,000 - $5,000</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000+">$10,000+</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Describe your social media goals, target audience, and current presence..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="ppcForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('ppcForm')">&times;</span>
+                <h2>PPC & Google Ads Quote</h2>
+                <form onsubmit="submitForm(event, 'PPC')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Monthly Ad Spend Budget</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Ad Spend Budget</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000-25000">$10,000 - $25,000</option>
+                            <option value="25000-50000">$25,000 - $50,000</option>
+                            <option value="50000+">$50,000+</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Campaign Objectives</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Primary Goal</option>
+                            <option value="lead-generation">Lead Generation</option>
+                            <option value="ecommerce-sales">E-commerce Sales</option>
+                            <option value="brand-awareness">Brand Awareness</option>
+                            <option value="app-installs">App Installs</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Describe your PPC goals, target audience, and any existing campaigns..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="emailForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('emailForm')">&times;</span>
+                <h2>Email Marketing Quote</h2>
+                <form onsubmit="submitForm(event, 'Email Marketing')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Current Email List Size</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select List Size</option>
+                            <option value="0-1000">0 - 1,000 subscribers</option>
+                            <option value="1000-5000">1,000 - 5,000 subscribers</option>
+                            <option value="5000-25000">5,000 - 25,000 subscribers</option>
+                            <option value="25000+">25,000+ subscribers</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Marketing Goals</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Primary Goal</option>
+                            <option value="lead-nurturing">Lead Nurturing</option>
+                            <option value="customer-retention">Customer Retention</option>
+                            <option value="ecommerce-automation">E-commerce Automation</option>
+                            <option value="newsletter">Newsletter & Content</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Tell us about your email marketing goals, current tools, and target audience..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="brandForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('brandForm')">&times;</span>
+                <h2>Brand Strategy Quote</h2>
+                <form onsubmit="submitForm(event, 'Brand Strategy')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Type</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Project Type</option>
+                            <option value="new-brand">New Brand Identity</option>
+                            <option value="rebrand">Complete Rebrand</option>
+                            <option value="refresh">Brand Refresh</option>
+                            <option value="guidelines">Brand Guidelines Only</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Industry</label>
+                        <input type="text" class="defcon-digital-form-input" placeholder="e.g., Technology, Healthcare, Finance" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Describe your brand goals, target audience, and vision..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="analyticsForm" class="defcon-digital-modal">
+            <div class="defcon-digital-form-container">
+                <span class="defcon-digital-modal-close" onclick="closeModal('analyticsForm')">&times;</span>
+                <h2>Analytics & Data Intelligence Quote</h2>
+                <form onsubmit="submitForm(event, 'Analytics')">
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Company Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Contact Name</label>
+                        <input type="text" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Email Address</label>
+                        <input type="email" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Phone Number</label>
+                        <input type="tel" class="defcon-digital-form-input" required>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Current Analytics Setup</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Current Setup</option>
+                            <option value="none">No Analytics</option>
+                            <option value="basic-ga">Basic Google Analytics</option>
+                            <option value="advanced-setup">Advanced Setup</option>
+                            <option value="multiple-tools">Multiple Tools</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Primary Focus</label>
+                        <select class="defcon-digital-form-input" required>
+                            <option value="">Select Primary Focus</option>
+                            <option value="ecommerce-tracking">E-commerce Tracking</option>
+                            <option value="lead-generation">Lead Generation</option>
+                            <option value="content-performance">Content Performance</option>
+                            <option value="user-behavior">User Behavior Analysis</option>
+                        </select>
+                    </div>
+                    <div class="defcon-digital-form-group">
+                        <label class="defcon-digital-form-label">Project Details</label>
+                        <textarea class="defcon-digital-form-input defcon-digital-form-textarea" placeholder="Describe your analytics goals, current challenges, and reporting needs..." required></textarea>
+                    </div>
+                    <button type="submit" class="defcon-digital-btn-primary" style="width: 100%; margin-top: 20px;">Request Quote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll to services section
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openForm(formId) {
+            openModal(formId);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('defcon-digital-modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submission
+        function submitForm(event, serviceType) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted for:', serviceType, data);
+            
+            // Show success message
+            alert(`Thank you for your interest in our ${serviceType} service! We'll contact you within 24 hours with a detailed quote.`);
+            
+            // Close modal and reset form
+            const modal = event.target.closest('.defcon-digital-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            event.target.reset();
+        }
+
+        // Animated counter for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.defcon-digital-stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (counter.closest('.defcon-digital-stat-item:nth-child(3)') ? '%' : '+');
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer for animations
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Trigger counter animation for stats section
+                        if (entry.target.classList.contains('defcon-digital-stats-section')) {
+                            setTimeout(animateCounters, 500);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            // Observe stat items
+            document.querySelectorAll('.defcon-digital-stat-item').forEach(item => {
+                observer.observe(item);
+            });
+
+            // Observe stats section
+            const statsSection = document.querySelector('.defcon-digital-stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        };
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            observeElements();
+            
+            // Add scroll effect to service cards
+            const cards = document.querySelectorAll('.defcon-digital-service-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add smooth parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.defcon-digital-hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add keyboard support for modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.defcon-digital-modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    </script>
+</body>
+</html>What's Included:</strong></p>
+                <p>• In-depth technical SEO audit identifying optimization opportunities<br>
+                • Competitor analysis and market positioning strategy<br>
+                • Comprehensive keyword research and content gap analysis<br>
+                • Monthly content calendar with topic clusters and optimization guidelines<br>
+                • On-page optimization for existing and new content<br>
+                • Link building strategy and outreach campaigns<br>
+                • Local SEO optimization for location-based businesses<br>
+                • Monthly performance reports with actionable insights</p>
+                <p><strong>Timeline:</strong> Initial results within 3-6 months, with significant improvements typically seen within 6-12 months.</p>
+                <p><strong>Perfect For:</strong> Businesses looking to establish long-term organic visibility and reduce dependency on paid advertising.</p>
+            </div>
+        </div>
+
+        <div id="socialModal" class="defcon-digital-modal">
+            <div class="defcon-digital-modal-content">
+                <span class="defcon-digital-modal-close" onclick="closeModal('socialModal')">&times;</span>
+                <h2>Social Media Management</h2>
+                <p>Transform your social media presence into a powerful business growth engine with our comprehensive social media management service.</p>
+                <p><strong>

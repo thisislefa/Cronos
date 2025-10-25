@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon AI Assistant - Sentinel</title>
+    <style>
+        .defcon-assistant-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #06273e 0%, #0d3a52 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 10000;
+            overflow: hidden;
+            opacity: 0;
+            animation: defcon-fade-in 0.8s ease-out forwards;
+        }
+
+        @keyframes defcon-fade-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .defcon-assistant-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 145, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 145, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .defcon-assistant-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 145, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 145, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            animation: defcon-grid-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes defcon-grid-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+
+        .defcon-assistant-header {
+            position: relative;
+            z-index: 3;
+            padding: 30px 40px;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.2);
+            background: rgba(6, 39, 62, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .defcon-assistant-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .defcon-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0091ff 0%, #0077cc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 145, 255, 0.3);
+            animation: defcon-logo-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes defcon-logo-glow {
+            from { box-shadow: 0 8px 20px rgba(0, 145, 255, 0.3); }
+            to { box-shadow: 0 8px 30px rgba(0, 145, 255, 0.5); }
+        }
+
+        .defcon-logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .defcon-assistant-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0091ff;
+            margin-bottom: 8px;
+        }
+
+        .defcon-assistant-subtitle {
+            font-size: 16px;
+            color: #e5e5e5;
+            opacity: 0.8;
+        }
+
+        .defcon-assistant-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-assistant-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .defcon-assistant-main {
+            position: relative;
+            z-index: 3;
+            height: calc(100vh - 140px);
+            display: flex;
+            flex-direction: column;
+            padding: 0 40px 40px 40px;
+        }
+
+        .defcon-chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(6, 39, 62, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 145, 255, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .defcon-chat-messages {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .defcon-welcome-message {
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(0, 145, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 145, 255, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            animation: defcon-message-appear 0.6s ease-out;
+        }
+
+        @keyframes defcon-message-appear {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .defcon-welcome-greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0091ff;
+            margin-bottom: 10px;
+        }
+
+        .defcon-welcome-text {
+            font-size: 16px;
+            color: #e5e5e5;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .defcon-quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .defcon-quick-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .defcon-quick-action:hover {
+            background: rgba(0, 145, 255, 0.1);
+            border-color: rgba(0, 145, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .defcon-quick-action-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #0091ff;
+        }
+
+        .defcon-quick-action-text {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .defcon-message {
+            display: flex;
+            margin-bottom: 20px;
+            animation: defcon-message-appear 0.6s ease-out;
+        }
+
+        .defcon-message-user {
+            justify-content: flex-end;
+        }
+
+        .defcon-message-content {
+            max-width: 70%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .defcon-message-user .defcon-message-content {
+            background: linear-gradient(135deg, #0091ff 0%, #0077cc 100%);
+            color: #ffffff;
+        }
+
+        .defcon-message-assistant .defcon-message-content {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e5e5e5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-chat-input-container {
+            padding: 25px 30px;
+            background: rgba(6, 39, 62, 0.5);
+            border-top: 1px solid rgba(0, 145, 255, 0.2);
+        }
+
+        .defcon-input-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .defcon-chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 15px 20px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-chat-input::placeholder {
+            color: rgba(229, 229, 229, 0.6);
+        }
+
+        .defcon-chat-input:focus {
+            border-color: #0091ff;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+        }
+
+        .defcon-input-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .defcon-input-button {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #0091ff 0%, #0077cc 100%);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.3);
+        }
+
+        .defcon-input-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 145, 255, 0.4);
+        }
+
+        .defcon-input-button:active {
+            transform: scale(0.95);
+        }
+
+        .defcon-voice-button {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-voice-button.defcon-recording {
+            background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
+            animation: defcon-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes defcon-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .defcon-mode-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-mode-button {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: #e5e5e5;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-mode-button.defcon-active {
+            background: linear-gradient(135deg, #0091ff 0%, #0077cc 100%);
+            color: #ffffff;
+            border-color: #0091ff;
+        }
+
+        .defcon-mode-button:hover:not(.defcon-active) {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .defcon-typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            max-width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .defcon-typing-indicator.defcon-show {
+            display: flex;
+            animation: defcon-message-appear 0.3s ease-out;
+        }
+
+        .defcon-typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #0091ff;
+            border-radius: 50%;
+            animation: defcon-typing 1.4s ease-in-out infinite;
+        }
+
+        .defcon-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .defcon-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes defcon-typing {
+            0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-10px); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .defcon-assistant-header {
+                padding: 20px;
+            }
+
+            .defcon-assistant-main {
+                padding: 0 20px 20px 20px;
+            }
+
+            .defcon-assistant-close {
+                top: 20px;
+                right: 20px;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .defcon-logo-text {
+                font-size: 24px;
+            }
+
+            .defcon-assistant-title {
+                font-size: 18px;
+            }
+
+            .defcon-assistant-subtitle {
+                font-size: 14px;
+            }
+
+            .defcon-chat-messages {
+                padding: 20px;
+            }
+
+            .defcon-welcome-message {
+                padding: 20px;
+            }
+
+            .defcon-quick-actions {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .defcon-quick-action {
+                padding: 12px;
+            }
+
+            .defcon-quick-action-icon {
+                font-size: 20px;
+            }
+
+            .defcon-quick-action-text {
+                font-size: 12px;
+            }
+
+            .defcon-message-content {
+                max-width: 85%;
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .defcon-chat-input-container {
+                padding: 20px;
+            }
+
+            .defcon-input-wrapper {
+                gap: 10px;
+            }
+
+            .defcon-chat-input {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .defcon-input-button {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .defcon-mode-selector {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .defcon-mode-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-assistant-header {
+                padding: 15px;
+            }
+
+            .defcon-assistant-main {
+                padding: 0 15px 15px 15px;
+            }
+
+            .defcon-logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .defcon-logo-text {
+                font-size: 20px;
+            }
+
+            .defcon-quick-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .defcon-mode-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="defcon-assistant-container" id="defconAssistant">
+        <div class="defcon-assistant-background"></div>
+        <div class="defcon-assistant-grid"></div>
+        
+        <div class="defcon-assistant-header">
+            <div class="defcon-assistant-logo">
+                <div class="defcon-logo-icon">D</div>
+                <div class="defcon-logo-text">DEFCON</div>
+            </div>
+            <div class="defcon-assistant-title">Sentinel AI Assistant</div>
+            <div class="defcon-assistant-subtitle">Your intelligent cybersecurity companion</div>
+            <button class="defcon-assistant-close" onclick="closeDefconAssistant()">×</button>
+        </div>
+
+        <div class="defcon-assistant-main">
+            <div class="defcon-chat-container">
+                <div class="defcon-chat-messages" id="defconChatMessages">
+                    <div class="defcon-welcome-message">
+                        <div class="defcon-welcome-greeting">Welcome back. I'm Sentinel, Defcon's AI Assistant.</div>
+                        <div class="defcon-welcome-text">
+                            I'm here to help you make smarter, safer tech decisions. Whether you need cybersecurity guidance, 
+                            want to explore our services, or need technical support, I'm ready to assist.
+                        </div>
+                        <div class="defcon-quick-actions">
+                            <div class="defcon-quick-action" onclick="selectQuickAction('security-audit')">
+                                <div class="defcon-quick-action-icon">🔐</div>
+                                <div class="defcon-quick-action-text">Security Audit</div>
+                            </div>
+                            <div class="defcon-quick-action" onclick="selectQuickAction('consultation')">
+                                <div class="defcon-quick-action-icon">📞</div>
+                                <div class="defcon-quick-action-text">Book Consultation</div>
+                            </div>
+                            <div class="defcon-quick-action" onclick="selectQuickAction('resources')">
+                                <div class="defcon-quick-action-icon">📚</div>
+                                <div class="defcon-quick-action-text">Resources</div>
+                            </div>
+                            <div class="defcon-quick-action" onclick="selectQuickAction('support')">
+                                <div class="defcon-quick-action-icon">🛠️</div>
+                                <div class="defcon-quick-action-text">Technical Support</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="defcon-typing-indicator" id="defconTypingIndicator">
+                        <div class="defcon-typing-dot"></div>
+                        <div class="defcon-typing-dot"></div>
+                        <div class="defcon-typing-dot"></div>
+                    </div>
+                </div>
+                
+                <div class="defcon-chat-input-container">
+                    <div class="defcon-mode-selector">
+                        <button class="defcon-mode-button defcon-active" data-mode="professional">Professional</button>
+                        <button class="defcon-mode-button" data-mode="friendly">Friendly</button>
+                        <button class="defcon-mode-button" data-mode="technical">Technical</button>
+                    </div>
+                    <div class="defcon-input-wrapper">
+                        <input type="text" class="defcon-chat-input" id="defconChatInput" 
+                               placeholder="Ask me anything about cybersecurity, our services, or get help..."
+                               onkeypress="handleDefconKeyPress(event)">
+                        <button class="defcon-input-button defcon-voice-button" id="defconVoiceButton" 
+                                onclick="toggleDefconVoice()">🎤</button>
+                        <button class="defcon-input-button" onclick="sendDefconMessage()">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let defconCurrentMode = 'professional';
+        let defconIsRecording = false;
+        let defconMediaRecorder = null;
+
+        // Initialize assistant
+        function initDefconAssistant() {
+            const modeButtons = document.querySelectorAll('.defcon-mode-button');
+            modeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    modeButtons.forEach(b => b.classList.remove('defcon-active'));
+                    button.classList.add('defcon-active');
+                    defconCurrentMode = button.dataset.mode;
+                });
+            });
+
+            // Auto-focus input
+            document.getElementById('defconChatInput').focus();
+        }
+
+        // Handle keyboard input
+        function handleDefconKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendDefconMessage();
+            }
+        }
+
+        // Send message
+        function sendDefconMessage() {
+            const input = document.getElementById('defconChatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            addDefconMessage(message, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            showDefconTyping();
+
+            // Simulate AI response
+            setTimeout(() => {
+                hideDefconTyping();
+                const response = generateDefconResponse(message);
+                addDefconMessage(response, 'assistant');
+            }, 1500 + Math.random() * 1000);
+        }
+
+        // Add message to chat
+        function addDefconMessage(content, sender) {
+            const messagesContainer = document.getElementById('defconChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `defcon-message defcon-message-${sender}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'defcon-message-content';
+            contentDiv.textContent = content;
+            
+            messageDiv.appendChild(contentDiv);
+            messagesContainer.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Show typing indicator
+        function showDefconTyping() {
+            document.getElementById('defconTypingIndicator').classList.add('defcon-show');
+        }
+
+        // Hide typing indicator
+        function hideDefconTyping() {
+            document.getElementById('defconTypingIndicator').classList.remove('defcon-show');
+        }
+
+        // Generate AI response (placeholder)
+        function generateDefconResponse(message) {
+            const responses = {
+                professional: {
+                    'security-audit': 'I can help you initiate a comprehensive security audit. Our enterprise-grade assessment covers network vulnerabilities, access controls, and compliance frameworks. Would you like to schedule a consultation with our security architects?',
+                    'consultation': 'I\'d be happy to connect you with our cybersecurity experts. Our consultation covers threat assessment, security strategy, and implementation roadmaps. What specific areas would you like to focus on?',
+                    'resources': 'Our resource library includes white papers on zero-trust architecture, incident response playbooks, and compliance guides. Which specific security domain interests you most?',
+                    'support': 'Our technical support team provides 24/7 assistance for security incidents, system configurations, and threat mitigation. What technical challenge can I help you resolve?',
+                    default: 'Thank you for your inquiry. As Defcon\'s AI assistant, I can provide information about our cybersecurity services, schedule consultations, or connect you with our technical team. How may I assist you today?'
+                },
+                friendly: {
+                    'security-audit': 'Great choice! A security audit is like a health checkup for your digital infrastructure. I can walk you through what to expect and help you get started. What\'s prompting you to look into this?',
+                    'consultation': 'Awesome! I love connecting people with our amazing team. They\'re really knowledgeable and can help with any cybersecurity questions you have. What would you like to chat about with them?',
+                    'resources': 'You\'re in for a treat! We have some fantastic resources that make cybersecurity easier to understand. What kind of topics are you most curious about?',
+                    'support': 'I\'m here to help! Our support team is fantastic and always ready to jump in. What\'s going on that I can help you troubleshoot?',
+                    default: 'Hey there! I\'m so glad you\'re here. I\'m Sentinel, and I\'m excited to help you with anything cybersecurity-related. What can I do for you today?'
+                },
+                technical: {
+                    'security-audit': 'Initiating security audit protocol. Our assessment framework includes NIST CSF alignment, OWASP Top 10 analysis, penetration testing, and vulnerability scanning. Specify target environment: cloud, on-premise, or hybrid infrastructure?',
+                    'consultation': 'Technical consultation available for architecture review, threat modeling, security controls implementation, and incident response procedures. Define scope: infrastructure security, application security, or compliance requirements?',
+                    'resources': 'Access technical documentation: API security best practices, zero-trust implementation guides, SIEM configuration templates, and threat intelligence feeds. Specify required technical domain.',
+                    'support': 'Technical support channels active. Available for: security tool configuration, log analysis, threat hunting, and incident remediation. Describe technical issue parameters.',
+                    default: 'System initialized. Sentinel AI ready for technical queries. Available functions: security analysis, threat assessment, compliance mapping, and technical documentation. Input your technical requirements.'
+                }
+            };
+
+            const modeResponses = responses[defconCurrentMode];
+            
+            // Check for quick action keywords
+            const lowerMessage = message.toLowerCase();
+            if (lowerMessage.includes('audit') || lowerMessage.includes('security assessment')) {
+                return modeResponses['security-audit'];
+            } else if (lowerMessage.includes('consultation') || lowerMessage.includes('meeting') || lowerMessage.includes('book')) {
+                return modeResponses['consultation'];
+            } else if (lowerMessage.includes('resource') || lowerMessage.includes('guide') || lowerMessage.includes('documentation')) {
+                return modeResponses['resources'];
+            } else if (lowerMessage.includes('support') || lowerMessage.includes('help') || lowerMessage.includes('problem')) {
+                return modeResponses['support'];
+            }
+            
+            return modeResponses.default;
+        }
+
+        // Handle quick actions
+        function selectQuickAction(action) {
+            const messages = {
+                'security-audit': 'I\'d like to learn more about your security audit services.',
+                'consultation': 'I\'d like to book a consultation with your team.',
+                'resources': 'Can you show me your available resources and guides?',
+                'support': 'I need technical support with a cybersecurity issue.'
+            };
+
+            const message = messages[action];
+            if (message) {
+                document.getElementById('defconChatInput').value = message;
+                sendDefconMessage();
+            }
+        }
+
+        // Voice functionality
+        function toggleDefconVoice() {
+            const voiceButton = document.getElementById('defconVoiceButton');
+            
+            if (!defconIsRecording) {
+                startDefconRecording(voiceButton);
+            } else {
+                stopDefconRecording(voiceButton);
+            }
+        }
+
+        function startDefconRecording(button) {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        defconIsRecording = true;
+                        button.classList.add('defcon-recording');
+                        button.textContent = '⏹️';
+                        
+                        defconMediaRecorder = new MediaRecorder(stream);
+                        defconMediaRecorder.start();
+                        
+                        setTimeout(() => {
+                            if (defconIsRecording) {
+                                stopDefconRecording(button);
+                            }
+                        }, 5000); // Auto-stop after 5 seconds
+                    })
+                    .catch(err => {
+                        console.error('Error accessing microphone:', err);
+                        alert('Unable to access microphone. Please check permissions.');
+                    });
+            } else {
+                alert('Voice recording not supported in this browser.');
+            }
+        }
+
+        function stopDefconRecording(button) {
+            if (defconMediaRecorder && defconIsRecording) {
+                defconMediaRecorder.stop();
+                defconIsRecording = false;
+                button.classList.remove('defcon-recording');
+                button.textContent = '🎤';
+                
+                // Simulate voice-to-text
+                setTimeout(() => {
+                    const input = document.getElementById('defconChatInput');
+                    input.value = 'I need help with cybersecurity for my business.';
+                    input.focus();
+                }, 500);
+            }
+        }
+
+        // Close assistant
+        function closeDefconAssistant() {
+            const container = document.getElementById('defconAssistant');
+            container.style.animation = 'defcon-fade-in 0.5s ease-in reverse';
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 500);
+        }
+
+        // Initialize when loaded
+        document.addEventListener('DOMContentLoaded', initDefconAssistant);
+    </script>
+</body>
+</html>

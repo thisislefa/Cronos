@@ -1,0 +1,720 @@
+<!-- Hero Section Container -->
+<div class="dcx-parallax-hero">
+  <!-- Background Layers -->
+  <div class="dcx-bg-layer dcx-layer-1"></div>
+  <div class="dcx-bg-layer dcx-layer-2"></div>
+  <div class="dcx-bg-layer dcx-layer-3"></div>
+  <div class="dcx-bg-layer dcx-layer-4"></div>
+  <div class="dcx-bg-layer dcx-layer-5"></div>
+  
+  <!-- Dynamic Grid Pattern -->
+  <div class="dcx-grid-pattern"></div>
+  
+  <!-- 3D Floating Elements -->
+  <div class="dcx-3d-element dcx-cube-1"></div>
+  <div class="dcx-3d-element dcx-sphere-1"></div>
+  <div class="dcx-3d-element dcx-polygon-1"></div>
+  <div class="dcx-3d-element dcx-cube-2"></div>
+  
+  <!-- Main Content Container -->
+  <div class="dcx-content-container">
+    <!-- Glassmorphism Card -->
+    <div class="dcx-glass-card">
+      <h1 class="dcx-main-headline">Elevate Your Digital Presence</h1>
+      <div class="dcx-subheadline-container">
+        <p class="dcx-subheadline"></p>
+        <span class="dcx-typing-cursor">|</span>
+      </div>
+      
+      <!-- Animated Accent Lines -->
+      <div class="dcx-accent-line dcx-line-top"></div>
+      <div class="dcx-accent-line dcx-line-right"></div>
+      <div class="dcx-accent-line dcx-line-bottom"></div>
+      <div class="dcx-accent-line dcx-line-left"></div>
+    </div>
+    
+    <!-- Morphing CTA Button -->
+    <div class="dcx-cta-wrapper">
+      <button class="dcx-morphing-cta">
+        <span class="dcx-cta-text">Begin Transformation</span>
+        <span class="dcx-cta-expander"></span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Navigation Indicators -->
+  <div class="dcx-nav-indicators">
+    <div class="dcx-nav-item dcx-nav-1" data-section="about">
+      <span class="dcx-nav-label">About</span>
+      <span class="dcx-nav-dot"></span>
+    </div>
+    <div class="dcx-nav-item dcx-nav-2" data-section="services">
+      <span class="dcx-nav-label">Services</span>
+      <span class="dcx-nav-dot"></span>
+    </div>
+    <div class="dcx-nav-item dcx-nav-3" data-section="work">
+      <span class="dcx-nav-label">Work</span>
+      <span class="dcx-nav-dot"></span>
+    </div>
+    <div class="dcx-nav-item dcx-nav-4" data-section="contact">
+      <span class="dcx-nav-label">Contact</span>
+      <span class="dcx-nav-dot"></span>
+    </div>
+  </div>
+  
+  <!-- Sound Wave Visualization -->
+  <div class="dcx-sound-waves">
+    <div class="dcx-wave-bar dcx-wave-1"></div>
+    <div class="dcx-wave-bar dcx-wave-2"></div>
+    <div class="dcx-wave-bar dcx-wave-3"></div>
+    <div class="dcx-wave-bar dcx-wave-4"></div>
+    <div class="dcx-wave-bar dcx-wave-5"></div>
+  </div>
+</div>
+
+<style>
+/* Base Styles */
+.dcx-parallax-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  color: #06273e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+/* Background Layers */
+.dcx-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.dcx-layer-1 {
+  background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+  z-index: 1;
+}
+
+.dcx-layer-2 {
+  background: url('thumbnails/pexels-inspiredimages-5626726.jpg') center/cover;
+  opacity: 0.03;
+  z-index: 2;
+}
+
+.dcx-layer-3 {
+  background: radial-gradient(circle at 30% 50%, rgba(0,145,255,0.05) 0%, transparent 50%);
+  z-index: 3;
+}
+
+.dcx-layer-4 {
+  background: url('thumbnails/pexels-altabena-10142683.jpg') center/cover;
+  opacity: 0.5;
+  z-index: 4;
+}
+
+.dcx-layer-5 {
+  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.8) 100%);
+  z-index: 5;
+}
+
+/* Dynamic Grid Pattern */
+.dcx-grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.1;
+  z-index: 6;
+  animation: dcx-grid-pulse 8s infinite alternate;
+}
+
+@keyframes dcx-grid-pulse {
+  0% { opacity: 0.05; background-size: 40px 40px; }
+  50% { opacity: 0.15; background-size: 45px 45px; }
+  100% { opacity: 0.05; background-size: 40px 40px; }
+}
+
+/* 3D Floating Elements */
+.dcx-3d-element {
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transform-style: preserve-3d;
+  will-change: transform;
+  z-index: 7;
+}
+
+.dcx-cube-1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(0,145,255,0.1) 0%, rgba(6,39,62,0.1) 100%);
+  border: 1px solid rgba(0,145,255,0.15);
+  top: 20%;
+  left: 15%;
+  animation: dcx-float-1 12s infinite ease-in-out, dcx-rotate-1 20s infinite linear;
+}
+
+.dcx-sphere-1 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,145,255,0.1) 0%, rgba(6,39,62,0.1) 100%);
+  border: 1px solid rgba(0,145,255,0.1);
+  top: 65%;
+  left: 25%;
+  animation: dcx-float-2 15s infinite ease-in-out;
+}
+
+.dcx-polygon-1 {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(45deg, rgba(0,145,255,0.05) 0%, rgba(6,39,62,0.05) 100%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  top: 30%;
+  right: 20%;
+  animation: dcx-float-3 18s infinite ease-in-out, dcx-rotate-2 25s infinite linear;
+}
+
+.dcx-cube-2 {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(225deg, rgba(0,145,255,0.1) 0%, rgba(6,39,62,0.1) 100%);
+  border: 1px solid rgba(0,145,255,0.1);
+  bottom: 20%;
+  right: 15%;
+  animation: dcx-float-4 14s infinite ease-in-out, dcx-rotate-3 18s infinite linear;
+}
+
+@keyframes dcx-float-1 {
+  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+  50% { transform: translateY(-30px) rotateX(10deg) rotateY(10deg); }
+}
+
+@keyframes dcx-float-2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.1); }
+}
+
+@keyframes dcx-float-3 {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-25px) rotate(10deg); }
+}
+
+@keyframes dcx-float-4 {
+  0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+  50% { transform: translateY(-35px) rotateX(-10deg) rotateY(-10deg); }
+}
+
+@keyframes dcx-rotate-1 {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes dcx-rotate-2 {
+  from { transform: rotateZ(0); }
+  to { transform: rotateZ(360deg); }
+}
+
+@keyframes dcx-rotate-3 {
+  from { transform: rotateX(0); }
+  to { transform: rotateX(360deg); }
+}
+
+/* Main Content */
+.dcx-content-container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Glassmorphism Card */
+.dcx-glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 4px;
+  padding: 60px 80px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.dcx-main-headline {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #06273e;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: dcx-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+.dcx-subheadline-container {
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dcx-subheadline {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #06273e;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.dcx-typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.5rem;
+  background-color: #0091ff;
+  margin-left: 4px;
+  animation: dcx-cursor-blink 0.7s infinite;
+  opacity: 0;
+}
+
+/* Animated Accent Lines */
+.dcx-accent-line {
+  position: absolute;
+  background-color: #0091ff;
+  z-index: 1;
+  opacity: 0;
+}
+
+.dcx-line-top {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  animation: dcx-line-draw-horizontal 0.8s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.dcx-line-right {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 0;
+  animation: dcx-line-draw-vertical 0.8s ease-out forwards;
+  animation-delay: 1.2s;
+}
+
+.dcx-line-bottom {
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  animation: dcx-line-draw-horizontal 0.8s ease-out forwards;
+  animation-delay: 1.6s;
+}
+
+.dcx-line-left {
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  animation: dcx-line-draw-vertical 0.8s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes dcx-line-draw-horizontal {
+  from { width: 0; opacity: 0; }
+  to { width: 100%; opacity: 0.3; }
+}
+
+@keyframes dcx-line-draw-vertical {
+  from { height: 0; opacity: 0; }
+  to { height: 100%; opacity: 0.3; }
+}
+
+@keyframes dcx-fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dcx-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Morphing CTA Button */
+.dcx-cta-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.dcx-morphing-cta {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: #e5e5e5;
+  background: #06273e;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: dcx-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 2.4s;
+}
+
+.dcx-morphing-cta:hover {
+  color: #ffffff;
+  background: #0091ff;
+}
+
+.dcx-morphing-cta:hover .dcx-cta-expander {
+  transform: scaleX(0);
+}
+
+.dcx-cta-text {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.dcx-cta-expander {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #0091ff, #0066cc);
+  z-index: 1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 50px;
+}
+
+/* Navigation Indicators */
+.dcx-nav-indicators {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 20;
+}
+
+.dcx-nav-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: dcx-fade-right 0.5s ease forwards;
+}
+
+.dcx-nav-item:nth-child(1) { animation-delay: 0.8s; }
+.dcx-nav-item:nth-child(2) { animation-delay: 1s; }
+.dcx-nav-item:nth-child(3) { animation-delay: 1.2s; }
+.dcx-nav-item:nth-child(4) { animation-delay: 1.4s; }
+
+.dcx-nav-item:hover {
+  transform: translateX(-5px);
+}
+
+.dcx-nav-item:hover .dcx-nav-label {
+  opacity: 1;
+}
+
+.dcx-nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background-color: #0091ff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.dcx-nav-item:hover .dcx-nav-dot {
+  transform: scale(1.4);
+  background-color: #06273e;
+}
+
+.dcx-nav-label {
+  margin-right: 15px;
+  color: #06273e;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes dcx-fade-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Sound Wave Visualization */
+.dcx-sound-waves {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 40px;
+  z-index: 10;
+}
+
+.dcx-wave-bar {
+  width: 4px;
+  background: linear-gradient(to top, #0091ff, rgba(0,145,255,0.3));
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.dcx-wave-1 { height: 10%; animation: dcx-wave-anim-1 1.5s infinite ease-in-out; }
+.dcx-wave-2 { height: 30%; animation: dcx-wave-anim-2 1.8s infinite ease-in-out; }
+.dcx-wave-3 { height: 60%; animation: dcx-wave-anim-3 2.1s infinite ease-in-out; }
+.dcx-wave-4 { height: 40%; animation: dcx-wave-anim-4 1.7s infinite ease-in-out; }
+.dcx-wave-5 { height: 20%; animation: dcx-wave-anim-5 1.9s infinite ease-in-out; }
+
+@keyframes dcx-wave-anim-1 {
+  0%, 100% { height: 10%; }
+  50% { height: 30%; }
+}
+
+@keyframes dcx-wave-anim-2 {
+  0%, 100% { height: 30%; }
+  50% { height: 60%; }
+}
+
+@keyframes dcx-wave-anim-3 {
+  0%, 100% { height: 60%; }
+  50% { height: 90%; }
+}
+
+@keyframes dcx-wave-anim-4 {
+  0%, 100% { height: 40%; }
+  50% { height: 70%; }
+}
+
+@keyframes dcx-wave-anim-5 {
+  0%, 100% { height: 20%; }
+  50% { height: 50%; }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .dcx-glass-card {
+    padding: 40px 60px;
+  }
+  
+  .dcx-main-headline {
+    font-size: 2.8rem;
+  }
+  
+  .dcx-subheadline {
+    font-size: 1.2rem;
+  }
+  
+  .dcx-nav-indicators {
+    right: 15px;
+  }
+  
+  .dcx-nav-label {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dcx-glass-card {
+    padding: 30px;
+  }
+  
+  .dcx-main-headline {
+    font-size: 2.2rem;
+  }
+  
+  .dcx-subheadline {
+    font-size: 1rem;
+  }
+  
+  .dcx-3d-element {
+    display: none;
+  }
+  
+  .dcx-nav-indicators {
+    display: none;
+  }
+  
+  .dcx-sound-waves {
+    bottom: 20px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dcx-main-headline {
+    font-size: 1.8rem;
+  }
+  
+  .dcx-glass-card {
+    padding: 25px 20px;
+  }
+  
+  .dcx-morphing-cta {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+  
+  .dcx-sound-waves {
+    gap: 4px;
+  }
+  
+  .dcx-wave-bar {
+    width: 3px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Unique class names to prevent conflicts
+  const heroSection = document.querySelector('.dcx-parallax-hero');
+  const bgLayers = document.querySelectorAll('.dcx-bg-layer');
+  const floatingElements = document.querySelectorAll('.dcx-3d-element');
+  const subheadline = document.querySelector('.dcx-subheadline');
+  const cursor = document.querySelector('.dcx-typing-cursor');
+  const ctaButton = document.querySelector('.dcx-morphing-cta');
+  const waveBars = document.querySelectorAll('.dcx-wave-bar');
+  const navItems = document.querySelectorAll('.dcx-nav-item');
+  
+  // Typing effect for subheadline
+  const subheadlineText = "Crafting exceptional digital experiences with precision and innovation";
+  let charIndex = 0;
+  
+  function typeSubheadline() {
+    if (charIndex < subheadlineText.length) {
+      subheadline.textContent += subheadlineText.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeSubheadline, Math.random() * 50 + 30);
+    } else {
+      cursor.style.opacity = '0';
+    }
+  }
+  
+  // Start typing after main headline animation
+  setTimeout(() => {
+    cursor.style.opacity = '1';
+    typeSubheadline();
+  }, 1800);
+  
+  // Parallax effect on scroll
+  function updateParallax() {
+    const scrollPosition = window.scrollY;
+    const heroHeight = heroSection.offsetHeight;
+    const scrollPercent = Math.min(scrollPosition / heroHeight, 1);
+    
+    // Background layer parallax
+    bgLayers.forEach((layer, index) => {
+      const speed = 0.2 + (index * 0.1);
+      const yPos = scrollPosition * speed;
+      layer.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    // Floating elements parallax
+    floatingElements.forEach(el => {
+      const yPos = scrollPosition * 0.1;
+      el.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    // Grid pattern opacity
+    const gridPattern = document.querySelector('.dcx-grid-pattern');
+    gridPattern.style.opacity = 0.1 + (scrollPercent * 0.1);
+    
+    // Sound wave interaction
+    if (scrollPosition > 0) {
+      waveBars.forEach((bar, i) => {
+        const height = 20 + (Math.sin(Date.now() * 0.002 + i) * 30);
+        bar.style.height = `${height}%`;
+      });
+    }
+  }
+  
+  // Mouse move effects for 3D elements
+  heroSection.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    
+    floatingElements.forEach((el, i) => {
+      const xOffset = (x - 0.5) * 20;
+      const yOffset = (y - 0.5) * 20;
+      
+      if (i % 2 === 0) {
+        el.style.transform = `rotateX(${yOffset}deg) rotateY(${xOffset}deg)`;
+      } else {
+        el.style.transform = `rotateX(${-yOffset}deg) rotateY(${-xOffset}deg)`;
+      }
+    });
+    
+    // Sound wave interaction
+    waveBars.forEach((bar, i) => {
+      const height = 20 + (Math.sin(Date.now() * 0.002 + i * 2) * 30 * (1 - y));
+      bar.style.height = `${height}%`;
+    });
+  });
+  
+  // Nav item click handlers
+  navItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const section = this.getAttribute('data-section');
+      // Scroll to section logic would go here
+      console.log(`Navigating to ${section} section`);
+    });
+  });
+  
+  // CTA button hover effect
+  ctaButton.addEventListener('mouseenter', () => {
+    waveBars.forEach((bar, i) => {
+      const height = 20 + (Math.random() * 80);
+      bar.style.height = `${height}%`;
+    });
+  });
+  
+  // Initialize
+  window.addEventListener('scroll', updateParallax);
+  updateParallax();
+  
+  // Cleanup
+  window.addEventListener('beforeunload', function() {
+    window.removeEventListener('scroll', updateParallax);
+    heroSection.removeEventListener('mousemove');
+    navItems.forEach(item => item.removeEventListener('click'));
+    ctaButton.removeEventListener('mouseenter');
+  });
+});
+</script>

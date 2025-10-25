@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Software Tools</title>
+    <style>
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            --primary: #0091ff;
+            --dark-blue: #06273e;
+            --white: #ffffff;
+            --light-gray: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ====== HEADER & NAVIGATION ====== */
+        .header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, rgba(0, 0, 0, 0.8) 100%);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(6, 39, 62, 0.8), rgba(6, 39, 62, 0.9)), 
+                        url('https://via.placeholder.com/1920x1080/06273e/0091ff?text=Defcon+Software+Tools') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--dark-blue) 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--light-gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+            line-height: 1.6;
+            animation-delay: 0.2s;
+        }
+
+        /* ====== SOFTWARE TOOLS SECTION ====== */
+        .software-section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .software-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .software-card:nth-child(1) { animation-delay: 0.1s; }
+        .software-card:nth-child(2) { animation-delay: 0.2s; }
+        .software-card:nth-child(3) { animation-delay: 0.3s; }
+        .software-card:nth-child(4) { animation-delay: 0.4s; }
+        .software-card:nth-child(5) { animation-delay: 0.5s; }
+        .software-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .software-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 145, 255, 0.3);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: var(--dark-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .software-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .card-content .category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-content p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .buy-btn {
+            background-color: var(--primary);
+            color: var(--dark-blue);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 145, 255, 0.4);
+        }
+
+        /* ====== TESTIMONIALS ====== */
+        .testimonials {
+            padding: 5rem 10%;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--dark-blue) 0%, #041a2d 100%);
+        }
+
+        .testimonial-slider {
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 0 1rem;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(0, 145, 255, 0.2);
+            font-family: serif;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .client-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .client-name {
+            text-align: left;
+        }
+
+        .client-name h4 {
+            color: var(--white);
+            margin-bottom: 0.2rem;
+        }
+
+        .client-name span {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* ====== CTA SECTION ====== */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+            padding: 5rem 10%;
+            text-align: center;
+            margin: 5rem 0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('thumbnails/pexels-thepaintedsquare-606541.jpg') center/cover no-repeat;
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background-color: #041a2d;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+        }
+
+        /* ====== MODAL ====== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--dark-blue);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .modal p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--white);
+        }
+
+        .modal-form button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-form button:hover {
+            background-color: var(--white);
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 145, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 145, 255, 0);
+            }
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .software-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="logo">DEFCON</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Software Tools</a>
+            <a href="#">Web Templates</a>
+            <a href="#">Hosting Plans</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Software Tools</h1>
+            <p>Discover our cutting-edge digital solutions designed to optimize your workflow, enhance productivity, and give you the competitive edge in today's fast-paced digital landscape.</p>
+        </div>
+    </section>
+
+    <!-- ====== SOFTWARE TOOLS SECTION ====== -->
+    <section class="software-section">
+        <div class="section-title">
+            <h2>Our Software Collection</h2>
+        </div>
+
+        <div class="software-grid">
+            <!-- Product 1 -->
+            <div class="software-card">
+                <div class="card-badge">BEST SELLER</div>
+                <div class="card-image">
+                    <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="Defcon Security Suite">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon Security Suite</h3>
+                    <span class="category">Security Software</span>
+                    <p>Comprehensive cybersecurity solution with real-time threat detection, firewall protection, and vulnerability assessment for enterprise-level security.</p>
+                    <div class="card-footer">
+                        <div class="price">$249.99</div>
+                        <button class="buy-btn" data-product="Defcon Security Suite">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="software-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/06273e/0091ff?text=Defcon+AI+Analytics" alt="Defcon AI Analytics">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon AI Analytics</h3>
+                    <span class="category">Data Analysis</span>
+                    <p>Advanced artificial intelligence platform for predictive analytics, data visualization, and business intelligence with machine learning capabilities.</p>
+                    <div class="card-footer">
+                        <div class="price">$399.99</div>
+                        <button class="buy-btn" data-product="Defcon AI Analytics">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="software-card">
+                <div class="card-badge">NEW</div>
+                <div class="card-image">
+                    <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Defcon Code Optimizer">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon Code Optimizer</h3>
+                    <span class="category">Development Tool</span>
+                    <p>Revolutionary code optimization software that analyzes and refines your codebase for maximum performance and efficiency across multiple languages.</p>
+                    <div class="card-footer">
+                        <div class="price">$179.99</div>
+                        <button class="buy-btn" data-product="Defcon Code Optimizer">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="software-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/06273e/0091ff?text=Defcon+Cloud+Manager" alt="Defcon Cloud Manager">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon Cloud Manager</h3>
+                    <span class="category">Cloud Computing</span>
+                    <p>Unified cloud management platform with multi-cloud support, automated scaling, and advanced monitoring for seamless cloud operations.</p>
+                    <div class="card-footer">
+                        <div class="price">$299.99</div>
+                        <button class="buy-btn" data-product="Defcon Cloud Manager">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="software-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/06273e/0091ff?text=Defcon+DB+Pro" alt="Defcon DB Pro">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon DB Pro</h3>
+                    <span class="category">Database Management</span>
+                    <p>Professional-grade database management system with intuitive GUI, query optimization, and advanced security features for all major database platforms.</p>
+                    <div class="card-footer">
+                        <div class="price">$199.99</div>
+                        <button class="buy-btn" data-product="Defcon DB Pro">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="software-card">
+                <div class="card-badge">LIMITED</div>
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/06273e/0091ff?text=Defcon+Automation+Suite" alt="Defcon Automation Suite">
+                </div>
+                <div class="card-content">
+                    <h3>Defcon Automation Suite</h3>
+                    <span class="category">Workflow Automation</span>
+                    <p>Complete automation solution for repetitive tasks across applications with customizable workflows, AI-powered decision making, and cross-platform integration.</p>
+                    <div class="card-footer">
+                        <div class="price">$349.99</div>
+                        <button class="buy-btn" data-product="Defcon Automation Suite">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+        </div>
+
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <p>"Defcon's Security Suite transformed our cybersecurity posture. We went from constant vulnerability alerts to a robust, monitored system that gives us real peace of mind. The interface is intuitive yet packed with powerful features."</p>
+                <div class="client-info">
+                    <div class="client-image">
+                        <img src="https://via.placeholder.com/100x100/06273e/0091ff?text=CTO" alt="Client">
+                    </div>
+                    <div class="client-name">
+                        <h4>Michael Chen</h4>
+                        <span>CTO, TechNova Solutions</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p>"The AI Analytics platform has given us insights we never thought possible. Our data team has reduced analysis time by 70% while uncovering patterns that have directly increased our revenue. Worth every penny."</p>
+                <div class="client-info">
+                    <div class="client-image">
+                        <img src="https://via.placeholder.com/100x100/06273e/0091ff?text=Director" alt="Client">
+                    </div>
+                    <div class="client-name">
+                        <h4>Sarah Johnson</h4>
+                        <span>Data Director, Global Insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p>"As a development lead, I've used many code optimization tools, but Defcon's solution is in a league of its own. It identified performance bottlenecks we'd missed for years and suggested optimizations that improved our app speed by 40%."</p>
+                <div class="client-info">
+                    <div class="client-image">
+                        <img src="https://via.placeholder.com/100x100/06273e/0091ff?text=Lead+Dev" alt="Client">
+                    </div>
+                    <div class="client-name">
+                        <h4>David Rodriguez</h4>
+                        <span>Lead Developer, AppWorks</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CTA SECTION ====== -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Digital Workflow?</h2>
+            <p>Join thousands of businesses and professionals who trust Defcon software solutions for their critical operations. Experience the difference that premium, expertly crafted tools can make.</p>
+            <button class="cta-btn">Contact Our Sales Team</button>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="#">Software Tools</a></li>
+                    <li><a href="#">Web Templates</a></li>
+                    <li><a href="#">Hosting Plans</a></li>
+                    <li><a href="#">Bundles</a></li>
+                    <li><a href="#">New Releases</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">License Agreements</a></li>
+                    <li><a href="#">GDPR Compliance</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Defcon Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ====== PURCHASE MODAL ====== -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalProductTitle">Purchase Defcon Security Suite</h3>
+            <p>Complete your purchase by providing your details below. A license key will be emailed to you immediately after payment.</p>
+
+            <form class="modal-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Company (Optional)">
+                <input type="tel" placeholder="Phone Number" required>
+
+                <button type="submit">Proceed to Payment</button>
+            </form>
+
+            <p style="font-size: 0.9rem; margin-top: 1rem;">All purchases are secured with 256-bit SSL encryption. We do not store your payment details.</p>
+        </div>
+    </div>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showTestimonial(index));
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Modal functionality
+        const modal = document.getElementById('purchaseModal');
+        const buyButtons = document.querySelectorAll('.buy-btn');
+        const closeModal = document.querySelector('.close-modal');
+        const modalTitle = document.getElementById('modalProductTitle');
+
+        buyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productName = button.getAttribute('data-product');
+                modalTitle.textContent = `Purchase ${productName}`;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.software-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Hero animation
+        document.querySelector('.hero-content').style.opacity = 1;
+        document.querySelector('.hero-content').style.transform = 'translateY(0)';
+    </script>
+</body>
+</html>

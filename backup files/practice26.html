@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Infrastructure Solutions | Defcon</title>
+  <style>
+    /* ================ */
+    /* BASE STYLES */
+    /* ================ */
+    :root {
+      --defcon-primary: #0091ff;
+      --defcon-primary-dark: #0077d6;
+      --defcon-dark: #06273e;
+      --defcon-dark-light: #0a3658;
+      --defcon-light: #e5e5e5;
+      --defcon-white: #ffffff;
+      --defcon-text: #333333;
+      --defcon-text-light: #777777;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      color: var(--defcon-text);
+      line-height: 1.6;
+      background-color: var(--defcon-white);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================ */
+    /* PAGE STRUCTURE */
+    /* ================ */
+    .defcon-infra-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 100px 30px;
+    }
+
+    /* Section Header */
+    .defcon-infra-header {
+      text-align: center;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards;
+    }
+
+    .defcon-infra-title {
+      font-size: 2.8rem;
+      color: var(--defcon-dark);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .defcon-infra-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--defcon-primary);
+    }
+
+    .defcon-infra-subtitle {
+      font-size: 1.2rem;
+      color: var(--defcon-text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Interactive Map Container */
+    .defcon-infra-map {
+      position: relative;
+      height: 600px;
+      background-color: var(--defcon-light);
+      border-radius: 8px;
+      margin-bottom: 80px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Network Nodes */
+    .defcon-node {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--defcon-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 2;
+    }
+
+    .defcon-node:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .defcon-node.active {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 4px var(--defcon-primary), 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .defcon-node-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    /* Node Positions */
+    .defcon-node-core {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--defcon-primary);
+    }
+
+    .defcon-node-database {
+      top: 30%;
+      left: 20%;
+    }
+
+    .defcon-node-cloud {
+      top: 20%;
+      right: 20%;
+    }
+
+    .defcon-node-security {
+      bottom: 25%;
+      left: 25%;
+    }
+
+    .defcon-node-network {
+      bottom: 30%;
+      right: 20%;
+    }
+
+    .defcon-node-users {
+      top: 70%;
+      left: 50%;
+    }
+
+    /* Connection Lines */
+    .defcon-connection {
+      position: absolute;
+      background-color: var(--defcon-primary);
+      height: 2px;
+      transform-origin: left center;
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    .defcon-connection.active {
+      opacity: 1;
+      height: 3px;
+      background-color: var(--defcon-primary-dark);
+    }
+
+    /* Node Details Panel */
+    .defcon-details-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100%;
+      background-color: var(--defcon-white);
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      padding: 30px;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .defcon-details-panel.active {
+      transform: translateX(0);
+    }
+
+    .defcon-details-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--defcon-light);
+    }
+
+    .defcon-details-icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .defcon-details-title {
+      font-size: 1.5rem;
+      color: var(--defcon-dark);
+    }
+
+    .defcon-details-close {
+      margin-left: auto;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .defcon-details-close:hover {
+      opacity: 1;
+    }
+
+    .defcon-details-content {
+      margin-bottom: 25px;
+    }
+
+    .defcon-details-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .defcon-stat-item {
+      background-color: var(--defcon-light);
+      padding: 15px;
+      border-radius: 4px;
+    }
+
+    .defcon-stat-label {
+      font-size: 0.8rem;
+      color: var(--defcon-text-light);
+      margin-bottom: 5px;
+    }
+
+    .defcon-stat-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--defcon-dark);
+    }
+
+    .defcon-details-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--defcon-primary);
+      font-weight: bold;
+      margin-top: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .defcon-details-link:hover {
+      color: var(--defcon-primary-dark);
+    }
+
+    .defcon-details-link svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      fill: var(--defcon-primary);
+      transition: transform 0.3s ease;
+    }
+
+    .defcon-details-link:hover svg {
+      transform: translateX(5px);
+    }
+
+    /* Legend */
+    .defcon-legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 60px;
+    }
+
+    .defcon-legend-item {
+      display: flex;
+      align-items: center;
+      background-color: var(--defcon-light);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .defcon-legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .defcon-legend-color.primary {
+      background-color: var(--defcon-primary);
+    }
+
+    .defcon-legend-color.dark {
+      background-color: var(--defcon-dark);
+    }
+
+    .defcon-legend-color.light {
+      background-color: var(--defcon-text-light);
+    }
+
+    /* CTA Section */
+    .defcon-infra-cta {
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .defcon-cta-title {
+      font-size: 2rem;
+      color: var(--defcon-dark);
+      margin-bottom: 20px;
+    }
+
+    .defcon-cta-subtitle {
+      font-size: 1.1rem;
+      color: var(--defcon-text-light);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .defcon-cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      background-color: var(--defcon-primary);
+      color: var(--defcon-white);
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .defcon-cta-button:hover {
+      background-color: var(--defcon-primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 145, 255, 0.3);
+    }
+
+    /* ================ */
+    /* ANIMATIONS */
+    /* ================ */
+    @keyframes defconFadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .defcon-node-core {
+      animation: pulse 4s infinite;
+    }
+
+    /* ================ */
+    /* RESPONSIVE STYLES */
+    /* ================ */
+    @media (max-width: 1024px) {
+      .defcon-infra-map {
+        height: 500px;
+      }
+      
+      .defcon-details-panel {
+        width: 300px;
+      }
+      
+      .defcon-infra-title {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .defcon-infra-container {
+        padding: 80px 20px;
+      }
+      
+      .defcon-infra-header {
+        margin-bottom: 60px;
+      }
+      
+      .defcon-infra-title {
+        font-size: 2rem;
+      }
+      
+      .defcon-infra-map {
+        height: 400px;
+      }
+      
+      .defcon-node {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .defcon-node-icon {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .defcon-details-panel {
+        width: 100%;
+        height: 300px;
+        bottom: 0;
+        top: auto;
+        transform: translateY(100%);
+      }
+      
+      .defcon-details-panel.active {
+        transform: translateY(0);
+      }
+      
+      .defcon-cta-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .defcon-infra-title {
+        font-size: 1.8rem;
+      }
+      
+      .defcon-node {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .defcon-node-icon {
+        width: 25px;
+        height: 25px;
+      }
+      
+      .defcon-details-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="defcon-infra-container">
+    <!-- Page Header -->
+    <div class="defcon-infra-header">
+      <h1 class="defcon-infra-title">IT Infrastructure Ecosystem</h1>
+      <p class="defcon-infra-subtitle">Explore our comprehensive IT infrastructure solutions and see how integrated systems drive business transformation</p>
+    </div>
+
+    <!-- Interactive Map Legend -->
+    <div class="defcon-legend">
+      <div class="defcon-legend-item">
+        <span class="defcon-legend-color primary"></span>
+        <span>Core Systems</span>
+      </div>
+      <div class="defcon-legend-item">
+        <span class="defcon-legend-color dark"></span>
+        <span>Data Infrastructure</span>
+      </div>
+      <div class="defcon-legend-item">
+        <span class="defcon-legend-color light"></span>
+        <span>Network Components</span>
+      </div>
+    </div>
+
+    <!-- Interactive Map -->
+    <div class="defcon-infra-map" id="infraMap">
+      <!-- Connection Lines -->
+      <div class="defcon-connection" id="conn1"></div>
+      <div class="defcon-connection" id="conn2"></div>
+      <div class="defcon-connection" id="conn3"></div>
+      <div class="defcon-connection" id="conn4"></div>
+      <div class="defcon-connection" id="conn5"></div>
+
+      <!-- Network Nodes -->
+      <div class="defcon-node defcon-node-core" data-node="core">
+        <img src="thumbnails/app-development.png" alt="Core System" class="defcon-node-icon">
+      </div>
+      
+      <div class="defcon-node defcon-node-database" data-node="database">
+        <img src="thumbnails/cloud-data.png" alt="Database" class="defcon-node-icon">
+      </div>
+      
+      <div class="defcon-node defcon-node-cloud" data-node="cloud">
+        <img src="thumbnails/content-writing.png" alt="Cloud" class="defcon-node-icon">
+      </div>
+      
+      <div class="defcon-node defcon-node-security" data-node="security">
+        <img src="thumbnails/atom.png" alt="Security" class="defcon-node-icon">
+      </div>
+      
+      <div class="defcon-node defcon-node-network" data-node="network">
+        <img src="thumbnails/webinar.png" alt="Network" class="defcon-node-icon">
+      </div>
+      
+      <div class="defcon-node defcon-node-users" data-node="users">
+        <img src="thumbnails/graphic-design.png" alt="Users" class="defcon-node-icon">
+      </div>
+
+      <!-- Details Panel -->
+      <div class="defcon-details-panel" id="detailsPanel">
+        <div class="defcon-details-header">
+          <img src="" alt="Node Icon" class="defcon-details-icon" id="detailIcon">
+          <h3 class="defcon-details-title" id="detailTitle">System Component</h3>
+          <svg class="defcon-details-close" id="closePanel" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </div>
+        <div class="defcon-details-content">
+          <p id="detailDescription">Select a component to view detailed information about this infrastructure element.</p>
+        </div>
+        <div class="defcon-details-stats" id="detailStats">
+          <!-- Stats will be inserted here by JavaScript -->
+        </div>
+        <a href="#" class="defcon-details-link" id="detailLink">
+          Learn more about this component
+          <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="defcon-infra-cta">
+      <h2 class="defcon-cta-title">Ready to Optimize Your Infrastructure?</h2>
+      <p class="defcon-cta-subtitle">Our experts can design, implement, and manage a tailored IT infrastructure solution for your business needs.</p>
+      <a href="#" class="defcon-cta-button">Schedule a Consultation</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Node data
+      const nodeData = {
+        core: {
+          title: "Core Infrastructure",
+          icon: "thumbnails/lefa.png",
+          description: "The central nervous system of your IT environment, our core infrastructure provides the foundation for all operations with 99.99% uptime reliability and seamless scalability.",
+          stats: [
+            { label: "Uptime", value: "99.99%" },
+            { label: "Throughput", value: "10Gbps" },
+            { label: "Latency", value: "<2ms" },
+            { label: "Scalability", value: "Elastic" }
+          ],
+          link: "#core-details"
+        },
+        database: {
+          title: "Database Cluster",
+          icon: "https://via.placeholder.com/50x50/0091ff/ffffff?text=DB",
+          description: "High-performance database solutions with real-time replication and failover capabilities, ensuring data integrity and availability for mission-critical applications.",
+          stats: [
+            { label: "Capacity", value: "Petabyte-scale" },
+            { label: "Replication", value: "Real-time" },
+            { label: "Backup", value: "Automated" },
+            { label: "Query Speed", value: "Sub-second" }
+          ],
+          link: "#database-details"
+        },
+        cloud: {
+          title: "Cloud Integration",
+          icon: "https://via.placeholder.com/50x50/0091ff/ffffff?text=CL",
+          description: "Seamless hybrid cloud environment that bridges on-premise systems with leading cloud providers for optimal flexibility and cost-efficiency.",
+          stats: [
+            { label: "Providers", value: "Multi-cloud" },
+            { label: "Migration", value: "Zero-downtime" },
+            { label: "Cost Savings", value: "Up to 40%" },
+            { label: "Deployment", value: "Automated" }
+          ],
+          link: "#cloud-details"
+        },
+        security: {
+          title: "Security Framework",
+          icon: "https://via.placeholder.com/50x50/0091ff/ffffff?text=SC",
+          description: "Comprehensive security infrastructure with multi-layered protection, continuous monitoring, and AI-driven threat detection.",
+          stats: [
+            { label: "Threat Detection", value: "AI-powered" },
+            { label: "Response Time", value: "<30s" },
+            { label: "Compliance", value: "Enterprise-grade" },
+            { label: "Encryption", value: "End-to-end" }
+          ],
+          link: "#security-details"
+        },
+        network: {
+          title: "Network Fabric",
+          icon: "https://via.placeholder.com/50x50/0091ff/ffffff?text=NW",
+          description: "Software-defined networking with intelligent routing, quality-of-service prioritization, and self-healing capabilities for maximum uptime.",
+          stats: [
+            { label: "Bandwidth", value: "100Gbps+" },
+            { label: "Redundancy", value: "N+1" },
+            { label: "Latency", value: "<1ms" },
+            { label: "Coverage", value: "Global" }
+          ],
+          link: "#network-details"
+        },
+        users: {
+          title: "User Access Layer",
+          icon: "https://via.placeholder.com/50x50/0091ff/ffffff?text=UR",
+          description: "Secure, role-based access systems with single sign-on, multi-factor authentication, and granular permission controls.",
+          stats: [
+            { label: "Authentication", value: "MFA" },
+            { label: "Access Points", value: "Unlimited" },
+            { label: "Provisioning", value: "Instant" },
+            { label: "Monitoring", value: "Real-time" }
+          ],
+          link: "#user-details"
+        }
+      };
+
+      // DOM Elements
+      const infraMap = document.getElementById('infraMap');
+      const detailsPanel = document.getElementById('detailsPanel');
+      const closePanel = document.getElementById('closePanel');
+      const detailIcon = document.getElementById('detailIcon');
+      const detailTitle = document.getElementById('detailTitle');
+      const detailDescription = document.getElementById('detailDescription');
+      const detailStats = document.getElementById('detailStats');
+      const detailLink = document.getElementById('detailLink');
+      const nodes = document.querySelectorAll('.defcon-node');
+      const connections = document.querySelectorAll('.defcon-connection');
+
+      // Draw connection lines
+      function drawConnections() {
+        const coreNode = document.querySelector('.defcon-node-core');
+        const coreRect = coreNode.getBoundingClientRect();
+        const coreX = coreRect.left + coreRect.width/2 - infraMap.getBoundingClientRect().left;
+        const coreY = coreRect.top + coreRect.height/2 - infraMap.getBoundingClientRect().top;
+        
+        nodes.forEach(node => {
+          if (node !== coreNode) {
+            const nodeRect = node.getBoundingClientRect();
+            const nodeX = nodeRect.left + nodeRect.width/2 - infraMap.getBoundingClientRect().left;
+            const nodeY = nodeRect.top + nodeRect.height/2 - infraMap.getBoundingClientRect().top;
+            
+            // Calculate distance and angle
+            const dx = nodeX - coreX;
+            const dy = nodeY - coreY;
+            const distance = Math.sqrt(dx*dx + dy*dy);
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            
+            // Create connection line
+            const line = document.createElement('div');
+            line.className = 'defcon-connection';
+            line.style.width = `${distance}px`;
+            line.style.left = `${coreX}px`;
+            line.style.top = `${coreY}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            infraMap.appendChild(line);
+          }
+        });
+      }
+
+      // Update connection lines when active
+      function updateConnections(activeNode) {
+        const coreNode = document.querySelector('.defcon-node-core');
+        const activeRect = activeNode.getBoundingClientRect();
+        const activeX = activeRect.left + activeRect.width/2 - infraMap.getBoundingClientRect().left;
+        const activeY = activeRect.top + activeRect.height/2 - infraMap.getBoundingClientRect().top;
+        
+        const coreRect = coreNode.getBoundingClientRect();
+        const coreX = coreRect.left + coreRect.width/2 - infraMap.getBoundingClientRect().left;
+        const coreY = coreRect.top + coreRect.height/2 - infraMap.getBoundingClientRect().top;
+        
+        // Calculate distance and angle
+        const dx = activeX - coreX;
+        const dy = activeY - coreY;
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+        
+        // Highlight active connection
+        connections.forEach(conn => {
+          conn.classList.remove('active');
+        });
+        
+        const activeLine = document.createElement('div');
+        activeLine.className = 'defcon-connection active';
+        activeLine.style.width = `${distance}px`;
+        activeLine.style.left = `${coreX}px`;
+        activeLine.style.top = `${coreY}px`;
+        activeLine.style.transform = `rotate(${angle}deg)`;
+        infraMap.appendChild(activeLine);
+      }
+
+      // Show node details
+      function showNodeDetails(nodeType) {
+        const data = nodeData[nodeType];
+        
+        detailIcon.src = data.icon;
+        detailTitle.textContent = data.title;
+        detailDescription.textContent = data.description;
+        detailLink.href = data.link;
+        
+        // Clear existing stats
+        detailStats.innerHTML = '';
+        
+        // Add new stats
+        data.stats.forEach(stat => {
+          const statItem = document.createElement('div');
+          statItem.className = 'defcon-stat-item';
+          statItem.innerHTML = `
+            <div class="defcon-stat-label">${stat.label}</div>
+            <div class="defcon-stat-value">${stat.value}</div>
+          `;
+          detailStats.appendChild(statItem);
+        });
+        
+        // Show panel
+        detailsPanel.classList.add('active');
+      }
+
+      // Close details panel
+      function closeDetails() {
+        detailsPanel.classList.remove('active');
+        nodes.forEach(node => node.classList.remove('active'));
+      }
+
+      // Initialize
+      function init() {
+        drawConnections();
+        
+        // Node click events
+        nodes.forEach(node => {
+          node.addEventListener('click', function() {
+            const nodeType = this.getAttribute('data-node');
+            nodes.forEach(n => n.classList.remove('active'));
+            this.classList.add('active');
+            updateConnections(this);
+            showNodeDetails(nodeType);
+          });
+        });
+        
+        // Close panel event
+        closePanel.addEventListener('click', closeDetails);
+        
+        // Click outside to close
+        infraMap.addEventListener('click', function(e) {
+          if (e.target === infraMap) {
+            closeDetails();
+          }
+        });
+      }
+
+      // Run initialization
+      init();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<div class="defcon-multisection-container">
+
+  <div class="defcon-hero-section">
+    <div class="defcon-hero-background-overlay"></div>
+    <div class="defcon-hero-content">
+      <h1 class="defcon-hero-headline">
+        <span class="defcon-hero-span-line">Empowering</span>
+        <span class="defcon-hero-span-line">Your Digital</span>
+        <span class="defcon-hero-span-line">Frontier.</span>
+      </h1>
+      <p class="defcon-hero-subheadline">Defcon is your strategic partner in navigating the complexities of the digital age. We deliver bespoke IT solutions that drive growth, efficiency, and innovation.</p>
+      <a href="#defcon-why-us-section" class="defcon-hero-cta-button">Discover Why Defcon</a>
+    </div>
+    <div class="defcon-hero-scrolldown-indicator">
+      <div class="defcon-hero-scrolldown-wheel"></div>
+    </div>
+  </div>
+
+  <div class="defcon-why-us-section" id="defcon-why-us-section">
+    <div class="defcon-why-us-content-wrapper">
+      <h2 class="defcon-section-main-title">Why Top Businesses Choose Defcon</h2>
+      <p class="defcon-section-main-subtitle">We are more than an IT provider; we are architects of digital excellence. Our commitment is to deliver unparalleled solutions that translate into tangible business success.</p>
+      <div class="defcon-why-us-grid">
+        <div class="defcon-why-us-card">
+          <div class="defcon-why-us-icon-container">
+            <img src="[your-icon-url-1.svg]" alt="Expert Team Icon" class="defcon-why-us-icon">
+          </div>
+          <h3 class="defcon-why-us-card-title">Elite Expertise</h3>
+          <p class="defcon-why-us-card-text">Our team consists of industry-leading professionals dedicated to mastering the evolving landscape of technology and security.</p>
+        </div>
+        <div class="defcon-why-us-card">
+          <div class="defcon-why-us-icon-container">
+            <img src="[your-icon-url-2.svg]" alt="Innovative Solutions Icon" class="defcon-why-us-icon">
+          </div>
+          <h3 class="defcon-why-us-card-title">Innovative Solutions</h3>
+          <p class="defcon-why-us-card-text">We leverage cutting-edge technology to create custom strategies that solve your unique challenges and future-proof your operations.</p>
+        </div>
+        <div class="defcon-why-us-card">
+          <div class="defcon-why-us-icon-container">
+            <img src="[your-icon-url-3.svg]" alt="Client Partnership Icon" class="defcon-why-us-icon">
+          </div>
+          <h3 class="defcon-why-us-card-title">Client Partnership</h3>
+          <p class="defcon-why-us-card-text">Your vision is our mission. We build lasting relationships based on trust, transparency, and a shared drive for success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="defcon-ceo-section">
+    <div class="defcon-ceo-grid-layout">
+      <div class="defcon-ceo-image-container">
+        <img src="thumbnails/pexels-thelazyartist-1416971.jpg" alt="Portrait of the CEO" class="defcon-ceo-image">
+        <div class="defcon-ceo-image-accent-shape"></div>
+      </div>
+      <div class="defcon-ceo-text-content">
+        <h2 class="defcon-ceo-section-title">Meet Our Visionary</h2>
+        <p class="defcon-ceo-name">Johnathan E. Sterling</p>
+        <p class="defcon-ceo-title">Founder & Chief Executive Officer</p>
+        <p class="defcon-ceo-description">With over two decades of experience at the forefront of the IT industry, Johnathan founded Defcon with a single mission: to provide businesses with the robust, intelligent, and secure technology frameworks they need to thrive. His leadership continues to inspire our culture of innovation and unwavering commitment to client success.</p>
+        <div class="defcon-ceo-social-icons">
+          <a href="#" class="defcon-ceo-social-link"><img src="[your-linkedin-icon.svg]" alt="LinkedIn"></a>
+          <a href="#" class="defcon-ceo-social-link"><img src="[your-twitter-icon.svg]" alt="Twitter"></a>
+          <a href="#" class="defcon-ceo-social-link"><img src="[your-email-icon.svg]" alt="Email"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+    /* --- Global Variables & Main Container --- */
+.defcon-multisection-container {
+    --defcon-corp-primary: #0091ff;
+    --defcon-corp-dark: #06273e;
+    --defcon-corp-light: #ffffff;
+    --defcon-corp-accent: #e5e5e5;
+    --defcon-corp-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    font-family: 'Inter', sans-serif; /* Ensure you have 'Inter' font linked in your project */
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}
+
+/* --- Section 1: Interactive Hero Section --- */
+.defcon-hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--defcon-corp-light);
+    background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('thumbnails/pexels-inspiredimages-5626726.jpg') no-repeat center center/cover;
+    overflow: hidden;
+}
+.defcon-hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    animation: defcon-hero-pulse 5s infinite;
+}
+.defcon-hero-content {
+    z-index: 2;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.defcon-hero-headline {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -2px;
+}
+.defcon-hero-span-line {
+    display: block;
+    overflow: hidden;
+    animation: defcon-reveal-text 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    transform: translateY(110%);
+}
+.defcon-hero-headline .defcon-hero-span-line:nth-child(2) { animation-delay: 0.2s; }
+.defcon-hero-headline .defcon-hero-span-line:nth-child(3) { animation-delay: 0.4s; }
+.defcon-hero-subheadline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 650px;
+    margin: 30px auto 40px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fade-in-up 1s ease 1s forwards;
+}
+.defcon-hero-cta-button {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--defcon-corp-light);
+    background-color: var(--defcon-corp-primary);
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fade-in-up 1s ease 1.2s forwards;
+}
+.defcon-hero-cta-button:hover {
+    background-color: var(--defcon-corp-light);
+    color: var(--defcon-corp-dark);
+    transform: scale(1.05) translateY(0);
+}
+.defcon-hero-scrolldown-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    opacity: 0;
+    animation: defcon-fade-in-up 1s ease 1.5s forwards;
+}
+.defcon-hero-scrolldown-wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--defcon-corp-light);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: defcon-scroll-animate 2s infinite;
+}
+
+/* --- Section 2: Why Choose Us Section --- */
+.defcon-why-us-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: var(--defcon-corp-light);
+}
+.defcon-why-us-content-wrapper {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+.defcon-section-main-title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    color: var(--defcon-corp-dark);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.defcon-section-main-subtitle {
+    font-size: 1.125rem;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 70px;
+    line-height: 1.7;
+}
+.defcon-why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.defcon-why-us-card {
+    background-color: var(--defcon-corp-light);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--defcon-corp-shadow);
+    border: 1px solid var(--defcon-corp-accent);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.defcon-why-us-card.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+.defcon-why-us-grid .defcon-why-us-card:nth-child(2).is-visible { transition-delay: 0.2s; }
+.defcon-why-us-grid .defcon-why-us-card:nth-child(3).is-visible { transition-delay: 0.4s; }
+.defcon-why-us-icon-container {
+    width: 70px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    border-radius: 50%;
+    background-color: var(--defcon-corp-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.defcon-why-us-icon {
+    width: 35px;
+    height: 35px;
+    filter: brightness(0) invert(1);
+}
+.defcon-why-us-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--defcon-corp-dark);
+    margin-bottom: 15px;
+}
+.defcon-why-us-card-text {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* --- Section 3: CEO Section --- */
+.defcon-ceo-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #f7f9fc;
+}
+.defcon-ceo-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.defcon-ceo-image-container {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.defcon-ceo-image-container.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+.defcon-ceo-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+.defcon-ceo-image-accent-shape {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--defcon-corp-primary);
+    border-radius: 15px;
+    top: -20px;
+    left: -20px;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+.defcon-ceo-image-container:hover .defcon-ceo-image-accent-shape {
+    transform: translate(10px, 10px);
+}
+.defcon-ceo-text-content {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+}
+.defcon-ceo-text-content.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+.defcon-ceo-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--defcon-corp-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+.defcon-ceo-name {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    color: var(--defcon-corp-dark);
+    margin: 0;
+}
+.defcon-ceo-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--defcon-corp-dark);
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+.defcon-ceo-description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+.defcon-ceo-social-icons {
+    display: flex;
+    gap: 15px;
+}
+.defcon-ceo-social-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--defcon-corp-accent);
+    border-radius: 50%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.defcon-ceo-social-link img {
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.defcon-ceo-social-link:hover {
+    background-color: var(--defcon-corp-primary);
+    border-color: var(--defcon-corp-primary);
+}
+.defcon-ceo-social-link:hover img {
+    opacity: 1;
+    filter: brightness(0) invert(1);
+}
+
+/* --- Keyframe Animations --- */
+@keyframes defcon-hero-pulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+@keyframes defcon-reveal-text {
+    from { transform: translateY(110%); }
+    to { transform: translateY(0); }
+}
+@keyframes defcon-fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes defcon-scroll-animate {
+    0% { transform: translateY(0) translateX(-50%); opacity: 1; }
+    100% { transform: translateY(15px) translateX(-50%); opacity: 0; }
+}
+
+/* --- Responsive Design --- */
+/* Tablet View */
+@media (max-width: 992px) {
+    .defcon-why-us-grid {
+        grid-template-columns: 1fr;
+    }
+    .defcon-ceo-grid-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .defcon-ceo-image-container {
+        margin: 0 auto 40px;
+    }
+    .defcon-ceo-social-icons {
+        justify-content: center;
+    }
+}
+/* Mobile View */
+@media (max-width: 576px) {
+    .defcon-hero-headline {
+        letter-spacing: -1px;
+    }
+    .defcon-why-us-section, .defcon-ceo-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .defcon-section-main-subtitle {
+        margin-bottom: 50px;
+    }
+    .defcon-ceo-image-accent-shape {
+        top: -15px;
+        left: -15px;
+    }
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+    // Function to handle scroll-based reveal animations
+    const defconRevealOnScroll = () => {
+        const revealElements = document.querySelectorAll(
+            '.defcon-why-us-card, .defcon-ceo-image-container, .defcon-ceo-text-content'
+        );
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+    };
+
+    // Initialize animations
+    defconRevealOnScroll();
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - IT Solutions & Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --light-gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light-gray);
+            overflow-x: hidden;
+            margin-top: 0;
+        }
+
+        .defcon-hero-start {
+            position: relative;
+            height: 90vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .defcon-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .defcon-hero-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.2) contrast(1);
+        }
+
+        .defcon-hero-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin-top: -60px; /* This moves content up */
+        }         
+
+        .defcon-hero-badge {
+            display: inline-block;
+            background-color: rgba(0, 145, 255, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 145, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 145, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 145, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 145, 255, 0);
+            }
+        }
+
+        .defcon-hero-title {
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--light);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.04em;
+        }
+
+        .defcon-hero-title span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 21px;
+            color: var(--light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .defcon-hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .defcon-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #007ad6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+        }
+
+        .defcon-btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .defcon-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .defcon-feature-highlight {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 18px;
+        }
+
+        .defcon-feature-text {
+            color: var(--light);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .defcon-feature-text strong {
+            color: var(--primary);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .defcon-hero-title {
+                font-size: 48px;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 19px;
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-start {
+                height: 85vh;
+                min-height: 600px;
+            }
+            
+            .defcon-hero-content {
+                margin-top: -100px;
+                padding: 0 25px;
+            }
+            
+            .defcon-hero-title {
+                font-size: 38px;
+                margin-bottom: 15px;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 17px;
+                margin-bottom: 35px;
+                line-height: 1.6;
+            }
+            
+            .defcon-hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .defcon-btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 12px 24px;
+            }
+            
+            .defcon-feature-highlight {
+                flex-direction: column;
+                text-align: center;
+                width: 90%;
+                padding: 12px 20px;
+                bottom: 30px;
+            }
+            
+            .defcon-hero-badge {
+                font-size: 12px;
+                padding: 6px 16px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-hero-start {
+                height: 80vh;
+                min-height: 550px;
+            }
+            
+            .defcon-hero-content {
+                margin-top: -80px;
+                padding: 0 20px;
+            }
+            
+            .defcon-hero-title {
+                font-size: 32px;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .defcon-btn {
+                font-size: 15px;
+                padding: 12px 20px;
+            }
+            
+            .defcon-feature-highlight {
+                bottom: 20px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+            
+            .defcon-feature-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .defcon-feature-text {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .defcon-hero-title {
+                font-size: 28px;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 15px;
+            }
+            
+            .defcon-hero-badge {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="defcon-hero-start">
+        <div class="defcon-hero-bg">
+            <img src="https://images.unsplash.com/photo-1525945995886-0ede2bd49ab6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Defcon IT Services Background" class="defcon-hero-bg-image">
+        </div>
+        
+        <div class="defcon-hero-glow"></div>
+        
+        <div class="defcon-hero-content">
+            
+            
+            <h1 class="defcon-hero-title">
+              Transforming Business <br>Through <span id="animated-text">Innovation</span>
+            </h1>
+            
+            <p class="defcon-hero-subtitle">
+              From custom software development to cutting-edge infrastructure and creative marketing services that drive growth.
+            </p>
+            
+            <div class="defcon-hero-cta">
+                <a href="#" class="defcon-btn defcon-btn-primary">Explore Our Services</a>
+                <a href="#" class="defcon-btn defcon-btn-secondary">Schedule Consultation</a>
+            </div>
+        </div>
+        
+        <div class="defcon-feature-highlight">
+            <div class="defcon-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="defcon-feature-text">
+                Next-Gen <strong>Technology</strong> Partner
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Text animation
+        const animatedText = document.getElementById('animated-text');
+        
+        // Create observer to trigger animation when element is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animatedText.classList.add('animate');
+                }
+            });
+        });
+        
+        observer.observe(animatedText);
+        
+        // REMOVED the parallax effect code
+        // The background image will now stay fixed with the section
+    });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

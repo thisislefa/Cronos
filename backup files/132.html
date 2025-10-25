@@ -1,0 +1,174 @@
+<style>
+  /* Base styles */
+  .rb-landing {
+    font-family: 'Inter', sans-serif;
+    color: #06273e;
+    background-color: #f3f3f3;
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .rb-container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header section */
+  .rb-header {
+    margin-bottom: 60px;
+  }
+  
+  .rb-heading {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    color: #06273e;
+  }
+  
+  /* Contact info */
+  .rb-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .rb-contact-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rb-contact-icon {
+    margin-right: 12px;
+    color: #0091ff;
+  }
+  
+  .rb-contact-text {
+    font-size: 16px;
+    color: #06273e;
+  }
+  
+  /* Divider */
+  .rb-divider {
+    height: 1px;
+    background-color: #e5e5e5;
+    margin: 10px 0;
+  }
+  
+  /* Footer */
+  .rb-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .rb-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .rb-footer-link {
+    text-decoration: none;
+    color: #06273e;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .rb-footer-link:hover {
+    color: #0091ff;
+  }
+  
+  .rb-copyright {
+    color: #06273e;
+    font-size: 14px;
+  }
+  
+  /* Animation classes */
+  .rb-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .rb-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .rb-heading {
+      font-size: 36px;
+    }
+    
+    .rb-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    
+    .rb-footer-links {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+</style>
+
+<div class="rb-landing">
+  <div class="rb-container">
+    <header class="rb-header">
+      <h1 class="rb-heading rb-fade-in">As part of our commitment to efficiency and innovation, Binge currently operates exclusively through digital channels. Our IT expert specialists are available for on-site dispatch to client locations only when necessary and by prior arrangement.</h1>
+      
+      <div class="rb-contact">
+        <div class="rb-contact-item rb-fade-in">
+          <span class="rb-contact-icon">✉️</span>
+          <span class="rb-contact-text">(078) 123-4567</span>
+        </div>
+        
+        <div class="rb-contact-item rb-fade-in">
+          <span class="rb-contact-icon">✉️</span>
+          <span class="rb-contact-text">support@rareblocks.xyz</span>
+        </div>
+      </div>
+    </header>
+    
+    <div class="rb-divider"></div>
+    
+    <footer class="rb-footer">
+      <div class="rb-footer-links">
+        <a href="#" class="rb-footer-link rb-fade-in">About</a>
+        <a href="#" class="rb-footer-link rb-fade-in">Features</a>
+        <a href="#" class="rb-footer-link rb-fade-in">Works</a>
+        <a href="#" class="rb-footer-link rb-fade-in">Support</a>
+      </div>
+      
+      <div class="rb-copyright rb-fade-in">All operations governed by ISO/IEC 27001-compliant protocols. © Copyright 2025. All Rights Reserved.</div>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // Animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeElements = document.querySelectorAll('.rb-fade-in');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 100 + (Array.from(fadeElements).indexOf(entry.target) * 100));
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      fadeInObserver.observe(element);
+    });
+  });
+</script>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Grid System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        .control-btn.active {
+            background: rgba(100,200,255,0.3);
+            border-color: rgba(100,200,255,0.5);
+        }
+
+        .grid-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .grid-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, 
+                rgba(100,200,255,0.3) 0%, 
+                rgba(255,100,200,0.3) 100%);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            user-select: none;
+            z-index: 10;
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(100,200,255,0.5) 0%, 
+                rgba(255,100,200,0.5) 50%, 
+                rgba(100,255,100,0.5) 100%);
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .grid-item:hover::before {
+            opacity: 1;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+            z-index: 100;
+        }
+
+        .grid-item.attracted {
+            transform: scale(0.95);
+            filter: brightness(1.2);
+        }
+
+        .grid-item.magnetic-source {
+            transform: scale(1.1);
+            filter: brightness(1.5);
+            box-shadow: 0 0 50px rgba(100,200,255,0.5);
+        }
+
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .item-icon {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        .item-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        .item-value {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            color: #64c8ff;
+        }
+
+        /* Force field effects */
+        .force-field {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .force-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(100,200,255,0.8) 0%, 
+                rgba(255,100,200,0.4) 50%, 
+                rgba(100,200,255,0.8) 100%);
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+        }
+
+        .force-line.active {
+            opacity: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .magnetic-field {
+            position: absolute;
+            border: 1px solid rgba(100,200,255,0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .magnetic-field.active {
+            opacity: 1;
+            animation: ripple 3s ease-in-out infinite;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+            100% { transform: scale(0.8); opacity: 0.8; }
+        }
+
+        /* Particle effects */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(100,200,255,0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .particle.active {
+            animation: particle-float 2s ease-in-out infinite;
+        }
+
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.3; }
+        }
+
+        /* Reorganization effects */
+        .grid-item.reorganizing {
+            animation: reorganize 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes reorganize {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(0.9) rotate(-5deg); }
+            50% { transform: scale(1.05) rotate(5deg); }
+            75% { transform: scale(0.95) rotate(-2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .grid-item.settling {
+            animation: settle 1s ease-out;
+        }
+
+        @keyframes settle {
+            0% { transform: translateY(-10px) scale(1.1); opacity: 0.7; }
+            50% { transform: translateY(5px) scale(0.95); opacity: 0.9; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .grid-container {
+                height: 400px;
+            }
+            
+            .grid-item {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .item-icon {
+                font-size: 1.5rem;
+            }
+            
+            .item-title {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Enhanced visual effects */
+        .energy-wave {
+            position: absolute;
+            border: 2px solid rgba(100,200,255,0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 4;
+        }
+
+        .energy-wave.active {
+            animation: energy-expand 1s ease-out;
+        }
+
+        @keyframes energy-expand {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .connection-indicator {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(100,200,255,0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 6;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .connection-indicator.active {
+            opacity: 1;
+            animation: connection-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes connection-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">MAGNETIC GRID SYSTEM</h1>
+        
+        <div class="controls">
+            <button class="control-btn active" onclick="toggleMagneticForce()">Toggle Magnetic Force</button>
+            <button class="control-btn" onclick="shuffleGrid()">Shuffle Grid</button>
+            <button class="control-btn" onclick="resetGrid()">Reset Layout</button>
+            <button class="control-btn" onclick="toggleVisualEffects()">Toggle Effects</button>
+        </div>
+
+        <div class="grid-container" id="gridContainer">
+            <!-- Grid items will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        class MagneticGrid {
+            constructor() {
+                this.container = document.getElementById('gridContainer');
+                this.items = [];
+                this.magneticForceEnabled = true;
+                this.visualEffectsEnabled = true;
+                this.animationId = null;
+                this.hoveredItem = null;
+                this.forceStrength = 0.02;
+                this.maxDistance = 200;
+                this.damping = 0.95;
+                
+                this.init();
+            }
+
+            init() {
+                this.createGridItems();
+                this.setupEventListeners();
+                this.startAnimation();
+            }
+
+            createGridItems() {
+                const itemData = [
+                    { icon: '🎯', title: 'Focus', value: '95%' },
+                    { icon: '⚡', title: 'Energy', value: '87%' },
+                    { icon: '🌟', title: 'Stars', value: '92%' },
+                    { icon: '🔥', title: 'Fire', value: '78%' },
+                    { icon: '💎', title: 'Gems', value: '85%' },
+                    { icon: '🌊', title: 'Flow', value: '91%' },
+                    { icon: '🎨', title: 'Art', value: '88%' },
+                    { icon: '🚀', title: 'Speed', value: '94%' },
+                    { icon: '🎵', title: 'Music', value: '82%' },
+                    { icon: '🌈', title: 'Color', value: '89%' },
+                    { icon: '⭐', title: 'Shine', value: '93%' },
+                    { icon: '🔮', title: 'Magic', value: '86%' }
+                ];
+
+                const containerRect = this.container.getBoundingClientRect();
+                const containerWidth = containerRect.width;
+                const containerHeight = containerRect.height;
+                const itemWidth = 120;
+                const itemHeight = 120;
+
+                itemData.forEach((data, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'grid-item';
+                    item.innerHTML = `
+                        <div class="item-content">
+                            <div class="item-icon">${data.icon}</div>
+                            <div class="item-title">${data.title}</div>
+                            <div class="item-value">${data.value}</div>
+                        </div>
+                    `;
+
+                    // Initial positioning in a rough grid
+                    const cols = Math.floor(containerWidth / (itemWidth + 20));
+                    const row = Math.floor(index / cols);
+                    const col = index % cols;
+                    
+                    const x = col * (itemWidth + 20) + Math.random() * 20;
+                    const y = row * (itemHeight + 20) + Math.random() * 20 + 20;
+
+                    item.style.left = x + 'px';
+                    item.style.top = y + 'px';
+
+                    this.container.appendChild(item);
+                    
+                    this.items.push({
+                        element: item,
+                        x: x,
+                        y: y,
+                        vx: 0,
+                        vy: 0,
+                        originalX: x,
+                        originalY: y,
+                        data: data,
+                        id: index
+                    });
+                });
+            }
+
+            setupEventListeners() {
+                this.items.forEach(item => {
+                    item.element.addEventListener('mouseenter', () => {
+                        this.hoveredItem = item;
+                        this.createMagneticField(item);
+                        this.showForceConnections(item);
+                    });
+
+                    item.element.addEventListener('mouseleave', () => {
+                        this.hoveredItem = null;
+                        this.hideMagneticField();
+                        this.hideForceConnections();
+                    });
+
+                    item.element.addEventListener('click', () => {
+                        this.createEnergyWave(item);
+                        this.attractNearbyItems(item);
+                    });
+                });
+            }
+
+            startAnimation() {
+                const animate = () => {
+                    if (this.magneticForceEnabled) {
+                        this.updatePhysics();
+                        this.updatePositions();
+                        this.updateVisualEffects();
+                    }
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                animate();
+            }
+
+            updatePhysics() {
+                this.items.forEach(item => {
+                    let fx = 0;
+                    let fy = 0;
+
+                    // Apply magnetic forces
+                    if (this.hoveredItem && this.hoveredItem !== item) {
+                        const dx = this.hoveredItem.x - item.x;
+                        const dy = this.hoveredItem.y - item.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.maxDistance && distance > 0) {
+                            const force = this.forceStrength * (1 - distance / this.maxDistance);
+                            fx += (dx / distance) * force;
+                            fy += (dy / distance) * force;
+                        }
+                    }
+
+                    // Apply gentle repulsion between items
+                    this.items.forEach(other => {
+                        if (other !== item) {
+                            const dx = other.x - item.x;
+                            const dy = other.y - item.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 140 && distance > 0) {
+                                const repulsion = 0.005 * (1 - distance / 140);
+                                fx -= (dx / distance) * repulsion;
+                                fy -= (dy / distance) * repulsion;
+                            }
+                        }
+                    });
+
+                    // Apply forces to velocity
+                    item.vx += fx;
+                    item.vy += fy;
+
+                    // Apply damping
+                    item.vx *= this.damping;
+                    item.vy *= this.damping;
+
+                    // Limit velocity
+                    const maxVelocity = 2;
+                    const velocity = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+                    if (velocity > maxVelocity) {
+                        item.vx = (item.vx / velocity) * maxVelocity;
+                        item.vy = (item.vy / velocity) * maxVelocity;
+                    }
+                });
+            }
+
+            updatePositions() {
+                const containerRect = this.container.getBoundingClientRect();
+                const itemWidth = 120;
+                const itemHeight = 120;
+
+                this.items.forEach(item => {
+                    // Update position
+                    item.x += item.vx;
+                    item.y += item.vy;
+
+                    // Boundary constraints
+                    if (item.x < 0) {
+                        item.x = 0;
+                        item.vx = 0;
+                    }
+                    if (item.x > containerRect.width - itemWidth) {
+                        item.x = containerRect.width - itemWidth;
+                        item.vx = 0;
+                    }
+                    if (item.y < 0) {
+                        item.y = 0;
+                        item.vy = 0;
+                    }
+                    if (item.y > containerRect.height - itemHeight) {
+                        item.y = containerRect.height - itemHeight;
+                        item.vy = 0;
+                    }
+
+                    // Apply position to element
+                    item.element.style.left = item.x + 'px';
+                    item.element.style.top = item.y + 'px';
+
+                    // Add attraction class for nearby items
+                    if (this.hoveredItem && this.hoveredItem !== item) {
+                        const dx = this.hoveredItem.x - item.x;
+                        const dy = this.hoveredItem.y - item.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.maxDistance) {
+                            item.element.classList.add('attracted');
+                        } else {
+                            item.element.classList.remove('attracted');
+                        }
+                    } else {
+                        item.element.classList.remove('attracted');
+                    }
+                });
+            }
+
+            updateVisualEffects() {
+                if (!this.visualEffectsEnabled) return;
+
+                // Update force lines
+                this.updateForceLines();
+                
+                // Update particles
+                this.updateParticles();
+            }
+
+            createMagneticField(item) {
+                if (!this.visualEffectsEnabled) return;
+
+                const field = document.createElement('div');
+                field.className = 'magnetic-field active';
+                field.style.left = (item.x + 60 - 100) + 'px';
+                field.style.top = (item.y + 60 - 100) + 'px';
+                field.style.width = '200px';
+                field.style.height = '200px';
+                field.id = 'magneticField';
+
+                this.container.appendChild(field);
+                
+                item.element.classList.add('magnetic-source');
+            }
+
+            hideMagneticField() {
+                const field = document.getElementById('magneticField');
+                if (field) {
+                    field.remove();
+                }
+                
+                this.items.forEach(item => {
+                    item.element.classList.remove('magnetic-source');
+                });
+            }
+
+            showForceConnections(sourceItem) {
+                if (!this.visualEffectsEnabled) return;
+
+                this.items.forEach(item => {
+                    if (item !== sourceItem) {
+                        const dx = sourceItem.x - item.x;
+                        const dy = sourceItem.y - item.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.maxDistance) {
+                            this.createForceLine(sourceItem, item);
+                        }
+                    }
+                });
+            }
+
+            createForceLine(item1, item2) {
+                const line = document.createElement('div');
+                line.className = 'force-line active';
+                
+                const x1 = item1.x + 60;
+                const y1 = item1.y + 60;
+                const x2 = item2.x + 60;
+                const y2 = item2.y + 60;
+                
+                const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                const angle = Math.atan2(y2 - y1, x2 - x1);
+                
+                line.style.left = x1 + 'px';
+                line.style.top = y1 + 'px';
+                line.style.width = length + 'px';
+                line.style.transform = `rotate(${angle}rad)`;
+                line.classList.add('force-connection');
+                
+                this.container.appendChild(line);
+                
+                // Create connection indicators
+                const indicator1 = document.createElement('div');
+                indicator1.className = 'connection-indicator active';
+                indicator1.style.left = (x1 - 4) + 'px';
+                indicator1.style.top = (y1 - 4) + 'px';
+                this.container.appendChild(indicator1);
+                
+                const indicator2 = document.createElement('div');
+                indicator2.className = 'connection-indicator active';
+                indicator2.style.left = (x2 - 4) + 'px';
+                indicator2.style.top = (y2 - 4) + 'px';
+                this.container.appendChild(indicator2);
+            }
+
+            hideForceConnections() {
+                const lines = this.container.querySelectorAll('.force-connection');
+                const indicators = this.container.querySelectorAll('.connection-indicator');
+                
+                lines.forEach(line => line.remove());
+                indicators.forEach(indicator => indicator.remove());
+            }
+
+            updateForceLines() {
+                // Force lines are created/destroyed in show/hide methods
+            }
+
+            updateParticles() {
+                if (!this.hoveredItem) return;
+
+                // Create floating particles around hovered item
+                if (Math.random() < 0.3) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle active';
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const radius = 80 + Math.random() * 40;
+                    
+                    const x = this.hoveredItem.x + 60 + Math.cos(angle) * radius;
+                    const y = this.hoveredItem.y + 60 + Math.sin(angle) * radius;
+                    
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    
+                    this.container.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.remove();
+                        }
+                    }, 2000);
+                }
+            }
+
+            createEnergyWave(item) {
+                if (!this.visualEffectsEnabled) return;
+
+                const wave = document.createElement('div');
+                wave.className = 'energy-wave active';
+                wave.style.left = (item.x + 60 - 50) + 'px';
+                wave.style.top = (item.y + 60 - 50) + 'px';
+                wave.style.width = '100px';
+                wave.style.height = '100px';
+
+                this.container.appendChild(wave);
+
+                setTimeout(() => {
+                    if (wave.parentNode) {
+                        wave.remove();
+                    }
+                }, 1000);
+            }
+
+            attractNearbyItems(sourceItem) {
+                this.items.forEach(item => {
+                    if (item !== sourceItem) {
+                        const dx = sourceItem.x - item.x;
+                        const dy = sourceItem.y - item.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 250) {
+                            const force = 0.3 * (1 - distance / 250);
+                            item.vx += (dx / distance) * force;
+                            item.vy += (dy / distance) * force;
+                            
+                            item.element.classList.add('reorganizing');
+                            setTimeout(() => {
+                                item.element.classList.remove('reorganizing');
+                                item.element.classList.add('settling');
+                                setTimeout(() => {
+                                    item.element.classList.remove('settling');
+                                }, 1000);
+                            }, 800);
+                        }
+                    }
+                });
+            }
+
+            shuffleGrid() {
+                const containerRect = this.container.getBoundingClientRect();
+                
+                this.items.forEach(item => {
+                    item.x = Math.random() * (containerRect.width - 120);
+                    item.y = Math.random() * (containerRect.height - 120);
+                    item.vx = (Math.random() - 0.5) * 4;
+                    item.vy = (Math.random() - 0.5) * 4;
+                    
+                    item.element.classList.add('reorganizing');
+                    setTimeout(() => {
+                        item.element.classList.remove('reorganizing');
+                        item.element.classList.add('settling');
+                        setTimeout(() => {
+                            item.element.classList.remove('settling');
+                        }, 1000);
+                    }, 800);
+                });
+            }
+
+            resetGrid() {
+                this.items.forEach(item => {
+                    item.x = item.originalX;
+                    item.y = item.originalY;
+                    item.vx = 0;
+                    item.vy = 0;
+                    
+                    item.element.classList.add('reorganizing');
+                    setTimeout(() => {
+                        item.element.classList.remove('reorganizing');
+                        item.element.classList.add('settling');
+                        setTimeout(() => {
+                            item.element.classList.remove('settling');
+                        }, 1000);
+                    }, 800);
+                });
+            }
+
+            toggleMagneticForce() {
+                this.magneticForceEnabled = !this.magneticForceEnabled;
+                const btn = document.querySelector('.control-btn');
+                btn.classList.toggle('active');
+            }
+
+            toggleVisualEffects() {
+                this.visualEffectsEnabled = !this.visualEffectsEnabled;
+                
+                if (!this.visualEffectsEnabled) {
+                    this.hideMagneticField();
+                    this.hideForceConnections();
+                    
+                    // Remove all particles
+                    this.container.querySelectorAll('.particle').forEach(p => p.remove());
+                    this.container.querySelectorAll('.energy-wave').forEach(w => w.remove());
+                }
+            }
+        }
+
+        // Initialize the magnetic grid
+        const magneticGrid = new MagneticGrid();
+
+        // Control functions
+        function toggleMagneticForce() {
+            magneticGrid.toggleMagneticForce();
+        }
+
+        function shuffleGrid() {
+            magneticGrid.shuffleGrid();
+        }
+
+        function resetGrid() {
+            magneticGrid.resetGrid();
+        }
+
+        function toggleVisualEffects() {
+            magneticGrid.toggleVisualEffects();
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            // Recalculate positions on resize
+            setTimeout(() => {
+                magneticGrid.resetGrid();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

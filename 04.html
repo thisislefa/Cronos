@@ -1,0 +1,560 @@
+<!-- =============================================
+     *** VISION SECTION ***
+     ============================================= -->
+<style>
+  /* =============================================
+     *** VISION SECTION STYLES ***
+     ============================================= */
+  
+  .vision-section {
+    font-family: 'Inter', sans-serif;
+    background-color: #06273e;
+    color: #f4f4f4;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .vision-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .vision-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .vision-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .vision-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #0091ff;
+    border-radius: 2px;
+  }
+  
+  .vision-subtitle {
+    font-size: 1.1rem;
+    color: #a8b2d1;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Vision Accordion */
+  .vision-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .vision-pillar {
+    background-color: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .vision-pillar:last-child {
+    border-bottom: none;
+  }
+  
+  .vision-pillar-header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .vision-pillar-header:hover {
+    background-color: rgba(6, 39, 62, 0.5);
+  }
+  
+  .vision-pillar-icon {
+    width: 50px;
+    height: 50px;
+    background: #0091ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .vision-pillar-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+  }
+  
+  .vision-pillar-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-right: auto;
+  }
+  
+  .vision-pillar-indicator {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .vision-pillar-indicator::before,
+  .vision-pillar-indicator::after {
+    content: '';
+    position: absolute;
+    background-color: #0091ff;
+    transition: all 0.3s ease;
+  }
+  
+  .vision-pillar-indicator::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  
+  .vision-pillar-indicator::after {
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  
+  .vision-pillar.active .vision-pillar-indicator {
+    transform: rotate(45deg);
+  }
+  
+  .vision-pillar.active .vision-pillar-indicator::after {
+    opacity: 0;
+  }
+  
+  .vision-pillar-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background-color: rgba(6, 39, 62, 0.7);
+  }
+  
+  .vision-pillar.active .vision-pillar-content {
+    max-height: 500px;
+  }
+  
+  .vision-pillar-body {
+    padding: 0 2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .vision-pillar-text {
+    flex: 1;
+  }
+  
+  .vision-pillar-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #f4f4f4;
+    margin-bottom: 1.5rem;
+  }
+  
+  .vision-pillar-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .vision-pillar-features li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    color: #a8b2d1;
+  }
+  
+  .vision-pillar-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #0091ff;
+    border-radius: 50%;
+  }
+  
+  .vision-pillar-image {
+    flex: 0 0 200px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.5s ease 0.2s;
+  }
+  
+  .vision-pillar.active .vision-pillar-image {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .vision-pillar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .vision-pillar:hover .vision-pillar-img {
+    transform: scale(1.05);
+  }
+  
+  /* Parallax Background Elements */
+  .vision-parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .vision-parallax-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 145, 255, 0.1);
+    filter: blur(40px);
+  }
+  
+  .vision-parallax-element-1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 5%;
+  }
+  
+  .vision-parallax-element-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 20%;
+    right: 10%;
+    background: rgba(244, 244, 244, 0.05);
+  }
+  
+  .vision-parallax-element-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 80%;
+    background: rgba(0, 145, 255, 0.08);
+  }
+  
+  /* =============================================
+     *** RESPONSIVE STYLES ***
+     ============================================= */
+  @media (max-width: 768px) {
+    .vision-section {
+      padding: 4rem 0;
+    }
+    
+    .vision-title {
+      font-size: 2rem;
+    }
+    
+    .vision-pillar-header {
+      padding: 1.25rem 1.5rem;
+    }
+    
+    .vision-pillar-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 1rem;
+    }
+    
+    .vision-pillar-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .vision-pillar-title {
+      font-size: 1.1rem;
+    }
+    
+    .vision-pillar-body {
+      flex-direction: column;
+      padding: 0 1.5rem 1.5rem;
+      gap: 1.5rem;
+    }
+    
+    .vision-pillar-image {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 300px;
+      height: 150px;
+    }
+    
+    .vision-parallax-element {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .vision-container {
+      padding: 0 1rem;
+    }
+    
+    .vision-header {
+      margin-bottom: 3rem;
+    }
+    
+    .vision-pillar-header {
+      padding: 1rem 1.25rem;
+    }
+    
+    .vision-pillar-body {
+      padding: 0 1.25rem 1.25rem;
+    }
+  }
+</style>
+
+<!-- Vision Section -->
+<section class="vision-section" id="vision-section">
+  <!-- Parallax Background Elements -->
+  <div class="vision-parallax-bg">
+    <div class="vision-parallax-element vision-parallax-element-1"></div>
+    <div class="vision-parallax-element vision-parallax-element-2"></div>
+    <div class="vision-parallax-element vision-parallax-element-3"></div>
+  </div>
+  
+  <div class="vision-container">
+    <div class="vision-header">
+      <h2 class="vision-title">Our Vision</h2>
+      <p class="vision-subtitle">We envision a future where technology empowers human potential, creating sustainable solutions for global challenges through innovation and collaboration.</p>
+    </div>
+    
+    <div class="vision-accordion">
+      <!-- Pillar 1 -->
+      <div class="vision-pillar active">
+        <div class="vision-pillar-header">
+          <div class="vision-pillar-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3 class="vision-pillar-title">Technological Innovation</h3>
+          <div class="vision-pillar-indicator"></div>
+        </div>
+        <div class="vision-pillar-content">
+          <div class="vision-pillar-body">
+            <div class="vision-pillar-text">
+              <p class="vision-pillar-description">We pioneer cutting-edge technologies that redefine possibilities and create new paradigms for human advancement. Our commitment to R&D ensures we stay at the forefront of technological evolution.</p>
+              <ul class="vision-pillar-features">
+                <li>Advanced AI and machine learning systems</li>
+                <li>Quantum computing research and applications</li>
+                <li>Next-generation communication networks</li>
+                <li>Sustainable tech development</li>
+              </ul>
+            </div>
+            <div class="vision-pillar-image">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Technological Innovation" class="vision-pillar-img">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pillar 2 -->
+      <div class="vision-pillar">
+        <div class="vision-pillar-header">
+          <div class="vision-pillar-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="vision-pillar-title">Global Collaboration</h3>
+          <div class="vision-pillar-indicator"></div>
+        </div>
+        <div class="vision-pillar-content">
+          <div class="vision-pillar-body">
+            <div class="vision-pillar-text">
+              <p class="vision-pillar-description">We believe in the power of collective intelligence. By fostering partnerships across industries and borders, we accelerate innovation and create solutions with global impact.</p>
+              <ul class="vision-pillar-features">
+                <li>Cross-industry innovation hubs</li>
+                <li>International research partnerships</li>
+                <li>Open-source technology initiatives</li>
+                <li>Global talent development programs</li>
+              </ul>
+            </div>
+            <div class="vision-pillar-image">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Global Collaboration" class="vision-pillar-img">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pillar 3 -->
+      <div class="vision-pillar">
+        <div class="vision-pillar-header">
+          <div class="vision-pillar-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="vision-pillar-title">Sustainable Future</h3>
+          <div class="vision-pillar-indicator"></div>
+        </div>
+        <div class="vision-pillar-content">
+          <div class="vision-pillar-body">
+            <div class="vision-pillar-text">
+              <p class="vision-pillar-description">Our commitment extends beyond technology to ensuring a sustainable future for generations to come. We develop solutions that balance progress with planetary responsibility.</p>
+              <ul class="vision-pillar-features">
+                <li>Carbon-neutral operations by 2030</li>
+                <li>Circular economy initiatives</li>
+                <li>Renewable energy integration</li>
+                <li>Sustainable supply chain management</li>
+              </ul>
+            </div>
+            <div class="vision-pillar-image">
+              <img src="https://images.unsplash.com/photo-1569163139394-de44cb54d53f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sustainable Future" class="vision-pillar-img">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Pillar 4 -->
+      <div class="vision-pillar">
+        <div class="vision-pillar-header">
+          <div class="vision-pillar-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="vision-pillar-title">Human Empowerment</h3>
+          <div class="vision-pillar-indicator"></div>
+        </div>
+        <div class="vision-pillar-content">
+          <div class="vision-pillar-body">
+            <div class="vision-pillar-text">
+              <p class="vision-pillar-description">Technology should enhance human capabilities, not replace them. We focus on creating tools that amplify human potential and make complex tasks more accessible.</p>
+              <ul class="vision-pillar-features">
+                <li>Accessibility-focused design</li>
+                <li>Education technology initiatives</li>
+                <li>Healthcare innovation programs</li>
+                <li>Digital literacy campaigns</li>
+              </ul>
+            </div>
+            <div class="vision-pillar-image">
+              <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Human Empowerment" class="vision-pillar-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Vision accordion functionality
+    const visionPillars = document.querySelectorAll('.vision-pillar');
+    
+    // Function to close all pillars except the active one
+    function closeOtherPillars(activePillar) {
+      visionPillars.forEach(pillar => {
+        if (pillar !== activePillar && pillar.classList.contains('active')) {
+          pillar.classList.remove('active');
+        }
+      });
+    }
+    
+    // Initialize with first pillar open
+    closeOtherPillars(visionPillars[0]);
+    
+    // Add click event to each pillar header
+    visionPillars.forEach(pillar => {
+      const header = pillar.querySelector('.vision-pillar-header');
+      
+      header.addEventListener('click', function() {
+        const isActive = pillar.classList.contains('active');
+        
+        if (!isActive) {
+          closeOtherPillars(pillar);
+          pillar.classList.add('active');
+        } else {
+          pillar.classList.remove('active');
+        }
+      });
+    });
+    
+    // Parallax scroll effect
+    function handleParallax() {
+      const parallaxElements = document.querySelectorAll('.vision-parallax-element');
+      const scrollPosition = window.pageYOffset;
+      const visionSection = document.getElementById('vision-section');
+      const sectionTop = visionSection.offsetTop;
+      const sectionHeight = visionSection.offsetHeight;
+      
+      // Only apply parallax when section is in view
+      if (scrollPosition > sectionTop - window.innerHeight && 
+          scrollPosition < sectionTop + sectionHeight) {
+        
+        const scrolled = (scrollPosition - sectionTop) / sectionHeight;
+        
+        parallaxElements.forEach((element, index) => {
+          let speed = 0;
+          
+          // Different speeds for different elements
+          switch(index) {
+            case 0:
+              speed = 0.5;
+              break;
+            case 1:
+              speed = 0.3;
+              break;
+            case 2:
+              speed = 0.7;
+              break;
+          }
+          
+          const yPos = -(scrolled * speed * 100);
+          element.style.transform = `translateY(${yPos}px)`;
+        });
+      }
+    }
+    
+    // Add scroll event listener for parallax
+    window.addEventListener('scroll', handleParallax);
+    
+    // Initialize parallax on load
+    handleParallax();
+  });
+</script>

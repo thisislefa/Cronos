@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Community Forum | Connect with IT Professionals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --background: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .defcon-header {
+            background-color: var(--dark);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .defcon-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .defcon-logo span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .community-hero {
+            height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            z-index: -2;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 145, 255, 0.3) 0%, rgba(0, 145, 255, 0) 70%);
+            top: -200px;
+            right: -200px;
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            color: var(--light);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+        }
+
+        /* Community Channels Section */
+        .community-channels {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .channel-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .channel-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+        }
+
+        .channel-icon i {
+            font-size: 3rem;
+            color: var(--light);
+        }
+
+        .channel-content {
+            padding: 2rem;
+        }
+
+        .channel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .channel-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .channel-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .join-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 1.5rem;
+        }
+
+        .join-button:hover {
+            background-color: var(--primary);
+        }
+
+        /* Forum Highlights Section */
+        .forum-highlights {
+            padding: 6rem 2rem;
+            background-color: var(--light);
+        }
+
+        .highlights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .highlights-image {
+            position: relative;
+        }
+
+        .highlights-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-card {
+            position: absolute;
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 70%;
+        }
+
+        .floating-card.top {
+            top: -20px;
+            right: -20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .floating-card.bottom {
+            bottom: -20px;
+            left: -20px;
+            border-right: 4px solid var(--primary);
+        }
+
+        .highlight-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-icon {
+            background-color: var(--primary);
+            color: var(--light);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .highlight-text h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .community-faq {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #666;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        /* CTA Section */
+        .community-cta {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #0066cc 100%);
+            color: var(--light);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .cta-button.primary {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .defcon-footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .highlights-container,
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .channels-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="defcon-header">
+        <div class="header-container">
+            <a href="#" class="defcon-logo">defcon<span>.</span></a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Services</a></li>
+                <li><a href="#" class="nav-link">Solutions</a></li>
+                <li><a href="#" class="nav-link">Case Studies</a></li>
+                <li><a href="#" class="nav-link">Community</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="community-hero">
+        <div class="hero-background"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">NEW FEATURE</span>
+                <h1 class="hero-title">Connect. Collaborate. Create.</h1>
+                <p class="hero-description">Join the Defcon community forum to connect with IT professionals, share insights, and accelerate your projects through collective expertise.</p>
+                <a href="#" class="hero-cta">Join Our Community</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Channels Section -->
+    <section class="community-channels">
+        <div class="section-header">
+            <p class="section-subtitle">Our Community Platforms</p>
+            <h2 class="section-title">Connect Across Channels</h2>
+            <p class="section-description">Join our vibrant community across multiple platforms tailored for different types of discussions and collaborations.</p>
+        </div>
+        <div class="channels-grid">
+            <!-- Slack Card -->
+            <div class="channel-card">
+                <div class="channel-icon">
+                    <i>💬</i>
+                </div>
+                <div class="channel-content">
+                    <h3 class="channel-title">Slack Workspace</h3>
+                    <p class="channel-description">Real-time communication with dedicated channels for projects, tech stacks, and industry discussions.</p>
+                    <div class="channel-stats">
+                        <div class="stat">
+                            <div class="stat-value">2.5k+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">45+</div>
+                            <div class="stat-label">Channels</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Active</div>
+                        </div>
+                    </div>
+                    <a href="#" class="join-button">Join Slack</a>
+                </div>
+            </div>
+            
+            <!-- Discord Card -->
+            <div class="channel-card">
+                <div class="channel-icon">
+                    <i>🎮</i>
+                </div>
+                <div class="channel-content">
+                    <h3 class="channel-title">Discord Server</h3>
+                    <p class="channel-description">Voice channels for pair programming, community events, and casual tech discussions in a more relaxed setting.</p>
+                    <div class="channel-stats">
+                        <div class="stat">
+                            <div class="stat-value">1.8k+</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Voice Channels</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Weekly</div>
+                            <div class="stat-label">Events</div>
+                        </div>
+                    </div>
+                    <a href="#" class="join-button">Join Discord</a>
+                </div>
+            </div>
+            
+            <!-- Forum Card -->
+            <div class="channel-card">
+                <div class="channel-icon">
+                    <i>💭</i>
+                </div>
+                <div class="channel-content">
+                    <h3 class="channel-title">Discussion Forums</h3>
+                    <p class="channel-description">Structured discussions, knowledge base, and detailed technical Q&A for in-depth problem solving.</p>
+                    <div class="channel-stats">
+                        <div class="stat">
+                            <div class="stat-value">5.2k+</div>
+                            <div class="stat-label">Threads</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">12k+</div>
+                            <div class="stat-label">Solutions</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                    <a href="#" class="join-button">Browse Forums</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forum Highlights Section -->
+    <section class="forum-highlights">
+        <div class="highlights-container">
+            <div class="highlights-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Community Collaboration" class="highlights-img">
+                <div class="floating-card top">
+                    <h4>Weekly Tech Talks</h4>
+                    <p>Industry experts share insights every Thursday</p>
+                </div>
+                <div class="floating-card bottom">
+                    <h4>Project Showcases</h4>
+                    <p>Members present their innovative solutions</p>
+                </div>
+            </div>
+            <div class="highlights-content">
+                <h2 class="highlight-title">Why Join Our Community?</h2>
+                <ul class="highlight-list">
+                    <li class="highlight-item">
+                        <div class="highlight-icon">✓</div>
+                        <div class="highlight-text">
+                            <h4>Accelerate Problem Solving</h4>
+                            <p>Get answers to technical challenges from experienced professionals in real-time.</p>
+                        </div>
+                    </li>
+                    <li class="highlight-item">
+                        <div class="highlight-icon">✓</div>
+                        <div class="highlight-text">
+                            <h4>Expand Your Network</h4>
+                            <p>Connect with IT leaders, developers, and innovators across industries.</p>
+                        </div>
+                    </li>
+                    <li class="highlight-item">
+                        <div class="highlight-icon">✓</div>
+                        <div class="highlight-text">
+                            <h4>Stay Updated</h4>
+                            <p>Be the first to know about industry trends, tools, and Defcon updates.</p>
+                        </div>
+                    </li>
+                    <li class="highlight-item">
+                        <div class="highlight-icon">✓</div>
+                        <div class="highlight-text">
+                            <h4>Collaborate on Projects</h4>
+                            <p>Find partners for side projects or get feedback on your work.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="community-faq">
+        <div class="section-header">
+            <p class="section-subtitle">Have Questions?</p>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-column">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Who can join the Defcon community?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our community is open to all Defcon clients, partners, and IT professionals interested in our services. Whether you're a developer, IT manager, or business leader, you'll find value in our discussions.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a cost to join?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No, all Defcon community platforms are completely free to join for our clients and partners. It's our way of giving back and fostering collaboration in the IT community.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Which platform should I join first?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We recommend starting with Slack for real-time conversations or our Discussion Forums for structured Q&A. Discord is great for more casual interactions and community events.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-column">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there community guidelines?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we have clear community guidelines to ensure respectful and productive discussions. These are available on each platform and focus on professionalism, respect, and constructive feedback.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I promote my services in the community?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We have dedicated channels for self-promotion and business opportunities. Unsolicited promotions in general channels are not permitted to maintain the quality of discussions.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I get the most out of the community?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Be active, ask questions, share your knowledge, participate in events, and connect with other members. The more you engage, the more value you'll get from the community.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="community-cta">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Join Our Community?</h2>
+            <p class="cta-description">Connect with thousands of IT professionals, share knowledge, and accelerate your projects through collective expertise.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button primary">Join Now</a>
+                <a href="#" class="cta-button secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Defcon</h3>
+                <p>Transforming businesses through innovative IT solutions, creative marketing, and cutting-edge technology services.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Software Development</a></li>
+                    <li class="footer-link"><a href="#">IT Infrastructure</a></li>
+                    <li class="footer-link"><a href="#">Marketing & Creative</a></li>
+                    <li class="footer-link"><a href="#">Cloud Computing</a></li>
+                    <li class="footer-link"><a href="#">Automation & AI</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Community</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Slack Workspace</a></li>
+                    <li class="footer-link"><a href="#">Discord Server</a></li>
+                    <li class="footer-link"><a href="#">Discussion Forums</a></li>
+                    <li class="footer-link"><a href="#">Events</a></li>
+                    <li class="footer-link"><a href="#">Knowledge Base</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="#">Support</a></li>
+                    <li class="footer-link"><a href="#">Sales</a></li>
+                    <li class="footer-link"><a href="#">Partnerships</a></li>
+                    <li class="footer-link"><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Defcon. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const toggle = question.querySelector('.faq-toggle');
+                
+                // Close all other open FAQs
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    if (item !== answer && item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        item.previousElementSibling.querySelector('.faq-toggle').classList.remove('active');
+                    }
+                });
+                
+                // Toggle current FAQ
+                answer.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.channel-card, .highlight-item, .faq-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

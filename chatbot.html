@@ -1,0 +1,1108 @@
+<!-- Premium Communication Panel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --defcon-blue: #0091ff;
+    --defcon-blue-dark: #005fa3;
+    --defcon-white: #fff;
+    --defcon-gray: #f2f4f8;
+    --defcon-shadow: 0 8px 32px rgba(0, 145, 255, 0.12);
+    --defcon-radius: 18px;
+    --defcon-transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    --defcon-gradient: linear-gradient(135deg, #0091ff 0%, #00c7ff 100%);
+    --defcon-glass: rgba(255,255,255,0.15);
+  }
+
+  /* Communication Panel */
+  .defcon-comm-panel {
+    position: fixed;
+    bottom: 36px;
+    right: 36px;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .defcon-comm-main-btn {
+    width: 68px;
+    height: 68px;
+    border-radius: 60%;
+    background: var(--defcon-gradient);
+    color: var(--defcon-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--defcon-shadow);
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: var(--defcon-transition);
+    position: relative;
+    outline: none;
+  }
+  .defcon-comm-main-btn:hover, .defcon-comm-main-btn:focus {
+    background: linear-gradient(135deg, #00c7ff 0%, #0091ff 100%);
+    transform: scale(1.08) rotate(8deg);
+    box-shadow: 0 12px 36px rgba(0,145,255,0.18);
+  }
+  .defcon-comm-tooltip {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--defcon-blue-dark);
+    color: var(--defcon-white);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: var(--defcon-transition);
+    letter-spacing: 0.5px;
+  }
+  .defcon-comm-main-btn:hover .defcon-comm-tooltip,
+  .defcon-comm-main-btn:focus .defcon-comm-tooltip {
+    opacity: 1;
+    right: 90px;
+  }
+
+  .defcon-comm-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: var(--defcon-transition);
+    height: 0;
+  }
+  .defcon-comm-secondary.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    height: auto;
+  }
+  .defcon-comm-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--defcon-white);
+    color: var(--defcon-blue-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: var(--defcon-shadow);
+    font-size: 1.4rem;
+    cursor: pointer;
+    position: relative;
+    transition: var(--defcon-transition);
+    outline: none;
+  }
+  .defcon-comm-btn:hover, .defcon-comm-btn:focus {
+    color: var(--defcon-white);
+    background: var(--defcon-blue);
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(0,145,255,0.18);
+  }
+  .defcon-comm-btn.whatsapp:hover, .defcon-comm-btn.whatsapp:focus {
+    background: #25D366;
+    color: var(--defcon-white);
+  }
+  .defcon-comm-btn.ai:hover, .defcon-comm-btn.ai:focus {
+    background: var(--defcon-blue-dark);
+    color: var(--defcon-white);
+  }
+  .defcon-btn-tooltip {
+    position: absolute;
+    right: 65px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--defcon-blue-dark);
+    color: var(--defcon-white);
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-size: 0.95rem;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: var(--defcon-transition);
+    font-weight: 500;
+  }
+  .defcon-comm-btn:hover .defcon-btn-tooltip,
+  .defcon-comm-btn:focus .defcon-btn-tooltip {
+    opacity: 1;
+    right: 75px;
+  }
+  .defcon-comm-btn.whatsapp .defcon-btn-tooltip { background: #25D366; }
+  .defcon-comm-btn.ai .defcon-btn-tooltip { background: var(--defcon-blue-dark); }
+  .defcon-comm-btn.chat .defcon-btn-tooltip { background: var(--defcon-blue); }
+
+  /* Modal Base */
+  .defcon-modal {
+    position: fixed;
+    bottom: 120px;
+    right: 36px;
+    width: 370px;
+    background: var(--defcon-white);
+    border-radius: var(--defcon-radius);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    z-index: 1300;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px) scale(0.97);
+    transition: var(--defcon-transition);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+  }
+  .defcon-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Chatbot Modal */
+  .defcon-chatbot-header {
+    background: var(--defcon-gradient);
+    color: var(--defcon-white);
+    padding: 20px 22px 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .defcon-chatbot-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .defcon-chatbot-header h3 {
+    margin: 0;
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .defcon-chatbot-subtitle {
+    font-size: 0.82rem;
+    opacity: 0.85;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .defcon-modal-close {
+    background: none;
+    border: none;
+    color: var(--defcon-white);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0 0 0 12px;
+    transition: color 0.2s;
+    outline: none;
+  }
+
+  .defcon-modal-close:hover, .defcon-modal-close:focus {
+    color: #e5e5e5;
+  }
+
+  .defcon-chatbot-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 22px 22px 10px 22px;
+    background: var(--defcon-gray);
+    min-height: 180px;
+    max-height: 320px;
+    font-size: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .defcon-chatbot-message {
+    margin-bottom: 16px;
+    max-width: fit-content;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: messageSlideIn 0.4s ease-out forwards;
+  }
+
+  @keyframes messageSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .defcon-message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .defcon-message-avatar svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .defcon-message-content {
+    padding: 12px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+    box-shadow: 0 2px 8px rgba(0,145,255,0.04);
+    position: relative;
+    flex: 1;
+  }
+
+  .defcon-chatbot-message.bot {
+    margin-right: auto;
+  }
+
+  .defcon-chatbot-message.bot .defcon-message-avatar {
+    background: var(--defcon-blue);
+    color: var(--defcon-white);
+  }
+
+  .defcon-chatbot-message.bot .defcon-message-content {
+    background: var(--defcon-white);
+    color: var(--defcon-blue-dark);
+    border-bottom-left-radius: 5px;
+  }
+
+  .defcon-chatbot-message.user {
+    margin-left: auto;
+    flex-direction: row-reverse;
+  }
+
+  .defcon-chatbot-message.user .defcon-message-avatar {
+    background: var(--defcon-blue-dark);
+    color: var(--defcon-white);
+  }
+
+  .defcon-chatbot-message.user .defcon-message-content {
+    background: var(--defcon-blue);
+    color: var(--defcon-white);
+    border-bottom-right-radius: 5px;
+    text-align: left;
+  }
+
+  /* Loading Animation */
+  .defcon-typing-indicator {
+    margin-bottom: 16px;
+    max-width: 82%;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: messageSlideIn 0.4s ease-out forwards;
+  }
+
+  .defcon-typing-indicator .defcon-message-avatar svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .defcon-typing-content {
+    background: var(--defcon-white);
+    padding: 12px 18px;
+    border-radius: 14px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,145,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .defcon-typing-dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .defcon-typing-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--defcon-blue);
+    animation: typingDots 1.4s infinite ease-in-out;
+  }
+
+  .defcon-typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+  .defcon-typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes typingDots {
+    0%, 80%, 100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  .defcon-chatbot-input-area {
+    background: var(--defcon-white);
+    padding: 14px 18px 12px 18px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .defcon-chatbot-input {
+    flex: 1 1 auto;
+    padding: 10px 16px;
+    border: 1.5px solid #cfcfcf;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    background: var(--defcon-gray);
+    transition: border 0.2s;
+  }
+
+  .defcon-chatbot-input:focus {
+    border-color: var(--defcon-blue);
+  }
+
+  .defcon-chatbot-input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .defcon-chatbot-send-btn {
+    background: var(--defcon-blue);
+    color: var(--defcon-white);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+  }
+
+  .defcon-chatbot-send-btn:hover, .defcon-chatbot-send-btn:focus {
+    background: var(--defcon-blue-dark);
+  }
+
+  .defcon-chatbot-send-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .defcon-chatbot-disclaimer {
+    font-size: 0.82rem;
+    color: #888;
+    text-align: center;
+    padding: 7px 18px 10px;
+    background: var(--defcon-glass);
+    border-top: 1px solid #e5e5e5;
+    font-style: italic;
+  }
+
+  /* WhatsApp Modal */
+  .defcon-whatsapp-header {
+    background: #25D366;
+    color: var(--defcon-white);
+    padding: 20px 22px 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .defcon-whatsapp-header i {
+    font-size: 1.5rem;
+  }
+  .defcon-whatsapp-close {
+    background: none;
+    border: none;
+    color: var(--defcon-white);
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-left: auto;
+    outline: none;
+  }
+  .defcon-whatsapp-close:hover, .defcon-whatsapp-close:focus {
+    color: #e5e5e5;
+  }
+  .defcon-whatsapp-body {
+    padding: 30px 22px 28px 22px;
+    background: var(--defcon-white);
+    text-align: center;
+  }
+  .defcon-whatsapp-body p {
+    color: #444;
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+  }
+  .defcon-whatsapp-btn {
+    background: #25D366;
+    color: var(--defcon-white);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.10);
+  }
+  .defcon-whatsapp-btn:hover, .defcon-whatsapp-btn:focus {
+    background: #128C7E;
+    transform: translateY(-2px) scale(1.04);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .defcon-comm-panel { bottom: 18px; right: 18px; }
+    .defcon-modal { width: calc(100vw - 32px); right: 16px; }
+  }
+  @media (max-width: 480px) {
+    .defcon-modal { width: 98vw; right: 1vw; bottom: 12vw; }
+    .defcon-comm-panel { right: 8px; bottom: 8px; }
+    .defcon-comm-main-btn { width: 54px; height: 54px; font-size: 1.5rem; }
+    .defcon-comm-btn { width: 44px; height: 44px; font-size: 1.1rem; }
+    .defcon-chatbot-message { max-width: 90%; }
+  }
+</style>
+
+<div class="defcon-comm-panel" aria-label="Contact & Support Panel">
+  <div class="defcon-comm-secondary" id="defconCommSecondary">
+    <button class="defcon-comm-btn whatsapp" aria-label="WhatsApp Support" onclick="DefconComm.openWhatsApp()">
+      <i class="fab fa-whatsapp"></i>
+      <span class="defcon-btn-tooltip">WhatsApp Support</span>
+    </button>
+    <button class="defcon-comm-btn chat" aria-label="Live Chat" onclick="DefconComm.openChatbot()">
+      <i class="fas fa-comment-dots"></i>
+      <span class="defcon-btn-tooltip">Live Chat</span>
+    </button>
+    <button class="defcon-comm-btn ai" aria-label="AI Assistant" onclick="DefconComm.openChatbot()">
+      <i class="fas fa-robot"></i>
+      <span class="defcon-btn-tooltip">AI Assistant</span>
+    </button>
+  </div>
+  <button class="defcon-comm-main-btn" id="defconCommMainBtn" aria-label="Contact Options" onclick="DefconComm.toggleSecondary()">
+    <i class="fas fa-headset"></i>
+    <span class="defcon-comm-tooltip">Contact & Support</span>
+  </button>
+</div>
+
+<!-- Chatbot Modal -->
+<div class="defcon-modal" id="defconChatbotModal" role="dialog" aria-modal="true" aria-label="Defcon AI Assistant">
+  <div class="defcon-chatbot-header">
+    <div class="defcon-chatbot-header-content">
+      <h3>Defcon AI Assistant</h3>
+      <div class="defcon-chatbot-subtitle">Your 24/7 digital support partner</div>
+    </div>
+    <button class="defcon-modal-close" aria-label="Close" onclick="DefconComm.closeChatbot()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="defcon-chatbot-messages" id="defconChatbotMessages">
+    <div class="defcon-chatbot-message bot">
+      <div class="defcon-message-avatar">
+       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+          <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="defcon-message-content">
+        👋 Hello! I'm Defcon's AI assistant.<br>
+        How can I help you today?
+      </div>
+    </div>
+  </div>
+  <div class="defcon-chatbot-input-area">
+    <input type="text" id="defconChatbotInput" class="defcon-chatbot-input" placeholder="Type your message..." aria-label="Type your message">
+    <button class="defcon-chatbot-send-btn" id="defconChatbotSendBtn" aria-label="Send" onclick="DefconComm.sendChatbotMessage()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+  <div class="defcon-chatbot-disclaimer">
+    <span>Note: This AI assistant is for general guidance only. For critical matters, please contact our human support team.</span>
+  </div>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="defcon-modal" id="defconWhatsAppModal" role="dialog" aria-modal="true" aria-label="WhatsApp Support">
+  <div class="defcon-whatsapp-header">
+    <i class="fab fa-whatsapp"></i>
+    Chat on WhatsApp
+    <button class="defcon-whatsapp-close" aria-label="Close" onclick="DefconComm.closeWhatsApp()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="defcon-whatsapp-body">
+    <p>Start a secure conversation with our support team on WhatsApp for fast, personal assistance.</p>
+    <a href="https://wa.me/1234567890?text=Hello%20Defcon%20IT%20team" class="defcon-whatsapp-btn" target="_blank" rel="noopener" aria-label="Open WhatsApp Chat">
+      <i class="fab fa-whatsapp"></i>
+      Open WhatsApp
+    </a>
+  </div>
+</div>
+
+<script>
+/**
+ * Defcon Communication Panel - Premium, Reliable, Accessible
+ */
+const DefconComm = {
+  isTyping: false,
+
+  toggleSecondary() {
+    document.getElementById('defconCommSecondary').classList.toggle('active');
+  },
+  
+  openChatbot() {
+    DefconComm.closeAll();
+    document.getElementById('defconChatbotModal').classList.add('active');
+    DefconComm.toggleSecondary();
+    setTimeout(() => {
+      document.getElementById('defconChatbotInput').focus();
+    }, 200);
+  },
+  
+  closeChatbot() {
+    document.getElementById('defconChatbotModal').classList.remove('active');
+  },
+  
+  openWhatsApp() {
+    DefconComm.closeAll();
+    document.getElementById('defconWhatsAppModal').classList.add('active');
+    DefconComm.toggleSecondary();
+  },
+  
+  closeWhatsApp() {
+    document.getElementById('defconWhatsAppModal').classList.remove('active');
+  },
+  
+  closeAll() {
+    DefconComm.closeChatbot();
+    DefconComm.closeWhatsApp();
+  },
+
+  createMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `defcon-chatbot-message ${isUser ? 'user' : 'bot'}`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'defcon-message-avatar';
+    
+    if (isUser) {
+      // User avatar - person icon
+      avatar.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+          <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/>
+        </svg>
+      `;
+    } else {
+      // AI avatar - robot/AI icon
+      avatar.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+          <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/>
+        </svg>
+      `;
+    }
+    
+    const content = document.createElement('div');
+    content.className = 'defcon-message-content';
+    content.innerHTML = text;
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
+    
+    return messageDiv;
+  },
+
+  createTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'defcon-typing-indicator';
+    typingDiv.id = 'defconTypingIndicator';
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'defcon-message-avatar';
+    avatar.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+          <path d="M12.0002 14.5C6.99016 14.5 2.91016 17.86 2.91016 22C2.91016 22.28 3.13016 22.5 3.41016 22.5H20.5902C20.8702 22.5 21.0902 22.28 21.0902 22C21.0902 17.86 17.0102 14.5 12.0002 14.5Z" fill="currentColor"/>
+      </svg>
+    `;
+    
+    const content = document.createElement('div');
+    content.className = 'defcon-typing-content';
+    
+    const dots = document.createElement('div');
+    dots.className = 'defcon-typing-dots';
+    dots.innerHTML = '<span></span><span></span><span></span>';
+    
+    content.appendChild(dots);
+    typingDiv.appendChild(avatar);
+    typingDiv.appendChild(content);
+    
+    return typingDiv;
+  },
+
+  showTypingIndicator() {
+    const messages = document.getElementById('defconChatbotMessages');
+    const typingIndicator = DefconComm.createTypingIndicator();
+    messages.appendChild(typingIndicator);
+    messages.scrollTop = messages.scrollHeight;
+    DefconComm.isTyping = true;
+  },
+
+  hideTypingIndicator() {
+    const typingIndicator = document.getElementById('defconTypingIndicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+    DefconComm.isTyping = false;
+  },
+
+  disableInput() {
+    const input = document.getElementById('defconChatbotInput');
+    const sendBtn = document.getElementById('defconChatbotSendBtn');
+    input.disabled = true;
+    sendBtn.disabled = true;
+  },
+
+  enableInput() {
+    const input = document.getElementById('defconChatbotInput');
+    const sendBtn = document.getElementById('defconChatbotSendBtn');
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+  },
+  
+  sendChatbotMessage() {
+    const input = document.getElementById('defconChatbotInput');
+    const messages = document.getElementById('defconChatbotMessages');
+    const text = input.value.trim();
+    
+    if (!text || DefconComm.isTyping) return;
+    
+    // Add user message
+    const userMsg = DefconComm.createMessage(text, true);
+    messages.appendChild(userMsg);
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+    
+    // Disable input while bot is typing
+    DefconComm.disableInput();
+    
+    // Show typing indicator
+    setTimeout(() => {
+      DefconComm.showTypingIndicator();
+    }, 300);
+
+    // Bot reply with random delay (1-3 seconds)
+    const delay = 1200 + Math.random() * 1800;
+    setTimeout(() => {
+      DefconComm.hideTypingIndicator();
+      
+      const reply = DefconComm.getBotReply(text);
+      const botMsg = DefconComm.createMessage(reply);
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+      
+      // Re-enable input
+      DefconComm.enableInput();
+    }, delay);
+  },
+  
+  getBotReply(text) {
+    const t = text.toLowerCase();
+    
+    // Service keywords
+    if (/service|offer|solution|what can you do|your services|provide|do you offer|help with/.test(t)) {
+      return "Defcon offers:<ul style='margin:8px 0 0 18px;padding:0;'><li>Web Design &amp; Development</li><li>24/7 Technical Support</li><li>IT Consulting</li><li>Digital Marketing</li><li>Graphic Design</li><li>Photography &amp; Videography</li></ul>Let me know if you'd like details about any service! 🚀";
+    }
+    
+    // Greetings
+    if (/hello|hi|hey|good morning|good afternoon|good evening/.test(t)) {
+      const greetings = [
+        "Hello! How can I assist you today? 😊",
+        "Hi there! What can I help you with? 👋",
+        "Hey! Great to see you here. How can I help? ✨"
+      ];
+      return greetings[Math.floor(Math.random() * greetings.length)];
+    }
+    
+    // Web Applications & Development
+if (/web app|web application|webapp|web development|website development|custom web/.test(t)) {
+  return "We create powerful web applications tailored to your business needs! 🌐 From simple websites to complex enterprise solutions, we build responsive, scalable applications using the latest technologies. Our expertise includes React, Node.js, Python, and more. Ready to bring your vision to life? 🚀";
+}
+
+// E-commerce Solutions
+if (/ecommerce|e-commerce|online store|shopping|cart|payment|woocommerce|shopify/.test(t)) {
+  return "Transform your business with our comprehensive e-commerce solutions! 🛒 We build secure, user-friendly online stores with integrated payment gateways, inventory management, and mobile optimization. Whether it's Shopify, WooCommerce, or custom solutions - we've got you covered! 💳✨";
+}
+
+// API Development & Integration
+if (/api|integration|third party|connect|webhook|rest|graphql/.test(t)) {
+  return "Seamlessly connect your systems with our API development and integration services! 🔗 We create robust APIs and integrate third-party services to streamline your operations. From payment processors to CRM systems - we make everything work together perfectly! ⚡";
+}
+
+// Custom Software Development
+if (/custom software|bespoke|tailored solution|enterprise software|business software/.test(t)) {
+  return "We specialize in custom software solutions that fit your unique business requirements! 💻 Our team develops enterprise-grade applications, automation tools, and specialized systems. From concept to deployment, we deliver software that drives efficiency and growth! 🎯";
+}
+
+// Tech Support
+if (/tech support|technical support|help|problem|issue|troubleshoot|fix/.test(t)) {
+  return "Our 24/7 tech support team is here to keep your systems running smoothly! 🛠️ We provide remote assistance, on-site support, hardware troubleshooting, and software maintenance. No problem is too big or small - we're your reliable IT partner! 📞";
+}
+
+// Smart Home Setup
+if (/smart home|automation|iot|alexa|google home|smart device|home automation/.test(t)) {
+  return "Transform your home into a smart, connected living space! 🏡 We install and configure smart lighting, security systems, thermostats, speakers, and more. Control everything from your phone and enjoy the convenience of home automation! 📱✨";
+}
+
+// Digital Marketing
+if (/digital marketing|marketing|seo|social media|google ads|facebook ads|online marketing/.test(t)) {
+  return "Boost your online presence with our comprehensive digital marketing services! 📈 We offer SEO optimization, social media management, Google Ads, content marketing, and email campaigns. Let's grow your brand and reach your target audience effectively! 🎯";
+}
+
+// Graphic Design
+if (/graphic design|logo|branding|design|visual|creative|poster|flyer/.test(t)) {
+  return "Bring your brand to life with our creative graphic design services! 🎨 We create stunning logos, business cards, brochures, social media graphics, and complete brand identities. Professional designs that make your business stand out! ✨";
+}
+
+// Advertising
+if (/advertising|ads|campaign|promotion|banner|advertisement/.test(t)) {
+  return "Maximize your reach with our targeted advertising solutions! 📢 We create and manage campaigns across Google, Facebook, Instagram, LinkedIn, and other platforms. Data-driven strategies that deliver real results and ROI! 💰";
+}
+
+// Automation & AI Integration
+if (/automation|ai integration|artificial intelligence|machine learning|chatbot|workflow/.test(t)) {
+  return "Revolutionize your business with AI and automation! 🤖 We implement intelligent chatbots, workflow automation, data analysis tools, and AI-powered solutions. Reduce manual work, increase efficiency, and stay ahead of the competition! ⚡";
+}
+
+// AWS Migration & Services
+if (/aws|amazon web services|cloud migration|ec2|s3|lambda|aws migration/.test(t)) {
+  return "Migrate to AWS with confidence! ☁️ Our certified experts handle everything from planning to execution - EC2 instances, S3 storage, Lambda functions, RDS databases, and more. Scalable, secure, and cost-effective cloud solutions! 🚀";
+}
+
+// Azure Integration
+if (/azure|microsoft azure|azure migration|office 365|teams/.test(t)) {
+  return "Harness the power of Microsoft Azure for your business! 💙 We provide Azure migration, Office 365 integration, Teams setup, and complete cloud infrastructure management. Seamless Microsoft ecosystem integration! ⚡";
+}
+
+// Google Cloud Platform
+if (/google cloud|gcp|firebase|google workspace|gmail business/.test(t)) {
+  return "Leverage Google Cloud Platform for superior performance! 🌟 We offer GCP migration, Firebase development, Google Workspace setup, and cloud architecture design. Reliable, fast, and globally distributed solutions! 🌍";
+}
+
+// Cloud Security
+if (/cloud security|cybersecurity|security|data protection|firewall|backup/.test(t)) {
+  return "Protect your digital assets with our comprehensive cloud security solutions! 🔒 We implement advanced firewalls, data encryption, backup systems, and security monitoring. Your data safety is our top priority! 🛡️";
+}
+
+// Copywriting & Content Creation
+if (/copywriting|content|writing|blog|articles|social media content/.test(t)) {
+  return "Engage your audience with compelling content! ✍️ Our copywriters create website content, blog articles, social media posts, email campaigns, and marketing materials that convert visitors into customers. Words that work! 📝";
+}
+
+// Pricing & Quotes
+if (/price|cost|quote|how much|budget|affordable/.test(t)) {
+  return "We offer competitive pricing tailored to your specific needs! 💰 Every project is unique, so we provide personalized quotes based on your requirements. Contact us for a free consultation and detailed estimate! 📋";
+}
+
+// Portfolio & Previous Work
+if (/portfolio|examples|previous work|case study|projects|showcase/.test(t)) {
+  return "We're proud of our diverse portfolio spanning various industries! 🏆 From startups to enterprises, we've delivered successful projects in healthcare, finance, retail, and more. Contact us to see relevant case studies and examples! 📊";
+}
+
+// Timeline & Process
+if (/timeline|how long|process|steps|development process|project timeline/.test(t)) {
+  return "Our streamlined process ensures timely delivery! ⏱️ We start with consultation, then planning, design, development, testing, and deployment. Timeline varies by project complexity - typically 2-12 weeks. We keep you updated every step of the way! 📅";
+}
+
+// Team & Expertise
+if (/team|developers|expertise|experience|qualifications/.test(t)) {
+  return "Our team consists of certified professionals with 10+ years of combined experience! 👥 We have specialists in development, design, marketing, and cloud technologies. Continuous learning and industry certifications keep us at the forefront! 🎓";
+}
+
+// Location & Availability
+if (/location|where|office|remote|availability|hours/.test(t)) {
+  return "We're based locally but serve clients globally! 🌍 We offer both on-site and remote services, available 24/7 for critical support. Flexible engagement models to suit your preferences and timezone! 🕐";
+}
+
+// Getting Started
+if (/get started|begin|start|first step|how to start/.test(t)) {
+  return "Ready to transform your business? Let's get started! 🚀 Contact us for a free consultation where we'll discuss your goals, challenges, and create a customized solution roadmap. Your success story begins here! ✨";
+}
+
+// Mobile App Development
+if (/mobile app|android|ios|flutter|react native|app development|smartphone app/.test(t)) {
+  return "Build powerful mobile apps that engage your customers! 📱 We develop native iOS, Android, and cross-platform apps using Flutter and React Native. From concept to App Store - we handle the entire mobile journey! 🚀";
+}
+
+// Database Management & Design
+if (/database|mysql|postgresql|mongodb|data management|sql/.test(t)) {
+  return "Optimize your data with professional database solutions! 🗄️ We design, implement, and manage MySQL, PostgreSQL, MongoDB, and other database systems. Ensure data integrity, performance, and scalability for your business! ⚡";
+}
+
+// DevOps & CI/CD
+if (/devops|deployment|ci\/cd|continuous integration|docker|kubernetes/.test(t)) {
+  return "Streamline your development with modern DevOps practices! 🔄 We implement CI/CD pipelines, Docker containerization, Kubernetes orchestration, and automated testing. Faster deployments, fewer errors, happier teams! 🎯";
+}
+
+// Blockchain & Cryptocurrency
+if (/blockchain|cryptocurrency|bitcoin|ethereum|smart contracts|nft/.test(t)) {
+  return "Enter the future with blockchain technology! ⛓️ We develop smart contracts, NFT platforms, cryptocurrency solutions, and decentralized applications. Secure, transparent, and revolutionary digital solutions! 💎";
+}
+
+// Data Analytics & Business Intelligence
+if (/data analytics|business intelligence|reporting|dashboard|data visualization/.test(t)) {
+  return "Turn data into actionable insights! 📊 We create comprehensive dashboards, automated reports, and data visualization tools. Make informed decisions with real-time analytics and business intelligence! 📈";
+}
+
+// Cybersecurity & Penetration Testing
+if (/cybersecurity|penetration testing|security audit|vulnerability|hacking|security assessment/.test(t)) {
+  return "Protect your business from cyber threats! 🔐 We provide security audits, penetration testing, vulnerability assessments, and compliance consulting. Stay secure with proactive cybersecurity measures! 🛡️";
+}
+
+// Network Infrastructure
+if (/network|networking|wifi|lan|wan|router|switch|infrastructure/.test(t)) {
+  return "Build robust network infrastructure for your business! 🌐 We design and implement LAN/WAN networks, Wi-Fi solutions, VPNs, and network security. Reliable connectivity that grows with your business! 📡";
+}
+
+// Server Management & Hosting
+if (/server|hosting|vps|dedicated server|server management|uptime/.test(t)) {
+  return "Keep your servers running optimally 24/7! 🖥️ We provide server setup, management, monitoring, and hosting solutions. Choose from shared, VPS, or dedicated servers with 99.9% uptime guarantee! ⏰";
+}
+
+// Maintenance & Updates
+if (/maintenance|updates|support|ongoing|monthly|annual/.test(t)) {
+  return "Keep your systems fresh and secure with our maintenance plans! 🔧 Regular updates, security patches, performance optimization, and 24/7 monitoring. Prevent issues before they impact your business! 🛠️";
+}
+
+// Backup & Disaster Recovery
+if (/backup|disaster recovery|data loss|restore|recovery plan/.test(t)) {
+  return "Never lose important data again! 💾 We implement automated backup systems, disaster recovery plans, and data restoration services. Multiple backup locations ensure your data is always safe! 🔄";
+}
+
+// SSL Certificates & Security
+if (/ssl|certificate|https|security certificate|encryption/.test(t)) {
+  return "Secure your website with SSL certificates! 🔒 We install and manage SSL/TLS certificates, ensure HTTPS encryption, and boost your SEO rankings. Protect customer data and build trust! ✅";
+}
+
+// Domain & Email Setup
+if (/domain|email|business email|gmail|outlook|domain registration/.test(t)) {
+  return "Establish your professional online presence! 📧 We handle domain registration, business email setup, email hosting, and migration. Professional email addresses that match your brand! 💼";
+}
+
+// Performance Optimization
+if (/performance|speed|optimization|slow|loading|page speed/.test(t)) {
+  return "Boost your website and application performance! ⚡ We optimize loading speeds, database queries, image compression, and server response times. Faster sites mean better user experience and higher conversions! 🚀";
+}
+
+// Quality Assurance & Testing
+if (/testing|qa|quality assurance|bug testing|user testing/.test(t)) {
+  return "Ensure flawless software with comprehensive testing! 🧪 We perform functional testing, user acceptance testing, performance testing, and bug fixing. Quality software that works perfectly every time! ✅";
+}
+
+// Training & Documentation
+if (/training|documentation|user manual|how to use|tutorial/.test(t)) {
+  return "Master your new systems with our training programs! 📚 We provide user training, detailed documentation, video tutorials, and ongoing support. Empower your team to use technology effectively! 🎓";
+}
+
+// Legacy System Migration
+if (/legacy|old system|migration|upgrade|modernization/.test(t)) {
+  return "Modernize your outdated systems seamlessly! 🔄 We migrate legacy applications, upgrade old databases, and modernize infrastructure without data loss or downtime. Step into the future! 🆙";
+}
+
+// Multi-language Support
+if (/multi-language|translation|international|global|localization/.test(t)) {
+  return "Reach global audiences with multi-language solutions! 🌍 We implement internationalization, translation management, and localization for websites and applications. Break language barriers! 🗣️";
+}
+
+// CRM Integration
+if (/crm|customer relationship|salesforce|hubspot|customer management/.test(t)) {
+  return "Enhance customer relationships with CRM integration! 👥 We integrate Salesforce, HubSpot, and custom CRM solutions. Streamline sales, track leads, and improve customer satisfaction! 📞";
+}
+
+// ERP Solutions
+if (/erp|enterprise resource planning|business management|inventory|accounting/.test(t)) {
+  return "Streamline operations with ERP solutions! 📋 We implement comprehensive business management systems covering inventory, accounting, HR, and operations. One platform, complete control! 🎯";
+}
+
+// Payment Gateway Integration
+if (/payment|gateway|stripe|paypal|credit card|payment processing/.test(t)) {
+  return "Accept payments securely and easily! 💳 We integrate Stripe, PayPal, Square, and other payment gateways. Support multiple currencies, subscriptions, and secure transactions! 💰";
+}
+
+// SaaS Development
+if (/saas|software as a service|subscription|cloud software/.test(t)) {
+  return "Build scalable SaaS applications! ☁️ We develop subscription-based software solutions with user management, billing integration, and multi-tenancy. Create recurring revenue streams! 📈";
+}
+
+// Project Management Tools
+if (/project management|trello|asana|jira|task management/.test(t)) {
+  return "Organize projects efficiently with modern tools! 📊 We implement and customize project management solutions like Jira, Asana, and Trello. Keep teams aligned and projects on track! ✅";
+}
+
+// Compliance & Regulations
+if (/compliance|gdpr|hipaa|regulations|data protection|privacy/.test(t)) {
+  return "Stay compliant with industry regulations! 📜 We ensure GDPR, HIPAA, PCI-DSS compliance and implement privacy policies, data protection measures, and audit trails. Avoid costly penalties! ⚖️";
+}
+
+// Version Control & Code Management
+if (/git|version control|github|code management|repository/.test(t)) {
+  return "Manage code professionally with version control! 🗂️ We set up Git repositories, implement branching strategies, and provide code review processes. Track changes and collaborate effectively! 👨‍💻";
+}
+
+// Load Balancing & Scalability
+if (/load balancing|scalability|traffic|high availability|scaling/.test(t)) {
+  return "Handle high traffic with scalable architecture! ⚖️ We implement load balancing, auto-scaling, and high-availability solutions. Your applications stay fast even during peak usage! 📈";
+}
+
+// Remote Work Solutions
+if (/remote work|work from home|collaboration|video conferencing|remote access/.test(t)) {
+  return "Enable productive remote work! 💻 We set up video conferencing, collaboration tools, remote access solutions, and secure VPNs. Work from anywhere with full productivity! 🏡";
+}
+
+// Internet of Things (IoT)
+if (/iot|internet of things|sensors|connected devices|smart devices/.test(t)) {
+  return "Connect your world with IoT solutions! 🌐 We develop IoT applications, sensor networks, and connected device management. Monitor, control, and automate with smart technology! 📡";
+}
+
+// Machine Learning & AI
+if (/machine learning|ml|artificial intelligence|predictive analytics|neural networks/.test(t)) {
+  return "Harness the power of Machine Learning! 🧠 We develop predictive models, recommendation systems, and AI-powered analytics. Let data drive intelligent business decisions! 🎯";
+}
+
+// Progressive Web Apps (PWA)
+if (/pwa|progressive web app|offline|app-like|service worker/.test(t)) {
+  return "Combine web and mobile with Progressive Web Apps! 📲 PWAs work offline, send notifications, and feel like native apps. One solution for web and mobile experiences! ⚡";
+}
+
+// Content Management Systems
+if (/cms|wordpress|drupal|content management|website management/.test(t)) {
+  return "Manage content easily with powerful CMS solutions! 📝 We develop custom CMS platforms and implement WordPress, Drupal, and headless CMS solutions. Update content without technical knowledge! ✏️";
+}
+
+// Video Streaming & Media
+if (/video streaming|media|youtube|video platform|live streaming/.test(t)) {
+  return "Stream video content professionally! 🎥 We build video platforms, implement live streaming, and optimize media delivery. Engage audiences with high-quality video experiences! 📺";
+}
+
+// Search Engine Optimization (SEO)
+if (/seo|search engine|google ranking|optimization|organic traffic/.test(t)) {
+  return "Dominate search results with expert SEO! 🔍 We optimize websites for Google, improve rankings, and drive organic traffic. Technical SEO, content optimization, and link building! 📊";
+}
+
+// Social Media Integration
+if (/social media|facebook|twitter|instagram|linkedin|social integration/.test(t)) {
+  return "Integrate social media seamlessly! 📱 We connect your website with Facebook, Twitter, Instagram, and LinkedIn. Social login, sharing, and automated posting capabilities! 🔗";
+}
+
+// Email Marketing Automation
+if (/email marketing|newsletter|mailchimp|automated emails|email campaigns/.test(t)) {
+  return "Automate email marketing for better results! 📧 We set up email campaigns, automated workflows, and integrate with MailChimp, Constant Contact, and other platforms. Nurture leads automatically! 💌";
+}
+
+// Business Hours & Response Time
+if (/hours|available|response time|when|business hours/.test(t)) {
+  return "We're here when you need us! 🕒 Business hours: Mon-Fri 8AM-6PM, emergency support 24/7. Typical response time: emails within 2 hours, calls within 30 minutes. Always accessible! ☎️";
+}
+
+// Free Consultation
+if (/free consultation|consultation|meeting|discuss|talk/.test(t)) {
+  return "Get expert advice with our free consultation! 🆓 30-minute session to discuss your needs, challenges, and opportunities. No obligation - just valuable insights for your business! 💡";
+}
+
+// Emergency Support
+if (/emergency|urgent|critical|down|not working|broken/.test(t)) {
+  return "Emergency support available 24/7! 🚨 Critical issues get immediate attention - server outages, security breaches, or system failures. Call our emergency hotline for instant help! 📞";
+}
+
+// Industries We Serve
+if (/industry|healthcare|finance|retail|education|manufacturing/.test(t)) {
+  return "We serve diverse industries with specialized solutions! 🏢 Healthcare, finance, retail, education, manufacturing, nonprofits, and more. Industry-specific expertise and compliance knowledge! 🎯";
+}
+
+// Client Success Stories
+if (/success|testimonials|reviews|client stories|case studies/.test(t)) {
+  return "Our clients love the results we deliver! ⭐ 95% client satisfaction rate, 300+ successful projects, and growing businesses. Read testimonials and see how we've transformed companies like yours! 🏆";
+}
+
+// Technology Stack
+if (/technology|tech stack|programming languages|frameworks|tools/.test(t)) {
+  return "We use cutting-edge technologies! 💻 React, Node.js, Python, PHP, Java, .NET, Flutter, React Native, Docker, AWS, Azure, GCP, and more. Always up-to-date with latest trends! 🚀";
+}
+
+// Warranty & Guarantees
+if (/warranty|guarantee|support period|after launch/.test(t)) {
+  return "We stand behind our work with solid guarantees! ✅ 30-day bug-fix warranty, 99.9% uptime guarantee for hosting, and ongoing support options. Your success is our commitment! 🤝";
+}
+    
+    // Default responses with emojis
+    const responses = [
+      "I'd love to help with that! 🤔 For detailed assistance, please contact our support team at (058) 006 2514 or email <a style='cursor: pointer; text-decoration: underline;'>info@binge.co.za</a> 📧",
+      "That's an interesting question! 💭 Our expert team can provide specialized help - feel free to reach out directly for personalized support. 👥",
+      "I've noted your inquiry! 📝 Our typical response time is under 2 hours. For immediate assistance, try our WhatsApp support! 🚀",
+      "Great question! 🌟 While I can provide basic guidance, our human experts are better equipped for detailed support. Contact us anytime! 📞"
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+  }
+};
+
+// Keyboard send (Enter)
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('defconChatbotInput');
+  if (input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !DefconComm.isTyping) {
+        DefconComm.sendChatbotMessage();
+      }
+    });
+  }
+});
+
+// Close modals on outside click or Escape
+window.addEventListener('mousedown', function(e) {
+  const chatbot = document.getElementById('defconChatbotModal');
+  const whatsapp = document.getElementById('defconWhatsAppModal');
+  if (chatbot.classList.contains('active') && !e.target.closest('#defconChatbotModal') && !e.target.closest('.defcon-comm-btn.chat') && !e.target.closest('.defcon-comm-btn.ai')) {
+    DefconComm.closeChatbot();
+  }
+  if (whatsapp.classList.contains('active') && !e.target.closest('#defconWhatsAppModal') && !e.target.closest('.defcon-comm-btn.whatsapp')) {
+    DefconComm.closeWhatsApp();
+  }
+});
+
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') DefconComm.closeAll();
+});
+</script>

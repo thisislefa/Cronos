@@ -1,0 +1,320 @@
+<div class="defcon-infinity-container">
+  <div class="defcon-infinity-wrapper">
+    <!-- Infinity Mirror Section -->
+    <div class="defcon-infinity-mirror">
+      <div class="defcon-mirror-frame">
+        <div class="defcon-mirror-surface">
+          <video class="defcon-infinity-video" autoplay loop muted playsinline>
+            <source src="videos/techno.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="defcon-reflection-layer"></div>
+          <div class="defcon-reflection-layer"></div>
+          <div class="defcon-reflection-layer"></div>
+        </div>
+      </div>
+      <div class="defcon-mirror-lighting"></div>
+      <div class="defcon-mirror-particles"></div>
+    </div>
+    
+    <!-- Content Section -->
+    <div class="defcon-infinity-content">
+      <h2 class="defcon-content-title">Dimensional Experience</h2>
+      <p class="defcon-content-text">Step into a world where digital boundaries dissolve. Our advanced mirror technology creates infinite depth that responds to your presence.</p>
+      <button class="defcon-content-button">Explore Dimensions</button>
+      <div class="defcon-content-highlight"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base Container Styles */
+  .defcon-infinity-container {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    background-color: #06273e;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .defcon-infinity-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Infinity Mirror Styles */
+  .defcon-infinity-mirror {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  
+  .defcon-mirror-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #0091ff 0%, #06273e 100%);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transform-style: preserve-3d;
+  }
+  
+  .defcon-mirror-surface {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    transform-style: preserve-3d;
+    background-color: #000;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .defcon-infinity-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  .defcon-reflection-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(6, 39, 62, 0.3) 0%, rgba(0, 145, 255, 0.1) 100%);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    z-index: 2;
+  }
+  
+  .defcon-reflection-layer:nth-child(2) {
+    transform: translateZ(-50px) scale(0.95);
+    opacity: 0.7;
+  }
+  
+  .defcon-reflection-layer:nth-child(3) {
+    transform: translateZ(-100px) scale(0.9);
+    opacity: 0.5;
+  }
+  
+  .defcon-reflection-layer:nth-child(4) {
+    transform: translateZ(-150px) scale(0.85);
+    opacity: 0.3;
+  }
+  
+  .defcon-mirror-lighting {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 145, 255, 0.1) 0%, transparent 70%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  
+  .defcon-mirror-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+  }
+  
+  /* Content Section Styles */
+  .defcon-infinity-content {
+    position: relative;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    transform: translateZ(20px);
+    color: #ffffff;
+    z-index: 2;
+  }
+  
+  .defcon-content-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    position: relative;
+    z-index: 3;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .defcon-content-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 3;
+    opacity: 0.9;
+  }
+  
+  .defcon-content-button {
+    padding: 12px 30px;
+    background: linear-gradient(90deg, #0091ff 0%, #006dff 100%);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+  }
+  
+  .defcon-content-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 145, 255, 0.4);
+  }
+  
+  .defcon-content-highlight {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 145, 255, 0.2) 0%, transparent 70%);
+    top: -50px;
+    right: -50px;
+    z-index: 1;
+  }
+  
+  /* Particle Creation */
+  .defcon-particle {
+    position: absolute;
+    background-color: rgba(0, 145, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+  }
+  
+  /* Responsive Adjustments */
+  @media (min-width: 768px) {
+    .defcon-infinity-wrapper {
+      flex-direction: row;
+      align-items: center;
+    }
+    
+    .defcon-infinity-mirror {
+      width: 50%;
+    }
+    
+    .defcon-infinity-content {
+      width: 45%;
+      margin-left: 5%;
+    }
+    
+    .defcon-content-title {
+      font-size: 2.5rem;
+    }
+  }
+  
+  /* Animation Keyframes */
+  @keyframes defcon-float {
+    0%, 100% {
+      transform: translateY(0) translateZ(0);
+    }
+    50% {
+      transform: translateY(-10px) translateZ(5px);
+    }
+  }
+  
+  @keyframes defcon-particle-move {
+    0% {
+      transform: translateZ(-500px) translateY(0) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateZ(100px) translateY(var(--particle-y)) translateX(var(--particle-x));
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mirror = document.querySelector('.defcon-infinity-mirror');
+    const particlesContainer = document.querySelector('.defcon-mirror-particles');
+    
+    // Create particles
+    function createParticles() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.classList.add('defcon-particle');
+          
+          // Random properties
+          const size = Math.random() * 5 + 2;
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const duration = Math.random() * 10000 + 5000;
+          const delay = Math.random() * 5000;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${x}%`;
+          particle.style.top = `${y}%`;
+          particle.style.setProperty('--particle-x', `${(Math.random() - 0.5) * 100}px`);
+          particle.style.setProperty('--particle-y', `${(Math.random() - 0.5) * 100}px`);
+          particle.style.animation = `defcon-particle-move ${duration}ms linear ${delay}ms infinite`;
+          
+          particlesContainer.appendChild(particle);
+        }, i * 300);
+      }
+    }
+    
+    // Mouse move interaction
+    function handleMouseMove(e) {
+      const rect = mirror.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const angleX = (y - centerY) / 20;
+      const angleY = (centerX - x) / 20;
+      
+      mirror.style.transform = `perspective(1200px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      
+      // Parallax effect for content
+      const content = document.querySelector('.defcon-infinity-content');
+      const contentAngleX = angleX * 0.2;
+      const contentAngleY = angleY * 0.2;
+      content.style.transform = `translateZ(20px) rotateX(${contentAngleX}deg) rotateY(${contentAngleY}deg)`;
+    }
+    
+    // Reset position when mouse leaves
+    function handleMouseLeave() {
+      mirror.style.transform = 'perspective(1200px) rotateX(0) rotateY(0)';
+      document.querySelector('.defcon-infinity-content').style.transform = 'translateZ(20px) rotateX(0) rotateY(0)';
+    }
+    
+    // Initialize
+    createParticles();
+    
+    // Add event listeners
+    mirror.addEventListener('mousemove', handleMouseMove);
+    mirror.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Add floating animation to mirror
+    mirror.style.animation = 'defcon-float 8s ease-in-out infinite';
+  });
+</script>

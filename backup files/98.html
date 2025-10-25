@@ -1,0 +1,403 @@
+<style>
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Hero Container */
+.defcon-hero-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #06273e;
+}
+
+/* Video Background */
+.defcon-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.85;
+    mix-blend-mode: screen;
+}
+
+/* Overlay */
+.defcon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(6, 39, 62, 0.9) 0%, rgba(0, 145, 255, 0.3) 100%);
+    z-index: 2;
+}
+
+/* Content Wrapper */
+.defcon-content-wrapper {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Main Heading */
+.defcon-main-heading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Subheading */
+.defcon-subheading {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+    color: #e5e5e5;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+}
+
+/* CTA Buttons Container */
+.defcon-cta-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.9s forwards;
+}
+
+/* Primary Button */
+.defcon-primary-button {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-primary-button:hover {
+    background-color: #0077d6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-primary-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.defcon-primary-button:hover::after {
+    left: 100%;
+}
+
+/* Secondary Button */
+.defcon-secondary-button {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.defcon-secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Stats Container */
+.defcon-stats-container {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+}
+
+/* Stat Item */
+.defcon-stat-item {
+    text-align: center;
+}
+
+.defcon-stat-number {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.defcon-stat-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #e5e5e5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Scrolling Indicator */
+.defcon-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+.defcon-scroll-indicator svg {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+    animation: bounce 2s infinite;
+}
+
+/* Floating Elements */
+.defcon-floating-element {
+    position: absolute;
+    background: rgba(0, 145, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.defcon-floating-element-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 10%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.defcon-floating-element-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    right: 15%;
+    animation: float 6s ease-in-out infinite reverse;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .defcon-cta-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .defcon-stats-container {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    
+    .defcon-stat-item {
+        flex: 0 0 calc(50% - 1.5rem);
+    }
+    
+    .defcon-floating-element-1,
+    .defcon-floating-element-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .defcon-stat-item {
+        flex: 0 0 100%;
+    }
+}
+</style>
+
+<!-- Hero Section HTML -->
+<section class="defcon-hero-container">
+    <!-- Video Background -->
+    <video class="defcon-video-background" autoplay muted loop playsinline>
+        <source src="videos/techno.mp4" type="video/mp4">
+        <!-- Fallback image -->
+        <img src="https://example.com/path-to-fallback-image.jpg" alt="Background">
+    </video>
+    
+    <!-- Gradient Overlay -->
+    <div class="defcon-overlay"></div>
+    
+    <!-- Floating Elements -->
+    <div class="defcon-floating-element defcon-floating-element-1"></div>
+    <div class="defcon-floating-element defcon-floating-element-2"></div>
+    
+    <!-- Content -->
+    <div class="defcon-content-wrapper">
+        <h1 class="defcon-main-heading">Redefining Digital Excellence</h1>
+        <p class="defcon-subheading">Cutting-edge solutions for the modern enterprise. Our expertise transforms complex challenges into seamless digital experiences.</p>
+        
+        <div class="defcon-cta-container">
+            <button class="defcon-primary-button">Explore Solutions</button>
+            <button class="defcon-secondary-button">Learn More</button>
+        </div>
+        
+        <div class="defcon-stats-container">
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number" data-count="150">0</div>
+                <div class="defcon-stat-label">Global Clients</div>
+            </div>
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number" data-count="99">0</div>
+                <div class="defcon-stat-label">Success Rate</div>
+            </div>
+            <div class="defcon-stat-item">
+                <div class="defcon-stat-number" data-count="24">0</div>
+                <div class="defcon-stat-label">Hour Support</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="defcon-scroll-indicator">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+</section>
+
+<script>
+// Count Animation for Stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.defcon-stat-number');
+    const speed = 200;
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(animateCounters, 1);
+        } else {
+            counter.innerText = target;
+        }
+    });
+}
+
+// Intersection Observer for Animations
+function setupIntersectionObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    const statsContainer = document.querySelector('.defcon-stats-container');
+    if (statsContainer) {
+        observer.observe(statsContainer);
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupIntersectionObserver();
+    
+    // Video fallback for mobile
+    const videoBg = document.querySelector('.defcon-video-background');
+    if (videoBg && window.innerWidth < 768) {
+        videoBg.poster = 'https://example.com/path-to-mobile-fallback.jpg';
+    }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+</script>

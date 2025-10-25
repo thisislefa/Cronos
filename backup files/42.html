@@ -1,0 +1,579 @@
+<!-- Architectural Blueprint Video Showcase -->
+<div class="bp-showcase-container">
+  <div class="bp-blueprint-frame">
+    <div class="bp-video-container">
+      <video class="bp-video" autoplay loop muted playsinline>
+        <source src="videos/techno.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="bp-frame-overlay"></div>
+      <div class="bp-dimension-lines"></div>
+      <div class="bp-annotations"></div>
+      <div class="bp-hardware bp-hardware-tl"></div>
+      <div class="bp-hardware bp-hardware-tr"></div>
+      <div class="bp-hardware bp-hardware-bl"></div>
+      <div class="bp-hardware bp-hardware-br"></div>
+    </div>
+    <div class="bp-grid-lines"></div>
+    <div class="bp-drawing-effects"></div>
+  </div>
+  
+  <div class="bp-specs-container">
+    <div class="bp-specs-header">
+      <h2 class="bp-specs-title">TECHNICAL SPECIFICATIONS</h2>
+      <div class="bp-specs-divider"></div>
+    </div>
+    <div class="bp-specs-content">
+      <div class="bp-spec-item">
+        <h3 class="bp-spec-label">Project Dimensions</h3>
+        <p class="bp-spec-value">1200mm × 800mm × 400mm</p>
+        <div class="bp-spec-line"></div>
+      </div>
+      <div class="bp-spec-item">
+        <h3 class="bp-spec-label">Material Composition</h3>
+        <p class="bp-spec-value">High-grade aluminum alloy (6061-T6)</p>
+        <div class="bp-spec-line"></div>
+      </div>
+      <div class="bp-spec-item">
+        <h3 class="bp-spec-label">Tolerance Levels</h3>
+        <p class="bp-spec-value">±0.05mm machining precision</p>
+        <div class="bp-spec-line"></div>
+      </div>
+      <div class="bp-spec-item">
+        <h3 class="bp-spec-label">Surface Treatment</h3>
+        <p class="bp-spec-value">Anodized finish (Type III hardcoat)</p>
+        <div class="bp-spec-line"></div>
+      </div>
+    </div>
+    <div class="bp-specs-footer">
+      <div class="bp-revision-history">
+        <span class="bp-revision-label">REVISION:</span>
+        <span class="bp-revision-value">B-12.05.2023</span>
+      </div>
+      <div class="bp-approval-stamp"></div>
+    </div>
+    <div class="bp-drafting-lines"></div>
+  </div>
+</div>
+
+<style>
+  /* Base Styles */
+  .bp-showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    background-color: #ffffff;
+    background-image: 
+      linear-gradient(#e5e5e5 0.5px, transparent 0.5px),
+      linear-gradient(90deg, #e5e5e5 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    background-position: center;
+    overflow: hidden;
+  }
+  
+  .bp-blueprint-frame {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    margin-bottom: 40px;
+    border: 1px solid #0091ff;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .bp-video-container {
+    position: relative;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    margin: 30px;
+    overflow: hidden;
+  }
+  
+  .bp-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .bp-frame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #06273e;
+    pointer-events: none;
+  }
+  
+  .bp-dimension-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .bp-annotations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .bp-hardware {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #06273e;
+    border-radius: 50%;
+    border: 2px solid #0091ff;
+  }
+  
+  .bp-hardware-tl {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .bp-hardware-tr {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .bp-hardware-bl {
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .bp-hardware-br {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .bp-grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(#0091ff33 0.5px, transparent 0.5px),
+      linear-gradient(90deg, #0091ff33 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  .bp-drawing-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .bp-specs-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .bp-specs-header {
+    margin-bottom: 20px;
+  }
+  
+  .bp-specs-title {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0091ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .bp-specs-divider {
+    height: 2px;
+    background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+  }
+  
+  .bp-specs-content {
+    margin-bottom: 20px;
+  }
+  
+  .bp-spec-item {
+    margin-bottom: 15px;
+  }
+  
+  .bp-spec-label {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+  
+  .bp-spec-value {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #06273e;
+    margin-bottom: 8px;
+  }
+  
+  .bp-spec-line {
+    height: 1px;
+    background-color: #e5e5e5;
+    margin-top: 8px;
+  }
+  
+  .bp-specs-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .bp-revision-history {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #06273e;
+  }
+  
+  .bp-revision-label {
+    font-weight: 700;
+    margin-right: 5px;
+  }
+  
+  .bp-approval-stamp {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #0091ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: #0091ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .bp-drafting-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  /* Drawing Animation Styles */
+  .bp-drawing-line {
+    position: absolute;
+    background-color: #0091ff;
+    transform-origin: left center;
+  }
+  
+  .bp-drawing-text {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bp-drawing-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    transform-origin: left center;
+    animation: bp-drawText 1s forwards;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .bp-showcase-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 50px;
+    }
+    
+    .bp-blueprint-frame {
+      width: 55%;
+      margin-bottom: 0;
+      margin-right: 5%;
+      height: 400px;
+    }
+    
+    .bp-specs-container {
+      width: 40%;
+      padding: 30px;
+    }
+    
+    .bp-specs-title {
+      font-size: 20px;
+    }
+    
+    .bp-spec-label, .bp-spec-value {
+      font-size: 15px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .bp-specs-title {
+      font-size: 22px;
+    }
+    
+    .bp-spec-label, .bp-spec-value {
+      font-size: 16px;
+    }
+  }
+  
+  /* Animations */
+  @keyframes bp-drawLine {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  
+  @keyframes bp-drawText {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  
+  @keyframes bp-drawCircle {
+    from {
+      stroke-dashoffset: 100;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Create dimension lines and annotations
+    const dimensionLines = document.querySelector('.bp-dimension-lines');
+    const annotations = document.querySelector('.bp-annotations');
+    const videoContainer = document.querySelector('.bp-video-container');
+    const draftingLines = document.querySelector('.bp-drafting-lines');
+    
+    // Create dimension lines
+    function createDimensionLines() {
+      const rect = videoContainer.getBoundingClientRect();
+      
+      // Horizontal dimension line (top)
+      const hLine = document.createElement('div');
+      hLine.classList.add('bp-drawing-line');
+      hLine.style.top = '-15px';
+      hLine.style.left = '0';
+      hLine.style.width = '100%';
+      hLine.style.height = '1px';
+      hLine.style.backgroundColor = '#0091ff';
+      hLine.style.animation = 'bp-drawLine 1s forwards';
+      dimensionLines.appendChild(hLine);
+      
+      // Horizontal dimension arrows
+      const hArrow1 = document.createElement('div');
+      hArrow1.classList.add('bp-dimension-arrow');
+      hArrow1.style.top = '-15px';
+      hArrow1.style.left = '0';
+      hArrow1.style.borderLeft = '5px solid transparent';
+      hArrow1.style.borderRight = '5px solid transparent';
+      hArrow1.style.borderTop = '5px solid #0091ff';
+      dimensionLines.appendChild(hArrow1);
+      
+      const hArrow2 = document.createElement('div');
+      hArrow2.classList.add('bp-dimension-arrow');
+      hArrow2.style.top = '-15px';
+      hArrow2.style.right = '0';
+      hArrow2.style.borderLeft = '5px solid transparent';
+      hArrow2.style.borderRight = '5px solid transparent';
+      hArrow2.style.borderTop = '5px solid #0091ff';
+      dimensionLines.appendChild(hArrow2);
+      
+      // Horizontal dimension text
+      const hText = document.createElement('div');
+      hText.classList.add('bp-dimension-text');
+      hText.style.top = '-25px';
+      hText.style.left = '50%';
+      hText.style.transform = 'translateX(-50%)';
+      hText.style.fontFamily = "'Courier New', monospace";
+      hText.style.fontSize = '10px';
+      hText.style.color = '#0091ff';
+      hText.textContent = `${Math.round(rect.width)}px`;
+      dimensionLines.appendChild(hText);
+      
+      // Vertical dimension line (left)
+      const vLine = document.createElement('div');
+      vLine.classList.add('bp-drawing-line');
+      vLine.style.top = '0';
+      vLine.style.left = '-15px';
+      vLine.style.width = '1px';
+      vLine.style.height = '100%';
+      vLine.style.backgroundColor = '#0091ff';
+      vLine.style.animation = 'bp-drawLine 1s 0.5s forwards';
+      dimensionLines.appendChild(vLine);
+      
+      // Vertical dimension arrows
+      const vArrow1 = document.createElement('div');
+      vArrow1.classList.add('bp-dimension-arrow');
+      vArrow1.style.top = '0';
+      vArrow1.style.left = '-15px';
+      vArrow1.style.borderTop = '5px solid transparent';
+      vArrow1.style.borderBottom = '5px solid transparent';
+      vArrow1.style.borderLeft = '5px solid #0091ff';
+      dimensionLines.appendChild(vArrow1);
+      
+      const vArrow2 = document.createElement('div');
+      vArrow2.classList.add('bp-dimension-arrow');
+      vArrow2.style.bottom = '0';
+      vArrow2.style.left = '-15px';
+      vArrow2.style.borderTop = '5px solid transparent';
+      vArrow2.style.borderBottom = '5px solid transparent';
+      vArrow2.style.borderLeft = '5px solid #0091ff';
+      dimensionLines.appendChild(vArrow2);
+      
+      // Vertical dimension text
+      const vText = document.createElement('div');
+      vText.classList.add('bp-dimension-text');
+      vText.style.top = '50%';
+      vText.style.left = '-25px';
+      vText.style.transform = 'translateY(-50%) rotate(-90deg)';
+      vText.style.fontFamily = "'Courier New', monospace";
+      vText.style.fontSize = '10px';
+      vText.style.color = '#0091ff';
+      vText.textContent = `${Math.round(rect.height)}px`;
+      dimensionLines.appendChild(vText);
+    }
+    
+    // Create drafting effects
+    function createDraftingEffects() {
+      // Add drawing lines to specs container
+      const specsItems = document.querySelectorAll('.bp-spec-item');
+      
+      specsItems.forEach((item, index) => {
+        const line = document.createElement('div');
+        line.classList.add('bp-drawing-line');
+        line.style.bottom = '0';
+        line.style.left = '0';
+        line.style.width = '100%';
+        line.style.height = '1px';
+        line.style.backgroundColor = '#0091ff';
+        line.style.animation = `bp-drawLine 0.5s ${index * 0.2 + 0.5}s forwards`;
+        draftingLines.appendChild(line);
+      });
+      
+      // Add drawing animation to text
+      const drawingTexts = document.querySelectorAll('.bp-spec-label, .bp-spec-value');
+      drawingTexts.forEach((text, index) => {
+        text.classList.add('bp-drawing-text');
+      });
+    }
+    
+    // Create approval stamp
+    function createApprovalStamp() {
+      const stamp = document.querySelector('.bp-approval-stamp');
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("height", "100%");
+      svg.setAttribute("viewBox", "0 0 60 60");
+      
+      // Circle
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", "30");
+      circle.setAttribute("cy", "30");
+      circle.setAttribute("r", "28");
+      circle.setAttribute("fill", "none");
+      circle.setAttribute("stroke", "#0091ff");
+      circle.setAttribute("stroke-width", "1");
+      circle.setAttribute("stroke-dasharray", "100");
+      circle.setAttribute("stroke-dashoffset", "100");
+      circle.setAttribute("animation", "bp-drawCircle 1s 1.5s forwards");
+      svg.appendChild(circle);
+      
+      // Text
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", "30");
+      text.setAttribute("y", "35");
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("font-family", "'Courier New', monospace");
+      text.setAttribute("font-size", "8");
+      text.setAttribute("font-weight", "bold");
+      text.setAttribute("fill", "#0091ff");
+      text.textContent = "APPROVED";
+      svg.appendChild(text);
+      
+      stamp.appendChild(svg);
+    }
+    
+    // Initialize effects
+    createDimensionLines();
+    createDraftingEffects();
+    createApprovalStamp();
+    
+    // Add hover effects for annotations
+    videoContainer.addEventListener('mousemove', (e) => {
+      const rect = videoContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Clear previous hover annotations
+      const prevHover = document.querySelector('.bp-hover-annotation');
+      if (prevHover) prevHover.remove();
+      
+      // Create new hover annotation
+      if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
+        const hoverAnnotation = document.createElement('div');
+        hoverAnnotation.classList.add('bp-hover-annotation');
+        hoverAnnotation.style.position = 'absolute';
+        hoverAnnotation.style.left = `${x}px`;
+        hoverAnnotation.style.top = `${y}px`;
+        hoverAnnotation.style.width = '60px';
+        hoverAnnotation.style.height = '30px';
+        hoverAnnotation.style.backgroundColor = '#ffffff';
+        hoverAnnotation.style.border = '1px solid #0091ff';
+        hoverAnnotation.style.fontFamily = "'Courier New', monospace";
+        hoverAnnotation.style.fontSize = '10px';
+        hoverAnnotation.style.display = 'flex';
+        hoverAnnotation.style.justifyContent = 'center';
+        hoverAnnotation.style.alignItems = 'center';
+        hoverAnnotation.style.color = '#06273e';
+        hoverAnnotation.textContent = `${Math.round(x)}×${Math.round(y)}`;
+        
+        annotations.appendChild(hoverAnnotation);
+      }
+    });
+    
+    videoContainer.addEventListener('mouseleave', () => {
+      const hoverAnnotations = document.querySelectorAll('.bp-hover-annotation');
+      hoverAnnotations.forEach(annotation => annotation.remove());
+    });
+  });
+</script>

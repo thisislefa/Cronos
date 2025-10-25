@@ -1,0 +1,467 @@
+<!-- DEFCON PREMIUM SLIDESHOW - START -->
+<style>
+  /* Unique Defcon Slideshow Styles */
+  .defcon-slideshow-container {
+    --defcon-primary: #0091ff;
+    --defcon-dark: #06273e;
+    --defcon-light: #ffffff;
+    --defcon-gray: #e5e5e5;
+    --defcon-transition: cubic-bezier(0.77, 0, 0.175, 1);
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .defcon-slideshow-track {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 1s var(--defcon-transition);
+  }
+
+  .defcon-slide {
+    position: relative;
+    width: 33.333%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .defcon-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(6, 39, 62, 0.85) 0%, rgba(6, 39, 62, 0.5) 100%);
+  }
+
+  .defcon-slide-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    max-width: 500px;
+    color: var(--defcon-light);
+    opacity: 0;
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+  }
+
+  .defcon-slide.active .defcon-slide-content {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .defcon-slide-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    transform: translateX(-30px);
+    transition: transform 0.6s ease 0.6s;
+  }
+
+  .defcon-slide.active .defcon-slide-title {
+    transform: translateX(0);
+  }
+
+  .defcon-slide-desc {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    transform: translateX(-30px);
+    transition: transform 0.6s ease 0.8s;
+    opacity: 0.9;
+  }
+
+  .defcon-slide.active .defcon-slide-desc {
+    transform: translateX(0);
+  }
+
+  .defcon-slide-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--defcon-primary);
+    color: var(--defcon-light);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    transform: translateX(-30px);
+    transition: transform 0.6s ease 1s, background-color 0.3s ease;
+  }
+
+  .defcon-slide.active .defcon-slide-btn {
+    transform: translateX(0);
+  }
+
+  .defcon-slide-btn:hover {
+    background-color: var(--defcon-light);
+    color: var(--defcon-primary);
+  }
+
+  .defcon-slide-nav {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    z-index: 10;
+  }
+
+  .defcon-slide-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--defcon-gray);
+    margin: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+  }
+
+  .defcon-slide-dot.active {
+    background-color: var(--defcon-primary);
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .defcon-slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-slide-arrow:hover {
+    background-color: var(--defcon-primary);
+  }
+
+  .defcon-slide-arrow svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--defcon-light);
+  }
+
+  .defcon-slide-arrow.prev {
+    left: 30px;
+  }
+
+  .defcon-slide-arrow.next {
+    right: 30px;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .defcon-slide-content {
+      left: 5%;
+      max-width: 90%;
+    }
+
+    .defcon-slide-title {
+      font-size: 2rem;
+    }
+
+    .defcon-slide-desc {
+      font-size: 1rem;
+    }
+
+    .defcon-slide-arrow {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* Sidebar Styles */
+  .defcon-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: rgba(6, 39, 62, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.6s var(--defcon-transition);
+    padding: 20px;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .defcon-sidebar.active {
+    left: 0;
+  }
+
+  .defcon-sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .defcon-sidebar-toggle-line {
+    width: 25px;
+    height: 2px;
+    background: var(--defcon-light);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-sidebar-toggle.active .defcon-sidebar-toggle-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .defcon-sidebar-toggle.active .defcon-sidebar-toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .defcon-sidebar-toggle.active .defcon-sidebar-toggle-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Header Styles */
+  .defcon-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(6, 39, 62, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-header.scrolled {
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .defcon-logo {
+    color: var(--defcon-light);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .defcon-nav {
+    display: flex;
+  }
+
+  .defcon-nav-item {
+    color: var(--defcon-gray);
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .defcon-nav-item:hover {
+    color: var(--defcon-primary);
+  }
+
+  .defcon-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--defcon-primary);
+    transition: width 0.3s ease;
+  }
+
+  .defcon-nav-item:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .defcon-nav {
+      display: none;
+    }
+  }
+</style>
+
+<!-- Slideshow -->
+<div class="defcon-slideshow-container">
+  <div class="defcon-slideshow-track">
+    <!-- Slide 1 -->
+    <div class="defcon-slide active" style="background-image: url('thumbnails/pexels-altabena-10142683.jpg')">
+      <div class="defcon-slide-content">
+        <h2 class="defcon-slide-title">Enterprise Security Solutions</h2>
+        <p class="defcon-slide-desc">Protect your organization with our cutting-edge security infrastructure designed for Fortune 500 companies and government agencies.</p>
+        <a href="#" class="defcon-slide-btn">Learn More</a>
+      </div>
+    </div>
+    
+    <!-- Slide 2 -->
+    <div class="defcon-slide" style="background-image: url('thumbnails/pexels-pixabay-265087.jpg')">
+      <div class="defcon-slide-content">
+        <h2 class="defcon-slide-title">Cyber Intelligence</h2>
+        <p class="defcon-slide-desc">Advanced threat detection and intelligence gathering to stay ahead of sophisticated cyber attacks before they happen.</p>
+        <a href="#" class="defcon-slide-btn">Learn More</a>
+      </div>
+    </div>
+    
+    <!-- Slide 3 -->
+    <div class="defcon-slide" style="background-image: url('thumbnails/pexels-fauxels-3184455.jpg')">
+      <div class="defcon-slide-content">
+        <h2 class="defcon-slide-title">Secure Infrastructure</h2>
+        <p class="defcon-slide-desc">End-to-end encrypted network solutions with zero-trust architecture for maximum protection.</p>
+        <a href="#" class="defcon-slide-btn">Learn More</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="defcon-slide-nav">
+    <div class="defcon-slide-dot active" data-slide="0"></div>
+    <div class="defcon-slide-dot" data-slide="1"></div>
+    <div class="defcon-slide-dot" data-slide="2"></div>
+  </div>
+  
+  <div class="defcon-slide-arrow prev">
+    <svg viewBox="0 0 24 24">
+      <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+    </svg>
+  </div>
+  <div class="defcon-slide-arrow next">
+    <svg viewBox="0 0 24 24">
+      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Unique Defcon Slideshow Script
+    const defconSlideshow = {
+      init() {
+        this.slides = document.querySelectorAll('.defcon-slide');
+        this.track = document.querySelector('.defcon-slideshow-track');
+        this.dots = document.querySelectorAll('.defcon-slide-dot');
+        this.prevBtn = document.querySelector('.defcon-slide-arrow.prev');
+        this.nextBtn = document.querySelector('.defcon-slide-arrow.next');
+        this.currentIndex = 0;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 6000;
+        
+        this.setupEventListeners();
+        this.startAutoPlay();
+        this.setupHeaderScroll();
+        this.setupSidebarToggle();
+      },
+      
+      setupEventListeners() {
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+        
+        this.dots.forEach(dot => {
+          dot.addEventListener('click', (e) => {
+            const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+            this.goToSlide(slideIndex);
+          });
+        });
+      },
+      
+      goToSlide(index) {
+        this.currentIndex = index;
+        this.updateSlideshow();
+      },
+      
+      prevSlide() {
+        this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        this.updateSlideshow();
+        this.resetAutoPlay();
+      },
+      
+      nextSlide() {
+        this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        this.updateSlideshow();
+        this.resetAutoPlay();
+      },
+      
+      updateSlideshow() {
+        // Update track position
+        this.track.style.transform = `translateX(-${this.currentIndex * 33.333}%)`;
+        
+        // Update active classes
+        this.slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === this.currentIndex);
+        });
+        
+        // Update dots
+        this.dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === this.currentIndex);
+        });
+      },
+      
+      startAutoPlay() {
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, this.autoPlayDelay);
+      },
+      
+      resetAutoPlay() {
+        clearInterval(this.autoPlayInterval);
+        this.startAutoPlay();
+      },
+      
+      setupHeaderScroll() {
+        const header = document.querySelector('.defcon-header');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      },
+      
+      setupSidebarToggle() {
+        const toggle = document.querySelector('.defcon-sidebar-toggle');
+        const sidebar = document.querySelector('.defcon-sidebar');
+        
+        toggle.addEventListener('click', () => {
+          toggle.classList.toggle('active');
+          sidebar.classList.toggle('active');
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+            toggle.classList.remove('active');
+            sidebar.classList.remove('active');
+          }
+        });
+      }
+    };
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => defconSlideshow.init());
+  })();
+</script>
+<!-- DEFCON PREMIUM SLIDESHOW - END -->

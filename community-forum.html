@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Community Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="community-hub.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="dark-theme">
+
+    <header class="defcon-community-hero">
+        <div class="hero-background-visuals"></div>
+        <div class="community-content-wrapper">
+            <h1 class="community-main-title">Join the Defcon Collective.</h1>
+            <p class="community-tagline">
+                Connect with our engineers, consultants, and creators across the globe.
+            </p>
+            
+            <div class="engagement-spotlight">
+                <span class="spotlight-label">Active Members Online</span>
+                <span id="member-count" class="spotlight-metric">...</span>
+                <div class="spotlight-glow-ring"></div>
+            </div>
+            
+        </div>
+    </header>
+
+    <main class="community-channels-container">
+        
+        <h2 class="section-heading">Choose Your Connection Channel</h2>
+        
+        <section class="channel-grid">
+            
+            <a href="#" class="channel-card discord-card" aria-label="Join Defcon on Discord">
+                <div class="card-icon-box">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h3 class="card-title">Discord: Real-time Tech Chat</h3>
+                <p class="card-description">
+                    Direct access to our DevOps and Infrastructure teams for quick technical queries and deep dives.
+                </p>
+                <div class="card-cta">
+                    Join Server <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="#" class="channel-card slack-card" aria-label="Join Defcon on Slack">
+                <div class="card-icon-box">
+                    <i class="fab fa-slack"></i>
+                </div>
+                <h3 class="card-title">Slack: Collaborative Workspace</h3>
+                <p class="card-description">
+                    For ongoing project discussions, formal collaboration, and private channel networking.
+                </p>
+                <div class="card-cta">
+                    Request Invite <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+            <a href="#" class="channel-card forum-card" aria-label="Visit the Defcon Forum">
+                <div class="card-icon-box">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="card-title">Knowledge Forum: Documentation & FAQs</h3>
+                <p class="card-description">
+                    The central repository for long-form guides, solved problems, and official announcements.
+                </p>
+                <div class="card-cta">
+                    Explore Threads <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            
+        </section>
+        
+    </main>
+    
+    <section class="community-footer-cta">
+        <h2 class="cta-heading">Ready to contribute to the future of IT?</h2>
+        <a href="#" class="cta-button">Share Your Expertise Now</a>
+    </section>
+
+    <script src="community-hub.js"></script>
+</body>
+</html>
+<style>
+  /* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.dark-theme {
+    font-family: 'Inter', sans-serif;
+    background-color: #000; /* Deep Black Background */
+    color: #fff; /* Default White Text */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- HERO SECTION --- */
+
+.defcon-community-hero {
+    position: relative;
+    padding: 120px 40px 80px;
+    text-align: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.hero-background-visuals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Placeholder: Abstract, dark, geometric networking visual */
+    background: url('thumbnails/background-4.jpg') no-repeat center center/cover;
+    background-color: rgba(0, 0, 0, 0.85);
+    background-blend-mode: multiply;
+    z-index: 1;
+    /* Subtle vertical gradient for mood */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9); 
+}
+
+.community-content-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.community-main-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 145, 255, 0.3);
+}
+
+.community-tagline {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: #f4f4f4;
+    opacity: 0.8;
+}
+
+/* NEW FEATURE: Engagement Spotlight */
+.engagement-spotlight {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding: 15px 30px;
+    border: 1px solid #0091ff;
+    border-radius: 4px;
+    background-color: rgba(0, 145, 255, 0.1);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+    /* The glow effect */
+    box-shadow: 0 0 15px rgba(0, 145, 255, 0.5); 
+}
+
+@keyframes rotateGlow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.spotlight-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0091ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 10;
+}
+
+.spotlight-metric {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    z-index: 10;
+    /* Animated by JS */
+}
+
+/* --- MAIN CONTENT & CHANNELS --- */
+
+.community-channels-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #0091ff;
+}
+
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.channel-card {
+    display: block;
+    background-color: #111; /* Darker background for card */
+    padding: 30px;
+    border-radius: 1px;
+    border: 1px solid #0091ff1a;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.channel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.3);
+    border-color: #0091ff;
+}
+
+.card-icon-box {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #f4f4f4;
+    opacity: 0.7;
+    margin-bottom: 25px;
+}
+
+.card-cta {
+    display: inline-block;
+    font-weight: 600;
+    color: #0091ff;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.card-cta:hover {
+    color: #fff;
+}
+
+/* --- FOOTER CTA --- */
+
+.community-footer-cta {
+    background-color: #0091ff; /* Solid Blue Section */
+    padding: 60px 40px;
+    text-align: center;
+    color: #000;
+}
+
+.cta-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #000;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+    .community-main-title {
+        letter-spacing: 2px;
+    }
+    .channel-grid {
+        gap: 20px;
+    }
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const memberCountElement = document.getElementById('member-count');
+    const targetCount = 354; // A realistic, impressive number of active members
+    let currentCount = 0;
+    const duration = 2000; // 2 seconds for the initial count-up
+    const step = targetCount / (duration / 16); // ~60 steps per second
+
+    /**
+     * Animates the member count from 0 to the target number.
+     */
+    const animateCount = () => {
+        const startTime = performance.now();
+        
+        const updateCount = (timestamp) => {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            currentCount = Math.floor(progress * targetCount);
+            memberCountElement.textContent = currentCount.toLocaleString();
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                // Once the main animation finishes, start the subtle live flicker
+                liveFlicker();
+            }
+        };
+
+        requestAnimationFrame(updateCount);
+    };
+
+    /**
+     * Creates a subtle, realistic flicker effect for the 'live' metric.
+     */
+    const liveFlicker = () => {
+        setInterval(() => {
+            // Randomly change the count by -2, -1, 0, 1, or 2 to simulate activity
+            const variance = Math.floor(Math.random() * 5) - 2; 
+            const newCount = targetCount + variance;
+            memberCountElement.textContent = newCount.toLocaleString();
+            
+            // Add a temporary subtle glow to the number itself
+            memberCountElement.style.textShadow = '0 0 5px #0091ff';
+            setTimeout(() => {
+                memberCountElement.style.textShadow = 'none';
+            }, 100);
+            
+        }, Math.random() * 3000 + 1000); // Flicker every 1 to 4 seconds
+    };
+
+    // Start the animation when the page loads
+    animateCount();
+});
+</script>

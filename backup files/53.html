@@ -1,0 +1,489 @@
+<style>
+/* Unique class names to prevent conflicts */
+.dc-liquid-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #e5e5e5;
+    overflow: hidden;
+    font-family: "Times New Roman", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.dc-liquid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: url("#dc-liquid-goo");
+}
+
+.dc-liquid-blob {
+    position: absolute;
+    background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.8;
+    animation: dcLiquidMorph 15s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+.dc-liquid-blob:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.dc-liquid-blob:nth-child(2) {
+    width: 600px;
+    height: 600px;
+    bottom: -150px;
+    right: -100px;
+    animation-delay: 2s;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+}
+
+.dc-liquid-blob:nth-child(3) {
+    width: 400px;
+    height: 400px;
+    bottom: 50%;
+    left: 30%;
+    animation-delay: 4s;
+    background: linear-gradient(135deg, rgba(0,145,255,0.7) 0%, rgba(6,39,62,0.7) 100%);
+}
+
+@keyframes dcLiquidMorph {
+    0%, 100% {
+        border-radius: 50%;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+        transform: scale(1.1) rotate(5deg);
+    }
+    50% {
+        border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+        transform: scale(0.9) rotate(-5deg);
+    }
+    75% {
+        border-radius: 40% 60% 70% 30%/40% 70% 60% 30%;
+        transform: scale(1.05) rotate(3deg);
+    }
+}
+
+.dc-liquid-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.dc-liquid-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #ffffff, #0091ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: dcLiquidText 8s ease-in-out infinite;
+}
+
+@keyframes dcLiquidText {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.dc-liquid-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: #ffffff;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.dc-liquid-cta {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #06273e;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.dc-liquid-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dc-liquid-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0091ff, #ffffff);
+    z-index: -1;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    border-radius: 50px;
+}
+
+.dc-liquid-cta:hover::before {
+    opacity: 1;
+}
+
+.dc-liquid-bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: dcLiquidBubble linear infinite;
+    z-index: 2;
+}
+
+@keyframes dcLiquidBubble {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.dc-liquid-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0);
+    pointer-events: none;
+    z-index: 5;
+    animation: dcLiquidRipple 1s ease-out;
+}
+
+@keyframes dcLiquidRipple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.dc-liquid-drip {
+    position: absolute;
+    top: -20px;
+    width: 4px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0 0 2px 2px;
+    animation: dcLiquidDrip 3s linear infinite;
+    z-index: 3;
+}
+
+@keyframes dcLiquidDrip {
+    0% {
+        transform: translateY(0);
+        height: 20px;
+        opacity: 1;
+    }
+    85% {
+        height: 40px;
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.dc-liquid-particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
+    animation: dcLiquidParticle 1s ease-out forwards;
+}
+
+@keyframes dcLiquidParticle {
+    to {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+@keyframes dcLiquidWave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.dc-liquid-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dc-liquid-content {
+        padding: 2rem 1rem;
+        width: 95%;
+    }
+    
+    .dc-liquid-blob:nth-child(1) {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .dc-liquid-blob:nth-child(2) {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .dc-liquid-blob:nth-child(3) {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dc-liquid-content {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .dc-liquid-title {
+        font-size: 2rem;
+    }
+    
+    .dc-liquid-subtitle {
+        font-size: 1rem;
+    }
+    
+    .dc-liquid-cta {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* SVG filter for gooey effect - must be in HTML */
+</style>
+
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="dc-liquid-goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+    </defs>
+</svg>
+
+<div class="dc-liquid-hero">
+    <div class="dc-liquid-container">
+        <div class="dc-liquid-blob"></div>
+        <div class="dc-liquid-blob"></div>
+        <div class="dc-liquid-blob"></div>
+        <div class="dc-liquid-reflection"></div>
+    </div>
+    
+    <div class="dc-liquid-wave"></div>
+    
+    <div class="dc-liquid-content">
+        <h1 class="dc-liquid-title">Fluid Digital Experiences</h1>
+        <p class="dc-liquid-subtitle">Immerse yourself in our cutting-edge liquid interface technology that adapts and flows with your needs.</p>
+        <a href="#" class="dc-liquid-cta">Dive Deeper</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hero = document.querySelector('.dc-liquid-hero');
+    const container = document.querySelector('.dc-liquid-container');
+    
+    // Create bubbles
+    function createBubbles() {
+        setInterval(() => {
+            const bubble = document.createElement('div');
+            bubble.className = 'dc-liquid-bubble';
+            bubble.style.width = `${5 + Math.random() * 20}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.bottom = '-20px';
+            bubble.style.animationDuration = `${5 + Math.random() * 10}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            container.appendChild(bubble);
+            
+            // Remove bubble after animation
+            setTimeout(() => {
+                bubble.remove();
+            }, parseFloat(bubble.style.animationDuration) * 1000);
+        }, 300);
+    }
+    
+    // Create occasional drips
+    function createDrips() {
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const drip = document.createElement('div');
+                drip.className = 'dc-liquid-drip';
+                drip.style.left = `${Math.random() * 100}%`;
+                container.appendChild(drip);
+                
+                setTimeout(() => {
+                    drip.remove();
+                }, 3000);
+            }
+        }, 1000);
+    }
+    
+    // Mouse move ripple effect
+    hero.addEventListener('mousemove', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'dc-liquid-ripple';
+        ripple.style.width = '100px';
+        ripple.style.height = '100px';
+        ripple.style.left = `${e.clientX - 50}px`;
+        ripple.style.top = `${e.clientY - 50}px`;
+        container.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 1000);
+        
+        // Move blobs slightly
+        const blobs = document.querySelectorAll('.dc-liquid-blob');
+        blobs.forEach((blob, index) => {
+            const xMovement = (e.clientX - window.innerWidth / 2) / (50 * (index + 1));
+            const yMovement = (e.clientY - window.innerHeight / 2) / (50 * (index + 1));
+            blob.style.transform = `translate(${xMovement}px, ${yMovement}px)`;
+        });
+    });
+    
+    // Click splash effect
+    hero.addEventListener('click', (e) => {
+        // Create larger ripple
+        const splash = document.createElement('div');
+        splash.className = 'dc-liquid-ripple';
+        splash.style.width = '200px';
+        splash.style.height = '200px';
+        splash.style.left = `${e.clientX - 100}px`;
+        splash.style.top = `${e.clientY - 100}px`;
+        splash.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+        container.appendChild(splash);
+        
+        setTimeout(() => {
+            splash.remove();
+        }, 1000);
+        
+        // Create particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'dc-liquid-particle';
+            particle.style.width = `${2 + Math.random() * 5}px`;
+            particle.style.height = particle.style.width;
+            particle.style.left = `${e.clientX}px`;
+            particle.style.top = `${e.clientY}px`;
+            particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 100}px`);
+            particle.style.setProperty('--ty', `${(Math.random() - 0.5) * 100}px`);
+            container.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+        
+        // Create wave distortion
+        const content = document.querySelector('.dc-liquid-content');
+        content.style.transform = 'perspective(1000px) rotateX(5deg) rotateY(5deg)';
+        setTimeout(() => {
+            content.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        }, 500);
+    });
+    
+    // Time-based color shift
+    function updateColors() {
+        const now = new Date();
+        const hours = now.getHours();
+        let hueShift = 0;
+        
+        if (hours >= 6 && hours < 18) { // Daytime
+            hueShift = hours - 12;
+        } else { // Nighttime
+            hueShift = (hours - 12) * 2;
+        }
+        
+        const blobs = document.querySelectorAll('.dc-liquid-blob');
+        blobs[0].style.background = `linear-gradient(135deg, hsl(${200 + hueShift}, 100%, 50%) 0%, hsl(${210 + hueShift}, 100%, 20%) 100%)`;
+        blobs[1].style.background = `linear-gradient(135deg, hsl(${210 + hueShift}, 100%, 20%) 0%, hsl(${200 + hueShift}, 100%, 50%) 100%)`;
+        blobs[2].style.background = `linear-gradient(135deg, hsla(${200 + hueShift}, 100%, 50%, 0.7) 0%, hsla(${210 + hueShift}, 100%, 20%, 0.7) 100%)`;
+        
+        document.documentElement.style.setProperty('--primary-color', `hsl(${200 + hueShift}, 100%, 50%)`);
+    }
+    
+    // Initialize effects
+    createBubbles();
+    createDrips();
+    updateColors();
+    setInterval(updateColors, 60000); // Update colors every minute
+    
+    // Text drip effect
+    const title = document.querySelector('.dc-liquid-title');
+    setInterval(() => {
+        if (Math.random() > 0.9) {
+            title.style.animation = 'dcLiquidTextDrip 2s ease-in-out';
+            setTimeout(() => {
+                title.style.animation = 'dcLiquidText 8s ease-in-out infinite';
+            }, 2000);
+        }
+    }, 10000);
+});
+</script>

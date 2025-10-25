@@ -1,0 +1,717 @@
+<style>
+
+    /* Base Styles */
+.dynamics365-container {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    max-width: 1440px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.dynamics365-hero {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 120px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dynamics365-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('placeholder-hero-pattern.svg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.dynamics365-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dynamics365-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #06273e;
+    line-height: 1.2;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.dynamics365-hero-title.animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.dynamics365-hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transition: opacity 1s ease-out 0.3s;
+}
+
+.dynamics365-hero-subtitle.animate {
+    opacity: 0.8;
+}
+
+.dynamics365-cta-button {
+    display: inline-block;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: transform 0.5s ease-out 0.6s, opacity 0.5s ease-out 0.6s, background-color 0.3s ease;
+}
+
+.dynamics365-cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.dynamics365-cta-button:hover {
+    background-color: #0077cc;
+    transform: scale(1.05);
+}
+
+.dynamics365-cta-button:hover::after {
+    animation: dynamics365-ripple 1s ease-out;
+}
+
+.dynamics365-cta-button.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@keyframes dynamics365-ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+/* Features Section */
+.dynamics365-features {
+    padding: 100px 40px;
+    background-color: #ffffff;
+}
+
+.dynamics365-section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #06273e;
+    position: relative;
+}
+
+.dynamics365-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #0091ff;
+}
+
+.dynamics365-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.dynamics365-feature-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.dynamics365-feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.05) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dynamics365-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dynamics365-feature-card:hover::before {
+    opacity: 1;
+}
+
+.dynamics365-feature-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dynamics365-feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 25px;
+    background-color: #0091ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.8rem;
+}
+
+.dynamics365-feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.dynamics365-feature-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #06273e;
+    opacity: 0.8;
+}
+
+/* Solutions Section */
+.dynamics365-solutions {
+    padding: 100px 40px;
+    background-color: #e5e5e5;
+}
+
+.dynamics365-solutions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dynamics365-solution-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dynamics365-solution-tab {
+    padding: 12px 25px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.1rem;
+    color: #06273e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.dynamics365-solution-tab:hover {
+    background-color: #0091ff;
+    color: #ffffff;
+}
+
+.dynamics365-solution-tab.active {
+    background-color: #0091ff;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+}
+
+.dynamics365-solution-content {
+    display: none;
+    animation: dynamics365-fadeIn 0.5s ease-out;
+}
+
+.dynamics365-solution-content.active {
+    display: block;
+}
+
+.dynamics365-solution-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.dynamics365-solution-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dynamics365-solution-item-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #06273e;
+}
+
+.dynamics365-solution-item-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #06273e;
+    opacity: 0.8;
+}
+
+.dynamics365-learn-more {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dynamics365-learn-more:hover {
+    color: #0077cc;
+}
+
+.dynamics365-learn-more::after {
+    content: '→';
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.dynamics365-learn-more:hover::after {
+    transform: translateX(5px);
+}
+
+@keyframes dynamics365-fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Testimonials Section */
+.dynamics365-testimonials {
+    padding: 100px 40px;
+    background-color: #06273e;
+    color: #ffffff;
+}
+
+.dynamics365-testimonial-slider {
+    max-width: 1000px;
+    margin: 60px auto 0;
+    position: relative;
+}
+
+.dynamics365-testimonial-slide {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 0 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.dynamics365-testimonial-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.dynamics365-testimonial-quote {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.dynamics365-testimonial-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.dynamics365-testimonial-role {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+.dynamics365-slider-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.dynamics365-slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dynamics365-slider-dot.active {
+    background-color: #0091ff;
+    transform: scale(1.2);
+}
+
+/* CTA Section */
+.dynamics365-final-cta {
+    padding: 120px 40px;
+    background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+    color: #ffffff;
+    text-align: center;
+}
+
+.dynamics365-final-cta-title {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+}
+
+.dynamics365-final-cta-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.dynamics365-final-cta-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #0091ff;
+    padding: 18px 50px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.dynamics365-final-cta-button:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dynamics365-hero {
+        padding: 80px 20px;
+    }
+    
+    .dynamics365-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .dynamics365-hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .dynamics365-features, 
+    .dynamics365-solutions, 
+    .dynamics365-testimonials {
+        padding: 60px 20px;
+    }
+    
+    .dynamics365-section-title {
+        font-size: 2rem;
+    }
+    
+    .dynamics365-feature-card {
+        padding: 30px 20px;
+    }
+    
+    .dynamics365-final-cta {
+        padding: 80px 20px;
+    }
+    
+    .dynamics365-final-cta-title {
+        font-size: 2.2rem;
+    }
+    
+    .dynamics365-final-cta-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* Animation Classes */
+.dynamics365-animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.dynamics365-animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+
+<div class="dynamics365-container">
+    <!-- Hero Section -->
+    <section class="dynamics365-hero">
+        <div class="dynamics365-hero-content">
+            <h1 class="dynamics365-hero-title dynamics365-animate-on-scroll">Transform Your Business with Dynamics 365</h1>
+            <p class="dynamics365-hero-subtitle dynamics365-animate-on-scroll">Unify your operations, empower your teams, and drive growth with our comprehensive Dynamics 365 solutions</p>
+            <a href="#contact" class="dynamics365-cta-button dynamics365-animate-on-scroll">Request a Demo</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="dynamics365-features">
+        <h2 class="dynamics365-section-title dynamics365-animate-on-scroll">Why Choose Dynamics 365?</h2>
+        <div class="dynamics365-features-grid">
+            <div class="dynamics365-feature-card dynamics365-animate-on-scroll">
+                <div class="dynamics365-feature-icon">1</div>
+                <h3 class="dynamics365-feature-title">Unified Platform</h3>
+                <p class="dynamics365-feature-desc">Seamlessly connect your CRM and ERP systems for complete visibility across your organization.</p>
+            </div>
+            <div class="dynamics365-feature-card dynamics365-animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="dynamics365-feature-icon">2</div>
+                <h3 class="dynamics365-feature-title">AI-Powered Insights</h3>
+                <p class="dynamics365-feature-desc">Leverage built-in artificial intelligence to uncover trends and make data-driven decisions.</p>
+            </div>
+            <div class="dynamics365-feature-card dynamics365-animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="dynamics365-feature-icon">3</div>
+                <h3 class="dynamics365-feature-title">Scalable Solutions</h3>
+                <p class="dynamics365-feature-desc">Grow at your own pace with modular applications that adapt to your business needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="dynamics365-solutions">
+        <div class="dynamics365-solutions-container">
+            <h2 class="dynamics365-section-title dynamics365-animate-on-scroll">Our Dynamics 365 Solutions</h2>
+            
+            <div class="dynamics365-solution-tabs">
+                <button class="dynamics365-solution-tab active" data-tab="sales">Sales</button>
+                <button class="dynamics365-solution-tab" data-tab="customer-service">Customer Service</button>
+                <button class="dynamics365-solution-tab" data-tab="finance">Finance</button>
+                <button class="dynamics365-solution-tab" data-tab="supply-chain">Supply Chain</button>
+            </div>
+            
+            <div class="dynamics365-solution-content active" id="sales">
+                <div class="dynamics365-solution-item dynamics365-animate-on-scroll">
+                    <h3 class="dynamics365-solution-item-title">Sales Acceleration</h3>
+                    <p class="dynamics365-solution-item-desc">Empower your sales team with predictive analytics, relationship insights, and AI-driven recommendations to close deals faster and build stronger customer relationships.</p>
+                    <a href="#" class="dynamics365-learn-more">Learn more</a>
+                </div>
+                <div class="dynamics365-solution-item dynamics365-animate-on-scroll" style="transition-delay: 0.1s">
+                    <h3 class="dynamics365-solution-item-title">Sales Productivity</h3>
+                    <p class="dynamics365-solution-item-desc">Streamline your sales processes with automation, mobile access, and integrated tools that help your team focus on selling, not administration.</p>
+                    <a href="#" class="dynamics365-learn-more">Learn more</a>
+                </div>
+            </div>
+            
+            <div class="dynamics365-solution-content" id="customer-service">
+                <div class="dynamics365-solution-item">
+                    <h3 class="dynamics365-solution-item-title">Omnichannel Support</h3>
+                    <p class="dynamics365-solution-item-desc">Deliver consistent, personalized service across all channels - phone, email, chat, social media, and more - with a unified view of customer interactions.</p>
+                    <a href="#" class="dynamics365-learn-more">Learn more</a>
+                </div>
+                <div class="dynamics365-solution-item">
+                    <h3 class="dynamics365-solution-item-title">Self-Service Portals</h3>
+                    <p class="dynamics365-solution-item-desc">Reduce support costs while improving customer satisfaction with AI-powered self-service options and knowledge bases.</p>
+                    <a href="#" class="dynamics365-learn-more">Learn more</a>
+                </div>
+            </div>
+            
+            <!-- Additional solution content would go here -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="dynamics365-testimonials">
+        <h2 class="dynamics365-section-title dynamics365-animate-on-scroll">What Our Clients Say</h2>
+        
+        <div class="dynamics365-testimonial-slider">
+            <div class="dynamics365-testimonial-slide active">
+                <p class="dynamics365-testimonial-quote">"Implementing Dynamics 365 transformed our business operations. We've seen a 40% increase in sales productivity and a 30% reduction in operational costs within the first year."</p>
+                <div class="dynamics365-testimonial-author">Sarah Johnson</div>
+                <div class="dynamics365-testimonial-role">CEO, TechForward Inc.</div>
+            </div>
+            
+            <div class="dynamics365-testimonial-slide">
+                <p class="dynamics365-testimonial-quote">"The AI capabilities in Dynamics 365 have given us unprecedented insights into customer behavior, allowing us to personalize our approach and increase customer retention by 25%."</p>
+                <div class="dynamics365-testimonial-author">Michael Chen</div>
+                <div class="dynamics365-testimonial-role">Director of Sales, Global Retail</div>
+            </div>
+            
+            <div class="dynamics365-testimonial-slide">
+                <p class="dynamics365-testimonial-quote">"The seamless integration between our financial and operational systems has eliminated data silos and given us real-time visibility across all departments."</p>
+                <div class="dynamics365-testimonial-author">Emma Rodriguez</div>
+                <div class="dynamics365-testimonial-role">CFO, Manufacturing Solutions</div>
+            </div>
+        </div>
+        
+        <div class="dynamics365-slider-nav">
+            <div class="dynamics365-slider-dot active" data-slide="0"></div>
+            <div class="dynamics365-slider-dot" data-slide="1"></div>
+            <div class="dynamics365-slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="dynamics365-final-cta">
+        <h2 class="dynamics365-final-cta-title dynamics365-animate-on-scroll">Ready to Transform Your Business?</h2>
+        <p class="dynamics365-final-cta-subtitle dynamics365-animate-on-scroll">Our team of Dynamics 365 experts will guide you through every step of implementation and optimization to ensure you maximize your investment.</p>
+        <a href="#contact" class="dynamics365-final-cta-button dynamics365-animate-on-scroll">Get Started Today</a>
+    </section>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.dynamics365-animate-on-scroll');
+    
+    const animateOnScroll = function() {
+        animateElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('animate');
+            }
+        });
+    };
+    
+    // Initial check
+    animateOnScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Tab functionality
+    const tabs = document.querySelectorAll('.dynamics365-solution-tab');
+    const tabContents = document.querySelectorAll('.dynamics365-solution-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Show corresponding content
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Testimonial slider
+    const testimonialSlides = document.querySelectorAll('.dynamics365-testimonial-slide');
+    const dots = document.querySelectorAll('.dynamics365-slider-dot');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+        testimonialSlides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        testimonialSlides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+    
+    // Auto-rotate testimonials
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % testimonialSlides.length;
+        showSlide(currentSlide);
+    }, 5000);
+    
+    // Hero animation triggers
+    setTimeout(() => {
+        document.querySelector('.dynamics365-hero-title').classList.add('animate');
+    }, 300);
+    
+    setTimeout(() => {
+        document.querySelector('.dynamics365-hero-subtitle').classList.add('animate');
+    }, 600);
+    
+    setTimeout(() => {
+        document.querySelector('.dynamics365-cta-button').classList.add('animate');
+    }, 900);
+    
+    // Ripple effect for buttons
+    const buttons = document.querySelectorAll('.dynamics365-cta-button, .dynamics365-final-cta-button');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const x = e.clientX - e.target.getBoundingClientRect().left;
+            const y = e.clientY - e.target.getBoundingClientRect().top;
+            
+            const ripple = document.createElement('span');
+            ripple.classList.add('dynamics365-ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        });
+    });
+});
+
+</script>

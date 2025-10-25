@@ -1,0 +1,1045 @@
+<!-- CSS Styles -->
+<style>
+    /* Base Styles */
+    .defcon-service-page {
+        font-family: 'Times New Roman', Times, serif;
+        background-color: #ffffff;
+        color: #06273e;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    .defcon-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header Section */
+    .defcon-service-header {
+        background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+        color: #ffffff;
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .defcon-service-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('thumbnails/pexels-altabena-10142683.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.2;
+        z-index: 0;
+    }
+
+    .defcon-header-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .defcon-service-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        animation: fadeInDown 1s ease;
+    }
+
+    .defcon-service-subtitle {
+        font-size: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    .defcon-header-cta {
+        display: inline-block;
+        background-color: #0091ff;
+        color: #ffffff;
+        padding: 15px 30px;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        animation: fadeIn 1s ease 0.6s both;
+    }
+
+    .defcon-header-cta:hover {
+        background-color: #06273e;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Service Overview Section */
+    .defcon-service-overview {
+        padding: 100px 0;
+        background-color: #e5e5e5;
+    }
+
+    .defcon-section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        color: #06273e;
+        position: relative;
+    }
+
+    .defcon-section-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background-color: #0091ff;
+        margin: 20px auto 0;
+    }
+
+    .defcon-service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .defcon-service-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .defcon-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .defcon-card-image {
+        height: 200px;
+        background-color: #06273e;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .defcon-card-content {
+        padding: 30px;
+    }
+
+    .defcon-card-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #06273e;
+    }
+
+    .defcon-card-text {
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .defcon-card-link {
+        color: #0091ff;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
+
+    .defcon-card-link:hover {
+        color: #06273e;
+    }
+
+    /* Pricing Section */
+    .defcon-pricing-section {
+        padding: 100px 0;
+        background-color: #ffffff;
+    }
+
+    .defcon-pricing-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .defcon-tab-button {
+        padding: 12px 25px;
+        background-color: #e5e5e5;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #06273e;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-tab-button:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    .defcon-tab-button:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    .defcon-tab-button.active {
+        background-color: #0091ff;
+        color: #ffffff;
+    }
+
+    .defcon-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .defcon-pricing-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e5e5e5;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .defcon-pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .defcon-pricing-card.popular::before {
+        content: 'Most Popular';
+        position: absolute;
+        top: 15px;
+        right: -35px;
+        background-color: #0091ff;
+        color: #ffffff;
+        padding: 5px 40px;
+        transform: rotate(45deg);
+        font-size: 0.8rem;
+        z-index: 1;
+    }
+
+    .defcon-pricing-header {
+        background-color: #06273e;
+        color: #ffffff;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .defcon-pricing-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .defcon-pricing-price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .defcon-pricing-period {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    .defcon-pricing-features {
+        padding: 30px;
+    }
+
+    .defcon-feature-item {
+        margin-bottom: 15px;
+        padding-left: 25px;
+        position: relative;
+    }
+
+    .defcon-feature-item::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #0091ff;
+        font-weight: bold;
+    }
+
+    .defcon-pricing-cta {
+        display: block;
+        text-align: center;
+        background-color: #0091ff;
+        color: #ffffff;
+        padding: 15px;
+        margin: 0 30px 30px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .defcon-pricing-cta:hover {
+        background-color: #06273e;
+    }
+
+    /* Process Section */
+    .defcon-process-section {
+        padding: 100px 0;
+        background-color: #e5e5e5;
+    }
+
+    .defcon-process-steps {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        position: relative;
+    }
+
+    .defcon-process-steps::before {
+        content: '';
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #0091ff;
+        z-index: 0;
+    }
+
+    .defcon-process-step {
+        flex: 1;
+        min-width: 200px;
+        max-width: 250px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .defcon-step-number {
+        width: 60px;
+        height: 60px;
+        background-color: #0091ff;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 20px;
+    }
+
+    .defcon-step-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: #06273e;
+    }
+
+    .defcon-step-text {
+        color: #555;
+    }
+
+    /* Portfolio Section */
+    .defcon-portfolio-section {
+        padding: 100px 0;
+        background-color: #ffffff;
+    }
+
+    .defcon-portfolio-filter {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .defcon-filter-button {
+        padding: 10px 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #06273e;
+        transition: all 0.3s ease;
+        margin: 5px;
+    }
+
+    .defcon-filter-button.active {
+        color: #0091ff;
+        font-weight: bold;
+    }
+
+    .defcon-portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .defcon-portfolio-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        height: 250px;
+    }
+
+    .defcon-portfolio-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .defcon-portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(6, 39, 62, 0.8);
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .defcon-portfolio-item:hover .defcon-portfolio-overlay {
+        opacity: 1;
+    }
+
+    .defcon-portfolio-item:hover .defcon-portfolio-image {
+        transform: scale(1.1);
+    }
+
+    .defcon-portfolio-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+    }
+
+    .defcon-portfolio-category {
+        color: #0091ff;
+        margin-bottom: 15px;
+        transform: translateY(20px);
+        transition: transform 0.3s ease 0.1s;
+    }
+
+    .defcon-portfolio-link {
+        color: #ffffff;
+        text-decoration: none;
+        border: 1px solid #ffffff;
+        padding: 8px 20px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        transform: translateY(20px);
+        transition: transform 0.3s ease 0.2s, background-color 0.3s ease;
+    }
+
+    .defcon-portfolio-link:hover {
+        background-color: #0091ff;
+        border-color: #0091ff;
+    }
+
+    .defcon-portfolio-item:hover .defcon-portfolio-title,
+    .defcon-portfolio-item:hover .defcon-portfolio-category,
+    .defcon-portfolio-item:hover .defcon-portfolio-link {
+        transform: translateY(0);
+    }
+
+    /* Testimonials Section */
+    .defcon-testimonials-section {
+        padding: 100px 0;
+        background-color: #e5e5e5;
+    }
+
+    .defcon-testimonials-slider {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .defcon-testimonial {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        margin: 0 20px;
+    }
+
+    .defcon-testimonial-text {
+        font-size: 1.2rem;
+        font-style: italic;
+        margin-bottom: 30px;
+        color: #555;
+        position: relative;
+    }
+
+    .defcon-testimonial-text::before,
+    .defcon-testimonial-text::after {
+        content: '"';
+        font-size: 3rem;
+        color: #0091ff;
+        opacity: 0.3;
+        position: absolute;
+    }
+
+    .defcon-testimonial-text::before {
+        top: -20px;
+        left: -10px;
+    }
+
+    .defcon-testimonial-text::after {
+        bottom: -40px;
+        right: -10px;
+    }
+
+    .defcon-testimonial-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .defcon-author-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+    }
+
+    .defcon-author-info {
+        text-align: left;
+    }
+
+    .defcon-author-name {
+        font-weight: bold;
+        color: #06273e;
+        margin-bottom: 5px;
+    }
+
+    .defcon-author-company {
+        color: #0091ff;
+        font-size: 0.9rem;
+    }
+
+    .defcon-testimonial-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+
+    .defcon-testimonial-prev {
+        left: -60px;
+    }
+
+    .defcon-testimonial-next {
+        right: -60px;
+    }
+
+    /* CTA Section */
+    .defcon-cta-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .defcon-cta-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .defcon-cta-text {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+    }
+
+    .defcon-cta-button {
+        display: inline-block;
+        background-color: #ffffff;
+        color: #06273e;
+        padding: 15px 40px;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-cta-button:hover {
+        background-color: #e5e5e5;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .defcon-service-title {
+            font-size: 2.8rem;
+        }
+        
+        .defcon-service-subtitle {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .defcon-service-title {
+            font-size: 2.2rem;
+        }
+        
+        .defcon-section-title {
+            font-size: 2rem;
+        }
+        
+        .defcon-process-steps {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .defcon-process-steps::before {
+            display: none;
+        }
+        
+        .defcon-process-step {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .defcon-testimonial-nav {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .defcon-service-title {
+            font-size: 1.8rem;
+        }
+        
+        .defcon-pricing-tabs {
+            flex-direction: column;
+        }
+        
+        .defcon-tab-button {
+            border-radius: 0;
+        }
+        
+        .defcon-tab-button:first-child {
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .defcon-tab-button:last-child {
+            border-radius: 0 0 4px 4px;
+        }
+    }
+</style>
+
+<!-- HTML Content -->
+<div class="defcon-service-page">
+    <!-- Header Section -->
+    <section class="defcon-service-header">
+        <div class="defcon-container">
+            <div class="defcon-header-content">
+                <h1 class="defcon-service-title">Web Design & Development</h1>
+                <p class="defcon-service-subtitle">Crafting exceptional digital experiences that drive results. Our bespoke web solutions combine stunning design with cutting-edge technology to elevate your online presence.</p>
+                <a href="#contact" class="defcon-header-cta">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview Section -->
+    <section class="defcon-service-overview">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Web Services</h2>
+            <div class="defcon-service-grid">
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('thumbnails/pexels-thelazyartist-1416971.jpg');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Custom Website Design</h3>
+                        <p class="defcon-card-text">Tailored designs that reflect your brand identity and engage your audience with intuitive user experiences.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('thumbnails/pexels-pixabay-265087.jpg');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">E-Commerce Development</h3>
+                        <p class="defcon-card-text">Powerful online stores with seamless checkout processes, inventory management, and payment integrations.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('https://placeholder.com/600x400');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Web Application Development</h3>
+                        <p class="defcon-card-text">Custom web applications that streamline your business processes and enhance productivity.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('https://placeholder.com/600x400');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">Responsive Development</h3>
+                        <p class="defcon-card-text">Websites that adapt flawlessly to all devices, ensuring optimal performance on desktops, tablets, and mobiles.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('https://placeholder.com/600x400');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">CMS Integration</h3>
+                        <p class="defcon-card-text">Easy-to-manage websites with powerful content management systems like WordPress, Drupal, or custom solutions.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-card-image" style="background-image: url('https://placeholder.com/600x400');"></div>
+                    <div class="defcon-card-content">
+                        <h3 class="defcon-card-title">SEO Optimization</h3>
+                        <p class="defcon-card-text">Built-in search engine optimization to help your website rank higher and attract more organic traffic.</p>
+                        <a href="#" class="defcon-card-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="defcon-pricing-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Pricing Plans</h2>
+            <div class="defcon-pricing-tabs">
+                <button class="defcon-tab-button active" data-tab="website">Website Packages</button>
+                <button class="defcon-tab-button" data-tab="ecommerce">E-Commerce</button>
+                <button class="defcon-tab-button" data-tab="webapp">Web Applications</button>
+            </div>
+            <div class="defcon-pricing-grid" id="website-tab">
+                <div class="defcon-pricing-card">
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-title">Starter</h3>
+                        <div class="defcon-pricing-price">$2,499</div>
+                        <div class="defcon-pricing-period">one-time fee</div>
+                    </div>
+                    <div class="defcon-pricing-features">
+                        <div class="defcon-feature-item">5 Custom Designed Pages</div>
+                        <div class="defcon-feature-item">Mobile Responsive Design</div>
+                        <div class="defcon-feature-item">Basic SEO Setup</div>
+                        <div class="defcon-feature-item">Contact Form</div>
+                        <div class="defcon-feature-item">1 Month Support</div>
+                    </div>
+                    <a href="#" class="defcon-pricing-cta">Get Started</a>
+                </div>
+                <div class="defcon-pricing-card popular">
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-title">Professional</h3>
+                        <div class="defcon-pricing-price">$4,999</div>
+                        <div class="defcon-pricing-period">one-time fee</div>
+                    </div>
+                    <div class="defcon-pricing-features">
+                        <div class="defcon-feature-item">Up to 15 Custom Pages</div>
+                        <div class="defcon-feature-item">Advanced Responsive Design</div>
+                        <div class="defcon-feature-item">CMS Integration</div>
+                        <div class="defcon-feature-item">SEO Optimization</div>
+                        <div class="defcon-feature-item">3 Months Support</div>
+                    </div>
+                    <a href="#" class="defcon-pricing-cta">Get Started</a>
+                </div>
+                <div class="defcon-pricing-card">
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-title">Enterprise</h3>
+                        <div class="defcon-pricing-price">$9,999+</div>
+                        <div class="defcon-pricing-period">custom project</div>
+                    </div>
+                    <div class="defcon-pricing-features">
+                        <div class="defcon-feature-item">Unlimited Pages</div>
+                        <div class="defcon-feature-item">Custom Functionality</div>
+                        <div class="defcon-feature-item">Premium Hosting Setup</div>
+                        <div class="defcon-feature-item">Ongoing SEO Strategy</div>
+                        <div class="defcon-feature-item">6 Months Support</div>
+                    </div>
+                    <a href="#" class="defcon-pricing-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="defcon-process-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Process</h2>
+            <div class="defcon-process-steps">
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">1</div>
+                    <h3 class="defcon-step-title">Discovery</h3>
+                    <p class="defcon-step-text">We analyze your business needs, goals, and target audience to create a strategic foundation.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">2</div>
+                    <h3 class="defcon-step-title">Design</h3>
+                    <p class="defcon-step-text">Our designers create mockups and prototypes that align with your brand and user expectations.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">3</div>
+                    <h3 class="defcon-step-title">Development</h3>
+                    <p class="defcon-step-text">We build your website using clean, efficient code with all the functionality you require.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">4</div>
+                    <h3 class="defcon-step-title">Testing</h3>
+                    <p class="defcon-step-text">Rigorous testing across devices and browsers ensures flawless performance.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">5</div>
+                    <h3 class="defcon-step-title">Launch</h3>
+                    <p class="defcon-step-text">We deploy your website and provide training and ongoing support as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="defcon-portfolio-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Web Portfolio</h2>
+            <div class="defcon-portfolio-filter">
+                <button class="defcon-filter-button active" data-filter="all">All</button>
+                <button class="defcon-filter-button" data-filter="corporate">Corporate</button>
+                <button class="defcon-filter-button" data-filter="ecommerce">E-Commerce</button>
+                <button class="defcon-filter-button" data-filter="webapp">Web Apps</button>
+            </div>
+            <div class="defcon-portfolio-grid">
+                <div class="defcon-portfolio-item" data-category="corporate">
+                    <img src="thumbnails/pexels-fauxels-3184455.jpg" alt="Corporate Website" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">Global Finance Inc.</h3>
+                        <p class="defcon-portfolio-category">Corporate Website</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+                <div class="defcon-portfolio-item" data-category="ecommerce">
+                    <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="E-Commerce Store" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">Urban Fashion</h3>
+                        <p class="defcon-portfolio-category">E-Commerce Store</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+                <div class="defcon-portfolio-item" data-category="webapp">
+                    <img src="thumbnails/pexels-serpstat-177219-572056.jpg" alt="Web Application" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">Project Management Tool</h3>
+                        <p class="defcon-portfolio-category">Web Application</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+                <div class="defcon-portfolio-item" data-category="corporate">
+                    <img src="thumbnails/pexels12.jpg" alt="Corporate Website" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">Tech Solutions Ltd.</h3>
+                        <p class="defcon-portfolio-category">Corporate Website</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+                <div class="defcon-portfolio-item" data-category="ecommerce">
+                    <img src="thumbnails/pexels-thelazyartist-1416971.jpg" alt="E-Commerce Store" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">Gourmet Foods</h3>
+                        <p class="defcon-portfolio-category">E-Commerce Store</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+                <div class="defcon-portfolio-item" data-category="webapp">
+                    <img src="thumbnails/pexels-dominick-davis.jpg" alt="Web Application" class="defcon-portfolio-image">
+                    <div class="defcon-portfolio-overlay">
+                        <h3 class="defcon-portfolio-title">CRM System</h3>
+                        <p class="defcon-portfolio-category">Web Application</p>
+                        <a href="#" class="defcon-portfolio-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="defcon-testimonials-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Client Testimonials</h2>
+            <div class="defcon-testimonials-slider">
+                <div class="defcon-testimonial">
+                    <p class="defcon-testimonial-text">Defcon transformed our online presence with a website that not only looks stunning but has increased our lead generation by 150%. Their attention to detail and understanding of our business needs was exceptional.</p>
+                    <div class="defcon-testimonial-author">
+                        <img src="https://placeholder.com/150" alt="Client" class="defcon-author-image">
+                        <div class="defcon-author-info">
+                            <div class="defcon-author-name">Sarah Johnson</div>
+                            <div class="defcon-author-company">CEO, Johnson & Associates</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="defcon-testimonial">
+                    <p class="defcon-testimonial-text">The e-commerce platform Defcon built for us has exceeded all expectations. Sales are up 200% and the user experience is seamless. Their team was professional, creative, and delivered on time.</p>
+                    <div class="defcon-testimonial-author">
+                        <img src="https://placeholder.com/150" alt="Client" class="defcon-author-image">
+                        <div class="defcon-author-info">
+                            <div class="defcon-author-name">Michael Chen</div>
+                            <div class="defcon-author-company">Founder, Urban Fashion</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="defcon-testimonial">
+                    <p class="defcon-testimonial-text">Working with Defcon on our custom web application was a game-changer for our business operations. Their technical expertise and problem-solving approach delivered a solution that has streamlined our workflow dramatically.</p>
+                    <div class="defcon-testimonial-author">
+                        <img src="https://placeholder.com/150" alt="Client" class="defcon-author-image">
+                        <div class="defcon-author-info">
+                            <div class="defcon-author-name">David Rodriguez</div>
+                            <div class="defcon-author-company">Operations Director, TechSolutions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="defcon-cta-section" id="contact">
+        <div class="defcon-container">
+            <h2 class="defcon-cta-title">Ready to Elevate Your Online Presence?</h2>
+            <p class="defcon-cta-text">Let's discuss how we can create a powerful web solution tailored to your business goals. Our team is ready to bring your vision to life with cutting-edge design and technology.</p>
+            <a href="#" class="defcon-cta-button">Schedule a Consultation</a>
+        </div>
+    </section>
+</div>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Pricing Tabs
+        const tabButtons = document.querySelectorAll('.defcon-tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // Here you would typically show/hide the corresponding content
+                // For this example, we're just demonstrating the UI
+            });
+        });
+
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.defcon-filter-button');
+        const portfolioItems = document.querySelectorAll('.defcon-portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Testimonial Slider
+        // Note: For a production site, you would implement a proper slider with navigation
+        // This is just a placeholder for the UI design
+        const testimonials = document.querySelectorAll('.defcon-testimonial');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        // Initialize
+        showTestimonial(currentTestimonial);
+        
+        // Navigation would go here
+        document.querySelector('.defcon-testimonial-prev').addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+        
+        document.querySelector('.defcon-testimonial-next').addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.defcon-service-card, .defcon-pricing-card, .defcon-process-step, .defcon-portfolio-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        const animatedElements = document.querySelectorAll('.defcon-service-card, .defcon-pricing-card, .defcon-process-step, .defcon-portfolio-item');
+        animatedElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+    });
+</script>

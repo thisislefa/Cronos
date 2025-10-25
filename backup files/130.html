@@ -1,0 +1,651 @@
+<style>
+.request-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #06273e;
+    background-color: #ffffff;
+}
+
+.hero-section {
+    position: relative;
+    height: 60vh;
+    background-color: #06273e;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('placeholder-hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    animation: hero-fade-in 2s ease-in-out;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    color: #ffffff;
+    animation: content-reveal 1.5s ease-out;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.overview-section {
+    padding: 60px 20px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.overview-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.overview-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overview-description {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+    transition-delay: 0.2s;
+}
+
+.overview-description.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pricing-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.pricing-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.pricing-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background-color: #e5e5e5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.pricing-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pricing-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0091ff;
+}
+
+.pricing-card-price {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #06273e;
+}
+
+.pricing-card-features {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.pricing-card-feature {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.expectations-section {
+    padding: 60px 20px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.expectations-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.expectations-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.expectations-list {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.expectations-item {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.expectations-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.expectations-item:before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-size: 24px;
+}
+
+.process-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.process-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.process-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.process-step {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-step-number {
+    width: 50px;
+    height: 50px;
+    background-color: #0091ff;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.process-step-content {
+    text-align: left;
+}
+
+.process-step-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #06273e;
+}
+
+.process-step-description {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.request-section {
+    padding: 60px 20px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.request-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.request-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.request-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #06273e;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #06273e;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #06273e;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #06273e;
+    resize: vertical;
+    height: 150px;
+}
+
+.form-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #0091ff;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #06273e;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 39, 62, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    animation: modal-pop 0.5s ease-out;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0091ff;
+}
+
+.modal-description {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #06273e;
+}
+
+.modal-close {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: #06273e;
+}
+
+@keyframes hero-fade-in {
+    from { opacity: 0; }
+    to { opacity: 0.5; }
+}
+
+@keyframes content-reveal {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modal-pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .overview-section, .pricing-section, .expectations-section, .process-section, .request-section {
+        padding: 40px 10px;
+    }
+
+    .overview-title, .pricing-title, .expectations-title, .process-title, .request-title {
+        font-size: 28px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-step {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .process-step-number {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .request-form {
+        padding: 30px;
+    }
+}
+</style>
+
+<div class="request-container">
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">IT Infrastructure Audit</h1>
+            <p class="hero-subtitle">Expert assessment under IT and Digital Solutions to optimize your business technology.</p>
+        </div>
+    </section>
+
+    <section class="overview-section">
+        <h2 class="overview-title">Service Overview</h2>
+        <p class="overview-description">Our IT Infrastructure Audit provides a comprehensive evaluation of your organization's IT systems, identifying potential vulnerabilities, inefficiencies, and opportunities for enhancement. This service ensures your infrastructure aligns with industry best practices and supports your business objectives effectively.</p>
+    </section>
+
+    <section class="pricing-section">
+        <h2 class="pricing-title">Pricing Packages</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-card-title">Basic Audit</h3>
+                <p class="pricing-card-price">$2,500</p>
+                <ul class="pricing-card-features">
+                    <li class="pricing-card-feature">Initial assessment of core systems</li>
+                    <li class="pricing-card-feature">Basic security check</li>
+                    <li class="pricing-card-feature">Summary report</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-card-title">Standard Audit</h3>
+                <p class="pricing-card-price">$5,000</p>
+                <ul class="pricing-card-features">
+                    <li class="pricing-card-feature">Detailed hardware and software analysis</li>
+                    <li class="pricing-card-feature">Network performance evaluation</li>
+                    <li class="pricing-card-feature">Detailed report with recommendations</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-card-title">Premium Audit</h3>
+                <p class="pricing-card-price">$10,000+</p>
+                <ul class="pricing-card-features">
+                    <li class="pricing-card-feature">Comprehensive audit including cloud and on-premise</li>
+                    <li class="pricing-card-feature">Advanced threat simulation</li>
+                    <li class="pricing-card-feature">Customized strategy and ongoing support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="expectations-section">
+        <h2 class="expectations-title">What to Expect</h2>
+        <ul class="expectations-list">
+            <li class="expectations-item">A thorough understanding of your current IT landscape and its alignment with business goals.</li>
+            <li class="expectations-item">Identification of risks and inefficiencies to prevent future disruptions.</li>
+            <li class="expectations-item">Actionable insights and recommendations to improve performance and security.</li>
+            <li class="expectations-item">Enhanced decision-making for IT investments and upgrades.</li>
+        </ul>
+    </section>
+
+    <section class="process-section">
+        <h2 class="process-title">Process and Duration</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="process-step-number">1</div>
+                <div class="process-step-content">
+                    <h3 class="process-step-title">Initial Consultation</h3>
+                    <p class="process-step-description">We discuss your needs and scope the audit. Duration: 1-2 days.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">2</div>
+                <div class="process-step-content">
+                    <h3 class="process-step-title">Data Collection and Analysis</h3>
+                    <p class="process-step-description">Gather information and perform in-depth analysis. Duration: 5-10 days.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">3</div>
+                <div class="process-step-content">
+                    <h3 class="process-step-title">Reporting and Recommendations</h3>
+                    <p class="process-step-description">Compile findings and present solutions. Duration: 3-5 days.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">4</div>
+                <div class="process-step-content">
+                    <h3 class="process-step-title">Follow-up Discussion</h3>
+                    <p class="process-step-description">Review the report and plan next steps. Duration: 1 day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="request-section">
+        <h2 class="request-title">Request This Service</h2>
+        <form class="request-form" id="request-form">
+            <div class="form-group">
+                <label class="form-label" for="name">Full Name</label>
+                <input class="form-input" type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="company">Company Name</label>
+                <input class="form-input" type="text" id="company" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="package">Select Package</label>
+                <select class="form-select" id="package" required>
+                    <option value="">Choose a package</option>
+                    <option value="basic">Basic Audit</option>
+                    <option value="standard">Standard Audit</option>
+                    <option value="premium">Premium Audit</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="message">Additional Details</label>
+                <textarea class="form-textarea" id="message"></textarea>
+            </div>
+            <button class="form-submit" type="submit">Request This Service</button>
+        </form>
+    </section>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Request Submitted</h3>
+            <p class="modal-description">Thank you for your interest in our IT Infrastructure Audit service. We will contact you shortly to discuss your needs.</p>
+            <a href="#" class="modal-close" id="modal-close">Close</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.overview-title, .overview-description, .pricing-title, .pricing-card, .expectations-title, .expectations-item, .process-title, .process-step, .request-title');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Form submission and modal
+    const form = document.getElementById('request-form');
+    const modal = document.getElementById('modal-overlay');
+    const closeBtn = document.getElementById('modal-close');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simulate submission logic here (e.g., send data via AJAX)
+        modal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+</script>

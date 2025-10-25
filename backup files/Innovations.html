@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Innovations</title>
+    <style>
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            --primary: #0091ff;
+            --dark-blue: #06273e;
+            --white: #ffffff;
+            --light-gray: #e5e5e5;
+            --bg-color: #f9fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            overflow-x: hidden;
+        }
+
+        /* ====== HEADER & NAVIGATION ====== */
+        .header {
+            background-color: var(--white);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(249, 250, 252, 0.9), rgba(249, 250, 252, 0.95)), 
+                        url('https://via.placeholder.com/1920x1080/f9fafc/0091ff?text=Defcon+Innovations') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--primary), #0077cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--dark-blue);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .hero-btn:hover {
+            background-color: #0077cc;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+        }
+
+        /* ====== INNOVATIONS SHOWCASE ====== */
+        .innovations-section {
+            padding: 6rem 5%;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .innovation-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .innovation-card:nth-child(1) { animation-delay: 0.1s; }
+        .innovation-card:nth-child(2) { animation-delay: 0.2s; }
+        .innovation-card:nth-child(3) { animation-delay: 0.3s; }
+        .innovation-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .innovation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.15);
+        }
+
+        .card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .innovation-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(0, 145, 255, 0.3);
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-blue);
+        }
+
+        .card-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .learn-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .learn-more:hover {
+            color: #0077cc;
+            gap: 0.8rem;
+        }
+
+        .learn-more::after {
+            content: '→';
+            transition: all 0.3s ease;
+        }
+
+        /* ====== TECHNOLOGY SHOWCASE ====== */
+        .tech-showcase {
+            padding: 6rem 5%;
+            background-color: var(--bg-color);
+        }
+
+        .tech-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tab {
+            padding: 0.8rem 1.8rem;
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .tech-tab.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .tech-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tech-content.active {
+            display: block;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .tech-item p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ====== STATISTICS SECTION ====== */
+        .stats-section {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, #0077cc 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transition: all 0.5s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* ====== CTA SECTION ====== */
+        .cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2.5rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            background-color: #0077cc;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background-color: var(--dark-blue);
+            padding: 4rem 5% 2rem;
+            color: var(--light-gray);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ====== MODAL ====== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            margin: 5vh auto;
+            color: var(--dark-blue);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .modal p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            color: var(--dark-blue);
+        }
+
+        .modal-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .modal-form button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-form button:hover {
+            background-color: #0077cc;
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .innovations-grid, .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="logo">DEFCON</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Innovations</a>
+            <a href="#">Research</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pioneering <span>Tomorrow's</span> Technology Today</h1>
+            <p>Discover how Defcon is redefining industries through groundbreaking research and revolutionary product development.</p>
+            <button class="hero-btn" id="exploreBtn">Explore Our Innovations</button>
+        </div>
+    </section>
+
+    <!-- ====== INNOVATIONS SHOWCASE ====== -->
+    <section class="innovations-section">
+        <div class="section-title">
+            <h2>Featured Innovations</h2>
+        </div>
+
+        <div class="innovations-grid">
+            <!-- Innovation 1 -->
+            <div class="innovation-card">
+                <div class="card-badge">NEW</div>
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/f9fafc/0091ff?text=Quantum+Computing" alt="Quantum Computing">
+                </div>
+                <div class="card-content">
+                    <h3>Quantum Encryption Framework</h3>
+                    <p>Our next-generation quantum-resistant encryption protocol protects against even the most sophisticated cyber threats of tomorrow.</p>
+                    <div class="card-footer">
+                        <a href="#" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation 2 -->
+            <div class="innovation-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/f9fafc/0091ff?text=AI+Analytics" alt="AI Analytics">
+                </div>
+                <div class="card-content">
+                    <h3>Autonomous Decision Matrix</h3>
+                    <p>Self-learning AI system that makes real-time operational decisions with human-like contextual understanding.</p>
+                    <div class="card-footer">
+                        <a href="#" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation 3 -->
+            <div class="innovation-card">
+                <div class="card-badge">BREAKTHROUGH</div>
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/f9fafc/0091ff?text=Neural+Interface" alt="Neural Interface">
+                </div>
+                <div class="card-content">
+                    <h3>Biometric Neural Interface</h3>
+                    <p>Revolutionary non-invasive brain-computer interface with 99.7% signal accuracy for medical and industrial applications.</p>
+                    <div class="card-footer">
+                        <a href="#" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation 4 -->
+            <div class="innovation-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x400/f9fafc/0091ff?text=Smart+Materials" alt="Smart Materials">
+                </div>
+                <div class="card-content">
+                    <h3>Programmable Nanomaterials</h3>
+                    <p>Molecular-scale materials that can change properties on demand for aerospace, medical, and construction applications.</p>
+                    <div class="card-footer">
+                        <a href="#" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TECHNOLOGY SHOWCASE ====== -->
+    <section class="tech-showcase">
+        <div class="section-title">
+            <h2>Core Technologies</h2>
+        </div>
+
+        <div class="tech-tabs">
+            <button class="tech-tab active" data-tab="ai">Artificial Intelligence</button>
+            <button class="tech-tab" data-tab="quantum">Quantum Computing</button>
+            <button class="tech-tab" data-tab="biotech">Biotechnology</button>
+            <button class="tech-tab" data-tab="materials">Advanced Materials</button>
+        </div>
+
+        <div class="tech-content active" id="ai-content">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <h3>Neural Architecture Search</h3>
+                    <p>Automated machine learning that designs optimal neural networks for specific tasks without human intervention.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔍</div>
+                    <h3>Predictive Analytics Engine</h3>
+                    <p>Real-time pattern recognition system with 98.3% accuracy in forecasting complex system behaviors.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🤖</div>
+                    <h3>Autonomous Agent Framework</h3>
+                    <p>Multi-agent systems that collaborate to solve problems beyond the capability of individual AIs.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-content" id="quantum-content">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">⚛️</div>
+                    <h3>Qubit Stabilization</h3>
+                    <p>Proprietary error correction techniques that extend quantum coherence times by 300%.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔒</div>
+                    <h3>Quantum Cryptography</h3>
+                    <p>Unbreakable encryption protocols leveraging quantum entanglement principles.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧮</div>
+                    <h3>Hybrid Quantum-Classical Algorithms</h3>
+                    <p>Bridging current computing infrastructure with quantum advantages.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-content" id="biotech-content">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🧬</div>
+                    <h3>CRISPR 3.0</h3>
+                    <p>Next-generation gene editing with unprecedented precision and reduced off-target effects.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧫</div>
+                    <h3>Synthetic Biology Platform</h3>
+                    <p>Programmable organisms for pharmaceutical and environmental applications.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <h3>Neuroprosthetic Interfaces</h3>
+                    <p>Biocompatible neural links restoring motor function in paralysis patients.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-content" id="materials-content">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">✨</div>
+                    <h3>Metamaterials</h3>
+                    <p>Structures with properties not found in nature, enabling invisibility cloaks and perfect lenses.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <h3>Room-Temperature Superconductors</h3>
+                    <p>Materials that revolutionize energy transmission and storage.</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧱</div>
+                    <h3>Self-Healing Polymers</h3>
+                    <p>Materials that automatically repair damage, extending product lifespans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== STATISTICS SECTION ====== -->
+    <section class="stats-section">
+        <div class="section-title">
+            <h2>By The Numbers</h2>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-count="217">0</div>
+                <div class="stat-label">Patents Filed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="89">0</div>
+                <div class="stat-label">Countries Using Our Tech</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="42">0</div>
+                <div class="stat-label">Nobel Laureates</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="15">0</div>
+                <div class="stat-label">Industry Disruptions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CTA SECTION ====== -->
+    <section class="cta">
+        <h2>Ready to Collaborate on the Future?</h2>
+        <p>Partner with Defcon to leverage our cutting-edge technologies for your organization's most ambitious projects.</p>
+        <button class="cta-btn" id="contactBtn">Contact Our Innovation Team</button>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Innovations</h3>
+                <ul>
+                    <li><a href="#">Research Areas</a></li>
+                    <li><a href="#">Technology Portfolio</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">White Papers</a></li>
+                    <li><a href="#">Innovation Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Developer Portal</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Research Grants</a></li>
+                    <li><a href="#">Technology Transfer</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Defcon</a></li>
+                    <li><a href="#">Leadership</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Intellectual Property</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Defcon Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ====== CONTACT MODAL ====== -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Innovation Partnership Inquiry</h3>
+            <p>Complete this form to discuss how Defcon's technologies can transform your organization. Our innovation team will respond within 24 hours.</p>
+
+            <form class="modal-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Company/Organization" required>
+                <input type="text" placeholder="Job Title">
+                
+                <select required>
+                    <option value="" disabled selected>Area of Interest</option>
+                    <option>Artificial Intelligence</option>
+                    <option>Quantum Computing</option>
+                    <option>Biotechnology</option>
+                    <option>Advanced Materials</option>
+                    <option>Other</option>
+                </select>
+
+                <textarea placeholder="Tell us about your innovation needs and challenges" required></textarea>
+
+                <button type="submit">Submit Inquiry</button>
+            </form>
+
+            <p style="font-size: 0.9rem; margin-top: 1rem;">All information is kept strictly confidential under our <a href="#" style="color: var(--primary);">privacy policy</a>.</p>
+        </div>
+    </div>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // Hero animation
+        document.querySelector('.hero-content').style.opacity = 1;
+        document.querySelector('.hero-content').style.transform = 'translateY(0)';
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    if (entry.target.classList.contains('innovation-card')) {
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.innovation-card, .tech-item, .stat-item').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tech-tab');
+        const tabContents = document.querySelectorAll('.tech-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const contentId = tab.getAttribute('data-tab') + '-content';
+                document.getElementById(contentId).classList.add('active');
+            });
+        });
+
+        // Animate statistics
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        function animateStats() {
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Only animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('.stats-section').querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('contactModal');
+        const contactBtn = document.getElementById('contactBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
+        const closeModal = document.querySelector('.close-modal');
+
+        contactBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        exploreBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.querySelector('.innovations-section').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

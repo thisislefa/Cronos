@@ -1,0 +1,336 @@
+<!-- Liquid Metal Video Showcase -->
+<div class="lm-showcase-container">
+  <div class="lm-liquid-container">
+    <div class="lm-video-wrapper">
+      <video class="lm-video" autoplay loop muted playsinline>
+        <source src="videos/techno.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="lm-liquid-overlay"></div>
+      <div class="lm-particle-container"></div>
+    </div>
+  </div>
+  
+  <div class="lm-content-container">
+    <h2 class="lm-content-title">Innovative Digital Solutions</h2>
+    <p class="lm-content-text">Experience cutting-edge technology with our advanced digital platforms designed to transform your business.</p>
+    <button class="lm-content-button">Explore More</button>
+    <div class="lm-ripple-background"></div>
+  </div>
+</div>
+
+<style>
+  /* Base Styles */
+  .lm-showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lm-liquid-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .lm-video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .lm-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .lm-liquid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(6, 39, 62, 0.2) 0%, rgba(0, 145, 255, 0.2) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    animation: lm-morph 8s infinite alternate;
+    pointer-events: none;
+  }
+  
+  .lm-particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .lm-content-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .lm-content-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lm-fadeIn 0.8s 0.3s forwards;
+  }
+  
+  .lm-content-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #06273e;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lm-fadeIn 0.8s 0.5s forwards;
+  }
+  
+  .lm-content-button {
+    position: relative;
+    z-index: 2;
+    padding: 12px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: lm-fadeIn 0.8s 0.7s forwards;
+  }
+  
+  .lm-content-button:hover {
+    background-color: #0077cc;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+  }
+  
+  .lm-ripple-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 145, 255, 0.05) 0%, rgba(6, 39, 62, 0.05) 100%);
+    z-index: 1;
+  }
+  
+  /* Animations */
+  @keyframes lm-morph {
+    0% {
+      border-radius: 15px 50px 15px 50px;
+      transform: scale(1);
+    }
+    25% {
+      border-radius: 50px 15px 50px 15px;
+    }
+    50% {
+      border-radius: 15px 50px 50px 15px;
+      transform: scale(1.01);
+    }
+    75% {
+      border-radius: 50px 15px 15px 50px;
+    }
+    100% {
+      border-radius: 15px;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes lm-fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Particle Styles */
+  .lm-particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .lm-showcase-container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 50px;
+    }
+    
+    .lm-liquid-container {
+      width: 55%;
+      margin-bottom: 0;
+      margin-right: 5%;
+      height: 400px;
+    }
+    
+    .lm-content-container {
+      width: 40%;
+      padding: 40px;
+    }
+    
+    .lm-content-title {
+      font-size: 32px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .lm-content-title {
+      font-size: 36px;
+    }
+    
+    .lm-content-text {
+      font-size: 18px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Create liquid metal particles
+    const particleContainer = document.querySelector('.lm-particle-container');
+    const liquidContainer = document.querySelector('.lm-liquid-container');
+    
+    // Generate particles
+    function createParticles() {
+      const particleCount = 15;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('lm-particle');
+        
+        // Random properties
+        const size = Math.random() * 5 + 2;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        
+        // Apply styles
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        particle.style.animation = `lm-particle-move ${duration}s ${delay}s infinite`;
+        
+        particleContainer.appendChild(particle);
+      }
+    }
+    
+    // Mouse interaction effects
+    function setupMouseInteraction() {
+      let isHovering = false;
+      
+      liquidContainer.addEventListener('mouseenter', () => {
+        isHovering = true;
+      });
+      
+      liquidContainer.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+      
+      liquidContainer.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        
+        const rect = liquidContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Create ripple effect
+        const ripple = document.createElement('div');
+        ripple.classList.add('lm-particle');
+        ripple.style.width = '10px';
+        ripple.style.height = '10px';
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
+        ripple.style.boxShadow = '0 0 10px 5px rgba(0, 145, 255, 0.3)';
+        ripple.style.animation = 'lm-ripple 1.5s forwards';
+        
+        particleContainer.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+          ripple.remove();
+        }, 1500);
+      });
+    }
+    
+    // Add CSS for dynamic animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes lm-particle-move {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px);
+        }
+        50% {
+          transform: translate(${Math.random() * 30 - 15}px, ${Math.random() * 30 - 15}px);
+        }
+        75% {
+          transform: translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      
+      @keyframes lm-ripple {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(20);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize effects
+    createParticles();
+    setupMouseInteraction();
+  });
+</script>

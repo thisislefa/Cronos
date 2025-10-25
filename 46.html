@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Career Opportunities</title>
+    <!-- Load Tailwind CSS for utility-first styling and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /*
+        CONFIGURATION: Custom CSS and Tailwind Setup
+        Primary Color: Defcon Blue (#0056b3) / Hover Blue (#0060aa)
+        */
+        :root {
+            --color-primary-blue: #0056b3;
+            --color-hover-blue: #0060aa;
+            --color-text-dark: #06273e;
+            --color-text-black: #000;
+            --color-text-faded: #8c8c8c;
+            --color-light-gray: #f5f5f5;
+            --color-line-gray: #e0e0e0;
+        }
+
+        /* Default Font and Box Sizing */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-dark);
+            background-color: var(--color-light-gray);
+            min-height: 100vh;
+        }
+        
+        .defcon-container {
+            max-width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem 1.5rem; /* Reduced padding for cleaner look */
+        }
+
+        /* Job Section Title */
+        .defcon-jobs-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text-black);
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+        @media (min-width: 768px) {
+            .defcon-jobs-title {
+                font-size: 4rem; /* 64px, very large */
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* --- Filter Styling (Matching Screenshot) --- */
+        .defcon-search-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .defcon-search-form {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .def-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-dark);
+            font-size: 0.8rem;
+            text-transform: uppercase; /* Matching screenshot style */
+            letter-spacing: 0.05em;
+        }
+
+        .defcon-search-input,
+        .defcon-search-select {
+            padding: 0.6rem 1rem;
+            border: 1px solid #c9c9c9;
+            border-radius: 0.3rem;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+            background-color: white;
+            appearance: none; /* For select cleanup */
+        }
+        
+        /* Select specific styling to add a custom arrow */
+        .defcon-search-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2306273e' d='M11.996 15.602l5.657-5.657a1.5 1.5 0 0 0-2.121-2.121L12 12.441l-3.535-3.535a1.5 1.5 0 1 0-2.121 2.121z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem 1.25rem;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
+        }
+
+
+        /* --- Job Card Rows (Matching Screenshot) --- */
+        .defcon-jobs-grid {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--color-line-gray); /* Start border */
+        }
+        
+        .defcon-job-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            background-color: white;
+            cursor: pointer;
+            border-bottom: 1px solid var(--color-line-gray);
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        
+        /* Job Card Hover Effect */
+        .defcon-job-card:hover {
+            background-color: #fafafa;
+            border-bottom-color: var(--color-hover-blue); /* Blue bottom border on hover */
+        }
+        
+        .defcon-job-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .defcon-job-department {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-hover-blue); /* Blue department text */
+            margin-right: 0.5rem;
+        }
+        
+        .defcon-job-location {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-text-dark); /* Dark location text */
+        }
+        
+        /* Apply Link/Arrow Container */
+        .apply-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* Hide Apply Now text and focus purely on the arrow */
+        .apply-now { display: flex; }
+
+        .apply-arrow svg path {
+            fill: var(--color-text-faded); /* Default grey color */
+            transition: fill 0.2s ease;
+        }
+        
+        /* Arrow color change on card hover (matching the prompt request) */
+        .defcon-job-card:hover .apply-arrow svg path {
+            fill: var(--color-hover-blue); /* Change arrow color to blue on hover */
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .defcon-jobs-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-job-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 0;
+            }
+            .defcon-job-card > div:first-child {
+                width: 100%;
+                margin-bottom: 0.75rem;
+            }
+            .apply-link {
+                width: 100%;
+                justify-content: flex-end; /* Keep arrow to the right on mobile */
+            }
+            .defcon-job-title {
+                font-size: 1rem;
+            }
+            .defcon-job-department, .defcon-job-location {
+                font-size: 0.9rem;
+                display: inline;
+            }
+            .defcon-job-location::before {
+                content: ', '; /* Add separator on mobile for cleaner inline look */
+            }
+        }
+
+        /* --- Pagination Styling --- */
+        .defcon-pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 0 5rem 0;
+            gap: 0.5rem;
+        }
+        .page-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            background-color: #f0f0f0;
+            color: var(--color-text-dark);
+            border: 1px solid #ddd;
+        }
+        .page-btn:hover:not(.active):not(.disabled) {
+            background-color: #e5e5e5;
+        }
+        .page-btn.active {
+            background-color: var(--color-hover-blue);
+            color: white;
+            border-color: var(--color-hover-blue);
+        }
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body id="jobs">
+    
+    <div class="defcon-container">
+        
+        <!-- Main Section Title -->
+        <h2 class="defcon-jobs-title">Join the Team.</h2>
+        
+        <!-- Search/Filter Area -->
+        <div class="defcon-jobs-search mb-4">
+            <div class="defcon-search-form">
+                
+                <div class="flex flex-col">
+                    <label for="defcon-search-title" class="def-label">Job Title Search</label>
+                    <input type="text" class="defcon-search-input" placeholder="Search by role or keyword" id="defcon-search-title">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="defcon-search-department" class="def-label">Department</label>
+                    <select class="defcon-search-select" id="defcon-search-department">
+                        <option value="">All Teams (10)</option>
+                        <option value="Engineering">Engineering (4)</option>
+                        <option value="IT Operations">IT Operations (2)</option>
+                        <option value="Design">Design (1)</option>
+                        <option value="Security">Security (1)</option>
+                        <option value="Data Analytics">Data Analytics (1)</option>
+                        <option value="Marketing">Marketing (1)</option>
+                        <option value="Customer Care">Customer Care (1)</option>
+                        <option value="Corporate">Corporate (0)</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="defcon-search-location" class="def-label">Location</label>
+                    <select class="defcon-search-select" id="defcon-search-location">
+                         <option value="">All Locations (10)</option>
+                         <option value="San Francisco">San Francisco (2)</option>
+                         <option value="Sandton City">Sandton City (1)</option>
+                         <option value="Remote">Remote (1)</option>
+                         <option value="Austin">Austin (1)</option>
+                         <option value="London">London (1)</option>
+                         <option value="Los Angeles">Los Angeles (1)</option>
+                         <option value="Chicago">Chicago (1)</option>
+                         <option value="Boston">Boston (1)</option>
+                         <option value="Qwaqwa">Qwaqwa (2)</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="text-right text-gray-600 text-sm mt-4 lg:mt-0 hidden" id="defcon-search-results">Showing <span id="defcon-jobs-count">0</span> jobs</div>
+        </div>
+        
+        <!-- Jobs Container (The list that matches the screenshot) -->
+        <div class="defcon-jobs-grid" id="defcon-jobs-container">
+            <!-- Job Rows will be populated here by JavaScript -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="defcon-pagination-controls" id="defcon-pagination-controls">
+            <!-- Pagination buttons will be rendered here -->
+        </div>
+
+        <!-- All Job Data (Hidden source of truth, managed by JS) -->
+        <div id="defcon-all-jobs-data" style="display: none;">
+            <!-- Job 1 -->
+            <div class="defcon-job-card" data-department="Engineering" data-title="senior frontend developer" data-location="san francisco remote" data-url="about-us.html">
+                <div class="flex flex-col">
+                    <h3 class="defcon-job-title">(Mid / Senior) Frontend Developer</h3>
+                    <div>
+                        <span class="defcon-job-department">Engineering</span>
+                        <span class="defcon-job-location">San Francisco, California / Remote</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Frontend Developer">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Job 2 (Duplicate for testing 6 items per page) -->
+            <div class="defcon-job-card" data-department="Engineering" data-title="senior backend developer" data-location="san francisco remote" data-url="about-us.html">
+                <div class="flex flex-col">
+                    <h3 class="defcon-job-title">(Senior) Backend Developer (Platform Services)</h3>
+                    <div>
+                        <span class="defcon-job-department">Engineering</span>
+                        <span class="defcon-job-location">San Francisco, California / Remote</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Backend Developer">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 3 -->
+            <div class="defcon-job-card" data-department="Security" data-title="cybersecurity specialist" data-location="sandton city" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">(Junior / Mid) Cybersecurity Specialist</h3>
+                    <div>
+                        <span class="defcon-job-department">Security</span>
+                        <span class="defcon-job-location">Sandton City, Gauteng</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Cybersecurity Specialist">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 4 -->
+            <div class="defcon-job-card" data-department="Data Analytics" data-title="data scientist" data-location="remote" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">(Senior) Data Scientist</h3>
+                    <div>
+                        <span class="defcon-job-department">Data Analytics</span>
+                        <span class="defcon-job-location">Remote</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Data Scientist">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 5 -->
+            <div class="defcon-job-card" data-department="Design" data-title="ux ui designer" data-location="austin" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">UX/UI Designer</h3>
+                    <div>
+                        <span class="defcon-job-department">Design</span>
+                        <span class="defcon-job-location">Austin, Texas</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for UX/UI Designer">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 6 -->
+            <div class="defcon-job-card" data-department="Engineering" data-title="backend engineer" data-location="london remote" data-url="01.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">Backend Engineer</h3>
+                    <div>
+                        <span class="defcon-job-department">Engineering</span>
+                        <span class="defcon-job-location">London, United Kingdom / Remote</span>
+                    </div>
+                </div>
+                <a href="01.html" class="apply-link" aria-label="Apply for Backend Engineer">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 7 (Starts on Page 2) -->
+            <div class="defcon-job-card" data-department="Marketing" data-title="digital marketing manager" data-location="los angeles" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">Digital Marketing Manager</h3>
+                    <div>
+                        <span class="defcon-job-department">Marketing</span>
+                        <span class="defcon-job-location">Los Angeles, California</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Digital Marketing Manager">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+            <!-- Job 8 -->
+            <div class="defcon-job-card" data-department="Customer Care" data-title="sales development representative" data-location="chicago remote" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">Sales Development Representative</h3>
+                    <div>
+                        <span class="defcon-job-department">Customer Care</span>
+                        <span class="defcon-job-location">Chicago, Illinois / Remote</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Sales Development Representative">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+            
+            <!-- Job 9 -->
+            <div class="defcon-job-card" data-department="IT Operations" data-title="computer technician" data-location="boston" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">Computer Technician</h3>
+                    <div>
+                        <span class="defcon-job-department">IT Operations</span>
+                        <span class="defcon-job-location">Boston, Massachussets</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for Computer Technician">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Job 10 -->
+            <div class="defcon-job-card" data-department="IT Operations" data-title="it support technician" data-location="qwaqwa" data-url="about-us.html">
+               <div class="flex flex-col">
+                    <h3 class="defcon-job-title">IT Support Technician (Tier 1-3)</h3>
+                    <div>
+                        <span class="defcon-job-department">IT Operations</span>
+                        <span class="defcon-job-location">Qwaqwa, Free State</span>
+                    </div>
+                </div>
+                <a href="about-us.html" class="apply-link" aria-label="Apply for IT Support Technician">
+                    <span class="apply-now">Apply Now</span>
+                    <span class="apply-arrow flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- FOOTER/Placeholder -->
+    <footer class="bg-white text-gray-500 p-6 text-center text-sm mt-12 border-t border-gray-200">
+        <p>&copy; 2025 Defcon Solutions. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // JAVASCRIPT LOGIC FOR FILTERING AND PAGINATION
+        
+        // Configuration
+        const jobsPerPage = 6;
+        let allJobs = []; // Stores all job elements initially loaded from the hidden div
+        let filteredJobs = []; // Stores jobs matching current search/filters
+        let currentPage = 1;
+
+        // DOM Elements
+        const jobContainer = document.getElementById('defcon-jobs-container');
+        const paginationControls = document.getElementById('defcon-pagination-controls');
+        const searchTitle = document.getElementById('defcon-search-title');
+        const searchDepartment = document.getElementById('defcon-search-department');
+        const searchLocation = document.getElementById('defcon-search-location');
+        const jobCountElement = document.getElementById('defcon-jobs-count');
+
+
+        /**
+         * Filters the job cards based on current search inputs.
+         * @param {boolean} resetPage - If true, resets currentPage to 1 after filtering.
+         */
+        function defconFilterJobs(resetPage) {
+            const titleSearch = searchTitle.value.toLowerCase().trim();
+            const departmentSearch = searchDepartment.value;
+            const locationSearch = searchLocation.value.toLowerCase().trim();
+            
+            filteredJobs = allJobs.filter(card => {
+                const title = card.getAttribute('data-title');
+                const department = card.getAttribute('data-department');
+                const location = card.getAttribute('data-location');
+                
+                const titleMatch = title.includes(titleSearch);
+                const departmentMatch = departmentSearch === '' || department === departmentSearch;
+                const locationMatch = location.includes(locationSearch);
+                
+                return titleMatch && departmentMatch && locationMatch;
+            });
+            
+            if (resetPage) {
+                currentPage = 1;
+            }
+            
+            jobCountElement.textContent = filteredJobs.length;
+            renderJobs();
+        }
+
+        /**
+         * Renders the current page of filtered jobs and updates pagination controls.
+         */
+        function renderJobs() {
+            jobContainer.innerHTML = ''; // Clear container
+
+            const start = (currentPage - 1) * jobsPerPage;
+            const end = start + jobsPerPage;
+            const paginatedJobs = filteredJobs.slice(start, end);
+
+            // Append jobs for the current page
+            if (paginatedJobs.length > 0) {
+                paginatedJobs.forEach(job => {
+                    // Clone the element to avoid moving it out of the hidden data source
+                    const clone = job.cloneNode(true); 
+                    jobContainer.appendChild(clone);
+                });
+            } else {
+                jobContainer.innerHTML = `
+                    <div class="defcon-no-results p-8 text-center text-gray-500 bg-white rounded-xl shadow-inner border border-gray-200">
+                        <p class="text-lg font-medium">No jobs match your search criteria. Try adjusting your filters.</p>
+                    </div>
+                `;
+            }
+            
+            renderPaginationControls();
+        }
+
+        /**
+         * Generates and updates the pagination buttons.
+         */
+        function renderPaginationControls() {
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+            paginationControls.innerHTML = ''; // Clear previous controls
+
+            if (totalPages <= 1) {
+                return;
+            }
+            
+            // Previous Button
+            const prevBtn = createPageButton('<i class="fas fa-chevron-left text-sm"></i>', currentPage - 1);
+            if (currentPage === 1) prevBtn.classList.add('disabled');
+            paginationControls.appendChild(prevBtn);
+
+            // Page Number Buttons (Show first, last, and current surrounding pages)
+            const maxVisiblePages = 5;
+            let startPage, endPage;
+
+            if (totalPages <= maxVisiblePages) {
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = createPageButton(i, i);
+                if (i === currentPage) pageBtn.classList.add('active');
+                paginationControls.appendChild(pageBtn);
+            }
+            
+            // Next Button
+            const nextBtn = createPageButton('<i class="fas fa-chevron-right text-sm"></i>', currentPage + 1);
+            if (currentPage === totalPages) nextBtn.classList.add('disabled');
+            paginationControls.appendChild(nextBtn);
+        }
+
+        /**
+         * Creates a clickable button for pagination.
+         */
+        function createPageButton(text, pageNum) {
+            const button = document.createElement('button');
+            button.className = 'page-btn';
+            button.innerHTML = text; // Use innerHTML for icon support
+            
+            button.addEventListener('click', () => {
+                const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+                if (pageNum >= 1 && pageNum <= totalPages) {
+                    currentPage = pageNum;
+                    renderJobs();
+                    // Scroll to jobs section after page change
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+            return button;
+        }
+
+        /**
+         * Initializes the job system by pulling all jobs from the hidden data div.
+         */
+        function initializeJobs() {
+            const dataContainer = document.getElementById('defcon-all-jobs-data');
+            allJobs = Array.from(dataContainer.children);
+            
+            // Set up event listeners for filtering
+            searchTitle.addEventListener('input', () => defconFilterJobs(true));
+            searchDepartment.addEventListener('change', () => defconFilterJobs(true));
+            searchLocation.addEventListener('change', () => defconFilterJobs(true));
+
+            // Initial call to filter and render the first page
+            defconFilterJobs(true);
+        }
+
+        // Initialize the app when the window loads
+        window.addEventListener('load', initializeJobs);
+    </script>
+</body>
+</html>

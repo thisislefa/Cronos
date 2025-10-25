@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | DEFCON IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* =============================================
+           ROOT VARIABLES & GLOBAL STYLES
+           ============================================= */
+        :root {
+            --primary-blue: #0091ff;
+            --pure-black: #000000;
+            --pure-white: #ffffff;
+            --light-gray: #f4f4f4;
+            --dark-navy: #0a1628;
+            --text-gray: #6b7280;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 15px 50px rgba(0, 0, 0, 0.12);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--pure-black);
+            background-color: var(--pure-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* =============================================
+           HERO SECTION WITH BACKGROUND IMAGE
+           ============================================= */
+        .defcon-hero-section {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a1628 0%, #0d2544 100%);
+        }
+
+        .defcon-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .defcon-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 145, 255, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 145, 255, 0.1) 0%, transparent 50%);
+            z-index: 2;
+            animation: defcon-glow-pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes defcon-glow-pulse {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .defcon-hero-badge {
+            display: inline-block;
+            background: rgba(0, 145, 255, 0.15);
+            border: 1px solid rgba(0, 145, 255, 0.3);
+            color: var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: defcon-badge-float 3s ease-in-out infinite;
+        }
+
+        @keyframes defcon-badge-float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .defcon-hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .defcon-hero-title-gradient {
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .defcon-hero-description {
+            font-size: 1.375rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .defcon-stat-item {
+            text-align: center;
+        }
+
+        .defcon-stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .defcon-stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =============================================
+           MAIN CONTAINER
+           ============================================= */
+        .defcon-main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* =============================================
+           SECTION HEADERS
+           ============================================= */
+        .defcon-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 5rem;
+        }
+
+        .defcon-section-subtitle {
+            font-size: 0.95rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .defcon-section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--pure-black);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .defcon-section-description {
+            font-size: 1.125rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* =============================================
+           DEPARTMENT CONTACT CARDS
+           ============================================= */
+        .defcon-departments-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .defcon-department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .defcon-department-card {
+            background: var(--pure-white);
+            border-radius: 1px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-department-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .defcon-department-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(0, 145, 255, 0.05) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-department-card:hover .defcon-department-icon-wrapper {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #00d4ff 100%);
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .defcon-department-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-department-card:hover .defcon-department-icon {
+            color: var(--pure-white);
+        }
+
+        .defcon-department-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--pure-black);
+            margin-bottom: 1rem;
+        }
+
+        .defcon-department-description {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .defcon-contact-details-list {
+            list-style: none;
+        }
+
+        .defcon-contact-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition-fast);
+        }
+
+        .defcon-contact-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .defcon-contact-icon {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            min-width: 20px;
+        }
+
+        .defcon-contact-text {
+            font-size: 0.95rem;
+            color: var(--pure-black);
+            font-weight: 500;
+        }
+
+        .defcon-contact-link {
+            color: var(--pure-black);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .defcon-contact-link:hover {
+            color: var(--primary-blue);
+        }
+
+       
+
+        /* =============================================
+           SOCIAL MEDIA FOLLOW BAR
+           ============================================= */
+        .defcon-social-follow-section {
+            width: 100%;
+            background: linear-gradient(135deg, #0a1628 0%, #0d2544 100%);
+            padding: 3.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-social-follow-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 145, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 145, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .defcon-social-content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-social-inner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .defcon-social-text-content {
+            flex: 0 0 auto;
+            max-width: 450px;
+        }
+
+        .defcon-social-heading {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--pure-white);
+            margin: 0 0 0.75rem 0;
+            line-height: 1.2;
+        }
+
+        .defcon-social-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .defcon-social-icons-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .defcon-social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-social-button i {
+            font-size: 1.125rem;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-social-button-label {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-social-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .defcon-social-button:hover::before {
+            left: 100%;
+        }
+
+        .defcon-social-button:hover {
+            transform: translateY(-4px);
+        }
+
+        .defcon-social-button:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .defcon-social-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Social Button Variants */
+        .defcon-social-button--twitter {
+            background: #1DA1F2;
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--twitter:hover {
+            background: #1a8cd8;
+            box-shadow: 0 10px 25px rgba(29, 161, 242, 0.4);
+        }
+
+        .defcon-social-button--facebook {
+            background: #1877F2;
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--facebook:hover {
+            background: #1565d8;
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+        }
+
+        .defcon-social-button--linkedin {
+            background: #0A66C2;
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--linkedin:hover {
+            background: #0952a5;
+            box-shadow: 0 10px 25px rgba(10, 102, 194, 0.4);
+        }
+
+        .defcon-social-button--instagram {
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--instagram:hover {
+            background: linear-gradient(45deg, #dd7622, #c91f6b, #6d2a8f, #4347b8);
+            box-shadow: 0 10px 25px rgba(221, 42, 123, 0.4);
+        }
+
+        .defcon-social-button--youtube {
+            background: #FF0000;
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--youtube:hover {
+            background: #e60000;
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+        }
+
+        .defcon-social-button--github {
+            background: #24292e;
+            color: var(--pure-white);
+        }
+
+        .defcon-social-button--github:hover {
+            background: #1a1e22;
+            box-shadow: 0 10px 25px rgba(36, 41, 46, 0.4);
+        }
+
+        /* =============================================
+           RESPONSIVE DESIGN
+           ============================================= */
+        @media (max-width: 1024px) {
+            .defcon-hero-title {
+                font-size: 3.5rem;
+            }
+
+            .defcon-section-title {
+                font-size: 2.5rem;
+            }
+
+            .defcon-pricing-table-wrapper {
+                flex-direction: column;
+                max-width: 500px;
+            }
+
+            .defcon-pricing-tier {
+                border-right: none !important;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .defcon-pricing-tier:last-child {
+                border-bottom: none;
+            }
+
+            .defcon-pricing-tier--featured {
+                transform: scale(1);
+            }
+
+            .defcon-pricing-tier:hover {
+                transform: scale(1);
+            }
+
+            .defcon-department-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .defcon-social-inner-container {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem 2rem;
+                text-align: center;
+            }
+
+            .defcon-social-text-content {
+                max-width: 100%;
+            }
+
+            .defcon-social-icons-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.75rem;
+            }
+
+            .defcon-hero-description {
+                font-size: 1.125rem;
+            }
+
+            .defcon-hero-stats {
+                gap: 2rem;
+            }
+
+            .defcon-stat-number {
+                font-size: 2.5rem;
+            }
+
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+
+            .defcon-section-header {
+                padding-top: 3rem;
+                margin-bottom: 3rem;
+            }
+
+            .defcon-departments-section,
+            .defcon-pricing-section {
+                padding: 3rem 0;
+            }
+
+            .defcon-department-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .defcon-tier-price {
+                font-size: 3rem;
+            }
+
+            .defcon-social-follow-section {
+                padding: 2.5rem 0;
+            }
+
+            .defcon-social-heading {
+                font-size: 1.75rem;
+            }
+
+            .defcon-social-icons-container {
+                gap: 0.75rem;
+            }
+
+            .defcon-social-button {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-hero-section {
+                height: 75vh;
+                min-height: 500px;
+            }
+
+            .defcon-hero-title {
+                font-size: 2.25rem;
+            }
+
+            .defcon-hero-description {
+                font-size: 1rem;
+            }
+
+            .defcon-stat-number {
+                font-size: 2rem;
+            }
+
+            .defcon-stat-label {
+                font-size: 0.8rem;
+            }
+
+            .defcon-section-title {
+                font-size: 1.75rem;
+            }
+
+            .defcon-main-container {
+                padding: 0 1.25rem;
+            }
+
+            .defcon-department-card {
+                padding: 2rem;
+            }
+
+            .defcon-tier-header {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .defcon-tier-content {
+                padding: 1.5rem;
+            }
+
+            .defcon-social-inner-container {
+                padding: 1.75rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .defcon-social-heading {
+                font-size: 1.5rem;
+            }
+
+            .defcon-social-description {
+                font-size: 0.9rem;
+            }
+
+            .defcon-social-icons-container {
+                gap: 0.6rem;
+                width: 100%;
+            }
+
+            .defcon-social-button {
+                flex: 1 1 calc(50% - 0.3rem);
+                min-width: 0;
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+                justify-content: center;
+            }
+
+            .defcon-social-button-label {
+                display: none;
+            }
+
+            .defcon-social-button i {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- =============================================
+         HERO SECTION
+         ============================================= -->
+    <section class="defcon-hero-section">
+        <div class="defcon-hero-background"></div>
+        <div class="defcon-hero-overlay"></div>
+        <div class="defcon-hero-content">
+            <div class="defcon-hero-badge">
+                <i class="fas fa-star"></i> NEW: 24/7 Global Support Available
+            </div>
+            <h1 class="defcon-hero-title">
+                Let's Build <span class="defcon-hero-title-gradient">Something Extraordinary</span>
+            </h1>
+            <div class="defcon-hero-stats">
+                <div class="defcon-stat-item">
+                    <span class="defcon-stat-number">24/7</span>
+                    <span class="defcon-stat-label">Support</span>
+                </div>
+                <div class="defcon-stat-item">
+                    <span class="defcon-stat-number">100%</span>
+                    <span class="defcon-stat-label">Remote</span>
+                </div>
+                <div class="defcon-stat-item">
+                    <span class="defcon-stat-number">50+</span>
+                    <span class="defcon-stat-label">Experts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         DEPARTMENT CONTACTS SECTION
+         ============================================= -->
+    <section class="defcon-departments-section">
+        <div class="defcon-main-container">
+            <div class="defcon-section-header">
+                <div class="defcon-section-subtitle">Get In Touch</div>
+                <h2 class="defcon-section-title">Connect With Our Teams</h2>
+                <p class="defcon-section-description">
+                    Choose your department and reach out to our specialists. We're available around the clock to support your digital transformation journey.
+                </p>
+            </div>
+
+            <div class="defcon-department-grid">
+                <!-- Software Development Department -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">Software Development</h3>
+                    <p class="defcon-department-description">
+                        Custom web applications, mobile apps, API development, e-commerce solutions, and DevOps implementation.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:dev@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">dev@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234567" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4567</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-comments defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Live Chat: 24/7</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;2 hours</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- IT Infrastructure Department -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">IT Infrastructure</h3>
+                    <p class="defcon-department-description">
+                        IT support & consulting, cloud computing, automation & AI solutions, and smart home technology.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:infrastructure@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">infrastructure@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234568" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4568</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-headset defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Support Portal: Active</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;1 hour</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Marketing & Creative Studio -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">Marketing & Creative Studio</h3>
+                    <p class="defcon-department-description">
+                        Digital marketing, graphic design, copywriting, multimedia production, and advertising campaigns.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:creative@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">creative@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234569" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4569</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-pencil-ruler defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Brief Submission Portal</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;3 hours</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Customer Care Department -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">Customer Care</h3>
+                    <p class="defcon-department-description">
+                        General inquiries, account management, billing support, and customer success assistance.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:support@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">support@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234570" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4570</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-life-ring defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Help Center Available</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;30 mins</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Business Development -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">Business Development</h3>
+                    <p class="defcon-department-description">
+                        Partnership opportunities, enterprise solutions, strategic consulting, and custom proposals.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:business@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">business@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234571" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4571</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-calendar-check defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Schedule Consultation</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;4 hours</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical Support -->
+                <div class="defcon-department-card">
+                    <h3 class="defcon-department-title">Technical Support</h3>
+                    <p class="defcon-department-description">
+                        System troubleshooting, bug reports, technical documentation, and maintenance requests.
+                    </p>
+                    <ul class="defcon-contact-details-list">
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-envelope defcon-contact-icon"></i>
+                            <a href="mailto:tech@defcon.tech" class="defcon-contact-link">
+                                <span class="defcon-contact-text">tech@defcon.tech</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-phone defcon-contact-icon"></i>
+                            <a href="tel:+15551234572" class="defcon-contact-link">
+                                <span class="defcon-contact-text">+1 (555) 123-4572</span>
+                            </a>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-ticket-alt defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Ticket System: Open</span>
+                        </li>
+                        <li class="defcon-contact-detail-item">
+                            <i class="fas fa-clock defcon-contact-icon"></i>
+                            <span class="defcon-contact-text">Response Time: &lt;15 mins</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SOCIAL MEDIA FOLLOW BAR
+         ============================================= -->
+    <section class="defcon-social-follow-section">
+        <div class="defcon-social-content-wrapper">
+            <div class="defcon-social-inner-container">
+                <div class="defcon-social-text-content">
+                    <h2 class="defcon-social-heading">Stay Connected With Defcon</h2>
+                    <p class="defcon-social-description">
+                        Follow us on social media for the latest updates, tech insights, project showcases, and exclusive content from our teams.
+                    </p>
+                </div>
+
+                <div class="defcon-social-icons-container">
+                    <a href="#" class="defcon-social-button defcon-social-button--twitter" aria-label="Follow us on Twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span class="defcon-social-button-label">Twitter</span>
+                    </a>
+                    
+                    <a href="#" class="defcon-social-button defcon-social-button--facebook" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="defcon-social-button-label">Facebook</span>
+                    </a>
+                    
+                    <a href="#" class="defcon-social-button defcon-social-button--linkedin" aria-label="Follow us on LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="defcon-social-button-label">LinkedIn</span>
+                    </a>
+                    
+                    <a href="#" class="defcon-social-button defcon-social-button--instagram" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span class="defcon-social-button-label">Instagram</span>
+                    </a>
+                    
+                    <a href="#" class="defcon-social-button defcon-social-button--youtube" aria-label="Follow us on YouTube">
+                        <i class="fab fa-youtube"></i>
+                        <span class="defcon-social-button-label">YouTube</span>
+                    </a>
+                    
+                    <a href="#" class="defcon-social-button defcon-social-button--github" aria-label="Follow us on GitHub">
+                        <i class="fab fa-github"></i>
+                        <span class="defcon-social-button-label">GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // =============================================
+        // SMOOTH SCROLLING FOR ANCHOR LINKS
+        // =============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // =============================================
+            // INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS
+            // =============================================
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply fade-in animation to department cards
+            document.querySelectorAll('.defcon-department-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // =============================================
+            // DYNAMIC YEAR FOR COPYRIGHT (IF NEEDED LATER)
+            // =============================================
+            const currentYear = new Date().getFullYear();
+            console.log(`DEFCON IT Solutions © ${currentYear}`);
+        });
+    </script>
+</body>
+</html>

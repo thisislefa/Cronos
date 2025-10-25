@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Advanced Security Solutions</title>
+    <style>
+        :root {
+            --primary: #0a0a12;
+            --secondary: #1a1a2e;
+            --accent: #00f0ff;
+            --text: #f8f8f8;
+            --highlight: rgba(0, 240, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            height: 100vh;
+        }
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--primary) 70%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 180px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 10px var(--accent));
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ffffff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            background: var(--highlight);
+            box-shadow: 0 0 15px var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(var(--accent) 1px, transparent 1px),
+                linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="grid-lines"></div>
+        <div class="floating-shapes" id="shapes"></div>
+        <div class="particles" id="particles"></div>
+        
+        <div class="hero-content">
+            <img src="thumbnails/binge.png" alt="Defcon Logo" class="logo">
+            <h1>Redefining Cybersecurity Frontiers</h1>
+            <p class="tagline">Defcon delivers next-generation security solutions for enterprises operating in high-threat environments. Our elite team provides unmatched protection against advanced persistent threats.</p>
+            <a href="#" class="cta-button">Request Consultation</a>
+        </div>
+    </div>
+
+    <script>
+        // Floating shapes creation
+        const shapesContainer = document.getElementById('shapes');
+        const shapeCount = 15;
+        
+        for (let i = 0; i < shapeCount; i++) {
+            const shape = document.createElement('div');
+            shape.classList.add('shape');
+            
+            const size = Math.random() * 300 + 100;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const blur = Math.random() * 10 + 5;
+            
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.left = `${posX}%`;
+            shape.style.top = `${posY}%`;
+            shape.style.filter = `blur(${blur}px)`;
+            
+            shapesContainer.appendChild(shape);
+        }
+        
+        // Mouse follower particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 5 + 2;
+            const opacity = Math.random() * 0.5 + 0.1;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.opacity = opacity;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        const particles = document.querySelectorAll('.particle');
+        
+        // Mouse move event
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Animate particles in a trail behind cursor
+            particles.forEach((particle, index) => {
+                const delay = index * 30;
+                
+                setTimeout(() => {
+                    particle.style.left = `${mouseX}px`;
+                    particle.style.top = `${mouseY}px`;
+                    
+                    // Add slight spread effect
+                    if (index % 2 === 0) {
+                        particle.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
+                    }
+                }, delay);
+            });
+            
+            // Parallax effect on shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach(shape => {
+                const speedX = parseFloat(shape.style.left) / 50;
+                const speedY = parseFloat(shape.style.top) / 50;
+                
+                shape.style.transform = `translate(${-(mouseX * speedX) / 100}px, ${-(mouseY * speedY) / 100}px)`;
+            });
+        });
+        
+        // Floating animation for shapes
+        function floatShapes() {
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach(shape => {
+                const currentX = parseFloat(shape.style.left);
+                const currentY = parseFloat(shape.style.top);
+                
+                const newX = currentX + (Math.random() * 0.2 - 0.1);
+                const newY = currentY + (Math.random() * 0.2 - 0.1);
+                
+                shape.style.left = `${newX}%`;
+                shape.style.top = `${newY}%`;
+            });
+            
+            requestAnimationFrame(floatShapes);
+        }
+        
+        floatShapes();
+    </script>
+</body>
+</html>

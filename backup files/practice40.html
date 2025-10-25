@@ -1,0 +1,715 @@
+
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-blue: #0091ff;
+            --dark-blue: #06273e;
+            --white: #ffffff;
+            --light-gray: #e5e5e5;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Time New Roman', serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .premium-products-section {
+            padding: 80px 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            perspective: 1500px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) rotateY(15deg);
+            animation: fadeInUp 0.8s forwards;
+            animation-delay: calc(var(--order) * 0.1s);
+            border: 1px solid var(--light-gray);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .product-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            font-weight: 700;
+        }
+
+        .product-content p {
+            color: var(--dark-blue);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .product-features {
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            list-style: none;
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            list-style: none;
+        }
+
+        .product-features li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .product-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 39, 62, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            display: flex;
+        }
+
+        .modal-image {
+            flex: 1;
+            min-height: 400px;
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .modal-details h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .modal-details p {
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .modal-features {
+            margin-bottom: 30px;
+        }
+
+        .modal-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            list-style: none;
+        }
+
+        .modal-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background: var(--dark-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--primary-blue);
+        }
+
+        /* Form Styles */
+        .request-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+        }
+
+        .submit-button {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: var(--dark-blue);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                flex-direction: column;
+                max-height: 90vh;
+            }
+
+            .modal-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+
+
+
+    <section class="premium-products-section">
+        <div class="section-header">
+            <h2>Defcon Premium Solutions</h2>
+            <p>Cutting-edge IT solutions designed to propel your business into the future. Our premium products combine innovation, security, and performance.</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card" style="--order: 1" onclick="openModal('quantum-shield')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Quantum Shield">
+                    <span class="product-badge">Most Popular</span>
+                </div>
+                <div class="product-content">
+                    <h3>QuantumShield Encryption</h3>
+                    <p>Military-grade encryption solution that protects your data from even quantum computing attacks.</p>
+                    <ul class="product-features">
+                        <li>Post-quantum cryptography</li>
+                        <li>Zero-knowledge protocol</li>
+                        <li>Real-time threat monitoring</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">$9,999/yr</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card" style="--order: 2" onclick="openModal('neural-sentry')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-fauxels-3184455.jpg" alt="Neural Sentry">
+                    <span class="product-badge">AI Powered</span>
+                </div>
+                <div class="product-content">
+                    <h3>NeuralSentry AI</h3>
+                    <p>Advanced neural network that learns and adapts to protect your systems from emerging threats.</p>
+                    <ul class="product-features">
+                        <li>Self-learning algorithms</li>
+                        <li>Behavioral anomaly detection</li>
+                        <li>Predictive threat analysis</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">$12,500/yr</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card" style="--order: 3" onclick="openModal('omnivault')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="OmniVault">
+                    <span class="product-badge">Enterprise</span>
+                </div>
+                <div class="product-content">
+                    <h3>OmniVault Secure Cloud</h3>
+                    <p>Ultra-secure cloud storage with distributed architecture and blockchain verification.</p>
+                    <ul class="product-features">
+                        <li>99.9999% uptime guarantee</li>
+                        <li>Blockchain integrity checks</li>
+                        <li>Global distributed nodes</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">$15,000/yr</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card" style="--order: 4" onclick="openModal('cyber-sentinel')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Cyber Sentinel">
+                </div>
+                <div class="product-content">
+                    <h3>CyberSentinel XDR</h3>
+                    <p>Extended detection and response platform that correlates data across your entire digital estate.</p>
+                    <ul class="product-features">
+                        <li>Cross-platform visibility</li>
+                        <li>Automated incident response</li>
+                        <li>Threat intelligence integration</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">$8,750/yr</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card" style="--order: 5" onclick="openModal('quantum-net')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-serpstat-177219-572056.jpg" alt="Quantum Net">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-content">
+                    <h3>QuantumNet Secure VPN</h3>
+                    <p>Next-generation VPN with quantum-resistant protocols and intelligent routing.</p>
+                    <ul class="product-features">
+                        <li>Quantum-safe tunnels</li>
+                        <li>Dynamic path selection</li>
+                        <li>No-log policy</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">$6,500/yr</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card" style="--order: 6" onclick="openModal('defcon-os')">
+                <div class="product-image">
+                    <img src="thumbnails/pexels-thepaintedsquare-606541.jpg" alt="Defcon OS">
+                    <span class="product-badge">Custom</span>
+                </div>
+                <div class="product-content">
+                    <h3>Defcon Secure OS</h3>
+                    <p>Hardened operating system designed for maximum security and minimal attack surface.</p>
+                    <ul class="product-features">
+                        <li>Memory-safe architecture</li>
+                        <li>Mandatory access control</li>
+                        <li>Secure by default</li>
+                    </ul>
+                    <div class="product-cta">
+                        <span class="price">Contact Us</span>
+                        <button class="cta-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Modals -->
+        <div id="quantum-shield-modal" class="product-modal">
+            <div class="modal-content">
+                <div class="modal-close" onclick="closeModal()">×</div>
+                <div class="modal-image">
+                    <img src="thumbnails/pexels-thelazyartist-1416971.jpg" alt="Quantum Shield Details">
+                </div>
+                <div class="modal-details">
+                    <h2>QuantumShield Encryption</h2>
+                    <p>QuantumShield represents the pinnacle of cryptographic security, designed to withstand attacks from both classical and quantum computers. Our solution implements lattice-based cryptography, the approach recommended by NIST for post-quantum security.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul class="modal-features">
+                        <li>NIST-approved post-quantum cryptographic algorithms</li>
+                        <li>Zero-knowledge proof protocols for authentication</li>
+                        <li>Real-time quantum threat monitoring system</li>
+                        <li>Hardware security module integration</li>
+                        <li>FIPS 140-2 Level 3 validated</li>
+                        <li>Multi-party computation support</li>
+                    </ul>
+
+                    <div class="request-form">
+                        <h3>Request Consultation</h3>
+                        <form id="quantum-shield-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Specific Requirements</label>
+                                <textarea id="message" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Request Demo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div id="neural-sentry-modal" class="product-modal">
+            <div class="modal-content">
+                <div class="modal-close" onclick="closeModal()">×</div>
+                <div class="modal-image">
+                    <img src="thumbnails/pexels-fauxels-3184455.jpg" alt="Neural Sentry Details">
+                </div>
+                <div class="modal-details">
+                    <h2>NeuralSentry AI</h2>
+                    <p>NeuralSentry AI is an advanced neural network security platform that continuously learns and adapts to new threats, providing proactive protection for your digital assets.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul class="modal-features">
+                        <li>Self-learning algorithms for evolving threat landscapes</li>
+                        <li>Behavioral anomaly detection to spot suspicious activity</li>
+                        <li>Predictive threat analysis using AI models</li>
+                        <li>Automated policy updates</li>
+                        <li>Seamless integration with existing infrastructure</li>
+                        <li>24/7 AI-driven monitoring</li>
+                    </ul>
+
+                    <div class="request-form">
+                        <h3>Request Consultation</h3>
+                        <form id="neural-sentry-form">
+                            <div class="form-group">
+                                <label for="name-neural">Full Name</label>
+                                <input type="text" id="name-neural" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company-neural">Company</label>
+                                <input type="text" id="company-neural" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-neural">Email</label>
+                                <input type="email" id="email-neural" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-neural">Specific Requirements</label>
+                                <textarea id="message-neural" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Request Demo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="omnivault-modal" class="product-modal">
+            <div class="modal-content">
+                <div class="modal-close" onclick="closeModal()">×</div>
+                <div class="modal-image">
+                    <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="OmniVault Details">
+                </div>
+                <div class="modal-details">
+                    <h2>OmniVault Secure Cloud</h2>
+                    <p>OmniVault Secure Cloud offers ultra-secure, distributed cloud storage with blockchain verification, ensuring your data is always available and tamper-proof.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul class="modal-features">
+                        <li>99.9999% uptime guarantee</li>
+                        <li>Blockchain-based integrity checks</li>
+                        <li>Global distributed storage nodes</li>
+                        <li>End-to-end encryption</li>
+                        <li>Role-based access controls</li>
+                        <li>Comprehensive audit logs</li>
+                    </ul>
+
+                    <div class="request-form">
+                        <h3>Request Consultation</h3>
+                        <form id="omnivault-form">
+                            <div class="form-group">
+                                <label for="name-omnivault">Full Name</label>
+                                <input type="text" id="name-omnivault" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company-omnivault">Company</label>
+                                <input type="text" id="company-omnivault" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-omnivault">Email</label>
+                                <input type="email" id="email-omnivault" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-omnivault">Specific Requirements</label>
+                                <textarea id="message-omnivault" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Request Demo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other modals would follow the same pattern -->
+    </section>
+
+    <script>
+        // Modal functionality
+        function openModal(product) {
+            const modal = document.getElementById(`${product}-modal`);
+            if (modal) {
+                modal.style.opacity = "1";
+                modal.style.visibility = "visible";
+                document.querySelector(`#${product}-modal .modal-content`).style.transform = "scale(1)";
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll('.product-modal');
+            modals.forEach(modal => {
+                modal.style.opacity = "0";
+                modal.style.visibility = "hidden";
+                modal.querySelector('.modal-content').style.transform = "scale(0.9)";
+            });
+            document.body.style.overflow = "auto";
+        }
+
+        // Close modal when clicking outside content
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('product-modal')) {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your interest! Our team will contact you shortly.');
+                closeModal();
+                form.reset();
+            });
+        });
+
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.8s forwards ${entry.target.dataset.delay || '0s'}`;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.product-card, .section-header').forEach((el, i) => {
+            el.dataset.delay = `${i * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Smooth hover effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+                card.style.boxShadow = `${-angleY * 2}px ${angleX * 2}px 30px rgba(0, 0, 0, 0.1)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    </script>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Footer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .defcon-footer-container {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #06273e 0%, #0c3c5a 50%, #06273e 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .defcon-footer-background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 145, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 145, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .defcon-footer-animated-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .defcon-footer-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #0091ff, transparent);
+            animation: defconFooterLineMove 8s linear infinite;
+        }
+
+        .defcon-footer-line:nth-child(1) {
+            top: 20%;
+            width: 300px;
+            animation-delay: 0s;
+        }
+
+        .defcon-footer-line:nth-child(2) {
+            top: 60%;
+            width: 200px;
+            animation-delay: 2s;
+        }
+
+        .defcon-footer-line:nth-child(3) {
+            top: 80%;
+            width: 250px;
+            animation-delay: 4s;
+        }
+
+        @keyframes defconFooterLineMove {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .defcon-footer-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 0 40px;
+        }
+
+        .defcon-footer-main-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .defcon-footer-brand-column {
+            grid-column: span 1;
+        }
+
+        .defcon-footer-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            animation: defconFooterGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes defconFooterGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(0, 145, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(0, 145, 255, 0.6), 0 0 30px rgba(0, 145, 255, 0.4);
+            }
+        }
+
+        .defcon-footer-tagline {
+            color: #e5e5e5;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: defconFooterFadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes defconFooterFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .defcon-footer-qr-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 145, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .defcon-footer-qr-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 145, 255, 0.2);
+            border-color: #0091ff;
+        }
+
+        .defcon-footer-qr-code {
+            width: 120px;
+            height: 120px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #06273e;
+            font-weight: 600;
+        }
+
+        .defcon-footer-qr-text {
+            color: #e5e5e5;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .defcon-footer-social-column {
+            grid-column: span 1;
+        }
+
+        .defcon-footer-section-title {
+            color: #0091ff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .defcon-footer-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #0091ff, transparent);
+            animation: defconFooterExpand 2s ease-out 0.5s forwards;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        @keyframes defconFooterExpand {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .defcon-footer-social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .defcon-footer-social-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(229, 229, 229, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-footer-social-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 145, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .defcon-footer-social-item:hover::before {
+            left: 100%;
+        }
+
+        .defcon-footer-social-item:hover {
+            transform: translateY(-3px);
+            border-color: #0091ff;
+            box-shadow: 0 10px 25px rgba(0, 145, 255, 0.15);
+        }
+
+        .defcon-footer-social-icon {
+            font-size: 20px;
+            color: #0091ff;
+            margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-footer-social-item:hover .defcon-footer-social-icon {
+            transform: scale(1.2);
+        }
+
+        .defcon-footer-social-name {
+            color: #e5e5e5;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .defcon-footer-certificates-column {
+            grid-column: span 1;
+        }
+
+        .defcon-footer-cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .defcon-footer-cert-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(229, 229, 229, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .defcon-footer-cert-item:hover {
+            background: rgba(0, 145, 255, 0.05);
+            border-color: rgba(0, 145, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .defcon-footer-cert-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0091ff, #0a7ae4);
+            border-radius: 6px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .defcon-footer-cert-name {
+            color: #e5e5e5;
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .defcon-footer-partners-column {
+            grid-column: span 1;
+        }
+
+        .defcon-footer-partners-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .defcon-footer-partner-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(229, 229, 229, 0.08);
+            border-radius: 8px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .defcon-footer-partner-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 145, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .defcon-footer-partner-logo {
+            width: 50px;
+            height: 30px;
+            background: #e5e5e5;
+            border-radius: 4px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #06273e;
+            font-weight: 600;
+        }
+
+        .defcon-footer-partner-name {
+            color: #e5e5e5;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .defcon-footer-bottom {
+            border-top: 1px solid rgba(229, 229, 229, 0.1);
+            margin-top: 40px;
+            padding-top: 25px;
+        }
+
+        .defcon-footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .defcon-footer-copyright {
+            color: #e5e5e5;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .defcon-footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .defcon-footer-link {
+            color: #e5e5e5;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .defcon-footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #0091ff;
+            transition: width 0.3s ease;
+        }
+
+        .defcon-footer-link:hover {
+            color: #0091ff;
+        }
+
+        .defcon-footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .defcon-footer-main-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 15px;
+            }
+
+            .defcon-footer-brand-column,
+            .defcon-footer-social-column,
+            .defcon-footer-certificates-column,
+            .defcon-footer-partners-column {
+                grid-column: span 1;
+            }
+
+            .defcon-footer-content {
+                padding: 40px 0 30px;
+            }
+
+            .defcon-footer-logo {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .defcon-footer-tagline {
+                text-align: center;
+                font-size: 15px;
+            }
+
+            .defcon-footer-qr-code {
+                width: 100px;
+                height: 100px;
+                font-size: 12px;
+            }
+
+            .defcon-footer-social-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+
+            .defcon-footer-social-item {
+                padding: 12px;
+            }
+
+            .defcon-footer-social-icon {
+                font-size: 18px;
+            }
+
+            .defcon-footer-social-name {
+                font-size: 10px;
+            }
+
+            .defcon-footer-cert-grid,
+            .defcon-footer-partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .defcon-footer-cert-item,
+            .defcon-footer-partner-item {
+                padding: 12px;
+            }
+
+            .defcon-footer-cert-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .defcon-footer-partner-logo {
+                width: 40px;
+                height: 25px;
+                font-size: 8px;
+            }
+
+            .defcon-footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 15px;
+            }
+
+            .defcon-footer-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .defcon-footer-copyright,
+            .defcon-footer-link {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-footer-social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .defcon-footer-cert-grid,
+            .defcon-footer-partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Popup Animation */
+        .defcon-footer-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(6, 39, 62, 0.95);
+            border: 2px solid #0091ff;
+            border-radius: 15px;
+            padding: 30px;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .defcon-footer-popup.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .defcon-footer-popup-content {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .defcon-footer-popup-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0091ff;
+        }
+
+        .defcon-footer-popup-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .defcon-footer-popup-close {
+            background: #0091ff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-footer-popup-close:hover {
+            background: #0a7ae4;
+            transform: translateY(-2px);
+        }
+
+        .defcon-footer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-footer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <footer class="defcon-footer-container">
+        <div class="defcon-footer-background-effect"></div>
+        <div class="defcon-footer-animated-lines">
+            <div class="defcon-footer-line"></div>
+            <div class="defcon-footer-line"></div>
+            <div class="defcon-footer-line"></div>
+        </div>
+        
+        <div class="defcon-footer-content">
+            <div class="defcon-footer-main-section">
+                <!-- Brand Column -->
+                <div class="defcon-footer-brand-column">
+                    <div class="defcon-footer-logo">DEFCON</div>
+                    <p class="defcon-footer-tagline">
+                        Operating digital excellence with cutting-edge solutions. 
+                        We transform businesses through innovative technology and strategic digital partnerships.
+                    </p>
+                    <div class="defcon-footer-qr-section" onclick="showQRPopup()">
+                        <div class="defcon-footer-qr-code">QR CODE</div>
+                        <div class="defcon-footer-qr-text">Scan to Contact</div>
+                    </div>
+                </div>
+                
+                <!-- Social Media Column -->
+                <div class="defcon-footer-social-column">
+                    <h3 class="defcon-footer-section-title">Connect With Us</h3>
+                    <div class="defcon-footer-social-grid">
+                        <div class="defcon-footer-social-item" onclick="openSocial('linkedin')">
+                            <i class="fab fa-linkedin-in defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">LinkedIn</div>
+                        </div>
+                        <div class="defcon-footer-social-item" onclick="openSocial('twitter')">
+                            <i class="fab fa-twitter defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">Twitter</div>
+                        </div>
+                        <div class="defcon-footer-social-item" onclick="openSocial('facebook')">
+                            <i class="fab fa-facebook-f defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">Facebook</div>
+                        </div>
+                        <div class="defcon-footer-social-item" onclick="openSocial('instagram')">
+                            <i class="fab fa-instagram defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">Instagram</div>
+                        </div>
+                        <div class="defcon-footer-social-item" onclick="openSocial('youtube')">
+                            <i class="fab fa-youtube defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">YouTube</div>
+                        </div>
+                        <div class="defcon-footer-social-item" onclick="openSocial('github')">
+                            <i class="fab fa-github defcon-footer-social-icon"></i>
+                            <div class="defcon-footer-social-name">GitHub</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificates Column -->
+                <div class="defcon-footer-certificates-column">
+                    <h3 class="defcon-footer-section-title">Certifications</h3>
+                    <div class="defcon-footer-cert-grid">
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('iso')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">ISO 27001</div>
+                        </div>
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('gdpr')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">GDPR Compliant</div>
+                        </div>
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('aws')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fab fa-aws"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">AWS Certified</div>
+                        </div>
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('google')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">Google Partner</div>
+                        </div>
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('microsoft')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">Microsoft Certified</div>
+                        </div>
+                        <div class="defcon-footer-cert-item" onclick="showCertInfo('security')">
+                            <div class="defcon-footer-cert-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="defcon-footer-cert-name">Security+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trusted Partners Column -->
+                <div class="defcon-footer-partners-column">
+                    <h3 class="defcon-footer-section-title">Trusted Partners</h3>
+                    <div class="defcon-footer-partners-grid">
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('cloudflare')">
+                            <div class="defcon-footer-partner-logo">CF</div>
+                            <div class="defcon-footer-partner-name">Cloudflare</div>
+                        </div>
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('stripe')">
+                            <div class="defcon-footer-partner-logo">ST</div>
+                            <div class="defcon-footer-partner-name">Stripe</div>
+                        </div>
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('digitalocean')">
+                            <div class="defcon-footer-partner-logo">DO</div>
+                            <div class="defcon-footer-partner-name">DigitalOcean</div>
+                        </div>
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('mongodb')">
+                            <div class="defcon-footer-partner-logo">DB</div>
+                            <div class="defcon-footer-partner-name">MongoDB</div>
+                        </div>
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('vercel')">
+                            <div class="defcon-footer-partner-logo">VC</div>
+                            <div class="defcon-footer-partner-name">Vercel</div>
+                        </div>
+                        <div class="defcon-footer-partner-item" onclick="showPartnerInfo('netlify')">
+                            <div class="defcon-footer-partner-logo">NL</div>
+                            <div class="defcon-footer-partner-name">Netlify</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="defcon-footer-bottom">
+                <div class="defcon-footer-bottom-content">
+                    <div class="defcon-footer-copyright">
+                        © 2025 Defcon. All rights reserved.
+                    </div>
+                    <div class="defcon-footer-links">
+                        <a href="#" class="defcon-footer-link">Privacy Policy</a>
+                        <a href="#" class="defcon-footer-link">Terms of Service</a>
+                        <a href="#" class="defcon-footer-link">Cookie Policy</a>
+                        <a href="#" class="defcon-footer-link">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Popup Elements -->
+    <div class="defcon-footer-overlay" id="defconFooterOverlay" onclick="closePopup()"></div>
+    <div class="defcon-footer-popup" id="defconFooterPopup">
+        <div class="defcon-footer-popup-content">
+            <div class="defcon-footer-popup-title" id="defconFooterPopupTitle"></div>
+            <div class="defcon-footer-popup-text" id="defconFooterPopupText"></div>
+            <button class="defcon-footer-popup-close" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.defcon-footer-tagline').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Popup functionality
+        function showPopup(title, text) {
+            document.getElementById('defconFooterPopupTitle').textContent = title;
+            document.getElementById('defconFooterPopupText').textContent = text;
+            document.getElementById('defconFooterOverlay').classList.add('active');
+            document.getElementById('defconFooterPopup').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('defconFooterOverlay').classList.remove('active');
+            document.getElementById('defconFooterPopup').classList.remove('active');
+        }
+
+        function showQRPopup() {
+            showPopup(
+                'Contact Us via QR Code',
+                'Scan the QR code with your mobile device to instantly access our contact form and get in touch with our team of experts.'
+            );
+        }
+
+        function openSocial(platform) {
+            const urls = {
+                linkedin: 'https://linkedin.com/company/defcon',
+                twitter: 'https://twitter.com/defcon',
+                facebook: 'https://facebook.com/defcon',
+                instagram: 'https://instagram.com/defcon',
+                youtube: 'https://youtube.com/defcon',
+                github: 'https://github.com/defcon'
+            };
+            
+            if (urls[platform]) {
+                window.open(urls[platform], '_blank');
+            }
+        }
+
+        function showCertInfo(cert) {
+            const certInfo = {
+                iso: {
+                    title: 'ISO 27001 Certified',
+                    text: 'Information Security Management System certification ensuring the highest standards of data protection and security protocols.'
+                },
+                gdpr: {
+                    title: 'GDPR Compliant',
+                    text: 'Full compliance with General Data Protection Regulation ensuring your privacy rights are protected and respected.'
+                },
+                aws: {
+                    title: 'AWS Certified',
+                    text: 'Amazon Web Services certified professionals delivering cloud solutions with enterprise-grade security and scalability.'
+                },
+                google: {
+                    title: 'Google Partner',
+                    text: 'Certified Google Partner specializing in cloud infrastructure, analytics, and digital marketing solutions.'
+                },
+                microsoft: {
+                    title: 'Microsoft Certified',
+                    text: 'Microsoft Azure and Office 365 certified experts providing comprehensive enterprise solutions and support.'
+                },
+                security: {
+                    title: 'CompTIA Security+',
+                    text: 'Industry-recognized cybersecurity certification ensuring robust protection for your digital assets and infrastructure.'
+                }
+            };
+            
+            const info = certInfo[cert];
+            if (info) {
+                showPopup(info.title, info.text);
+            }
+        }
+
+        function showPartnerInfo(partner) {
+            const partnerInfo = {
+                cloudflare: {
+                    title: 'Cloudflare Partnership',
+                    text: 'Strategic partnership with Cloudflare providing global CDN, security, and performance optimization for lightning-fast websites.'
+                },
+                stripe: {
+                    title: 'Stripe Integration',
+                    text: 'Trusted payment processing partner enabling secure, seamless transactions with enterprise-grade financial infrastructure.'
+                },
+                digitalocean: {
+                    title: 'DigitalOcean Alliance',
+                    text: 'Cloud infrastructure partnership delivering scalable, reliable hosting solutions with global data center coverage.'
+                },
+                mongodb: {
+                    title: 'MongoDB Partnership',
+                    text: 'Database technology partnership providing flexible, scalable NoSQL solutions for modern application development.'
+                },
+                vercel: {
+                    title: 'Vercel Partnership',
+                    text: 'Frontend deployment partnership enabling instant global deployment with optimized performance and developer experience.'
+                },
+                netlify: {
+                    title: 'Netlify Partnership',
+                    text: 'JAMstack deployment partnership providing automated builds, global CDN, and seamless continuous deployment workflows.'
+                }
+            };
+            
+            const info = partnerInfo[partner];
+            if (info) {
+                showPopup(info.title, info.text);
+            }
+        }
+
+        // Enhanced hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle parallax effect to background elements
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const lines = document.querySelectorAll('.defcon-footer-line');
+                lines.forEach((line, index) => {
+                    line.style.transform = `translateX(${scrolled * 0.1 * (index + 1)}px)`;
+                });
+            });
+
+            // Add stagger animation to grid items
+            const animateGridItems = (selector, delay = 100) => {
+                const items = document.querySelectorAll(selector);
+                items.forEach((item, index) => {
+                    item.style.animationDelay = `${index * delay}ms`;
+                    item.classList.add('defcon-footer-animate-in');
+                });
+            };
+
+            // Trigger animations when footer comes into view
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => animateGridItems('.defcon-footer-social-item', 50), 200);
+                        setTimeout(() => animateGridItems('.defcon-footer-cert-item', 30), 400);
+                        setTimeout(() => animateGridItems('.defcon-footer-partner-item', 40), 600);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            footerObserver.observe(document.querySelector('.defcon-footer-container'));
+
+            // Add ripple effect to clickable items
+            const addRippleEffect = (selector) => {
+                document.querySelectorAll(selector).forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        const ripple = document.createElement('span');
+                        const rect = this.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height);
+                        const x = e.clientX - rect.left - size / 2;
+                        const y = e.clientY - rect.top - size / 2;
+                        
+                        ripple.style.width = ripple.style.height = size + 'px';
+                        ripple.style.left = x + 'px';
+                        ripple.style.top = y + 'px';
+                        ripple.classList.add('defcon-footer-ripple');
+                        
+                        this.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+            };
+
+            addRippleEffect('.defcon-footer-social-item');
+            addRippleEffect('.defcon-footer-cert-item');
+            addRippleEffect('.defcon-footer-partner-item');
+            addRippleEffect('.defcon-footer-qr-section');
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+        // Touch device optimization
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.defcon-footer-social-item, .defcon-footer-cert-item, .defcon-footer-partner-item').forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-2px) scale(0.98)';
+                });
+                
+                item.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+    </script>
+
+    <style>
+        /* Additional animations for grid items */
+        .defcon-footer-animate-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defconFooterSlideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes defconFooterSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ripple effect */
+        .defcon-footer-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 145, 255, 0.3);
+            transform: scale(0);
+            animation: defconFooterRipple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes defconFooterRipple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced focus states for accessibility */
+        .defcon-footer-social-item:focus,
+        .defcon-footer-cert-item:focus,
+        .defcon-footer-partner-item:focus,
+        .defcon-footer-qr-section:focus {
+            outline: 2px solid #0091ff;
+            outline-offset: 2px;
+        }
+
+        .defcon-footer-link:focus {
+            outline: 2px solid #0091ff;
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        /* Performance optimizations */
+        .defcon-footer-container * {
+            will-change: transform;
+        }
+
+        .defcon-footer-animated-lines {
+            will-change: transform;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .defcon-footer-container {
+                background: #000000;
+            }
+            
+            .defcon-footer-section-title,
+            .defcon-footer-social-icon {
+                color: #ffffff;
+            }
+            
+            .defcon-footer-social-item,
+            .defcon-footer-cert-item,
+            .defcon-footer-partner-item {
+                border-color: #ffffff;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .defcon-footer-line,
+            .defcon-footer-logo {
+                animation: none;
+            }
+            
+            .defcon-footer-social-item,
+            .defcon-footer-cert-item,
+            .defcon-footer-partner-item,
+            .defcon-footer-qr-section {
+                transition: none;
+            }
+        }
+    </style>
+</body>
+</html>

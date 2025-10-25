@@ -1,0 +1,658 @@
+<style>
+.defcon-ecosystem-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #06273e 0%, #003087 100%);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.defcon-ecosystem-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-ecosystem-header {
+    font-size: 56px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.defcon-ecosystem-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.defcon-ecosystem-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.defcon-ecosystem-card-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    perspective: 1000px;
+}
+
+.defcon-ecosystem-card {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.2);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, z-index 0.5s ease;
+    cursor: pointer;
+}
+
+.defcon-ecosystem-card:hover {
+    transform: translateZ(20px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
+    z-index: 10;
+}
+
+.defcon-ecosystem-card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.defcon-ecosystem-card-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.defcon-ecosystem-card:hover .defcon-ecosystem-card-icon {
+    transform: scale(1.1);
+}
+
+.defcon-ecosystem-card-title {
+    font-size: 24px;
+    color: #06273e;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.defcon-ecosystem-card-description {
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.defcon-ecosystem-card-cta {
+    display: inline-flex;
+    padding: 10px 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.defcon-ecosystem-card-cta:hover {
+    background-color: #0078d4;
+    transform: translateY(-2px);
+}
+
+.defcon-ecosystem-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 39, 62, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.defcon-ecosystem-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.defcon-ecosystem-overlay-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 900px;
+    padding: 40px;
+    transform: scale(0.8);
+    transition: transform 0.5s ease;
+}
+
+.defcon-ecosystem-overlay.active .defcon-ecosystem-overlay-content {
+    transform: scale(1);
+}
+
+.defcon-ecosystem-overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.defcon-ecosystem-overlay-close:hover {
+    background-color: #0091ff;
+}
+
+.defcon-ecosystem-overlay-close::before,
+.defcon-ecosystem-overlay-close::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #06273e;
+    transform: rotate(45deg);
+}
+
+.defcon-ecosystem-overlay-close::after {
+    transform: rotate(-45deg);
+}
+
+.defcon-ecosystem-overlay-title {
+    font-size: 32px;
+    color: #06273e;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.defcon-ecosystem-overlay-description {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.defcon-ecosystem-overlay-video {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.defcon-ecosystem-overlay-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.defcon-ecosystem-overlay-feature-item {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.defcon-ecosystem-overlay-feature-item::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-size: 16px;
+}
+
+.defcon-ecosystem-overlay-cta {
+    display: inline-flex;
+    padding: 14px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.defcon-ecosystem-overlay-cta:hover {
+    background-color: #0078d4;
+    transform: translateY(-3px);
+}
+
+.defcon-ecosystem-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.defcon-ecosystem-filter-button {
+    padding: 10px 20px;
+    background-color: #e5e5e5;
+    color: #06273e;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.defcon-ecosystem-filter-button.active {
+    background-color: #0091ff;
+    color: #ffffff;
+}
+
+.defcon-ecosystem-filter-button:hover {
+    background-color: #0091ff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.defcon-ecosystem-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://via.placeholder.com/1920x1080?text=Background+Texture');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+@media (max-width: 768px) {
+    .defcon-ecosystem-section {
+        padding: 60px 0;
+    }
+
+    .defcon-ecosystem-header {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+
+    .defcon-ecosystem-card-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .defcon-ecosystem-card {
+        position: relative;
+        width: 90%;
+        max-width: 300px;
+        margin-bottom: 20px;
+        transform: none !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .defcon-ecosystem-card:hover {
+        transform: scale(1.05) !important;
+    }
+
+    .defcon-ecosystem-overlay-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .defcon-ecosystem-overlay-video {
+        height: 200px;
+    }
+
+    .defcon-ecosystem-overlay-title {
+        font-size: 24px;
+    }
+
+    .defcon-ecosystem-overlay-description {
+        font-size: 14px;
+    }
+
+    .defcon-ecosystem-filter {
+        flex-wrap: wrap;
+    }
+
+    .defcon-ecosystem-filter-button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .defcon-ecosystem-header {
+        font-size: 32px;
+    }
+
+    .defcon-ecosystem-card {
+        width: 100%;
+    }
+
+    .defcon-ecosystem-overlay-title {
+        font-size: 20px;
+    }
+}
+</style>
+
+<div class="defcon-ecosystem-section">
+    <div class="defcon-ecosystem-background"></div>
+    <canvas class="defcon-ecosystem-canvas"></canvas>
+    <div class="defcon-ecosystem-container">
+        <h1 class="defcon-ecosystem-header">Defcon Service Ecosystem</h1>
+        <div class="defcon-ecosystem-filter">
+            <button class="defcon-ecosystem-filter-button active" data-filter="all">All Services</button>
+            <button class="defcon-ecosystem-filter-button" data-filter="web">Web</button>
+            <button class="defcon-ecosystem-filter-button" data-filter="tech">Tech</button>
+            <button class="defcon-ecosystem-filter-button" data-filter="creative">Creative</button>
+        </div>
+        <div class="defcon-ecosystem-card-container">
+            <div class="defcon-ecosystem-card" data-service="web" data-x="100" data-y="100" data-z="0">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/api.png" class="defcon-ecosystem-card-icon" alt="Web Design Icon">
+                    <h2 class="defcon-ecosystem-card-title">Web Design & Development</h2>
+                    <p class="defcon-ecosystem-card-description">Crafting responsive, high-performance websites tailored to your brand.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="tech" data-x="400" data-y="150" data-z="-100">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/apple-logo.png" class="defcon-ecosystem-card-icon" alt="Tech Support Icon">
+                    <h2 class="defcon-ecosystem-card-title">Tech Support</h2>
+                    <p class="defcon-ecosystem-card-description">24/7 technical assistance to keep your systems running smoothly.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="tech" data-x="700" data-y="200" data-z="50">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/briefcase.png" class="defcon-ecosystem-card-icon" alt="IT Consulting Icon">
+                    <h2 class="defcon-ecosystem-card-title">IT Consulting</h2>
+                    <p class="defcon-ecosystem-card-description">Strategic IT solutions to drive your business forward.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="creative" data-x="200" data-y="400" data-z="-50">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/strategy.png" class="defcon-ecosystem-card-icon" alt="Digital Marketing Icon">
+                    <h2 class="defcon-ecosystem-card-title">Digital Marketing</h2>
+                    <p class="defcon-ecosystem-card-description">Boost your online presence with data-driven marketing strategies.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="creative" data-x="500" data-y="350" data-z="100">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/businessman.png" class="defcon-ecosystem-card-icon" alt="Graphic Design Icon">
+                    <h2 class="defcon-ecosystem-card-title">Graphic Design</h2>
+                    <p class="defcon-ecosystem-card-description">Stunning visuals that elevate your brand identity.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="creative" data-x="800" data-y="300" data-z="-150">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/cloud-service.png" class="defcon-ecosystem-card-icon" alt="Photography Icon">
+                    <h2 class="defcon-ecosystem-card-title">Photography</h2>
+                    <p class="defcon-ecosystem-card-description">Professional photography to showcase your products and services.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+            <div class="defcon-ecosystem-card" data-service="creative" data-x="300" data-y="500" data-z="200">
+                <div class="defcon-ecosystem-card-content">
+                    <img src="thumbnails/webinar.png" class="defcon-ecosystem-card-icon" alt="Videography Icon">
+                    <h2 class="defcon-ecosystem-card-title">Videography</h2>
+                    <p class="defcon-ecosystem-card-description">Cinematic videos that tell your brand’s story.</p>
+                    <a href="#details" class="defcon-ecosystem-card-cta">Explore</a>
+                </div>
+            </div>
+        </div>
+        <div class="defcon-ecosystem-overlay">
+            <div class="defcon-ecosystem-overlay-content">
+                <div class="defcon-ecosystem-overlay-close"></div>
+                <h2 class="defcon-ecosystem-overlay-title"></h2>
+                <p class="defcon-ecosystem-overlay-description"></p>
+                <video class="defcon-ecosystem-overlay-video" src="" muted loop></video>
+                <ul class="defcon-ecosystem-overlay-features"></ul>
+                <a href="#contact" class="defcon-ecosystem-overlay-cta">Get Started</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.defcon-ecosystem-card');
+    const canvas = document.querySelector('.defcon-ecosystem-canvas');
+    const ctx = canvas.getContext('2d');
+    const header = document.querySelector('.defcon-ecosystem-header');
+    const overlay = document.querySelector('.defcon-ecosystem-overlay');
+    const overlayContent = document.querySelector('.defcon-ecosystem-overlay-content');
+    const overlayClose = document.querySelector('.defcon-ecosystem-overlay-close');
+    const filterButtons = document.querySelectorAll('.defcon-ecosystem-filter-button');
+    let mouseX = 0, mouseY = 0;
+
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Card data
+    const cardData = {
+        'web-design': {
+            title: 'Web Design & Development',
+            description: 'Transforming visions into stunning, responsive websites that drive engagement and conversions.',
+            video: 'https://via.placeholder.com/600x400?text=Web+Video',
+            features: ['Custom UI/UX design', 'SEO optimization', 'E-commerce integration']
+        },
+        'tech-support': {
+            title: 'Tech Support',
+            description: 'Unmatched 24/7 support to ensure your systems are always operational and secure.',
+            video: 'https://via.placeholder.com/600x400?text=Tech+Video',
+            features: ['Proactive monitoring', 'Rapid response', 'System optimization']
+        },
+        'it-consulting': {
+            title: 'IT Consulting',
+            description: 'Strategic solutions to optimize your IT infrastructure for maximum efficiency.',
+            video: 'https://via.placeholder.com/600x400?text=IT+Video',
+            features: ['Cloud integration', 'Security audits', 'Workflow automation']
+        },
+        'digital-marketing': {
+            title: 'Digital Marketing',
+            description: 'Data-driven campaigns that amplify your brand’s reach and engagement.',
+            video: 'https://via.placeholder.com/600x400?text=Marketing+Video',
+            features: ['SEO & PPC', 'Social media strategy', 'Content creation']
+        },
+        'graphic-design': {
+            title: 'Graphic Design',
+            description: 'Visually stunning designs that elevate your brand identity.',
+            video: 'https://via.placeholder.com/600x400?text=Graphic+Video',
+            features: ['Logo & branding', 'UI/UX design', 'Marketing collateral']
+        },
+        'photography': {
+            title: 'Photography',
+            description: 'High-quality images that capture your brand’s essence.',
+            video: 'https://via.placeholder.com/600x400?text=Photo+Video',
+            features: ['Product photography', 'Corporate headshots', 'Event coverage']
+        },
+        'videography': {
+            title: 'Videography',
+            description: 'Cinematic videos that tell your brand’s story with impact.',
+            video: 'https://via.placeholder.com/600x400?text=Video+Project',
+            features: ['Promotional videos', 'Corporate films', 'Post-production editing']
+        }
+    };
+
+    // Show header
+    setTimeout(() => header.classList.add('visible'), 100);
+
+    // Position cards
+    function positionCards(filter = 'all') {
+        cards.forEach((card, index) => {
+            if (filter === 'all' || card.dataset.service === filter) {
+                card.style.display = 'block';
+                const x = parseFloat(card.dataset.x);
+                const y = parseFloat(card.dataset.y);
+                const z = parseFloat(card.dataset.z);
+                card.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    positionCards();
+
+    // Magnetic card movement
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cards.forEach(card => {
+            if (card.style.display !== 'none') {
+                const rect = card.getBoundingClientRect();
+                const cardX = rect.left + rect.width / 2;
+                const cardY = rect.top + rect.height / 2;
+                const dx = (mouseX - cardX) / 10;
+                const dy = (mouseY - cardY) / 10;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 200) {
+                    card.style.transform = `translate3d(${parseFloat(card.dataset.x) + dx}px, ${parseFloat(card.dataset.y) + dy}px, ${parseFloat(card.dataset.z)}px) rotateY(${dx / 5}deg) rotateX(${-dy / 5}deg)`;
+                } else {
+                    card.style.transform = `translate3d(${card.dataset.x}px, ${card.dataset.y}px, ${card.dataset.z}px)`;
+                }
+            }
+        });
+    });
+
+    // Particle system for connections
+    const particles = [];
+    const connections = [
+        { from: 0, to: 3 }, // Web Design -> Digital Marketing
+        { from: 1, to: 2 }, // Tech Support -> IT Consulting
+        { from: 4, to: 5 }, // Graphic Design -> Photography
+        { from: 5, to: 6 }  // Photography -> Videography
+    ];
+
+    class Particle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 2 + 1;
+            this.opacity = Math.random() * 0.5 + 0.3;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(0, 145, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function drawConnections() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        connections.forEach(conn => {
+            const card1 = cards[conn.from];
+            const card2 = cards[conn.to];
+            if (card1.style.display !== 'none' && card2.style.display !== 'none') {
+                const rect1 = card1.getBoundingClientRect();
+                const rect2 = card2.getBoundingClientRect();
+                const x1 = rect1.left + rect1.width / 2;
+                const y1 = rect1.top + rect1.height / 2;
+                const x2 = rect2.left + rect2.width / 2;
+                const y2 = rect2.top + rect2.height / 2;
+
+                ctx.strokeStyle = 'rgba(0, 145, 255, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+
+                const particleCount = 5;
+                for (let i = 0; i < particleCount; i++) {
+                    const t = i / (particleCount - 1);
+                    const x = x1 + (x2 - x1) * t;
+                    const y = y1 + (y2 - y1) * t;
+                    const particle = new Particle(x, y);
+                    particle.draw();
+                }
+            }
+        });
+        requestAnimationFrame(drawConnections);
+    }
+
+    drawConnections();
+
+    // Filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            positionCards(button.dataset.filter);
+        });
+    });
+
+    // Overlay handling
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const service = card.dataset.service;
+            const data = cardData[service];
+            overlay.querySelector('.defcon-ecosystem-overlay-title').textContent = data.title;
+            overlay.querySelector('.defcon-ecosystem-overlay-description').textContent = data.description;
+            overlay.querySelector('.defcon-ecosystem-overlay-video').src = data.video;
+            const featuresList = overlay.querySelector('.defcon-ecosystem-overlay-features');
+            featuresList.innerHTML = data.features.map(f => `<li class="defcon-ecosystem-overlay-feature-item">${f}</li>`).join('');
+            overlay.classList.add('active');
+            overlay.querySelector('.defcon-ecosystem-overlay-video').play();
+        });
+    });
+
+    overlayClose.addEventListener('click', () => {
+        overlay.classList.remove('active');
+        overlay.querySelector('.defcon-ecosystem-overlay-video').pause();
+    });
+
+    // Responsive canvas resizing
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    // Touch support for mobile
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+    });
+
+    // Parallax on scroll for mobile
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        cards.forEach(card => {
+            if (window.innerWidth <= 768) {
+                card.style.transform = `translateY(${scrollY * 0.2}px)`;
+            }
+        });
+    });
+});
+</script>

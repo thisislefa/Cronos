@@ -1,0 +1,2912 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Advanced Digital Solutions</title>
+    
+    <!-- Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =============================================
+           CSS VARIABLES (Custom Properties)
+           ============================================= */
+        :root {
+            /* Color Palette */
+            --dc-color-header-bg: #07071e;
+            --dc-color-accent: #0091ff;
+            --dc-color-text-light: #fff;
+            --dc-color-background-dark: #000;
+            --dc-color-off-white: #f4f4f4;
+            --dc-color-text-muted: #b5b5d9;
+            --dc-color-menu-bg: #10102a;
+            --dc-color-menu-border: rgba(0, 145, 255, 0.2);
+            --dc-color-menu-hover-bg: rgba(70, 70, 110, 0.3);
+            --dc-color-button-primary: #0077cc;
+            --dc-color-button-hover: #0081ff;
+            --dc-color-panel-bg: #171a2e;
+            
+            /* Sizing */
+            --dc-header-height: 55px;
+            --dc-content-max-width: 1500px;
+            --dc-border-radius: 8px;
+            --dc-transition-speed: 0.3s;
+            
+            /* Services Mega Menu Sizing */
+            --dc-services-menu-width: 900px;
+            --dc-services-categories-width: 50%;
+            --dc-services-submenu-width: 600px;
+            --dc-services-category-height: 80px;
+            --dc-services-item-padding: 22px;
+            
+            /* Discover Mega Menu Sizing */
+            --dc-discover-menu-width: fit-content;
+            --dc-discover-main-width: 280px;
+            --dc-discover-submenu-width: 590px;
+            
+            /* Z-index layers */
+            --dc-z-header: 1000;
+            --dc-z-mobile-nav: 900;
+            --dc-z-mobile-toggle: 1010;
+        }
+
+        /* =============================================
+           BASE STYLES
+           ============================================= */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--dc-header-height);
+            background-color: var(--dc-color-background-dark);
+            color: var(--dc-color-text-light);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =============================================
+           HEADER CONTAINER
+           ============================================= */
+        .dc-header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--dc-z-header);
+            background-color: var(--dc-color-header-bg);
+        }
+
+        .dc-header {
+            height: var(--dc-header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-header-container {
+            max-width: var(--dc-content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* =============================================
+           LOGO STYLES
+           ============================================= */
+        .dc-logo-container {
+            flex-shrink: 0;
+        }
+
+        .dc-logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-logo-image {
+            height: 40px;
+            vertical-align: middle;
+            transition: opacity var(--dc-transition-speed) ease;
+        }
+
+        .dc-logo-link:hover .dc-logo-image {
+            opacity: 0.8;
+        }
+
+        /* =============================================
+           DESKTOP NAVIGATION
+           ============================================= */
+        .dc-main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .dc-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .dc-nav-item {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .dc-nav-link {
+            text-decoration: none;
+            color: var(--dc-color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 15px;
+            align-items: center;
+            transition: color var(--dc-transition-speed) ease;
+        }
+
+        .dc-nav-link:hover,
+        .dc-nav-item--has-megamenu.active > .dc-nav-link {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           ACTION BUTTON
+           ============================================= */
+        .dc-header-action-btn {
+            background: var(--dc-color-button-primary);
+            color: var(--dc-color-text-light);
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn:hover {
+            background-color: var(--dc-color-button-hover);
+        }
+
+        .dc-header-action-btn-cta {
+            background: #62b8fa32;
+            color: #95d1ff;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 550;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn-cta:hover {
+          background-color: #62b8fa5d;
+        }
+
+        /* =============================================
+           MEGA MENU CONTAINERS
+           ============================================= */
+        .dc-mega-menu-container {
+            position: absolute;
+            top: calc(100% + 8px);
+            background-color: var(--dc-color-menu-bg);
+            border-radius: var(--dc-border-radius);
+            backface-visibility: hidden;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity var(--dc-transition-speed) ease, 
+                        transform var(--dc-transition-speed) ease, 
+                        visibility var(--dc-transition-speed);
+            transform-origin: top center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .dc-nav-item--has-megamenu:hover .dc-mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dc-mega-menu-panel {
+            display: none;
+        }
+
+        .dc-mega-menu-panel.active {
+            display: flex;
+        }
+
+        /* =============================================
+           SERVICES MEGA MENU
+           ============================================= */
+        .dc-mega-menu-container--services {
+            left: -950%;
+            transform: translateZ(0);
+            transition: opacity 0s ease, transform 0.3s ease, visibility 0.3s;
+            width: var(--dc-services-menu-width);
+            padding: 0;
+            transform-origin: top center;
+        }
+
+        .dc-services-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Services Categories Panel */
+        .dc-services-categories {
+            list-style: none;
+            width: var(--dc-services-categories-width);
+            margin: 0;
+            padding: 3rem 0;
+            background-color: var(--dc-color-menu-bg);
+            border-top-left-radius: var(--dc-border-radius);
+            border-bottom-left-radius: var(--dc-border-radius);
+        }
+
+        .dc-services-category-item {
+            margin: 0;
+            height: var(--dc-services-category-height);
+            width: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-services-category-item:last-child {
+            border-bottom: none;
+        }
+
+        .dc-services-category-link {
+            display: flex;
+            align-items: center;
+            color: var(--dc-color-text-light);
+            gap: 15px;
+            padding: 0 var(--dc-services-item-padding);
+            width: 100%;
+            height: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all var(--dc-transition-speed) ease;
+            position: relative;
+        }
+
+        .dc-services-category-link:hover,
+        .dc-services-category-item.active .dc-services-category-link {
+            background-color: var(--dc-color-panel-bg);
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--dc-color-text-light);
+            flex-shrink: 0;
+        }
+
+        .dc-services-category-item.active .dc-services-category-icon,
+        .dc-services-category-link:hover .dc-services-category-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-text {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .dc-services-category-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .dc-services-category-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.3;
+        }
+
+        /* Services Submenu Panel */
+        .dc-services-submenu-container {
+            width: fit-content;
+            background-color: var(--dc-color-panel-bg);
+            border-top-right-radius: var(--dc-border-radius);
+            border-bottom-right-radius: var(--dc-border-radius);
+            height: fit-content;
+            padding: 3.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-panel {
+            display: none;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .dc-submenu-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dc-color-text-light);
+            margin: 0 0 8px 0;
+        }
+
+        .dc-submenu-desc {
+            font-size: 14px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .dc-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-item {
+            padding: 0;
+            margin: 0;
+        }
+
+        .dc-submenu-link {
+            display: block;
+            padding: 12px;
+            border-radius: 6px;
+            transition: all var(--dc-transition-speed) ease;
+            height: 100%;
+        }
+
+        .dc-submenu-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .dc-submenu-link:hover .dc-mega-menu-link-title {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-mega-menu-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .dc-mega-menu-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* =============================================
+           DISCOVER MEGA MENU (Fixed Layout)
+           ============================================= */
+        .dc-mega-menu-container--discover {
+            left: -1150%;
+            transform: translateZ(0);
+            transition: opacity 0s ease, transform 0.3s ease, visibility 0.3s;
+            width: var(--dc-discover-menu-width);
+            padding: 0;
+            visibility: hidden;
+        }
+
+        .dc-discover-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Discover Main Links Panel */
+        .dc-discover-main-links {
+            width: var(--dc-discover-main-width);
+            background-color: var(--dc-color-menu-bg);
+            border-top-left-radius: var(--dc-border-radius);
+            border-bottom-left-radius: var(--dc-border-radius);
+            padding: 3rem 0;
+            height: fit-content;
+        }
+
+        .dc-discover-main-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            transition: all var(--dc-transition-speed) ease;
+        }
+
+        .dc-discover-main-link:hover {
+            background-color: var(--dc-color-panel-bg);
+        }
+
+        .dc-discover-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            color: var(--dc-color-text-light);
+        }
+
+        .dc-discover-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .dc-discover-main-link:hover .dc-discover-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-discover-text-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .dc-discover-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* Discover Submenu Panel - Fixed Layout */
+        .dc-discover-submenu-container {
+            width: var(--dc-discover-submenu-width);
+            background-color: var(--dc-color-panel-bg);
+            border-top-right-radius: var(--dc-border-radius);
+            border-bottom-right-radius: var(--dc-border-radius);
+            padding: 4rem 3rem;
+        }
+
+        .dc-discover-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .dc-discover-menu-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-group-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dc-color-text-muted);
+            margin: 0 0 16px 0;
+        }
+
+        .dc-discover-group-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dc-discover-group-link {
+            font-size: 16px;
+            color: var(--dc-color-text-light);
+            transition: color var(--dc-transition-speed) ease;
+            padding: 4px 0;
+        }
+
+        .dc-discover-group-link:hover {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           DROPDOWN INDICATOR
+           ============================================= */
+        .dc-dropdown-indicator {
+            display: none;
+            width: 0;
+            height: 0;
+            margin-left: 8px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--dc-color-text-light);
+            transition: transform var(--dc-transition-speed), 
+                        border-top-color var(--dc-transition-speed);
+        }
+
+        .dc-nav-item--has-megamenu.active > .dc-nav-link .dc-dropdown-indicator {
+            transform: rotate(180deg);
+            border-top-color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           MOBILE TOGGLE
+           ============================================= */
+        .dc-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: var(--dc-z-mobile-toggle);
+        }
+
+        .dc-mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--dc-color-text-light);
+            margin: 6px 0;
+            transition: all var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* =============================================
+   MOBILE RESPONSIVE STYLES - IMPROVED
+   ============================================= */
+@media (max-width: 1024px) {
+    .dc-header-container {
+        padding: 0 20px;
+    }
+
+    .buttons-cta {
+        margin: 20px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dc-mobile-toggle {
+        display: block;
+    }
+    
+    .dc-nav-link {
+        justify-content: space-between;
+        padding: 18px 0; /* Increased for better touch targets */
+        font-size: 1.1rem;
+        width: 100%;
+    }
+    
+    .dc-dropdown-indicator {
+        display: inline-block;
+    }
+
+    .dc-main-nav {
+        position: fixed;
+        top: var(--dc-header-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--dc-header-height));
+        background-color: var(--dc-color-header-bg);
+        overflow-y: auto;
+        padding: 5px 0;
+        transform: translateX(100%);
+        transition: transform var(--dc-transition-speed) ease;
+        display: block;
+        z-index: var(--dc-z-mobile-nav);
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
+    .dc-header-wrapper.mobile-menu-open .dc-main-nav {
+        transform: translateX(0);
+    }
+
+    .dc-nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .dc-nav-item {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--dc-color-menu-border);
+        box-sizing: border-box;
+    }
+    
+    .dc-header-action-btn {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px; /* Better readability on mobile */
+        min-height: 48px; /* Better touch target */
+        box-sizing: border-box;
+    }
+
+    .dc-header-action-btn-cta {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px; /* Better readability on mobile */
+        min-height: 48px; /* Better touch target */
+        box-sizing: border-box;
+    }
+    
+    /* Mobile Mega Menu */
+    .dc-mega-menu-container {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition: max-height var(--dc-transition-speed) ease-out;
+        overflow: hidden;
+        max-height: 0;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        background: none;
+        box-sizing: border-box;
+    }
+    
+    .dc-nav-item--has-megamenu.active .dc-mega-menu-container {
+        max-height: 2000px;
+    }
+    
+    .dc-mega-menu-panel {
+        padding: 10px 0 20px 15px;
+        display: block !important;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .dc-services-categories,
+    .dc-discover-main-links {
+        display: none;
+    }
+
+    .dc-services-menu-layout,
+    .dc-discover-menu-layout {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    
+    /* Services Menu Mobile */
+    .dc-services-submenu-container {
+        display: block;
+        width: 100%;
+        padding-left: 0;
+        background-color: transparent;
+        background: transparent;
+        box-sizing: border-box;
+    }
+    
+    .dc-submenu-panel {
+        display: block;
+        padding: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .dc-submenu-panel::before {
+        content: attr(data-mobile-title);
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--dc-color-text-muted);
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--dc-color-menu-border);
+    }
+    
+    .dc-submenu-content {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .dc-submenu-link {
+        padding: 12px 0; /* Increased padding for better touch targets */
+        display: block;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .dc-mega-menu-link-title {
+        font-size: 1rem;
+    }
+    
+    .dc-mega-menu-link-desc {
+        display: none;
+    }
+    
+    /* Discover Menu Mobile */
+    .dc-discover-submenu-container {
+        display: block;
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .dc-discover-submenu-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .dc-discover-group-links {
+        gap: 8px;
+    }
+    
+    .dc-discover-group-link {
+        padding: 12px 0; /* Better touch targets */
+        display: block;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Additional improvements for smaller screens */
+@media (max-width: 480px) {
+    .dc-header-container {
+        padding: 0 15px;
+    }
+    
+    .dc-nav-list {
+        padding: 0 15px;
+    }
+    
+    .dc-logo-image {
+        height: 35px; /* Slightly smaller logo on very small screens */
+    }
+    
+    .dc-nav-link {
+        font-size: 1rem; /* Slightly smaller font on very small screens */
+    }
+}
+
+/* Prevent horizontal scrolling on mobile */
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .dc-header-wrapper {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- =============================================
+     HEADER WRAPPER
+     ============================================= -->
+<div class="dc-header-wrapper">
+    
+    <!-- MAIN HEADER BAR -->
+    <header class="dc-header">
+        <div class="dc-header-container">
+            
+            <!-- LOGO SECTION -->
+            <div class="dc-logo-container">
+                <a href="index.html" class="dc-logo-link">
+                    <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" alt="Defcon Logo" class="dc-logo-image">
+                </a>
+            </div>
+
+            <!-- DESKTOP NAVIGATION -->
+            <nav class="dc-main-nav">
+                <ul class="dc-nav-list">
+                    <!-- LEVEL UP LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Level Up</a>
+                    </li>
+                    
+                    <!-- SUPPORT LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Support</a>
+                    </li>
+                    
+                    <!-- PROJECTS LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Projects</a>
+                    </li>
+                    
+                    <!-- SERVICES MEGA MENU -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="services">
+                            <span>Services</span>
+                            <span class="dc-dropdown-indicator"></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--services">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="services">
+                                <div class="dc-services-menu-layout">
+                                    <!-- SERVICES CATEGORIES -->
+                                    <ul class="dc-services-categories">
+                                        <li class="dc-services-category-item active" data-submenu-trigger="software">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25m0 0l5.571 3m5.571-3l-5.571 3m0 0l-5.571-3m11.142 0l4.179-2.25L12 9.75 7.821 12l4.179 2.25m0 0l4.179 2.25L12 14.25l-4.179-2.25m16.5 0L12 14.25 7.821 12l4.179-2.25m7.5 4.5L12 18.75l-4.179-2.25m16.5 0l-4.179 2.25L12 18.75l-4.179-2.25m7.5 4.5L12 14.25" />
+                                                    </svg>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Software Development</span>
+                                                    <span class="dc-services-category-desc">Custom applications & platforms</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="infra">
+                                            <a href="#" class="dc-services-category-link">
+                                                 <span class="dc-services-category-icon">
+                                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13a7 7 0 1 0 14 0a7 7 0 1 0-14 0"/>
+                                                      <path d="M10 11h4l-4 4h4M7 4L4.25 6M17 4l2.75 2"/>
+                                                  </svg>                                                 
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">IT Infrastructure</span>
+                                                    <span class="dc-services-category-desc">Networks, cloud & security</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="creative">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.573L16.5 21.75l-.398-1.177a3.375 3.375 0 00-2.455-2.455l-1.177-.398 1.177-.398a3.375 3.375 0 002.455-2.455l.398-1.177.398 1.177a3.375 3.375 0 002.455 2.455l1.177.398-1.177.398a3.375 3.375 0 00-2.455 2.455z" />
+                                                    </svg>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Marketing & Creative Studio</span>
+                                                    <span class="dc-services-category-desc">Branding & digital campaigns</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <!-- SERVICES SUBMENU -->
+                                    <div class="dc-services-submenu-container">
+                                        <div class="dc-submenu-panel active" data-submenu-panel="software" data-mobile-title="Software Development">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Web Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Resilient, high-performance platforms tailored to your needs.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Mobile Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Native experiences for iOS and Android with seamless UX.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">AI & Machine Learning</span>
+                                                        <div class="dc-mega-menu-link-desc">Intelligent systems that automate and optimize workflows.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">API Development</span>
+                                                        <div class="dc-mega-menu-link-desc">Secure, documented APIs for seamless integration.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">E-commerce Solutions</span>
+                                                        <div class="dc-mega-menu-link-desc">Custom storefronts with integrated payment gateways.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Blockchain & Web3</span>
+                                                        <div class="dc-mega-menu-link-desc">Decentralized applications and smart contracts.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="infra" data-mobile-title="IT Infrastructure">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Support & Infrastructure</span>
+                                                        <div class="dc-mega-menu-link-desc">Comprehensive assistance and network security solutions.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Consulting</span>
+                                                        <div class="dc-mega-menu-link-desc">Strategic advisory for digital transformation initiatives.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Data Center Management</span>
+                                                        <div class="dc-mega-menu-link-desc">Efficient and secure data center operations.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Data Center Management</span>
+                                                        <div class="dc-mega-menu-link-desc">Efficient and secure data center operations.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="creative" data-mobile-title="Marketing & Creative">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Digital Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">SEO, PPC, and performance marketing strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Graphic Design</span>
+                                                        <div class="dc-mega-menu-link-desc">Complete brand identity and visual design assets.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Multimedia Production</span>
+                                                        <div class="dc-mega-menu-link-desc">High-definition video and engaging motion graphics.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Advertising Campaigns</span>
+                                                        <div class="dc-mega-menu-link-desc">Targeted campaigns across all digital media channels.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Podcast Production</span>
+                                                        <div class="dc-mega-menu-link-desc">Professional audio content from concept to distribution.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- DISCOVER MEGA MENU (Fixed Layout) -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="discover">
+                            <span>Discover</span>
+                            <span class="dc-dropdown-indicator"></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--discover">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="discover">
+                                <div class="dc-discover-menu-layout">
+                                    <!-- DISCOVER MAIN LINKS -->
+                                    <div class="dc-discover-main-links">
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                                </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Defcon</span>
+                                                <span class="dc-discover-link-desc">Our vision, team, and history</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                                </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Resources</span>
+                                                <span class="dc-discover-link-desc">Case studies, insights, and docs</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                   <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.282A24.423 24.423 0 015.623 6.34a3 3 0 01-4.682 2.72m8.14 8.14A24.423 24.423 0 006.34 5.623a3 3 0 00-2.72 4.682m5.04 5.04a24.423 24.423 0 01-4.186 5.623a3 3 0 01-2.72-4.682m11.82-3.355A24.423 24.423 0 0018.377 2.25a3 3 0 014.682 2.72m-8.14 8.14c-.112.57.294 1.127.845 1.255a.75.75 0 00.938-.938c-.128-.551-.685-.956-1.255-.845z" />
+                                               </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Connect</span>
+                                                <span class="dc-discover-link-desc">Join our team or get in touch</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- DISCOVER SUBMENU - Fixed Layout (All content visible) -->
+                                    <div class="dc-discover-submenu-container">
+                                        <div class="dc-discover-submenu-content">
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Advanced</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Level Up</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Developers</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Resources</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Market Updates</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Product News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Events</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Bitcoin</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">University</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Research</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Company</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">About Us</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Company News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Careers</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Partners</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Security</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Licenses & Registration</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- ACTION BUTTON -->
+              <div class="buttons-cta">
+                <button class="dc-header-action-btn-cta">Contact Us</button>
+                <button class="dc-header-action-btn">Get Started</button>
+              </div>  
+            </nav>
+            
+            <!-- MOBILE TOGGLE BUTTON -->
+            <button class="dc-mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+</div>
+
+<!-- =============================================
+     JAVASCRIPT FOR INTERACTIVITY
+     ============================================= -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.dc-mobile-toggle');
+        const headerWrapper = document.querySelector('.dc-header-wrapper');
+        const navLinks = document.querySelectorAll('.dc-nav-link');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function() {
+                headerWrapper.classList.toggle('mobile-menu-open');
+            });
+        }
+        
+        // Mobile menu close when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dc-header-container') && headerWrapper.classList.contains('mobile-menu-open')) {
+                headerWrapper.classList.remove('mobile-menu-open');
+            }
+        });
+        
+        // Mega menu functionality
+        const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+        
+        megaMenuTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parentItem = this.closest('.dc-nav-item--has-megamenu');
+                    parentItem.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Services submenu functionality
+        const serviceCategoryLinks = document.querySelectorAll('[data-submenu-trigger]');
+        const submenuPanels = document.querySelectorAll('[data-submenu-panel]');
+        
+        serviceCategoryLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 1024) {
+                    const targetPanel = this.getAttribute('data-submenu-trigger');
+                    
+                    // Remove active class from all categories
+                    serviceCategoryLinks.forEach(item => {
+                        item.closest('.dc-services-category-item').classList.remove('active');
+                    });
+                    
+                    // Hide all submenu panels
+                    submenuPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Activate current category and panel
+                    this.closest('.dc-services-category-item').classList.add('active');
+                    document.querySelector(`[data-submenu-panel="${targetPanel}"]`).classList.add('active');
+                }
+            });
+        });
+        
+        // Mobile services submenu
+        serviceCategoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const targetPanel = this.getAttribute('data-submenu-trigger');
+                    
+                    // Toggle active class for mobile
+                    const isActive = this.closest('.dc-services-category-item').classList.contains('active');
+                    
+                    // Remove active class from all categories
+                    serviceCategoryLinks.forEach(item => {
+                        item.closest('.dc-services-category-item').classList.remove('active');
+                    });
+                    
+                    // Hide all submenu panels
+                    submenuPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // If it wasn't active, activate it
+                    if (!isActive) {
+                        this.closest('.dc-services-category-item').classList.add('active');
+                        document.querySelector(`[data-submenu-panel="${targetPanel}"]`).classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking on a link (except mega menu triggers)
+        navLinks.forEach(link => {
+            if (!link.hasAttribute('data-megamenu-trigger')) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 1024) {
+                        headerWrapper.classList.remove('mobile-menu-open');
+                    }
+                });
+            }
+        });
+        
+        // Close mobile menu when clicking action button
+        const actionBtn = document.querySelector('.dc-header-action-btn');
+        if (actionBtn) {
+            actionBtn.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .aboutus-page-wrapper {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .aboutus-hero-section {
+            background: linear-gradient(135deg, rgba(6, 39, 62, 0.626) 100%, rgba(0, 145, 255, 0.85) 0%),
+                        url('thumbnails/pexels-altabena-10142683.jpg') center/cover;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #fff;
+        }
+
+        .aboutus-top-header {
+            color: #0091ff;
+            font-size: 19px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+             display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .aboutus-hero-container {
+            max-width: 1200px;
+            width: 60%;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .aboutus-hero-heading {
+            font-size: 54px;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+            animation: aboutusFadeInUp 1s ease;
+        }
+
+        .aboutus-hero-subheading {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #f4f4f4;
+            animation: aboutusFadeInUp 1.2s ease;
+        }
+
+        .aboutus-stats-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            animation: aboutusFadeInUp 1.6s ease;
+        }
+
+        .aboutus-stat-item {
+            text-align: center;
+        }
+
+        .aboutus-stat-number {
+            font-size: 100px;
+            font-weight: 700;
+            color: #0091ff;
+            margin-bottom: 8px;
+        }
+
+        .aboutus-stat-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #f4f4f4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Executive Team Section */
+        .aboutus-team-section {
+            background-color: #f4f4f4;
+            padding: 120px 40px;
+            position: relative;
+            transition: filter 0.5s ease;
+        }
+
+        .aboutus-team-section.aboutus-blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .aboutus-team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .aboutus-section-title {
+            font-size: 54px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #06273e;
+        }
+
+        .aboutus-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 5px;
+        }
+
+        .aboutus-team-card {
+            text-align: center;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .aboutus-team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .aboutus-team-image-wrapper {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .aboutus-team-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .aboutus-team-card:hover .aboutus-team-image-wrapper::after {
+            opacity: 1;
+        }
+
+        .aboutus-team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .aboutus-team-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #06273e;
+        }
+
+        .aboutus-team-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0091ff;
+        }
+
+        /* Executive Detail Modal */
+        .aboutus-executive-detail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 39, 62, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .aboutus-executive-detail.aboutus-active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .aboutus-detail-container {
+            background: white;
+            max-width: 1000px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            min-height: 500px;
+            transform: scale(0.9);
+            transition: transform 0.5s ease;
+        }
+
+        .aboutus-executive-detail.aboutus-active .aboutus-detail-container {
+            transform: scale(1);
+        }
+
+        .aboutus-detail-image {
+            flex: 0 0 40%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aboutus-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .aboutus-detail-content {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aboutus-detail-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 30px;
+        }
+
+        .aboutus-detail-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: #06273e;
+            margin-bottom: 8px;
+        }
+
+        .aboutus-detail-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0091ff;
+        }
+
+        .aboutus-detail-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #06273e;
+            flex-grow: 1;
+        }
+
+        .aboutus-close-button {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #0091ff;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .aboutus-close-button:hover {
+            background: #06273e;
+            transform: rotate(90deg);
+        }
+
+        /* Values Section */
+        .aboutus-values-section {
+            background-color: #03111c;
+            padding: 120px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aboutus-values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aboutus-values-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 100px;
+            color: #fff;
+        }
+
+        .aboutus-values-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .aboutus-value-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible {
+            opacity: 1;
+        }
+
+        .aboutus-value-heading-col {
+            transform: translateY(100px);
+            transition: transform 0.8s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible .aboutus-value-heading-col {
+            transform: translateY(0);
+        }
+
+        .aboutus-value-content-col {
+            transform: translateY(-100px);
+            transition: transform 0.8s ease;
+        }
+
+        .aboutus-value-row.aboutus-slide-visible .aboutus-value-content-col {
+            transform: translateY(0);
+        }
+
+        .aboutus-value-heading {
+            font-size: 42px;
+            font-weight: 700;
+            color: #0091ff;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .aboutus-value-heading::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 60px;
+            background-color: #0091ff;
+        }
+
+        .aboutus-value-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #f4f4f4;
+            padding-left: 30px;
+            border-left: 2px solid rgba(0, 145, 255, 0.3);
+        }
+
+        /* Career CTA Section */
+        .aboutus-career-section {
+            background-image: url(thumbnails/pexels-knownasovan-62693.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 300px 40px;
+            text-align: center;
+        }
+
+        .aboutus-career-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aboutus-career-heading {
+            font-size: 54px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 50px;
+            color: #000;
+        }
+
+        .aboutus-career-button {
+            display: inline-block;
+            padding: 9px 30px;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .aboutus-career-button:hover {
+            background-color: white;
+            color: #06273e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
+        }
+
+        /* Animations */
+        @keyframes aboutusFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes aboutusCountUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .aboutus-hero-heading {
+                font-size: 48px;
+            }
+
+            .aboutus-hero-subheading {
+                font-size: 20px;
+            }
+
+            .aboutus-stats-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .aboutus-value-row {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .aboutus-section-title,
+            .aboutus-values-title,
+            .aboutus-career-heading {
+                font-size: 36px;
+            }
+
+            .aboutus-value-heading {
+                font-size: 32px;
+            }
+
+            .aboutus-detail-container {
+                flex-direction: column;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .aboutus-detail-image {
+                flex: 0 0 300px;
+            }
+
+            .aboutus-detail-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .aboutus-detail-name {
+                font-size: 28px;
+            }
+
+            .aboutus-detail-content {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="aboutus-page-wrapper">
+        <!-- Hero Section -->
+        <section class="aboutus-hero-section">
+            <div class="aboutus-hero-container">
+                <span class="aboutus-top-header">Our Team</span>
+                <h1 class="aboutus-hero-heading">One Vision, One Global Team</h1>
+                <h2 class="aboutus-hero-subheading">Building world-changing platforms is a <br>monumental task. These are the people behind it.</h2>
+                <div class="aboutus-stats-wrapper">
+                    <div class="aboutus-stat-item">
+                        <div class="aboutus-stat-number" data-aboutus-target="2025">0</div>
+                        <div class="aboutus-stat-label">Year Founded</div>
+                    </div>
+                    <div class="aboutus-stat-item">
+                        <div class="aboutus-stat-number" data-aboutus-target="180">0</div>
+                        <div class="aboutus-stat-label">Happy Clients</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+        <!-- Hero sections -->
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding-top: 10rem;
+    position: relative;
+    min-height: 90vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    box-sizing: border-box; /* Include padding in width */
+ 
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    width: 1200px;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    color: #ecf0f1;
+    margin-bottom: 1.5rem;
+    width: 700px;
+    text-align: center;
+  }
+
+  .hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .hero .btn {
+      display: inline-block;
+      padding: 8px 30px;
+      border: 1px solid white;
+      color: #ffffff;
+      font-weight: 500;
+      margin: 0.7rem 0;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 60px;
+      margin-left: 0;
+      margin-right: 0;
+      backface-visibility: visible;
+  }
+
+  .hero .btn:hover {
+      background: #f4f4f42f;
+  }
+
+</style>
+
+<section class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="videos/Recording 2025-10-22 162029.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-content">
+      
+        <h1>Achieve the extraordinary.</h1>
+        <h1>Make Everything possible.</h1>
+        <div>
+            <a href="#services" class="btn">See Our Partners
+
+                <span style="vertical-align: middle; justify-content: center; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#fff" height="24">
+                    <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                    ></path>
+                </svg>
+              </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Founder Section -->
+    <section class="defcon-section defcon-founder" id="defcon-founder" style="background-color: #03111c;">
+        <div class="defcon-container">
+            <span class="aboutus-top-header">Executive Leadership</span>
+            <h2 class="defcon-section-title">The Leader Behind Defcon</h2>
+            <div class="defcon-founder-card">
+                <div class="defcon-founder-image">
+                    <img src="thumbnails/FB_IMG_1884980228880003140.jpg" alt="Alexander Sterling - Founder of Defcon">
+                </div>
+                <div class="defcon-founder-info">
+                    <h3 class="defcon-founder-name">Lefa Mofokeng J.</h3>
+                    <span class="defcon-founder-title">Founder & Chief Executive Officer</span>
+                    <p>Alexander Sterling founded Defcon in 2010 with a mission to transform the cybersecurity landscape. With a background in cryptography and artificial intelligence, Alexander saw the growing need for proactive security measures in an increasingly digital world.</p>
+                    <p>Prior to Defcon, Alexander led security initiatives at multiple Fortune 500 companies, where he identified critical gaps in enterprise security approaches. This experience inspired him to create a company that would address these vulnerabilities through innovation and expertise.</p>
+                    <p>Under Alexander's leadership, Defcon has pioneered several industry-first technologies, including our patented predictive threat analytics platform and adaptive defense systems.</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <style>
+       /* Founder Section */
+        :root {
+            --defcon-primary-dark: #0a192f;
+            --defcon-secondary-dark: #112240;
+            --defcon-accent: #0091ff;
+            --defcon-text-primary: #e6f1ff;
+            --defcon-text-secondary: #8892b0;
+            --defcon-card-bg: #112240;
+        }
+
+        /* Section Common Styles */
+        .defcon-section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .defcon-section-title {
+            font-size: 54px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .defcon-founder {
+            padding: 100px 0;
+        }
+        
+        .defcon-founder-card {
+            max-width: 950px;
+            height: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            opacity: 1;
+        }
+        
+        .defcon-founder-card.defcon-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .defcon-founder-image {
+            flex: 1;
+            min-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .defcon-founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .defcon-founder-info {
+            flex: 1.5;
+            padding: 40px;
+            min-width: 300px;
+        }
+        
+        .defcon-founder-name {
+            font-size: 2rem;
+            color: #06273e;
+            margin-bottom: 10px;
+        }
+        
+        .defcon-founder-title {
+            color: #0091ff;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .defcon-founder-info p {
+            color: #333;
+            line-height: 1.7;
+            padding: 10px 0;
+        }
+        
+        .defcon-founder-quote {
+            font-style: italic;
+            border-left: 3px solid var(--defcon-accent);
+            padding-left: 20px;
+            margin: 30px 0;
+            color: #06273e;
+            line-height: 1.7;
+            background-color: #f4f4f4;
+        }
+        
+    </style>
+
+        <!-- Executive Team Section -->
+        <section class="aboutus-team-section" id="aboutus-team-section">
+            <div class="aboutus-team-container">
+                <span class="aboutus-top-header">Our Team</span>
+                <h2 class="aboutus-section-title">Meet Our Executive Team</h2>
+                <div class="aboutus-team-grid">
+                    <div class="aboutus-team-card" data-aboutus-executive="michael">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="thumbnails/Screenshot 2025-10-24 113746.png" alt="Michael Reynolds" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Michael Reynolds</h3>
+                        <p class="aboutus-team-title">Chief Executive Officer</p>
+                    </div>
+                    <div class="aboutus-team-card" data-aboutus-executive="sarah">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="thumbnails/Screenshot 2025-10-24 113801.png" alt="Sarah Mitchell" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Sarah Mitchell</h3>
+                        <p class="aboutus-team-title">Chief Technology Officer, Head of Hyperion Retailers Corp.</p>
+                    </div>
+                    <div class="aboutus-team-card" data-aboutus-executive="david">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="thumbnails/Screenshot 2025-10-24 113817.png" alt="David Chen" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">David Chen</h3>
+                        <p class="aboutus-team-title">Chief Operating Officer</p>
+                    </div>
+                    <div class="aboutus-team-card" data-aboutus-executive="emily">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="thumbnails/Screenshot 2025-10-24 113842.png" alt="Emily Watson" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Emily Watson</h3>
+                        <p class="aboutus-team-title">Chief Marketing Officer</p>
+                    </div>
+                    <div class="aboutus-team-card" data-aboutus-executive="leo">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="thumbnails/FB_IMG_1884980228880003140.jpg" alt="Leo Richard" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Leo Richard</h3>
+                        <p class="aboutus-team-title">Chief Finance Manager</p>
+                    </div>
+                    <div class="aboutus-team-card" data-aboutus-executive="reginald">
+                        <div class="aboutus-team-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop" alt="Leo Richard" class="aboutus-team-image">
+                        </div>
+                        <h3 class="aboutus-team-name">Reginald Mokoena</h3>
+                        <p class="aboutus-team-title">Hardware & Software Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Detail Modal -->
+        <div class="aboutus-executive-detail" id="aboutus-executive-detail">
+            <button class="aboutus-close-button" id="aboutus-close-detail">&times;</button>
+            <div class="aboutus-detail-container">
+                <div class="aboutus-detail-image">
+                    <img src="" alt="Executive" id="aboutus-detail-img">
+                </div>
+                <div class="aboutus-detail-content">
+                    <div class="aboutus-detail-header">
+                        <div>
+                            <h2 class="aboutus-detail-name" id="aboutus-detail-name"></h2>
+                            <p class="aboutus-detail-title" id="aboutus-detail-title"></p>
+                        </div>
+                    </div>
+                    <div class="aboutus-detail-description" id="aboutus-detail-description"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="values-section-container">
+         <span class="aboutus-top-header">Our Values</span>   
+        <h2 class="values-section-title">Values, and Everything Inspirational</h2>
+        <div class="values-content-wrapper">
+            <nav class="values-headings-nav">
+                <div class="values-heading-item values-active" data-description-id="think-clearly">Think Clearly</div>
+                <div class="values-heading-item" data-description-id="be-resourceful">Be Resourceful</div>
+                <div class="values-heading-item" data-description-id="stay-determined">Stay Determined</div>
+                <div class="values-heading-item" data-description-id="dream-big">Dream Big</div>
+                <div class="values-heading-item" data-description-id="take-ownership">Take Ownership and Be Decisive</div>
+                <div class="values-heading-item" data-description-id="remain-humble">Remain Humble</div>
+            </nav>
+            <div class="values-description-display">
+                </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const headingItems = document.querySelectorAll('.values-heading-item');
+            const descriptionContainer = document.querySelector('.values-description-display');
+            
+            // Store descriptions as HTML strings with <p> tags
+            const descriptions = {
+                'think-clearly': `
+                    <p>Clarity of thought is the bedrock of our approach. It means we dissect complex problems into their fundamental components, allowing us to build solutions from a place of deep understanding.</p>
+                    <p>We prioritize clear communication, ensuring that ideas are conveyed concisely and effectively. This reduces ambiguity and aligns everyone towards a common goal, fostering an environment of efficiency and precision.</p>
+                    <p>Before acting, we take the time to think strategically. This involves considering second-order consequences and planning for various scenarios, ensuring our decisions are robust and well-informed.</p>
+                `,
+                'be-resourceful': `
+                    <p>Resourcefulness is our superpower. We believe in achieving maximum impact with the resources at hand, finding clever and unconventional ways to overcome constraints and solve problems.</p>
+                    <p>This mindset encourages a culture of innovation and creativity. We don't see limitations as stop signs; we see them as invitations to think differently and pioneer new methods.</p>
+                    <p>Being resourceful also means being proactive. We anticipate needs and act on them, leveraging our collective skills and knowledge to turn challenges into opportunities for growth.</p>
+                `,
+                'stay-determined': `
+                    <p>Determination is the engine that drives us forward. We embrace challenges with a resilient spirit, understanding that persistence is key to achieving meaningful breakthroughs.</p>
+                    <p>We maintain a long-term perspective, refusing to be discouraged by short-term setbacks. Our focus remains fixed on our ultimate goals, and we apply consistent effort to reach them.</p>
+                    <p>This value is about more than just hard work; it's about a deep-seated belief in our mission and the grit to see it through, no matter the obstacles.</p>
+                `,
+                'dream-big': `
+                    <p>We are not here to make incremental improvements; we are here to redefine what's possible. Dreaming big means setting audacious goals that inspire us to push beyond our comfort zones.</p>
+                    <p>This ambition fuels our innovation and propels us to explore uncharted territories. We encourage bold ideas and are not afraid to take calculated risks in pursuit of transformative outcomes.</p>
+                    <p>By aiming for the extraordinary, we create a dynamic environment where everyone is motivated to contribute their best work and make a lasting impact on the world.</p>
+                `,
+                'take-ownership': `
+                    <p>Ownership is about accountability and empowerment. Every team member is a leader, responsible for their contributions and empowered to make decisions that drive progress.</p>
+                    <p>We act with a sense of urgency and decisiveness. We don't wait for permission to solve a problem; we take the initiative, own the outcome, and learn from our experiences.</p>
+                    <p>This culture of responsibility fosters trust and reliability. When everyone takes ownership, the entire team operates at a higher level of performance and commitment.</p>
+                `,
+                'remain-humble': `
+                    <p>Humility is the foundation of our growth. We recognize that we don't have all the answers and that the best ideas can come from anyone, anywhere, at any time.</p>
+                    <p>We listen actively, value diverse perspectives, and are open to constructive feedback. This allows us to learn continuously from our colleagues, our customers, and our mistakes.</p>
+                    <p>Staying humble means we celebrate our successes as a team and focus on the mission rather than individual egos. It keeps us grounded, collaborative, and always striving to be better.</p>
+                `
+            };
+
+            function updateDescription(activeId) {
+                if (descriptions[activeId]) {
+                    // Use innerHTML to render the paragraph tags correctly
+                    descriptionContainer.innerHTML = descriptions[activeId];
+                }
+            }
+
+            // Initialize with the active item's description on page load
+            const initialActiveItem = document.querySelector('.values-heading-item.values-active');
+            if (initialActiveItem) {
+                const initialId = initialActiveItem.dataset.descriptionId;
+                updateDescription(initialId);
+            }
+
+            // Add click event listeners to all heading items
+            headingItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    headingItems.forEach(h => h.classList.remove('values-active'));
+                    this.classList.add('values-active');
+                    const descriptionId = this.dataset.descriptionId;
+                    updateDescription(descriptionId);
+                });
+            });
+        });
+    </script>
+
+        <!-- Career CTA Section -->
+        <section class="aboutus-career-section">
+            <div class="aboutus-career-container">
+                <span class="aboutus-top-header">Join Our Team</span>
+                <h2 class="aboutus-career-heading">Be part of something extraordinary<br>and shape the future with us</h2>
+                <a href="#careers" class="aboutus-career-button">Explore Careers
+
+                    <span style="vertical-align: middle; justify-items: center; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#000" height="24">
+                        <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                        ></path>
+                    </svg>
+              </span>
+
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Executive data
+        const aboutusExecutives = {
+            michael: {
+                name: "Michael Reynolds",
+                title: "Chief Executive Officer",
+                image: "thumbnails/Screenshot 2025-10-24 113746.png",
+                description: "Michael brings over 15 years of executive leadership experience in the technology sector. Under his guidance, our company has grown from a startup to an industry leader with global presence. His strategic vision focuses on sustainable growth and innovation-driven solutions that create lasting impact for our clients and stakeholders."
+            },
+            sarah: {
+                name: "Sarah Mitchell",
+                title: "Chief Technology Officer",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=600&fit=crop",
+                description: "Sarah is a visionary technologist with expertise in AI, machine learning, and cloud infrastructure. She leads our R&D initiatives and ensures our technological solutions remain at the forefront of innovation. Her commitment to technical excellence has been instrumental in developing our award-winning platform architecture."
+            },
+            david: {
+                name: "David Chen",
+                title: "Chief Operating Officer",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=600&fit=crop",
+                description: "David oversees our global operations with a focus on efficiency, scalability, and quality assurance. His operational expertise has streamlined our processes across multiple continents, resulting in 40% improved delivery times while maintaining our commitment to exceptional quality standards."
+            },
+            emily: {
+                name: "Emily Watson",
+                title: "Chief Marketing Officer",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
+                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
+            },
+            leo: {
+                name: "Leo Richard",
+                title: "Chief Finance Manager",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
+                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
+            },
+            reginald: {
+                name: "Reginald Mokoena",
+                title: "Hardware & Software Administrator",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
+                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
+            },
+        };
+
+        // Animated Counter for Stats
+        function aboutusAnimateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Initialize counters when hero section is visible
+        const aboutusObserverStats = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const aboutusStatNumbers = document.querySelectorAll('.aboutus-stat-number');
+                    aboutusStatNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-aboutus-target'));
+                        aboutusAnimateCounter(stat, target, 2000);
+                    });
+                    aboutusObserverStats.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const aboutusHeroSection = document.querySelector('.aboutus-hero-section');
+        if (aboutusHeroSection) {
+            aboutusObserverStats.observe(aboutusHeroSection);
+        }
+
+        // Values Section Slide Animation
+        const aboutusObserverValues = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('aboutus-slide-visible');
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const aboutusValueRows = document.querySelectorAll('.aboutus-value-row');
+        aboutusValueRows.forEach(row => {
+            aboutusObserverValues.observe(row);
+        });
+
+        // Executive Detail Modal
+        const aboutusTeamSection = document.getElementById('aboutus-team-section');
+        const aboutusExecutiveDetail = document.getElementById('aboutus-executive-detail');
+        const aboutusCloseDetail = document.getElementById('aboutus-close-detail');
+
+        // Add click events to team cards
+        document.querySelectorAll('.aboutus-team-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const executiveId = this.getAttribute('data-aboutus-executive');
+                const executive = aboutusExecutives[executiveId];
+                
+                if (executive) {
+                    // Update modal content
+                    document.getElementById('aboutus-detail-img').src = executive.image;
+                    document.getElementById('aboutus-detail-name').textContent = executive.name;
+                    document.getElementById('aboutus-detail-title').textContent = executive.title;
+                    document.getElementById('aboutus-detail-description').textContent = executive.description;
+                    
+                    // Show modal and blur background
+                    aboutusExecutiveDetail.classList.add('aboutus-active');
+                    aboutusTeamSection.classList.add('aboutus-blurred');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        aboutusCloseDetail.addEventListener('click', function() {
+            aboutusExecutiveDetail.classList.remove('aboutus-active');
+            aboutusTeamSection.classList.remove('aboutus-blurred');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        aboutusExecutiveDetail.addEventListener('click', function(e) {
+            if (e.target === this) {
+                aboutusExecutiveDetail.classList.remove('aboutus-active');
+                aboutusTeamSection.classList.remove('aboutus-blurred');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scroll for career button
+        document.querySelector('.aboutus-career-button')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Add your navigation logic here
+            console.log('Explore Careers clicked');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Values Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --values-primary-blue: #0091ff;
+            --values-black: #000;
+            --values-white: #fff;
+            --values-dark-blue-bg: #03111b;
+            --values-light-gray-bg: #f4f4f4;
+            --values-text-color: #fff;
+            --values-heading-color: #fff;
+        }
+
+        .values-section-container {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--values-dark-blue-bg);
+            color: var(--values-text-color);
+            padding: 120px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .values-section-title {
+            font-size: 54px;
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .values-content-wrapper {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .values-headings-nav {
+            flex: 1;
+            padding: 60px 0;
+            
+        }
+
+        .values-heading-item {
+            padding: 25px 30px;
+            font-size: 1.6em;
+            font-weight: 600;
+            color: grey;
+            cursor: pointer;
+            transition: all 0s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .values-heading-item:hover {
+            color: grey;
+           
+        }
+
+        .values-heading-item.values-active {
+            color: hsl(225, 36%, 83%);
+            font-weight: 600;
+            border-left-color: #b0bac3;
+        }
+
+        .values-description-display {
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 300px; /* Adjusted for more text */
+        }
+        
+        /* Style for each paragraph in the description */
+        .values-description-display p {
+            font-size: 1.6em;
+            line-height: 1.6;
+            font-weight: 600;
+            color: hsl(225, 36%, 83%);
+            margin: 0 0 1em 0; /* Add space between paragraphs */
+        }
+
+        .values-description-display p:last-child {
+            margin-bottom: 0; /* Remove margin from the last paragraph */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .values-content-wrapper {
+                flex-direction: column;
+            }
+
+            .values-headings-nav {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 20px 0;
+            }
+
+            .values-heading-item {
+                padding: 12px 20px;
+                font-size: 1em;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+            }
+
+            .values-heading-item.values-active {
+                border-bottom-color: var(--values-primary-blue);
+                border-left-color: transparent;
+            }
+
+            .values-description-display {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+
+            .values-description-display p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 10rem;
+            position: relative;
+            min-height: 90vh;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-align: center;
+            max-width: 90%;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #ecf0f1;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            max-width: 90%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            flex-direction: column;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .hero .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 30px;
+            border: 1px solid white;
+            color: #ffffff;
+            font-weight: 500;
+            margin: 0.7rem 0;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            cursor: pointer;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s, background 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background: #f4f4f42f;
+        }
+
+        .hero .btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 8rem;
+                min-height: 80vh;
+            }
+            
+            .hero-content {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding-top: 6rem;
+                min-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="videos/Recording 2025-10-22 162029.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="hero-content">
+            <h1>Achieve the extraordinary.</h1>
+            <h1>Make Everything possible.</h1>
+            <p>Your journey to excellence starts here</p>
+            <div>
+                <a href="#services" class="btn">See Our Partners
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" fill="#fff" height="24">
+                        <path
+                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional content to demonstrate scroll animation -->
+    <div style="height: 150vh; background: #f5f5f5; padding: 2rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Scroll down and up to see the animation effect</h2>
+        <p style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            This is additional content to demonstrate how the hero section animates when you scroll. 
+            The text in the hero section will fade in when it enters the viewport and fade out when it leaves.
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.querySelector('.hero');
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn');
+            
+            // Function to check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                    rect.bottom >= 0
+                );
+            }
+            
+            // Function to handle scroll animation
+            function handleScrollAnimation() {
+                if (isInViewport(heroSection)) {
+                    heroElements.forEach(element => {
+                        element.classList.add('fade-in');
+                    });
+                } else {
+                    heroElements.forEach(element => {
+                        element.classList.remove('fade-in');
+                    });
+                }
+            }
+            
+            // Initial check on page load
+            handleScrollAnimation();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+    </script>
+</body>
+</html>

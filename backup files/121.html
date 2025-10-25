@@ -1,0 +1,581 @@
+<style>
+    /* Import Google Font for professional typography */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    /* Main container for the entire request page to ensure encapsulation */
+    section.defcon-rq-page-wrapper {
+        font-family: 'Poppins', sans-serif;
+        background-color: #06273e;
+        overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    }
+    
+    /* --- Hero Video Section --- */
+    div.defcon-rq-hero-section {
+        position: relative;
+        height: 50vh;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    video.defcon-rq-hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 1;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    div.defcon-rq-hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(6, 39, 62, 0.85);
+        z-index: 2;
+    }
+
+    div.defcon-rq-hero-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    div.defcon-rq-hero-content.defcon-rq-is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    p.defcon-rq-header-breadcrumb {
+        color: #0091ff;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    h1.defcon-rq-header-title {
+        color: #ffffff;
+        font-size: 52px;
+        font-weight: 700;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    
+    /* --- Main Content Section --- */
+    div.defcon-rq-main-content-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    div.defcon-rq-container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.defcon-rq-main-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+
+    div.defcon-rq-details-column {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+    }
+    
+    div.defcon-rq-details-column.defcon-rq-is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    div.defcon-rq-accordion-item {
+        margin-bottom: 20px;
+        border: 1px solid #ffffff20;
+        border-radius: 8px;
+        background-color: transparent;
+        transition: background-color 0.4s ease;
+    }
+
+    div.defcon-rq-accordion-item:hover { background-color: #ffffff10; }
+
+    button.defcon-rq-accordion-header {
+        width: 100%; background-color: transparent; border: none; padding-top: 20px; padding-bottom: 20px; padding-left: 25px; padding-right: 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: #ffffff; font-size: 20px; font-weight: 600; font-family: 'Poppins', sans-serif;
+    }
+
+    span.defcon-rq-accordion-icon { font-size: 24px; font-weight: 300; color: #0091ff; transition: transform 0.4s ease; }
+    div.defcon-rq-accordion-item.defcon-rq-active span.defcon-rq-accordion-icon { transform: rotate(45deg); }
+    div.defcon-rq-accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; padding-left: 25px; padding-right: 25px; }
+    p.defcon-rq-accordion-text { color: #e5e5e5; font-size: 16px; line-height: 1.7; margin-top: 0px; margin-bottom: 20px; }
+    ul.defcon-rq-accordion-list { list-style: none; padding-left: 0; margin-bottom: 20px; }
+    li.defcon-rq-accordion-list-item { color: #e5e5e5; margin-bottom: 12px; display: flex; align-items: center; }
+    span.defcon-rq-checkmark-icon { color: #0091ff; margin-right: 12px; font-size: 20px; }
+    p.defcon-rq-pricing-tag { font-size: 28px; font-weight: 700; color: #ffffff; margin-top: 0; margin-bottom: 5px; }
+    p.defcon-rq-pricing-note { font-size: 14px; font-style: italic; color: #e5e5e5; margin-top: 0; margin-bottom: 20px; }
+
+    /* --- Interactive Timeline --- */
+    div.defcon-rq-timeline { position: relative; padding-left: 30px; border-left: 2px solid #0091ff40; }
+    div.defcon-rq-timeline-item { position: relative; margin-bottom: 40px; opacity: 0; transform: translateX(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    div.defcon-rq-timeline-item.defcon-rq-is-visible { opacity: 1; transform: translateX(0); }
+    div.defcon-rq-timeline-dot { position: absolute; left: -42px; top: 0; width: 20px; height: 20px; background-color: #06273e; border: 4px solid #0091ff; border-radius: 50%; }
+    p.defcon-rq-timeline-step { font-size: 14px; color: #0091ff; font-weight: 600; margin-bottom: 5px; }
+    h4.defcon-rq-timeline-title { color: #ffffff; margin-top: 0; margin-bottom: 10px; font-size: 18px; }
+
+    /* --- Multi-Step Form --- */
+    div.defcon-rq-form-column { opacity: 0; transform: translateX(30px); transition: opacity 1s ease 0.2s, transform 1s ease 0.2s; }
+    div.defcon-rq-form-column.defcon-rq-is-visible { opacity: 1; transform: translateX(0); }
+    div.defcon-rq-form-wrapper { background-color: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+    h2.defcon-rq-form-title { color: #06273e; font-size: 28px; font-weight: 700; text-align: center; margin-top: 0; margin-bottom: 10px; }
+    p.defcon-rq-form-subtitle { text-align: center; color: #06273e99; margin-top: 0; margin-bottom: 30px; }
+    div.defcon-rq-progress-bar-container { width: 100%; height: 8px; background-color: #e5e5e5; border-radius: 4px; margin-bottom: 30px; }
+    div.defcon-rq-progress-bar { width: 0%; height: 100%; background-color: #0091ff; border-radius: 4px; transition: width 0.4s ease; }
+    div.defcon-rq-form-step { display: none; }
+    div.defcon-rq-form-step.defcon-rq-active { display: block; animation: defcon-rq-fadeIn 0.5s ease-in-out; }
+    @keyframes defcon-rq-fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    div.defcon-rq-input-group { position: relative; margin-bottom: 35px; }
+    input.defcon-rq-form-input, textarea.defcon-rq-form-textarea { width: 100%; border: none; border-bottom: 2px solid #e5e5e5; padding-top: 10px; padding-bottom: 10px; padding-left: 0; padding-right: 0; background-color: transparent; font-size: 16px; color: #06273e; transition: border-color 0.3s ease; outline: none; }
+    textarea.defcon-rq-form-textarea { resize: vertical; min-height: 80px; }
+    label.defcon-rq-form-label { position: absolute; top: 10px; left: 0; color: #06273e80; font-size: 16px; pointer-events: none; transition: all 0.3s ease; }
+    input.defcon-rq-form-input:focus + label.defcon-rq-form-label, input.defcon-rq-form-input:not(:placeholder-shown) + label.defcon-rq-form-label, textarea.defcon-rq-form-textarea:focus + label.defcon-rq-form-label, textarea.defcon-rq-form-textarea:not(:placeholder-shown) + label.defcon-rq-form-label { top: -14px; font-size: 12px; color: #0091ff; }
+    input.defcon-rq-form-input:focus, textarea.defcon-rq-form-textarea:focus { border-bottom-color: #0091ff; }
+    p.defcon-rq-input-error-msg { color: #ff3b3b; font-size: 12px; position: absolute; bottom: -20px; left: 0; display: none; }
+    input.defcon-rq-input-error { border-bottom-color: #ff3b3b !important; }
+    div.defcon-rq-form-navigation { display: flex; justify-content: space-between; margin-top: 20px; }
+    button.defcon-rq-form-button { padding-top: 12px; padding-bottom: 12px; padding-left: 35px; padding-right: 35px; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    button.defcon-rq-form-back { background-color: transparent; border: 1px solid #e5e5e5; color: #06273e80; }
+    button.defcon-rq-form-back:hover { background-color: #e5e5e5; color: #06273e; }
+    button.defcon-rq-form-next, button.defcon-rq-submit-button { background-color: #0091ff; border: 1px solid #0091ff; color: #ffffff; }
+    button.defcon-rq-form-next:hover, button.defcon-rq-submit-button:hover { background-color: #0073cc; border-color: #0073cc; transform: translateY(-2px); }
+
+    /* --- Point of Contact --- */
+    div.defcon-rq-contact-card { margin-top: 40px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; display: flex; align-items: center; border: 1px solid #e5e5e5; }
+    img.defcon-rq-contact-avatar { width: 60px; height: 60px; border-radius: 50%; margin-right: 15px; }
+    div.defcon-rq-contact-info p { margin: 0; line-height: 1.4; }
+    p.defcon-rq-contact-name { font-weight: 600; color: #06273e; font-size: 16px; }
+    p.defcon-rq-contact-title { font-size: 14px; color: #06273e99; }
+
+    /* --- Trust Builders Section --- */
+    div.defcon-rq-trust-section { padding-top: 80px; padding-bottom: 80px; padding-left: 20px; padding-right: 20px; background-color: #ffffff; }
+    h2.defcon-rq-section-title { text-align: center; font-size: 36px; color: #06273e; font-weight: 700; margin-top: 0; margin-bottom: 60px; }
+
+    /* Testimonial Slider */
+    div.defcon-rq-testimonial-slider { position: relative; max-width: 800px; margin-left: auto; margin-right: auto; }
+    div.defcon-rq-testimonial-slide { display: none; text-align: center; animation: defcon-rq-fadeIn 0.7s; }
+    div.defcon-rq-testimonial-slide.defcon-rq-active { display: block; }
+    img.defcon-rq-client-avatar { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px; }
+    p.defcon-rq-testimonial-text { font-size: 18px; color: #06273e99; font-style: italic; line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto; margin-bottom: 20px; }
+    p.defcon-rq-client-name { font-size: 18px; color: #06273e; font-weight: 700; margin-bottom: 0px; }
+    p.defcon-rq-client-title { font-size: 14px; color: #0091ff; margin-top: 5px; }
+    button.defcon-rq-slider-nav { position: absolute; top: 50%; transform: translateY(-50%); background-color: transparent; border: none; font-size: 32px; color: #0091ff80; cursor: pointer; transition: color 0.3s ease; }
+    button.defcon-rq-slider-nav:hover { color: #0091ff; }
+    button.defcon-rq-slider-prev { left: -50px; }
+    button.defcon-rq-slider-next { right: -50px; }
+    
+    /* Case Study & Trusted By */
+    div.defcon-rq-trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-top: 80px; }
+    div.defcon-rq-casestudy-card { background-color: #06273e; color: #ffffff; padding: 40px; border-radius: 8px; }
+    p.defcon-rq-casestudy-subtitle { color: #0091ff; font-weight: 600; margin-bottom: 10px; }
+    h3.defcon-rq-casestudy-title { font-size: 24px; margin-top: 0; margin-bottom: 20px; }
+    p.defcon-rq-casestudy-text { color: #e5e5e5; margin-bottom: 30px; }
+    a.defcon-rq-casestudy-button { background-color: #0091ff; color: #ffffff; padding-top: 12px; padding-bottom: 12px; padding-left: 25px; padding-right: 25px; border-radius: 5px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease; }
+    a.defcon-rq-casestudy-button:hover { background-color: #0073cc; }
+    div.defcon-rq-trustedby-logos { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; }
+    img.defcon-rq-client-logo { height: 40px; filter: grayscale(100%); opacity: 0.6; transition: all 0.3s ease; }
+    img.defcon-rq-client-logo:hover { filter: grayscale(0%); opacity: 1; }
+
+    /* --- Modal with Calendar --- */
+    div.defcon-rq-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(6, 39, 62, 0.8); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; z-index: 10000; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    div.defcon-rq-modal-overlay.defcon-rq-is-visible { opacity: 1; visibility: visible; }
+    div.defcon-rq-modal-content { background-color: #ffffff; padding: 50px; border-radius: 8px; text-align: center; transform: scale(0.8); transition: transform 0.4s ease; max-width: 500px; margin-left: 20px; margin-right: 20px; width: 100%; }
+    div.defcon-rq-modal-overlay.defcon-rq-is-visible div.defcon-rq-modal-content { transform: scale(1); }
+    div.defcon-rq-modal-view { display: none; }
+    div.defcon-rq-modal-view.defcon-rq-active { display: block; animation: defcon-rq-fadeIn 0.5s; }
+    div.defcon-rq-success-icon { width: 80px; height: 80px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 50%; background-color: #0091ff1a; display: flex; align-items: center; justify-content: center; }
+    img.defcon-rq-icon-image { width: 50px; height: 50px; }
+    h3.defcon-rq-modal-title { color: #06273e; font-size: 28px; margin-top: 0; margin-bottom: 15px; }
+    p.defcon-rq-modal-text { color: #06273e99; font-size: 16px; margin-top: 0; margin-bottom: 30px; }
+    div.defcon-rq-modal-buttons { display: flex; gap: 15px; justify-content: center; }
+    button.defcon-rq-modal-button { padding-top: 12px; padding-bottom: 12px; padding-left: 30px; padding-right: 30px; border-radius: 5px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+    button.defcon-rq-modal-close-button { background-color: transparent; border: 1px solid #e5e5e5; color: #06273e80; }
+    button.defcon-rq-modal-close-button:hover { background-color: #e5e5e5; color: #06273e; }
+    button.defcon-rq-modal-schedule-button { background-color: #0091ff; border: 1px solid #0091ff; color: #ffffff; }
+    button.defcon-rq-modal-schedule-button:hover { background-color: #0073cc; border-color: #0073cc; }
+    div.defcon-rq-calendar-embed { background-color: #e5e5e5; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #06273e80; font-style: italic; border-radius: 5px; }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 992px) {
+        h1.defcon-rq-header-title { font-size: 36px; }
+        div.defcon-rq-main-grid, div.defcon-rq-trust-grid { grid-template-columns: 1fr; }
+        div.defcon-rq-details-column { margin-bottom: 40px; }
+        div.defcon-rq-trust-grid { gap: 80px; }
+        button.defcon-rq-slider-prev { left: 0px; }
+        button.defcon-rq-slider-next { right: 0px; }
+    }
+    @media (max-width: 576px) {
+        div.defcon-rq-hero-section { min-height: 300px; height: 40vh; }
+        h1.defcon-rq-header-title { font-size: 28px; }
+        h2.defcon-rq-section-title { font-size: 28px; }
+        button.defcon-rq-accordion-header { font-size: 18px; padding-left: 20px; padding-right: 20px; }
+        div.defcon-rq-form-wrapper { padding: 25px; }
+        div.defcon-rq-contact-card { flex-direction: column; text-align: center; }
+        img.defcon-rq-contact-avatar { margin-right: 0; margin-bottom: 15px; }
+        div.defcon-rq-modal-buttons { flex-direction: column; }
+    }
+</style>
+
+
+<section class="defcon-rq-page-wrapper">
+
+    <div class="defcon-rq-hero-section">
+        <div class="defcon-rq-hero-overlay"></div>
+        <video class="defcon-rq-hero-video" playsinline autoplay muted loop poster="https://example.com/path/to/your/video-poster.jpg">
+            <source src="https://example.com/path/to/your/background-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="defcon-rq-hero-content defcon-rq-animate-on-scroll">
+            <p class="defcon-rq-header-breadcrumb">IT and Digital Solutions</p>
+            <h1 class="defcon-rq-header-title">IT Infrastructure Audit</h1>
+        </div>
+    </div>
+    
+    <div class="defcon-rq-main-content-section">
+        <div class="defcon-rq-container">
+            <div class="defcon-rq-main-grid">
+                <div class="defcon-rq-details-column defcon-rq-animate-on-scroll">
+                    <div class="defcon-rq-accordion-item">
+                        <button class="defcon-rq-accordion-header">What to Expect<span class="defcon-rq-accordion-icon">+</span></button>
+                        <div class="defcon-rq-accordion-content">
+                            <p class="defcon-rq-accordion-text">Our audit provides a comprehensive review of your technology landscape, delivering actionable insights to enhance security, efficiency, and scalability.</p>
+                            <ul class="defcon-rq-accordion-list">
+                                <li class="defcon-rq-accordion-list-item"><span class="defcon-rq-checkmark-icon">✓</span>Detailed Security Vulnerability Report</li>
+                                <li class="defcon-rq-accordion-list-item"><span class="defcon-rq-checkmark-icon">✓</span>Network Performance Analysis</li>
+                                <li class="defcon-rq-accordion-list-item"><span class="defcon-rq-checkmark-icon">✓</span>Hardware & Software Lifecycle Assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="defcon-rq-accordion-item">
+                        <button class="defcon-rq-accordion-header">The Process & Duration<span class="defcon-rq-accordion-icon">+</span></button>
+                        <div class="defcon-rq-accordion-content">
+                            <div class="defcon-rq-timeline">
+                                <div class="defcon-rq-timeline-item defcon-rq-animate-on-scroll">
+                                    <div class="defcon-rq-timeline-dot"></div>
+                                    <p class="defcon-rq-timeline-step">PHASE 1 (2-3 Days)</p>
+                                    <h4 class="defcon-rq-timeline-title">Discovery & Scoping</h4>
+                                </div>
+                                <div class="defcon-rq-timeline-item defcon-rq-animate-on-scroll">
+                                    <div class="defcon-rq-timeline-dot"></div>
+                                    <p class="defcon-rq-timeline-step">PHASE 2 (1-2 Weeks)</p>
+                                    <h4 class="defcon-rq-timeline-title">Data Collection & Analysis</h4>
+                                </div>
+                                <div class="defcon-rq-timeline-item defcon-rq-animate-on-scroll">
+                                    <div class="defcon-rq-timeline-dot"></div>
+                                    <p class="defcon-rq-timeline-step">PHASE 3 (3-4 Days)</p>
+                                    <h4 class="defcon-rq-timeline-title">Reporting & Recommendation</h4>
+                                </div>
+                                <div class="defcon-rq-timeline-item defcon-rq-animate-on-scroll">
+                                    <div class="defcon-rq-timeline-dot"></div>
+                                    <p class="defcon-rq-timeline-step">PHASE 4 (1 Day)</p>
+                                    <h4 class="defcon-rq-timeline-title">Presentation & Handover</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="defcon-rq-accordion-item">
+                        <button class="defcon-rq-accordion-header">Pricing<span class="defcon-rq-accordion-icon">+</span></button>
+                        <div class="defcon-rq-accordion-content">
+                            <p class="defcon-rq-pricing-tag">Starting from $4,500</p>
+                            <p class="defcon-rq-pricing-note">Final pricing is customized based on the scale of your infrastructure. Request a call for a detailed, no-obligation quote.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="defcon-rq-form-column defcon-rq-animate-on-scroll">
+                    <div class="defcon-rq-form-wrapper">
+                        <h2 class="defcon-rq-form-title">Request a Callback</h2>
+                        <p class="defcon-rq-form-subtitle">Let's start the conversation.</p>
+                        <div class="defcon-rq-progress-bar-container"><div id="defcon-rq-progress-bar" class="defcon-rq-progress-bar"></div></div>
+                        
+                        <form id="defcon-rq-service-form">
+                            <div class="defcon-rq-form-step defcon-rq-active">
+                                <div class="defcon-rq-input-group">
+                                    <input type="text" id="defcon-rq-name" class="defcon-rq-form-input" placeholder=" " required>
+                                    <label for="defcon-rq-name" class="defcon-rq-form-label">Full Name</label>
+                                </div>
+                                <div class="defcon-rq-input-group">
+                                    <input type="email" id="defcon-rq-email" class="defcon-rq-form-input" placeholder=" " required>
+                                    <label for="defcon-rq-email" class="defcon-rq-form-label">Business Email</label>
+                                    <p class="defcon-rq-input-error-msg" id="defcon-rq-email-error">Please enter a valid email address.</p>
+                                </div>
+                                <div class="defcon-rq-form-navigation"><span></span><button type="button" class="defcon-rq-form-button defcon-rq-form-next">Next</button></div>
+                            </div>
+                            <div class="defcon-rq-form-step">
+                                <div class="defcon-rq-input-group">
+                                    <input type="text" id="defcon-rq-company" class="defcon-rq-form-input" placeholder=" " required>
+                                    <label for="defcon-rq-company" class="defcon-rq-form-label">Company Name</label>
+                                </div>
+                                <div class="defcon-rq-input-group">
+                                    <input type="tel" id="defcon-rq-phone" class="defcon-rq-form-input" placeholder=" " required>
+                                    <label for="defcon-rq-phone" class="defcon-rq-form-label">Phone Number</label>
+                                </div>
+                                <div class="defcon-rq-form-navigation">
+                                    <button type="button" class="defcon-rq-form-button defcon-rq-form-back">Back</button>
+                                    <button type="button" class="defcon-rq-form-button defcon-rq-form-next">Next</button>
+                                </div>
+                            </div>
+                            <div class="defcon-rq-form-step">
+                                <div class="defcon-rq-input-group">
+                                    <textarea id="defcon-rq-details" class="defcon-rq-form-textarea" placeholder=" "></textarea>
+                                    <label for="defcon-rq-details" class="defcon-rq-form-label">Any specific challenges? (Optional)</label>
+                                </div>
+                                <div class="defcon-rq-form-navigation">
+                                    <button type="button" class="defcon-rq-form-button defcon-rq-form-back">Back</button>
+                                    <button type="submit" class="defcon-rq-form-button defcon-rq-submit-button">Request Service</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="defcon-rq-contact-card defcon-rq-animate-on-scroll">
+                        <img src="https://example.com/path/to/your/avatar.jpg" alt="Jane Doe" class="defcon-rq-contact-avatar">
+                        <div class="defcon-rq-contact-info">
+                            <p class="defcon-rq-contact-name">Jane Doe</p>
+                            <p class="defcon-rq-contact-title">Your point of contact | Lead IT Strategist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="defcon-rq-trust-section">
+        <div class="defcon-rq-container">
+            <h2 class="defcon-rq-section-title defcon-rq-animate-on-scroll">Delivering Results You Can Depend On</h2>
+            
+            <div class="defcon-rq-testimonial-slider defcon-rq-animate-on-scroll">
+                <div class="defcon-rq-testimonial-slide defcon-rq-active">
+                    <img src="https://example.com/path/to/client-avatar1.jpg" alt="Client 1" class="defcon-rq-client-avatar">
+                    <p class="defcon-rq-testimonial-text">"Defcon's audit was a game-changer. They identified critical vulnerabilities we never would have found and provided a clear, actionable roadmap. Exceptional team and process."</p>
+                    <p class="defcon-rq-client-name">Sarah Jenkins</p>
+                    <p class="defcon-rq-client-title">COO, Innovate Corp</p>
+                </div>
+                <div class="defcon-rq-testimonial-slide">
+                    <img src="https://example.com/path/to/client-avatar2.jpg" alt="Client 2" class="defcon-rq-client-avatar">
+                    <p class="defcon-rq-testimonial-text">"The level of detail and expertise was outstanding. We now have a secure, scalable infrastructure that supports our growth. I can't recommend Defcon highly enough."</p>
+                    <p class="defcon-rq-client-name">Michael Chen</p>
+                    <p class="defcon-rq-client-title">CTO, Tech Solutions Ltd.</p>
+                </div>
+                <button class="defcon-rq-slider-nav defcon-rq-slider-prev">‹</button>
+                <button class="defcon-rq-slider-nav defcon-rq-slider-next">›</button>
+            </div>
+            
+            <div class="defcon-rq-trust-grid">
+                <div class="defcon-rq-casestudy-card defcon-rq-animate-on-scroll">
+                    <p class="defcon-rq-casestudy-subtitle">SUCCESS STORY</p>
+                    <h3 class="defcon-rq-casestudy-title">98% Security Compliance Boost for a Leading Finance Firm</h3>
+                    <p class="defcon-rq-casestudy-text">Discover how our targeted audit helped a major financial services company overhaul their security protocols, passing regulatory checks with flying colors.</p>
+                    <a href="#" class="defcon-rq-casestudy-button">Read The Case Study</a>
+                </div>
+                <div class="defcon-rq-animate-on-scroll">
+                    <h3 class="defcon-rq-casestudy-title" style="text-align:center; color: #06273e;">Trusted By Industry Leaders</h3>
+                    <div class="defcon-rq-trustedby-logos">
+                        <img src="https://example.com/path/to/logo1.svg" alt="Client Logo 1" class="defcon-rq-client-logo">
+                        <img src="https://example.com/path/to/logo2.svg" alt="Client Logo 2" class="defcon-rq-client-logo">
+                        <img src="https://example.com/path/to/logo3.svg" alt="Client Logo 3" class="defcon-rq-client-logo">
+                        <img src="https://example.com/path/to/logo4.svg" alt="Client Logo 4" class="defcon-rq-client-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="defcon-rq-modal-overlay" id="defcon-rq-success-modal">
+        <div class="defcon-rq-modal-content">
+            <div class="defcon-rq-modal-view defcon-rq-active" id="defcon-rq-modal-success-view">
+                <div class="defcon-rq-success-icon"><img src="https://example.com/path/to/your/success-icon.svg" alt="Success" class="defcon-rq-icon-image"></div>
+                <h3 class="defcon-rq-modal-title">Request Sent!</h3>
+                <p class="defcon-rq-modal-text">Thank you! We'll be in touch within 24 hours. Want to skip the wait and book a time that works for you?</p>
+                <div class="defcon-rq-modal-buttons">
+                    <button class="defcon-rq-modal-button defcon-rq-modal-close-button">Close</button>
+                    <button class="defcon-rq-modal-button defcon-rq-modal-schedule-button" id="defcon-rq-show-calendar">Schedule Your Call Now</button>
+                </div>
+            </div>
+            <div class="defcon-rq-modal-view" id="defcon-rq-modal-calendar-view">
+                <h3 class="defcon-rq-modal-title">Schedule Your 15-Min Call</h3>
+                <p class="defcon-rq-modal-text">Select a time and we'll call you then. It's that easy.</p>
+                <div class="defcon-rq-calendar-embed">
+                    <p>Calendar Embed Area</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    (function() {
+        // --- On-Scroll Reveal Animation Logic ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('defcon-rq-is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.defcon-rq-animate-on-scroll').forEach(el => observer.observe(el));
+
+        // --- Accordion Logic ---
+        document.querySelectorAll('.defcon-rq-accordion-item').forEach(item => {
+            const header = item.querySelector('.defcon-rq-accordion-header');
+            header.addEventListener('click', () => {
+                const content = item.querySelector('.defcon-rq-accordion-content');
+                item.classList.toggle('defcon-rq-active');
+                if (item.classList.contains('defcon-rq-active')) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+
+        // --- Multi-Step Form Logic ---
+        const steps = Array.from(document.querySelectorAll('.defcon-rq-form-step'));
+        const nextButtons = document.querySelectorAll('.defcon-rq-form-next');
+        const backButtons = document.querySelectorAll('.defcon-rq-form-back');
+        const form = document.getElementById('defcon-rq-service-form');
+        const progressBar = document.getElementById('defcon-rq-progress-bar');
+        const emailInput = document.getElementById('defcon-rq-email');
+        const emailError = document.getElementById('defcon-rq-email-error');
+        let currentStep = 0;
+
+        const updateFormSteps = () => {
+            steps.forEach((step, index) => {
+                step.classList.toggle('defcon-rq-active', index === currentStep);
+            });
+            const progress = (currentStep / (steps.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+        };
+
+        const validateEmail = () => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                emailInput.classList.add('defcon-rq-input-error');
+                emailError.style.display = 'block';
+                return false;
+            }
+            emailInput.classList.remove('defcon-rq-input-error');
+            emailError.style.display = 'none';
+            return true;
+        };
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Validate current step before proceeding
+                const inputs = steps[currentStep].querySelectorAll('input[required]');
+                let isValid = true;
+                inputs.forEach(input => {
+                    if (!input.value) {
+                       isValid = false;
+                       input.classList.add('defcon-rq-input-error');
+                    } else {
+                       input.classList.remove('defcon-rq-input-error');
+                    }
+                });
+
+                if (steps[currentStep].contains(emailInput) && !validateEmail()) {
+                    isValid = false;
+                }
+                
+                if (isValid && currentStep < steps.length - 1) {
+                    currentStep++;
+                    updateFormSteps();
+                }
+            });
+        });
+
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    updateFormSteps();
+                }
+            });
+        });
+        
+        emailInput.addEventListener('keyup', validateEmail);
+        updateFormSteps();
+
+        // --- Testimonial Slider Logic ---
+        const slides = document.querySelectorAll('.defcon-rq-testimonial-slide');
+        const prevBtn = document.querySelector('.defcon-rq-slider-prev');
+        const nextBtn = document.querySelector('.defcon-rq-slider-next');
+        let currentSlide = 0;
+        
+        const showSlide = (n) => {
+            slides.forEach(slide => slide.classList.remove('defcon-rq-active'));
+            slides[n].classList.add('defcon-rq-active');
+        };
+
+        const nextSlide = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
+        
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        setInterval(nextSlide, 7000); // Auto-play every 7 seconds
+
+        // --- Modal & Calendar Logic ---
+        const modal = document.getElementById('defcon-rq-success-modal');
+        const closeModalButton = modal.querySelector('.defcon-rq-modal-close-button');
+        const showCalendarButton = document.getElementById('defcon-rq-show-calendar');
+        const successView = document.getElementById('defcon-rq-modal-success-view');
+        const calendarView = document.getElementById('defcon-rq-modal-calendar-view');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            modal.classList.add('defcon-rq-is-visible');
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('defcon-rq-is-visible');
+            // Reset modal to initial state after a short delay
+            setTimeout(() => {
+                successView.classList.add('defcon-rq-active');
+                calendarView.classList.remove('defcon-rq-active');
+                form.reset();
+                currentStep = 0;
+                updateFormSteps();
+            }, 400);
+        };
+        
+        closeModalButton.addEventListener('click', closeModal);
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) closeModal();
+        });
+
+        showCalendarButton.addEventListener('click', () => {
+            successView.classList.remove('defcon-rq-active');
+            calendarView.classList.add('defcon-rq-active');
+        });
+    })();
+</script>

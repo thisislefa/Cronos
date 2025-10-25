@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic IT Consulting</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Scrollbar Styling */
+        .modal-body::-webkit-scrollbar {
+            width: 10px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Firefox Scrollbar */
+        .modal-body {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+        /* Ensure modal content is responsive */
+        .modal-dialog {
+            max-width: 600px;
+        }
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Strategic IT Consulting</h1>
+            <p>Transform your business with our expert IT consulting services. We provide tailored technology solutions that drive growth, efficiency, and competitive advantage.</p>
+            <a href="#consultation-modal" data-toggle="modal" class="btn btn-primary">Get Free Consultation</a>
+        </section>
+
+        <section class="services">
+            <h2>Our IT Consulting Services</h2>
+            <p>We offer comprehensive IT consulting services designed to meet your unique business needs. Here's how we can help:</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>IT Strategy Consulting</h3>
+                    <p>Develop a comprehensive IT roadmap aligned with your business objectives and growth plans.</p>
+                    <p class="price">From $5,000</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="IT Strategy Consulting">View Details</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Cloud Migration</h3>
+                    <p>Seamlessly transition your infrastructure to the cloud with minimal downtime and maximum efficiency.</p>
+                    <p class="price">From $8,000</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="Cloud Migration">View Details</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Cybersecurity Assessment</h3>
+                    <p>Identify vulnerabilities and strengthen your defenses with our comprehensive security audit.</p>
+                    <p class="price">From $6,500</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="Cybersecurity Assessment">View Details</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Digital Transformation</h3>
+                    <p>Modernize your operations and customer experience with cutting-edge digital solutions.</p>
+                    <p class="price">From $12,000</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="Digital Transformation">View Details</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Data Analytics</h3>
+                    <p>Unlock valuable insights from your data to drive smarter business decisions.</p>
+                    <p class="price">From $7,500</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="Data Analytics">View Details</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>IT Infrastructure Audit</h3>
+                    <p>Comprehensive evaluation of your current IT setup with actionable recommendations.</p>
+                    <p class="price">From $4,500</p>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        <a href="#" class="btn btn-outline-secondary view-details-btn" data-toggle="modal" data-target="#service-details-modal" data-service="IT Infrastructure Audit">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <h2>Why Choose Our IT Consulting?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <span class="icon">✓</span>
+                    <h3>Industry Expertise</h3>
+                    <p>Our consultants have deep knowledge across multiple industries and stay ahead of technology trends.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">⚡</span>
+                    <h3>Proven Methodologies</h3>
+                    <p>We use established frameworks and best practices to deliver measurable results.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🔒</span>
+                    <h3>Security Focus</h3>
+                    <p>All our solutions are designed with security and compliance as top priorities.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🔄</span>
+                    <h3>Agile Approach</h3>
+                    <p>We adapt quickly to changing requirements and deliver solutions iteratively.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">📈</span>
+                    <h3>ROI-Driven</h3>
+                    <p>We focus on solutions that deliver tangible business value and measurable returns.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">🤝</span>
+                    <h3>Partnership Model</h3>
+                    <p>We become an extension of your team, invested in your long-term success.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>What's the typical duration of an IT consulting engagement?</h3>
+                <p>The duration varies based on the scope of work. Strategy engagements typically take 4-6 weeks, while implementation projects can range from 3 months to a year. Our CIO advisory services are often ongoing monthly retainers.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do you ensure your recommendations align with our business goals?</h3>
+                <p>We begin every engagement with deep discovery sessions to understand your business objectives, challenges, and KPIs. Our recommendations are always tied to measurable business outcomes, not just technical improvements.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you work with specific industries or business sizes?</h3>
+                <p>We serve clients across industries, from startups to enterprises. Our team has particular expertise in financial services, healthcare, e-commerce, and professional services, but we customize our approach for each client's unique needs.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What happens after the consulting engagement ends?</h3>
+                <p>We offer various ongoing support options, from quarterly strategy reviews to full implementation management. Many clients transition to our managed services or retain us for periodic advisory sessions.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do you measure the success of your consulting work?</h3>
+                <p>We establish clear success metrics at the start of each engagement, which may include cost savings, performance improvements, security enhancements, or business growth metrics. We provide regular progress reports against these KPIs.</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Transform Your IT Strategy?</h2>
+            <p>Contact us today for a free consultation and discover how our IT consulting services can propel your business forward.</p>
+            <a href="#consultation-modal" data-toggle="modal" class="btn btn-primary">Get Started Now</a>
+        </section>
+
+        <!-- Consultation Modal -->
+        <div id="consultation-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Request Consultation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Interested In</label>
+                                <select class="form-control" id="service">
+                                    <option>IT Strategy Consulting</option>
+                                    <option>Cloud Migration</option>
+                                    <option>Cybersecurity Assessment</option>
+                                    <option>Digital Transformation</option>
+                                    <option>Data Analytics</option>
+                                    <option>IT Infrastructure Audit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Details Modal -->
+        <div id="service-details-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Service Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Service details data
+        const serviceDetails = {
+            'IT Strategy Consulting': {
+                title: 'IT Strategy Consulting',
+                description: 'Our IT Strategy Consulting service helps you develop a comprehensive IT roadmap aligned with your business objectives. We analyze your current infrastructure, identify gaps, and provide a tailored plan to drive growth and efficiency.',
+                price: 'From $5,000'
+            },
+            'Cloud Migration': {
+                title: 'Cloud Migration',
+                description: 'Seamlessly transition your infrastructure to the cloud with our expert guidance. We ensure minimal downtime, optimized performance, and cost-effective solutions tailored to your business needs.',
+                price: 'From $8,000'
+            },
+            'Cybersecurity Assessment': {
+                title: 'Cybersecurity Assessment',
+                description: 'Our comprehensive cybersecurity assessment identifies vulnerabilities in your IT environment and provides actionable recommendations to strengthen your defenses and ensure compliance.',
+                price: 'From $6,500'
+            },
+            'Digital Transformation': {
+                title: 'Digital Transformation',
+                description: 'Modernize your operations and enhance customer experiences with our cutting-edge digital solutions. We help you leverage technology to stay competitive in a digital-first world.',
+                price: 'From $12,000'
+            },
+            'Data Analytics': {
+                title: 'Data Analytics',
+                description: 'Unlock the power of your data with our analytics services. We provide insights that drive smarter business decisions, improve efficiency, and boost profitability.',
+                price: 'From $7,500'
+            },
+            'IT Infrastructure Audit': {
+                title: 'IT Infrastructure Audit',
+                description: 'Our IT Infrastructure Audit evaluates your current IT setup, identifies inefficiencies, and provides actionable recommendations to optimize performance and reduce costs.',
+                price: 'From $4,500'
+            }
+        };
+
+        // Add click event listeners to all "View Details" buttons
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceTitle = this.getAttribute('data-service');
+                const details = serviceDetails[serviceTitle];
+
+                // Update modal content
+                const modalBody = document.querySelector('#service-details-modal .modal-body');
+                const modalTitle = document.querySelector('#service-details-modal .modal-title');
+                modalTitle.textContent = details.title;
+                modalBody.innerHTML = `
+                    <p>${details.description}</p>
+                    <p class="price font-weight-bold">${details.price}</p>
+                    <a href="#consultation-modal" class="btn btn-primary" data-dismiss="modal" data-toggle="modal">Get Started</a>
+                `;
+
+                // Show the modal
+                $('#service-details-modal').modal('show');
+            });
+        });
+    </script>
+</body>
+</html>

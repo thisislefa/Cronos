@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --defcon-primary-dark: #0a192f;
+            --defcon-secondary-dark: #112240;
+            --defcon-accent: #0091ff;
+            --defcon-text-primary: #e6f1ff;
+            --defcon-text-secondary: #8892b0;
+            --defcon-card-bg: #112240;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-primary-dark);
+            color: var(--defcon-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .defcon-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .defcon-header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .defcon-logo {
+            color: var(--defcon-accent);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        /* Hero Section */
+        .defcon-hero {
+            padding: 250px 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            clip-path: polygon(0 0, 0 100%, 100% 95%, 100% 5%);
+        }
+        
+        .defcon-hero-title {
+            font-size: 56px;
+            letter-spacing: -0.03em;
+            color: var(--defcon-text-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.5s;
+        }
+        
+        .defcon-hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.8s;
+        }
+        
+        /* Section Common Styles */
+        .defcon-section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .defcon-section-title {
+            font-size: 54px;
+            letter-spacing: -0.03em;
+            color: var(--defcon-text-primary);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        /* About Us Section */
+        .defcon-about {
+            background-color: var(--defcon-secondary-dark);
+            clip-path: polygon(0 0, 100% 5%, 100% 95%, 0 100%);
+            padding: 120px 0;
+        }
+        
+        .defcon-about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .defcon-about-text {
+            flex: 1;
+            min-width: 300px;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 1s ease;
+        }
+        
+        .defcon-about-text.defcon-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .defcon-about-stats {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            min-width: 300px;
+        }
+        
+        .defcon-stat-box {
+            flex: 1;
+            min-width: 140px;
+            background: var(--defcon-card-bg);
+            padding: 30px 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            max-width: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.205);
+        }
+        
+        .defcon-stat-box.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--defcon-accent);
+            margin-bottom: 10px;
+        }
+        
+        .defcon-stat-text {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--defcon-text-primary);
+        }
+        
+        /* Founder Section */
+        .defcon-founder {
+            padding: 100px 0;
+        }
+        
+        .defcon-founder-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--defcon-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1s ease;
+        }
+        
+        .defcon-founder-card.defcon-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .defcon-founder-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .defcon-founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+        
+        .defcon-founder-card:hover .defcon-founder-image img {
+            transform: scale(1.05);
+        }
+        
+        .defcon-founder-info {
+            flex: 1.5;
+            padding: 40px;
+            min-width: 300px;
+        }
+        
+        .defcon-founder-name {
+            font-size: 2rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .defcon-founder-title {
+            color: var(--defcon-accent);
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .defcon-founder-quote {
+            font-style: italic;
+            border-left: 3px solid var(--defcon-accent);
+            padding-left: 20px;
+            margin: 30px 0;
+            color: var(--defcon-text-primary);
+        }
+        
+        /* Executive Team */
+        .defcon-team {
+            background-color: var(--defcon-secondary-dark);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            padding: 120px 0;
+        }
+        
+        .defcon-team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .defcon-team-member {
+            background: var(--defcon-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-team-member.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-team-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .defcon-team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .defcon-team-member:hover .defcon-team-image img {
+            transform: scale(1.1);
+        }
+        
+        .defcon-team-info {
+            padding: 25px;
+        }
+        
+        .defcon-team-name {
+            font-size: 1.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .defcon-team-role {
+            color: var(--defcon-accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Mission & Values */
+        .defcon-mission {
+            padding: 100px 0;
+        }
+        
+        .defcon-mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .defcon-mission-statement {
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 1.8;
+            color: var(--defcon-text-primary);
+            margin-bottom: 60px;
+            padding: 0 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .defcon-mission-statement.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-mission-statement:before,
+        .defcon-mission-statement:after {
+            content: '';
+            font-size: 4rem;
+            color: var(--defcon-accent);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .defcon-mission-statement:before {
+            top: -30px;
+            left: 0;
+        }
+        
+        .defcon-mission-statement:after {
+            bottom: -50px;
+            right: 0;
+        }
+        
+        .defcon-values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .defcon-value-card {
+            background: var(--defcon-card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-value-card.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-value-icon {
+            font-size: 2.5rem;
+            color: var(--defcon-accent);
+            margin-bottom: 20px;
+        }
+        
+        .defcon-value-title {
+            font-size: 1.3rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        .defcon-footer {
+            background-color: var(--defcon-primary-dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .defcon-footer-text {
+            color: var(--defcon-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes defcon-fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-about {
+                clip-path: polygon(0 0, 100% 2%, 100% 98%, 0 100%);
+                padding: 80px 0;
+            }
+            
+            .defcon-team {
+                clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+                padding: 80px 0;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* HERO SEC */
+  .hero-sec-container {
+    display: block;
+    align-items: center;
+    justify-items: center;
+    padding: 4rem 0;
+    background-color: #67768c;
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+  }
+
+  .hero-sec {
+    width: 800px;
+  }
+
+  .hero-sec h1{
+    font-size: 14px;
+    color: #06273e;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sec h2 {
+    color: gainsboro;
+    font-weight: 700;
+    font-size: 54px;
+    letter-spacing: -0.04em;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* From Uiverse.io by gharsh11032000 */ 
+  .animated-button-po {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    gap: 4px;
+    padding: 16px 36px;
+    border: 4px solid;
+    border-color: transparent;
+    font-size: 16px;
+    background-color: #0091ff;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 0 0 2px #0091ff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-button-po svg {
+    position: absolute;
+    width: 24px;
+    fill: white;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-button-po .arr-1 {
+    right: 16px;
+  }
+
+  .animated-button-po .arr-2 {
+    left: -25%;
+  }
+
+  .animated-button-po .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #0091ff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-button-po .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .animated-button-po:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: white;
+    border-radius: 12px;
+  }
+
+  .animated-button-po:hover .arr-1 {
+    right: -25%;
+  }
+
+  .animated-button-po:hover .arr-2 {
+    left: 16px;
+  }
+
+  .animated-button-po:hover .text {
+    transform: translateX(12px);
+  }
+
+  .animated-button-po:hover svg {
+    fill: white;
+  }
+
+  .animated-button-po:active {
+    scale: 0.95;
+    box-shadow: 0 0 0 4px #0091ff;
+  }
+
+  .animated-button-po:hover .circle {
+    width: 350px;
+    height: 250px;
+    opacity: 1;
+  }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="defcon-hero">
+        <div class="defcon-container">
+            <h1 class="defcon-hero-title">Pioneering the Future of Security</h1>
+            <p class="defcon-hero-subtitle">Defcon is a global leader in cybersecurity solutions, protecting businesses and governments from evolving digital threats through innovation and expertise.</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="defcon-section defcon-about" id="defcon-about">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">About Us</h2>
+            <div class="defcon-about-content">
+                <div class="defcon-about-text">
+                    <p>Founded in 2010, Defcon has established itself as a premier cybersecurity firm with a global footprint. Our journey began with a simple vision: to create a safer digital world for businesses and individuals alike.</p>
+                    <p>Today, we stand at the forefront of cybersecurity innovation, with over 500 experts working across 15 countries to protect our clients from evolving threats. Our holistic approach combines cutting-edge technology with deep industry expertise to deliver comprehensive security solutions.</p>
+                    <p>What sets us apart is our commitment to staying ahead of the curve. Our threat intelligence team monitors global cyber activity 24/7, ensuring our clients are always protected against the latest vulnerabilities and attack vectors.</p>
+                </div>
+                <div class="defcon-about-stats">
+                    <div class="defcon-stat-box">
+                        <div class="defcon-stat-number">13+</div>
+                        <div class="defcon-stat-text">Years of Excellence</div>
+                    </div>
+                    <div class="defcon-stat-box">
+                        <div class="defcon-stat-number">500+</div>
+                        <div class="defcon-stat-text">Security Experts</div>
+                    </div>
+                    <div class="defcon-stat-box">
+                        <div class="defcon-stat-number">1500+</div>
+                        <div class="defcon-stat-text">Clients Protected</div>
+                    </div>
+                    <div class="defcon-stat-box">
+                        <div class="defcon-stat-number">24/7</div>
+                        <div class="defcon-stat-text">Threat Monitoring</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="defcon-section defcon-founder" id="defcon-founder">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Visionary Leadership</h2>
+            <div class="defcon-founder-card">
+                <div class="defcon-founder-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80" alt="Alexander Sterling - Founder of Defcon">
+                </div>
+                <div class="defcon-founder-info">
+                    <h3 class="defcon-founder-name">Alexander Sterling</h3>
+                    <span class="defcon-founder-title">Founder & Chief Visionary Officer</span>
+                    <p>Alexander Sterling founded Defcon in 2010 with a mission to transform the cybersecurity landscape. With a background in cryptography and artificial intelligence, Alexander saw the growing need for proactive security measures in an increasingly digital world.</p>
+                    <p>Prior to Defcon, Alexander led security initiatives at multiple Fortune 500 companies, where he identified critical gaps in enterprise security approaches. This experience inspired him to create a company that would address these vulnerabilities through innovation and expertise.</p>
+                    <p>Under Alexander's leadership, Defcon has pioneered several industry-first technologies, including our patented predictive threat analytics platform and adaptive defense systems.</p>
+                    <blockquote class="defcon-founder-quote">
+                        "Security isn't just about building stronger walls—it's about understanding the landscape better than those who would seek to breach it. At Defcon, we're always thinking three steps ahead."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Team -->
+    <section class="defcon-section defcon-team" id="defcon-team">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Executive Team</h2>
+            <div class="defcon-team-grid">
+                <div class="defcon-team-member">
+                    <div class="defcon-team-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Sarah Chen - Chief Executive Officer">
+                    </div>
+                    <div class="defcon-team-info">
+                        <h3 class="defcon-team-name">Sarah Chen</h3>
+                        <span class="defcon-team-role">Chief Executive Officer</span>
+                        <p>Formerly with a leading tech giant, Sarah brings 15+ years of executive experience in scaling technology companies globally.</p>
+                    </div>
+                </div>
+                <div class="defcon-team-member">
+                    <div class="defcon-team-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Marcus Johnson - Chief Technology Officer">
+                    </div>
+                    <div class="defcon-team-info">
+                        <h3 class="defcon-team-name">Marcus Johnson</h3>
+                        <span class="defcon-team-role">Chief Technology Officer</span>
+                        <p>Cybersecurity visionary with expertise in AI-driven threat detection and blockchain security applications.</p>
+                    </div>
+                </div>
+                <div class="defcon-team-member">
+                    <div class="defcon-team-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80" alt="Elena Rodriguez - Chief Operations Officer">
+                    </div>
+                    <div class="defcon-team-info">
+                        <h3 class="defcon-team-name">Elena Rodriguez</h3>
+                        <span class="defcon-team-role">Chief Operations Officer</span>
+                        <p>Operations specialist with a track record of optimizing global security deployments and service delivery.</p>
+                    </div>
+                </div>
+                <div class="defcon-team-member">
+                    <div class="defcon-team-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80" alt="Elena Rodriguez - Chief Operations Officer">
+                    </div>
+                    <div class="defcon-team-info">
+                        <h3 class="defcon-team-name">Elena Rodriguez</h3>
+                        <span class="defcon-team-role">Chief Operations Officer</span>
+                        <p>Operations specialist with a track record of optimizing global security deployments and service delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="defcon-section defcon-mission" id="defcon-mission">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Mission & Values</h2>
+            <div class="defcon-mission-content">
+                <p class="defcon-mission-statement">Our mission is to create a secure digital ecosystem where businesses can innovate and thrive without fear of cyber threats. We believe that trust is the foundation of the digital economy, and we're committed to building that trust through unparalleled security solutions.</p>
+                
+                <div class="defcon-values-grid">
+                    <div class="defcon-value-card">
+                        <div class="defcon-value-icon">01</div>
+                        <h3 class="defcon-value-title">Excellence</h3>
+                        <p>We pursue excellence in everything we do, from our cutting-edge research to our client interactions.</p>
+                    </div>
+                    <div class="defcon-value-card">
+                        <div class="defcon-value-icon">02</div>
+                        <h3 class="defcon-value-title">Innovation</h3>
+                        <p>We constantly push boundaries to develop solutions that address tomorrow's threats today.</p>
+                    </div>
+                    <div class="defcon-value-card">
+                        <div class="defcon-value-icon">03</div>
+                        <h3 class="defcon-value-title">Integrity</h3>
+                        <p>We operate with uncompromising ethics, transparency, and accountability in all our dealings.</p>
+                    </div>
+                    <div class="defcon-value-card">
+                        <div class="defcon-value-icon">04</div>
+                        <h3 class="defcon-value-title">Collaboration</h3>
+                        <p>We believe that together we are stronger, and we foster partnerships that enhance security for all.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-footer">
+        <div class="defcon-container">
+            <p class="defcon-footer-text">&copy; 2023 Defcon. All rights reserved. | Protecting the digital world.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const defconElements = document.querySelectorAll('.defcon-about-text, .defcon-stat-box, .defcon-founder-card, .defcon-team-member, .defcon-mission-statement, .defcon-value-card');
+            
+            const defconObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('defcon-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            defconElements.forEach(element => {
+                defconObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

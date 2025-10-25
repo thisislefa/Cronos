@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Card Stack</title>
+    <style>
+        :root {
+            --card-width: 280px;
+            --card-height: 380px;
+            --card-spacing: 20px;
+            --card-radius: 12px;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            touch-action: none;
+            overflow: hidden;
+            user-select: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        #card-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            perspective: 1200px;
+        }
+        
+        .card {
+            position: absolute;
+            width: var(--card-width);
+            height: var(--card-height);
+            border-radius: var(--card-radius);
+            box-shadow: 0 3px 10px var(--shadow-color);
+            transform-origin: center;
+            transition: box-shadow 0.2s ease, transform 0.1s linear;
+            backface-visibility: hidden;
+            cursor: grab;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .card:active {
+            cursor: grabbing;
+        }
+        
+        .card.grabbed {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            z-index: 1000 !important;
+            transform: scale(1.02);
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg) !important;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 24px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-back {
+            background: white;
+            color: #333;
+            transform: rotateY(180deg);
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .card-header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #222;
+            position: relative;
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #ddd;
+            transition: width 0.3s ease;
+        }
+        
+        .card:hover .card-header::after {
+            width: 50px;
+        }
+        
+        .card-content {
+            flex: 1;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        
+        .card-content::-webkit-scrollbar {
+            width: 3px;
+        }
+        
+        .card-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        
+        .card-footer {
+            margin-top: 16px;
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #777;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .card-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            color: #999;
+        }
+        
+        .card-btn:hover {
+            background: rgba(0, 0, 0, 0.03);
+            color: #666;
+        }
+        
+        .card-btn:active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
+                rgba(0, 0, 0, 0.02) 0%, 
+                transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card:hover .card-highlight {
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            :root {
+                --card-width: 260px;
+                --card-height: 360px;
+                --card-spacing: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="card-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('card-container');
+            const cards = [];
+            const physics = {
+                friction: 0.3,
+                bounce: 0.65,
+                maxSpeed: 1200,
+                spring: 0.15,
+                springRotation: 0.05
+            };
+            
+            // Card data with unique content
+            const cardData = [
+                {
+                    title: "Project Kickoff",
+                    content: "Initial meeting to define project scope, timeline, and deliverables. Please review the brief before the meeting.",
+                    date: "Today, 2:00 PM",
+                    author: "JD",
+                    color: "#f5f5f5"
+                },
+                {
+                    title: "Design Review",
+                    content: "Feedback session for the new dashboard interface. Bring your suggestions for improving the user flow.",
+                    date: "Tomorrow, 10:30 AM",
+                    author: "ML",
+                    color: "#f8f8f8"
+                },
+                {
+                    title: "Team Retrospective",
+                    content: "Quarterly retrospective to discuss what went well and areas for improvement. Be prepared to share your thoughts.",
+                    date: "Fri, 3:00 PM",
+                    author: "TS",
+                    color: "#fafafa"
+                },
+                {
+                    title: "Client Presentation",
+                    content: "Final run-through of the client presentation deck. We'll practice Q&A and timing.",
+                    date: "Wed, 1:15 PM",
+                    author: "AR",
+                    color: "#f7f7f7"
+                },
+                {
+                    title: "Workshop Prep",
+                    content: "Preparation session for next week's design thinking workshop. We'll organize materials and finalize activities.",
+                    date: "Tue, 4:45 PM",
+                    author: "KC",
+                    color: "#f9f9f9"
+                }
+            ];
+            
+            // Create cards
+            cardData.forEach((data, index) => {
+                createCard(data, index);
+            });
+            
+            // Position cards in a staggered stack
+            positionCards();
+            
+            // Physics animation loop
+            gsap.ticker.add(updatePhysics);
+            
+            // Mouse position tracking for highlight effect
+            container.addEventListener('mousemove', (e) => {
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    const highlight = card.querySelector('.card-highlight');
+                    if (highlight) {
+                        highlight.style.setProperty('--mouse-x', `${x}%`);
+                        highlight.style.setProperty('--mouse-y', `${y}%`);
+                    }
+                });
+            });
+            
+            function createCard(data, index) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = index;
+                card.dataset.x = 0;
+                card.dataset.y = 0;
+                card.dataset.rotation = 0;
+                card.dataset.scale = 1;
+                card.dataset.vx = 0;
+                card.dataset.vy = 0;
+                card.dataset.vr = 0;
+                card.dataset.homeX = 0;
+                card.dataset.homeY = 0;
+                card.dataset.homeRotation = 0;
+                card.dataset.flipped = 'false';
+                
+                card.innerHTML = `
+                    <div class="card-highlight"></div>
+                    <div class="card-front">
+                        <div class="card-header">${data.title}</div>
+                        <div class="card-content">${data.content}</div>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <div class="card-avatar">${data.author}</div>
+                                <div>${data.date}</div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="card-btn">✓</button>
+                                <button class="card-btn">✎</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div style="text-align: center;">
+                            <div style="font-size: 72px; margin-bottom: 16px;">📋</div>
+                            <div style="font-weight: 500;">${data.title}</div>
+                            <div style="font-size: 14px; color: #999; margin-top: 8px;">${data.date}</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Set card color
+                card.style.backgroundColor = data.color;
+                
+                container.appendChild(card);
+                cards.push(card);
+                
+                // Add event listeners
+                setupCardInteractions(card);
+            }
+            
+            function positionCards() {
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const offsetX = 10;
+                const offsetY = 8;
+                
+                cards.forEach((card, index) => {
+                    const homeX = centerX - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-width'))/2) + (index * offsetX);
+                    const homeY = centerY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-height'))/2) + (index * offsetY);
+                    const homeRotation = (Math.random() * 2 - 1);
+                    
+                    card.dataset.homeX = homeX;
+                    card.dataset.homeY = homeY;
+                    card.dataset.homeRotation = homeRotation;
+                    
+                    // Start with cards in random positions
+                    const startX = centerX - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-width'))/2) + (Math.random() * 300 - 150);
+                    const startY = centerY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-height'))/2) + (Math.random() * 300 - 150);
+                    const startRotation = (Math.random() * 20 - 10);
+                    
+                    card.dataset.x = startX;
+                    card.dataset.y = startY;
+                    card.dataset.rotation = startRotation;
+                    
+                    // Animate to home position with organic motion
+                    gsap.to(card.dataset, {
+                        x: homeX,
+                        y: homeY,
+                        rotation: homeRotation,
+                        duration: 0.8,
+                        delay: index * 0.1,
+                        ease: "sine.out",
+                        onUpdate: () => updateCardTransform(card)
+                    });
+                    
+                    updateCardTransform(card);
+                    card.style.zIndex = index;
+                });
+            }
+            
+            function setupCardInteractions(card) {
+                let startX, startY, startRotation;
+                let cardX, cardY;
+                let isDragging = false;
+                let velocityX = 0, velocityY = 0;
+                let lastX, lastY;
+                let lastTime;
+                
+                // Mouse events
+                card.addEventListener('mousedown', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', endDrag);
+                
+                // Touch events
+                card.addEventListener('touchstart', touchStart);
+                document.addEventListener('touchmove', touchMove);
+                document.addEventListener('touchend', touchEnd);
+                
+                // Double click/tap to flip
+                card.addEventListener('dblclick', flipCard);
+                let tapCount = 0;
+                card.addEventListener('touchstart', function() {
+                    tapCount++;
+                    if (tapCount === 1) {
+                        setTimeout(function() {
+                            if (tapCount === 2) {
+                                flipCard.call(card);
+                            }
+                            tapCount = 0;
+                        }, 300);
+                    }
+                });
+                
+                // Button interactions
+                const buttons = card.querySelectorAll('.card-btn');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // Haptic feedback
+                        if ('vibrate' in navigator) {
+                            navigator.vibrate(10);
+                        }
+                        // Visual feedback
+                        gsap.to(btn, {
+                            scale: 0.9,
+                            duration: 0.1,
+                            yoyo: true,
+                            repeat: 1
+                        });
+                    });
+                });
+                
+                function startDrag(e) {
+                    e.preventDefault();
+                    isDragging = true;
+                    card.classList.add('grabbed');
+                    
+                    // Bring card to front
+                    cards.forEach(c => {
+                        if (c !== card) {
+                            c.style.zIndex = parseInt(c.style.zIndex || 0) - 1;
+                        }
+                    });
+                    card.style.zIndex = 1000;
+                    
+                    // Store initial positions
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    cardX = parseFloat(card.dataset.x);
+                    cardY = parseFloat(card.dataset.y);
+                    startRotation = parseFloat(card.dataset.rotation);
+                    
+                    // Reset velocity tracking
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                    lastTime = Date.now();
+                    
+                    // Haptic feedback on mobile
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(8);
+                    }
+                }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    
+                    const currentX = e.clientX;
+                    const currentY = e.clientY;
+                    
+                    // Calculate new position
+                    const newX = cardX + (currentX - startX);
+                    const newY = cardY + (currentY - startY);
+                    
+                    // Calculate velocity for throw animation
+                    const now = Date.now();
+                    const deltaTime = now - lastTime;
+                    if (deltaTime > 0) {
+                        velocityX = (currentX - lastX) / deltaTime * 1000;
+                        velocityY = (currentY - lastY) / deltaTime * 1000;
+                    }
+                    lastX = currentX;
+                    lastY = currentY;
+                    lastTime = now;
+                    
+                    // Update card position
+                    card.dataset.x = newX;
+                    card.dataset.y = newY;
+                    
+                    // Add organic rotation based on movement
+                    const rotation = startRotation + (currentX - startX) * 0.08;
+                    card.dataset.rotation = rotation;
+                    
+                    // Slight scale effect when moving up
+                    const scale = 1 + Math.max(0, (startY - currentY) / 800);
+                    card.dataset.scale = Math.min(scale, 1.03);
+                    
+                    updateCardTransform(card);
+                }
+                
+                function endDrag(e) {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    card.classList.remove('grabbed');
+                    card.dataset.scale = 1;
+                    
+                    // Apply velocity for throw effect
+                    card.dataset.vx = velocityX * 0.8;
+                    card.dataset.vy = velocityY * 0.8;
+                    card.dataset.vr = velocityX * 0.06;
+                    
+                    // Haptic feedback on release
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(5);
+                    }
+                }
+                
+                // Touch handlers
+                function touchStart(e) {
+                    if (e.touches.length === 1) {
+                        const touch = e.touches[0];
+                        startDrag({
+                            clientX: touch.clientX,
+                            clientY: touch.clientY,
+                            preventDefault: () => e.preventDefault()
+                        });
+                    }
+                }
+                
+                function touchMove(e) {
+                    if (e.touches.length === 1) {
+                        const touch = e.touches[0];
+                        drag({
+                            clientX: touch.clientX,
+                            clientY: touch.clientY,
+                            preventDefault: () => e.preventDefault()
+                        });
+                    }
+                }
+                
+                function touchEnd(e) {
+                    if (e.touches.length === 0) {
+                        endDrag({});
+                    }
+                }
+                
+                function flipCard() {
+                    const isFlipped = card.dataset.flipped === 'true';
+                    card.dataset.flipped = (!isFlipped).toString();
+                    card.classList.toggle('flipped');
+                    
+                    // Add flip animation physics
+                    card.dataset.vr = isFlipped ? -500 : 500;
+                    
+                    // Haptic feedback on flip
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(15);
+                    }
+                }
+            }
+            
+            function updateCardTransform(card) {
+                const x = parseFloat(card.dataset.x);
+                const y = parseFloat(card.dataset.y);
+                const rotation = parseFloat(card.dataset.rotation);
+                const scale = parseFloat(card.dataset.scale);
+                
+                card.style.transform = `
+                    translate(${x}px, ${y}px)
+                    rotate(${rotation}deg)
+                    scale(${scale})
+                `;
+            }
+            
+            function updatePhysics() {
+                const delta = gsap.ticker.deltaRatio();
+                const cardWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-width'));
+                const cardHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-height'));
+                
+                cards.forEach(card => {
+                    if (card.classList.contains('grabbed')) return;
+                    
+                    let x = parseFloat(card.dataset.x);
+                    let y = parseFloat(card.dataset.y);
+                    let rotation = parseFloat(card.dataset.rotation);
+                    let vx = parseFloat(card.dataset.vx);
+                    let vy = parseFloat(card.dataset.vy);
+                    let vr = parseFloat(card.dataset.vr);
+                    const homeX = parseFloat(card.dataset.homeX);
+                    const homeY = parseFloat(card.dataset.homeY);
+                    const homeRotation = parseFloat(card.dataset.homeRotation);
+                    
+                    // Apply friction with some variation for organic feel
+                    const friction = physics.friction * (0.9 + Math.random() * 0.2);
+                    vx *= (1 - friction * delta);
+                    vy *= (1 - friction * delta);
+                    vr *= (1 - friction * delta);
+                    
+                    // Limit speed
+                    const speed = Math.sqrt(vx * vx + vy * vy);
+                    if (speed > physics.maxSpeed) {
+                        vx = vx / speed * physics.maxSpeed;
+                        vy = vy / speed * physics.maxSpeed;
+                    }
+                    
+                    // Apply velocity with slight randomness
+                    x += vx * delta * 0.01 * (0.95 + Math.random() * 0.1);
+                    y += vy * delta * 0.01 * (0.95 + Math.random() * 0.1);
+                    rotation += vr * delta * 0.1;
+                    
+                    // Boundary collision with soft edges
+                    const padding = 20;
+                    
+                    if (x < padding) {
+                        x = padding + (padding - x) * 0.3;
+                        vx = -vx * physics.bounce * (0.8 + Math.random() * 0.4);
+                        vr = -vr * physics.bounce * 0.3;
+                    }
+                    if (x > window.innerWidth - cardWidth - padding) {
+                        x = window.innerWidth - cardWidth - padding - (x - (window.innerWidth - cardWidth - padding)) * 0.3;
+                        vx = -vx * physics.bounce * (0.8 + Math.random() * 0.4);
+                        vr = -vr * physics.bounce * 0.3;
+                    }
+                    if (y < padding) {
+                        y = padding + (padding - y) * 0.3;
+                        vy = -vy * physics.bounce * (0.8 + Math.random() * 0.4);
+                    }
+                    if (y > window.innerHeight - cardHeight - padding) {
+                        y = window.innerHeight - cardHeight - padding - (y - (window.innerHeight - cardHeight - padding)) * 0.3;
+                        vy = -vy * physics.bounce * (0.8 + Math.random() * 0.4);
+                    }
+                    
+                    // Spring back to home position when slow
+                    if (Math.abs(vx) < 8 && Math.abs(vy) < 8) {
+                        const spring = physics.spring * delta;
+                        const springRotation = physics.springRotation * delta;
+                        
+                        const dx = homeX - x;
+                        const dy = homeY - y;
+                        const dr = homeRotation - rotation;
+                        
+                        vx += dx * spring;
+                        vy += dy * spring;
+                        vr += dr * springRotation;
+                    }
+                    
+                    // Update card data
+                    card.dataset.x = x;
+                    card.dataset.y = y;
+                    card.dataset.rotation = rotation;
+                    card.dataset.vx = vx;
+                    card.dataset.vy = vy;
+                    card.dataset.vr = vr;
+                    
+                    // Update z-index based on position
+                    const targetZIndex = Math.round(y);
+                    if (parseInt(card.style.zIndex) !== targetZIndex) {
+                        card.style.zIndex = targetZIndex;
+                    }
+                    
+                    // Update transform
+                    updateCardTransform(card);
+                });
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const offsetX = 10;
+                const offsetY = 8;
+                const cardWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-width'));
+                const cardHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-height'));
+                
+                cards.forEach((card, index) => {
+                    card.dataset.homeX = centerX - (cardWidth/2) + (index * offsetX);
+                    card.dataset.homeY = centerY - (cardHeight/2) + (index * offsetY);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

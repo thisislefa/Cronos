@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations | Professional Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0091ff;
+            --dark: #000;
+            --light: #fff;
+            --dark-blue: #06273e;
+            --light-gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .recommendations-hero-section {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            overflow: hidden;
+        }
+
+        .recommendations-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary) 100%);
+            z-index: -2;
+        }
+
+        .recommendations-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230091ff" opacity="0.05"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/></svg>');
+            z-index: -1;
+        }
+
+        .recommendations-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .recommendations-hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .recommendations-hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .recommendations-hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Featured Recommendations Section */
+        .recommendations-featured-section {
+            background-color: var(--light);
+            position: relative;
+        }
+
+        .recommendations-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .recommendations-section-label {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .recommendations-section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .recommendations-section-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .recommendations-featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .recommendation-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .recommendation-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .recommendation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .recommendation-card:hover .recommendation-image img {
+            transform: scale(1.05);
+        }
+
+        .recommendation-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .recommendation-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .recommendation-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .recommendation-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .recommendation-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .recommendation-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .recommendation-rating svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffc107;
+        }
+
+        /* Categories Filter */
+        .recommendations-categories-section {
+            background-color: var(--light-gray);
+            position: relative;
+        }
+
+        .recommendations-categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .recommendations-category-filter {
+            padding: 10px 20px;
+            background-color: var(--light);
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .recommendations-category-filter:hover, .recommendations-category-filter.active {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Expert Picks Section */
+        .recommendations-expert-section {
+            background-color: var(--light);
+            position: relative;
+        }
+
+        .recommendations-expert-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .recommendations-expert-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .recommendations-expert-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+        }
+
+        .recommendations-expert-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .recommendations-expert-list {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .expert-pick-item {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .expert-pick-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .expert-pick-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .expert-pick-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--light);
+        }
+
+        .expert-pick-content {
+            flex-grow: 1;
+        }
+
+        .expert-pick-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        .expert-pick-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .expert-pick-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Personalization Section */
+        .recommendations-personalization-section {
+            background-color: var(--dark-blue);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendations-personalization-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .recommendations-personalization-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .recommendations-personalization-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .recommendations-personalization-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .recommendations-personalization-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-select option {
+            background-color: var(--dark-blue);
+            color: var(--light);
+        }
+
+        /* Footer */
+        .recommendations-footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .recommendations-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .recommendations-expert-container, .recommendations-personalization-container {
+                flex-direction: column;
+            }
+            
+            .recommendations-section-title, .recommendations-expert-title, .recommendations-personalization-title {
+                font-size: 2rem;
+            }
+            
+            .recommendations-featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="recommendations-hero-section">
+        <div class="recommendations-hero-bg"></div>
+        <div class="recommendations-hero-overlay"></div>
+        <div class="recommendations-hero-content">
+            <h1 class="recommendations-hero-title">Expert Recommendations</h1>
+            <p class="recommendations-hero-subtitle">Curated Resources for Your Success</p>
+            <p class="recommendations-hero-description">Discover handpicked tools, books, courses, and resources recommended by industry experts to accelerate your growth and learning.</p>
+            <a href="#featured" class="btn">Explore Recommendations</a>
+        </div>
+    </section>
+
+    <!-- Featured Recommendations Section -->
+    <section class="recommendations-featured-section" id="featured">
+        <div class="container">
+            <div class="recommendations-section-header">
+                <div class="recommendations-section-label">Top Picks</div>
+                <h2 class="recommendations-section-title">Featured Recommendations</h2>
+                <p class="recommendations-section-description">
+                    Our most highly-rated resources across different categories
+                </p>
+            </div>
+            <div class="recommendations-featured-grid">
+                <!-- Recommendation 1 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-image">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&h=400&fit=crop" alt="Atomic Habits Book">
+                        <div class="recommendation-category">Books</div>
+                    </div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Atomic Habits</h3>
+                        <p class="recommendation-description">
+                            James Clear's groundbreaking guide to building good habits and breaking bad ones through tiny changes.
+                        </p>
+                        <div class="recommendation-meta">
+                            <span>By James Clear</span>
+                            <div class="recommendation-rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendation 2 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Productivity Course">
+                        <div class="recommendation-category">Courses</div>
+                    </div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Deep Work Mastery</h3>
+                        <p class="recommendation-description">
+                            Learn focused work strategies to maximize productivity and achieve more in less time.
+                        </p>
+                        <div class="recommendation-meta">
+                            <span>Cal Newport</span>
+                            <div class="recommendation-rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommendation 3 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Analytics Tool">
+                        <div class="recommendation-category">Tools</div>
+                    </div>
+                    <div class="recommendation-content">
+                        <h3 class="recommendation-title">Notion Workspace</h3>
+                        <p class="recommendation-description">
+                            All-in-one workspace for notes, tasks, wikis, and databases to organize your work and life.
+                        </p>
+                        <div class="recommendation-meta">
+                            <span>Productivity</span>
+                            <div class="recommendation-rating">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Filter -->
+    <section class="recommendations-categories-section">
+        <div class="container">
+            <div class="recommendations-section-header">
+                <div class="recommendations-section-label">Browse by Category</div>
+                <h2 class="recommendations-section-title">Find What You Need</h2>
+                <p class="recommendations-section-description">
+                    Filter recommendations by specific categories and interests
+                </p>
+            </div>
+            <div class="recommendations-categories-container">
+                <div class="recommendations-category-filter active">All</div>
+                <div class="recommendations-category-filter">Books</div>
+                <div class="recommendations-category-filter">Courses</div>
+                <div class="recommendations-category-filter">Tools</div>
+                <div class="recommendations-category-filter">Podcasts</div>
+                <div class="recommendations-category-filter">Articles</div>
+                <div class="recommendations-category-filter">Videos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Picks Section -->
+    <section class="recommendations-expert-section">
+        <div class="container">
+            <div class="recommendations-expert-container">
+                <div class="recommendations-expert-content">
+                    <h2 class="recommendations-expert-title">Expert Curated Selections</h2>
+                    <p class="recommendations-expert-description">
+                        Our team of industry experts regularly reviews and selects the most valuable resources across different domains. Each recommendation is thoroughly vetted for quality and impact.
+                    </p>
+                    <p class="recommendations-expert-description">
+                        We focus on resources that provide practical value, actionable insights, and proven results to help you achieve your goals faster.
+                    </p>
+                    <a href="#" class="btn">Meet Our Experts</a>
+                </div>
+                <div class="recommendations-expert-list">
+                    <!-- Expert Pick 1 -->
+                    <div class="expert-pick-item">
+                        <div class="expert-pick-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="expert-pick-content">
+                            <h3 class="expert-pick-title">The Psychology of Money</h3>
+                            <p class="expert-pick-description">
+                                Timeless lessons on wealth, greed, and happiness that will change how you think about money.
+                            </p>
+                            <div class="expert-pick-meta">
+                                <span>Morgan Housel</span>
+                                <span>•</span>
+                                <span>Finance</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Expert Pick 2 -->
+                    <div class="expert-pick-item">
+                        <div class="expert-pick-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="expert-pick-content">
+                            <h3 class="expert-pick-title">Figma for Teams</h3>
+                            <p class="expert-pick-description">
+                                Collaborative design tool that streamlines the entire design process from concept to completion.
+                            </p>
+                            <div class="expert-pick-meta">
+                                <span>Design Tool</span>
+                                <span>•</span>
+                                <span>Collaboration</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Expert Pick 3 -->
+                    <div class="expert-pick-item">
+                        <div class="expert-pick-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <div class="expert-pick-content">
+                            <h3 class="expert-pick-title">Learning How to Learn</h3>
+                            <p class="expert-pick-description">
+                                Powerful mental tools to help you master tough subjects and become a better learner.
+                            </p>
+                            <div class="expert-pick-meta">
+                                <span>Barbara Oakley</span>
+                                <span>•</span>
+                                <span>Education</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personalization Section -->
+    <section class="recommendations-personalization-section">
+        <div class="container">
+            <div class="recommendations-personalization-container">
+                <div class="recommendations-personalization-content">
+                    <h2 class="recommendations-personalization-title">Personalized Recommendations</h2>
+                    <p class="recommendations-personalization-description">
+                        Get recommendations tailored to your specific interests, goals, and skill level. Our algorithm matches you with the most relevant resources based on your preferences.
+                    </p>
+                    <p class="recommendations-personalization-description">
+                        Whether you're a beginner looking to get started or an expert seeking advanced insights, we'll help you find the perfect resources for your journey.
+                    </p>
+                </div>
+                <div class="recommendations-personalization-form">
+                    <div class="form-group">
+                        <label class="form-label">Your Interests</label>
+                        <select class="form-select">
+                            <option value="">Select your primary interest</option>
+                            <option value="technology">Technology</option>
+                            <option value="business">Business</option>
+                            <option value="design">Design</option>
+                            <option value="productivity">Productivity</option>
+                            <option value="leadership">Leadership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Experience Level</label>
+                        <select class="form-select">
+                            <option value="">Select your experience level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Format</label>
+                        <select class="form-select">
+                            <option value="">Select preferred format</option>
+                            <option value="books">Books</option>
+                            <option value="courses">Courses</option>
+                            <option value="videos">Videos</option>
+                            <option value="podcasts">Podcasts</option>
+                            <option value="tools">Tools</option>
+                        </select>
+                    </div>
+                    <button class="btn">Get Personalized Recommendations</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="recommendations-footer">
+        <div class="container">
+            <p>&copy; 2023 Expert Recommendations. Curated resources for your growth and success.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category filter interaction
+        document.querySelectorAll('.recommendations-category-filter').forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                document.querySelectorAll('.recommendations-category-filter').forEach(f => {
+                    f.classList.remove('active');
+                });
+                
+                // Add active class to clicked filter
+                filter.classList.add('active');
+                
+                // In a real implementation, this would filter the recommendations
+                const category = filter.textContent;
+                if (category === 'All') {
+                    alert('Showing all recommendations');
+                } else {
+                    alert(`Filtering recommendations by category: ${category}`);
+                }
+            });
+        });
+
+        // Recommendation card interaction
+        document.querySelectorAll('.recommendation-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.recommendation-title').textContent;
+                alert(`Viewing details for: ${title}`);
+                // In a real implementation, this would open a detailed view
+            });
+        });
+
+        // Expert pick interaction
+        document.querySelectorAll('.expert-pick-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('.expert-pick-title').textContent;
+                alert(`Getting more details about: ${title}`);
+                // In a real implementation, this would show more details
+            });
+        });
+
+        // Personalization form submission
+        document.querySelector('.recommendations-personalization-form .btn').addEventListener('click', () => {
+            alert('Generating personalized recommendations based on your preferences...');
+            // In a real implementation, this would submit the form and show results
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!-- Services Section --> 
+
+    <style>
+      /* Base Styles */
+        
+        .body-services-section {
+            font-family: 'Times New Roman', Times, serif;
+            background: #06273e;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container-services-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        
+        .container-services-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .container-services-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #0091ff;
+        }
+        
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            color: #e5e5e5;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+
+        /* Services Grid */
+        .services-section {
+            padding: 100px 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0091ff33, #06273e00);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .service-card:hover:before {
+            opacity: 1;
+        }
+        
+        .service-icon {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-icon img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .service-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #0091ff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 2px solid #0091ff;
+            flex: 1;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .service-button:hover {
+            background-color: #0091ff;
+            color: white;
+        }
+        
+        .service-button.explore {
+            background-color: #0091ff;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-align: center;
+            
+        }
+        
+        .service-button.explore:hover {
+            background-color: transparent;
+            color: #0091ff;
+        }
+        
+        /* Animated Elements */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-container {
+            background-color: #06273e;
+            border: 1px solid #0091ff;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+            padding: 40px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #e5e5e5;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #0091ff;
+        }
+        
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-background {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.1;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .service-buttons {
+                flex-direction: column;
+            }
+        }
+</style>
+</head>
+
+
+<body class="body-services-section">
+    
+    <!-- Services Section -->
+    <div id="services" class="services-section">
+        <div class="container-services-section">
+            <h2 class="reveal">Our Core Services</h2>
+            <p class="reveal">Comprehensive technology solutions tailored to your business needs. Each service is delivered with precision and expertise.</p>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Design & Development">
+                    </div>
+                    <div class="service-content">
+                        <h3>Web Design & Development</h3>
+                        <p>Custom websites and web applications built for performance, security, and user engagement.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="web">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Support">
+                    </div>
+                    <div class="service-content">
+                        <h3>Technical Support</h3>
+                        <p>24/7 expert technical support to keep your systems running smoothly and efficiently.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="support">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IT Consulting">
+                    </div>
+                    <div class="service-content">
+                        <h3>IT Consulting</h3>
+                        <p>Strategic technology guidance to align your IT infrastructure with business objectives.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="consulting">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Marketing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Digital Marketing</h3>
+                        <p>Data-driven marketing strategies to increase visibility, engagement, and conversions.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="marketing">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Graphic Design">
+                    </div>
+                    <div class="service-content">
+                        <h3>Graphic Design</h3>
+                        <p>Stunning visual assets that communicate your brand identity and captivate your audience.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="design">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Photography">
+                    </div>
+                    <div class="service-content">
+                        <h3>Photography</h3>
+                        <p>Professional photography services for products, events, and corporate branding.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="photography">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 7 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Videography">
+                    </div>
+                    <div class="service-content">
+                        <h3>Videography</h3>
+                        <p>High-quality video production for commercials, tutorials, and promotional content.</p>
+                        <div class="service-buttons">
+                            <button class="service-button view-details" data-service="videography">View Details</button>
+                            <button class="service-button explore">Explore Service</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-container">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Service Title</h2>
+            <div id="modal-content">
+                <p>Detailed service information will appear here.</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveals[i].getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Initial check in case elements are already in view
+        window.addEventListener('load', revealOnScroll);
+        
+        // Modal functionality
+        const modal = document.getElementById('serviceModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.querySelector('.close-modal');
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
+        
+        // Service details (would normally come from a database or API)
+        const serviceDetails = {
+            web: {
+                title: "Web Design & Development",
+                content: `<p>Our web design and development services create powerful digital experiences that drive results. We combine aesthetic design with robust functionality to deliver websites that perform.</p>
+                <ul>
+                    <li>Custom website design tailored to your brand</li>
+                    <li>Responsive development for all devices</li>
+                    <li>E-commerce solutions</li>
+                    <li>Content management systems</li>
+                    <li>Web application development</li>
+                    <li>Ongoing maintenance and support</li>
+                </ul>
+                <p>We use the latest technologies including HTML5, CSS3, JavaScript frameworks, and secure backend systems to build fast, scalable websites.</p>`
+            },
+            support: {
+                title: "Tech Support",
+                content: `<p>Our comprehensive technical support services ensure your systems remain operational and secure around the clock.</p>
+                <ul>
+                    <li>24/7 helpdesk support</li>
+                    <li>Remote troubleshooting</li>
+                    <li>On-site technical assistance</li>
+                    <li>Hardware and software support</li>
+                    <li>Network monitoring</li>
+                    <li>System maintenance</li>
+                </ul>
+                <p>With response times under 15 minutes for critical issues, we minimize downtime and keep your business running smoothly.</p>`
+            },
+            consulting: {
+                title: "IT Consulting",
+                content: `<p>Strategic IT consulting services to align your technology with business goals and drive digital transformation.</p>
+                <ul>
+                    <li>IT infrastructure assessment</li>
+                    <li>Technology roadmap development</li>
+                    <li>Cloud migration strategy</li>
+                    <li>Cybersecurity audits</li>
+                    <li>Software selection guidance</li>
+                    <li>Digital transformation consulting</li>
+                </ul>
+                <p>Our consultants bring decades of experience across industries to provide actionable recommendations tailored to your specific needs.</p>`
+            },
+            marketing: {
+                title: "Digital Marketing",
+                content: `<p>Data-driven digital marketing strategies that increase visibility, engagement, and conversions.</p>
+                <ul>
+                    <li>Search engine optimization (SEO)</li>
+                    <li>Pay-per-click advertising (PPC)</li>
+                    <li>Social media marketing</li>
+                    <li>Content marketing strategy</li>
+                    <li>Email marketing campaigns</li>
+                    <li>Conversion rate optimization</li>
+                </ul>
+                <p>We combine creativity with analytics to deliver measurable results and maximize your marketing ROI.</p>`
+            },
+            design: {
+                title: "Graphic Design",
+                content: `<p>Professional graphic design services that communicate your brand identity and captivate your audience.</p>
+                <ul>
+                    <li>Logo and brand identity design</li>
+                    <li>Print collateral (brochures, flyers, business cards)</li>
+                    <li>Digital assets (social media graphics, banners)</li>
+                    <li>Infographics and data visualization</li>
+                    <li>Packaging design</li>
+                    <li>UI/UX design elements</li>
+                </ul>
+                <p>Our designers combine artistic talent with strategic thinking to create visuals that reinforce your brand message.</p>`
+            },
+            photography: {
+                title: "Photography",
+                content: `<p>High-quality photography services for products, events, and corporate needs.</p>
+                <ul>
+                    <li>Product photography</li>
+                    <li>Corporate headshots</li>
+                    <li>Event coverage</li>
+                    <li>Architectural photography</li>
+                    <li>Food photography</li>
+                    <li>Retouching and editing</li>
+                </ul>
+                <p>Our professional photographers use state-of-the-art equipment and lighting to capture stunning images that tell your story.</p>`
+            },
+            videography: {
+                title: "Videography",
+                content: `<p>Professional video production services for commercials, tutorials, and promotional content.</p>
+                <ul>
+                    <li>Commercial video production</li>
+                    <li>Corporate videos</li>
+                    <li>Product demonstrations</li>
+                    <li>Training videos</li>
+                    <li>Event videography</li>
+                    <li>Animation and motion graphics</li>
+                </ul>
+                <p>From concept development to final editing, we create compelling video content that engages your audience and delivers your message.</p>`
+            }
+        };
+        
+        // Open modal with service details
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.getAttribute('data-service');
+                modalTitle.textContent = serviceDetails[service].title;
+                modalContent.innerHTML = serviceDetails[service].content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'visible';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>

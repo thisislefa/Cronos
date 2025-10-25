@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Professional Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Documentation Section Variables */
+        .docs-section-wrapper {
+            --doc-primary: #0091ff;
+            --doc-light: #f4f4f4;
+            --doc-white: #fff;
+            --doc-dark-blue: #06273e;
+            --doc-text: #333;
+            --doc-text-light: #666;
+            --doc-border: #e1e5e9;
+            --doc-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Documentation Main Container */
+        .docs-section-wrapper {
+            font-family: 'Inter', sans-serif;
+            background: var(--doc-light);
+            color: var(--doc-text);
+            line-height: 1.6;
+        }
+
+        .docs-main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Documentation Header */
+        .docs-header-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .docs-badge {
+            display: inline-block;
+            background: rgba(0, 145, 255, 0.1);
+            color: var(--doc-primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .docs-main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--doc-dark-blue);
+            line-height: 1.2;
+        }
+
+        .docs-subtitle {
+            font-size: 1.3rem;
+            color: var(--doc-text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .docs-search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .docs-search-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid var(--doc-border);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--doc-white);
+            transition: var(--doc-transition);
+        }
+
+        .docs-search-input:focus {
+            outline: none;
+            border-color: var(--doc-primary);
+            box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+        }
+
+        .docs-search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--doc-text-light);
+        }
+
+        /* Documentation Layout */
+        .docs-content-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Sidebar Navigation */
+        .docs-sidebar-nav {
+            position: sticky;
+            top: 100px;
+            background: var(--doc-white);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .docs-nav-category {
+            margin-bottom: 30px;
+        }
+
+        .docs-nav-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--doc-text-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .docs-nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .docs-nav-item {
+            margin-bottom: 8px;
+        }
+
+        .docs-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--doc-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--doc-transition);
+            font-weight: 500;
+        }
+
+        .docs-nav-link:hover {
+            background: rgba(0, 145, 255, 0.05);
+            color: var(--doc-primary);
+        }
+
+        .docs-nav-link.active {
+            background: rgba(0, 145, 255, 0.1);
+            color: var(--doc-primary);
+            border-left: 3px solid var(--doc-primary);
+        }
+
+        .docs-nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .docs-content-area {
+            background: var(--doc-white);
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .docs-section-block {
+            margin-bottom: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        .docs-section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--doc-dark-blue);
+            position: relative;
+        }
+
+        .docs-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--doc-primary);
+            border-radius: 2px;
+        }
+
+        .docs-section-desc {
+            font-size: 1.1rem;
+            color: var(--doc-text-light);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* Feature Cards */
+        .docs-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .docs-feature-card {
+            background: var(--doc-light);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--doc-border);
+            transition: var(--doc-transition);
+            position: relative;
+        }
+
+        .docs-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--doc-primary);
+        }
+
+        .docs-feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 145, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--doc-primary);
+            font-size: 1.5rem;
+        }
+
+        .docs-feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--doc-dark-blue);
+        }
+
+        .docs-feature-desc {
+            color: var(--doc-text-light);
+            margin-bottom: 0;
+        }
+
+        /* Code Examples */
+        .docs-code-container {
+            background: #1a1d23;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .docs-code-header {
+            background: #2d3748;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .docs-code-title {
+            color: #e2e8f0;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .docs-code-copy {
+            background: transparent;
+            border: 1px solid #4a5568;
+            color: #cbd5e0;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--doc-transition);
+        }
+
+        .docs-code-copy:hover {
+            background: #4a5568;
+        }
+
+        .docs-code-block {
+            padding: 25px;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+
+        .docs-code-comment { color: #6b7280; }
+        .docs-code-keyword { color: #f472b6; }
+        .docs-code-string { color: #86efac; }
+        .docs-code-function { color: #60a5fa; }
+
+        /* FAQ Section */
+        .docs-faq-container {
+            margin-top: 50px;
+        }
+
+        .docs-faq-item {
+            border-bottom: 1px solid var(--doc-border);
+            padding: 25px 0;
+        }
+
+        .docs-faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--doc-dark-blue);
+        }
+
+        .docs-faq-toggle {
+            transition: var(--doc-transition);
+            color: var(--doc-primary);
+        }
+
+        .docs-faq-item.active .docs-faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .docs-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--doc-transition);
+            color: var(--doc-text-light);
+            margin-top: 0;
+        }
+
+        .docs-faq-item.active .docs-faq-answer {
+            max-height: 500px;
+            margin-top: 15px;
+        }
+
+        /* Resources Grid */
+        .docs-resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .docs-resource-card {
+            background: var(--doc-light);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--doc-transition);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+        }
+
+        .docs-resource-card:hover {
+            background: var(--doc-white);
+            border-color: var(--doc-primary);
+            transform: translateY(-3px);
+        }
+
+        .docs-resource-icon {
+            font-size: 2.5rem;
+            color: var(--doc-primary);
+            margin-bottom: 15px;
+        }
+
+        .docs-resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--doc-dark-blue);
+        }
+
+        .docs-resource-desc {
+            color: var(--doc-text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .docs-content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .docs-sidebar-nav {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .docs-main-container {
+                padding: 60px 15px;
+            }
+            
+            .docs-main-title {
+                font-size: 2.5rem;
+            }
+            
+            .docs-content-area {
+                padding: 30px;
+            }
+            
+            .docs-features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .docs-resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .docs-main-title {
+                font-size: 2rem;
+            }
+            
+            .docs-section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="docs-section-wrapper">
+        <div class="docs-main-container">
+            <!-- Documentation Header -->
+            <div class="docs-header-section">
+                <span class="docs-badge">Documentation</span>
+                <h1 class="docs-main-title">Complete Developer Guide</h1>
+                <p class="docs-subtitle">Everything you need to integrate, customize, and extend our platform with comprehensive documentation and examples.</p>
+                
+                <div class="docs-search-container">
+                    <input type="text" class="docs-search-input" placeholder="Search documentation...">
+                    <i class="fas fa-search docs-search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Documentation Content -->
+            <div class="docs-content-grid">
+                <!-- Sidebar Navigation -->
+                <nav class="docs-sidebar-nav">
+                    <div class="docs-nav-category">
+                        <h3 class="docs-nav-title">Getting Started</h3>
+                        <ul class="docs-nav-list">
+                            <li class="docs-nav-item">
+                                <a href="#quick-start" class="docs-nav-link active">
+                                    <i class="fas fa-rocket docs-nav-icon"></i>
+                                    Quick Start
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#installation" class="docs-nav-link">
+                                    <i class="fas fa-download docs-nav-icon"></i>
+                                    Installation
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#authentication" class="docs-nav-link">
+                                    <i class="fas fa-key docs-nav-icon"></i>
+                                    Authentication
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="docs-nav-category">
+                        <h3 class="docs-nav-title">Core Concepts</h3>
+                        <ul class="docs-nav-list">
+                            <li class="docs-nav-item">
+                                <a href="#architecture" class="docs-nav-link">
+                                    <i class="fas fa-sitemap docs-nav-icon"></i>
+                                    Architecture
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#api-reference" class="docs-nav-link">
+                                    <i class="fas fa-code docs-nav-icon"></i>
+                                    API Reference
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#webhooks" class="docs-nav-link">
+                                    <i class="fas fa-plug docs-nav-icon"></i>
+                                    Webhooks
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="docs-nav-category">
+                        <h3 class="docs-nav-title">Advanced</h3>
+                        <ul class="docs-nav-list">
+                            <li class="docs-nav-item">
+                                <a href="#customization" class="docs-nav-link">
+                                    <i class="fas fa-palette docs-nav-icon"></i>
+                                    Customization
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#troubleshooting" class="docs-nav-link">
+                                    <i class="fas fa-tools docs-nav-icon"></i>
+                                    Troubleshooting
+                                </a>
+                            </li>
+                            <li class="docs-nav-item">
+                                <a href="#best-practices" class="docs-nav-link">
+                                    <i class="fas fa-star docs-nav-icon"></i>
+                                    Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Main Content Area -->
+                <div class="docs-content-area">
+                    <!-- Quick Start Section -->
+                    <section id="quick-start" class="docs-section-block">
+                        <h2 class="docs-section-title">Quick Start Guide</h2>
+                        <p class="docs-section-desc">Get up and running in minutes with our step-by-step guide to implementing our solutions.</p>
+
+                        <div class="docs-features-grid">
+                            <div class="docs-feature-card">
+                                <div class="docs-feature-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h3 class="docs-feature-title">Create Account</h3>
+                                <p class="docs-feature-desc">Sign up for a developer account and get your API keys to start integrating.</p>
+                            </div>
+
+                            <div class="docs-feature-card">
+                                <div class="docs-feature-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <h3 class="docs-feature-title">Install SDK</h3>
+                                <p class="docs-feature-desc">Add our SDK to your project with simple package manager commands.</p>
+                            </div>
+
+                            <div class="docs-feature-card">
+                                <div class="docs-feature-icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <h3 class="docs-feature-title">Run First Request</h3>
+                                <p class="docs-feature-desc">Make your first API call and see immediate results in your application.</p>
+                            </div>
+                        </div>
+
+                        <div class="docs-code-container">
+                            <div class="docs-code-header">
+                                <span class="docs-code-title">JavaScript SDK Installation</span>
+                                <button class="docs-code-copy">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="docs-code-block"><code><span class="docs-code-comment"># Install using npm</span>
+npm install @platform/sdk
+
+<span class="docs-code-comment"># Or using yarn</span>
+yarn add @platform/sdk
+
+<span class="docs-code-comment">// Initialize in your application</span>
+<span class="docs-code-keyword">import</span> PlatformSDK <span class="docs-code-keyword">from</span> <span class="docs-code-string">'@platform/sdk'</span>;
+
+<span class="docs-code-keyword">const</span> sdk = <span class="docs-code-keyword">new</span> <span class="docs-code-function">PlatformSDK</span>({
+  apiKey: <span class="docs-code-string">'your-api-key-here'</span>,
+  environment: <span class="docs-code-string">'production'</span>
+});</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- API Reference Section -->
+                    <section id="api-reference" class="docs-section-block">
+                        <h2 class="docs-section-title">API Reference</h2>
+                        <p class="docs-section-desc">Comprehensive documentation for all available endpoints with examples and response formats.</p>
+
+                        <div class="docs-code-container">
+                            <div class="docs-code-header">
+                                <span class="docs-code-title">User Authentication Endpoint</span>
+                                <button class="docs-code-copy">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="docs-code-block"><code><span class="docs-code-comment"># POST /api/v1/auth/login</span>
+<span class="docs-code-comment"># Authenticate user and receive access token</span>
+
+<span class="docs-code-keyword">Request</span>:
+{
+  <span class="docs-code-string">"email"</span>: <span class="docs-code-string">"user@example.com"</span>,
+  <span class="docs-code-string">"password"</span>: <span class="docs-code-string">"securepassword"</span>
+}
+
+<span class="docs-code-keyword">Response</span>:
+{
+  <span class="docs-code-string">"success"</span>: <span class="docs-code-keyword">true</span>,
+  <span class="docs-code-string">"data"</span>: {
+    <span class="docs-code-string">"access_token"</span>: <span class="docs-code-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>,
+    <span class="docs-code-string">"expires_in"</span>: <span class="docs-code-keyword">3600</span>,
+    <span class="docs-code-string">"user"</span>: {
+      <span class="docs-code-string">"id"</span>: <span class="docs-code-string">"user_123"</span>,
+      <span class="docs-code-string">"email"</span>: <span class="docs-code-string">"user@example.com"</span>,
+      <span class="docs-code-string">"name"</span>: <span class="docs-code-string">"John Doe"</span>
+    }
+  }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section id="faq" class="docs-section-block">
+                        <h2 class="docs-section-title">Frequently Asked Questions</h2>
+                        <p class="docs-section-desc">Quick answers to common questions about implementation, troubleshooting, and best practices.</p>
+
+                        <div class="docs-faq-container">
+                            <div class="docs-faq-item">
+                                <div class="docs-faq-question">
+                                    How do I handle API rate limits?
+                                    <i class="fas fa-chevron-down docs-faq-toggle"></i>
+                                </div>
+                                <div class="docs-faq-answer">
+                                    Our API implements a rate limit of 1000 requests per hour per API key. You can monitor your current usage through the X-RateLimit headers in every response. Implement exponential backoff for retries and consider caching frequently accessed data.
+                                </div>
+                            </div>
+
+                            <div class="docs-faq-item">
+                                <div class="docs-faq-question">
+                                    What authentication methods are supported?
+                                    <i class="fas fa-chevron-down docs-faq-toggle"></i>
+                                </div>
+                                <div class="docs-faq-answer">
+                                    We support API key authentication, OAuth 2.0, and JWT tokens. For most integrations, we recommend starting with API keys for simplicity. For user-facing applications, implement OAuth 2.0 for secure user authentication.
+                                </div>
+                            </div>
+
+                            <div class="docs-faq-item">
+                                <div class="docs-faq-question">
+                                    How can I test webhooks locally?
+                                    <i class="fas fa-chevron-down docs-faq-toggle"></i>
+                                </div>
+                                <div class="docs-faq-answer">
+                                    Use tools like ngrok or localtunnel to expose your local development server to the internet. Set up your webhook endpoint to point to your tunnel URL, and our system will be able to deliver webhook events to your local environment for testing.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Resources Section -->
+                    <section id="resources" class="docs-section-block">
+                        <h2 class="docs-section-title">Additional Resources</h2>
+                        <p class="docs-section-desc">Explore our comprehensive resources to enhance your development experience.</p>
+
+                        <div class="docs-resources-grid">
+                            <a href="#" class="docs-resource-card">
+                                <div class="docs-resource-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <h3 class="docs-resource-title">API Guide</h3>
+                                <p class="docs-resource-desc">Complete API documentation with detailed examples</p>
+                            </a>
+
+                            <a href="#" class="docs-resource-card">
+                                <div class="docs-resource-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3 class="docs-resource-title">Video Tutorials</h3>
+                                <p class="docs-resource-desc">Step-by-step video guides for common tasks</p>
+                            </a>
+
+                            <a href="#" class="docs-resource-card">
+                                <div class="docs-resource-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="docs-resource-title">Community Forum</h3>
+                                <p class="docs-resource-desc">Connect with other developers and experts</p>
+                            </a>
+
+                            <a href="#" class="docs-resource-card">
+                                <div class="docs-resource-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h3 class="docs-resource-title">Support</h3>
+                                <p class="docs-resource-desc">Get help from our technical support team</p>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Documentation JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ Toggle Functionality
+            const faqItems = document.querySelectorAll('.docs-faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.docs-faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth Scrolling for Navigation
+            const navLinks = document.querySelectorAll('.docs-nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Update active link
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Smooth scroll to section
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Copy Code Functionality
+            const copyButtons = document.querySelectorAll('.docs-code-copy');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const codeBlock = this.closest('.docs-code-container').querySelector('.docs-code-block');
+                    const textToCopy = codeBlock.textContent;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show copied feedback
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            });
+
+            // Search Functionality
+            const searchInput = document.querySelector('.docs-search-input');
+            
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                if (searchTerm.length > 2) {
+                    // Implement search logic here
+                    console.log('Searching for:', searchTerm);
+                    // You would typically filter content or show search results
+                }
+            });
+
+            // Intersection Observer for Active Navigation
+            const sections = document.querySelectorAll('.docs-section-block');
+            const navLinksArray = Array.from(navLinks);
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -50% 0px',
+                threshold: 0
+            };
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const correspondingLink = navLinksArray.find(link => 
+                            link.getAttribute('href') === `#${id}`
+                        );
+                        
+                        if (correspondingLink) {
+                            navLinksArray.forEach(link => link.classList.remove('active'));
+                            correspondingLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

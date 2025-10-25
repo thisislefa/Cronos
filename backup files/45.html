@@ -1,0 +1,550 @@
+<!-- Premium Showcase Section -->
+<div class="defcon-showcase-container">
+  <!-- Floating Particles Background -->
+  <div class="defcon-particles-container">
+    <div class="defcon-particle defcon-particle-1"></div>
+    <div class="defcon-particle defcon-particle-2"></div>
+    <div class="defcon-particle defcon-particle-3"></div>
+    <div class="defcon-particle defcon-particle-4"></div>
+    <div class="defcon-particle defcon-particle-5"></div>
+    <div class="defcon-particle defcon-particle-6"></div>
+  </div>
+  
+  <!-- Animated Geometric Frames -->
+  <div class="defcon-geometric-frame defcon-frame-1"></div>
+  <div class="defcon-geometric-frame defcon-frame-2"></div>
+  <div class="defcon-geometric-frame defcon-frame-3"></div>
+  
+  <!-- Main Content Wrapper -->
+  <div class="defcon-showcase-wrapper">
+    <!-- 3D Video Player -->
+    <div class="defcon-video-player-container">
+      <div class="defcon-video-holographic">
+        <video class="defcon-showcase-video" autoplay muted loop>
+          <source src="videos/techno.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="defcon-video-border defcon-border-1"></div>
+        <div class="defcon-video-border defcon-border-2"></div>
+        <div class="defcon-video-border defcon-border-3"></div>
+      </div>
+    </div>
+    
+    <!-- Premium Content Area -->
+    <div class="defcon-showcase-content">
+      <div class="defcon-content-glass">
+        <h2 class="defcon-showcase-heading">
+          <span class="defcon-heading-gradient">Innovative Solutions</span>
+          <span class="defcon-heading-solid">For The Digital Age</span>
+        </h2>
+        <p class="defcon-showcase-description">
+          Our award-winning team creates transformative digital experiences that elevate brands and drive measurable results. 
+          Through cutting-edge technology and strategic design, we deliver solutions that outperform expectations.
+        </p>
+        <div class="defcon-cta-wrapper">
+          <button class="defcon-premium-cta">
+            <span class="defcon-cta-text">Explore Our Process</span>
+            <span class="defcon-cta-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Base Container Styles */
+.defcon-showcase-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #06273e 0%, #020e1a 100%);
+  overflow: hidden;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Particles Styles */
+.defcon-particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.defcon-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 145, 255, 0.15);
+  backdrop-filter: blur(2px);
+  animation: float 15s infinite linear;
+}
+
+.defcon-particle-1 {
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.defcon-particle-2 {
+  width: 12px;
+  height: 12px;
+  top: 65%;
+  left: 85%;
+  animation-delay: 2s;
+}
+
+.defcon-particle-3 {
+  width: 6px;
+  height: 6px;
+  top: 30%;
+  left: 50%;
+  animation-delay: 4s;
+}
+
+.defcon-particle-4 {
+  width: 10px;
+  height: 10px;
+  top: 75%;
+  left: 30%;
+  animation-delay: 6s;
+}
+
+.defcon-particle-5 {
+  width: 5px;
+  height: 5px;
+  top: 50%;
+  left: 70%;
+  animation-delay: 8s;
+}
+
+.defcon-particle-6 {
+  width: 15px;
+  height: 15px;
+  top: 15%;
+  left: 90%;
+  animation-delay: 10s;
+}
+
+/* Geometric Frame Styles */
+.defcon-geometric-frame {
+  position: absolute;
+  border: 1px solid rgba(0, 145, 255, 0.2);
+  z-index: 2;
+  animation: rotate 30s infinite linear;
+  opacity: 0.5;
+}
+
+.defcon-frame-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 15%;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-delay: 0s;
+}
+
+.defcon-frame-2 {
+  width: 450px;
+  height: 450px;
+  bottom: 10%;
+  right: 10%;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation-delay: 10s;
+}
+
+.defcon-frame-3 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  left: 80%;
+  border-radius: 50% 50% 20% 80% / 60% 30% 70% 40%;
+  animation-delay: 5s;
+}
+
+/* Main Content Wrapper */
+.defcon-showcase-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 60px;
+}
+
+/* 3D Video Player Styles */
+.defcon-video-player-container {
+  flex: 1;
+  min-width: 300px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+}
+
+.defcon-video-holographic {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  transform-style: preserve-3d;
+  transform: rotateY(-5deg) rotateX(3deg);
+  transition: all 0.5s ease;
+}
+
+.defcon-showcase-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+
+.defcon-video-border {
+  position: absolute;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+}
+
+.defcon-border-1 {
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 1px solid rgba(0, 145, 255, 0.4);
+  z-index: 2;
+  animation: borderPulse 4s infinite ease-in-out;
+}
+
+.defcon-border-2 {
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border: 1px solid rgba(0, 145, 255, 0.2);
+  z-index: 1;
+  animation: borderPulse 6s infinite ease-in-out 1s;
+}
+
+.defcon-border-3 {
+  top: -30px;
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+  border: 1px solid rgba(0, 145, 255, 0.1);
+  z-index: 0;
+  animation: borderPulse 8s infinite ease-in-out 2s;
+}
+
+.defcon-video-holographic:hover {
+  transform: rotateY(-2deg) rotateX(1deg) scale(1.02);
+}
+
+.defcon-video-holographic:hover .defcon-showcase-video {
+  box-shadow: 0 30px 60px rgba(0, 145, 255, 0.2);
+}
+
+.defcon-video-holographic:hover .defcon-border-1 {
+  border-color: rgba(0, 145, 255, 0.6);
+}
+
+/* Premium Content Area Styles */
+.defcon-showcase-content {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.6s;
+}
+
+.defcon-content-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.defcon-showcase-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.9s;
+}
+
+.defcon-heading-gradient {
+  background: linear-gradient(90deg, #0091ff 0%, #00d1ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.defcon-heading-solid {
+  color: #ffffff;
+  display: block;
+}
+
+.defcon-showcase-description {
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.6;
+  color: #e5e5e5;
+  margin-bottom: 35px;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: slideInRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.2s;
+}
+
+/* Premium CTA Styles */
+.defcon-cta-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.5s;
+}
+
+.defcon-premium-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 32px;
+  background: linear-gradient(90deg, #0091ff 0%, #0066ff 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 145, 255, 0.2);
+}
+
+.defcon-premium-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.defcon-premium-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-premium-cta:hover::before {
+  left: 100%;
+}
+
+.defcon-cta-icon {
+  transition: all 0.3s ease;
+}
+
+.defcon-premium-cta:hover .defcon-cta-icon {
+  transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes borderPulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax Effect on Scroll */
+.defcon-showcase-container {
+  transition: transform 0.1s linear;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 992px) {
+  .defcon-showcase-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .defcon-video-player-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .defcon-showcase-content {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .defcon-content-glass {
+    padding: 30px;
+  }
+  
+  .defcon-frame-1, .defcon-frame-2, .defcon-frame-3 {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .defcon-showcase-container {
+    padding: 60px 15px;
+  }
+  
+  .defcon-content-glass {
+    padding: 25px;
+  }
+  
+  .defcon-premium-cta {
+    padding: 15px 25px;
+    font-size: 15px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Parallax Effect
+  const showcaseContainer = document.querySelector('.defcon-showcase-container');
+  const videoContainer = document.querySelector('.defcon-video-player-container');
+  const contentContainer = document.querySelector('.defcon-showcase-content');
+  const particles = document.querySelectorAll('.defcon-particle');
+  const frames = document.querySelectorAll('.defcon-geometric-frame');
+  
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const containerPosition = showcaseContainer.getBoundingClientRect().top;
+    const scrollPercentage = (containerPosition / window.innerHeight) * 100;
+    
+    if (scrollPercentage < 30 && scrollPercentage > -100) {
+      // Main container parallax
+      showcaseContainer.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+      
+      // Video and content parallax (different speeds)
+      videoContainer.style.transform = `translateX(${scrollPosition * -0.05}px)`;
+      contentContainer.style.transform = `translateX(${scrollPosition * 0.05}px)`;
+      
+      // Particles parallax
+      particles.forEach((particle, index) => {
+        const speed = 0.02 + (index * 0.01);
+        particle.style.transform = `translateY(${scrollPosition * speed}px)`;
+      });
+      
+      // Frames parallax
+      frames.forEach((frame, index) => {
+        const speed = 0.03 + (index * 0.01);
+        frame.style.transform = `rotate(${scrollPosition * speed}deg)`;
+      });
+    }
+  });
+  
+  // Video hover effect enhancement
+  const videoHolographic = document.querySelector('.defcon-video-holographic');
+  const videoBorders = document.querySelectorAll('.defcon-video-border');
+  
+  videoHolographic.addEventListener('mouseenter', function() {
+    videoBorders.forEach(border => {
+      border.style.borderColor = 'rgba(0, 145, 255, 0.6)';
+    });
+  });
+  
+  videoHolographic.addEventListener('mouseleave', function() {
+    videoBorders.forEach((border, index) => {
+      const opacity = 0.4 - (index * 0.1);
+      border.style.borderColor = `rgba(0, 145, 255, ${opacity})`;
+    });
+  });
+  
+  // Initialize animations when in view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('defcon-in-view');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  observer.observe(showcaseContainer);
+});
+</script>

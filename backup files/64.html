@@ -1,0 +1,799 @@
+<div class="defcon-holographic-hero">
+  <!-- Parallax Background Layers -->
+  <div class="defcon-hero-bg-layer defcon-bg-layer-1"></div>
+  <div class="defcon-hero-bg-layer defcon-bg-layer-2"></div>
+  
+  <!-- Particle Network Canvas -->
+  <canvas class="defcon-particle-network"></canvas>
+  
+  <!-- Central Content Container -->
+  <div class="defcon-hero-content">
+    <!-- Holographic Logo/Shape -->
+    <div class="defcon-hologram-container">
+      <div class="defcon-holographic-element"></div>
+      <div class="defcon-holographic-glow"></div>
+    </div>
+    
+    <!-- Animated Headlines -->
+    <div class="defcon-headline-container">
+      <h1 class="defcon-main-headline">Redefining Digital Frontiers</h1>
+      <h2 class="defcon-sub-headline">Advanced IT Solutions for the Next Generation</h2>
+    </div>
+    
+    <!-- CTA Button -->
+    <button class="defcon-cta-button">Explore Our Services</button>
+  </div>
+  
+  <!-- Floating Service Panels -->
+  <div class="defcon-service-panels">
+    <div class="defcon-service-panel" data-service="cloud">
+      <div class="defcon-service-icon">☁️</div>
+      <div class="defcon-service-title">Cloud Solutions</div>
+      <div class="defcon-service-desc">Scalable cloud infrastructure tailored to your needs</div>
+    </div>
+    
+    <div class="defcon-service-panel" data-service="cyber">
+      <div class="defcon-service-icon">🛡️</div>
+      <div class="defcon-service-title">Cyber Security</div>
+      <div class="defcon-service-desc">Enterprise-grade protection for your digital assets</div>
+    </div>
+    
+    <div class="defcon-service-panel" data-service="ai">
+      <div class="defcon-service-icon">🧠</div>
+      <div class="defcon-service-title">AI Integration</div>
+      <div class="defcon-service-desc">Intelligent systems to transform your operations</div>
+    </div>
+    
+    <div class="defcon-service-panel" data-service="data">
+      <div class="defcon-service-icon">📊</div>
+      <div class="defcon-service-title">Data Analytics</div>
+      <div class="defcon-service-desc">Actionable insights from your business data</div>
+    </div>
+  </div>
+  
+  <!-- Service Modal (hidden by default) -->
+  <div class="defcon-service-modal">
+    <div class="defcon-modal-content">
+      <button class="defcon-modal-close">&times;</button>
+      <div class="defcon-modal-video-container">
+        <!-- Placeholder for video -->
+        <div class="defcon-modal-video-placeholder"></div>
+      </div>
+      <div class="defcon-modal-text">
+        <h3 class="defcon-modal-title">Service Title</h3>
+        <p class="defcon-modal-description">Detailed service description will appear here.</p>
+        <button class="defcon-modal-cta">Learn More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Base Styles */
+.defcon-holographic-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background Layers */
+.defcon-hero-bg-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  opacity: 0.1;
+  transition: transform 0.3s ease-out;
+}
+
+.defcon-bg-layer-1 {
+  background-image: 
+    linear-gradient(#06273e 1px, transparent 1px),
+    linear-gradient(90deg, #06273e 1px, transparent 1px);
+}
+
+.defcon-bg-layer-2 {
+  background-image: 
+    radial-gradient(circle, #0091ff 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.05;
+}
+
+/* Particle Network */
+.defcon-particle-network {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Central Content */
+.defcon-hero-content {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Holographic Element */
+.defcon-hologram-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 40px;
+  perspective: 1000px;
+}
+
+.defcon-holographic-element {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #0091ff, #006bb3);
+  border-radius: 20px;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 30px rgba(0, 145, 255, 0.3);
+  transition: transform 0.1s linear;
+}
+
+.defcon-holographic-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, rgba(0, 145, 255, 0.4) 0%, transparent 70%);
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.defcon-hologram-container:hover .defcon-holographic-glow {
+  opacity: 1;
+}
+
+/* Headlines */
+.defcon-headline-container {
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.defcon-main-headline {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #06273e;
+  margin: 0 0 15px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: defconFlickerIn 1.5s forwards 0.3s;
+}
+
+.defcon-sub-headline {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #06273e;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: defconFlickerIn 1.5s forwards 0.6s;
+}
+
+@keyframes defconFlickerIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: 0 0 10px rgba(0, 145, 255, 0);
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: 0 0 10px rgba(0, 145, 255, 0.5);
+  }
+  70% {
+    opacity: 0.3;
+    text-shadow: 0 0 5px rgba(0, 145, 255, 0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgba(0, 145, 255, 0);
+  }
+}
+
+/* CTA Button */
+.defcon-cta-button {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
+  background-color: #0091ff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transform: scale(1);
+  box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.defcon-cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 145, 255, 0.5);
+}
+
+.defcon-cta-button:hover::before {
+  transform: translateX(100%);
+}
+
+/* Service Panels */
+.defcon-service-panels {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.defcon-service-panel {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  transition: all 0.4s ease;
+  pointer-events: auto;
+  transform-style: preserve-3d;
+  border: 1px solid rgba(0, 145, 255, 0.2);
+}
+
+.defcon-service-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.defcon-service-title {
+  font-weight: bold;
+  color: #06273e;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.defcon-service-desc {
+  font-size: 0.7rem;
+  color: #06273e;
+  text-align: center;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.defcon-service-panel:hover {
+  transform: scale(1.1) rotateY(10deg);
+  box-shadow: 0 10px 30px rgba(0, 145, 255, 0.2);
+  z-index: 10;
+}
+
+.defcon-service-panel:hover .defcon-service-icon {
+  transform: scale(1.2);
+}
+
+.defcon-service-panel:hover .defcon-service-desc {
+  opacity: 1;
+  max-height: 50px;
+}
+
+/* Position service panels in a circle around the center */
+.defcon-service-panel[data-service="cloud"] {
+  top: 20%;
+  left: 20%;
+}
+
+.defcon-service-panel[data-service="cyber"] {
+  top: 20%;
+  right: 20%;
+}
+
+.defcon-service-panel[data-service="ai"] {
+  bottom: 20%;
+  left: 20%;
+}
+
+.defcon-service-panel[data-service="data"] {
+  bottom: 20%;
+  right: 20%;
+}
+
+/* Service Modal */
+.defcon-service-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(6, 39, 62, 0.9);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.defcon-service-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.defcon-modal-content {
+  width: 80%;
+  max-width: 1000px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+  position: relative;
+}
+
+.defcon-service-modal.active .defcon-modal-content {
+  transform: scale(1);
+}
+
+.defcon-modal-video-container {
+  flex: 1;
+  min-height: 400px;
+  background-color: #e5e5e5;
+}
+
+.defcon-modal-video-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #06273e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.defcon-modal-text {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.defcon-modal-title {
+  font-size: 2rem;
+  color: #06273e;
+  margin-bottom: 20px;
+}
+
+.defcon-modal-description {
+  font-size: 1rem;
+  color: #06273e;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.defcon-modal-cta {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
+  background-color: #0091ff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.defcon-modal-cta:hover {
+  background-color: #0077cc;
+  transform: translateY(-2px);
+}
+
+.defcon-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-modal-close:hover {
+  transform: rotate(90deg);
+  background-color: #006bb3;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .defcon-main-headline {
+    font-size: 2.8rem;
+  }
+  
+  .defcon-sub-headline {
+    font-size: 1.3rem;
+  }
+  
+  .defcon-service-panels {
+    display: none;
+  }
+  
+  .defcon-modal-content {
+    flex-direction: column;
+    width: 90%;
+  }
+  
+  .defcon-modal-video-container {
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-main-headline {
+    font-size: 2.2rem;
+  }
+  
+  .defcon-sub-headline {
+    font-size: 1.1rem;
+  }
+  
+  .defcon-hologram-container {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .defcon-cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-main-headline {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-sub-headline {
+    font-size: 1rem;
+  }
+  
+  .defcon-hologram-container {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+  }
+  
+  .defcon-modal-text {
+    padding: 20px;
+  }
+  
+  .defcon-modal-title {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Elements
+  const heroSection = document.querySelector('.defcon-holographic-hero');
+  const hologram = document.querySelector('.defcon-holographic-element');
+  const bgLayers = document.querySelectorAll('.defcon-hero-bg-layer');
+  const servicePanels = document.querySelectorAll('.defcon-service-panel');
+  const serviceModal = document.querySelector('.defcon-service-modal');
+  const modalClose = document.querySelector('.defcon-modal-close');
+  const particleCanvas = document.querySelector('.defcon-particle-network');
+  
+  // Initialize particle network
+  if (particleCanvas) {
+    initParticleNetwork(particleCanvas);
+  }
+  
+  // Mouse move effects
+  if (heroSection) {
+    heroSection.addEventListener('mousemove', function(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      
+      // Hologram tilt effect
+      if (hologram) {
+        const tiltX = (centerX - x) / 20;
+        const tiltY = (centerY - y) / 20;
+        hologram.style.transform = `rotateY(${tiltX}deg) rotateX(${tiltY}deg)`;
+      }
+      
+      // Background parallax
+      bgLayers.forEach((layer, index) => {
+        const factor = index === 0 ? 0.03 : 0.01;
+        const moveX = (centerX - x) * factor;
+        const moveY = (centerY - y) * factor;
+        layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+      
+      // Service panel hover effects
+      servicePanels.forEach(panel => {
+        const panelRect = panel.getBoundingClientRect();
+        const panelCenterX = panelRect.left + panelRect.width / 2;
+        const panelCenterY = panelRect.top + panelRect.height / 2;
+        
+        const distance = Math.sqrt(
+          Math.pow(x - panelCenterX, 2) + 
+          Math.pow(y - panelCenterY, 2)
+        );
+        
+        const maxDistance = 200;
+        const scale = distance < maxDistance ? 
+          1 + (1 - distance / maxDistance) * 0.2 : 1;
+        
+        panel.style.transform = `scale(${scale})`;
+      });
+    });
+  }
+  
+  // Service panel click handlers
+  servicePanels.forEach(panel => {
+    panel.addEventListener('click', function() {
+      const serviceType = panel.getAttribute('data-service');
+      openServiceModal(serviceType);
+    });
+  });
+  
+  // Modal close handler
+  if (modalClose) {
+    modalClose.addEventListener('click', function() {
+      serviceModal.classList.remove('active');
+    });
+  }
+  
+  // Touch support for mobile
+  if ('ontouchstart' in window) {
+    // Simplified hologram interaction for touch devices
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    heroSection.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    });
+    
+    heroSection.addEventListener('touchmove', function(e) {
+      if (!hologram) return;
+      
+      const touchX = e.touches[0].clientX;
+      const touchY = e.touches[0].clientY;
+      const deltaX = touchX - touchStartX;
+      const deltaY = touchY - touchStartY;
+      
+      hologram.style.transform = `rotateY(${deltaX / 5}deg) rotateX(${-deltaY / 5}deg)`;
+    });
+    
+    heroSection.addEventListener('touchend', function() {
+      if (hologram) {
+        hologram.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      }
+    });
+  }
+  
+  // Function to open service modal
+  function openServiceModal(serviceType) {
+    if (!serviceModal) return;
+    
+    // In a real implementation, you would load service-specific content here
+    const modalTitle = serviceModal.querySelector('.defcon-modal-title');
+    const modalDesc = serviceModal.querySelector('.defcon-modal-description');
+    
+    // Placeholder content - replace with your actual service data
+    switch(serviceType) {
+      case 'cloud':
+        modalTitle.textContent = 'Cloud Solutions';
+        modalDesc.textContent = 'Our cutting-edge cloud infrastructure provides scalable, secure, and high-performance solutions tailored to your business needs. With 99.99% uptime and global data centers, we ensure your operations run smoothly around the clock.';
+        break;
+      case 'cyber':
+        modalTitle.textContent = 'Cyber Security';
+        modalDesc.textContent = 'Enterprise-grade protection for your digital assets with our multi-layered security approach. We implement advanced threat detection, encryption protocols, and continuous monitoring to safeguard your critical data.';
+        break;
+      case 'ai':
+        modalTitle.textContent = 'AI Integration';
+        modalDesc.textContent = 'Transform your operations with intelligent systems that learn and adapt. Our AI solutions automate processes, provide predictive analytics, and enhance decision-making across your organization.';
+        break;
+      case 'data':
+        modalTitle.textContent = 'Data Analytics';
+        modalDesc.textContent = 'Turn your data into actionable insights with our powerful analytics platform. We help you uncover patterns, predict trends, and make data-driven decisions that drive business growth.';
+        break;
+      default:
+        modalTitle.textContent = 'Our Services';
+        modalDesc.textContent = 'Discover how our advanced IT solutions can transform your business.';
+    }
+    
+    serviceModal.classList.add('active');
+  }
+  
+  // Particle Network Initialization
+  function initParticleNetwork(canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = window.innerWidth < 768 ? 30 : 50;
+    
+    // Resize canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    // Particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 30) + 1;
+        this.color = '#0091ff';
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      
+      update(mouse) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        let forceDirectionX = dx / distance;
+        let forceDirectionY = dy / distance;
+        let maxDistance = 100;
+        let force = (maxDistance - distance) / maxDistance;
+        let directionX = forceDirectionX * force * this.density * 0.6;
+        let directionY = forceDirectionY * force * this.density * 0.6;
+        
+        if (distance < maxDistance) {
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          if (this.x !== this.baseX) {
+            let dx = this.baseX - this.x;
+            this.x += dx / 10;
+          }
+          if (this.y !== this.baseY) {
+            let dy = this.baseY - this.y;
+            this.y += dy / 10;
+          }
+        }
+        
+        this.draw();
+      }
+    }
+    
+    // Create particles
+    function init() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Connect particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 145, 255, ${1 - distance / 150})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+        particles[i].update(mouse);
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    // Mouse position
+    let mouse = {
+      x: null,
+      y: null
+    };
+    
+    // Track mouse movement
+    window.addEventListener('mousemove', function(e) {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+    
+    // Handle touch
+    window.addEventListener('touchmove', function(e) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    });
+    
+    // Reset mouse position when leaving canvas
+    window.addEventListener('mouseout', function() {
+      mouse.x = undefined;
+      mouse.y = undefined;
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', function() {
+      resizeCanvas();
+      init();
+    });
+    
+    // Initialize
+    resizeCanvas();
+    init();
+    animate();
+  }
+});
+</script>

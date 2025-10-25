@@ -1,0 +1,387 @@
+<div class="defcon-hero-container">
+  <div class="defcon-hero-cards">
+    <!-- Card 1 -->
+    <div class="defcon-card defcon-card-active" data-card-index="0">
+      <div class="defcon-card-bg" style="background-image: url('thumbnails/pexels-resourceboy-18541715.jpg')"></div>
+      <div class="defcon-card-overlay"></div>
+      <div class="defcon-card-content">
+        <h3 class="defcon-card-title">Innovative Solutions</h3>
+        <p class="defcon-card-desc">Cutting-edge technology tailored to your business needs for maximum efficiency.</p>
+        <a href="#" class="defcon-card-button">Learn More</a>
+      </div>
+    </div>
+    
+    <!-- Card 2 -->
+    <div class="defcon-card" data-card-index="1">
+      <div class="defcon-card-bg" style="background-image: url('thumbnails/pexels-altabena-10142683.jpg')"></div>
+      <div class="defcon-card-overlay"></div>
+      <div class="defcon-card-content">
+        <h3 class="defcon-card-title">Strategic Consulting</h3>
+        <p class="defcon-card-desc">Expert guidance to transform your digital presence and outperform competitors.</p>
+        <a href="#" class="defcon-card-button">Get Started</a>
+      </div>
+    </div>
+    
+    <!-- Card 3 -->
+    <div class="defcon-card" data-card-index="2">
+      <div class="defcon-card-bg" style="background-image: url('thumbnails/pexels-pixabay-270669.jpg')"></div>
+      <div class="defcon-card-overlay"></div>
+      <div class="defcon-card-content">
+        <h3 class="defcon-card-title">Data Intelligence</h3>
+        <p class="defcon-card-desc">Harness the power of your data to drive informed business decisions.</p>
+        <a href="#" class="defcon-card-button">Discover How</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="defcon-card-nav">
+    <button class="defcon-nav-arrow defcon-nav-prev" aria-label="Previous card">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <div class="defcon-card-indicator">
+      <span class="defcon-current-card">1</span>
+    </div>
+    <button class="defcon-nav-arrow defcon-nav-next" aria-label="Next card">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+/* Base container styling */
+.defcon-hero-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 500px;
+}
+
+/* Cards container */
+.defcon-hero-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+/* Individual card styling */
+.defcon-card {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Active card styling */
+.defcon-card-active {
+  flex: 3;
+}
+
+/* Card background image */
+.defcon-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.defcon-card:hover .defcon-card-bg {
+  transform: scale(1.05);
+}
+
+/* Card overlay for better text visibility */
+.defcon-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(6, 39, 62, 0.2) 0%, rgba(6, 39, 62, 0.8) 100%);
+  z-index: 2;
+}
+
+/* Card content styling */
+.defcon-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.defcon-card-active .defcon-card-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card title */
+.defcon-card-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+}
+
+/* Card description */
+.defcon-card-desc {
+  color: #e5e5e5;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 25px 0;
+  max-width: 80%;
+}
+
+/* Card button */
+.defcon-card-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  float: right;
+}
+
+.defcon-card-button:hover {
+  background-color: #0077d6;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+/* Navigation controls */
+.defcon-card-nav {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+/* Navigation arrows */
+.defcon-nav-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(6, 39, 62, 0.7);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-nav-arrow:hover {
+  background-color: rgba(0, 145, 255, 0.8);
+  transform: scale(1.1);
+}
+
+.defcon-nav-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Card indicator */
+.defcon-card-indicator {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .defcon-hero-container {
+    height: 400px;
+  }
+  
+  .defcon-card-title {
+    font-size: 22px;
+  }
+  
+  .defcon-card-desc {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  
+  .defcon-card-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-hero-container {
+    height: 300px;
+    padding: 10px;
+  }
+  
+  .defcon-card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .defcon-card-desc {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .defcon-card-content {
+    padding: 15px;
+  }
+  
+  .defcon-card-nav {
+    bottom: 15px;
+  }
+  
+  .defcon-nav-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .defcon-card-indicator {
+    font-size: 14px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.defcon-card');
+  const prevBtn = document.querySelector('.defcon-nav-prev');
+  const nextBtn = document.querySelector('.defcon-nav-next');
+  const currentIndicator = document.querySelector('.defcon-current-card');
+  let currentIndex = 0;
+  let autoRotateInterval;
+  
+  // Initialize the cards
+  function initCards() {
+    cards.forEach((card, index) => {
+      card.classList.remove('defcon-card-active');
+      if (index === currentIndex) {
+        card.classList.add('defcon-card-active');
+      }
+    });
+    updateIndicator();
+  }
+  
+  // Update the position indicator
+  function updateIndicator() {
+    currentIndicator.textContent = currentIndex + 1;
+  }
+  
+  // Go to a specific card
+  function goToCard(index) {
+    if (index < 0) index = cards.length - 1;
+    if (index >= cards.length) index = 0;
+    
+    cards[currentIndex].classList.remove('defcon-card-active');
+    currentIndex = index;
+    cards[currentIndex].classList.add('defcon-card-active');
+    updateIndicator();
+    
+    // Reset the auto-rotate timer
+    resetAutoRotate();
+  }
+  
+  // Go to the next card
+  function nextCard() {
+    goToCard(currentIndex + 1);
+  }
+  
+  // Go to the previous card
+  function prevCard() {
+    goToCard(currentIndex - 1);
+  }
+  
+  // Set up auto-rotation
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(nextCard, 5000);
+  }
+  
+  // Reset auto-rotation timer
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+  
+  // Event listeners
+  nextBtn.addEventListener('click', nextCard);
+  prevBtn.addEventListener('click', prevCard);
+  
+  // Card click events
+  cards.forEach((card, index) => {
+    card.addEventListener('click', function() {
+      if (!card.classList.contains('defcon-card-active')) {
+        goToCard(index);
+      }
+    });
+  });
+  
+  // Pause auto-rotation on hover
+  const heroContainer = document.querySelector('.defcon-hero-container');
+  heroContainer.addEventListener('mouseenter', function() {
+    clearInterval(autoRotateInterval);
+  });
+  
+  heroContainer.addEventListener('mouseleave', function() {
+    startAutoRotate();
+  });
+  
+  // Initialize
+  initCards();
+  startAutoRotate();
+  
+  // Make it responsive to touch events for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  heroContainer.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  
+  heroContainer.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, {passive: true});
+  
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+      nextCard();
+    } else if (touchEndX > touchStartX + 50) {
+      prevCard();
+    }
+  }
+});
+</script>

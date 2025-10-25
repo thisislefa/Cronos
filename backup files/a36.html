@@ -1,0 +1,225 @@
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        div.hero-section-dc {
+            font-family: 'Inter', sans-serif;
+            background-color: #bebbbbf0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Component wrapper */
+        .dc-component-wrapper {
+            width: 100%;
+            max-width: 72rem; /* 1152px */
+            padding: 1rem;
+        }
+
+        /* Grid container for layout */
+        .dc-grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+         }
+
+        /* Image cluster section */
+        .dc-image-cluster {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .dc-image-cluster-half {
+            width: 50%;
+        }
+
+        .dc-left-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        .dc-right-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        /* Circular badge */
+        .dc-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8rem; /* 128px */
+            height: 8rem; /* 128px */
+            background-color: #0c1a1e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        .dc-badge-large-text {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+        }
+        .dc-badge-small-text {
+            font-size: 0.875rem; /* 14px */
+            font-weight: 600;
+        }
+
+        /* Text content section */
+        .dc-text-content {
+            /* No base styles needed, responsive below */
+        }
+        .dc-pre-header {
+            color: #06273e;
+            font-size: 0.875rem; /* 14px */
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .dc-main-header {
+            color: #06273e;
+            font-size: 2.25rem; /* 36px */
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+        .dc-body-text {
+            color: #4b5563; /* gray-600 */
+            font-size: 1rem; /* 16px */
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .dc-body-text.last {
+             margin-bottom: 2rem;
+        }
+        
+        /* Action Button */
+        .dc-action-button {
+            display: inline-block;
+            background-color: #a3e635;
+            color: #0c1a1e;
+            font-weight: 700;
+            font-size: 1.125rem; /* 18px */
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+        }
+        .dc-action-button:hover {
+            background-color: #bef264;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        /* Responsive styles */
+        @media (min-width: 640px) { /* sm */
+            .dc-component-wrapper {
+                padding: 1.5rem;
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .dc-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dc-left-image { height: 450px; }
+            .dc-right-image { height: 380px; }
+            .dc-badge {
+                width: 9rem; /* 144px */
+                height: 9rem; /* 144px */
+            }
+            .dc-badge-large-text { font-size: 2.25rem; } /* 36px */
+            .dc-badge-small-text { font-size: 1rem; } /* 16px */
+            .dc-text-content {
+                padding-left: 2rem;
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .dc-component-wrapper {
+                padding: 2rem;
+            }
+            .dc-grid-container {
+                grid-template-columns: repeat(10, 1fr);
+            }
+            .dc-image-cluster {
+                grid-column: span 5 / span 5;
+            }
+            .dc-text-content {
+                grid-column: span 5 / span 5;
+            }
+            .dc-main-header {
+                font-size: 3rem; /* 48px */
+                line-height: 1;
+            }
+            .dc-body-text {
+                font-size: 1.125rem; /* 18px */
+                line-height: 1.75;
+            }
+        }
+    </style>
+
+<div>
+    <section class="dc-component-wrapper">
+        <div class="dc-grid-container">
+
+            <!-- Image Cluster Section -->
+            <div class="dc-image-cluster">
+                <div class="dc-image-cluster-half">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" 
+                         alt="People collaborating at a tech conference" 
+                         class="dc-left-image">
+                </div>
+
+                <div class="dc-image-cluster-half">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                         alt="Close up of server room hardware" 
+                         class="dc-right-image">
+                </div>
+                
+                <div class="dc-badge">
+                    <span class="dc-badge-large-text">30+</span>
+                    <span class="dc-badge-small-text">Villages</span>
+                </div>
+            </div>
+
+            <!-- Text Content Section -->
+            <div class="dc-text-content">
+                <p class="dc-pre-header">HACKING WITH PURPOSE</p>
+                <h1 class="dc-main-header">
+                    Join the Community That Redefines Security.
+                </h1>
+                <p class="dc-body-text">
+                    At DEFCON, we're not just a conference; we're a global community. We bring together hackers, researchers, and professionals who are passionate about technology, eager to share knowledge, and dedicated to exploring the future of security.
+                </p>
+                <p class="dc-body-text last">
+                    Whether you're exploring the villages, competing in a CTF, or attending a talk, every individual plays a role in shaping the conversations that push our industry forward.
+                </p>
+                <a href="#" class="dc-action-button">
+                    EVENT SCHEDULE
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+  </div>

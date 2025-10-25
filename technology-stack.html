@@ -1,0 +1,2956 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Advanced Digital Solutions</title>
+    
+    <!-- Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =============================================
+           CSS VARIABLES (Custom Properties)
+           ============================================= */
+        :root {
+            /* Color Palette */
+            --dc-color-header-bg: #080d1b;
+            --dc-color-accent: #0091ff;
+            --dc-color-text-light: #fff;
+            
+            --dc-color-off-white: #f4f4f4;
+            --dc-color-text-muted: #b5b5d9;
+            --dc-color-menu-bg: #10102a;
+            --dc-color-menu-border: rgba(0, 145, 255, 0.2);
+            --dc-color-menu-hover-bg: rgba(70, 70, 110, 0.3);
+            --dc-color-button-primary: #0077cc;
+            --dc-color-button-hover: #0081ff;
+            --dc-color-panel-bg: #171a2e;
+            
+            /* Sizing */
+            --dc-header-height: 55px;
+            --dc-content-max-width: 1500px;
+            --dc-border-radius: 8px;
+            --dc-transition-speed: 0.3s;
+            
+            /* Services Mega Menu Sizing */
+            --dc-services-menu-width: 900px;
+            --dc-services-categories-width: 50%;
+            --dc-services-submenu-width: 600px;
+            --dc-services-category-height: 80px;
+            --dc-services-item-padding: 22px;
+            
+            /* Discover Mega Menu Sizing */
+            --dc-discover-menu-width: fit-content;
+            --dc-discover-main-width: 280px;
+            --dc-discover-submenu-width: 590px;
+            
+            /* Z-index layers */
+            --dc-z-header: 1000;
+            --dc-z-mobile-nav: 900;
+            --dc-z-mobile-toggle: 1010;
+        }
+
+        /* =============================================
+           BASE STYLES
+           ============================================= */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--dc-header-height);
+            background-color: var(--dc-color-background-dark);
+            color: var(--dc-color-text-light);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =============================================
+           HEADER CONTAINER
+           ============================================= */
+        .dc-header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--dc-z-header);
+            background-color: var(--dc-color-header-bg);
+        }
+
+        .dc-header {
+            height: var(--dc-header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-header-container {
+            max-width: var(--dc-content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* =============================================
+           LOGO STYLES
+           ============================================= */
+        .dc-logo-container {
+            flex-shrink: 0;
+        }
+
+        .dc-logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-logo-image {
+            height: 40px;
+            vertical-align: middle;
+            transition: opacity var(--dc-transition-speed) ease;
+        }
+
+        .dc-logo-link:hover .dc-logo-image {
+            opacity: 0.8;
+        }
+
+        /* =============================================
+           DESKTOP NAVIGATION
+           ============================================= */
+        .dc-main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .dc-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .dc-nav-item {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .dc-nav-link {
+            text-decoration: none;
+            color: var(--dc-color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 15px;
+            align-items: center;
+            transition: color var(--dc-transition-speed) ease;
+        }
+
+        .dc-nav-link:hover,
+        .dc-nav-item--has-megamenu.active > .dc-nav-link {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           ACTION BUTTON
+           ============================================= */
+        .dc-header-action-btn {
+            background: var(--dc-color-button-primary);
+            color: var(--dc-color-text-light);
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn:hover {
+            background-color: var(--dc-color-button-hover);
+        }
+
+        .dc-header-action-btn-cta {
+            background: #62b8fa32;
+            color: #95d1ff;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn-cta:hover {
+          background-color: #62b8fa5d;
+        }
+
+        /* =============================================
+           MEGA MENU CONTAINERS
+           ============================================= */
+        .dc-mega-menu-container {
+            position: absolute;
+            top: calc(100% + 8px);
+            background-color: var(--dc-color-menu-bg);
+            border-radius: var(--dc-border-radius);
+            backface-visibility: hidden;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity var(--dc-transition-speed) ease, 
+                        transform var(--dc-transition-speed) ease, 
+                        visibility var(--dc-transition-speed);
+            transform-origin: top center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .dc-nav-item--has-megamenu:hover .dc-mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dc-mega-menu-panel {
+            display: none;
+        }
+
+        .dc-mega-menu-panel.active {
+            display: flex;
+        }
+
+        /* =============================================
+           SERVICES MEGA MENU
+           ============================================= */
+        .dc-mega-menu-container--services {
+            left: -950%;
+            transform: translateZ(0);
+            transition: opacity 0s ease, transform 0.3s ease, visibility 0.3s;
+            width: var(--dc-services-menu-width);
+            padding: 0;
+            transform-origin: top center;
+        }
+
+        .dc-services-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Services Categories Panel */
+        .dc-services-categories {
+            list-style: none;
+            width: var(--dc-services-categories-width);
+            margin: 0;
+            padding: 3rem 0;
+            background-color: var(--dc-color-menu-bg);
+            border-top-left-radius: var(--dc-border-radius);
+            border-bottom-left-radius: var(--dc-border-radius);
+        }
+
+        .dc-services-category-item {
+            margin: 0;
+            height: var(--dc-services-category-height);
+            width: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-services-category-item:last-child {
+            border-bottom: none;
+        }
+
+        .dc-services-category-link {
+            display: flex;
+            align-items: center;
+            color: var(--dc-color-text-light);
+            gap: 15px;
+            padding: 0 var(--dc-services-item-padding);
+            width: 100%;
+            height: 100%;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all var(--dc-transition-speed) ease;
+            position: relative;
+        }
+
+        .dc-services-category-link:hover,
+        .dc-services-category-item.active .dc-services-category-link {
+            background-color: var(--dc-color-panel-bg);
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--dc-color-text-light);
+            flex-shrink: 0;
+        }
+
+        .dc-services-category-item.active .dc-services-category-icon,
+        .dc-services-category-link:hover .dc-services-category-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-services-category-text {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .dc-services-category-title {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .dc-services-category-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.3;
+        }
+
+        /* Services Submenu Panel */
+        .dc-services-submenu-container {
+            width: fit-content;
+            background-color: var(--dc-color-panel-bg);
+            border-top-right-radius: var(--dc-border-radius);
+            border-bottom-right-radius: var(--dc-border-radius);
+            height: fit-content;
+            padding: 3.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-panel {
+            display: none;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-submenu-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .dc-submenu-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dc-color-text-light);
+            margin: 0 0 8px 0;
+        }
+
+        .dc-submenu-desc {
+            font-size: 14px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .dc-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            flex-grow: 1;
+        }
+
+        .dc-submenu-item {
+            padding: 0;
+            margin: 0;
+        }
+
+        .dc-submenu-link {
+            display: block;
+            padding: 12px;
+            border-radius: 6px;
+            transition: all var(--dc-transition-speed) ease;
+            height: 100%;
+        }
+
+        .dc-submenu-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .dc-submenu-link:hover .dc-mega-menu-link-title {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-mega-menu-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .dc-mega-menu-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* =============================================
+           DISCOVER MEGA MENU (Fixed Layout)
+           ============================================= */
+        .dc-mega-menu-container--discover {
+            left: -1150%;
+            transform: translateZ(0);
+            transition: opacity 0s ease, transform 0.3s ease, visibility 0.3s;
+            width: var(--dc-discover-menu-width);
+            padding: 0;
+            visibility: hidden;
+        }
+
+        .dc-discover-menu-layout {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Discover Main Links Panel */
+        .dc-discover-main-links {
+            width: var(--dc-discover-main-width);
+            background-color: var(--dc-color-menu-bg);
+            border-top-left-radius: var(--dc-border-radius);
+            border-bottom-left-radius: var(--dc-border-radius);
+            padding: 3rem 0;
+            height: fit-content;
+        }
+
+        .dc-discover-main-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            transition: all var(--dc-transition-speed) ease;
+        }
+
+        .dc-discover-main-link:hover {
+            background-color: var(--dc-color-panel-bg);
+        }
+
+        .dc-discover-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            color: var(--dc-color-text-light);
+        }
+
+        .dc-discover-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .dc-discover-main-link:hover .dc-discover-icon {
+            color: var(--dc-color-accent);
+        }
+
+        .dc-discover-text-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-link-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dc-color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .dc-discover-link-desc {
+            font-size: 13px;
+            color: var(--dc-color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* Discover Submenu Panel - Fixed Layout */
+        .dc-discover-submenu-container {
+            width: var(--dc-discover-submenu-width);
+            background-color: var(--dc-color-panel-bg);
+            border-top-right-radius: var(--dc-border-radius);
+            border-bottom-right-radius: var(--dc-border-radius);
+            padding: 4rem 3rem;
+        }
+
+        .dc-discover-submenu-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .dc-discover-menu-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dc-discover-group-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dc-color-text-muted);
+            margin: 0 0 16px 0;
+        }
+
+        .dc-discover-group-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dc-discover-group-link {
+            font-size: 16px;
+            color: var(--dc-color-text-light);
+            transition: color var(--dc-transition-speed) ease;
+            padding: 4px 0;
+        }
+
+        .dc-discover-group-link:hover {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           DROPDOWN INDICATOR
+           ============================================= */
+        .dc-dropdown-indicator {
+            display: none;
+            width: 0;
+            height: 0;
+            margin-left: 8px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--dc-color-text-light);
+            transition: transform var(--dc-transition-speed), 
+                        border-top-color var(--dc-transition-speed);
+        }
+
+        .dc-nav-item--has-megamenu.active > .dc-nav-link .dc-dropdown-indicator {
+            transform: rotate(180deg);
+            border-top-color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           MOBILE TOGGLE
+           ============================================= */
+        .dc-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: var(--dc-z-mobile-toggle);
+        }
+
+        .dc-mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--dc-color-text-light);
+            margin: 6px 0;
+            transition: all var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .dc-header-wrapper.mobile-menu-open .dc-mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* =============================================
+   MOBILE RESPONSIVE STYLES - IMPROVED
+   ============================================= */
+@media (max-width: 1024px) {
+    .dc-header-container {
+        padding: 0 20px;
+    }
+
+    .buttons-cta {
+        margin: 20px 0;
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dc-mobile-toggle {
+        display: block;
+    }
+    
+    .dc-nav-link {
+        justify-content: space-between;
+        padding: 18px 0; /* Increased for better touch targets */
+        font-size: 1.1rem;
+        width: 100%;
+    }
+    
+    .dc-dropdown-indicator {
+        display: inline-block;
+    }
+
+    .dc-main-nav {
+        position: fixed;
+        top: var(--dc-header-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--dc-header-height));
+        background-color: var(--dc-color-header-bg);
+        overflow-y: auto;
+        padding: 5px 0;
+        transform: translateX(100%);
+        transition: transform var(--dc-transition-speed) ease;
+        display: block;
+        z-index: var(--dc-z-mobile-nav);
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+
+    .dc-header-wrapper.mobile-menu-open .dc-main-nav {
+        transform: translateX(0);
+    }
+
+    .dc-nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .dc-nav-item {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--dc-color-menu-border);
+        box-sizing: border-box;
+    }
+    
+    .dc-header-action-btn {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px; /* Better readability on mobile */
+        min-height: 48px; /* Better touch target */
+        box-sizing: border-box;
+    }
+
+    .dc-header-action-btn-cta {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px; /* Better readability on mobile */
+        min-height: 48px; /* Better touch target */
+        box-sizing: border-box;
+    }
+    
+    /* Mobile Mega Menu */
+    .dc-mega-menu-container {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition: max-height var(--dc-transition-speed) ease-out;
+        overflow: hidden;
+        max-height: 0;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        background: none;
+        box-sizing: border-box;
+    }
+    
+    .dc-nav-item--has-megamenu.active .dc-mega-menu-container {
+        max-height: 2000px;
+    }
+    
+    .dc-mega-menu-panel {
+        padding: 10px 0 20px 15px;
+        display: block !important;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .dc-services-categories,
+    .dc-discover-main-links {
+        display: none;
+    }
+
+    .dc-services-menu-layout,
+    .dc-discover-menu-layout {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    
+    /* Services Menu Mobile */
+    .dc-services-submenu-container {
+        display: block;
+        width: 100%;
+        padding-left: 0;
+        background-color: transparent;
+        background: transparent;
+        box-sizing: border-box;
+    }
+    
+    .dc-submenu-panel {
+        display: block;
+        padding: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .dc-submenu-panel::before {
+        content: attr(data-mobile-title);
+        display: block;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--dc-color-text-muted);
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--dc-color-menu-border);
+    }
+    
+    .dc-submenu-content {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .dc-submenu-link {
+        padding: 12px 0; /* Increased padding for better touch targets */
+        display: block;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .dc-mega-menu-link-title {
+        font-size: 1rem;
+    }
+    
+    .dc-mega-menu-link-desc {
+        display: none;
+    }
+    
+    /* Discover Menu Mobile */
+    .dc-discover-submenu-container {
+        display: block;
+        width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .dc-discover-submenu-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .dc-discover-group-links {
+        gap: 8px;
+    }
+    
+    .dc-discover-group-link {
+        padding: 12px 0; /* Better touch targets */
+        display: block;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Additional improvements for smaller screens */
+@media (max-width: 480px) {
+    .dc-header-container {
+        padding: 0 15px;
+    }
+    
+    .dc-nav-list {
+        padding: 0 15px;
+    }
+    
+    .dc-logo-image {
+        height: 35px; /* Slightly smaller logo on very small screens */
+    }
+    
+    .dc-nav-link {
+        font-size: 1rem; /* Slightly smaller font on very small screens */
+    }
+}
+
+/* Prevent horizontal scrolling on mobile */
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .dc-header-wrapper {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- =============================================
+     HEADER WRAPPER
+     ============================================= -->
+<div class="dc-header-wrapper">
+    
+    <!-- MAIN HEADER BAR -->
+    <header class="dc-header">
+        <div class="dc-header-container">
+            
+            <!-- LOGO SECTION -->
+            <div class="dc-logo-container">
+                <a href="index.html" class="dc-logo-link">
+                    <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" alt="Defcon Logo" class="dc-logo-image">
+                </a>
+            </div>
+
+            <!-- DESKTOP NAVIGATION -->
+            <nav class="dc-main-nav">
+                <ul class="dc-nav-list">
+                    <!-- LEVEL UP LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Level Up</a>
+                    </li>
+                    
+                    <!-- SUPPORT LINK -->
+                    <li class="dc-nav-item">
+                        <a href="#" class="dc-nav-link">Support</a>
+                    </li>
+                    
+                    <!-- PROJECTS LINK -->
+                    <li class="dc-nav-item">
+                        <a href="our-work.html" class="dc-nav-link">Projects</a>
+                    </li>
+                    
+                    <!-- SERVICES MEGA MENU -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="services">
+                            <span>Solutions</span>
+                            <span class="dc-dropdown-indicator"></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--services">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="services">
+                                <div class="dc-services-menu-layout">
+                                    <!-- SERVICES CATEGORIES -->
+                                    <ul class="dc-services-categories">
+                                        <li class="dc-services-category-item active" data-submenu-trigger="software">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25m0 0l5.571 3m5.571-3l-5.571 3m0 0l-5.571-3m11.142 0l4.179-2.25L12 9.75 7.821 12l4.179 2.25m0 0l4.179 2.25L12 14.25l-4.179-2.25m16.5 0L12 14.25 7.821 12l4.179-2.25m7.5 4.5L12 18.75l-4.179-2.25m16.5 0l-4.179 2.25L12 18.75l-4.179-2.25m7.5 4.5L12 14.25" />
+                                                    </svg>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Software Development</span>
+                                                    <span class="dc-services-category-desc">Custom applications & platforms</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="infra">
+                                            <a href="#" class="dc-services-category-link">
+                                                 <span class="dc-services-category-icon">
+                                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13a7 7 0 1 0 14 0a7 7 0 1 0-14 0"/>
+                                                      <path d="M10 11h4l-4 4h4M7 4L4.25 6M17 4l2.75 2"/>
+                                                  </svg>                                                 
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">IT Infrastructure</span>
+                                                    <span class="dc-services-category-desc">Networks, cloud & security</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dc-services-category-item" data-submenu-trigger="creative">
+                                            <a href="#" class="dc-services-category-link">
+                                                <span class="dc-services-category-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.573L16.5 21.75l-.398-1.177a3.375 3.375 0 00-2.455-2.455l-1.177-.398 1.177-.398a3.375 3.375 0 002.455-2.455l.398-1.177.398 1.177a3.375 3.375 0 002.455 2.455l1.177.398-1.177.398a3.375 3.375 0 00-2.455 2.455z" />
+                                                    </svg>
+                                                </span>
+                                                <div class="dc-services-category-text">
+                                                    <span class="dc-services-category-title">Marketing & Creative Studio</span>
+                                                    <span class="dc-services-category-desc">Branding & digital campaigns</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <!-- SERVICES SUBMENU -->
+                                    <div class="dc-services-submenu-container">
+                                        <div class="dc-submenu-panel active" data-submenu-panel="software" data-mobile-title="Software Development">
+                                          <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Web Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Resilient, high-performance platforms tailored to your needs.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Mobile Applications</span>
+                                                        <div class="dc-mega-menu-link-desc">Native experiences for iOS and Android with seamless UX.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">AI & Machine Learning</span>
+                                                        <div class="dc-mega-menu-link-desc">Intelligent systems that automate and optimize workflows.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">API Development</span>
+                                                        <div class="dc-mega-menu-link-desc">Secure, documented APIs for seamless integration.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">E-commerce Solutions</span>
+                                                        <div class="dc-mega-menu-link-desc">Custom storefronts with integrated payment gateways.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Blockchain & Web3</span>
+                                                        <div class="dc-mega-menu-link-desc">Decentralized applications and smart contracts.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Database Management</span>
+                                                        <div class="dc-mega-menu-link-desc">Decentralized applications and smart contracts.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="infra" data-mobile-title="IT Infrastructure">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Support & Infrastructure</span>
+                                                        <div class="dc-mega-menu-link-desc">Comprehensive assistance and network security solutions.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">IT Consulting</span>
+                                                        <div class="dc-mega-menu-link-desc">Strategic advisory for digital transformation initiatives.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Cloud Computing</span>
+                                                        <div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Data Center Management</span>
+                                                        <div class="dc-mega-menu-link-desc">Efficient and secure data center operations.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Data Center Management</span>
+                                                        <div class="dc-mega-menu-link-desc">Efficient and secure data center operations.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dc-submenu-panel" data-submenu-panel="creative" data-mobile-title="Marketing & Creative">
+                                            <div class="dc-submenu-content">
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Digital Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">SEO, PPC, and performance marketing strategies.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Graphic Design</span>
+                                                        <div class="dc-mega-menu-link-desc">Complete brand identity and visual design assets.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Content Marketing</span>
+                                                        <div class="dc-mega-menu-link-desc">Compelling narratives and content for digital platforms.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Multimedia Production</span>
+                                                        <div class="dc-mega-menu-link-desc">High-definition video and engaging motion graphics.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Advertising Campaigns</span>
+                                                        <div class="dc-mega-menu-link-desc">Targeted campaigns across all digital media channels.</div>
+                                                    </a>
+                                                </div>
+                                                <div class="dc-submenu-item">
+                                                    <a href="#" class="dc-submenu-link">
+                                                        <span class="dc-mega-menu-link-title">Podcast Production</span>
+                                                        <div class="dc-mega-menu-link-desc">Professional audio content from concept to distribution.</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- DISCOVER MEGA MENU (Fixed Layout) -->
+                    <li class="dc-nav-item dc-nav-item--has-megamenu">
+                        <a href="#" class="dc-nav-link" data-megamenu-trigger="discover">
+                            <span>Discover</span>
+                            <span class="dc-dropdown-indicator"></span>
+                        </a>
+                        <div class="dc-mega-menu-container dc-mega-menu-container--discover">
+                            <div class="dc-mega-menu-panel active" data-megamenu-panel="discover">
+                                <div class="dc-discover-menu-layout">
+                                    <!-- DISCOVER MAIN LINKS -->
+                                    <div class="dc-discover-main-links">
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                                </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Defcon</span>
+                                                <span class="dc-discover-link-desc">Our vision, team, and history</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                                </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Resources</span>
+                                                <span class="dc-discover-link-desc">Case studies, insights, and docs</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dc-discover-main-link">
+                                            <span class="dc-discover-icon">
+                                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                   <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.282A24.423 24.423 0 015.623 6.34a3 3 0 01-4.682 2.72m8.14 8.14A24.423 24.423 0 006.34 5.623a3 3 0 00-2.72 4.682m5.04 5.04a24.423 24.423 0 01-4.186 5.623a3 3 0 01-2.72-4.682m11.82-3.355A24.423 24.423 0 0018.377 2.25a3 3 0 014.682 2.72m-8.14 8.14c-.112.57.294 1.127.845 1.255a.75.75 0 00.938-.938c-.128-.551-.685-.956-1.255-.845z" />
+                                               </svg>
+                                            </span>
+                                            <div class="dc-discover-text-content">
+                                                <span class="dc-discover-link-title">Connect</span>
+                                                <span class="dc-discover-link-desc">Join our team or get in touch</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- DISCOVER SUBMENU - Fixed Layout (All content visible) -->
+                                    <div class="dc-discover-submenu-container">
+                                        <div class="dc-discover-submenu-content">
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Advanced</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Level Up</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Developers</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Resources</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">Market Updates</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Product News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Events</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Bitcoin</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">University</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Research</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="dc-discover-menu-group">
+                                                <h4 class="dc-discover-group-title">Company</h4>
+                                                <ul class="dc-discover-group-links">
+                                                    <li><a href="#" class="dc-discover-group-link">About Us</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Company News</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Careers</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Partners</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Security</a></li>
+                                                    <li><a href="#" class="dc-discover-group-link">Licenses & Registration</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- ACTION BUTTON -->
+              <div class="buttons-cta">
+                <button class="dc-header-action-btn-cta">Contact Us</button>
+                <button class="dc-header-action-btn">Get Started</button>
+              </div>  
+            </nav>
+            
+            <!-- MOBILE TOGGLE BUTTON -->
+            <button class="dc-mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+</div>
+
+<!-- =============================================
+     JAVASCRIPT FOR INTERACTIVITY
+     ============================================= -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.dc-mobile-toggle');
+        const headerWrapper = document.querySelector('.dc-header-wrapper');
+        const navLinks = document.querySelectorAll('.dc-nav-link');
+        
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function() {
+                headerWrapper.classList.toggle('mobile-menu-open');
+            });
+        }
+        
+        // Mobile menu close when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dc-header-container') && headerWrapper.classList.contains('mobile-menu-open')) {
+                headerWrapper.classList.remove('mobile-menu-open');
+            }
+        });
+        
+        // Mega menu functionality
+        const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+        
+        megaMenuTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parentItem = this.closest('.dc-nav-item--has-megamenu');
+                    parentItem.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Services submenu functionality
+        const serviceCategoryLinks = document.querySelectorAll('[data-submenu-trigger]');
+        const submenuPanels = document.querySelectorAll('[data-submenu-panel]');
+        
+        serviceCategoryLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 1024) {
+                    const targetPanel = this.getAttribute('data-submenu-trigger');
+                    
+                    // Remove active class from all categories
+                    serviceCategoryLinks.forEach(item => {
+                        item.closest('.dc-services-category-item').classList.remove('active');
+                    });
+                    
+                    // Hide all submenu panels
+                    submenuPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // Activate current category and panel
+                    this.closest('.dc-services-category-item').classList.add('active');
+                    document.querySelector(`[data-submenu-panel="${targetPanel}"]`).classList.add('active');
+                }
+            });
+        });
+        
+        // Mobile services submenu
+        serviceCategoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const targetPanel = this.getAttribute('data-submenu-trigger');
+                    
+                    // Toggle active class for mobile
+                    const isActive = this.closest('.dc-services-category-item').classList.contains('active');
+                    
+                    // Remove active class from all categories
+                    serviceCategoryLinks.forEach(item => {
+                        item.closest('.dc-services-category-item').classList.remove('active');
+                    });
+                    
+                    // Hide all submenu panels
+                    submenuPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    // If it wasn't active, activate it
+                    if (!isActive) {
+                        this.closest('.dc-services-category-item').classList.add('active');
+                        document.querySelector(`[data-submenu-panel="${targetPanel}"]`).classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking on a link (except mega menu triggers)
+        navLinks.forEach(link => {
+            if (!link.hasAttribute('data-megamenu-trigger')) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 1024) {
+                        headerWrapper.classList.remove('mobile-menu-open');
+                    }
+                });
+            }
+        });
+        
+        // Close mobile menu when clicking action button
+        const actionBtn = document.querySelector('.dc-header-action-btn');
+        if (actionBtn) {
+            actionBtn.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  /* Technology Stack Container */
+
+  * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        text-decoration: none;
+        color: inherit;    
+      }
+
+  .defcon-tech-stack {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 20px;
+  }
+
+  /* Header Section */
+  .defcon-tech-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .defcon-tech-title {
+    color: #06273e;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .defcon-tech-subtitle {
+    color: #5a6d80;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Stack Categories */
+  .defcon-stack-categories {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 3rem;
+  }
+
+  .defcon-stack-category {
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: #f0f6ff;
+    color: #0091ff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-stack-category.active {
+    background: #0091ff;
+    color: white;
+  }
+
+  /* Stack Grid */
+  .defcon-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  /* Tech Card */
+  .defcon-tech-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+  }
+
+  .defcon-tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .defcon-tech-card-header {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background: #f9fbfe;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .defcon-tech-card-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .defcon-tech-card-icon img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  .defcon-tech-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 5px;
+  }
+
+  .defcon-tech-card-category {
+    font-size: 0.9rem;
+    color: #5a6d80;
+  }
+
+  .defcon-tech-card-body {
+    padding: 25px;
+  }
+
+  .defcon-tech-card-description {
+    color: #5a6d80;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .defcon-tech-card-features {
+    margin-top: 20px;
+  }
+
+  .defcon-tech-card-feature {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .defcon-tech-card-feature-icon {
+    color: #0091ff;
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+
+  .defcon-tech-card-feature-text {
+    color: #06273e;
+    line-height: 1.5;
+  }
+
+  /* Case Studies Section */
+  .defcon-case-studies {
+    margin-top: 6rem;
+    background: #f5f9ff;
+    padding: 4rem 0;
+    border-radius: 12px;
+  }
+
+  .defcon-case-studies-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .defcon-case-studies-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #06273e;
+    margin-bottom: 3rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-tech-title {
+      font-size: 2rem;
+    }
+    
+    .defcon-stack-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .defcon-tech-card-header {
+      padding: 20px;
+    }
+    
+    .defcon-tech-card-body {
+      padding: 20px;
+    }
+  }
+</style>
+
+<div class="defcon-tech-stack">
+  <div class="defcon-tech-header">
+    <h1 class="defcon-tech-title">Our Technology Stack</h1>
+    <p class="defcon-tech-subtitle">
+      We leverage cutting-edge technologies to build robust, scalable, and high-performance digital solutions. 
+      Here's a breakdown of the tools and frameworks we specialize in and how we use them to deliver exceptional results.
+    </p>
+  </div>
+
+  <div class="defcon-stack-categories">
+    <div class="defcon-stack-category active" data-category="all">All Technologies</div>
+    <div class="defcon-stack-category" data-category="AI">AI</div>
+    <div class="defcon-stack-category" data-category="database">Automation</div>
+    <div class="defcon-stack-category" data-category="database">Design</div>
+    <div class="defcon-stack-category" data-category="frontend">Frontend</div>
+    <div class="defcon-stack-category" data-category="backend">Backend</div>
+    <div class="defcon-stack-category" data-category="mobile">Mobile</div>
+    <div class="defcon-stack-category" data-category="devops">DevOps</div>
+    <div class="defcon-stack-category" data-category="database">Database</div>
+    <div class="defcon-stack-category" data-category="database">Cloud Computing</div>
+    <div class="defcon-stack-category" data-category="database">Marketing</div>
+  </div>
+
+  <div class="defcon-stack-grid">
+    <!-- React -->
+    <div class="defcon-tech-card" data-categories="frontend">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="React">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">React</h3>
+          <div class="defcon-tech-card-category">Frontend Library</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our primary choice for building dynamic, component-based user interfaces. We use React to create 
+          fast, responsive web applications with reusable components and efficient state management.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Used with Next.js for SSR and optimized performance
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integrated with Redux or Context API for state management
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom hooks for reusable logic across applications
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Node.js -->
+    <div class="defcon-tech-card" data-categories="backend">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="Node.js">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Node.js</h3>
+          <div class="defcon-tech-card-category">Backend Runtime</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our go-to JavaScript runtime for building scalable server-side applications. We leverage Node.js 
+          for its non-blocking I/O model, which is perfect for data-intensive real-time applications.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Used with Express.js for RESTful API development
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Powers our microservices architecture
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Enables full-stack JavaScript development
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MongoDB -->
+    <div class="defcon-tech-card" data-categories="database">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" alt="MongoDB">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">MongoDB</h3>
+          <div class="defcon-tech-card-category">NoSQL Database</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our preferred document database for applications that require flexibility and scalability. 
+          We use MongoDB for its schema-less design, horizontal scaling, and powerful querying capabilities.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Ideal for content management systems and catalogs
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Atlas for managed cloud database solutions
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Aggregation framework for complex data processing
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flutter -->
+    <div class="defcon-tech-card" data-categories="mobile">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/flutter-logo.svg" alt="Flutter">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Flutter</h3>
+          <div class="defcon-tech-card-category">Mobile Framework</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our solution for building beautiful, natively compiled applications for mobile, web, and desktop 
+          from a single codebase. We use Flutter to deliver consistent experiences across platforms.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Single codebase for iOS and Android
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Hot reload for rapid development
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Customizable UI with Material and Cupertino widgets
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWS -->
+    <div class="defcon-tech-card" data-categories="devops">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-2.svg" alt="AWS">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Amazon Web Services</h3>
+          <div class="defcon-tech-card-category">Cloud Platform</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our primary cloud platform for deploying scalable, reliable, and secure applications. 
+          We leverage AWS services to ensure high availability, performance, and cost-efficiency.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              EC2 for scalable compute capacity
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              S3 for secure object storage
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Lambda for serverless functions
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Python -->
+    <div class="defcon-tech-card" data-categories="backend">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" alt="Python">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Python</h3>
+          <div class="defcon-tech-card-category">Backend Language</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our preferred language for data-intensive applications, machine learning, and scripting. 
+          We use Python for its readability, extensive libraries, and versatility across different domains.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Django for full-featured web applications
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Flask for lightweight APIs and microservices
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Pandas and NumPy for data analysis
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Docker -->
+    <div class="defcon-tech-card" data-categories="devops">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/docker-4.svg" alt="Docker">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Docker</h3>
+          <div class="defcon-tech-card-category">Containerization</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our containerization platform of choice for creating, deploying, and running applications. 
+          We use Docker to ensure consistency across environments and streamline deployment processes.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Containerized microservices architecture
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Consistent environments from development to production
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integration with CI/CD pipelines
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gemini -->
+    <div class="defcon-tech-card" data-categories="AI">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/docker-4.svg" alt="Gemini">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Gemini</h3>
+          <div class="defcon-tech-card-category">Artificial Intelligence</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our containerization platform of choice for creating, deploying, and running applications. 
+          We use Docker to ensure consistency across environments and streamline deployment processes.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Containerized microservices architecture
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Consistent environments from development to production
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integration with CI/CD pipelines
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ <!-- EC2 -->
+    <div class="defcon-tech-card" data-categories="compute">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-ec2.svg" alt="AWS EC2">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Amazon EC2</h3>
+          <div class="defcon-tech-card-category">Compute</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Scalable virtual servers in the cloud, allowing flexible compute capacity for applications. We optimize EC2 instances for cost-efficiency and performance.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Auto Scaling for dynamic workloads
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Spot Instances for cost savings
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integration with AWS Load Balancer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="defcon-tech-card" data-categories="storage">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-s3.svg" alt="AWS S3">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Amazon S3</h3>
+          <div class="defcon-tech-card-category">Storage</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Highly scalable object storage for data lakes, backups, and static web hosting. We implement S3 with security and lifecycle policies for optimal data management.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Versioning & Cross-Region Replication
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              S3 Glacier for archival storage
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Encryption (SSE-S3, SSE-KMS)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RDS -->
+    <div class="defcon-tech-card" data-categories="database">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-rds.svg" alt="AWS RDS">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Amazon RDS</h3>
+          <div class="defcon-tech-card-category">Database</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Managed relational database service supporting MySQL, PostgreSQL, SQL Server, and more. We optimize RDS for high availability and automated backups.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Multi-AZ deployments for failover
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Read Replicas for scaling
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Automated backups & snapshots
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lambda -->
+    <div class="defcon-tech-card" data-categories="compute">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-lambda-1.svg" alt="AWS Lambda">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">AWS Lambda</h3>
+          <div class="defcon-tech-card-category">Serverless Compute</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Serverless compute service that runs code in response to events. We use Lambda for event-driven architectures, APIs, and microservices.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Pay-per-use pricing model
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integration with API Gateway
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Supports Python, Node.js, Java, Go
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VPC -->
+    <div class="defcon-tech-card" data-categories="networking security">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-vpc.svg" alt="AWS VPC">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Amazon VPC</h3>
+          <div class="defcon-tech-card-category">Networking</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Isolated cloud network for securely deploying AWS resources. We design VPC architectures with private/public subnets, NACLs, and security groups.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom IP addressing & subnets
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              VPN & Direct Connect for hybrid cloud
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Network ACLs & Security Groups
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IAM -->
+    <div class="defcon-tech-card" data-categories="security">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/aws-iam.svg" alt="AWS IAM">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">AWS IAM</h3>
+          <div class="defcon-tech-card-category">Security</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Identity and Access Management for controlling AWS resource permissions. We implement least-privilege access policies and MFA for security.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Role-based access control (RBAC)
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Multi-factor authentication (MFA)
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Policy conditions & temporary credentials
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Google Analytics -->
+    <div class="defcon-tech-card" data-categories="analytics">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/google-analytics-3.svg" alt="Google Analytics">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Google Analytics</h3>
+          <div class="defcon-tech-card-category">Web Analytics</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our primary tool for measuring website traffic, user behavior, and conversion tracking. 
+          We implement GA4 with custom events and conversions for actionable insights.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom event and conversion tracking
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Audience segmentation and analysis
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Integration with Google Ads and Search Console
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HubSpot -->
+    <div class="defcon-tech-card" data-categories="automation cms">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/hubspot-1.svg" alt="HubSpot">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">HubSpot</h3>
+          <div class="defcon-tech-card-category">Marketing Automation</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our all-in-one marketing platform for CRM, email marketing, lead nurturing, and analytics. 
+          We use HubSpot to create personalized customer journeys at scale.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Automated email workflows
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Lead scoring and segmentation
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Landing pages and form builders
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMrush -->
+    <div class="defcon-tech-card" data-categories="seo">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/semrush.svg" alt="SEMrush">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">SEMrush</h3>
+          <div class="defcon-tech-card-category">SEO & PPC</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our comprehensive SEO toolkit for keyword research, competitive analysis, and site audits. 
+          We use SEMrush to develop data-driven SEO strategies.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Keyword research and tracking
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Backlink analysis and monitoring
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Site audit and technical SEO
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hootsuite -->
+    <div class="defcon-tech-card" data-categories="social">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/hootsuite.svg" alt="Hootsuite">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Hootsuite</h3>
+          <div class="defcon-tech-card-category">Social Media</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our social media management platform for scheduling, monitoring, and analytics across multiple networks. 
+          We use Hootsuite to maintain consistent brand presence.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Cross-platform content scheduling
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Social listening and monitoring
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Team collaboration features
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WordPress -->
+    <div class="defcon-tech-card" data-categories="cms">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/wordpress-blue.svg" alt="WordPress">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">WordPress</h3>
+          <div class="defcon-tech-card-category">Content Management</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our preferred CMS for building flexible, SEO-friendly websites. 
+          We optimize WordPress sites for performance, security, and conversion.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom theme development
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              WooCommerce for eCommerce
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              SEO optimization with Yoast/RankMath
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mailchimp -->
+    <div class="defcon-tech-card" data-categories="automation">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/mailchimp.svg" alt="Mailchimp">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Mailchimp</h3>
+          <div class="defcon-tech-card-category">Email Marketing</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our email marketing platform for creating, sending, and analyzing campaigns. 
+          We use Mailchimp to nurture leads and maintain customer engagement.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Drag-and-drop email builder
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Automated customer journeys
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              A/B testing and performance analytics
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SolarWinds -->
+    <div class="defcon-tech-card" data-categories="monitoring">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/solarwinds-1.svg" alt="SolarWinds">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">SolarWinds</h3>
+          <div class="defcon-tech-card-category">Network Monitoring</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our comprehensive network monitoring solution that provides real-time visibility into your IT infrastructure. 
+          We use SolarWinds to proactively identify and resolve issues before they impact your business.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Real-time performance monitoring and alerting
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Custom dashboards for infrastructure health
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Historical data for capacity planning
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palo Alto -->
+    <div class="defcon-tech-card" data-categories="security networking">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/palo-alto-networks-1.svg" alt="Palo Alto">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Palo Alto Networks</h3>
+          <div class="defcon-tech-card-category">Network Security</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our enterprise-grade firewall solution that provides advanced threat protection for your network. 
+          We implement Palo Alto firewalls to secure your infrastructure against modern cyber threats.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Next-generation firewall protection
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Advanced threat prevention
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              URL filtering and application control
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Veeam -->
+    <div class="defcon-tech-card" data-categories="backup">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/veeam-1.svg" alt="Veeam">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Veeam</h3>
+          <div class="defcon-tech-card-category">Backup & Recovery</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our comprehensive backup solution that ensures your critical data is protected and recoverable. 
+          We implement Veeam to provide reliable, fast backup and recovery for your business.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Image-based backups for complete system recovery
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Cloud and local backup options
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Instant VM recovery for minimal downtime
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ServiceNow -->
+    <div class="defcon-tech-card" data-categories="helpdesk">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/servicenow-1.svg" alt="ServiceNow">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">ServiceNow</h3>
+          <div class="defcon-tech-card-category">IT Service Management</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our enterprise IT service management platform that streamlines your IT support operations. 
+          We implement ServiceNow to provide efficient, trackable IT support services.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Comprehensive ticketing system
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Knowledge base for self-service
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              SLA tracking and reporting
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cisco -->
+    <div class="defcon-tech-card" data-categories="networking">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/cisco-2.svg" alt="Cisco">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">Cisco</h3>
+          <div class="defcon-tech-card-category">Networking Solutions</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our trusted networking hardware provider for enterprise-grade network infrastructure. 
+          We design and implement Cisco solutions to build reliable, high-performance networks.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Enterprise switches and routers
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Wireless networking solutions
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              SD-WAN for optimized connectivity
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CrowdStrike -->
+    <div class="defcon-tech-card" data-categories="security">
+      <div class="defcon-tech-card-header">
+        <div class="defcon-tech-card-icon">
+          <img src="https://cdn.worldvectorlogo.com/logos/crowdstrike-2.svg" alt="CrowdStrike">
+        </div>
+        <div>
+          <h3 class="defcon-tech-card-title">CrowdStrike</h3>
+          <div class="defcon-tech-card-category">Endpoint Protection</div>
+        </div>
+      </div>
+      <div class="defcon-tech-card-body">
+        <p class="defcon-tech-card-description">
+          Our next-generation endpoint protection platform that provides comprehensive security for your devices. 
+          We deploy CrowdStrike to protect against advanced threats and malware.
+        </p>
+        <div class="defcon-tech-card-features">
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Next-gen antivirus with AI detection
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Threat intelligence and hunting
+            </div>
+          </div>
+          <div class="defcon-tech-card-feature">
+            <div class="defcon-tech-card-feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="defcon-tech-card-feature-text">
+              Lightweight agent with cloud management
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const categories = document.querySelectorAll('.defcon-stack-category');
+    
+    categories.forEach(category => {
+      category.addEventListener('click', function() {
+        // Update active category
+        categories.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        
+        const selectedCategory = this.dataset.category;
+        const techCards = document.querySelectorAll('.defcon-tech-card');
+        
+        // Filter technologies
+        techCards.forEach(card => {
+          if (selectedCategory === 'all' || card.dataset.categories.includes(selectedCategory)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

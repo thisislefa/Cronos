@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design & Development - Defcon</title>
+    <style>
+        /* Import Times New Roman and setup variables */
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;600;700&display=swap');
+        
+        .defcon-webdev-container {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e5e5e5 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .defcon-webdev-bg-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .defcon-webdev-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(0, 145, 255, 0.1), rgba(6, 39, 62, 0.05));
+            animation: defconFloat 20s infinite ease-in-out;
+        }
+
+        .defcon-webdev-bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .defcon-webdev-bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            left: -100px;
+            animation-delay: 7s;
+        }
+
+        .defcon-webdev-bg-circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes defconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Main content wrapper */
+        .defcon-webdev-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .defcon-webdev-hero {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(0,145,255,0.05) 100%);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,145,255,0.1);
+            position: relative;
+            overflow: hidden;
+            animation: defconSlideUp 1s ease-out;
+        }
+
+        .defcon-webdev-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,145,255,0.1), transparent);
+            animation: defconShimmer 3s infinite;
+        }
+
+        @keyframes defconShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes defconSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .defcon-webdev-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #06273e;
+            margin: 0 0 20px 0;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-webdev-hero p {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 0 0 40px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-webdev-highlight {
+            color: #0091ff;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .defcon-webdev-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .defcon-webdev-service-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,145,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .defcon-webdev-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0091ff, #06273e);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .defcon-webdev-service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .defcon-webdev-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,145,255,0.15);
+            border-color: #0091ff;
+        }
+
+        .defcon-webdev-service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0091ff, #06273e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-webdev-service-card:hover .defcon-webdev-service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .defcon-webdev-service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #06273e;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+        }
+
+        .defcon-webdev-service-card p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+
+        .defcon-webdev-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0091ff;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .defcon-webdev-price-note {
+            font-size: 0.9rem;
+            color: #888;
+            margin: 5px 0 25px 0;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .defcon-webdev-btn {
+            background: linear-gradient(135deg, #0091ff, #0066cc);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(0,145,255,0.3);
+        }
+
+        .defcon-webdev-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .defcon-webdev-btn:hover::before {
+            left: 100%;
+        }
+
+        .defcon-webdev-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,145,255,0.4);
+            background: linear-gradient(135deg, #0066cc, #004499);
+        }
+
+        .defcon-webdev-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .defcon-webdev-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 39, 62, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            animation: defconModalFadeIn 0.3s ease;
+        }
+
+        @keyframes defconModalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .defcon-webdev-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,145,255,0.2);
+            animation: defconModalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes defconModalSlideIn {
+            from { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.8) translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1) translateY(0); 
+            }
+        }
+
+        .defcon-webdev-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .defcon-webdev-modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .defcon-webdev-modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0091ff, #06273e);
+            border-radius: 10px;
+        }
+
+        .defcon-webdev-modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0066cc, #041f35);
+        }
+
+        .defcon-webdev-modal-header {
+            padding: 30px 40px 20px 40px;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+        }
+
+        .defcon-webdev-modal-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #06273e;
+            margin: 0 40px 0 0;
+            line-height: 1.3;
+        }
+
+        .defcon-webdev-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-webdev-close:hover {
+            background: #f5f5f5;
+            color: #0091ff;
+        }
+
+        .defcon-webdev-modal-body {
+            padding: 30px 40px;
+        }
+
+        .defcon-webdev-modal-body h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #06273e;
+            margin: 0 0 15px 0;
+        }
+
+        .defcon-webdev-modal-body p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+
+        .defcon-webdev-modal-body ul {
+            margin: 0 0 20px 20px;
+            padding: 0;
+        }
+
+        .defcon-webdev-modal-body li {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Form Styles */
+        .defcon-webdev-form {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .defcon-webdev-form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .defcon-webdev-form-group label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 8px;
+        }
+
+        .defcon-webdev-form-group input,
+        .defcon-webdev-form-group textarea,
+        .defcon-webdev-form-group select {
+            padding: 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .defcon-webdev-form-group input:focus,
+        .defcon-webdev-form-group textarea:focus,
+        .defcon-webdev-form-group select:focus {
+            outline: none;
+            border-color: #0091ff;
+            box-shadow: 0 0 0 3px rgba(0,145,255,0.1);
+        }
+
+        .defcon-webdev-form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .defcon-webdev-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Success message */
+        .defcon-webdev-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-webdev-content {
+                padding: 40px 20px;
+            }
+            
+            .defcon-webdev-hero {
+                padding: 60px 20px;
+                margin-bottom: 60px;
+            }
+            
+            .defcon-webdev-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-webdev-services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .defcon-webdev-service-card {
+                padding: 30px 25px;
+            }
+            
+            .defcon-webdev-modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .defcon-webdev-modal-header,
+            .defcon-webdev-modal-body {
+                padding: 25px 30px;
+            }
+            
+            .defcon-webdev-form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Additional premium effects */
+        .defcon-webdev-service-card {
+            animation: defconCardReveal 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .defcon-webdev-service-card:nth-child(1) { animation-delay: 0.1s; }
+        .defcon-webdev-service-card:nth-child(2) { animation-delay: 0.2s; }
+        .defcon-webdev-service-card:nth-child(3) { animation-delay: 0.3s; }
+        .defcon-webdev-service-card:nth-child(4) { animation-delay: 0.4s; }
+        .defcon-webdev-service-card:nth-child(5) { animation-delay: 0.5s; }
+        .defcon-webdev-service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes defconCardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="defcon-webdev-container">
+        <!-- Animated Background -->
+        <div class="defcon-webdev-bg-decoration">
+            <div class="defcon-webdev-bg-circle"></div>
+            <div class="defcon-webdev-bg-circle"></div>
+            <div class="defcon-webdev-bg-circle"></div>
+        </div>
+
+        <div class="defcon-webdev-content">
+            <!-- Hero Section -->
+            <div class="defcon-webdev-hero">
+                <h1>Web Design & Development</h1>
+                <p>Crafting <span class="defcon-webdev-highlight">exceptional digital experiences</span> that elevate your brand and drive results. From stunning websites to powerful web applications, we deliver solutions that exceed expectations.</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="defcon-webdev-services-grid">
+                <!-- Custom Website Design -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">🎨</div>
+                    <h3>Custom Website Design</h3>
+                    <p>Bespoke website designs tailored to your brand identity with responsive layouts and modern aesthetics.</p>
+                    <span class="defcon-webdev-price">$2,500 - $8,000</span>
+                    <div class="defcon-webdev-price-note">Starting price varies by complexity</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('customDesign')">Explore Details</button>
+                </div>
+
+                <!-- E-commerce Development -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">🛒</div>
+                    <h3>E-commerce Development</h3>
+                    <p>Full-featured online stores with secure payment processing, inventory management, and seamless user experience.</p>
+                    <span class="defcon-webdev-price">$4,000 - $15,000</span>
+                    <div class="defcon-webdev-price-note">Platform and features dependent</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('ecommerce')">Explore Details</button>
+                </div>
+
+                <!-- Web Application Development -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">⚡</div>
+                    <h3>Web Application Development</h3>
+                    <p>Custom web applications built with cutting-edge technologies for optimal performance and scalability.</p>
+                    <span class="defcon-webdev-price">$6,000 - $25,000</span>
+                    <div class="defcon-webdev-price-note">Scope and complexity based</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('webapp')">Explore Details</button>
+                </div>
+
+                <!-- Website Redesign -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">🔄</div>
+                    <h3>Website Redesign</h3>
+                    <p>Transform your existing website with modern design principles, improved performance, and enhanced user experience.</p>
+                    <span class="defcon-webdev-price">$1,800 - $6,000</span>
+                    <div class="defcon-webdev-price-note">Current site complexity based</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('redesign')">Explore Details</button>
+                </div>
+
+                <!-- Mobile App Development -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">📱</div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications that deliver exceptional user experiences across all devices.</p>
+                    <span class="defcon-webdev-price">$8,000 - $30,000</span>
+                    <div class="defcon-webdev-price-note">Platform and feature dependent</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('mobileapp')">Explore Details</button>
+                </div>
+
+                <!-- Ongoing Maintenance -->
+                <div class="defcon-webdev-service-card">
+                    <div class="defcon-webdev-service-icon">🔧</div>
+                    <h3>Website Maintenance</h3>
+                    <p>Comprehensive website maintenance, updates, security monitoring, and performance optimization services.</p>
+                    <span class="defcon-webdev-price">$200 - $800/month</span>
+                    <div class="defcon-webdev-price-note">Service level dependent</div>
+                    <button class="defcon-webdev-btn" onclick="openModal('maintenance')">Explore Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <!-- Custom Design Modal -->
+        <div id="customDesign" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>Custom Website Design</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('customDesign')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Our custom website design service creates unique, brand-focused websites that capture your vision and engage your audience. Every design is crafted from scratch to ensure your online presence stands out from the competition.</p>
+                    
+                    <h3>What's Included:</h3>
+                    <ul>
+                        <li>Complete custom design mockups and wireframes</li>
+                        <li>Responsive design for all devices and screen sizes</li>
+                        <li>Brand integration and visual identity development</li>
+                        <li>User experience (UX) optimization</li>
+                        <li>Content management system integration</li>
+                        <li>Search engine optimization (SEO) foundation</li>
+                        <li>Cross-browser compatibility testing</li>
+                        <li>30 days of post-launch support</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="customDesignSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'customDesignSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="customName">Full Name *</label>
+                                <input type="text" id="customName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="customEmail">Email Address *</label>
+                                <input type="email" id="customEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="customPhone">Phone Number</label>
+                                <input type="tel" id="customPhone" name="phone">
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="customBudget">Budget Range</label>
+                                <select id="customBudget" name="budget">
+                                    <option value="">Select Budget Range</option>
+                                    <option value="2500-4000">$2,500 - $4,000</option>
+                                    <option value="4000-6000">$4,000 - $6,000</option>
+                                    <option value="6000-8000">$6,000 - $8,000</option>
+                                    <option value="8000+">$8,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="customProject">Project Description *</label>
+                            <textarea id="customProject" name="project" placeholder="Tell us about your vision, goals, and any specific requirements..." required></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- E-commerce Modal -->
+        <div id="ecommerce" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>E-commerce Development</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('ecommerce')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Build a powerful online store that drives sales and provides exceptional shopping experiences. Our e-commerce solutions are designed to grow with your business and maximize conversions.</p>
+                    
+                    <h3>Platform Options:</h3>
+                    <ul>
+                        <li>Shopify, WooCommerce, Magento, or custom solutions</li>
+                        <li>Payment gateway integration (PayPal, Stripe, Square)</li>
+                        <li>Inventory management systems</li>
+                        <li>Order processing and fulfillment</li>
+                        <li>Customer account management</li>
+                        <li>Analytics and reporting dashboards</li>
+                        <li>Mobile-optimized shopping experience</li>
+                        <li>SSL security and PCI compliance</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="ecommerceSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'ecommerceSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="ecommerceName">Full Name *</label>
+                                <input type="text" id="ecommerceName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="ecommerceEmail">Email Address *</label>
+                                <input type="email" id="ecommerceEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="ecommerceProducts">Number of Products</label>
+                                <select id="ecommerceProducts" name="products">
+                                    <option value="">Select Range</option>
+                                    <option value="1-50">1-50 products</option>
+                                    <option value="51-200">51-200 products</option>
+                                    <option value="201-1000">201-1000 products</option>
+                                    <option value="1000+">1000+ products</option>
+                                </select>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="ecommerceBudget">Budget Range</label>
+                                <select id="ecommerceBudget" name="budget">
+                                    <option value="">Select Budget Range</option>
+                                    <option value="4000-7000">$4,000 - $7,000</option>
+                                    <option value="7000-12000">$7,000 - $12,000</option>
+                                    <option value="12000-15000">$12,000 - $15,000</option>
+                                    <option value="15000+">$15,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="ecommerceDetails">Project Details *</label>
+                            <textarea id="ecommerceDetails" name="details" placeholder="Describe your products, target market, and specific e-commerce requirements..." required></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Web Application Modal -->
+        <div id="webapp" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>Web Application Development</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('webapp')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Transform your business processes with custom web applications built using modern frameworks and technologies. We create scalable, secure, and user-friendly applications that streamline operations and enhance productivity.</p>
+                    
+                    <h3>Technologies & Features:</h3>
+                    <ul>
+                        <li>React, Angular, Vue.js frontend frameworks</li>
+                        <li>Node.js, Python, PHP backend development</li>
+                        <li>Database design and optimization</li>
+                        <li>API development and third-party integrations</li>
+                        <li>User authentication and authorization</li>
+                        <li>Real-time features and notifications</li>
+                        <li>Cloud deployment and scaling</li>
+                        <li>Comprehensive testing and quality assurance</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="webappSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'webappSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="webappName">Full Name *</label>
+                                <input type="text" id="webappName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="webappEmail">Email Address *</label>
+                                <input type="email" id="webappEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="webappType">Application Type</label>
+                                <select id="webappType" name="type">
+                                    <option value="">Select Type</option>
+                                    <option value="crm">CRM System</option>
+                                    <option value="erp">ERP Solution</option>
+                                    <option value="portal">Customer Portal</option>
+                                    <option value="dashboard">Analytics Dashboard</option>
+                                    <option value="booking">Booking System</option>
+                                    <option value="custom">Custom Application</option>
+                                </select>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="webappUsers">Expected Users</label>
+                                <select id="webappUsers" name="users">
+                                    <option value="">Select Range</option>
+                                    <option value="1-50">1-50 users</option>
+                                    <option value="51-200">51-200 users</option>
+                                    <option value="201-1000">201-1000 users</option>
+                                    <option value="1000+">1000+ users</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="webappRequirements">Functional Requirements *</label>
+                            <textarea id="webappRequirements" name="requirements" placeholder="Describe the key features, user roles, integrations, and business processes your application needs to support..." required></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Website Redesign Modal -->
+        <div id="redesign" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>Website Redesign</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('redesign')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Give your existing website a complete makeover with modern design trends, improved functionality, and enhanced user experience. Our redesign process focuses on maintaining your brand identity while dramatically improving performance and conversion rates.</p>
+                    
+                    <h3>Redesign Process:</h3>
+                    <ul>
+                        <li>Comprehensive audit of current website</li>
+                        <li>User experience analysis and optimization</li>
+                        <li>Modern, responsive design implementation</li>
+                        <li>Content strategy and migration</li>
+                        <li>Performance optimization and speed improvements</li>
+                        <li>SEO preservation and enhancement</li>
+                        <li>Mobile-first design approach</li>
+                        <li>Training and documentation for updates</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="redesignSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'redesignSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="redesignName">Full Name *</label>
+                                <input type="text" id="redesignName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="redesignEmail">Email Address *</label>
+                                <input type="email" id="redesignEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="redesignUrl">Current Website URL *</label>
+                                <input type="url" id="redesignUrl" name="url" placeholder="https://yourwebsite.com" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="redesignPages">Number of Pages</label>
+                                <select id="redesignPages" name="pages">
+                                    <option value="">Select Range</option>
+                                    <option value="1-10">1-10 pages</option>
+                                    <option value="11-25">11-25 pages</option>
+                                    <option value="26-50">26-50 pages</option>
+                                    <option value="50+">50+ pages</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="redesignGoals">Redesign Goals *</label>
+                            <textarea id="redesignGoals" name="goals" placeholder="What specific improvements are you looking for? What issues does your current site have?" required></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile App Modal -->
+        <div id="mobileapp" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>Mobile App Development</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('mobileapp')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Extend your business reach with powerful mobile applications. We develop native iOS and Android apps, as well as cross-platform solutions using React Native and Flutter for optimal performance and user experience.</p>
+                    
+                    <h3>Development Options:</h3>
+                    <ul>
+                        <li>Native iOS development (Swift/Objective-C)</li>
+                        <li>Native Android development (Kotlin/Java)</li>
+                        <li>Cross-platform development (React Native/Flutter)</li>
+                        <li>Progressive Web Apps (PWA)</li>
+                        <li>Backend API development and integration</li>
+                        <li>Push notifications and real-time features</li>
+                        <li>App Store submission and optimization</li>
+                        <li>Ongoing maintenance and updates</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="mobileappSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'mobileappSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="mobileappName">Full Name *</label>
+                                <input type="text" id="mobileappName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="mobileappEmail">Email Address *</label>
+                                <input type="email" id="mobileappEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="mobileappPlatform">Target Platform</label>
+                                <select id="mobileappPlatform" name="platform">
+                                    <option value="">Select Platform</option>
+                                    <option value="ios">iOS Only</option>
+                                    <option value="android">Android Only</option>
+                                    <option value="both">iOS & Android</option>
+                                    <option value="cross-platform">Cross-Platform</option>
+                                    <option value="pwa">Progressive Web App</option>
+                                </select>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="mobileappCategory">App Category</label>
+                                <select id="mobileappCategory" name="category">
+                                    <option value="">Select Category</option>
+                                    <option value="business">Business</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="social">Social Networking</option>
+                                    <option value="productivity">Productivity</option>
+                                    <option value="health">Health & Fitness</option>
+                                    <option value="education">Education</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="mobileappFeatures">Key Features & Functionality *</label>
+                            <textarea id="mobileappFeatures" name="features" placeholder="Describe the main features, user flows, and functionality your app needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Modal -->
+        <div id="maintenance" class="defcon-webdev-modal">
+            <div class="defcon-webdev-modal-content">
+                <div class="defcon-webdev-modal-header">
+                    <h2>Website Maintenance</h2>
+                    <button class="defcon-webdev-close" onclick="closeModal('maintenance')">&times;</button>
+                </div>
+                <div class="defcon-webdev-modal-body">
+                    <h3>Service Overview</h3>
+                    <p>Keep your website running smoothly with our comprehensive maintenance packages. We provide regular updates, security monitoring, performance optimization, and technical support to ensure your site remains secure and performs at its best.</p>
+                    
+                    <h3>Maintenance Packages:</h3>
+                    <ul>
+                        <li><strong>Basic ($200/month):</strong> Security updates, backups, uptime monitoring</li>
+                        <li><strong>Professional ($400/month):</strong> Content updates, performance optimization, SEO monitoring</li>
+                        <li><strong>Enterprise ($600/month):</strong> Priority support, advanced analytics, custom development hours</li>
+                        <li><strong>Premium ($800/month):</strong> Dedicated account manager, unlimited updates, emergency support</li>
+                    </ul>
+
+                    <div class="defcon-webdev-success" id="maintenanceSuccess">
+                        Thank you! Your inquiry has been submitted. We'll contact you within 24 hours.
+                    </div>
+
+                    <form class="defcon-webdev-form" onsubmit="submitForm(event, 'maintenanceSuccess')">
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="maintenanceName">Full Name *</label>
+                                <input type="text" id="maintenanceName" name="name" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="maintenanceEmail">Email Address *</label>
+                                <input type="email" id="maintenanceEmail" name="email" required>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-row">
+                            <div class="defcon-webdev-form-group">
+                                <label for="maintenanceUrl">Website URL *</label>
+                                <input type="url" id="maintenanceUrl" name="url" placeholder="https://yourwebsite.com" required>
+                            </div>
+                            <div class="defcon-webdev-form-group">
+                                <label for="maintenancePackage">Preferred Package</label>
+                                <select id="maintenancePackage" name="package">
+                                    <option value="">Select Package</option>
+                                    <option value="basic">Basic - $200/month</option>
+                                    <option value="professional">Professional - $400/month</option>
+                                    <option value="enterprise">Enterprise - $600/month</option>
+                                    <option value="premium">Premium - $800/month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="defcon-webdev-form-group">
+                            <label for="maintenanceNeeds">Specific Maintenance Needs</label>
+                            <textarea id="maintenanceNeeds" name="needs" placeholder="What specific maintenance tasks or concerns do you have for your website?"></textarea>
+                        </div>
+                        <button type="submit" class="defcon-webdev-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Add click outside to close
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form submission
+        function submitForm(event, successId) {
+            event.preventDefault();
+            
+            // Show success message
+            const successElement = document.getElementById(successId);
+            successElement.style.display = 'block';
+            
+            // Reset form
+            event.target.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+            
+            // In a real implementation, you would send the form data to your server
+            console.log('Form submitted:', new FormData(event.target));
+        }
+
+        // Enhanced animations on scroll
+        function handleScrollAnimations() {
+            const cards = document.querySelectorAll('.defcon-webdev-service-card');
+            const windowHeight = window.innerHeight;
+            
+            cards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('defcon-animate-in');
+                }
+            });
+        }
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const openModals = document.querySelectorAll('.defcon-webdev-modal[style*="block"]');
+                openModals.forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Smooth scrolling enhancement
+        document.querySelectorAll('.defcon-webdev-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('defcon-ripple');
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple effect styles
+        const rippleStyles = `
+            .defcon-webdev-btn {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .defcon-ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                pointer-events: none;
+                transform: scale(0);
+                animation: defconRipple 0.6s ease-out;
+            }
+            
+            @keyframes defconRipple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = rippleStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>

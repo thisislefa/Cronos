@@ -1,0 +1,1050 @@
+<style>
+/* Reset and Base Styles */
+.defcon-custom-software-reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Main Container */
+.defcon-custom-software-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #06273e;
+  overflow: hidden;
+}
+
+/* Header Section */
+.defcon-custom-software-header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-custom-software-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://placeholder.com/1920x1080') center/cover no-repeat;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.defcon-custom-software-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.defcon-custom-software-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: fadeInDown 1s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.defcon-custom-software-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: 400;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease 0.3s both;
+}
+
+.defcon-custom-software-cta-button {
+  display: inline-block;
+  padding: 15px 35px;
+  background-color: #ffffff;
+  color: #0091ff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+  animation: fadeIn 1s ease 0.6s both;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.defcon-custom-software-cta-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Service Benefits Section */
+.defcon-custom-software-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.defcon-custom-software-benefit-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 35px 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: all 0.4s ease;
+  border: 1px solid #e5e5e5;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.defcon-custom-software-benefit-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.defcon-custom-software-benefit-card:nth-child(1) { transition-delay: 0.1s; }
+.defcon-custom-software-benefit-card:nth-child(2) { transition-delay: 0.2s; }
+.defcon-custom-software-benefit-card:nth-child(3) { transition-delay: 0.3s; }
+.defcon-custom-software-benefit-card:nth-child(4) { transition-delay: 0.4s; }
+.defcon-custom-software-benefit-card:nth-child(5) { transition-delay: 0.5s; }
+.defcon-custom-software-benefit-card:nth-child(6) { transition-delay: 0.6s; }
+
+.defcon-custom-software-benefit-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 145, 255, 0.15);
+  border-color: #0091ff;
+}
+
+.defcon-custom-software-benefit-icon {
+  font-size: 2.8rem;
+  color: #0091ff;
+  margin-bottom: 25px;
+}
+
+.defcon-custom-software-benefit-title {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #06273e;
+  font-weight: 700;
+}
+
+.defcon-custom-software-benefit-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Development Process Section */
+.defcon-custom-software-process {
+  margin-bottom: 60px;
+}
+
+.defcon-custom-software-section-title {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 50px;
+  color: #06273e;
+  position: relative;
+}
+
+.defcon-custom-software-section-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background-color: #0091ff;
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+.defcon-custom-software-process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.defcon-custom-software-process-step {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.defcon-custom-software-process-step.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.defcon-custom-software-process-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background-color: #0091ff;
+  transition: height 0.6s ease;
+}
+
+.defcon-custom-software-process-step:hover::before {
+  height: 100%;
+}
+
+.defcon-custom-software-process-step-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(0, 145, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.defcon-custom-software-process-step:hover .defcon-custom-software-process-step-number {
+  color: rgba(0, 145, 255, 0.2);
+}
+
+.defcon-custom-software-process-step-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #06273e;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.defcon-custom-software-process-step-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pricing Section */
+.defcon-custom-software-pricing {
+  margin-bottom: 60px;
+}
+
+.defcon-custom-software-pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.defcon-custom-software-plan {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 40px 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: all 0.4s ease;
+  border: 1px solid #e5e5e5;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-custom-software-plan.popular {
+  border: 2px solid #0091ff;
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 145, 255, 0.15);
+}
+
+.defcon-custom-software-plan-popular-tag {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  padding: 5px 40px;
+  font-size: 0.8rem;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.defcon-custom-software-plan-title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #06273e;
+  font-weight: 700;
+}
+
+.defcon-custom-software-plan-price {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #0091ff;
+  font-weight: 700;
+}
+
+.defcon-custom-software-plan-price span {
+  font-size: 1rem;
+  color: #777;
+}
+
+.defcon-custom-software-plan-features {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.defcon-custom-software-plan-feature {
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+
+.defcon-custom-software-plan-feature::before {
+  content: '✓';
+  color: #0091ff;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.defcon-custom-software-plan-button {
+  display: block;
+  text-align: center;
+  padding: 12px 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+  box-shadow: 0 4px 10px rgba(0, 145, 255, 0.2);
+}
+
+.defcon-custom-software-plan-button:hover {
+  background-color: transparent;
+  color: #0091ff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 145, 255, 0.3);
+}
+
+/* Consultation Form Section */
+.defcon-custom-software-consultation {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  border-radius: 8px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.defcon-custom-software-consultation-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.defcon-custom-software-form-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #06273e;
+}
+
+.defcon-custom-software-form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.defcon-custom-software-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #06273e;
+}
+
+.defcon-custom-software-form-input {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.defcon-custom-software-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-custom-software-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.defcon-custom-software-form-submit {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-custom-software-form-submit:hover {
+  background-color: #0077cc;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+}
+
+/* Floating Consultation Button */
+.defcon-custom-software-floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.defcon-custom-software-floating-button:hover {
+  transform: scale(1.1);
+  background-color: #0077cc;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Styles */
+.defcon-custom-software-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.defcon-custom-software-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.defcon-custom-software-modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  position: relative;
+  transform: translateY(-30px);
+  transition: transform 0.4s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.defcon-custom-software-modal.active .defcon-custom-software-modal-content {
+  transform: translateY(0);
+}
+
+.defcon-custom-software-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #777;
+  background: none;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.defcon-custom-software-modal-close:hover {
+  color: #0091ff;
+  transform: rotate(90deg);
+}
+
+.defcon-custom-software-modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #06273e;
+  text-align: center;
+}
+
+.defcon-custom-software-modal-text {
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #555;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .defcon-custom-software-title {
+    font-size: 2.5rem;
+  }
+  
+  .defcon-custom-software-subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .defcon-custom-software-section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-custom-software-header {
+    padding: 40px 20px;
+  }
+  
+  .defcon-custom-software-title {
+    font-size: 2.2rem;
+  }
+  
+  .defcon-custom-software-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .defcon-custom-software-benefits {
+    grid-template-columns: 1fr;
+  }
+  
+  .defcon-custom-software-process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .defcon-custom-software-process-step {
+    max-width: 100%;
+  }
+  
+  .defcon-custom-software-pricing-plans {
+    grid-template-columns: 1fr;
+  }
+  
+  .defcon-custom-software-plan.popular {
+    transform: none;
+  }
+  
+  .defcon-custom-software-consultation-form-container {
+    padding: 30px 20px;
+  }
+  
+  .defcon-custom-software-floating-button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-custom-software-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-custom-software-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-custom-software-cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .defcon-custom-software-benefit-card {
+    padding: 25px 20px;
+  }
+  
+  .defcon-custom-software-plan-price {
+    font-size: 2.2rem;
+  }
+  
+  .defcon-custom-software-floating-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+</style>
+
+<div class="defcon-custom-software-reset">
+  <div class="defcon-custom-software-container">
+    <!-- Header Section -->
+    <header class="defcon-custom-software-header">
+      <div class="defcon-custom-software-header-content">
+        <h1 class="defcon-custom-software-title">Tailored Software Solutions</h1>
+        <p class="defcon-custom-software-subtitle">Transform your business with custom-built software designed specifically for your needs. Our expert developers create scalable, secure, and innovative solutions that give you a competitive edge.</p>
+        <a href="#consultation" class="defcon-custom-software-cta-button">Start Your Project</a>
+      </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section class="defcon-custom-software-benefits">
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">💻</div>
+        <h3 class="defcon-custom-software-benefit-title">Bespoke Development</h3>
+        <p class="defcon-custom-software-benefit-desc">Software tailored to your exact specifications, designed to streamline operations, enhance productivity, and solve your unique business challenges.</p>
+      </div>
+      
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">📱</div>
+        <h3 class="defcon-custom-software-benefit-title">Cross-Platform Apps</h3>
+        <p class="defcon-custom-software-benefit-desc">Seamless applications that work across devices and operating systems, providing consistent user experiences on desktop, mobile, and tablet.</p>
+      </div>
+      
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">🔐</div>
+        <h3 class="defcon-custom-software-benefit-title">Enterprise Security</h3>
+        <p class="defcon-custom-software-benefit-desc">Built with security-first principles, incorporating encryption, access controls, and compliance with industry standards to protect your data.</p>
+      </div>
+      
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">📊</div>
+        <h3 class="defcon-custom-software-benefit-title">Business Intelligence</h3>
+        <p class="defcon-custom-software-benefit-desc">Custom analytics dashboards and reporting tools that turn your data into actionable insights for informed decision-making.</p>
+      </div>
+      
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">🤖</div>
+        <h3 class="defcon-custom-software-benefit-title">AI Integration</h3>
+        <p class="defcon-custom-software-benefit-desc">Incorporate machine learning and artificial intelligence to automate processes, predict trends, and enhance user experiences.</p>
+      </div>
+      
+      <div class="defcon-custom-software-benefit-card">
+        <div class="defcon-custom-software-benefit-icon">🔄</div>
+        <h3 class="defcon-custom-software-benefit-title">Legacy Modernization</h3>
+        <p class="defcon-custom-software-benefit-desc">Transform outdated systems into modern, efficient applications with improved performance, security, and user interfaces.</p>
+      </div>
+    </section>
+
+    <!-- Development Process Section -->
+    <section class="defcon-custom-software-process">
+      <h2 class="defcon-custom-software-section-title">Our Development Process</h2>
+      <div class="defcon-custom-software-process-steps">
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">1</div>
+          <h3 class="defcon-custom-software-process-step-title">Discovery</h3>
+          <p class="defcon-custom-software-process-step-desc">We analyze your business needs, goals, and technical requirements to create a comprehensive project roadmap.</p>
+        </div>
+        
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">2</div>
+          <h3 class="defcon-custom-software-process-step-title">Design</h3>
+          <p class="defcon-custom-software-process-step-desc">Our designers create intuitive user interfaces and experiences tailored to your target audience.</p>
+        </div>
+        
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">3</div>
+          <h3 class="defcon-custom-software-process-step-title">Development</h3>
+          <p class="defcon-custom-software-process-step-desc">Agile development with regular iterations, ensuring the solution evolves with your changing needs.</p>
+        </div>
+        
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">4</div>
+          <h3 class="defcon-custom-software-process-step-title">Testing</h3>
+          <p class="defcon-custom-software-process-step-desc">Rigorous quality assurance at every stage to ensure reliability, security, and performance.</p>
+        </div>
+        
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">5</div>
+          <h3 class="defcon-custom-software-process-step-title">Deployment</h3>
+          <p class="defcon-custom-software-process-step-desc">Seamless implementation with minimal disruption to your operations, including staff training.</p>
+        </div>
+        
+        <div class="defcon-custom-software-process-step">
+          <div class="defcon-custom-software-process-step-number">6</div>
+          <h3 class="defcon-custom-software-process-step-title">Support</h3>
+          <p class="defcon-custom-software-process-step-desc">Ongoing maintenance, updates, and enhancements to keep your software performing at its best.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="defcon-custom-software-pricing">
+      <h2 class="defcon-custom-software-section-title">Development Packages</h2>
+      <div class="defcon-custom-software-pricing-plans">
+        <div class="defcon-custom-software-plan">
+          <h3 class="defcon-custom-software-plan-title">Starter</h3>
+          <div class="defcon-custom-software-plan-price">$15,000<span>+</span></div>
+          <ul class="defcon-custom-software-plan-features">
+            <li class="defcon-custom-software-plan-feature">Single platform application</li>
+            <li class="defcon-custom-software-plan-feature">Basic functionality</li>
+            <li class="defcon-custom-software-plan-feature">Standard UI/UX design</li>
+            <li class="defcon-custom-software-plan-feature">3 months support</li>
+            <li class="defcon-custom-software-plan-feature">Documentation</li>
+          </ul>
+          <button class="defcon-custom-software-plan-button" onclick="openDefconModal('starter')">Get Started</button>
+        </div>
+        
+        <div class="defcon-custom-software-plan popular">
+          <div class="defcon-custom-software-plan-popular-tag">Popular</div>
+          <h3 class="defcon-custom-software-plan-title">Professional</h3>
+          <div class="defcon-custom-software-plan-price">$45,000<span>+</span></div>
+          <ul class="defcon-custom-software-plan-features">
+            <li class="defcon-custom-software-plan-feature">Multi-platform application</li>
+            <li class="defcon-custom-software-plan-feature">Advanced functionality</li>
+            <li class="defcon-custom-software-plan-feature">Custom UI/UX design</li>
+            <li class="defcon-custom-software-plan-feature">API integration</li>
+            <li class="defcon-custom-software-plan-feature">6 months support</li>
+            <li class="defcon-custom-software-plan-feature">Comprehensive documentation</li>
+          </ul>
+          <button class="defcon-custom-software-plan-button" onclick="openDefconModal('professional')">Get Started</button>
+        </div>
+        
+        <div class="defcon-custom-software-plan">
+          <h3 class="defcon-custom-software-plan-title">Enterprise</h3>
+          <div class="defcon-custom-software-plan-price">$100,000<span>+</span></div>
+          <ul class="defcon-custom-software-plan-features">
+            <li class="defcon-custom-software-plan-feature">Custom multi-platform solution</li>
+            <li class="defcon-custom-software-plan-feature">Complex business logic</li>
+            <li class="defcon-custom-software-plan-feature">Premium UI/UX design</li>
+            <li class="defcon-custom-software-plan-feature">Multiple API integrations</li>
+            <li class="defcon-custom-software-plan-feature">AI/ML capabilities</li>
+            <li class="defcon-custom-software-plan-feature">1 year support & maintenance</li>
+            <li class="defcon-custom-software-plan-feature">Training & onboarding</li>
+          </ul>
+          <button class="defcon-custom-software-plan-button" onclick="openDefconModal('enterprise')">Get Started</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Form Section -->
+    <section id="consultation" class="defcon-custom-software-consultation">
+      <div class="defcon-custom-software-consultation-form-container">
+        <h2 class="defcon-custom-software-form-title">Request a Consultation</h2>
+        <form id="defcon-custom-software-consultation-form" class="defcon-custom-software-form">
+          <div class="defcon-custom-software-form-group">
+            <label for="defcon-custom-software-name" class="defcon-custom-software-form-label">Full Name</label>
+            <input type="text" id="defcon-custom-software-name" class="defcon-custom-software-form-input" required>
+          </div>
+          
+          <div class="defcon-custom-software-form-group">
+            <label for="defcon-custom-software-email" class="defcon-custom-software-form-label">Email Address</label>
+            <input type="email" id="defcon-custom-software-email" class="defcon-custom-software-form-input" required>
+          </div>
+          
+          <div class="defcon-custom-software-form-group">
+            <label for="defcon-custom-software-company" class="defcon-custom-software-form-label">Company Name</label>
+            <input type="text" id="defcon-custom-software-company" class="defcon-custom-software-form-input" required>
+          </div>
+          
+          <div class="defcon-custom-software-form-group">
+            <label for="defcon-custom-software-service" class="defcon-custom-software-form-label">Project Type</label>
+            <select id="defcon-custom-software-service" class="defcon-custom-software-form-input" required>
+              <option value="">Select project type</option>
+              <option value="web-app">Web Application</option>
+              <option value="mobile-app">Mobile Application</option>
+              <option value="desktop-app">Desktop Software</option>
+              <option value="enterprise">Enterprise System</option>
+              <option value="ai-ml">AI/ML Integration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="defcon-custom-software-form-group">
+            <label for="defcon-custom-software-message" class="defcon-custom-software-form-label">Project Details</label>
+            <textarea id="defcon-custom-software-message" class="defcon-custom-software-form-input defcon-custom-software-form-textarea"></textarea>
+          </div>
+          
+          <button type="submit" class="defcon-custom-software-form-submit">Request Consultation</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Floating Consultation Button -->
+<button class="defcon-custom-software-floating-button" onclick="openDefconModal('quick-consult')">?</button>
+
+<!-- Modals -->
+<div id="defcon-custom-software-starter-modal" class="defcon-custom-software-modal">
+  <div class="defcon-custom-software-modal-content">
+    <button class="defcon-custom-software-modal-close" onclick="closeDefconModal('starter')">×</button>
+    <h3 class="defcon-custom-software-modal-title">Starter Package</h3>
+    <p class="defcon-custom-software-modal-text">Perfect for small businesses looking to develop a basic application with core functionality.</p>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-starter-name" class="defcon-custom-software-form-label">Your Name</label>
+      <input type="text" id="defcon-custom-software-starter-name" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-starter-email" class="defcon-custom-software-form-label">Email</label>
+      <input type="email" id="defcon-custom-software-starter-email" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-starter-phone" class="defcon-custom-software-form-label">Phone Number</label>
+      <input type="tel" id="defcon-custom-software-starter-phone" class="defcon-custom-software-form-input">
+    </div>
+    
+    <button class="defcon-custom-software-form-submit" onclick="submitDefconForm('starter')">Request Starter Package</button>
+  </div>
+</div>
+
+<div id="defcon-custom-software-professional-modal" class="defcon-custom-software-modal">
+  <div class="defcon-custom-software-modal-content">
+    <button class="defcon-custom-software-modal-close" onclick="closeDefconModal('professional')">×</button>
+    <h3 class="defcon-custom-software-modal-title">Professional Package</h3>
+    <p class="defcon-custom-software-modal-text">Our most popular package for businesses needing a robust, multi-platform solution with advanced features.</p>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-pro-name" class="defcon-custom-software-form-label">Your Name</label>
+      <input type="text" id="defcon-custom-software-pro-name" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-pro-email" class="defcon-custom-software-form-label">Email</label>
+      <input type="email" id="defcon-custom-software-pro-email" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-pro-company" class="defcon-custom-software-form-label">Company Size</label>
+      <select id="defcon-custom-software-pro-company" class="defcon-custom-software-form-input" required>
+        <option value="">Select size</option>
+        <option value="1-10">1-10 employees</option>
+        <option value="11-50">11-50 employees</option>
+        <option value="51-200">51-200 employees</option>
+        <option value="201-500">201-500 employees</option>
+      </select>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-pro-needs" class="defcon-custom-software-form-label">Project Needs</label>
+      <textarea id="defcon-custom-software-pro-needs" class="defcon-custom-software-form-input defcon-custom-software-form-textarea" rows="3"></textarea>
+    </div>
+    
+    <button class="defcon-custom-software-form-submit" onclick="submitDefconForm('professional')">Request Professional Package</button>
+  </div>
+</div>
+
+<div id="defcon-custom-software-enterprise-modal" class="defcon-custom-software-modal">
+  <div class="defcon-custom-software-modal-content">
+    <button class="defcon-custom-software-modal-close" onclick="closeDefconModal('enterprise')">×</button>
+    <h3 class="defcon-custom-software-modal-title">Enterprise Package</h3>
+    <p class="defcon-custom-software-modal-text">Comprehensive solution for large organizations requiring complex, scalable systems with premium support.</p>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-ent-name" class="defcon-custom-software-form-label">Your Name</label>
+      <input type="text" id="defcon-custom-software-ent-name" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-ent-email" class="defcon-custom-software-form-label">Email</label>
+      <input type="email" id="defcon-custom-software-ent-email" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-ent-phone" class="defcon-custom-software-form-label">Phone Number</label>
+      <input type="tel" id="defcon-custom-software-ent-phone" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-ent-company" class="defcon-custom-software-form-label">Company Name</label>
+      <input type="text" id="defcon-custom-software-ent-company" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-ent-requirements" class="defcon-custom-software-form-label">Technical Requirements</label>
+      <textarea id="defcon-custom-software-ent-requirements" class="defcon-custom-software-form-input defcon-custom-software-form-textarea" rows="4" required></textarea>
+    </div>
+    
+    <button class="defcon-custom-software-form-submit" onclick="submitDefconForm('enterprise')">Request Enterprise Package</button>
+  </div>
+</div>
+
+<div id="defcon-custom-software-quick-consult-modal" class="defcon-custom-software-modal">
+  <div class="defcon-custom-software-modal-content">
+    <button class="defcon-custom-software-modal-close" onclick="closeDefconModal('quick-consult')">×</button>
+    <h3 class="defcon-custom-software-modal-title">Quick Consultation</h3>
+    <p class="defcon-custom-software-modal-text">Have a quick question about our custom software services? We'll respond within 24 hours.</p>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-quick-name" class="defcon-custom-software-form-label">Your Name</label>
+      <input type="text" id="defcon-custom-software-quick-name" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-quick-email" class="defcon-custom-software-form-label">Email</label>
+      <input type="email" id="defcon-custom-software-quick-email" class="defcon-custom-software-form-input" required>
+    </div>
+    
+    <div class="defcon-custom-software-form-group">
+      <label for="defcon-custom-software-quick-question" class="defcon-custom-software-form-label">Your Question</label>
+      <textarea id="defcon-custom-software-quick-question" class="defcon-custom-software-form-input defcon-custom-software-form-textarea" rows="4" required></textarea>
+    </div>
+    
+    <button class="defcon-custom-software-form-submit" onclick="submitDefconForm('quick-consult')">Send Question</button>
+  </div>
+</div>
+
+<script>
+// Animate elements when they come into view
+document.addEventListener('DOMContentLoaded', function() {
+  const animateElements = document.querySelectorAll('.defcon-custom-software-benefit-card, .defcon-custom-software-process-step');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+  
+  // Handle main form submission
+  const consultationForm = document.getElementById('defcon-custom-software-consultation-form');
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      showDefconSuccessMessage('Thank you for your consultation request. Our software experts will contact you within 24 hours.');
+      this.reset();
+    });
+  }
+});
+
+// Modal functions
+function openDefconModal(modalType) {
+  const modal = document.getElementById(`defcon-custom-software-${modalType}-modal`);
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeDefconModal(modalType) {
+  const modal = document.getElementById(`defcon-custom-software-${modalType}-modal`);
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function submitDefconForm(formType) {
+  showDefconSuccessMessage(`Thank you for your interest in our ${formType.replace('-', ' ')} services. We'll contact you shortly to discuss your project.`);
+  closeDefconModal(formType);
+  
+  // Reset form fields
+  const modal = document.getElementById(`defcon-custom-software-${formType}-modal`);
+  if (modal) {
+    const inputs = modal.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      input.value = '';
+    });
+  }
+}
+
+function showDefconSuccessMessage(message) {
+  const toast = document.createElement('div');
+  toast.style.position = 'fixed';
+  toast.style.bottom = '20px';
+  toast.style.left = '50%';
+  toast.style.transform = 'translateX(-50%)';
+  toast.style.backgroundColor = '#0091ff';
+  toast.style.color = 'white';
+  toast.style.padding = '15px 30px';
+  toast.style.borderRadius = '50px';
+  toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+  toast.style.zIndex = '1001';
+  toast.style.animation = 'fadeInUp 0.5s ease';
+  toast.textContent = message;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'fadeOut 0.5s ease';
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 500);
+  }, 3000);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(e) {
+  if (e.target.classList.contains('defcon-custom-software-modal')) {
+    const activeModal = document.querySelector('.defcon-custom-software-modal.active');
+    if (activeModal) {
+      const modalType = activeModal.id.replace('defcon-custom-software-', '').replace('-modal', '');
+      closeDefconModal(modalType);
+    }
+  }
+});
+</script>

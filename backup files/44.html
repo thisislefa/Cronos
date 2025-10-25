@@ -1,0 +1,772 @@
+<style>
+  /* Base Reset */
+  .defcon-video-gallery-reset {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Main Container */
+  .defcon-video-gallery-container {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gallery Header */
+  .defcon-video-gallery-header {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+    color: #ffffff;
+    position: relative;
+  }
+
+  .defcon-video-gallery-title {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .defcon-video-gallery-subtitle {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Filter Controls */
+  .defcon-video-gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 40px auto 0;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .defcon-video-gallery-filter {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-video-gallery-filter:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .defcon-video-gallery-filter.defcon-video-gallery-active {
+    background-color: #ffffff;
+    color: #0091ff;
+    font-weight: bold;
+  }
+
+  /* Masonry Grid */
+  .defcon-video-gallery-grid {
+    padding: 40px 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+    grid-gap: 25px;
+  }
+
+  .defcon-video-gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+    background-color: #e5e5e5;
+    aspect-ratio: 16/9;
+  }
+
+  .defcon-video-gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .defcon-video-gallery-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .defcon-video-gallery-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-video-gallery-play-icon::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid #0091ff;
+    margin-left: 5px;
+  }
+
+  .defcon-video-gallery-item:hover .defcon-video-gallery-play-icon {
+    opacity: 1;
+  }
+
+  /* Hover Overlay */
+  .defcon-video-gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(6, 39, 62, 0.9) 0%, transparent 100%);
+    padding: 30px 20px 20px;
+    transform: translateY(100%);
+    transition: all 0.4s ease;
+  }
+
+  .defcon-video-gallery-item:hover .defcon-video-gallery-overlay {
+    transform: translateY(0);
+  }
+
+  .defcon-video-gallery-item-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .defcon-video-gallery-item-client {
+    color: #0091ff;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .defcon-video-gallery-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .defcon-video-gallery-item-tag {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+  }
+
+  /* Video Modal */
+  .defcon-video-gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 39, 62, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .defcon-video-gallery-modal.defcon-video-gallery-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .defcon-video-gallery-modal-content {
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+    transform: scale(0.9);
+    transition: all 0.4s ease;
+  }
+
+  .defcon-video-gallery-modal.defcon-video-gallery-active .defcon-video-gallery-modal-content {
+    transform: scale(1);
+  }
+
+  .defcon-video-gallery-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #ffffff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-video-gallery-modal-close:hover {
+    color: #0091ff;
+  }
+
+  .defcon-video-gallery-modal-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #000000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .defcon-video-gallery-modal-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .defcon-video-gallery-modal-info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -5px;
+  }
+
+  .defcon-video-gallery-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #06273e;
+  }
+
+  .defcon-video-gallery-modal-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .defcon-video-gallery-modal-description {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* Navigation Arrows */
+  .defcon-video-gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+
+  .defcon-video-gallery-nav:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .defcon-video-gallery-prev {
+    left: 20px;
+  }
+
+  .defcon-video-gallery-next {
+    right: 20px;
+  }
+
+  .defcon-video-gallery-nav-arrow {
+    width: 15px;
+    height: 15px;
+    border-top: 3px solid #ffffff;
+    border-right: 3px solid #ffffff;
+  }
+
+  .defcon-video-gallery-prev .defcon-video-gallery-nav-arrow {
+    transform: rotate(-135deg);
+    margin-right: -3px;
+  }
+
+  .defcon-video-gallery-next .defcon-video-gallery-nav-arrow {
+    transform: rotate(45deg);
+    margin-left: -3px;
+  }
+
+  /* Loading Animation */
+  .defcon-video-gallery-loading {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .defcon-video-gallery-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 145, 255, 0.2);
+    border-top-color: #0091ff;
+    border-radius: 50%;
+    animation: defcon-video-gallery-spin 1s linear infinite;
+  }
+
+  /* Ambient Background */
+  .defcon-video-gallery-ambient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.1;
+  }
+
+  /* Mobile Adaptations */
+  @media (max-width: 768px) {
+    .defcon-video-gallery-title {
+      font-size: 2rem;
+    }
+
+    .defcon-video-gallery-subtitle {
+      font-size: 1rem;
+    }
+
+    .defcon-video-gallery-filters {
+      gap: 10px;
+    }
+
+    .defcon-video-gallery-filter {
+      padding: 8px 15px;
+      font-size: 0.8rem;
+    }
+
+    .defcon-video-gallery-grid {
+      grid-template-columns: 1fr;
+      grid-gap: 15px;
+    }
+
+    .defcon-video-gallery-nav {
+      width: 40px;
+      height: 40px;
+    }
+
+    .defcon-video-gallery-nav-arrow {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  /* Animations */
+  @keyframes defcon-video-gallery-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<div class="defcon-video-gallery-container defcon-video-gallery-reset">
+  <!-- Ambient Background -->
+  <div class="defcon-video-gallery-ambient" id="defcon-video-gallery-ambient"></div>
+
+  <!-- Gallery Header -->
+  <div class="defcon-video-gallery-header">
+    <h2 class="defcon-video-gallery-title">Our Video Portfolio</h2>
+    <p class="defcon-video-gallery-subtitle">Showcasing our premium video production work for clients across industries</p>
+    
+    <!-- Filter Controls -->
+    <div class="defcon-video-gallery-filters">
+      <button class="defcon-video-gallery-filter defcon-video-gallery-active" data-filter="all">All Projects</button>
+      <button class="defcon-video-gallery-filter" data-filter="commercial">Commercials</button>
+      <button class="defcon-video-gallery-filter" data-filter="corporate">Corporate</button>
+      <button class="defcon-video-gallery-filter" data-filter="event">Event Coverage</button>
+      <button class="defcon-video-gallery-filter" data-filter="animation">Animation</button>
+      <button class="defcon-video-gallery-filter" data-filter="brand">Brand Films</button>
+    </div>
+  </div>
+
+  <!-- Masonry Grid -->
+  <div class="defcon-video-gallery-grid" id="defcon-video-gallery-grid">
+    <!-- Item 1 -->
+    <div class="defcon-video-gallery-item" data-category="commercial" data-date="2023-06" data-client="luxury-auto">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Luxury Automotive Campaign</h3>
+        <span class="defcon-video-gallery-item-client">Luxury Auto Group</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Commercial</span>
+          <span class="defcon-video-gallery-item-tag">Automotive</span>
+          <span class="defcon-video-gallery-item-tag">4K</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="defcon-video-gallery-item" data-category="corporate" data-date="2023-05" data-client="tech-solutions">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Corporate Overview</h3>
+        <span class="defcon-video-gallery-item-client">TechSolutions Inc.</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Corporate</span>
+          <span class="defcon-video-gallery-item-tag">Interview</span>
+          <span class="defcon-video-gallery-item-tag">B-Roll</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="defcon-video-gallery-item" data-category="event" data-date="2023-04" data-client="global-summit">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Global Leadership Summit</h3>
+        <span class="defcon-video-gallery-item-client">Global Summit Org</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Event</span>
+          <span class="defcon-video-gallery-item-tag">Multi-Cam</span>
+          <span class="defcon-video-gallery-item-tag">Live Stream</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="defcon-video-gallery-item" data-category="animation" data-date="2023-03" data-client="creative-studio">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Animated Explainer</h3>
+        <span class="defcon-video-gallery-item-client">Creative Studio</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Animation</span>
+          <span class="defcon-video-gallery-item-tag">Motion Graphics</span>
+          <span class="defcon-video-gallery-item-tag">2D</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="defcon-video-gallery-item" data-category="brand" data-date="2023-02" data-client="elite-fashion">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Spring Collection</h3>
+        <span class="defcon-video-gallery-item-client">Elite Fashion</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Brand</span>
+          <span class="defcon-video-gallery-item-tag">Fashion</span>
+          <span class="defcon-video-gallery-item-tag">Slow Motion</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="defcon-video-gallery-item" data-category="commercial" data-date="2023-01" data-client="urban-living">
+      <img src="https://placeholder.com/600x400" alt="Project Thumbnail" class="defcon-video-gallery-thumbnail">
+      <div class="defcon-video-gallery-play-icon"></div>
+      <div class="defcon-video-gallery-overlay">
+        <h3 class="defcon-video-gallery-item-title">Urban Living Spaces</h3>
+        <span class="defcon-video-gallery-item-client">Urban Living Group</span>
+        <div class="defcon-video-gallery-item-tags">
+          <span class="defcon-video-gallery-item-tag">Commercial</span>
+          <span class="defcon-video-gallery-item-tag">Real Estate</span>
+          <span class="defcon-video-gallery-item-tag">Drone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div class="defcon-video-gallery-loading">
+    <div class="defcon-video-gallery-spinner"></div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="defcon-video-gallery-modal">
+    <div class="defcon-video-gallery-modal-content">
+      <span class="defcon-video-gallery-modal-close">&times;</span>
+      
+      <div class="defcon-video-gallery-modal-video">
+        <video controls>
+          <source src="https://placeholder.com/video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="defcon-video-gallery-modal-info">
+        <h3 class="defcon-video-gallery-modal-title">Project Title</h3>
+        <div class="defcon-video-gallery-modal-meta">
+          <span class="defcon-video-gallery-modal-client">Client Name</span>
+          <span class="defcon-video-gallery-modal-date">June 2023</span>
+        </div>
+        <p class="defcon-video-gallery-modal-description">
+          Project description goes here with details about the production, creative approach, and results achieved for the client.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div class="defcon-video-gallery-nav defcon-video-gallery-prev">
+      <div class="defcon-video-gallery-nav-arrow"></div>
+    </div>
+    <div class="defcon-video-gallery-nav defcon-video-gallery-next">
+      <div class="defcon-video-gallery-nav-arrow"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Elements
+    const grid = document.getElementById('defcon-video-gallery-grid');
+    const filters = document.querySelectorAll('.defcon-video-gallery-filter');
+    const items = document.querySelectorAll('.defcon-video-gallery-item');
+    const modal = document.querySelector('.defcon-video-gallery-modal');
+    const closeBtn = document.querySelector('.defcon-video-gallery-modal-close');
+    const prevBtn = document.querySelector('.defcon-video-gallery-prev');
+    const nextBtn = document.querySelector('.defcon-video-gallery-next');
+    const modalTitle = document.querySelector('.defcon-video-gallery-modal-title');
+    const modalClient = document.querySelector('.defcon-video-gallery-modal-client');
+    const modalDate = document.querySelector('.defcon-video-gallery-modal-date');
+    const modalDesc = document.querySelector('.defcon-video-gallery-modal-description');
+    const modalVideo = document.querySelector('.defcon-video-gallery-modal-video video');
+    const ambientBg = document.getElementById('defcon-video-gallery-ambient');
+    const loading = document.querySelector('.defcon-video-gallery-loading');
+
+    // Sample data for videos (replace with your actual data)
+    const videoData = {
+      'luxury-auto': {
+        title: 'Luxury Automotive Campaign',
+        client: 'Luxury Auto Group',
+        date: 'June 2023',
+        description: 'A high-end commercial showcasing the latest luxury vehicle with cinematic drone shots and dynamic driving sequences.',
+        videoUrl: 'https://placeholder.com/video1.mp4',
+        color: '#0091ff'
+      },
+      'tech-solutions': {
+        title: 'Corporate Overview',
+        client: 'TechSolutions Inc.',
+        date: 'May 2023',
+        description: 'Corporate video featuring executive interviews, office b-roll, and product demonstrations for investor relations.',
+        videoUrl: 'https://placeholder.com/video2.mp4',
+        color: '#06273e'
+      },
+      'global-summit': {
+        title: 'Global Leadership Summit',
+        client: 'Global Summit Org',
+        date: 'April 2023',
+        description: 'Multi-camera event coverage with keynote speeches, panel discussions, and attendee interviews.',
+        videoUrl: 'https://placeholder.com/video3.mp4',
+        color: '#8a2be2'
+      },
+      'creative-studio': {
+        title: 'Animated Explainer',
+        client: 'Creative Studio',
+        date: 'March 2023',
+        description: '2D animated explainer video illustrating the client\'s creative process with custom illustrations.',
+        videoUrl: 'https://placeholder.com/video4.mp4',
+        color: '#ff6b6b'
+      },
+      'elite-fashion': {
+        title: 'Spring Collection',
+        client: 'Elite Fashion',
+        date: 'February 2023',
+        description: 'Fashion film showcasing the new spring collection with artistic slow-motion sequences and dramatic lighting.',
+        videoUrl: 'https://placeholder.com/video5.mp4',
+        color: '#ff9e2c'
+      },
+      'urban-living': {
+        title: 'Urban Living Spaces',
+        client: 'Urban Living Group',
+        date: 'January 2023',
+        description: 'Real estate commercial featuring luxury apartments with drone aerials and lifestyle vignettes.',
+        videoUrl: 'https://placeholder.com/video6.mp4',
+        color: '#4caf50'
+      }
+    };
+
+    // Current video index
+    let currentIndex = 0;
+    let filteredItems = Array.from(items);
+
+    // Filter functionality
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        // Update active filter
+        filters.forEach(f => f.classList.remove('defcon-video-gallery-active'));
+        filter.classList.add('defcon-video-gallery-active');
+        
+        const filterValue = filter.getAttribute('data-filter');
+        
+        // Show loading
+        loading.style.display = 'flex';
+        grid.style.opacity = '0.5';
+        
+        // Filter after short delay for animation
+        setTimeout(() => {
+          items.forEach(item => {
+            const category = item.getAttribute('data-category');
+            
+            if (filterValue === 'all' || category === filterValue) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          
+          // Update filtered items array
+          filteredItems = Array.from(items).filter(item => {
+            const category = item.getAttribute('data-category');
+            return filterValue === 'all' || category === filterValue;
+          });
+          
+          // Hide loading
+          loading.style.display = 'none';
+          grid.style.opacity = '1';
+        }, 300);
+      });
+    });
+
+    // Open modal with video
+    items.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        const clientId = item.getAttribute('data-client');
+        const data = videoData[clientId];
+        
+        currentIndex = filteredItems.indexOf(item);
+        
+        // Update modal content
+        modalTitle.textContent = data.title;
+        modalClient.textContent = data.client;
+        modalDate.textContent = data.date;
+        modalDesc.textContent = data.description;
+        modalVideo.src = data.videoUrl;
+        
+        // Update ambient background
+        ambientBg.style.background = `linear-gradient(135deg, ${data.color} 0%, #06273e 100%)`;
+        
+        // Load video
+        modalVideo.load();
+        
+        // Show modal
+        modal.classList.add('defcon-video-gallery-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('defcon-video-gallery-active');
+      document.body.style.overflow = '';
+      modalVideo.pause();
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('defcon-video-gallery-active');
+        document.body.style.overflow = '';
+        modalVideo.pause();
+      }
+    });
+
+    // Navigation between videos
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = filteredItems.length - 1;
+      }
+      navigateToVideo(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < filteredItems.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      navigateToVideo(currentIndex);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('defcon-video-gallery-active')) {
+        if (e.key === 'ArrowLeft') {
+          if (currentIndex > 0) {
+            currentIndex--;
+          } else {
+            currentIndex = filteredItems.length - 1;
+          }
+          navigateToVideo(currentIndex);
+        } else if (e.key === 'ArrowRight') {
+          if (currentIndex < filteredItems.length - 1) {
+            currentIndex++;
+          } else {
+            currentIndex = 0;
+          }
+          navigateToVideo(currentIndex);
+        } else if (e.key === 'Escape') {
+          modal.classList.remove('defcon-video-gallery-active');
+          document.body.style.overflow = '';
+          modalVideo.pause();
+        }
+      }
+    });
+
+    // Function to navigate between videos
+    function navigateToVideo(index) {
+      const item = filteredItems[index];
+      const clientId = item.getAttribute('data-client');
+      const data = videoData[clientId];
+      
+      // Fade out current video
+      modal.querySelector('.defcon-video-gallery-modal-content').style.opacity = '0';
+      
+      setTimeout(() => {
+        // Update content
+        modalTitle.textContent = data.title;
+        modalClient.textContent = data.client;
+        modalDate.textContent = data.date;
+        modalDesc.textContent = data.description;
+        modalVideo.src = data.videoUrl;
+        
+        // Update ambient background
+        ambientBg.style.background = `linear-gradient(135deg, ${data.color} 0%, #06273e 100%)`;
+        
+        // Load new video
+        modalVideo.load();
+        modalVideo.play();
+        
+        // Fade in new content
+        modal.querySelector('.defcon-video-gallery-modal-content').style.opacity = '1';
+      }, 300);
+    }
+
+    // Hide loading indicator initially
+    loading.style.display = 'none';
+
+    // Initialize filtered items
+    filteredItems = Array.from(items);
+  });
+</script>

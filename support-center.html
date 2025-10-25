@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="support-container">
+        <!-- Header Section -->
+        <div class="support-header">
+            <div class="support-header-content">
+                <h1 class="support-title">Support Center</h1>
+                <p class="support-subtitle">We're here to help you succeed. Choose how you'd like to get support.</p>
+            </div>
+            <div class="support-header-background"></div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="support-nav">
+            <div class="support-nav-container">
+                <button class="support-tab-btn active" data-tab="tickets">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Submit Ticket</span>
+                </button>
+                <button class="support-tab-btn" data-tab="knowledge">
+                    <i class="fas fa-book-open"></i>
+                    <span>Knowledge Base</span>
+                </button>
+                <button class="support-tab-btn" data-tab="chat">
+                    <i class="fas fa-comments"></i>
+                    <span>Live Chat</span>
+                </button>
+            </div>
+            <div class="support-tab-indicator"></div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="support-content">
+            
+            <!-- Submit Ticket Section -->
+            <div class="support-section active" id="tickets">
+                <div class="support-section-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Submit a Support Ticket</h2>
+                        <p class="section-description">Get personalized assistance from our expert support team</p>
+                    </div>
+                    
+                    <div class="ticket-form-container">
+                        <form class="ticket-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-input" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-input" placeholder="Enter your email address" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Priority Level</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select priority</option>
+                                        <option value="low">Low - General inquiry</option>
+                                        <option value="medium">Medium - Issue affecting work</option>
+                                        <option value="high">High - Critical business impact</option>
+                                        <option value="urgent">Urgent - System down</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select category</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="billing">Billing & Account</option>
+                                        <option value="feature">Feature Request</option>
+                                        <option value="integration">Integration Help</option>
+                                        <option value="training">Training & Onboarding</option>
+                                        <option value="bug">Bug Report</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Subject</label>
+                                <input type="text" class="form-input" placeholder="Brief description of your issue" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-textarea" placeholder="Please provide detailed information about your issue, including any error messages and steps you've already tried..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Attachments (Optional)</label>
+                                <div class="file-upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag and drop files here or <span>browse</span></p>
+                                    <input type="file" class="file-input" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <span>Submit Ticket</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Knowledge Base Section -->
+            <div class="support-section" id="knowledge">
+                <div class="support-section-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Knowledge Base</h2>
+                        <p class="section-description">Find answers to common questions and comprehensive guides</p>
+                    </div>
+                    
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="search-input" placeholder="Search for articles, guides, and FAQs...">
+                        </div>
+                    </div>
+                    
+                    <div class="knowledge-categories">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="category-title">Getting Started</h3>
+                            <p class="category-description">Basic setup and onboarding guides</p>
+                            <div class="category-stats">12 articles</div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="category-title">Technical Support</h3>
+                            <p class="category-description">Troubleshooting and technical guides</p>
+                            <div class="category-stats">28 articles</div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3 class="category-title">Billing & Account</h3>
+                            <p class="category-description">Payment, subscription, and account management</p>
+                            <div class="category-stats">15 articles</div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h3 class="category-title">Integrations</h3>
+                            <p class="category-description">Connect with third-party tools and services</p>
+                            <div class="category-stats">22 articles</div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="category-title">Security & Privacy</h3>
+                            <p class="category-description">Data protection and security best practices</p>
+                            <div class="category-stats">18 articles</div>
+                        </div>
+                        
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="category-title">Training & Best Practices</h3>
+                            <p class="category-description">Learn advanced features and workflows</p>
+                            <div class="category-stats">31 articles</div>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-articles">
+                        <h3 class="popular-title">Popular Articles</h3>
+                        <div class="article-list">
+                            <div class="article-item">
+                                <div class="article-icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="article-content">
+                                    <h4 class="article-title">How to get started with your first project</h4>
+                                    <p class="article-meta">Updated 2 days ago • 5 min read</p>
+                                </div>
+                                <div class="article-views">2.1k views</div>
+                            </div>
+                            
+                            <div class="article-item">
+                                <div class="article-icon">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <div class="article-content">
+                                    <h4 class="article-title">Troubleshooting common integration issues</h4>
+                                    <p class="article-meta">Updated 1 week ago • 8 min read</p>
+                                </div>
+                                <div class="article-views">1.8k views</div>
+                            </div>
+                            
+                            <div class="article-item">
+                                <div class="article-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="article-content">
+                                    <h4 class="article-title">Managing team permissions and roles</h4>
+                                    <p class="article-meta">Updated 3 days ago • 6 min read</p>
+                                </div>
+                                <div class="article-views">1.5k views</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Chat Section -->
+            <div class="support-section" id="chat">
+                <div class="support-section-container">
+                    <div class="section-header">
+                        <h2 class="section-title">Live Chat Support</h2>
+                        <p class="section-description">Connect instantly with our support team for real-time assistance</p>
+                    </div>
+                    
+                    <div class="chat-status-bar">
+                        <div class="status-indicator online"></div>
+                        <span class="status-text">Our support team is online and ready to help</span>
+                        <span class="response-time">Avg. response time: 2 minutes</span>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="agent-info">
+                                <div class="agent-avatar">
+                                    <img src="thumbnails/consultation.png" alt="Support Agent" class="agent-image">
+                                    <div class="agent-status"></div>
+                                </div>
+                                <div class="agent-details">
+                                    <h4 class="agent-name">Support Team</h4>
+                                    <p class="agent-title">Ready to assist you</p>
+                                </div>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="chat-action-btn">
+                                    <i class="fas fa-phone"></i>
+                                </button>
+                                <button class="chat-action-btn">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages">
+                            <div class="message agent-message">
+                                <div class="message-avatar">
+                                    <img src="https://via.placeholder.com/32x32/0091ff/ffffff?text=S" alt="Agent" class="message-avatar-img">
+                                </div>
+                                <div class="message-content">
+                                    <p class="message-text">Hello! Welcome to our support chat. How can I help you today?</p>
+                                    <span class="message-time">Just now</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="chat-input-wrapper">
+                                <button class="attachment-btn">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <input type="text" class="chat-input" placeholder="Type your message here...">
+                                <button class="send-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Available 24/7</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure & Private</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-users"></i>
+                            <span>Expert Support Team</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .support-container {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #06273e;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .support-header {
+            position: relative;
+            background: linear-gradient(135deg, #8f9295 0%, #3a3a3a48 100%);
+            padding-top: 80px;
+            padding-bottom: 80px;
+            overflow: hidden;
+        }
+
+        .support-header-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('thumbnails/pexels-sumaja-lippert-164426904-11177632.jpg') center/cover;
+            opacity: 0.8;
+            animation: backgroundFloat 20s ease-in-out infinite;
+        }
+
+
+        .support-header-content {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            margin-top: 0;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .support-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+            margin-top: 0;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .support-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(6, 39, 62, 0.08);
+        }
+
+        .support-nav-container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 450px;
+            padding-right: auto;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+            position: relative;
+        }
+
+        .support-tab-btn {
+            background: none;
+            border: none;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 32px;
+            padding-right: 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #06273e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .support-tab-btn:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .support-tab-btn.active {
+            opacity: 1;
+            color: #0091ff;
+        }
+
+        .support-tab-btn i {
+            font-size: 18px;
+        }
+
+        .support-tab-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+            border-radius: 2px 2px 0 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 160px;
+            left: 24px;
+        }
+
+        .support-content {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+            position: relative;
+        }
+
+        .support-section {
+            display: none;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .support-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .support-section-container {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #06273e;
+            margin-bottom: 16px;
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(6, 39, 62, 0.7);
+            margin-bottom: 0;
+            margin-top: 0;
+            line-height: 1.6;
+        }
+
+        /* Ticket Form Styles */
+        .ticket-form-container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ticket-form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.1);
+            border: 1px solid #e5e5e5;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #06273e;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #0091ff;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 145, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #e5e5e5;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .file-upload-area:hover {
+            border-color: #0091ff;
+            background-color: rgba(0, 145, 255, 0.02);
+        }
+
+        .file-upload-area i {
+            font-size: 32px;
+            color: #0091ff;
+            margin-bottom: 16px;
+        }
+
+        .file-upload-area p {
+            font-size: 16px;
+            color: #06273e;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .file-upload-area span {
+            color: #0091ff;
+            font-weight: 600;
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            color: #ffffff;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
+        }
+
+        /* Knowledge Base Styles */
+        .search-container {
+            margin-bottom: 60px;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0091ff;
+            font-size: 18px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 20px 20px 60px;
+            border: 2px solid #e5e5e5;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #06273e;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(6, 39, 62, 0.08);
+        }
+
+        .search-input:focus {
+            border-color: #0091ff;
+            outline: none;
+            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .knowledge-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.05) 0%, rgba(6, 39, 62, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.15);
+            border-color: #0091ff;
+        }
+
+        .category-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-icon i {
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 12px;
+            margin-top: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(6, 39, 62, 0.7);
+            margin-bottom: 16px;
+            margin-top: 0;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-stats {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0091ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .popular-articles {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 10px 40px rgba(6, 39, 62, 0.08);
+        }
+
+        .popular-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 32px;
+            margin-top: 0;
+        }
+
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .article-item:hover {
+            background-color: rgba(0, 145, 255, 0.04);
+            transform: translateX(8px);
+        }
+
+        .article-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .article-icon i {
+            color: #0091ff;
+            font-size: 20px;
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #06273e;
+            margin-bottom: 4px;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(6, 39, 62, 0.6);
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .article-views {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0091ff;
+            background-color: rgba(0, 145, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* Live Chat Styles */
+        .chat-status-bar {
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.1) 100%);
+            padding: 16px 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(0, 145, 255, 0.2);
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .status-indicator.online {
+            background-color: #22c55e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .status-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #06273e;
+            flex: 1;
+        }
+
+        .response-time {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0091ff;
+            background-color: rgba(0, 145, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .chat-container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(6, 39, 62, 0.1);
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .agent-avatar {
+            position: relative;
+        }
+
+        .agent-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .agent-status {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+        }
+
+        .agent-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+            margin-top: 0;
+        }
+
+        .agent-title {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-action-btn {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chat-action-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .chat-messages {
+            padding: 24px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            animation: messageSlideIn 0.4s ease-out;
+            width: fit-content;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-avatar-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-text {
+            background-color: #f8f9fa;
+            padding: 12px 16px;
+            border-radius: 16px 16px 16px 4px;
+            font-size: 14px;
+            color: #06273e;
+            margin-bottom: 4px;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+
+        .agent-message .message-text {
+            background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.05) 100%);
+            border: 1px solid rgba(0, 145, 255, 0.1);
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: rgba(6, 39, 62, 0.5);
+            padding-left: 16px;
+        }
+
+        .chat-input-container {
+            padding: 24px;
+            border-top: 1px solid #e5e5e5;
+            background-color: #f8f9fa;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            padding: 8px 8px 8px 20px;
+            border: 2px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: #0091ff;
+            box-shadow: 0 0 0 4px rgba(0, 145, 255, 0.1);
+        }
+
+        .attachment-btn {
+            background: none;
+            border: none;
+            color: #0091ff;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .attachment-btn:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #06273e;
+            background: none;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(6, 39, 62, 0.5);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+            border: none;
+            border-radius: 50%;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 145, 255, 0.4);
+        }
+
+        .chat-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: rgba(6, 39, 62, 0.7);
+        }
+
+        .info-item i {
+            color: #0091ff;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .support-title {
+                font-size: 32px;
+            }
+
+            .support-subtitle {
+                font-size: 16px;
+            }
+
+            .support-header {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .support-header-content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .support-content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .support-nav-container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .support-tab-btn {
+                padding-left: 20px;
+                padding-right: 20px;
+                font-size: 14px;
+            }
+
+            .support-tab-btn span {
+                display: none;
+            }
+
+            .support-tab-indicator {
+                width: 60px;
+                left: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-description {
+                font-size: 16px;
+            }
+
+            .ticket-form {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            .knowledge-categories {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .category-card {
+                padding: 24px;
+            }
+
+            .popular-articles {
+                padding: 24px;
+            }
+
+            .article-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .article-content {
+                width: 100%;
+            }
+
+            .chat-container {
+                margin-left: -16px;
+                margin-right: -16px;
+                border-radius: 0;
+            }
+
+            .chat-info {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .info-item {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-title {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .ticket-form {
+                padding: 16px;
+            }
+
+            .category-card {
+                padding: 20px;
+            }
+
+            .popular-articles {
+                padding: 20px;
+            }
+
+            .chat-header {
+                padding: 16px;
+            }
+
+            .chat-messages {
+                padding: 16px;
+            }
+
+            .chat-input-container {
+                padding: 16px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const tabBtns = document.querySelectorAll('.support-tab-btn');
+            const sections = document.querySelectorAll('.support-section');
+            const indicator = document.querySelector('.support-tab-indicator');
+
+            function switchTab(targetTab, clickedBtn) {
+                // Remove active class from all tabs and sections
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding section
+                clickedBtn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+
+                // Move indicator
+                const btnRect = clickedBtn.getBoundingClientRect();
+                const containerRect = clickedBtn.parentElement.getBoundingClientRect();
+                const offset = btnRect.left - containerRect.left;
+                indicator.style.transform = `translateX(${offset}px)`;
+                indicator.style.width = `${btnRect.width}px`;
+            }
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    switchTab(targetTab, this);
+                });
+            });
+
+            // Initialize indicator position
+            const activeBtn = document.querySelector('.support-tab-btn.active');
+            if (activeBtn) {
+                const btnRect = activeBtn.getBoundingClientRect();
+                const containerRect = activeBtn.parentElement.getBoundingClientRect();
+                const offset = btnRect.left - containerRect.left;
+                indicator.style.transform = `translateX(${offset}px)`;
+                indicator.style.width = `${btnRect.width}px`;
+            }
+
+            // Form submission handling
+            const ticketForm = document.querySelector('.ticket-form');
+            if (ticketForm) {
+                ticketForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<span>Submitting...</span><i class="fas fa-spinner fa-spin"></i>';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<span>Ticket Submitted!</span><i class="fas fa-check"></i>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+                        
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = 'linear-gradient(135deg, #0091ff 0%, #06273e 100%)';
+                            submitBtn.disabled = false;
+                            this.reset();
+                        }, 2000);
+                    }, 2000);
+                });
+            }
+
+            // File upload handling
+            const fileUploadArea = document.querySelector('.file-upload-area');
+            const fileInput = document.querySelector('.file-input');
+            
+            if (fileUploadArea && fileInput) {
+                fileUploadArea.addEventListener('click', () => fileInput.click());
+                
+                fileUploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#0091ff';
+                    this.style.backgroundColor = 'rgba(0, 145, 255, 0.05)';
+                });
+                
+                fileUploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#e5e5e5';
+                    this.style.backgroundColor = 'transparent';
+                });
+                
+                fileUploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#e5e5e5';
+                    this.style.backgroundColor = 'transparent';
+                    
+                    const files = e.dataTransfer.files;
+                    handleFiles(files);
+                });
+                
+                fileInput.addEventListener('change', function(e) {
+                    handleFiles(e.target.files);
+                });
+                
+                function handleFiles(files) {
+                    if (files.length > 0) {
+                        const fileNames = Array.from(files).map(file => file.name).join(', ');
+                        fileUploadArea.querySelector('p').innerHTML = `Selected: ${fileNames}`;
+                    }
+                }
+            }
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const query = e.target.value.toLowerCase();
+                    // Here you would implement actual search functionality
+                    console.log('Searching for:', query);
+                });
+            }
+
+            // Category card interactions
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add click animation
+                    this.style.transform = 'translateY(-8px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-8px) scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Article item interactions
+            const articleItems = document.querySelectorAll('.article-item');
+            articleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    console.log('Opening article:', this.querySelector('.article-title').textContent);
+                });
+            });
+
+            // Chat functionality
+            const chatInput = document.querySelector('.chat-input');
+            const sendBtn = document.querySelector('.send-btn');
+            const messagesContainer = document.querySelector('.chat-messages');
+
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'agent-message'}`;
+                
+                const avatarSrc = isUser ? 
+                    'https://via.placeholder.com/32x32/06273e/ffffff?text=U' : 
+                    'https://via.placeholder.com/32x32/0091ff/ffffff?text=S';
+                
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">
+                        <img src="${avatarSrc}" alt="${isUser ? 'User' : 'Agent'}" class="message-avatar-img">
+                    </div>
+                    <div class="message-content">
+                        <p class="message-text">${text}</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                `;
+                
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Simulate agent response
+                    setTimeout(() => {
+                        const responses = [
+                            "Thanks for your message! I'm looking into that for you.",
+                            "I understand your concern. Let me help you with that.",
+                            "That's a great question! Here's what I can tell you...",
+                            "I see what you mean. Let me provide you with the information you need."
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000 + Math.random() * 2000);
+                }
+            }
+
+            if (sendBtn && chatInput) {
+                sendBtn.addEventListener('click', sendMessage);
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll animations
+            const animateElements = document.querySelectorAll('.category-card, .article-item, .chat-container');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  /* Base styles */
+  .rb-landing {
+    font-family: 'Inter', sans-serif;
+    color: #06273e;
+    background-color: #f3f3f3;
+    line-height: 1.6;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .rb-container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Footer */
+  
+  .rb-copyright {
+    color: #000000be;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  /* Header section */
+  .rb-header {
+    margin-bottom: 7px;
+  }
+  
+  .rb-heading {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: rgb(128, 128, 128);
+  }
+  
+  /* Contact info */
+  .rb-contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  
+  .rb-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  /* Social icons */
+  .rb-social-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .rb-social-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .rb-social-icon:hover {
+    color: #061f2f;
+  }
+  
+  .rb-social-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  /* Animation classes */
+  .rb-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .rb-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1240px) {
+    .rb-container {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .rb-contact-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    
+    .rb-social-icons {
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .rb-heading {
+      font-size: 22px;
+    }
+    
+    .rb-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    
+    .rb-footer-links {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .rb-contact {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .rb-contact-wrapper {
+      margin-bottom: 30px;
+    }
+  }
+</style>
+
+<div class="rb-landing">
+  <div class="rb-container">
+    <header class="rb-header">
+      
+      <div class="rb-contact-wrapper">
+        <div class="rb-contact">
+          
+
+          <div class="rb-copyright rb-fade-in">© Defcon 2025. All operations governed by ISO/IEC 27001-compliant protocols.</div>
+        </div>
+        
+        <div class="rb-social-icons">
+          
+          <a href="#" class="rb-social-icon rb-fade-in">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0091ff">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="#" class="rb-social-icon rb-fade-in">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0091ff">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="#" class="rb-social-icon rb-fade-in">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0091ff">
+              <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+            </svg>
+          </a>
+          <a href="#" class="rb-social-icon rb-fade-in">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0091ff">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <h1 class="rb-heading rb-fade-in">We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
+
+        Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand. This strategic approach enables us to provide superior service quality while optimizing resource allocation and maintaining competitive pricing structures for our valued customers.</h1>
+
+    </header>
+    
+  </div>
+</div>
+
+<script>
+  // Animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeElements = document.querySelectorAll('.rb-fade-in');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 100 + (Array.from(fadeElements).indexOf(entry.target) * 100));
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      fadeInObserver.observe(element);
+    });
+  });
+</script>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

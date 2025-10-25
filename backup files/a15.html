@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Services Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base & Typography --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Main Services Container --- */
+        .defcon-services-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            overflow: hidden;
+        }
+
+        /* --- Service Row Layout --- */
+        .defcon-service-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 120px;
+            gap: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .defcon-service-row:last-child { margin-bottom: 0; }
+        .defcon-service-row.is-visible { opacity: 1; transform: translateY(0); }
+        .defcon-service-row.reverse { flex-direction: row-reverse; }
+
+        /* --- Media (Image/Icon) Column --- */
+        .defcon-service-media { flex-basis: 50%; }
+        .defcon-service-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(6, 39, 62, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .defcon-service-media img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 45px rgba(6, 39, 62, 0.12);
+        }
+
+        /* --- Content Column --- */
+        .defcon-service-content { flex-basis: 45%; }
+        .defcon-service-content h2 {
+            font-size: 2.75rem;
+            color: #06273e;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .defcon-service-content p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #5A7184;
+            margin-bottom: 35px;
+        }
+        .defcon-buttons-container { display: flex; gap: 15px; align-items: center; }
+
+        /* --- Buttons Styling --- */
+        .defcon-btn {
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .defcon-btn-primary { background-color: #0091ff; color: #ffffff; border-color: #0091ff; }
+        .defcon-btn-primary:hover {
+            background-color: #06273e;
+            border-color: #06273e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 145, 255, 0.25);
+        }
+        .defcon-btn-secondary { background-color: transparent; color: #06273e; border-color: #e5e5e5; }
+        .defcon-btn-secondary:hover {
+            background-color: #ffffff;
+            border-color: #06273e;
+            color: #06273e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(6, 39, 62, 0.1);
+        }
+
+        /* --- Modal Styling --- */
+        .defcon-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(6, 39, 62, 0.85);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+        .defcon-modal-content {
+            background-color: #ffffff;
+            padding: 45px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 650px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            animation: modal-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .defcon-modal-close {
+            color: #888;
+            position: absolute;
+            top: 15px; right: 25px;
+            font-size: 32px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .defcon-modal-close:hover { color: #06273e; transform: rotate(90deg); }
+        .defcon-modal-content h3 { font-size: 2.25rem; margin-top: 0; color: #06273e; }
+        
+        /* --- Accordion Styling --- */
+        .defcon-accordion-list { list-style: none; padding-left: 0; margin-top: 25px; }
+        .defcon-accordion-item { border-bottom: 1px solid #e5e5e5; }
+        .defcon-accordion-item:last-child { border-bottom: none; }
+        .defcon-accordion-trigger {
+            background: none;
+            border: none;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #06273e;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+        }
+        .defcon-accordion-trigger:hover .accordion-title { color: #0091ff; }
+        .accordion-title { transition: color 0.3s ease; }
+        .accordion-icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background-color: #888;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .accordion-icon::before { top: 7px; left: 0; width: 16px; height: 2px; } /* Horizontal bar */
+        .accordion-icon::after { top: 0; left: 7px; width: 2px; height: 16px; } /* Vertical bar */
+        
+        .defcon-accordion-trigger.is-active .accordion-icon { transform: rotate(135deg); }
+        .defcon-accordion-trigger.is-active .accordion-icon::before { transform: rotate(90deg); }
+        .defcon-accordion-trigger.is-active .accordion-icon::after { transform: rotate(180deg); }
+
+        .defcon-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), padding 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .defcon-accordion-content p {
+            font-size: 1rem;
+            color: #5A7184;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 10px 20px 10px;
+        }
+        
+        @keyframes modal-pop { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) { .defcon-service-row { gap: 40px; } .defcon-service-content h2 { font-size: 2.25rem; } }
+        @media (max-width: 768px) {
+            .defcon-services-wrapper { padding: 60px 15px; }
+            .defcon-service-row, .defcon-service-row.reverse { flex-direction: column; gap: 30px; margin-bottom: 60px; }
+            .defcon-service-content { text-align: center; }
+            .defcon-buttons-container { justify-content: center; }
+            .defcon-modal-content { width: 95%; padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="defcon-services-wrapper">
+        <div class="defcon-service-row">
+            <div class="defcon-service-media">
+                
+                <img src="https://via.placeholder.com/600x450/06273e/ffffff?text=Development" alt="Custom Software Development">
+            </div>
+            <div class="defcon-service-content">
+                <h2>Development</h2>
+                <p>We build powerful, scalable, and secure web applications, e-commerce platforms, and custom software tailored to your business needs, ensuring seamless performance and future growth.</p>
+                <div class="defcon-buttons-container">
+                    <a href="#" class="defcon-btn defcon-btn-secondary modal-trigger" data-modal="modal-development">View Details</a>
+                    <a href="#" class="defcon-btn defcon-btn-primary">Book a Consultation</a>
+                </div>
+            </div>
+        </div>
+        <div class="defcon-service-row reverse">
+            <div class="defcon-service-media">
+                
+                <img src="https://via.placeholder.com/600x450/e5e5e5/06273e?text=Digital+Solutions" alt="IT Support and Infrastructure">
+            </div>
+            <div class="defcon-service-content">
+                <h2>Digital Solutions</h2>
+                <p>Our experts provide comprehensive IT support, infrastructure management, and strategic consulting. We integrate AI and automation to streamline your operations and elevate your tech capabilities.</p>
+                <div class="defcon-buttons-container">
+                    <a href="#" class="defcon-btn defcon-btn-secondary modal-trigger" data-modal="modal-digital">View Details</a>
+                    <a href="#" class="defcon-btn defcon-btn-primary">Book a Consultation</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <div id="modal-development" class="defcon-modal">
+        <div class="defcon-modal-content">
+            <span class="defcon-modal-close">&times;</span>
+            <h3>Development Services</h3>
+            <ul class="defcon-accordion-list">
+                <li class="defcon-accordion-item">
+                    <button class="defcon-accordion-trigger" aria-expanded="false"><span class="accordion-title">Web Applications</span><span class="accordion-icon"></span></button>
+                    <div class="defcon-accordion-content" aria-hidden="true">
+                        <p>We craft bespoke web applications from the ground up, focusing on intuitive user experiences, robust back-end architecture, and flawless performance on any device.</p>
+                    </div>
+                </li>
+                <li class="defcon-accordion-item">
+                    <button class="defcon-accordion-trigger" aria-expanded="false"><span class="accordion-title">E-commerce Solutions</span><span class="accordion-icon"></span></button>
+                    <div class="defcon-accordion-content" aria-hidden="true">
+                        <p>Our team builds high-converting e-commerce platforms with secure payment gateways, inventory management, and a seamless customer journey to maximize your online sales.</p>
+                    </div>
+                </li>
+                <li class="defcon-accordion-item">
+                    <button class="defcon-accordion-trigger" aria-expanded="false"><span class="accordion-title">API Development</span><span class="accordion-icon"></span></button>
+                    <div class="defcon-accordion-content" aria-hidden="true">
+                        <p>We design and implement secure, scalable, and well-documented APIs to connect your software ecosystem, enabling smooth data exchange and third-party integrations.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="modal-digital" class="defcon-modal">
+        <div class="defcon-modal-content">
+            <span class="defcon-modal-close">&times;</span>
+            <h3>Digital Solutions</h3>
+            <ul class="defcon-accordion-list">
+                <li class="defcon-accordion-item">
+                    <button class="defcon-accordion-trigger" aria-expanded="false"><span class="accordion-title">IT Support & Infrastructure</span><span class="accordion-icon"></span></button>
+                    <div class="defcon-accordion-content" aria-hidden="true">
+                        <p>We provide proactive IT support and manage your entire technology infrastructure, ensuring high availability, security, and efficiency for your daily operations.</p>
+                    </div>
+                </li>
+                 <li class="defcon-accordion-item">
+                    <button class="defcon-accordion-trigger" aria-expanded="false"><span class="accordion-title">Automation & AI Integration</span><span class="accordion-icon"></span></button>
+                    <div class="defcon-accordion-content" aria-hidden="true">
+                        <p>Unlock new levels of productivity by leveraging our expertise in automation and AI. We integrate intelligent solutions to streamline workflows and provide data-driven insights.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- Reveal on Scroll Animation ---
+            const serviceRows = document.querySelectorAll('.defcon-service-row');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            serviceRows.forEach(row => observer.observe(row));
+
+            // --- Modal Functionality ---
+            const modalTriggers = document.querySelectorAll('.modal-trigger');
+            const modals = document.querySelectorAll('.defcon-modal');
+            const closeButtons = document.querySelectorAll('.defcon-modal-close');
+
+            const openModal = (modal) => {
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+            const closeModal = (modal) => {
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            };
+            
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modal = document.getElementById(trigger.getAttribute('data-modal'));
+                    openModal(modal);
+                });
+            });
+
+            closeButtons.forEach(button => button.addEventListener('click', () => closeModal(button.closest('.defcon-modal'))));
+            modals.forEach(modal => modal.addEventListener('click', (e) => e.target === modal && closeModal(modal)));
+            document.addEventListener('keydown', (e) => e.key === 'Escape' && modals.forEach(closeModal));
+
+            // --- Accordion Functionality ---
+            const accordionTriggers = document.querySelectorAll('.defcon-accordion-trigger');
+            accordionTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const content = trigger.nextElementSibling;
+                    const isActive = trigger.classList.contains('is-active');
+
+                    trigger.classList.toggle('is-active', !isActive);
+                    trigger.setAttribute('aria-expanded', !isActive);
+                    content.setAttribute('aria-hidden', isActive);
+                    
+                    if (!isActive) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

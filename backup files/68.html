@@ -1,0 +1,1338 @@
+<style>
+/* Reset and Base Styles */
+.defcon-cw-reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Main Container */
+.defcon-cw-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero Section */
+.defcon-cw-hero {
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-cw-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('thumbnails/pexels-inspiredimages-5626726.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.defcon-cw-hero-content {
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+  z-index: 2;
+  color: #ffffff;
+  padding: 40px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.defcon-cw-hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-cw-hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.defcon-cw-hero-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+  box-shadow: 0 10px 20px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-cw-hero-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 145, 255, 0.4);
+}
+
+/* Section Headers */
+.defcon-cw-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.defcon-cw-section-title {
+  font-size: 2.5rem;
+  color: #06273e;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.defcon-cw-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #0091ff;
+}
+
+.defcon-cw-section-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Grid */
+.defcon-cw-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.defcon-cw-service-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-cw-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-cw-service-icon {
+  width: 100%;
+  height: 200px;
+  background-color: #0091ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 3rem;
+}
+
+.defcon-cw-service-content {
+  padding: 30px;
+}
+
+.defcon-cw-service-title {
+  font-size: 1.5rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-cw-service-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.defcon-cw-service-button {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+}
+
+.defcon-cw-service-button:hover {
+  background-color: transparent;
+  color: #0091ff;
+}
+
+/* Pricing Section */
+.defcon-cw-pricing-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+.defcon-cw-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-cw-pricing-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-cw-pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-cw-pricing-header {
+  padding: 30px;
+  background-color: #06273e;
+  color: #ffffff;
+  text-align: center;
+}
+
+.defcon-cw-pricing-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.defcon-cw-pricing-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.defcon-cw-pricing-period {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.defcon-cw-pricing-features {
+  padding: 30px;
+}
+
+.defcon-cw-pricing-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.defcon-cw-pricing-feature::before {
+  content: '✓';
+  color: #0091ff;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.defcon-cw-pricing-button {
+  display: block;
+  text-align: center;
+  padding: 15px;
+  margin: 0 30px 30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.defcon-cw-pricing-button:hover {
+  background-color: #0077cc;
+}
+
+.defcon-cw-popular-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+/* Process Section */
+.defcon-cw-process-section {
+  margin-bottom: 80px;
+}
+
+.defcon-cw-process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-cw-process-step {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.defcon-cw-process-step-number {
+  width: 60px;
+  height: 60px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-cw-process-step-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-cw-process-step-title {
+  font-size: 1.3rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-cw-process-step-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.defcon-cw-cta-section {
+  background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+  padding: 80px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-cw-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.defcon-cw-cta-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-cw-cta-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-cw-cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  color: #0091ff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-cw-cta-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Testimonials */
+.defcon-cw-testimonials-section {
+  margin-bottom: 80px;
+}
+
+.defcon-cw-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-cw-testimonial-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.defcon-cw-testimonial-quote {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.defcon-cw-testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.defcon-cw-testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  margin-right: 15px;
+  overflow: hidden;
+}
+
+.defcon-cw-testimonial-name {
+  font-size: 1rem;
+  color: #06273e;
+  font-weight: 600;
+}
+
+.defcon-cw-testimonial-role {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Contact Form */
+.defcon-cw-contact-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+.defcon-cw-contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.defcon-cw-contact-form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-cw-form-group {
+  margin-bottom: 25px;
+}
+
+.defcon-cw-form-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.defcon-cw-form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  transition: all 0.3s ease;
+}
+
+.defcon-cw-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-cw-form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.defcon-cw-form-textarea:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-cw-form-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-cw-form-button:hover {
+  background-color: #0077cc;
+}
+
+/* Modal Styles */
+.defcon-cw-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.defcon-cw-modal-active {
+  display: flex;
+  opacity: 1;
+}
+
+.defcon-cw-modal-content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.defcon-cw-modal-active .defcon-cw-modal-content {
+  transform: translateY(0);
+}
+
+.defcon-cw-modal-header {
+  padding: 20px;
+  background-color: #06273e;
+  color: #ffffff;
+  position: relative;
+}
+
+.defcon-cw-modal-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.defcon-cw-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.defcon-cw-modal-body {
+  padding: 30px;
+}
+
+/* Quick Contact Form */
+.defcon-cw-quick-form {
+  width: 100%;
+}
+
+.defcon-cw-quick-form-group {
+  margin-bottom: 20px;
+}
+
+.defcon-cw-quick-form-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.defcon-cw-quick-form-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.defcon-cw-quick-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+}
+
+.defcon-cw-quick-form-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-cw-quick-form-button:hover {
+  background-color: #0077cc;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.defcon-cw-animate {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.defcon-cw-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.defcon-cw-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.defcon-cw-delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .defcon-cw-hero-title {
+    font-size: 3rem;
+  }
+  
+  .defcon-cw-hero-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-cw-hero {
+    height: auto;
+    padding: 100px 20px;
+    min-height: auto;
+  }
+  
+  .defcon-cw-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .defcon-cw-section-title {
+    font-size: 2rem;
+  }
+  
+  .defcon-cw-process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .defcon-cw-process-step {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .defcon-cw-process-step:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-cw-hero-title {
+    font-size: 2rem;
+  }
+  
+  .defcon-cw-hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .defcon-cw-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-cw-contact-form {
+    padding: 30px 20px;
+  }
+}
+</style>
+
+<div class="defcon-cw-reset defcon-cw-container">
+  <!-- Hero Section -->
+  <section class="defcon-cw-hero">
+    <div class="defcon-cw-hero-content">
+      <h1 class="defcon-cw-hero-title defcon-cw-animate">Copywriting & Content Services</h1>
+      <p class="defcon-cw-hero-subtitle defcon-cw-animate defcon-cw-delay-1">Elevate your brand with compelling, SEO-optimized content that engages your audience and drives conversions. Our expert writers craft words that work.</p>
+      <a href="#" class="defcon-cw-hero-button defcon-cw-animate defcon-cw-delay-2" id="defcon-cw-hero-button">Get Started Today</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="defcon-cw-services-section">
+    <div class="defcon-cw-section-header">
+      <h2 class="defcon-cw-section-title defcon-cw-animate">Our Copywriting Services</h2>
+      <p class="defcon-cw-section-subtitle defcon-cw-animate defcon-cw-delay-1">We offer a comprehensive suite of content solutions tailored to your business needs</p>
+    </div>
+    
+    <div class="defcon-cw-services-grid">
+      <!-- Service 1 -->
+      <div class="defcon-cw-service-card defcon-cw-animate">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-pen-fancy"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">Website Copywriting</h3>
+          <p class="defcon-cw-service-description">Persuasive, SEO-optimized website content that converts visitors into customers and tells your brand story effectively.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="website-copy">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 2 -->
+      <div class="defcon-cw-service-card defcon-cw-animate defcon-cw-delay-1">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-blog"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">Blog Content</h3>
+          <p class="defcon-cw-service-description">Regular, high-quality blog posts that establish thought leadership and improve your search engine rankings.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="blog-content">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 3 -->
+      <div class="defcon-cw-service-card defcon-cw-animate defcon-cw-delay-2">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-ad"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">Ad & Sales Copy</h3>
+          <p class="defcon-cw-service-description">Compelling ad copy that grabs attention and drives action, increasing your conversion rates and ROI.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="ad-copy">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 4 -->
+      <div class="defcon-cw-service-card defcon-cw-animate">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">Email Marketing</h3>
+          <p class="defcon-cw-service-description">Engaging email sequences that nurture leads and keep your audience connected to your brand.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="email-marketing">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 5 -->
+      <div class="defcon-cw-service-card defcon-cw-animate defcon-cw-delay-1">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">Whitepapers & Ebooks</h3>
+          <p class="defcon-cw-service-description">In-depth, authoritative content that positions your brand as an industry leader and generates high-quality leads.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="whitepapers">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 6 -->
+      <div class="defcon-cw-service-card defcon-cw-animate defcon-cw-delay-2">
+        <div class="defcon-cw-service-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="defcon-cw-service-content">
+          <h3 class="defcon-cw-service-title">SEO Content</h3>
+          <p class="defcon-cw-service-description">Strategically optimized content that ranks well in search engines and drives organic traffic to your site.</p>
+          <a href="#" class="defcon-cw-service-button defcon-cw-modal-trigger" data-modal="seo-content">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="defcon-cw-pricing-section">
+    <div class="defcon-cw-section-header">
+      <h2 class="defcon-cw-section-title defcon-cw-animate">Transparent Pricing</h2>
+      <p class="defcon-cw-section-subtitle defcon-cw-animate defcon-cw-delay-1">Flexible packages to suit businesses of all sizes</p>
+    </div>
+    
+    <div class="defcon-cw-pricing-grid">
+      <!-- Package 1 -->
+      <div class="defcon-cw-pricing-card defcon-cw-animate">
+        <div class="defcon-cw-pricing-header">
+          <h3 class="defcon-cw-pricing-title">Starter</h3>
+          <div class="defcon-cw-pricing-price">$499</div>
+          <div class="defcon-cw-pricing-period">per month</div>
+        </div>
+        <div class="defcon-cw-pricing-features">
+          <div class="defcon-cw-pricing-feature">4 Blog Posts (500-700 words)</div>
+          <div class="defcon-cw-pricing-feature">2 Website Pages</div>
+          <div class="defcon-cw-pricing-feature">Basic SEO Optimization</div>
+          <div class="defcon-cw-pricing-feature">1 Round of Revisions</div>
+          <div class="defcon-cw-pricing-feature">Content Strategy Consultation</div>
+        </div>
+        <a href="#" class="defcon-cw-pricing-button defcon-cw-modal-trigger" data-modal="starter-package">Get Started</a>
+      </div>
+      
+      <!-- Package 2 -->
+      <div class="defcon-cw-pricing-card defcon-cw-animate defcon-cw-delay-1">
+        <div class="defcon-cw-popular-badge">Most Popular</div>
+        <div class="defcon-cw-pricing-header">
+          <h3 class="defcon-cw-pricing-title">Professional</h3>
+          <div class="defcon-cw-pricing-price">$1,299</div>
+          <div class="defcon-cw-pricing-period">per month</div>
+        </div>
+        <div class="defcon-cw-pricing-features">
+          <div class="defcon-cw-pricing-feature">8 Blog Posts (700-1000 words)</div>
+          <div class="defcon-cw-pricing-feature">5 Website Pages</div>
+          <div class="defcon-cw-pricing-feature">Advanced SEO Optimization</div>
+          <div class="defcon-cw-pricing-feature">2 Rounds of Revisions</div>
+          <div class="defcon-cw-pricing-feature">Content Calendar</div>
+          <div class="defcon-cw-pricing-feature">2 Email Campaigns</div>
+        </div>
+        <a href="#" class="defcon-cw-pricing-button defcon-cw-modal-trigger" data-modal="professional-package">Get Started</a>
+      </div>
+      
+      <!-- Package 3 -->
+      <div class="defcon-cw-pricing-card defcon-cw-animate defcon-cw-delay-2">
+        <div class="defcon-cw-pricing-header">
+          <h3 class="defcon-cw-pricing-title">Enterprise</h3>
+          <div class="defcon-cw-pricing-price">$2,999</div>
+          <div class="defcon-cw-pricing-period">per month</div>
+        </div>
+        <div class="defcon-cw-pricing-features">
+          <div class="defcon-cw-pricing-feature">15 Blog Posts (1000-1500 words)</div>
+          <div class="defcon-cw-pricing-feature">10 Website Pages</div>
+          <div class="defcon-cw-pricing-feature">Premium SEO Optimization</div>
+          <div class="defcon-cw-pricing-feature">Unlimited Revisions</div>
+          <div class="defcon-cw-pricing-feature">Comprehensive Content Strategy</div>
+          <div class="defcon-cw-pricing-feature">5 Email Campaigns</div>
+          <div class="defcon-cw-pricing-feature">1 Whitepaper or Ebook</div>
+        </div>
+        <a href="#" class="defcon-cw-pricing-button defcon-cw-modal-trigger" data-modal="enterprise-package">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="defcon-cw-process-section">
+    <div class="defcon-cw-section-header">
+      <h2 class="defcon-cw-section-title defcon-cw-animate">Our Proven Process</h2>
+      <p class="defcon-cw-section-subtitle defcon-cw-animate defcon-cw-delay-1">A structured approach to delivering exceptional content</p>
+    </div>
+    
+    <div class="defcon-cw-process-steps">
+      <!-- Step 1 -->
+      <div class="defcon-cw-process-step defcon-cw-animate">
+        <div class="defcon-cw-process-step-number">1</div>
+        <div class="defcon-cw-process-step-content">
+          <h3 class="defcon-cw-process-step-title">Discovery</h3>
+          <p class="defcon-cw-process-step-description">We start by understanding your business, audience, and goals through detailed consultations and research.</p>
+        </div>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="defcon-cw-process-step defcon-cw-animate defcon-cw-delay-1">
+        <div class="defcon-cw-process-step-number">2</div>
+        <div class="defcon-cw-process-step-content">
+          <h3 class="defcon-cw-process-step-title">Strategy</h3>
+          <p class="defcon-cw-process-step-description">We develop a customized content strategy with clear messaging, tone, and SEO targets.</p>
+        </div>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="defcon-cw-process-step defcon-cw-animate defcon-cw-delay-2">
+        <div class="defcon-cw-process-step-number">3</div>
+        <div class="defcon-cw-process-step-content">
+          <h3 class="defcon-cw-process-step-title">Creation</h3>
+          <p class="defcon-cw-process-step-description">Our expert writers craft compelling content tailored to your brand voice and objectives.</p>
+        </div>
+      </div>
+      
+      <!-- Step 4 -->
+      <div class="defcon-cw-process-step defcon-cw-animate">
+        <div class="defcon-cw-process-step-number">4</div>
+        <div class="defcon-cw-process-step-content">
+          <h3 class="defcon-cw-process-step-title">Review</h3>
+          <p class="defcon-cw-process-step-description">We refine the content based on your feedback to ensure it meets your expectations.</p>
+        </div>
+      </div>
+      
+      <!-- Step 5 -->
+      <div class="defcon-cw-process-step defcon-cw-animate defcon-cw-delay-1">
+        <div class="defcon-cw-process-step-number">5</div>
+        <div class="defcon-cw-process-step-content">
+          <h3 class="defcon-cw-process-step-title">Delivery</h3>
+          <p class="defcon-cw-process-step-description">Final content is delivered in your preferred format, ready to publish and drive results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="defcon-cw-cta-section">
+    <h2 class="defcon-cw-cta-title defcon-cw-animate">Ready to Transform Your Content?</h2>
+    <p class="defcon-cw-cta-text defcon-cw-animate defcon-cw-delay-1">Let's discuss how our copywriting services can elevate your brand and drive measurable results.</p>
+    <a href="#" class="defcon-cw-cta-button defcon-cw-animate defcon-cw-delay-2" id="defcon-cw-cta-button">Schedule a Free Consultation</a>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="defcon-cw-testimonials-section">
+    <div class="defcon-cw-section-header">
+      <h2 class="defcon-cw-section-title defcon-cw-animate">What Our Clients Say</h2>
+      <p class="defcon-cw-section-subtitle defcon-cw-animate defcon-cw-delay-1">Don't just take our word for it</p>
+    </div>
+    
+    <div class="defcon-cw-testimonials-grid">
+      <!-- Testimonial 1 -->
+      <div class="defcon-cw-testimonial-card defcon-cw-animate">
+        <p class="defcon-cw-testimonial-quote">"Defcon's copywriting team transformed our website content, resulting in a 40% increase in conversion rates. Their strategic approach to messaging made all the difference."</p>
+        <div class="defcon-cw-testimonial-author">
+          <div class="defcon-cw-testimonial-avatar"></div>
+          <div>
+            <div class="defcon-cw-testimonial-name">Sarah Johnson</div>
+            <div class="defcon-cw-testimonial-role">Marketing Director, TechSolutions Inc.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="defcon-cw-testimonial-card defcon-cw-animate defcon-cw-delay-1">
+        <p class="defcon-cw-testimonial-quote">"The blog content Defcon produces for us consistently ranks on page one of Google. Their SEO expertise combined with engaging writing is a game-changer."</p>
+        <div class="defcon-cw-testimonial-author">
+          <div class="defcon-cw-testimonial-avatar"></div>
+          <div>
+            <div class="defcon-cw-testimonial-name">Michael Chen</div>
+            <div class="defcon-cw-testimonial-role">CEO, GrowthHack Digital</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="defcon-cw-testimonial-card defcon-cw-animate defcon-cw-delay-2">
+        <p class="defcon-cw-testimonial-quote">"Our email open rates doubled after Defcon revamped our campaigns. They understand how to craft messages that resonate with our audience."</p>
+        <div class="defcon-cw-testimonial-author">
+          <div class="defcon-cw-testimonial-avatar"></div>
+          <div>
+            <div class="defcon-cw-testimonial-name">Emily Rodriguez</div>
+            <div class="defcon-cw-testimonial-role">VP Sales, CloudNine Software</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="defcon-cw-contact-section">
+    <div class="defcon-cw-section-header">
+      <h2 class="defcon-cw-section-title defcon-cw-animate">Get in Touch</h2>
+      <p class="defcon-cw-section-subtitle defcon-cw-animate defcon-cw-delay-1">Ready to discuss your content needs? Contact us today.</p>
+    </div>
+    
+    <div class="defcon-cw-contact-container">
+      <form class="defcon-cw-contact-form defcon-cw-animate">
+        <div class="defcon-cw-form-group">
+          <label for="defcon-cw-name" class="defcon-cw-form-label">Your Name</label>
+          <input type="text" id="defcon-cw-name" class="defcon-cw-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-cw-form-group">
+          <label for="defcon-cw-email" class="defcon-cw-form-label">Email Address</label>
+          <input type="email" id="defcon-cw-email" class="defcon-cw-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <div class="defcon-cw-form-group">
+          <label for="defcon-cw-phone" class="defcon-cw-form-label">Phone Number</label>
+          <input type="tel" id="defcon-cw-phone" class="defcon-cw-form-input" placeholder="(123) 456-7890">
+        </div>
+        
+        <div class="defcon-cw-form-group">
+          <label for="defcon-cw-service" class="defcon-cw-form-label">Service Interest</label>
+          <select id="defcon-cw-service" class="defcon-cw-form-input">
+            <option value="">Select a service</option>
+            <option value="website-copy">Website Copywriting</option>
+            <option value="blog-content">Blog Content</option>
+            <option value="ad-copy">Ad & Sales Copy</option>
+            <option value="email-marketing">Email Marketing</option>
+            <option value="whitepapers">Whitepapers & Ebooks</option>
+            <option value="seo-content">SEO Content</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="defcon-cw-form-group">
+          <label for="defcon-cw-message" class="defcon-cw-form-label">Your Message</label>
+          <textarea id="defcon-cw-message" class="defcon-cw-form-textarea" placeholder="Tell us about your project..."></textarea>
+        </div>
+        
+        <button type="submit" class="defcon-cw-form-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- Modals -->
+<!-- Website Copy Modal -->
+<div class="defcon-cw-modal" id="defcon-cw-website-copy-modal">
+  <div class="defcon-cw-modal-content">
+    <div class="defcon-cw-modal-header">
+      <h3 class="defcon-cw-modal-title">Website Copywriting</h3>
+      <button class="defcon-cw-modal-close">&times;</button>
+    </div>
+    <div class="defcon-cw-modal-body">
+      <p>Our website copywriting service creates compelling, conversion-focused content that tells your brand story and drives action. We craft:</p>
+      <ul>
+        <li>Homepage content that captures attention</li>
+        <li>About pages that build trust</li>
+        <li>Service/product pages that highlight benefits</li>
+        <li>Landing pages that convert visitors</li>
+        <li>SEO-optimized content for better visibility</li>
+      </ul>
+      <p>All content is tailored to your brand voice and target audience, with strategic calls-to-action that guide visitors through your conversion funnel.</p>
+      
+      <form class="defcon-cw-quick-form">
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-modal-name" class="defcon-cw-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-cw-modal-name" class="defcon-cw-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-modal-email" class="defcon-cw-quick-form-label">Email</label>
+          <input type="email" id="defcon-cw-modal-email" class="defcon-cw-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-cw-quick-form-button">Request Quote</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Blog Content Modal -->
+<div class="defcon-cw-modal" id="defcon-cw-blog-content-modal">
+  <div class="defcon-cw-modal-content">
+    <div class="defcon-cw-modal-header">
+      <h3 class="defcon-cw-modal-title">Blog Content Service</h3>
+      <button class="defcon-cw-modal-close">&times;</button>
+    </div>
+    <div class="defcon-cw-modal-body">
+      <p>Our blog content service delivers regular, high-quality articles that:</p>
+      <ul>
+        <li>Establish your authority in your industry</li>
+        <li>Improve your search engine rankings</li>
+        <li>Drive consistent organic traffic</li>
+        <li>Engage your target audience</li>
+        <li>Support your overall content marketing strategy</li>
+      </ul>
+      <p>We handle everything from topic research and keyword optimization to writing and basic formatting, delivering ready-to-publish content on your schedule.</p>
+      
+      <form class="defcon-cw-quick-form">
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-blog-name" class="defcon-cw-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-cw-blog-name" class="defcon-cw-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-blog-email" class="defcon-cw-quick-form-label">Email</label>
+          <input type="email" id="defcon-cw-blog-email" class="defcon-cw-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-blog-frequency" class="defcon-cw-quick-form-label">Desired Post Frequency</label>
+          <select id="defcon-cw-blog-frequency" class="defcon-cw-quick-form-input">
+            <option value="weekly">Weekly</option>
+            <option value="bi-weekly">Bi-Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="defcon-cw-quick-form-button">Get Started</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Starter Package Modal -->
+<div class="defcon-cw-modal" id="defcon-cw-starter-package-modal">
+  <div class="defcon-cw-modal-content">
+    <div class="defcon-cw-modal-header">
+      <h3 class="defcon-cw-modal-title">Starter Package</h3>
+      <button class="defcon-cw-modal-close">&times;</button>
+    </div>
+    <div class="defcon-cw-modal-body">
+      <p>Our Starter Package is perfect for small businesses looking to establish their online presence with quality content:</p>
+      <ul>
+        <li><strong>4 Blog Posts</strong> (500-700 words each)</li>
+        <li><strong>2 Website Pages</strong> (homepage, about, or service pages)</li>
+        <li><strong>Basic SEO Optimization</strong> including keyword research</li>
+        <li><strong>1 Round of Revisions</strong> per piece</li>
+        <li><strong>Content Strategy Consultation</strong> to align with your goals</li>
+      </ul>
+      <p>This package delivers <strong>$499/month</strong> with a 3-month minimum commitment.</p>
+      
+      <form class="defcon-cw-quick-form">
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-starter-name" class="defcon-cw-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-cw-starter-name" class="defcon-cw-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-starter-email" class="defcon-cw-quick-form-label">Email</label>
+          <input type="email" id="defcon-cw-starter-email" class="defcon-cw-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-cw-quick-form-button">Subscribe Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Professional Package Modal -->
+<div class="defcon-cw-modal" id="defcon-cw-professional-package-modal">
+  <div class="defcon-cw-modal-content">
+    <div class="defcon-cw-modal-header">
+      <h3 class="defcon-cw-modal-title">Professional Package</h3>
+      <button class="defcon-cw-modal-close">&times;</button>
+    </div>
+    <div class="defcon-cw-modal-body">
+      <p>Our most popular package offers comprehensive content solutions for growing businesses:</p>
+      <ul>
+        <li><strong>8 Blog Posts</strong> (700-1000 words each)</li>
+        <li><strong>5 Website Pages</strong> (full website content refresh)</li>
+        <li><strong>Advanced SEO Optimization</strong> with competitor analysis</li>
+        <li><strong>2 Rounds of Revisions</strong> per piece</li>
+        <li><strong>Content Calendar</strong> for strategic planning</li>
+        <li><strong>2 Email Campaigns</strong> (sequences or newsletters)</li>
+      </ul>
+      <p>This package delivers <strong>$1,299/month</strong> with a 3-month minimum commitment.</p>
+      
+      <form class="defcon-cw-quick-form">
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-pro-name" class="defcon-cw-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-cw-pro-name" class="defcon-cw-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-cw-quick-form-group">
+          <label for="defcon-cw-pro-email" class="defcon-cw-quick-form-label">Email</label>
+          <input type="email" id="defcon-cw-pro-email" class="defcon-cw-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-cw-quick-form-button">Subscribe Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all modal triggers
+  const modalTriggers = document.querySelectorAll('.defcon-cw-modal-trigger');
+  const modals = document.querySelectorAll('.defcon-cw-modal');
+  const closeButtons = document.querySelectorAll('.defcon-cw-modal-close');
+  
+  // Hero and CTA buttons also trigger modals
+  const heroButton = document.getElementById('defcon-cw-hero-button');
+  const ctaButton = document.getElementById('defcon-cw-cta-button');
+  
+  if (heroButton) {
+    heroButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('defcon-cw-professional-package-modal').classList.add('defcon-cw-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('defcon-cw-professional-package-modal').classList.add('defcon-cw-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  // Set up modal triggers
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      const modalId = this.getAttribute('data-modal');
+      document.getElementById(`defcon-cw-${modalId}-modal`).classList.add('defcon-cw-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  
+  // Set up close buttons
+  closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      this.closest('.defcon-cw-modal').classList.remove('defcon-cw-modal-active');
+      document.body.style.overflow = 'auto';
+    });
+  });
+  
+  // Close modal when clicking outside content
+  modals.forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('defcon-cw-modal-active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  });
+  
+  // Animation on scroll
+  const animateElements = document.querySelectorAll('.defcon-cw-animate');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+
+// Form submission handling
+document.querySelectorAll('.defcon-cw-quick-form, .defcon-cw-contact-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Here you would typically send the form data to your server
+    // For demonstration, we'll just show an alert
+    alert('Thank you for your submission! We will contact you shortly.');
+    
+    // Reset the form
+    this.reset();
+    
+    // If this is a modal form, close the modal
+    const modal = this.closest('.defcon-cw-modal');
+    if (modal) {
+      modal.classList.remove('defcon-cw-modal-active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
+</script>

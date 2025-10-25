@@ -1,0 +1,191 @@
+/* FAQ Container */
+  .defcon-faq-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    
+  }
+
+  /* Left Column */
+  .defcon-faq-header-col {
+    flex: 0 0 30%;
+    padding-right: 40px;
+    position: relative;
+  }
+
+  .defcon-faq-title {
+    color: #06273e;
+    font-size: 54px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 20px;
+  }
+
+  /* Right Column */
+  .defcon-faq-content-col {
+    flex: 0 0 70%;
+  }
+
+  /* Accordion Item */
+  .defcon-accordion-item {
+    border-bottom: 2px solid #e5e5e5;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .defcon-accordion-header {
+    background-color: #fff;
+    color: #06273e;
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .defcon-accordion-header span {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .defcon-accordion-header:hover {
+    color: #0091ff;
+  }
+
+  .defcon-accordion-header.active {
+    color: #0091ff;
+  }
+
+  .defcon-accordion-icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .defcon-accordion-icon-line {
+    position: absolute;
+    background-color: #0091ff;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .defcon-accordion-icon-line-horizontal {
+    width: 20px;
+    height: 3px;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+  }
+
+  .defcon-accordion-icon-line-vertical {
+    width: 3px;
+    height: 20px;
+    left: 50%;
+    top: 2px;
+    transform: translateX(-50%);
+  }
+
+  /* Show plus sign by default, rotate on active */
+  .defcon-accordion-header .defcon-accordion-icon {
+    transform: rotate(0deg);
+  }
+  .defcon-accordion-header.active .defcon-accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Hide vertical line when active (turn plus into X) */
+  .defcon-accordion-header.active .defcon-accordion-icon-line-vertical {
+    opacity: 0;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .defcon-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background-color: #fff;
+  }
+
+  .defcon-accordion-content-inner {
+    padding: 0 0 25px 0;
+    color: #333;
+    line-height: 1.6;
+    font-weight: 400;
+    font-size: 1rem;
+    opacity: 1;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+  }
+
+  .defcon-accordion-item.active .defcon-accordion-content {
+    max-height: 500px;
+  }
+
+  .defcon-accordion-item.active .defcon-accordion-content-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .defcon-faq-link {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .defcon-faq-link:hover {
+    border-bottom-color: #0091ff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .defcon-faq-container {
+      flex-direction: column;
+      padding: 30px 15px;
+    }
+
+    .defcon-faq-header-col {
+      flex: 0 0 100%;
+      padding-right: 0;
+      margin-bottom: 30px;
+    }
+
+    .defcon-faq-content-col {
+      flex: 0 0 100%;
+    }
+
+    .defcon-faq-title {
+      font-size: 2rem;
+      position: static;
+    }
+
+    .defcon-accordion-header {
+      font-size: 1.1rem;
+      padding: 15px 0;
+    }
+  }
+
+  /* Animation Enhancements */
+  @keyframes defcon-fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .defcon-faq-container {
+    animation: defcon-fadeIn 0.6s ease forwards;
+  }

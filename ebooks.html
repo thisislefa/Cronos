@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Ebooks | Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --defcon-primary: #0a192f;
+            --defcon-secondary: #112240;
+            --defcon-accent: #64ffda;
+            --defcon-text: #e6f1ff;
+            --defcon-text-secondary: #8892b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-primary);
+            color: var(--defcon-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .defcon-ebooks-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            padding-top: 10rem;
+        }
+        
+        .defcon-ebooks-header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeIn 1s ease forwards;
+        }
+        
+        .defcon-ebooks-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--defcon-accent);
+        }
+        
+        .defcon-ebooks-subtitle {
+            font-size: 1.1rem;
+            color: var(--defcon-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .defcon-ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .defcon-ebook-card {
+            background: var(--defcon-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: defcon-fadeIn 0.8s ease forwards;
+            animation-delay: calc(var(--defcon-item-index) * 0.1s);
+        }
+        
+        .defcon-ebook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .defcon-ebook-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .defcon-ebook-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .defcon-ebook-card:hover .defcon-ebook-image img {
+            transform: scale(1.05);
+        }
+        
+        .defcon-ebook-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--defcon-accent);
+            color: var(--defcon-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        
+        .defcon-ebook-content {
+            padding: 25px;
+        }
+        
+        .defcon-ebook-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--defcon-text);
+        }
+        
+        .defcon-ebook-description {
+            color: var(--defcon-text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .defcon-ebook-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--defcon-text-secondary);
+        }
+        
+        .defcon-ebook-download-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--defcon-accent);
+            border: 1px solid var(--defcon-accent);
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .defcon-ebook-download-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .defcon-ebook-download-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Unique styles for each ebook card */
+        .defcon-ebook-card:nth-child(1) {
+            border-top: 4px solid #64ffda;
+        }
+        
+        .defcon-ebook-card:nth-child(2) {
+            border-top: 4px solid #ff64b4;
+        }
+        
+        .defcon-ebook-card:nth-child(3) {
+            border-top: 4px solid #64b4ff;
+        }
+        
+        .defcon-ebook-card:nth-child(4) {
+            border-top: 4px solid #ffb464;
+        }
+        
+        .defcon-ebook-card:nth-child(5) {
+            border-top: 4px solid #b464ff;
+        }
+        
+        .defcon-ebook-card:nth-child(6) {
+            border-top: 4px solid #64ffb4;
+        }
+        
+        /* Animations */
+        @keyframes defcon-fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Reveal effect on scroll */
+        .defcon-ebook-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .defcon-ebook-card.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .defcon-ebooks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-ebooks-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     HEADER WRAPPER
+     ============================================= -->
+<div class="header-wrapper">
+    <!-- Main Header Bar -->
+    <header class="custom-header">
+        <div class="custom-header-container">
+            <!-- Logo -->
+            <div class="custom-logo-container">
+                <a href="index.html" class="custom-logo-link" style="align-self: center; display: flex; justify-content: center;">
+                    <img src="thumbnails/binge.png" alt="Logo" class="custom-logo-img">
+                </a>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="custom-main-nav">
+                <ul class="custom-nav-list">
+                    <li><a href="#" class="custom-nav-link">Fintech <span class="hero-sec-span">NEW</span></a></li>
+                    <li><a href="#" class="custom-nav-link">Support</a></li>
+                    <li><a href="#portfolio" class="custom-nav-link">Projects</a></li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
+                            Services <i class="fas fa-chevron-down custom-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="resources">
+                            Company <i class="fas fa-chevron-down custom-dropdown-icon"></i>
+                        </a>
+                    </li>
+                    <button class="header-btn"><a href="contactus.html">Contact Us</a></button>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="custom-mobile-toggle">
+                <div class="custom-hamburger">
+                    <span class="custom-hamburger-line"></span>
+                    <span class="custom-hamburger-line"></span>
+                    <span class="custom-hamburger-line"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mega Menus Container -->
+    <div class="mega-menu-container">
+        <!-- Services Megamenu Panel -->
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="mega-menu-content">
+                <!-- Development Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Development</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-laptop-code"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Web Applications</span>
+                                    <span class="link-desc">Modern, responsive websites and web apps.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-shopping-cart"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">E-commerce</span>
+                                    <span class="link-desc">Online stores, payment integration, and more.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-cogs"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Custom Software</span>
+                                    <span class="link-desc">Tailored software for unique business needs.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                          <a href="api-development.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-plug"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">API Development</span>
+                                  <span class="link-desc">Custom APIs for seamless integrations.</span>
+                              </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="devops-implementation.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-sync-alt"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">DevOps Implementation</span>
+                                  <span class="link-desc">CI/CD, automation, and best practices.</span>
+                              </span>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Digital Solutions Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">IT Infrastructure</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-headset"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">IT Support & Infrastructure</span>
+                                    <span class="link-desc">24/7 support and robust IT infrastructure.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-user-tie"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">IT Consulting</span>
+                                    <span class="link-desc">Expert advice for digital transformation.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-network-wired"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Networking</span>
+                                    <span class="link-desc">Secure, scalable, and seamless connections.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-robot"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Automation & AI</span>
+                                    <span class="link-desc">Boost efficiency with smart automation.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                          <a href="smarthomesetup.html" class="mega-menu-link">
+                              <span class="icon-container"><i class="fas fa-home"></i></span>
+                              <span class="text-container">
+                                  <span class="menu-title">Smart Home Setup</span>
+                                  <span class="link-desc">Connected, secure, and automated homes.</span>
+                          </span>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Creative Communications Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Marketing & Creative Studio</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-bullhorn"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Digital Marketing</span>
+                                    <span class="link-desc">SEO, social media, and online campaigns.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-paint-brush"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Graphic Design</span>
+                                    <span class="link-desc">Branding, logos, and visual storytelling.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-video"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Multimedia Production</span>
+                                    <span class="link-desc">Video, motion graphics, and audio.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-pen-nib"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Copywriting & Content</span>
+                                    <span class="link-desc">Engaging content for all platforms.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="advertising.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-ad"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Advertising</span>
+                                    <span class="link-desc">Targeted ads for maximum reach.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                 <!-- Cloud Infrastructure Section -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Cloud Computing</h3>
+                    <ul class="mega-menu-list">
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-aws"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">AWS Migration</span>
+                                    <span class="link-desc">Seamless migration to AWS cloud.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-microsoft"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Azure Integration</span>
+                                    <span class="link-desc">Integrate and scale with Microsoft Azure.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="google-cloud-platform.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fab fa-google"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Google Cloud Platform</span>
+                                    <span class="link-desc">Deploy and manage on Google Cloud.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="hybrid-cloud.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-cloud"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Hybrid Cloud</span>
+                                    <span class="link-desc">Flexible hybrid cloud environments.</span>
+                                </span>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-shield-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Cloud Security</span>
+                                    <span class="link-desc">Protect your cloud assets and data.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             
+        </div>
+
+        <!-- Resources Megamenu Panel -->
+        <div class="mega-menu-panel" data-megamenu-panel="resources">
+            <div class="mega-menu-content">
+                 <!-- First Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Company</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="a46.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-building"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">About Defcon</span>
+                                    <span class="link-desc">Learn about our mission statement, vision and team.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="a47.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-map-marked-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Roadmap</span>
+                                    <span class="link-desc">Our product development timeline since we were established.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-users"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Community</span>
+                                    <span class="link-desc">Join our growing community Slack, Discord and public support forums.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="a59.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-handshake"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Careers  <span style="padding: 1.5px 4px; border: 2px solid rgba(158, 158, 158, 0.427); border-radius: 5px; font-size: 0.7rem;">We're hiring!</span></span>
+                                    <span class="link-desc">Join our esteemed team and grow your career.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-balance-scale"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Legal</span>
+                                    <span class="link-desc">Learn more about our licensing agreements, privacy policy and terms.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                 <!-- Second Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Programs</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="Betaprogram.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-flask"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Beta Program</span>
+                                    <span class="link-desc">Test our latest features before release and get ready to test.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-lightbulb"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Innovations</span>
+                                    <span class="link-desc">Explore our cutting-edge tech and how we utilize them for productions.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-video"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Webinars</span>
+                                    <span class="link-desc">Explore tech trends, press releases and discussions.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-calendar-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Events</span>
+                                    <span class="link-desc">Attend our educational events for technology advancement. </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Third Column -->
+                <div class="mega-menu-column">
+                    <h3 class="mega-menu-title">Resources</h3>
+                    <ul class="mega-menu-list">
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-newspaper"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Blog</span>
+                                    <span class="link-desc">The latest industry news, insights & trends on technology and education.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="a57.html" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-book-open"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Free Ebooks</span>
+                                    <span class="link-desc">Helpful tools for developers, designers, and students.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-briefcase"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Business Solutions</span>
+                                    <span class="link-desc">Enterprise-grade solutions and Fourth Industrial Revolution.</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#business" class="mega-menu-link">
+                                <span class="icon-container"><i class="fas fa-file-alt"></i></span>
+                                <span class="text-container">
+                                    <span class="menu-title">Documentations</span>
+                                    <span class="link-desc">All the boring stuff you (hopefully won't) need, written by our team.</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- =============================================
+     Mobile Menu (Structure remains for responsiveness)
+     ============================================= -->
+<div class="custom-mobile-menu">
+    <!-- Mobile menu content from original file -->
+</div>
+
+
+<!-- =============================================
+     CSS STYLES
+     ============================================= -->
+<style>
+body {
+   
+    text-rendering: optimizeLegibility;
+}
+
+/* =============================================
+   HEADER WRAPPER & FLOATING BAR
+   ============================================= */
+.hero-sec-span {
+    color: white;
+    background-color: #0091ff;
+    padding: 5px 5px;
+    font-size: 0.7rem;
+    border-radius: 50px;
+    vertical-align: middle;
+  }
+
+
+.header-btn {
+  background: #0091ff;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  padding: 0 1rem;
+  vertical-align: middle;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.header-btn:hover {
+  background: #0081ff;
+}
+
+.header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    transform: translateY(0);
+}
+
+.header-wrapper.hidden {
+    transform: translateY(-100%);
+}
+
+.custom-header {
+    width: 100%;
+    pointer-events: auto;
+}
+
+.custom-header-container {
+    max-width: 1200px;
+    margin: 18px auto 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: background 0.2s, box-shadow 0.4s, border-radius 0.3s ease;
+}
+
+/* Style when header is scrolled or menu is open */
+.header-wrapper.scrolled .custom-header-container,
+.header-wrapper.menu-active .custom-header-container {
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+.header-wrapper.menu-active .custom-header-container {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* =============================================
+   LOGO & NAVIGATION STYLES
+   ============================================= */
+.custom-logo-img {
+    height: 30px;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+}
+.custom-main-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.custom-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.custom-nav-list > li {
+    margin: 0 5px;
+}
+.custom-nav-link {
+    color: #06273e;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 12px;
+    position: relative;
+    display: block;
+    align-items: center;
+    justify-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+    transition: color 0s ease, background-color 0s ease;
+}
+.custom-nav-link:hover,
+.custom-nav-link.active {
+    color: #0091ff;
+}
+.custom-dropdown-icon {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+.custom-nav-link.active .custom-dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* =============================================
+   MEGA MENU CONTAINER & PANELS
+   ============================================= */
+.mega-menu-container {
+    background: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: none;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    clip-path: inset(0px -20px -20px -20px); /* hides the top shadow */
+
+    transition: max-height 0s ease, opacity 0s ease, visibility 0s 0.1s;
+}
+
+.header-wrapper.menu-active .mega-menu-container {
+    max-height: 600px; /* Adjust as needed */
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0s ease, opacity 0.1s ease, visibility 0s 0s;
+    margin-top: 0;
+}
+
+.mega-menu-panel {
+    display: none;
+    padding: 1rem 0;
+}
+.mega-menu-panel.active {
+    display: block;
+}
+
+/* =============================================
+   MEGA MENU CONTENT STYLING
+   ============================================= */
+.mega-menu-content {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+}
+
+.mega-menu-column {
+    flex: 1;
+    padding: 0 20px;
+    min-width: 200px; 
+}
+
+.mega-menu-title {
+    color: #6b7280;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 15px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mega-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu-list li {
+    margin-bottom: 12px;
+}
+
+.mega-menu-link {
+    color: #0091ff;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0s ease;
+}
+
+.mega-menu-link:hover {
+    background-color: #f3f4f6;
+}
+.mega-menu-link:hover .icon-container {
+    background-color: #e5e7eb;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    transition: background-color 0s ease;
+}
+
+.icon-container i {
+    font-size: 18px;
+    color: #0091ff;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-title {
+    font-weight: 550;
+    font-size: 13px;
+    color: #06273e;
+}
+
+.link-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 480;
+    margin-top: 1px;
+    line-height: 1.4;
+}
+
+.mega-menu-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+.mega-menu-footer a {
+    color: #0091ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.mega-menu-footer a:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   MOBILE & RESPONSIVE STYLES
+   ============================================= */
+.custom-mobile-toggle { display: none; }
+
+@media (max-width: 1024px) {
+    .custom-main-nav { display: none; }
+    .custom-mobile-toggle { display: flex; /* Original mobile styles needed here */ }
+}
+@media (max-width: 768px) {
+    .custom-header-container { margin: 12px; padding: 0 20px; }
+}
+
+</style>
+
+<!-- =============================================
+     JAVASCRIPT
+     ============================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const triggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const panels = document.querySelectorAll('[data-megamenu-panel]');
+    let activeMenu = null;
+    let hideMenuTimer;
+
+    // --- Header Scroll Behavior ---
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            headerWrapper.classList.add('hidden');
+        } else {
+            headerWrapper.classList.remove('hidden');
+        }
+        headerWrapper.classList.toggle('scrolled', scrollTop > 10);
+        lastScrollTop = scrollTop;
+    });
+
+    // --- Mega Menu Logic ---
+    function showMenu(menuId) {
+        clearTimeout(hideMenuTimer); // Cancel any pending hide actions
+
+        // Deactivate previous menu if any
+        if (activeMenu && activeMenu !== menuId) {
+            deactivateCurrentMenu();
+        }
+
+        activeMenu = menuId;
+        
+        // Activate new menu
+        const trigger = document.querySelector(`[data-megamenu-trigger="${menuId}"]`);
+        const panel = document.querySelector(`[data-megamenu-panel="${menuId}"]`);
+
+        if (trigger && panel) {
+            headerWrapper.classList.add('menu-active');
+            trigger.classList.add('active');
+            panel.classList.add('active');
+        }
+    }
+
+    function hideMenu() {
+        // Use a timer to allow moving mouse from trigger to panel
+        hideMenuTimer = setTimeout(() => {
+            deactivateCurrentMenu();
+            activeMenu = null;
+        }, 200);
+    }
+    
+    function deactivateCurrentMenu() {
+        if (!activeMenu) return;
+        
+        const currentTrigger = document.querySelector(`[data-megamenu-trigger].active`);
+        const currentPanel = document.querySelector(`[data-megamenu-panel].active`);
+
+        headerWrapper.classList.remove('menu-active');
+        if (currentTrigger) currentTrigger.classList.remove('active');
+        if (currentPanel) currentPanel.classList.remove('active');
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => {
+            showMenu(trigger.dataset.megamenuTrigger);
+        });
+    });
+    
+    headerWrapper.addEventListener('mouseleave', () => {
+        hideMenu();
+    });
+
+    // Keep menu open when hovering over it
+    panels.forEach(panel => {
+        panel.addEventListener('mouseenter', () => {
+            clearTimeout(hideMenuTimer);
+        });
+    });
+
+    // --- Mobile Menu Logic (Placeholder) ---
+    // The original mobile menu JS would go here if needed.
+    // This example focuses on the desktop mega menu.
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="defcon-ebooks-container">
+        <header class="defcon-ebooks-header">
+            <h1 class="defcon-ebooks-title">Free Ebooks from Defcon</h1>
+            <p class="defcon-ebooks-subtitle">Download our expert guides to enhance your knowledge and stay ahead in the industry. All resources are completely free.</p>
+        </header>
+        
+        <div class="defcon-ebooks-grid">
+            <!-- Ebook 1 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 0">
+                <div class="defcon-ebook-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Cybersecurity Essentials">
+                    <span class="defcon-ebook-category">Security</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">Cybersecurity Essentials</h3>
+                    <p class="defcon-ebook-description">A comprehensive guide to understanding and implementing fundamental cybersecurity practices for businesses of all sizes.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>120 pages</span>
+                        <span>PDF, EPUB, MOBI</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+            
+            <!-- Ebook 2 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 1">
+                <div class="defcon-ebook-image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22350%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20350%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e365b3a7d%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e365b3a7d%22%3E%3Crect%20width%3D%22350%22%20height%3D%22200%22%20fill%3D%22%2337393F%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107%22%20y%3D%22108%22%3EZero%20Trust%20Architecture%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Zero Trust Architecture">
+                    <span class="defcon-ebook-category">Strategy</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">Zero Trust Architecture</h3>
+                    <p class="defcon-ebook-description">Learn how to implement a Zero Trust security model in your organization with our step-by-step guide and best practices.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>95 pages</span>
+                        <span>PDF, EPUB</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+            
+            <!-- Ebook 3 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 2">
+                <div class="defcon-ebook-image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22350%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20350%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e365b3a7d%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e365b3a7d%22%3E%3Crect%20width%3D%22350%22%20height%3D%22200%22%20fill%3D%22%2337393F%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22117%22%20y%3D%22108%22%3ECloud%20Security%20Handbook%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Cloud Security Handbook">
+                    <span class="defcon-ebook-category">Cloud</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">Cloud Security Handbook</h3>
+                    <p class="defcon-ebook-description">Your complete guide to securing cloud infrastructure across AWS, Azure, and Google Cloud Platform with practical examples.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>145 pages</span>
+                        <span>PDF</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+            
+            <!-- Ebook 4 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 3">
+                <div class="defcon-ebook-image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22350%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20350%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e365b3a7d%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e365b3a7d%22%3E%3Crect%20width%3D%22350%22%20height%3D%22200%22%20fill%3D%22%2337393F%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2295%22%20y%3D%22108%22%3EIncident%20Response%20Protocols%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Incident Response Protocols">
+                    <span class="defcon-ebook-category">Response</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">Incident Response Protocols</h3>
+                    <p class="defcon-ebook-description">Develop and implement effective incident response strategies to minimize damage and recovery time after a security breach.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>110 pages</span>
+                        <span>PDF, EPUB</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+            
+            <!-- Ebook 5 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 4">
+                <div class="defcon-ebook-image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22350%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20350%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e365b3a7d%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e365b3a7d%22%3E%3Crect%20width%3D%22350%22%20height%3D%22200%22%20fill%3D%22%2337393F%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22107%22%20y%3D%22108%22%3EAI%20in%20Cybersecurity%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="AI in Cybersecurity">
+                    <span class="defcon-ebook-category">AI</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">AI in Cybersecurity</h3>
+                    <p class="defcon-ebook-description">Explore how artificial intelligence and machine learning are revolutionizing threat detection and security automation.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>88 pages</span>
+                        <span>PDF, MOBI</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+            
+            <!-- Ebook 6 -->
+            <div class="defcon-ebook-card" style="--defcon-item-index: 5">
+                <div class="defcon-ebook-image">
+                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22350%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20350%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17e365b3a7d%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A18pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17e365b3a7d%22%3E%3Crect%20width%3D%22350%22%20height%3D%22200%22%20fill%3D%22%2337393F%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22104%22%20y%3D%22108%22%3ECompliance%20Framework%20Guide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Compliance Framework Guide">
+                    <span class="defcon-ebook-category">Compliance</span>
+                </div>
+                <div class="defcon-ebook-content">
+                    <h3 class="defcon-ebook-title">Compliance Framework Guide</h3>
+                    <p class="defcon-ebook-description">Navigate GDPR, HIPAA, PCI DSS, and other regulatory requirements with our comprehensive compliance framework.</p>
+                    <div class="defcon-ebook-meta">
+                        <span>132 pages</span>
+                        <span>PDF, EPUB</span>
+                    </div>
+                    <a href="#" class="defcon-ebook-download-btn">Download Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const defconEbookCards = document.querySelectorAll('.defcon-ebook-card');
+            
+            const defconObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('defcon-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            defconEbookCards.forEach(card => {
+                defconObserver.observe(card);
+            });
+            
+            // Simulate download button click
+            const defconDownloadButtons = document.querySelectorAll('.defcon-ebook-download-btn');
+            defconDownloadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const defconEbookTitle = this.parentElement.querySelector('.defcon-ebook-title').textContent;
+                    alert(`Thank you for downloading "${defconEbookTitle}". In a real implementation, this would trigger the download.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

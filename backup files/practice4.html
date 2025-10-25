@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Premium Technical Support</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #06273e;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-support-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        .defcon-heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #06273e;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-heading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: #0091ff;
+        }
+
+        .defcon-subheading {
+            font-size: 1.5rem;
+            color: #06273e;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        .defcon-subheading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #06273e;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .defcon-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #0091ff;
+        }
+
+        /* Hero Section */
+        .defcon-support-hero {
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .defcon-hero-image {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60%;
+            max-width: 800px;
+            opacity: 0;
+            transition: opacity 1s ease 0.4s, right 1s ease 0.4s;
+        }
+
+        .defcon-hero-image.visible {
+            opacity: 1;
+            right: 0;
+        }
+
+        /* Service Cards */
+        .defcon-service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .defcon-service-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .defcon-service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-service-card-header {
+            background-color: #0091ff;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .defcon-service-card-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .defcon-service-card-body {
+            padding: 25px;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .defcon-service-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .defcon-service-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .defcon-service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0091ff;
+            font-weight: bold;
+        }
+
+        .defcon-service-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #06273e;
+            margin: 20px 0;
+        }
+
+        .defcon-service-price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .defcon-service-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0091ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .defcon-service-cta:hover {
+            background-color: #0077cc;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .defcon-stats-section {
+            padding: 80px 0;
+            background-color: #06273e;
+            color: white;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .defcon-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .defcon-stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0091ff;
+            margin-bottom: 10px;
+        }
+
+        .defcon-stat-label {
+            font-size: 1.2rem;
+        }
+
+        /* Process Section */
+        .defcon-process-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .defcon-process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-process-step {
+            flex: 1;
+            min-width: 200px;
+            margin: 0 10px 30px;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-process-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #0091ff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .defcon-step-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #06273e;
+        }
+
+        .defcon-step-desc {
+            color: #666;
+        }
+
+        /* Technologies Section */
+        .defcon-tech-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .defcon-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .defcon-tech-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .defcon-tech-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .defcon-tech-icon {
+            height: 60px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .defcon-tech-name {
+            font-weight: bold;
+            color: #06273e;
+        }
+
+        /* Testimonials */
+        .defcon-testimonials {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .defcon-testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .defcon-testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .defcon-testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defcon-testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: #e5e5e5;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .defcon-testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .defcon-testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .defcon-author-info h4 {
+            margin: 0;
+            color: #06273e;
+        }
+
+        .defcon-author-info p {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .defcon-faq-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .defcon-faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-faq-question {
+            padding: 20px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .defcon-faq-question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .defcon-faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .defcon-faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            text-align: left;
+        }
+
+        .defcon-faq-answer.open {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .defcon-cta-section {
+            background-color: #06273e;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .defcon-cta-heading {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .defcon-cta-subheading {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #0091ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .defcon-cta-button:hover {
+            background-color: #0077cc;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .defcon-hero-image {
+                display: none;
+            }
+
+            .defcon-hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .defcon-process-steps {
+                flex-direction: column;
+            }
+
+            .defcon-process-step {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-heading {
+                font-size: 2.2rem;
+            }
+
+            .defcon-subheading {
+                font-size: 1.2rem;
+            }
+
+            .defcon-service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="defcon-support-hero">
+        <div class="defcon-support-container">
+            <div class="defcon-hero-content">
+                <h1 class="defcon-heading">Premium Technical Support</h1>
+                <p class="defcon-subheading">Enterprise-grade IT solutions with rapid response times. Our certified experts provide white-glove technical support to keep your business running smoothly.</p>
+                <!-- Placeholder image - replace with your actual hero image -->
+                <img src="thumbnails/pexels-dominick-davi.jpg" alt="Defcon Technical Support" class="defcon-hero-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="defcon-support-container">
+        <h2 class="defcon-section-title">Our Support Tiers</h2>
+        <p style="text-align: center;">Choose the level of technical support that matches your business needs, from basic troubleshooting to comprehensive managed IT services.</p>
+
+        <div class="defcon-service-grid">
+            <!-- Basic Support Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Essential Support</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>For small businesses needing reliable break/fix support.</p>
+                    <ul class="defcon-service-features">
+                        <li>Remote Technical Support (Business Hours)</li>
+                        <li>Unlimited Helpdesk Tickets</li>
+                        <li>Basic Troubleshooting</li>
+                        <li>Software Installation Assistance</li>
+                        <li>Email & Calendar Support</li>
+                        <li>Network Connectivity Issues</li>
+                        <li>4-Hour Response Time</li>
+                    </ul>
+                    <div class="defcon-service-price">$99 <span>/user/month</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Pro Support Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Professional Support</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Comprehensive support for growing businesses with more complex needs.</p>
+                    <ul class="defcon-service-features">
+                        <li>24/5 Technical Support</li>
+                        <li>Priority Ticket Handling</li>
+                        <li>Advanced Troubleshooting</li>
+                        <li>Hardware Diagnostics</li>
+                        <li>Security Patch Management</li>
+                        <li>Basic Network Administration</li>
+                        <li>2-Hour Response Time</li>
+                        <li>Monthly System Health Report</li>
+                    </ul>
+                    <div class="defcon-service-price">$149 <span>/user/month</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Enterprise Support Package -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Enterprise Support</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Complete managed IT services for mission-critical operations.</p>
+                    <ul class="defcon-service-features">
+                        <li>24/7/365 Technical Support</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Onsite Support (4-hour dispatch)</li>
+                        <li>Advanced Network Management</li>
+                        <li>Proactive System Monitoring</li>
+                        <li>Cybersecurity Protection</li>
+                        <li>30-Minute Emergency Response</li>
+                        <li>Quarterly Technology Review</li>
+                        <li>Custom SLA Options</li>
+                    </ul>
+                    <div class="defcon-service-price">$249 <span>/user/month</span></div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Add-On Services -->
+            <div class="defcon-service-card">
+                <div class="defcon-service-card-header">
+                    <h3>Specialized Services</h3>
+                </div>
+                <div class="defcon-service-card-body">
+                    <p>Enhance your support package with these premium services.</p>
+                    <ul class="defcon-service-features">
+                        <li>Cloud Migration: $5,000+</li>
+                        <li>Network Infrastructure Audit: $3,500</li>
+                        <li>Cybersecurity Assessment: $2,500</li>
+                        <li>Disaster Recovery Planning: $4,000</li>
+                        <li>Employee Training Sessions: $500/session</li>
+                        <li>After-Hours Emergency Support: $250/hour</li>
+                        <li>Hardware Procurement & Setup: $150/device</li>
+                    </ul>
+                    <div class="defcon-service-price">Custom Pricing</div>
+                    <a href="#contact" class="defcon-service-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="defcon-stats-section">
+        <div class="defcon-support-container">
+            <h2 class="defcon-section-title" style="color: white; border-bottom-color: #0091ff;">Why Businesses Trust Our Support</h2>
+            <p style="color: #e5e5e5;">Numbers that demonstrate our commitment to excellence.</p>
+
+            <div class="defcon-stats-grid">
+                <div class="defcon-stat-item">
+                    <div class="defcon-stat-number">99.9%</div>
+                    <div class="defcon-stat-label">Uptime Guarantee</div>
+                </div>
+                <div class="defcon-stat-item">
+                    <div class="defcon-stat-number">24/7</div>
+                    <div class="defcon-stat-label">Support Availability</div>
+                </div>
+                <div class="defcon-stat-item">
+                    <div class="defcon-stat-number">15min</div>
+                    <div class="defcon-stat-label">Average Response Time</div>
+                </div>
+                <div class="defcon-stat-item">
+                    <div class="defcon-stat-number">98%</div>
+                    <div class="defcon-stat-label">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="defcon-process-section">
+        <div class="defcon-support-container">
+            <h2 class="defcon-section-title">Our Support Process</h2>
+            <p>We follow a structured approach to ensure every technical issue is resolved efficiently and effectively.</p>
+
+            <div class="defcon-process-steps">
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">1</div>
+                    <h3 class="defcon-step-title">Initial Contact</h3>
+                    <p class="defcon-step-desc">Submit your request via phone, email, or our client portal.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">2</div>
+                    <h3 class="defcon-step-title">Ticket Creation</h3>
+                    <p class="defcon-step-desc">Our system automatically creates and prioritizes your ticket.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">3</div>
+                    <h3 class="defcon-step-title">Diagnosis</h3>
+                    <p class="defcon-step-desc">Our technicians analyze the issue using advanced tools.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">4</div>
+                    <h3 class="defcon-step-title">Resolution</h3>
+                    <p class="defcon-step-desc">We implement the solution remotely or dispatch onsite.</p>
+                </div>
+                <div class="defcon-process-step">
+                    <div class="defcon-step-number">5</div>
+                    <h3 class="defcon-step-title">Follow-Up</h3>
+                    <p class="defcon-step-desc">We ensure the solution is effective and document everything.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technologies Section -->
+    <div class="defcon-tech-section">
+        <div class="defcon-support-container">
+            <h2 class="defcon-section-title">Technologies We Support</h2>
+            <p>Our certified technicians are experts across all major platforms and systems.</p>
+
+            <div class="defcon-tech-grid">
+                <div class="defcon-tech-item">
+                    <!-- Placeholder icon - replace with actual technology logo -->
+                    <img src="thumbnails/briefcase.png" alt="Windows" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">Windows</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="thumbnails/content-writing.png" alt="macOS" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">macOS</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="thumbnails/server.png" alt="Linux" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">Linux</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="https://via.placeholder.com/60x60" alt="Microsoft 365" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">Microsoft 365</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="https://via.placeholder.com/60x60" alt="Google Workspace" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">Google Workspace</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="https://via.placeholder.com/60x60" alt="VMware" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">VMware</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="https://via.placeholder.com/60x60" alt="Cisco" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">Cisco</div>
+                </div>
+                <div class="defcon-tech-item">
+                    <img src="https://via.placeholder.com/60x60" alt="AWS" class="defcon-tech-icon">
+                    <div class="defcon-tech-name">AWS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="defcon-testimonials">
+        <div class="defcon-support-container">
+            <h2 class="defcon-section-title">Client Experiences</h2>
+            <p>Don't just take our word for it. Here's what our clients say about our technical support.</p>
+
+            <div class="defcon-testimonial-grid">
+                <div class="defcon-testimonial-card">
+                    <div class="defcon-testimonial-content">
+                        Defcon's technical support team has become an extension of our IT department. Their rapid response times and deep expertise have saved us countless hours of downtime.
+                    </div>
+                    <div class="defcon-testimonial-author">
+                        <img src="thumbnails/lefa.jpg" alt="Client 1">
+                        <div class="defcon-author-info">
+                            <h4>Robert Thompson</h4>
+                            <p>CIO, Financial Services Group</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="defcon-testimonial-card">
+                    <div class="defcon-testimonial-content">
+                        After struggling with unreliable IT support, switching to Defcon was transformative. Their proactive approach has reduced our tech issues by over 70% in the first year.
+                    </div>
+                    <div class="defcon-testimonial-author">
+                        <img src="https://via.placeholder.com/50x50" alt="Client 2">
+                        <div class="defcon-author-info">
+                            <h4>Lisa Wong</h4>
+                            <p>Operations Director, Healthcare Network</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="defcon-testimonial-card">
+                    <div class="defcon-testimonial-content">
+                        The enterprise support package gives us peace of mind knowing we have 24/7 coverage. Their team handles everything from basic user issues to complex network problems.
+                    </div>
+                    <div class="defcon-testimonial-author">
+                        <img src="https://via.placeholder.com/50x50" alt="Client 3">
+                        <div class="defcon-author-info">
+                            <h4>David Martinez</h4>
+                            <p>CTO, E-Commerce Platform</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="defcon-faq-section">
+        <div class="defcon-support-container">
+            <h2 class="defcon-section-title">Frequently Asked Questions</h2>
+            <p>Answers to common questions about our technical support services.</p>
+
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">What's included in your response time guarantee?</div>
+                <div class="defcon-faq-answer">
+                    <p>Our response time guarantee means we will acknowledge your support request within the specified time (varies by plan). This includes assigning a technician and initiating communication about your issue. Resolution times depend on issue complexity.</p>
+                </div>
+            </div>
+
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">Do you provide onsite support?</div>
+                <div class="defcon-faq-answer">
+                    <p>Yes, our Enterprise plan includes onsite support with a 4-hour dispatch window for issues that can't be resolved remotely. We also offer onsite support as an add-on service for other plans.</p>
+                </div>
+            </div>
+
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">How do you handle after-hours emergencies?</div>
+                <div class="defcon-faq-answer">
+                    <p>Our Professional and Enterprise plans include after-hours emergency support. Essential plan clients can purchase after-hours support as an add-on or pay per incident.</p>
+                </div>
+            </div>
+
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">Can you support our industry-specific software?</div>
+                <div class="defcon-faq-answer">
+                    <p>We have experience with hundreds of specialized applications across industries. During onboarding, we document all your critical software and ensure our team is trained or has access to vendor support.</p>
+                </div>
+            </div>
+
+            <div class="defcon-faq-item">
+                <div class="defcon-faq-question">What cybersecurity measures do you implement?</div>
+                <div class="defcon-faq-answer">
+                    <p>All plans include basic security monitoring and patch management. Higher tiers add advanced threat detection, regular vulnerability scans, and security awareness training. We can also conduct dedicated cybersecurity assessments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="defcon-cta-section">
+        <div class="defcon-support-container">
+            <h2 class="defcon-cta-heading">Ready for Stress-Free IT Support?</h2>
+            <p class="defcon-cta-subheading">Contact our team today to discuss your technical support needs. We'll craft a custom solution that keeps your business running smoothly.</p>
+            <a href="#contact" class="defcon-cta-button">Get Protected Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.defcon-heading, .defcon-subheading, .defcon-service-card, .defcon-process-step, .defcon-testimonial-card, .defcon-hero-image, .defcon-stat-item, .defcon-tech-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // FAQ Accordion
+        const setupFAQ = () => {
+            const questions = document.querySelectorAll('.defcon-faq-question');
+            
+            questions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = answer.classList.contains('open');
+                    
+                    // Close all answers first
+                    document.querySelectorAll('.defcon-faq-answer').forEach(ans => {
+                        ans.classList.remove('open');
+                    });
+                    document.querySelectorAll('.defcon-faq-question').forEach(q => {
+                        q.classList.remove('active');
+                    });
+                    
+                    // Open current if it was closed
+                    if (!isOpen) {
+                        answer.classList.add('open');
+                        question.classList.add('active');
+                    }
+                });
+            });
+        };
+
+        // Smooth scrolling for anchor links
+        const smoothScroll = () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        };
+
+        // Initialize all functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            setupFAQ();
+            smoothScroll();
+        });
+
+        // Additional animation for hero text
+        window.addEventListener('load', () => {
+            const heading = document.querySelector('.defcon-heading');
+            const subheading = document.querySelector('.defcon-subheading');
+            
+            if (heading) heading.classList.add('visible');
+            if (subheading) subheading.classList.add('visible');
+        });
+    </script>
+</body>
+</html>

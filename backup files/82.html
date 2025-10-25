@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Cybersecurity Quote Generator</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --defcon-primary: #0091ff;
+            --defcon-dark: #06273e;
+            --defcon-light: #ffffff;
+            --defcon-gray: #e5e5e5;
+            --defcon-success: #2a9d8f;
+            --defcon-warning: #e9c46a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--defcon-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background-color: var(--defcon-dark);
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--defcon-primary);
+            margin: 0;
+        }
+
+        .main-title {
+            margin-bottom: 2rem;
+            color: var(--defcon-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--defcon-primary);
+        }
+
+        .quote-generator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .quote-generator {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .preview-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: sticky;
+            top: 1rem;
+            align-self: start;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--defcon-dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--defcon-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--defcon-primary);
+            box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--defcon-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #007acc;
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--defcon-primary);
+            color: var(--defcon-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: rgba(0, 145, 255, 0.05);
+            border-radius: 4px;
+            border-left: 3px solid var(--defcon-primary);
+        }
+
+        .service-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 1rem;
+        }
+
+        .service-details {
+            flex-grow: 1;
+        }
+
+        .service-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-description {
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--defcon-primary);
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .quote-preview {
+            border: 1px solid var(--defcon-gray);
+            border-radius: 8px;
+            padding: 3rem 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--defcon-gray);
+        }
+
+        .quote-header h2 {
+            color: var(--defcon-primary);
+            margin-bottom: 0.5rem;
+            font-size: small;
+        }
+
+        .quote-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: smaller;
+        }
+
+        .quote-client {
+            margin-bottom: 1.5rem;
+            font-size: smaller;
+        }
+
+        .quote-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-table th {
+            text-align: left;
+            padding: 0.75rem;
+            background-color: var(--defcon-dark);
+            color: white;
+            font-size: smaller;
+        }
+
+        .quote-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--defcon-gray);
+            font-size: smaller;
+        }
+
+        .quote-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .quote-total {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--defcon-primary);
+        }
+
+        .quote-notes {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--defcon-gray);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background-color: var(--defcon-success);
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .discount-field {
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .discount-field.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40x40" alt="Defcon Logo">
+                <h1>Defcon</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="main-title">Cybersecurity Services Quote Generator</h1>
+        
+        <div class="quote-generator">
+            <div class="form-section">
+                <form id="quoteForm">
+                    <div class="form-group">
+                        <label for="clientName">Client Name</label>
+                        <input type="text" id="clientName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="clientCompany">Company</label>
+                        <input type="text" id="clientCompany" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="clientEmail">Email</label>
+                        <input type="email" id="clientEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quoteDate">Quote Date</label>
+                        <input type="date" id="quoteDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="validUntil">Valid Until</label>
+                        <input type="date" id="validUntil" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Services</label>
+                        <div id="servicesContainer">
+                            <!-- Services will be added here dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="applyDiscount"> Apply Discount
+                        </label>
+                        <div id="discountField" class="discount-field">
+                            <input type="number" id="discountAmount" min="0" max="100" placeholder="Discount percentage">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-block">Generate Quote</button>
+                </form>
+            </div>
+            
+            <div class="preview-section">
+                <div class="quote-preview" id="quotePreview">
+                    <div class="quote-header">
+                        <h2>DEFCON SECURITY SERVICES</h2>
+                        <p>123 Cybersecurity Ave, San Francisco, CA 94107</p>
+                        <p>Phone: (555) 123-4567 | Email: quotes@defcon.example.com</p>
+                    </div>
+                    
+                    <div class="quote-meta">
+                        <div>
+                            <p><strong>Quote #:</strong> <span id="previewQuoteId">DC-2023-001</span></p>
+                            <p><strong>Date:</strong> <span id="previewDate">Loading...</span></p>
+                        </div>
+                        <div>
+                            <p><strong>Valid Until:</strong> <span id="previewValidUntil">Loading...</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-client">
+                        <p><strong>Client:</strong> <span id="previewClientName">Loading...</span></p>
+                        <p><strong>Company:</strong> <span id="previewClientCompany">Loading...</span></p>
+                        <p><strong>Email:</strong> <span id="previewClientEmail">Loading...</span></p>
+                    </div>
+                    
+                    <table class="quote-table">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewServices">
+                            <!-- Services will be added here dynamically -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>Subtotal</strong></td>
+                                <td id="previewSubtotal">$0.00</td>
+                            </tr>
+                            <tr id="discountRow" class="hidden">
+                                <td><strong>Discount</strong></td>
+                                <td id="previewDiscount">-$0.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td id="previewTotal" class="quote-total">$0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    
+                    <div class="quote-notes">
+                        <p><strong>Notes:</strong></p>
+                        <p id="previewNotes">No additional notes provided.</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="downloadPdf" class="btn btn-outline">
+                        Download PDF
+                    </button>
+                    <button id="sendEmail" class="btn">
+                        Send to Client
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Quote generated successfully!</div>
+
+    <script>
+    // Sample services data
+    const services = [
+        {
+            id: 1,
+            name: "Vulnerability Assessment",
+            description: "Comprehensive scan of your systems for security vulnerabilities",
+            price: 2500
+        },
+        {
+            id: 2,
+            name: "Penetration Testing",
+            description: "Simulated cyber attack to evaluate system security",
+            price: 5000
+        },
+        {
+            id: 3,
+            name: "Security Audit",
+            description: "Detailed review of security policies and procedures",
+            price: 3500
+        },
+        {
+            id: 4,
+            name: "Incident Response Planning",
+            description: "Develop customized incident response procedures",
+            price: 4000
+        },
+        {
+            id: 5,
+            name: "Security Awareness Training",
+            description: "Employee training on cybersecurity best practices",
+            price: 2000
+        },
+        {
+            id: 6,
+            name: "Managed Security Services",
+            description: "24/7 monitoring and threat detection",
+            price: 8000
+        }
+    ];
+
+    // DOM elements
+    const quoteForm = document.getElementById('quoteForm');
+    const servicesContainer = document.getElementById('servicesContainer');
+    const quotePreview = document.getElementById('quotePreview');
+    const previewClientName = document.getElementById('previewClientName');
+    const previewClientCompany = document.getElementById('previewClientCompany');
+    const previewClientEmail = document.getElementById('previewClientEmail');
+    const previewDate = document.getElementById('previewDate');
+    const previewValidUntil = document.getElementById('previewValidUntil');
+    const previewServices = document.getElementById('previewServices');
+    const previewSubtotal = document.getElementById('previewSubtotal');
+    const previewTotal = document.getElementById('previewTotal');
+    const previewNotes = document.getElementById('previewNotes');
+    const applyDiscount = document.getElementById('applyDiscount');
+    const discountField = document.getElementById('discountField');
+    const discountAmount = document.getElementById('discountAmount');
+    const discountRow = document.getElementById('discountRow');
+    const previewDiscount = document.getElementById('previewDiscount');
+    const downloadPdf = document.getElementById('downloadPdf');
+    const sendEmail = document.getElementById('sendEmail');
+    const toast = document.getElementById('toast');
+
+    // Initialize the form
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set default dates
+        const today = new Date();
+        const validUntil = new Date();
+        validUntil.setDate(today.getDate() + 30);
+        
+        document.getElementById('quoteDate').valueAsDate = today;
+        document.getElementById('validUntil').valueAsDate = validUntil;
+        
+        // Generate quote ID
+        document.getElementById('previewQuoteId').textContent = generateQuoteId();
+        
+        // Render services
+        renderServices();
+        
+        // Update preview with default values
+        updatePreview();
+    });
+
+    // Render services checkboxes
+    function renderServices() {
+        servicesContainer.innerHTML = '';
+        
+        services.forEach(service => {
+            const serviceItem = document.createElement('div');
+            serviceItem.className = 'service-item';
+            serviceItem.innerHTML = `
+                <input type="checkbox" id="service-${service.id}" name="services" value="${service.id}" data-price="${service.price}">
+                <div class="service-details">
+                    <div class="service-name">${service.name}</div>
+                    <div class="service-description">${service.description}</div>
+                </div>
+                <div class="service-price">$${service.price.toLocaleString()}</div>
+            `;
+            servicesContainer.appendChild(serviceItem);
+        });
+    }
+
+    // Generate random quote ID
+    function generateQuoteId() {
+        const randomNum = Math.floor(Math.random() * 1000);
+        const today = new Date();
+        return `DC-${today.getFullYear()}-${randomNum.toString().padStart(3, '0')}`;
+    }
+
+    // Format date as MM/DD/YYYY
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+    }
+
+    // Format currency
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(amount);
+    }
+
+    // Update the preview section
+    function updatePreview() {
+        // Client info
+        previewClientName.textContent = document.getElementById('clientName').value || '[Client Name]';
+        previewClientCompany.textContent = document.getElementById('clientCompany').value || '[Company]';
+        previewClientEmail.textContent = document.getElementById('clientEmail').value || '[Email]';
+        
+        // Dates
+        previewDate.textContent = formatDate(document.getElementById('quoteDate').value) || '[Date]';
+        previewValidUntil.textContent = formatDate(document.getElementById('validUntil').value) || '[Date]';
+        
+        // Services
+        previewServices.innerHTML = '';
+        const selectedServices = Array.from(document.querySelectorAll('input[name="services"]:checked'));
+        
+        let subtotal = 0;
+        
+        if (selectedServices.length === 0) {
+            const row = document.createElement('tr');
+            row.innerHTML = '<td colspan="2">No services selected</td>';
+            previewServices.appendChild(row);
+        } else {
+            selectedServices.forEach(service => {
+                const serviceId = service.value;
+                const serviceData = services.find(s => s.id == serviceId);
+                const price = parseFloat(service.dataset.price);
+                subtotal += price;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${serviceData.name}</td>
+                    <td>${formatCurrency(price)}</td>
+                `;
+                previewServices.appendChild(row);
+            });
+        }
+        
+        // Calculate totals
+        let discount = 0;
+        let total = subtotal;
+        
+        if (applyDiscount.checked && discountAmount.value) {
+            discount = subtotal * (parseFloat(discountAmount.value) / 100);
+            total = subtotal - discount;
+            
+            discountRow.classList.remove('hidden');
+            previewDiscount.textContent = `-${formatCurrency(discount)}`;
+        } else {
+            discountRow.classList.add('hidden');
+        }
+        
+        previewSubtotal.textContent = formatCurrency(subtotal);
+        previewTotal.textContent = formatCurrency(total);
+        
+        // Notes
+        const notes = document.getElementById('notes').value;
+        previewNotes.textContent = notes || 'No additional notes provided.';
+    }
+
+    // Download quote as PDF
+    function downloadQuoteAsPDF() {
+        // Check if required libraries are loaded
+        if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
+            showToast('Error: PDF libraries not loaded');
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const quoteElement = document.getElementById('quotePreview');
+        
+        // Show loading state
+        const originalText = downloadPdf.innerHTML;
+        downloadPdf.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+        downloadPdf.disabled = true;
+        
+        // Add temporary styling for PDF
+        const originalStyles = {
+            boxShadow: quoteElement.style.boxShadow,
+            borderRadius: quoteElement.style.borderRadius,
+            padding: quoteElement.style.padding
+        };
+        
+        quoteElement.style.boxShadow = 'none';
+        quoteElement.style.borderRadius = '0';
+        quoteElement.style.padding = '20px';
+        
+        // Generate PDF
+        html2canvas(quoteElement, {
+            scale: 2, // Higher quality
+            logging: false,
+            useCORS: true,
+            allowTaint: true
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            
+            // Generate filename
+            const clientName = document.getElementById('clientName').value || 'quote';
+            const quoteId = document.getElementById('previewQuoteId').textContent;
+            const filename = `Defcon-Quote-${quoteId}-${clientName.replace(/\s+/g, '-')}.pdf`;
+            
+            pdf.save(filename);
+            showToast('PDF downloaded successfully');
+        }).catch(err => {
+            console.error('Error generating PDF:', err);
+            showToast('Error generating PDF');
+        }).finally(() => {
+            // Restore original styles and button state
+            quoteElement.style.boxShadow = originalStyles.boxShadow;
+            quoteElement.style.borderRadius = originalStyles.borderRadius;
+            quoteElement.style.padding = originalStyles.padding;
+            
+            downloadPdf.innerHTML = originalText;
+            downloadPdf.disabled = false;
+        });
+    }
+
+    // Show toast notification
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // Event listeners
+    quoteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        updatePreview();
+        showToast('Quote generated successfully!');
+    });
+
+    // Update preview on any form change
+    quoteForm.addEventListener('input', updatePreview);
+    quoteForm.addEventListener('change', updatePreview);
+
+    // Toggle discount field
+    applyDiscount.addEventListener('change', function() {
+        if (this.checked) {
+            discountField.classList.add('show');
+        } else {
+            discountField.classList.remove('show');
+        }
+        updatePreview();
+    });
+
+    // Download PDF button
+    downloadPdf.addEventListener('click', downloadQuoteAsPDF);
+
+    // Send email button (simulated)
+    sendEmail.addEventListener('click', function() {
+        const email = document.getElementById('clientEmail').value;
+        if (email) {
+            showToast(`Quote sent to ${email}`);
+        } else {
+            showToast('Please enter client email first');
+        }
+    });
+</script>
+</body>
+</html>

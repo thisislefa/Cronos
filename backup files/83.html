@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Web Design & Development Quote</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="quote-modal" id="quoteModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2>Get a Quote for Your Project</h2>
+            
+            <form id="quoteForm">
+                <div class="form-group">
+                    <label for="projectType">Project Type</label>
+                    <select id="projectType" required>
+                        <option value="">Select project type</option>
+                        <option value="website">Website</option>
+                        <option value="ecommerce">E-commerce Store</option>
+                        <option value="webapp">Web Application</option>
+                        <option value="redesign">Website Redesign</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pages">Number of Pages</label>
+                    <input type="range" id="pages" min="1" max="50" value="5">
+                    <span id="pagesValue">5 pages</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="features">Features (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="features" value="responsive"> Responsive Design</label>
+                        <label><input type="checkbox" name="features" value="seo" checked> SEO Optimization</label>
+                        <label><input type="checkbox" name="features" value="cms"> CMS Integration</label>
+                        <label><input type="checkbox" name="features" value="hosting"> Hosting Setup</label>
+                        <label><input type="checkbox" name="features" value="analytics"> Analytics Setup</label>
+                        <label><input type="checkbox" name="features" value="multilingual"> Multilingual Support</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Project Urgency</label>
+                    <select id="urgency">
+                        <option value="standard">Standard (4-6 weeks)</option>
+                        <option value="fast">Fast (2-3 weeks)</option>
+                        <option value="rush">Rush (1 week)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-generate">Generate Quote</button>
+            </form>
+            
+            <div class="quote-result" id="quoteResult">
+                <h3>Your Estimated Quote</h3>
+                <div class="price-display">
+                    <span id="estimatedPrice">$0</span>
+                    <span class="price-note">+ tax if applicable</span>
+                </div>
+                <div class="breakdown" id="priceBreakdown"></div>
+                <button class="btn-contact" id="contactBtn">Contact Us to Proceed</button>
+                <p class="disclaimer">This is an estimate only. Final pricing may vary based on project requirements.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #27ae60;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.quote-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark-color);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+select, input[type="range"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+select:focus, input[type="range"]:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    margin-right: 8px;
+}
+
+.btn-generate {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.btn-generate:hover {
+    background-color: #2980b9;
+}
+
+.quote-result {
+    display: none;
+    margin-top: 30px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.price-display {
+    margin: 25px 0;
+}
+
+#estimatedPrice {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.price-note {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.breakdown {
+    text-align: left;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.btn-contact {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.btn-contact:hover {
+    background-color: #219653;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Open modal (this would be triggered by your "Get Quote" button)
+    // For demo purposes, we'll open it immediately
+    const quoteModal = document.getElementById('quoteModal');
+    quoteModal.style.display = 'block';
+    
+    // Close modal
+    const closeBtn = document.getElementById('closeBtn');
+    closeBtn.addEventListener('click', function() {
+        quoteModal.style.display = 'none';
+    });
+    
+    // Update pages value display
+    const pagesSlider = document.getElementById('pages');
+    const pagesValue = document.getElementById('pagesValue');
+    
+    pagesSlider.addEventListener('input', function() {
+        pagesValue.textContent = `${this.value} ${this.value == 1 ? 'page' : 'pages'}`;
+    });
+    
+    // Form submission
+    const quoteForm = document.getElementById('quoteForm');
+    const quoteResult = document.getElementById('quoteResult');
+    const estimatedPrice = document.getElementById('estimatedPrice');
+    const priceBreakdown = document.getElementById('priceBreakdown');
+    
+    // Base prices
+    const basePrices = {
+        website: 1000,
+        ecommerce: 2500,
+        webapp: 5000,
+        redesign: 1500,
+        other: 2000
+    };
+    
+    // Feature prices
+    const featurePrices = {
+        responsive: 300,
+        seo: 500,
+        cms: 800,
+        hosting: 200,
+        analytics: 150,
+        multilingual: 600
+    };
+    
+    // Urgency multipliers
+    const urgencyMultipliers = {
+        standard: 1,
+        fast: 1.3,
+        rush: 1.7
+    };
+    
+    quoteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const projectType = document.getElementById('projectType').value;
+        const pages = parseInt(document.getElementById('pages').value);
+        const urgency = document.getElementById('urgency').value;
+        
+        // Get selected features
+        const features = [];
+        document.querySelectorAll('input[name="features"]:checked').forEach(checkbox => {
+            features.push(checkbox.value);
+        });
+        
+        // Calculate base price
+        let basePrice = basePrices[projectType] || 2000;
+        
+        // Adjust for number of pages (after first 5)
+        const pageAdjustment = Math.max(0, pages - 5) * 50;
+        
+        // Calculate features cost
+        let featuresCost = 0;
+        features.forEach(feature => {
+            featuresCost += featurePrices[feature] || 0;
+        });
+        
+        // Calculate subtotal before urgency
+        const subtotal = basePrice + pageAdjustment + featuresCost;
+        
+        // Apply urgency multiplier
+        const total = subtotal * urgencyMultipliers[urgency];
+        
+        // Display the result
+        estimatedPrice.textContent = `$${total.toFixed(2)}`;
+        
+        // Generate breakdown
+        priceBreakdown.innerHTML = `
+            <div class="breakdown-item">
+                <span>Base price (${document.getElementById('projectType').options[document.getElementById('projectType').selectedIndex].text})</span>
+                <span>$${basePrice.toFixed(2)}</span>
+            </div>
+            ${pages > 5 ? `
+            <div class="breakdown-item">
+                <span>Additional pages (${pages - 5} @ $50/page)</span>
+                <span>$${pageAdjustment.toFixed(2)}</span>
+            </div>
+            ` : ''}
+            ${features.length > 0 ? `
+            <div class="breakdown-item">
+                <span>Additional features</span>
+                <span>$${featuresCost.toFixed(2)}</span>
+            </div>
+            ` : ''}
+            <div class="breakdown-item">
+                <span>Subtotal</span>
+                <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="breakdown-item">
+                <span>${document.getElementById('urgency').options[document.getElementById('urgency').selectedIndex].text} multiplier</span>
+                <span>x${urgencyMultipliers[urgency].toFixed(1)}</span>
+            </div>
+            <div class="breakdown-item" style="font-weight: bold; border-top: 2px solid #333; margin-top: 15px;">
+                <span>Total Estimate</span>
+                <span>$${total.toFixed(2)}</span>
+            </div>
+        `;
+        
+        // Show the result section
+        quoteResult.style.display = 'block';
+        
+        // Scroll to result
+        quoteResult.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // Contact button functionality
+    const contactBtn = document.getElementById('contactBtn');
+    contactBtn.addEventListener('click', function() {
+        alert('Thank you for your interest! Our team will contact you shortly to discuss your project.');
+        quoteModal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === quoteModal) {
+            quoteModal.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
+
+document.getElementById('yourGetQuoteButtonId').addEventListener('click', function() {
+    document.getElementById('quoteModal').style.display = 'block';
+});

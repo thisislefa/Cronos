@@ -1,0 +1,804 @@
+<style>
+/* Reset and Base Styles */
+.defcon-cloud-security-reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Main Container */
+.defcon-cloud-security-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #06273e;
+  overflow: hidden;
+}
+
+/* Header Section */
+.defcon-cloud-security-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-cloud-security-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://placeholder.com/1920x1080') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.defcon-cloud-security-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.defcon-cloud-security-title {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: fadeInDown 1s ease;
+}
+
+.defcon-cloud-security-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  font-weight: 400;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 1s ease 0.3s both;
+}
+
+.defcon-cloud-security-cta-button {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #ffffff;
+  color: #0091ff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 1s ease 0.6s both;
+  border: 2px solid transparent;
+}
+
+.defcon-cloud-security-cta-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Service Features Section */
+.defcon-cloud-security-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.defcon-cloud-security-feature-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.defcon-cloud-security-feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.defcon-cloud-security-feature-card:nth-child(1) { transition-delay: 0.1s; }
+.defcon-cloud-security-feature-card:nth-child(2) { transition-delay: 0.2s; }
+.defcon-cloud-security-feature-card:nth-child(3) { transition-delay: 0.3s; }
+.defcon-cloud-security-feature-card:nth-child(4) { transition-delay: 0.4s; }
+.defcon-cloud-security-feature-card:nth-child(5) { transition-delay: 0.5s; }
+.defcon-cloud-security-feature-card:nth-child(6) { transition-delay: 0.6s; }
+
+.defcon-cloud-security-feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 145, 255, 0.1);
+  border-color: #0091ff;
+}
+
+.defcon-cloud-security-feature-icon {
+  font-size: 2.5rem;
+  color: #0091ff;
+  margin-bottom: 20px;
+}
+
+.defcon-cloud-security-feature-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #06273e;
+  font-weight: 700;
+}
+
+.defcon-cloud-security-feature-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Pricing Section */
+.defcon-cloud-security-pricing {
+  margin-bottom: 60px;
+}
+
+.defcon-cloud-security-section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  color: #06273e;
+  position: relative;
+}
+
+.defcon-cloud-security-section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #0091ff;
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+.defcon-cloud-security-pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.defcon-cloud-security-plan {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 40px 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-cloud-security-plan.popular {
+  border: 2px solid #0091ff;
+  transform: scale(1.02);
+}
+
+.defcon-cloud-security-plan-popular-tag {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  padding: 5px 40px;
+  font-size: 0.8rem;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.defcon-cloud-security-plan-title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #06273e;
+  font-weight: 700;
+}
+
+.defcon-cloud-security-plan-price {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0091ff;
+  font-weight: 700;
+}
+
+.defcon-cloud-security-plan-price span {
+  font-size: 1rem;
+  color: #777;
+}
+
+.defcon-cloud-security-plan-features {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.defcon-cloud-security-plan-feature {
+  padding: 8px 0;
+  border-bottom: 1px dashed #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+
+.defcon-cloud-security-plan-feature::before {
+  content: '✓';
+  color: #0091ff;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.defcon-cloud-security-plan-button {
+  display: block;
+  text-align: center;
+  padding: 12px 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+}
+
+.defcon-cloud-security-plan-button:hover {
+  background-color: transparent;
+  color: #0091ff;
+}
+
+/* Consultation Form Section */
+.defcon-cloud-security-consultation {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  border-radius: 8px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.defcon-cloud-security-consultation-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.defcon-cloud-security-form-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #06273e;
+}
+
+.defcon-cloud-security-form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.defcon-cloud-security-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #06273e;
+}
+
+.defcon-cloud-security-form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.defcon-cloud-security-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-cloud-security-form-submit {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-cloud-security-form-submit:hover {
+  background-color: #0077cc;
+  transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.defcon-cloud-security-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.defcon-cloud-security-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.defcon-cloud-security-modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.defcon-cloud-security-modal.active .defcon-cloud-security-modal-content {
+  transform: translateY(0);
+}
+
+.defcon-cloud-security-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #777;
+  background: none;
+  border: none;
+}
+
+.defcon-cloud-security-modal-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #06273e;
+}
+
+/* Floating Consultation Button */
+.defcon-cloud-security-floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.defcon-cloud-security-floating-button:hover {
+  transform: scale(1.1);
+  background-color: #0077cc;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .defcon-cloud-security-title {
+    font-size: 2.2rem;
+  }
+  
+  .defcon-cloud-security-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .defcon-cloud-security-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .defcon-cloud-security-pricing-plans {
+    grid-template-columns: 1fr;
+  }
+  
+  .defcon-cloud-security-plan.popular {
+    transform: none;
+  }
+  
+  .defcon-cloud-security-consultation-form-container {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-cloud-security-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-cloud-security-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-cloud-security-floating-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+</style>
+
+<div class="defcon-cloud-security-reset">
+  <div class="defcon-cloud-security-container">
+    <!-- Header Section -->
+    <header class="defcon-cloud-security-header">
+      <div class="defcon-cloud-security-header-content">
+        <h1 class="defcon-cloud-security-title">Enterprise Cloud Security Solutions</h1>
+        <p class="defcon-cloud-security-subtitle">Protect your cloud infrastructure with our comprehensive security services designed to safeguard your data, applications, and systems from evolving threats.</p>
+        <a href="#consultation" class="defcon-cloud-security-cta-button">Get Secured Today</a>
+      </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="defcon-cloud-security-features">
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">🔒</div>
+        <h3 class="defcon-cloud-security-feature-title">Cloud Infrastructure Protection</h3>
+        <p class="defcon-cloud-security-feature-desc">Comprehensive security for your AWS, Azure, and hybrid cloud environments with continuous monitoring and threat detection.</p>
+      </div>
+      
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">🛡️</div>
+        <h3 class="defcon-cloud-security-feature-title">Data Encryption</h3>
+        <p class="defcon-cloud-security-feature-desc">End-to-end encryption solutions for data at rest and in transit, ensuring compliance with industry regulations.</p>
+      </div>
+      
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">🔍</div>
+        <h3 class="defcon-cloud-security-feature-title">Vulnerability Assessment</h3>
+        <p class="defcon-cloud-security-feature-desc">Regular security audits and penetration testing to identify and remediate vulnerabilities before they're exploited.</p>
+      </div>
+      
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">🚨</div>
+        <h3 class="defcon-cloud-security-feature-title">24/7 Threat Monitoring</h3>
+        <p class="defcon-cloud-security-feature-desc">Real-time monitoring and alerting for suspicious activities with our Security Operations Center (SOC) services.</p>
+      </div>
+      
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">📝</div>
+        <h3 class="defcon-cloud-security-feature-title">Compliance Management</h3>
+        <p class="defcon-cloud-security-feature-desc">Ensure compliance with GDPR, HIPAA, PCI-DSS, and other regulatory requirements for your cloud environment.</p>
+      </div>
+      
+      <div class="defcon-cloud-security-feature-card">
+        <div class="defcon-cloud-security-feature-icon">🔄</div>
+        <h3 class="defcon-cloud-security-feature-title">Disaster Recovery</h3>
+        <p class="defcon-cloud-security-feature-desc">Robust backup and disaster recovery solutions to ensure business continuity in case of security incidents.</p>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="defcon-cloud-security-pricing">
+      <h2 class="defcon-cloud-security-section-title">Security Packages</h2>
+      <div class="defcon-cloud-security-pricing-plans">
+        <div class="defcon-cloud-security-plan">
+          <h3 class="defcon-cloud-security-plan-title">Essential</h3>
+          <div class="defcon-cloud-security-plan-price">$1,499<span>/month</span></div>
+          <ul class="defcon-cloud-security-plan-features">
+            <li class="defcon-cloud-security-plan-feature">Cloud Security Assessment</li>
+            <li class="defcon-cloud-security-plan-feature">Basic Threat Monitoring</li>
+            <li class="defcon-cloud-security-plan-feature">Monthly Vulnerability Scan</li>
+            <li class="defcon-cloud-security-plan-feature">Security Policy Review</li>
+            <li class="defcon-cloud-security-plan-feature">Email Support</li>
+          </ul>
+          <button class="defcon-cloud-security-plan-button" onclick="openModal('essential')">Get Started</button>
+        </div>
+        
+        <div class="defcon-cloud-security-plan popular">
+          <div class="defcon-cloud-security-plan-popular-tag">Popular</div>
+          <h3 class="defcon-cloud-security-plan-title">Professional</h3>
+          <div class="defcon-cloud-security-plan-price">$3,999<span>/month</span></div>
+          <ul class="defcon-cloud-security-plan-features">
+            <li class="defcon-cloud-security-plan-feature">All Essential Features</li>
+            <li class="defcon-cloud-security-plan-feature">24/7 Threat Monitoring</li>
+            <li class="defcon-cloud-security-plan-feature">Weekly Vulnerability Scans</li>
+            <li class="defcon-cloud-security-plan-feature">Penetration Testing (Quarterly)</li>
+            <li class="defcon-cloud-security-plan-feature">Incident Response</li>
+            <li class="defcon-cloud-security-plan-feature">Priority Support</li>
+          </ul>
+          <button class="defcon-cloud-security-plan-button" onclick="openModal('professional')">Get Started</button>
+        </div>
+        
+        <div class="defcon-cloud-security-plan">
+          <h3 class="defcon-cloud-security-plan-title">Enterprise</h3>
+          <div class="defcon-cloud-security-plan-price">$7,999<span>/month</span></div>
+          <ul class="defcon-cloud-security-plan-features">
+            <li class="defcon-cloud-security-plan-feature">All Professional Features</li>
+            <li class="defcon-cloud-security-plan-feature">Dedicated Security Team</li>
+            <li class="defcon-cloud-security-plan-feature">Continuous Penetration Testing</li>
+            <li class="defcon-cloud-security-plan-feature">Custom Security Solutions</li>
+            <li class="defcon-cloud-security-plan-feature">Compliance Certification</li>
+            <li class="defcon-cloud-security-plan-feature">24/7 Dedicated Support</li>
+          </ul>
+          <button class="defcon-cloud-security-plan-button" onclick="openModal('enterprise')">Get Started</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Form Section -->
+    <section id="consultation" class="defcon-cloud-security-consultation">
+      <div class="defcon-cloud-security-consultation-form-container">
+        <h2 class="defcon-cloud-security-form-title">Request a Security Consultation</h2>
+        <form id="defcon-cloud-security-consultation-form" class="defcon-cloud-security-form">
+          <div class="defcon-cloud-security-form-group">
+            <label for="defcon-cloud-security-name" class="defcon-cloud-security-form-label">Full Name</label>
+            <input type="text" id="defcon-cloud-security-name" class="defcon-cloud-security-form-input" required>
+          </div>
+          
+          <div class="defcon-cloud-security-form-group">
+            <label for="defcon-cloud-security-email" class="defcon-cloud-security-form-label">Email Address</label>
+            <input type="email" id="defcon-cloud-security-email" class="defcon-cloud-security-form-input" required>
+          </div>
+          
+          <div class="defcon-cloud-security-form-group">
+            <label for="defcon-cloud-security-company" class="defcon-cloud-security-form-label">Company Name</label>
+            <input type="text" id="defcon-cloud-security-company" class="defcon-cloud-security-form-input" required>
+          </div>
+          
+          <div class="defcon-cloud-security-form-group">
+            <label for="defcon-cloud-security-service" class="defcon-cloud-security-form-label">Service Interest</label>
+            <select id="defcon-cloud-security-service" class="defcon-cloud-security-form-input" required>
+              <option value="">Select a service</option>
+              <option value="cloud-assessment">Cloud Security Assessment</option>
+              <option value="compliance">Compliance Management</option>
+              <option value="monitoring">24/7 Threat Monitoring</option>
+              <option value="pentesting">Penetration Testing</option>
+              <option value="full-package">Full Security Package</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="defcon-cloud-security-form-group">
+            <label for="defcon-cloud-security-message" class="defcon-cloud-security-form-label">Your Security Needs</label>
+            <textarea id="defcon-cloud-security-message" class="defcon-cloud-security-form-input" rows="4"></textarea>
+          </div>
+          
+          <button type="submit" class="defcon-cloud-security-form-submit">Request Consultation</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Floating Consultation Button -->
+<div class="defcon-cloud-security-floating-button" onclick="openModal('quick-consult')">?</div>
+
+<!-- Modals -->
+<div id="defcon-cloud-security-essential-modal" class="defcon-cloud-security-modal">
+  <div class="defcon-cloud-security-modal-content">
+    <button class="defcon-cloud-security-modal-close" onclick="closeModal('essential')">×</button>
+    <h3 class="defcon-cloud-security-modal-title">Essential Security Package</h3>
+    <p>Our Essential package provides foundational cloud security services perfect for small businesses or those just beginning their cloud security journey.</p>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-modal-name" class="defcon-cloud-security-form-label">Your Name</label>
+      <input type="text" id="defcon-cloud-security-modal-name" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-modal-email" class="defcon-cloud-security-form-label">Email</label>
+      <input type="email" id="defcon-cloud-security-modal-email" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <button class="defcon-cloud-security-form-submit" onclick="submitForm('essential')">Request Essential Package</button>
+  </div>
+</div>
+
+<div id="defcon-cloud-security-professional-modal" class="defcon-cloud-security-modal">
+  <div class="defcon-cloud-security-modal-content">
+    <button class="defcon-cloud-security-modal-close" onclick="closeModal('professional')">×</button>
+    <h3 class="defcon-cloud-security-modal-title">Professional Security Package</h3>
+    <p>Our most popular package offers comprehensive protection with 24/7 monitoring and quarterly penetration testing for medium-sized businesses.</p>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-pro-modal-name" class="defcon-cloud-security-form-label">Your Name</label>
+      <input type="text" id="defcon-cloud-security-pro-modal-name" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-pro-modal-email" class="defcon-cloud-security-form-label">Email</label>
+      <input type="email" id="defcon-cloud-security-pro-modal-email" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-pro-modal-company" class="defcon-cloud-security-form-label">Company Size</label>
+      <select id="defcon-cloud-security-pro-modal-company" class="defcon-cloud-security-form-input" required>
+        <option value="">Select size</option>
+        <option value="1-50">1-50 employees</option>
+        <option value="51-200">51-200 employees</option>
+        <option value="201-500">201-500 employees</option>
+        <option value="501+">501+ employees</option>
+      </select>
+    </div>
+    
+    <button class="defcon-cloud-security-form-submit" onclick="submitForm('professional')">Request Professional Package</button>
+  </div>
+</div>
+
+<div id="defcon-cloud-security-enterprise-modal" class="defcon-cloud-security-modal">
+  <div class="defcon-cloud-security-modal-content">
+    <button class="defcon-cloud-security-modal-close" onclick="closeModal('enterprise')">×</button>
+    <h3 class="defcon-cloud-security-modal-title">Enterprise Security Package</h3>
+    <p>Our premium package provides enterprise-grade security with a dedicated team and continuous penetration testing for large organizations.</p>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-ent-modal-name" class="defcon-cloud-security-form-label">Your Name</label>
+      <input type="text" id="defcon-cloud-security-ent-modal-name" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-ent-modal-email" class="defcon-cloud-security-form-label">Email</label>
+      <input type="email" id="defcon-cloud-security-ent-modal-email" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-ent-modal-phone" class="defcon-cloud-security-form-label">Phone Number</label>
+      <input type="tel" id="defcon-cloud-security-ent-modal-phone" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-ent-modal-requirements" class="defcon-cloud-security-form-label">Security Requirements</label>
+      <textarea id="defcon-cloud-security-ent-modal-requirements" class="defcon-cloud-security-form-input" rows="4"></textarea>
+    </div>
+    
+    <button class="defcon-cloud-security-form-submit" onclick="submitForm('enterprise')">Request Enterprise Package</button>
+  </div>
+</div>
+
+<div id="defcon-cloud-security-quick-consult-modal" class="defcon-cloud-security-modal">
+  <div class="defcon-cloud-security-modal-content">
+    <button class="defcon-cloud-security-modal-close" onclick="closeModal('quick-consult')">×</button>
+    <h3 class="defcon-cloud-security-modal-title">Quick Consultation</h3>
+    <p>Have a quick question about our cloud security services? Fill out this brief form and we'll get back to you within 24 hours.</p>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-quick-modal-name" class="defcon-cloud-security-form-label">Your Name</label>
+      <input type="text" id="defcon-cloud-security-quick-modal-name" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-quick-modal-email" class="defcon-cloud-security-form-label">Email</label>
+      <input type="email" id="defcon-cloud-security-quick-modal-email" class="defcon-cloud-security-form-input" required>
+    </div>
+    
+    <div class="defcon-cloud-security-form-group">
+      <label for="defcon-cloud-security-quick-modal-question" class="defcon-cloud-security-form-label">Your Question</label>
+      <textarea id="defcon-cloud-security-quick-modal-question" class="defcon-cloud-security-form-input" rows="4" required></textarea>
+    </div>
+    
+    <button class="defcon-cloud-security-form-submit" onclick="submitForm('quick-consult')">Send Question</button>
+  </div>
+</div>
+
+<script>
+// Animate feature cards when they come into view
+document.addEventListener('DOMContentLoaded', function() {
+  const featureCards = document.querySelectorAll('.defcon-cloud-security-feature-card');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  featureCards.forEach(card => {
+    observer.observe(card);
+  });
+  
+  // Handle form submission
+  const consultationForm = document.getElementById('defcon-cloud-security-consultation-form');
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your consultation request. Our security team will contact you shortly.');
+      this.reset();
+    });
+  }
+});
+
+// Modal functions
+function openModal(modalType) {
+  const modal = document.getElementById(`defcon-cloud-security-${modalType}-modal`);
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modalType) {
+  const modal = document.getElementById(`defcon-cloud-security-${modalType}-modal`);
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function submitForm(formType) {
+  alert(`Thank you for your interest in our ${formType.replace('-', ' ')} services. We'll contact you shortly.`);
+  closeModal(formType);
+  
+  // Reset form fields (simplified for demo)
+  const modal = document.getElementById(`defcon-cloud-security-${formType}-modal`);
+  if (modal) {
+    const inputs = modal.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      input.value = '';
+    });
+  }
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(e) {
+  if (e.target.classList.contains('defcon-cloud-security-modal')) {
+    const activeModal = document.querySelector('.defcon-cloud-security-modal.active');
+    if (activeModal) {
+      const modalType = activeModal.id.replace('defcon-cloud-security-', '').replace('-modal', '');
+      closeModal(modalType);
+    }
+  }
+});
+</script>

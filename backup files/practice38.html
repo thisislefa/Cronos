@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Defcon</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #06273e;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #0091ff;
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            color: #06273e;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: #0091ff;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 5rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+            margin: 5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #e5e5e5;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin: 40px 0;
+            width: 50%;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 30px;
+            padding-right: 0;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+        }
+
+        .timeline-content {
+            max-width: 500px;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e5e5;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            text-align: right;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #0091ff;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -40px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -40px;
+            right: auto;
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            color: #0091ff;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid #e5e5e5;
+        }
+
+        .team-member.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 145, 255, 0.1);
+        }
+
+        .team-member:nth-child(1) { transition-delay: 0.1s; }
+        .team-member:nth-child(2) { transition-delay: 0.2s; }
+        .team-member:nth-child(3) { transition-delay: 0.3s; }
+        .team-member:nth-child(4) { transition-delay: 0.4s; }
+
+        .member-image {
+            height: 300px;
+            background-color: #e5e5e5;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #06273e;
+        }
+
+        .member-title {
+            color: #0091ff;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 6rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .stat-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            color: #0091ff;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #06273e;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .value-card {
+            padding: 2rem;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #e5e5e5;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .value-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 145, 255, 0.1);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #0091ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #06273e;
+        }
+
+        /* Testimonial Section */
+        .testimonial-slider {
+            position: relative;
+            margin: 6rem 0;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: #06273e;
+            position: relative;
+        }
+
+        .testimonial-quote::before,
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: #0091ff;
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-quote::before {
+            top: -20px;
+            left: -15px;
+        }
+
+        .testimonial-quote::after {
+            bottom: -40px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            font-size: 1.1rem;
+            color: #0091ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-company {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background: #e5e5e5;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #0091ff;
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-left: 70px;
+                padding-right: 0;
+            }
+
+            .timeline-content::before {
+                left: 20px;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content {
+                text-align: left;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 70vh;
+                min-height: 500px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .team-grid,
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://example.com/placeholder-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Our Story</h1>
+            <p>From visionary beginnings to industry leadership — the journey of innovation, excellence, and transforming ideas into digital reality.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- About Section -->
+        <section class="section-header">
+            <h2>Redefining Digital Excellence</h2>
+            <p>Founded in 2010, Defcon has grown from a boutique design studio into a global leader in digital transformation. Our commitment to innovation and quality has earned us recognition from industry leaders and loyalty from clients worldwide.</p>
+        </section>
+
+        <!-- Timeline Section -->
+        <section>
+            <h2 class="section-header">Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <h3>Foundation</h3>
+                        <p>Defcon was founded by three visionary designers in a small studio with a mission to create exceptional digital experiences.</p>
+                    </div>
+                </div>
+                <div class="timeline-item2">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013</div>
+                        <h3>First Major Client</h3>
+                        <p>Secured our first Fortune 500 client, establishing our reputation for enterprise-grade solutions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <h3>Global Expansion</h3>
+                        <p>Opened offices in London and Singapore, marking our transition to an international presence.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <h3>Innovation Lab</h3>
+                        <p>Launched our R&D division focused on emerging technologies like AI and immersive experiences.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>Industry Recognition</h3>
+                        <p>Awarded "Digital Agency of the Year" by the International Design Association.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section>
+            <h2 class="section-header">By The Numbers</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="40">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label">Client Retention</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label">Industry Awards</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section>
+            <h2 class="section-header">Leadership Team</h2>
+            <p class="section-header" style="max-width: 800px;">Our multidisciplinary team of visionaries brings together decades of experience across design, technology, and business strategy.</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('https://via.placeholder.com/600x800/e5e5e5/06273e?text=Sarah+Chen')"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Sarah Chen</h3>
+                        <p class="member-title">CEO & Founder</p>
+                        <p class="member-bio">Former design director with 20+ years experience transforming brands through digital innovation.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('https://via.placeholder.com/600x800/e5e5e5/06273e?text=Michael+Rodriguez')"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Michael Rodriguez</h3>
+                        <p class="member-title">CTO</p>
+                        <p class="member-bio">Technology visionary specializing in scalable architecture and emerging platforms.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('https://via.placeholder.com/600x800/e5e5e5/06273e?text=James+Wilson')"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">James Wilson</h3>
+                        <p class="member-title">Creative Director</p>
+                        <p class="member-bio">Award-winning designer with a focus on human-centered experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image" style="background-image: url('https://via.placeholder.com/600x800/e5e5e5/06273e?text=Priya+Patel')"></div>
+                    <div class="member-info">
+                        <h3 class="member-name">Priya Patel</h3>
+                        <p class="member-title">Head of Strategy</p>
+                        <p class="member-bio">Digital transformation expert with a track record of driving growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section>
+            <h2 class="section-header">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">I</div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p>We challenge conventions and pioneer new approaches to solve complex problems in elegant ways.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">E</div>
+                    <h3 class="value-title">Excellence</h3>
+                    <p>Every detail matters. We deliver work of exceptional quality that stands the test of time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">I</div>
+                    <h3 class="value-title">Integrity</h3>
+                    <p>We build trust through transparency, honesty, and accountability in all our relationships.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">C</div>
+                    <h3 class="value-title">Collaboration</h3>
+                    <p>Great work comes from diverse perspectives working together toward a shared vision.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">I</div>
+                    <h3 class="value-title">Impact</h3>
+                    <p>We measure success by the tangible value we create for our clients and their audiences.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">G</div>
+                    <h3 class="value-title">Growth</h3>
+                    <p>We continuously evolve, learn, and push boundaries to stay at the forefront of our industry.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section>
+            <h2 class="section-header">Client Testimonials</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">Defcon transformed our digital presence with a level of sophistication and technical excellence that exceeded all expectations. Their strategic approach delivered measurable business results.</p>
+                        <p class="testimonial-author">Jennifer Alvarez</p>
+                        <p class="testimonial-company">CMO, Global Enterprises Inc.</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">Working with Defcon has been a revelation. Their team combines creative vision with technical precision in a way that's rare in this industry. They've become true partners in our digital transformation.</p>
+                        <p class="testimonial-author">Robert Zhang</p>
+                        <p class="testimonial-company">Director of Digital, Fortune 500 Company</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">The quality of work Defcon delivers is simply unparalleled. They understand our business objectives and translate them into digital experiences that drive engagement and conversion.</p>
+                        <p class="testimonial-author">Emily O'Connor</p>
+                        <p class="testimonial-company">Head of Product, Tech Startup</p>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Scroll Animation
+        function animateOnScroll() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const teamMembers = document.querySelectorAll('.team-member');
+            const statItems = document.querySelectorAll('.stat-item');
+            const valueCards = document.querySelectorAll('.value-card');
+            
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+            
+            // Timeline Animation
+            timelineItems.forEach((item, index) => {
+                const itemPosition = item.getBoundingClientRect().top;
+                if (itemPosition < windowHeight - 100) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Team Animation
+            teamMembers.forEach(member => {
+                const memberPosition = member.getBoundingClientRect().top;
+                if (memberPosition < windowHeight - 100) {
+                    member.classList.add('active');
+                }
+            });
+            
+            // Stats Animation
+            statItems.forEach(item => {
+                const itemPosition = item.getBoundingClientRect().top;
+                if (itemPosition < windowHeight - 100) {
+                    item.classList.add('active');
+                    if (item.querySelector('.stat-number').textContent === '0') {
+                        animateNumbers();
+                    }
+                }
+            });
+            
+            // Values Animation
+            valueCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                if (cardPosition < windowHeight - 100) {
+                    card.style.transitionDelay = `${index * 0.1}s`;
+                    card.classList.add('active');
+                }
+            });
+        }
+        
+        // Animate Statistics Numbers
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const duration = 2000; // Animation duration in ms
+            const frameDuration = 1000 / 60; // 60 fps
+            const totalFrames = Math.round(duration / frameDuration);
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / totalFrames;
+                let current = 0;
+                
+                const counter = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(counter);
+                        stat.textContent = target;
+                        if (stat.getAttribute('data-target') === '98') {
+                            stat.textContent = target + '%';
+                        }
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, frameDuration);
+            });
+        }
+        
+        // Testimonial Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const track = document.querySelector('.testimonial-track');
+        
+        function goToSlide(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+        });
+        
+        // Auto-advance slides
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }, 5000);
+        
+        // Initialize
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

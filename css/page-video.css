@@ -1,0 +1,283 @@
+/* Professional Developer Section Styles */
+  .defcon-developer-section {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    color: #06273e;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 140px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .defcon-developer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .defcon-developer-header {
+    margin-bottom: 100px;
+    text-align: left;
+  }
+  
+  .defcon-developer-title {
+    color: #06273e;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: defcon-fadeUp 0.8s forwards 0.5s;
+  }
+  
+  .defcon-developer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .defcon-developer-content {
+    position: relative;
+  }
+  
+  .defcon-developer-tagline {
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    margin-bottom: 40px;
+    color: #06273e;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fadeUp 0.8s forwards 0.8s;
+  }
+  
+  .defcon-developer-tagline span {
+    display: block;
+    color: #0091ff;
+    font-family: 'Gorditas', sans-serif;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .defcon-developer-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4B5563;
+    margin-bottom: 40px;
+    opacity: 1;
+    transform: translateY(30px);
+    animation: defcon-fadeUp 0.8s forwards 1.1s;
+  }
+
+  .defcon-developer-visual {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: defcon-fadeUp 0.8s forwards 1.1s;
+  }
+  
+  .defcon-developer-visual-inner {
+    position: relative;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .defcon-developer-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 145, 255, 0.1) 0%, rgba(6, 39, 62, 0.1) 100%);
+  }
+  
+  .defcon-developer-shape-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+  }
+  
+  .defcon-developer-shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 100px;
+    left: -100px;
+  }
+  
+  .defcon-developer-shape-3 {
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    right: 200px;
+  }
+  
+  @keyframes defcon-fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .defcon-developer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .defcon-developer-tagline {
+      font-size: 42px;
+    }
+    
+    .defcon-developer-visual {
+      order: -1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .defcon-developer-section {
+      padding: 60px 20px;
+    }
+    
+    .defcon-developer-tagline {
+      font-size: 36px;
+    }
+    
+    .defcon-developer-description {
+      font-size: 16px;
+    }
+    
+    .defcon-developer-card {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .defcon-developer-tagline {
+      font-size: 28px;
+    }
+    
+    .defcon-developer-cta {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+  }
+
+  /* button */ 
+  .btn {
+    --color: #ffcd39;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+    border: none;
+    background-color: transparent;
+  }
+
+  .btn div {
+    letter-spacing: 2px;
+    font-weight: bold;
+    background: var(--color);
+    border-radius: 2rem;
+    color: black;
+    padding: 1rem;
+  }
+
+  .btn::before {
+    content: '';
+    z-index: -1;
+    background-color: var(--color);
+    border: 2px solid black;
+    border-radius: 2rem;
+    width: 110%;
+    height: 100%;
+    position: absolute;
+    transform: rotate(10deg);
+    transition: .5s;
+    opacity: 0.2;
+  }
+
+  .btn:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+
+  .btn:hover::before {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  .btn svg {
+    transform: translateX(-200%);
+    transition: .3s;
+    width: 0;
+    opacity: 0;
+  }
+
+  .btn:hover svg {
+    width: 25px;
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  .btn:active {
+    filter: brightness(1.4);
+  }
+
+  /* Video Frame Effects */
+  .defcon-video-frame {
+    position: absolute;
+    border: 2px solid rgb(0, 145, 255);
+    border-radius: 12px;
+    pointer-events: none;
+    animation: defconFrameFloat 8s infinite ease-in-out;
+  }
+
+  .defcon-frame-1 {
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    animation-delay: 0s;
+    opacity: 0.6;
+  }
+
+  .defcon-frame-2 {
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    animation-delay: -2s;
+    opacity: 0.4;
+  }
+
+  .defcon-frame-3 {
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    animation-delay: -4s;
+    opacity: 0.2;
+  }
+
+  /* Animations */
+  @keyframes defconFrameFloat {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(10px, 10px, 20px) rotate(1deg);
+    }
+  }

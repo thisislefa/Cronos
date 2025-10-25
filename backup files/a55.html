@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Printer Management</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Printer Management</h1>
+  <form id="printerForm">
+    <label for="printerModel">Printer Model:</label>
+    <input type="text" id="printerModel" name="printerModel"><br><br>
+    <label for="meterNumber">Meter Number:</label>
+    <input type="number" id="meterNumber" name="meterNumber"><br><br>
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location"><br><br>
+    <label for="date">Date</label>
+    <input type="datetime" id="date" name="date"><br><br>
+    <button type="submit">Add Printer</button>
+  </form>
+
+  <h2>Printers</h2>
+  <table id="printerTable">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Meter Number</th>
+        <th>Location</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="printerTableBody">
+    </tbody>
+  </table>
+
+  <script>
+    // Get the form and table elements
+    const form = document.getElementById('printerForm');
+    const tableBody = document.getElementById('printerTableBody');
+
+    // Load existing printers from LocalStorage
+    loadPrinters();
+
+    // Add event listener to the form's submit event
+    form.addEventListener('submit', (e) => {
+      // Prevent the default form submission behavior
+      e.preventDefault();
+
+      // Get the form data
+      const printerModel = document.getElementById('printerModel').value;
+      const meterNumber = document.getElementById('meterNumber').value;
+      const location = document.getElementById('location').value;
+      const date = document.getElementById('date').value;
+
+      // Create a printer object
+      const printer = {
+        model: printerModel,
+        meterNumber: meterNumber,
+        location: location,
+        datetime: date,
+      };
+
+      // Add the printer to LocalStorage
+      addPrinter(printer);
+
+      // Clear the form fields
+      form.reset();
+    });
+
+    // Function to load printers from LocalStorage
+    function loadPrinters() {
+      const printers = JSON.parse(localStorage.getItem('printers')) || [];
+      printers.forEach((printer) => {
+        addPrinterToTable(printer);
+      });
+    }
+
+    // Function to add a printer to LocalStorage
+    function addPrinter(printer) {
+      const printers = JSON.parse(localStorage.getItem('printers')) || [];
+      printers.push(printer);
+      localStorage.setItem('printers', JSON.stringify(printers));
+      addPrinterToTable(printer);
+    }
+
+    // Function to add a printer to the table
+    function addPrinterToTable(printer) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${printer.model}</td>
+        <td>${printer.meterNumber}</td>
+        <td>${printer.location}</td>
+        <td>${printer.datetime}</td>
+      `;
+      tableBody.appendChild(row);
+    }
+  </script>
+</body>
+</html>

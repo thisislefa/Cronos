@@ -1,0 +1,310 @@
+<style>
+    .info-sec{
+      background: #f9f9f9;
+      color: #333;
+      font-family: 'Inter', sans-serif;
+      overflow: visible;
+    }
+
+    .section-container {
+      display: flex;
+      width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Left content blocks */
+    .content {
+      flex: 1;
+      padding: 0;
+    }
+
+    .defcon-story-subheading {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #053c63;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.5s;
+      }
+
+    .defcon-story-heading {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.5s;
+      background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .defcon-story-link {
+      display: inline-block;
+      color: #0091ff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      border-bottom: 2px solid #0091ff;
+      padding-bottom: 2px;
+      transition: color 0.3s, border-bottom 0.3s;
+      position: relative;
+      z-index: 2;
+      width: fit-content;
+      }
+
+      .defcon-story-link:hover {
+      color: #06273e;
+      border-bottom: 2px solid #06273e;
+      }
+
+    .block {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0.3;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
+
+    .block.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .block p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      width: 370px;
+    }
+
+    /* Right sticky image panel */
+    .image-panel {
+      flex: 1;
+      position: relative;
+      padding-left: 2rem;
+      max-width: 470px;
+      flex-grow: 1;
+      margin-bottom: 9rem;
+    }
+
+    .image-panel .image-wrapper {
+      position: sticky;
+      top: 160px;
+      height: 60vh;
+      max-height: 700px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(1, 25, 53, 0.356);
+      width: 100%;
+      background: #eee;
+      margin-top: 7rem;
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 0.8s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+    }
+
+    .image-panel img.active {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+    }
+
+    /* NEW: Staggered reveal for block children */
+    .block > * {
+        opacity: 9;
+        transform: translateY(20px);
+        transition: opacity 0.3s cubic-bezier(0.65, 0.05, 0.36, 1), transform 0.6s cubic-bezier(0.65, 0.05, 0.36, 1);
+    }
+    
+    .block.active > * {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* NEW: Adding transition delays for the staggered effect */
+    .block.active .defcon-story-subheading { transition-delay: 0.2s; }
+    .block.active .defcon-story-heading { transition-delay: 0.3s; }
+    .block.active p { transition-delay: 0.4s; }
+    .block.active .defcon-story-link { transition-delay: 0.5s; }
+
+
+    .block p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      width: 370px;
+    }
+
+  </style>
+
+<div class="info-sec">
+
+  <div class="section-container">
+    <!-- Left Content -->
+    <div class="content">
+    <div class="block active" data-image="img1">
+      <div class="defcon-story-subheading" style="position: relative; z-index: 1;">
+        Discovery
+        <span style="
+          position: absolute;
+          left: -40px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 7rem;
+          font-weight: 900;
+          color: #c0c0c0;
+          opacity: 0.35;
+          z-index: -1; /* Changed from 0 to -1 to place behind heading */
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+        ">01</span>
+      </div>
+      <div class="defcon-story-heading">Uncovering Your Vision</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat felis nec mi facilisis, sit amet.</p>
+      <a href="#" class="defcon-story-link">Learn about our process →</a>
+    </div>
+
+    <div class="block" data-image="img2">
+      <div class="defcon-story-subheading">Strategy
+        <span style="
+          position: absolute;
+          left: -40px;
+          top: 35%;
+          transform: translateY(-50%);
+          font-size: 7rem;
+          font-weight: 900;
+          color: #c0c0c0;
+          opacity: 0.35;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+        ">02</span>
+      </div>
+      <div class="defcon-story-heading">Crafting the Blueprint</div>
+      <p>We analyze your goals and challenges to develop a tailored strategy that sets the foundation for success.</p>
+      <a href="#" class="defcon-story-link">See our approach →</a>
+    </div>
+
+    <div class="block" data-image="img3">
+      <div class="defcon-story-subheading">Design
+        <span style="
+          position: absolute;
+          left: -40px;
+          top: 35%;
+          transform: translateY(-50%);
+          font-size: 7rem;
+          font-weight: 900;
+          color: #c0c0c0;
+          opacity: 0.35;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+        ">03</span>
+      </div>
+      <div class="defcon-story-heading">Bringing Ideas to Life</div>
+      <p>Our creative team transforms concepts into engaging designs that resonate with your audience.</p>
+      <a href="#" class="defcon-story-link">View our designs →</a>
+    </div>
+
+    <div class="block" data-image="img4">
+      <div class="defcon-story-subheading">Development
+        <span style="
+          position: absolute;
+          left: -40px;
+          top: 35%;
+          transform: translateY(-50%);
+          font-size: 7rem;
+          font-weight: 900;
+          color: #c0c0c0;
+          opacity: 0.35;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+        ">04</span>
+      </div>
+      <div class="defcon-story-heading">Building with Precision</div>
+      <p>We turn designs into robust, scalable solutions using the latest technologies and best practices.</p>
+      <a href="#" class="defcon-story-link">Explore our builds →</a>
+    </div>
+
+    <div class="block" data-image="img5">
+      <div class="defcon-story-subheading">Launch
+        <span style="
+          position: absolute;
+          left: -40px;
+          top: 35%;
+          transform: translateY(-50%);
+          font-size: 7rem;
+          font-weight: 900;
+          color: #c0c0c0;
+          opacity: 0.35;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+        ">05</span>
+      </div>
+      <div class="defcon-story-heading">Delivering Results</div>
+      <p>After rigorous testing, we launch your project and provide ongoing support to ensure lasting impact.</p>
+      <a href="#" class="defcon-story-link">Start your journey →</a>
+    </div>
+
+      
+    </div>
+
+    <!-- Right Image Panel -->
+    <div class="image-panel">
+      <div class="image-wrapper">
+        <img id="img1" src="https://picsum.photos/id/1015/800/1000" class="active">
+        <img id="img2" src="https://picsum.photos/id/1016/800/1000">
+        <img id="img3" src="https://picsum.photos/id/1018/800/1000">
+        <img id="img4" src="https://picsum.photos/id/1020/800/1000">
+        <img id="img5" src="https://picsum.photos/id/1024/800/1000">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <script>
+    const blocks = document.querySelectorAll(".block");
+    const images = document.querySelectorAll(".image-panel img");
+
+    window.addEventListener("scroll", () => {
+      let index = 0;
+      blocks.forEach((block, i) => {
+        const rect = block.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+          index = i;
+        }
+      });
+
+      // Update active text block
+      blocks.forEach((block, i) => block.classList.toggle("active", i === index));
+
+      // Update active image
+      images.forEach((img, i) => img.classList.toggle("active", i === index));
+    });
+  </script>

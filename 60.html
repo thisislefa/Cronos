@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base styles to ensure proper rendering and font application */
+       
+
+        /* ========================================
+        GEMINI ADVANCED CONTACT SECTION STYLES
+        - Prefixed with 'gmn-acs-' to prevent conflicts.
+        ========================================
+        */
+
+        #gmn-advanced-contact-section {
+            width: 100%;
+            background-color: #07071e; /* Dark Blue/Black */
+            color: #f4f4f4; /* Off-white */
+            padding: 6rem 2rem;
+            overflow: hidden; /* Ensures no overflow from animated elements */
+            box-sizing: border-box;
+        }
+
+        .gmn-acs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .gmn-acs-content-left {
+            /* Swapped to right column, padding handled by grid gap */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .gmn-acs-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            color: #f4f4f4a0; /* Slightly transparent for softer text */
+        }
+
+        .gmn-acs-button {
+            display: inline-block;
+            background-color: transparent; /* Bright Blue */
+            color: #fff; /* White */
+            padding: 0.8rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 60px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        .gmn-acs-button:hover {
+            background-color: white;
+            color: #06273e;
+        }
+
+        .gmn-acs-heading-right {
+             /* Swapped to left column */
+            perspective: 1000px; /* Creates a 3D space for child elements */
+        }
+
+        .gmn-acs-heading {
+            font-size: clamp(3rem, 10vw, 7rem); /* Responsive font size */
+            font-weight: 800;
+            line-height: 1.1;
+            color: #fff;
+            margin: 0;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition for JS effect */
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .gmn-acs-container {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+                text-align: center;
+            }
+            
+            .gmn-acs-content-left {
+                align-items: center;
+                /* Order removed to follow natural document flow */
+            }
+
+            .gmn-acs-heading-right {
+                margin-bottom: 2rem;
+                /* Order removed to follow natural document flow */
+            }
+
+            .gmn-acs-description {
+                font-size: 1rem;
+            }
+
+             .gmn-acs-heading {
+                font-size: clamp(3rem, 15vw, 5rem);
+             }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+      ========================================
+      GEMINI ADVANCED CONTACT SECTION
+      - You can copy and paste this entire section into your project.
+      ========================================
+    -->
+    <section id="gmn-advanced-contact-section">
+        <div class="gmn-acs-container">
+            <!-- Left Column: Large Heading -->
+            <div class="gmn-acs-heading-right">
+                <h2 class="gmn-acs-heading">Let's Work Together</h2>
+            </div>
+        
+            <!-- Right Column: Description and Button -->
+            <div class="gmn-acs-content-left">
+                <p class="gmn-acs-description">
+                    We're here to help you bring your ideas to life. Whether you have a question about our services, a project proposal, or just want to say hello, we'd love to hear from you.
+                </p>
+                <a href="mailto:contact@example.com" class="gmn-acs-button">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        /* ========================================
+        GEMINI ADVANCED CONTACT SECTION SCRIPT
+        - Adds a subtle 3D hover effect to the heading.
+        ========================================
+        */
+        const contactSection = document.getElementById('gmn-advanced-contact-section');
+        const heading = document.querySelector('.gmn-acs-heading');
+
+        // Only run if the element exists
+        if (contactSection && heading) {
+            const handleMouseMove = (e) => {
+                // Get the bounding rectangle of the section
+                const rect = contactSection.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Calculate position of cursor from center of the section
+                const rotateX = (centerY - y) / 20; // Invert y for natural rotation
+                const rotateY = (x - centerX) / 20;
+
+                // Apply a 3D transform based on cursor position
+                heading.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            };
+            
+            const handleMouseLeave = () => {
+                // Reset transform when cursor leaves the section
+                heading.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            };
+
+            contactSection.addEventListener('mousemove', handleMouseMove);
+            contactSection.addEventListener('mouseleave', handleMouseLeave);
+        }
+
+    </script>
+
+</body>
+</html>
+

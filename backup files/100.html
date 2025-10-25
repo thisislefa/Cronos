@@ -1,0 +1,142 @@
+
+    <style>
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .faq-item {
+            background-color: var(--card-dark);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--accent);
+        }
+
+        .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .icon {
+            transform: rotate(45deg);
+        }
+
+        .contact-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            color: var(--hover-accent);
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="faq-container">
+        <h1>Crypto FAQ</h1>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What is crypto?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Cryptocurrency is a digital or virtual currency secured by cryptography. It operates on decentralized networks (blockchains) and enables peer-to-peer transactions without intermediaries like banks.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Where to buy crypto?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                You can buy crypto on exchanges like Coinbase, Binance, Kraken, or Gemini. Some platforms (like PayPal or Robinhood) also offer crypto purchases.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How to trade crypto?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Trading crypto involves buying/selling on exchanges, using market/limit orders, and analyzing trends. Advanced traders use derivatives (futures, options) or leverage.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How to earn crypto?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                You can earn crypto through staking, yield farming, mining (for Proof-of-Work coins), or by providing liquidity in DeFi protocols.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How to earn rewards on crypto?</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Many platforms offer rewards via staking, cashback in crypto, referral bonuses, or credit cards that pay in Bitcoin/other tokens.
+            </div>
+        </div>
+        
+        <a href="#" class="contact-link">Have more questions? Contact Us</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentNode;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Improved Header</title>
+    
+    <!-- Font Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =============================================
+           CSS VARIABLES (Custom Properties)
+           ============================================= */
+        :root {
+            /* Color Palette */
+            --dc-color-header-bg: #07071e;
+            --dc-color-accent: #0091ff;
+            --dc-color-text-light: #fff;
+            --dc-color-background-dark: #000;
+            --dc-color-text-muted: #b5b5d9;
+            --dc-color-menu-bg: #10102a;
+            --dc-color-menu-border: rgba(0, 145, 255, 0.2);
+            --dc-color-button-primary: #0077cc;
+            --dc-color-button-hover: #0081ff;
+            --dc-color-panel-bg: #171a2e;
+            
+            /* Sizing & Transitions */
+            --dc-header-height: 60px;
+            --dc-content-max-width: 1500px;
+            --dc-border-radius: 8px;
+            --dc-transition-speed: 0.3s;
+            
+            /* Z-index layers */
+            --dc-z-header: 1000;
+            --dc-z-mobile-nav: 990;
+        }
+
+        /* =============================================
+           BASE STYLES
+           ============================================= */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--dc-header-height); /* Prevent content from hiding behind fixed header */
+            background-color: var(--dc-color-background-dark);
+            color: var(--dc-color-text-light);
+            overflow-x: hidden;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =============================================
+           HEADER
+           ============================================= */
+        .dc-header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--dc-z-header);
+            background-color: var(--dc-color-header-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dc-header {
+            height: var(--dc-header-height);
+            display: flex;
+            align-items: center;
+            max-width: var(--dc-content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            justify-content: space-between;
+        }
+
+        /* =============================================
+           LOGO
+           ============================================= */
+        .dc-logo-container {
+            flex-shrink: 0;
+        }
+
+        .dc-logo-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .dc-logo-image {
+            height: 40px;
+            width: auto;
+            vertical-align: middle;
+            transition: opacity var(--dc-transition-speed) ease;
+        }
+
+        .dc-logo-link:hover .dc-logo-image {
+            opacity: 0.8;
+        }
+
+        /* =============================================
+           DESKTOP NAVIGATION
+           ============================================= */
+        .dc-main-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px; /* Space between nav list and buttons */
+        }
+
+        .dc-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            gap: 32px; /* Space between nav items */
+        }
+
+        .dc-nav-item {
+            position: relative;
+        }
+
+        .dc-nav-link {
+            color: var(--dc-color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 15px;
+            align-items: center;
+            gap: 6px; /* Space between text and indicator */
+            transition: color var(--dc-transition-speed) ease;
+        }
+
+        .dc-nav-link:hover,
+        .dc-nav-item.is-active > .dc-nav-link {
+            color: var(--dc-color-accent);
+        }
+
+        /* =============================================
+           HEADER ACTION BUTTONS
+           ============================================= */
+        .dc-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dc-header-action-btn {
+            background: var(--dc-color-button-primary);
+            color: var(--dc-color-text-light);
+            border: none;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn:hover {
+            background-color: var(--dc-color-button-hover);
+        }
+
+        .dc-header-action-btn-cta {
+            background: rgba(98, 184, 250, 0.2);
+            color: #95d1ff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color var(--dc-transition-speed) ease;
+        }
+
+        .dc-header-action-btn-cta:hover {
+          background-color: rgba(98, 184, 250, 0.35);
+        }
+
+        /* =============================================
+           MEGA MENU STYLES (DESKTOP)
+           ============================================= */
+        .dc-mega-menu-container {
+            position: absolute;
+            top: calc(100% + 10px);
+            background-color: var(--dc-color-menu-bg);
+            border-radius: var(--dc-border-radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--dc-transition-speed) ease, 
+                        transform var(--dc-transition-speed) ease, 
+                        visibility var(--dc-transition-speed) ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--dc-color-menu-border);
+        }
+
+        .dc-nav-item:hover > .dc-mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* IMPROVEMENT: More stable positioning for mega menus.
+           This positions the menu relative to the trigger item, then uses transform to center it.
+           It's more robust than hardcoded percentages. */
+        .dc-mega-menu-container--services {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+        }
+
+        .dc-mega-menu-container--discover {
+            right: 0; /* Aligns to the right of the trigger item */
+            width: fit-content;
+        }
+
+        .dc-services-menu-layout,
+        .dc-discover-menu-layout {
+            display: flex;
+        }
+
+        /* Services Mega Menu */
+        .dc-services-categories {
+            list-style: none;
+            width: 45%;
+            margin: 0;
+            padding: 24px 0;
+            border-right: 1px solid var(--dc-color-menu-border);
+        }
+        
+        .dc-services-category-item .dc-services-category-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 24px;
+            transition: background-color var(--dc-transition-speed) ease;
+            cursor: pointer;
+        }
+
+        .dc-services-category-item.is-active .dc-services-category-link,
+        .dc-services-category-item:hover .dc-services-category-link {
+            background-color: var(--dc-color-panel-bg);
+        }
+        
+        .dc-services-category-icon { width: 24px; height: 24px; flex-shrink: 0; }
+        .dc-services-category-text { flex-grow: 1; }
+        .dc-services-category-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+        .dc-services-category-desc { font-size: 13px; color: var(--dc-color-text-muted); line-height: 1.3; }
+
+        .dc-services-submenu-container {
+            width: 55%;
+            background-color: var(--dc-color-panel-bg);
+            border-top-right-radius: var(--dc-border-radius);
+            border-bottom-right-radius: var(--dc-border-radius);
+            padding: 32px;
+        }
+        
+        .dc-submenu-panel { display: none; }
+        .dc-submenu-panel.is-active { display: block; }
+        .dc-submenu-content { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .dc-submenu-link { display: block; padding: 8px; border-radius: 6px; transition: background-color var(--dc-transition-speed) ease; }
+        .dc-submenu-link:hover { background-color: rgba(255, 255, 255, 0.05); }
+        .dc-submenu-link:hover .dc-mega-menu-link-title { color: var(--dc-color-accent); }
+        .dc-mega-menu-link-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+        .dc-mega-menu-link-desc { font-size: 13px; color: var(--dc-color-text-muted); line-height: 1.4; }
+
+
+        /* Discover Mega Menu */
+        .dc-discover-main-links {
+            width: 280px;
+            padding: 16px 0;
+            border-right: 1px solid var(--dc-color-menu-border);
+        }
+        .dc-discover-main-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; transition: background-color var(--dc-transition-speed) ease; }
+        .dc-discover-main-link:hover { background-color: var(--dc-color-panel-bg); }
+        .dc-discover-icon { flex-shrink: 0; width: 24px; height: 24px; }
+        .dc-discover-link-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+        .dc-discover-link-desc { font-size: 13px; color: var(--dc-color-text-muted); }
+
+        .dc-discover-submenu-container {
+            width: 590px;
+            background-color: var(--dc-color-panel-bg);
+            padding: 32px;
+        }
+        .dc-discover-submenu-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .dc-discover-group-title { font-size: 14px; font-weight: 500; color: var(--dc-color-text-muted); margin: 0 0 16px 0; }
+        .dc-discover-group-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+        .dc-discover-group-link { font-size: 15px; transition: color var(--dc-transition-speed) ease; }
+        .dc-discover-group-link:hover { color: var(--dc-color-accent); }
+        
+        /* =============================================
+           MOBILE MENU TOGGLE
+           ============================================= */
+        .dc-mobile-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: calc(var(--dc-z-header) + 1); /* Ensure it's above other header content */
+        }
+
+        .dc-mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--dc-color-text-light);
+            position: absolute;
+            left: 0;
+            transition: transform var(--dc-transition-speed) ease, opacity var(--dc-transition-speed) ease;
+        }
+
+        .dc-mobile-toggle span:nth-child(1) { top: 4px; }
+        .dc-mobile-toggle span:nth-child(2) { top: 11px; }
+        .dc-mobile-toggle span:nth-child(3) { top: 18px; }
+
+        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(2) { opacity: 0; }
+        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* =============================================
+           RESPONSIVE STYLES (Mobile)
+           ============================================= */
+        @media (max-width: 1024px) {
+            .dc-header { padding: 0 16px; }
+            .dc-mobile-toggle { display: block; }
+            .dc-nav-list { display: none; } /* Hide desktop nav items initially */
+            
+            .dc-main-nav {
+                position: fixed;
+                top: var(--dc-header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--dc-header-height));
+                background-color: var(--dc-color-header-bg);
+                overflow-y: auto;
+                padding: 24px;
+                transform: translateX(100%);
+                transition: transform var(--dc-transition-speed) ease-in-out;
+                z-index: var(--dc-z-mobile-nav);
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 24px;
+            }
+
+            .is-mobile-menu-open .dc-main-nav {
+                transform: translateX(0);
+            }
+
+            /* Re-enable nav list for mobile view */
+            .dc-main-nav .dc-nav-list {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                width: 100%;
+            }
+
+            .dc-nav-item {
+                width: 100%;
+                border-bottom: 1px solid var(--dc-color-menu-border);
+            }
+            .dc-nav-item:first-child {
+                border-top: 1px solid var(--dc-color-menu-border);
+            }
+            
+            .dc-nav-link {
+                padding: 16px 0;
+                font-size: 16px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            /* Mobile header action buttons */
+            .dc-header-actions {
+                width: 100%;
+                flex-direction: column-reverse; /* Puts primary action on bottom */
+                gap: 16px;
+                margin-top: 16px;
+            }
+            .dc-header-action-btn, .dc-header-action-btn-cta {
+                width: 100%;
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            /* IMPROVEMENT: Changed dropdown indicator from span to SVG for better scaling and animation */
+            .dc-dropdown-indicator {
+                width: 20px;
+                height: 20px;
+                stroke: currentColor;
+                transition: transform var(--dc-transition-speed) ease;
+            }
+
+            .dc-nav-item.is-active > .dc-nav-link .dc-dropdown-indicator {
+                transform: rotate(180deg);
+            }
+            
+            /* Mobile Mega Menu */
+            .dc-nav-item:hover > .dc-mega-menu-container {
+                /* Disable hover effect on mobile */
+                visibility: hidden;
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            .dc-mega-menu-container {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                transition: max-height var(--dc-transition-speed) ease-out, padding var(--dc-transition-speed) ease-out;
+                overflow: hidden;
+                max-height: 0;
+                box-shadow: none;
+                border: none;
+                width: 100%;
+                background: none;
+                border-radius: 0;
+                padding: 0;
+            }
+            
+            .dc-nav-item.is-active .dc-mega-menu-container {
+                max-height: 2500px; /* Large enough for content */
+                padding: 16px 0 16px 16px;
+            }
+            
+            .dc-services-menu-layout, .dc-discover-menu-layout { display: block; }
+            .dc-services-categories, .dc-discover-main-links { display: none; } /* Hide the side panels on mobile */
+
+            .dc-services-submenu-container, .dc-discover-submenu-container {
+                width: 100%;
+                padding: 0;
+                background: none;
+            }
+
+            .dc-submenu-panel {
+                display: block !important;
+                padding: 0;
+                margin-bottom: 24px;
+            }
+
+            /* Add titles for each section in mobile dropdown */
+            .dc-submenu-panel::before {
+                content: attr(data-mobile-title);
+                display: block;
+                font-weight: 600;
+                font-size: 14px;
+                color: var(--dc-color-text-muted);
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid var(--dc-color-menu-border);
+            }
+            
+            .dc-submenu-content, .dc-discover-submenu-content {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .dc-discover-submenu-content { gap: 20px; }
+            .dc-submenu-link { padding: 8px 0; }
+            .dc-mega-menu-link-title { font-size: 16px; }
+            .dc-mega-menu-link-desc { display: none; } /* Hide descriptions on mobile for cleaner look */
+            .dc-discover-group-links { gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dc-header-wrapper">
+    <header class="dc-header">
+        
+        <div class="dc-logo-container">
+            <a href="#" class="dc-logo-link">
+                <!-- Using a placeholder for the logo -->
+                <img src="https://placehold.co/150x40/07071e/ffffff?text=DEFCON" alt="Defcon Logo" class="dc-logo-image">
+            </a>
+        </div>
+
+        <nav class="dc-main-nav" id="main-nav">
+            <ul class="dc-nav-list">
+                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Level Up</a></li>
+                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Support</a></li>
+                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Projects</a></li>
+                
+                <li class="dc-nav-item">
+                    <a href="#" class="dc-nav-link" data-megamenu-trigger="services" role="button" aria-expanded="false" aria-controls="services-menu">
+                        <span>Services</span>
+                        <!-- IMPROVEMENT: Switched to an inline SVG for the dropdown arrow -->
+                        <svg class="dc-dropdown-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+                    <div class="dc-mega-menu-container dc-mega-menu-container--services" id="services-menu">
+                        <div class="dc-services-menu-layout">
+                            <ul class="dc-services-categories">
+                                <li class="dc-services-category-item is-active" data-submenu-trigger="software">
+                                    <div class="dc-services-category-link">
+                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25m0 0l5.571 3m5.571-3l-5.571 3m0 0l-5.571-3m11.142 0l4.179-2.25L12 9.75 7.821 12l4.179 2.25m0 0l4.179 2.25L12 14.25l-4.179-2.25m16.5 0L12 14.25 7.821 12l4.179-2.25m7.5 4.5L12 18.75l-4.179-2.25m16.5 0l-4.179 2.25L12 18.75l-4.179-2.25m7.5 4.5L12 14.25" /></svg>
+                                        <div class="dc-services-category-text">
+                                            <span class="dc-services-category-title">Software Development</span>
+                                            <span class="dc-services-category-desc">Custom applications & platforms</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dc-services-category-item" data-submenu-trigger="infra">
+                                    <div class="dc-services-category-link">
+                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13a7 7 0 1 0 14 0a7 7 0 1 0-14 0"/><path d="M10 11h4l-4 4h4M7 4L4.25 6M17 4l2.75 2"/></svg>
+                                        <div class="dc-services-category-text">
+                                            <span class="dc-services-category-title">IT Infrastructure</span>
+                                            <span class="dc-services-category-desc">Networks, cloud & security</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dc-services-category-item" data-submenu-trigger="creative">
+                                    <div class="dc-services-category-link">
+                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.573L16.5 21.75l-.398-1.177a3.375 3.375 0 00-2.455-2.455l-1.177-.398 1.177-.398a3.375 3.375 0 002.455-2.455l.398-1.177.398 1.177a3.375 3.375 0 002.455 2.455l1.177.398-1.177.398a3.375 3.375 0 00-2.455 2.455z" /></svg>
+                                        <div class="dc-services-category-text">
+                                            <span class="dc-services-category-title">Marketing & Creative</span>
+                                            <span class="dc-services-category-desc">Branding & digital campaigns</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="dc-services-submenu-container">
+                                <div class="dc-submenu-panel is-active" data-submenu-panel="software" data-mobile-title="Software Development">
+                                    <div class="dc-submenu-content">
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Web Applications</span><div class="dc-mega-menu-link-desc">Resilient, high-performance platforms.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Mobile Applications</span><div class="dc-mega-menu-link-desc">Native experiences for iOS and Android.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">AI & Machine Learning</span><div class="dc-mega-menu-link-desc">Intelligent systems that automate.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">API Development</span><div class="dc-mega-menu-link-desc">Secure, documented APIs for integration.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">E-commerce Solutions</span><div class="dc-mega-menu-link-desc">Custom storefronts with payment gateways.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Blockchain & Web3</span><div class="dc-mega-menu-link-desc">Decentralized apps & smart contracts.</div></a>
+                                    </div>
+                                </div>
+                                <div class="dc-submenu-panel" data-submenu-panel="infra" data-mobile-title="IT Infrastructure">
+                                     <div class="dc-submenu-content">
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">IT Support</span><div class="dc-mega-menu-link-desc">Comprehensive assistance and security.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">IT Consulting</span><div class="dc-mega-menu-link-desc">Strategic advisory for digital transformation.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Cloud Computing</span><div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Data Center Management</span><div class="dc-mega-menu-link-desc">Efficient and secure data operations.</div></a>
+                                    </div>
+                                </div>
+                                <div class="dc-submenu-panel" data-submenu-panel="creative" data-mobile-title="Marketing & Creative">
+                                    <div class="dc-submenu-content">
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Digital Marketing</span><div class="dc-mega-menu-link-desc">SEO, PPC, and performance marketing.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Graphic Design</span><div class="dc-mega-menu-link-desc">Complete brand identity and visual assets.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Content Marketing</span><div class="dc-mega-menu-link-desc">Compelling narratives for digital platforms.</div></a>
+                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Multimedia Production</span><div class="dc-mega-menu-link-desc">High-definition video and motion graphics.</div></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="dc-nav-item">
+                    <a href="#" class="dc-nav-link" data-megamenu-trigger="discover" role="button" aria-expanded="false" aria-controls="discover-menu">
+                        <span>Discover</span>
+                        <svg class="dc-dropdown-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+                    <div class="dc-mega-menu-container dc-mega-menu-container--discover" id="discover-menu">
+                        <div class="dc-discover-menu-layout">
+                            <div class="dc-discover-main-links">
+                                <a href="#" class="dc-discover-main-link">
+                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>
+                                    <div><span class="dc-discover-link-title">Defcon</span><span class="dc-discover-link-desc">Vision, team, and history</span></div>
+                                </a>
+                                <a href="#" class="dc-discover-main-link">
+                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                                    <div><span class="dc-discover-link-title">Resources</span><span class="dc-discover-link-desc">Case studies and insights</span></div>
+                                </a>
+                                <a href="#" class="dc-discover-main-link">
+                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.282A24.423 24.423 0 015.623 6.34a3 3 0 01-4.682 2.72m8.14 8.14A24.423 24.423 0 006.34 5.623a3 3 0 00-2.72 4.682m5.04 5.04a24.423 24.423 0 01-4.186 5.623a3 3 0 01-2.72-4.682m11.82-3.355A24.423 24.423 0 0018.377 2.25a3 3 0 014.682 2.72m-8.14 8.14c-.112.57.294 1.127.845 1.255a.75.75 0 00.938-.938c-.128-.551-.685-.956-1.255-.845z" /></svg>
+                                    <div><span class="dc-discover-link-title">Connect</span><span class="dc-discover-link-desc">Join our team or get in touch</span></div>
+                                </a>
+                            </div>
+                            
+                            <div class="dc-discover-submenu-container">
+                                <div class="dc-discover-submenu-content">
+                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Advanced</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">Level Up</a></li><li><a href="#" class="dc-discover-group-link">Developers</a></li></ul></div>
+                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Resources</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">Market Updates</a></li><li><a href="#" class="dc-discover-group-link">Product News</a></li><li><a href="#" class="dc-discover-group-link">Events</a></li><li><a href="#" class="dc-discover-group-link">University</a></li><li><a href="#" class="dc-discover-group-link">Research</a></li></ul></div>
+                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Company</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">About Us</a></li><li><a href="#" class="dc-discover-group-link">Careers</a></li><li><a href="#" class="dc-discover-group-link">Partners</a></li><li><a href="#" class="dc-discover-group-link">Security</a></li></ul></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="dc-header-actions">
+                <button class="dc-header-action-btn-cta">Contact Us</button>
+                <button class="dc-header-action-btn">Get Started</button>
+            </div>  
+        </nav>
+        
+        <button class="dc-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.querySelector('.dc-mobile-toggle');
+    const headerWrapper = document.querySelector('.dc-header-wrapper');
+    const mainNav = document.getElementById('main-nav');
+    
+    // --- Mobile Menu Toggle ---
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            const isMenuOpen = headerWrapper.classList.toggle('is-mobile-menu-open');
+            mobileToggle.setAttribute('aria-expanded', isMenuOpen);
+            // Prevent body scroll when mobile menu is open
+            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        });
+    }
+
+    // --- Mobile Submenu (Accordion) ---
+    const megaMenuTriggers = document.querySelectorAll('.dc-nav-link[data-megamenu-trigger]');
+    megaMenuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            // Use window.matchMedia for a more reliable check than window.innerWidth
+            if (window.matchMedia('(max-width: 1024px)').matches) {
+                e.preventDefault();
+                const parentItem = trigger.parentElement;
+                
+                // Close other open submenus for a cleaner accordion experience
+                if (!parentItem.classList.contains('is-active')) {
+                    document.querySelectorAll('.dc-nav-item.is-active').forEach(item => {
+                        item.classList.remove('is-active');
+                        item.querySelector('[data-megamenu-trigger]').setAttribute('aria-expanded', 'false');
+                    });
+                }
+                
+                const isActive = parentItem.classList.toggle('is-active');
+                trigger.setAttribute('aria-expanded', isActive);
+            }
+        });
+    });
+
+    // --- Desktop Services Menu (Tabbed Interface) ---
+    const serviceCategoryItems = document.querySelectorAll('.dc-services-category-item');
+    serviceCategoryItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(min-width: 1025px)').matches) {
+                // Deactivate all sibling items and panels
+                item.parentElement.querySelectorAll('.dc-services-category-item').forEach(sibling => {
+                    sibling.classList.remove('is-active');
+                });
+                document.querySelectorAll('.dc-submenu-panel').forEach(panel => {
+                    panel.classList.remove('is-active');
+                });
+                
+                // Activate the hovered item and its corresponding panel
+                item.classList.add('is-active');
+                const targetPanelId = item.getAttribute('data-submenu-trigger');
+                const targetPanel = document.querySelector(`.dc-submenu-panel[data-submenu-panel="${targetPanelId}"]`);
+                if (targetPanel) {
+                    targetPanel.classList.add('is-active');
+                }
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

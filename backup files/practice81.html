@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing Services | Defcon IT Solutions</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Domine:wght@400..700&family=Fjalla+One&family=Francois+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libertinus+Math&family=Lora:ital,wght@0,400..700;1,400..700&family=Patua+One&family=Rowdies:wght@300;400;700&family=Satisfy&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        /* Quantum Theme Variables */
+        :root {
+            --quantum-primary: #00f7ff;
+            --quantum-secondary: #9d00ff;
+            --quantum-dark: #0a0e23;
+            --quantum-light: #e6f7ff;
+            --quantum-accent: #ff00aa;
+            --quantum-glow: 0 0 15px rgba(0, 247, 255, 0.7);
+        }
+
+        /* Quantum Hero Section */
+        .quantum-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--quantum-dark) 0%, #1a1f4a 100%);
+            padding-top: 10rem;
+            color: white;
+        }
+
+        .quantum-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%2300f7ff" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .quantum-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .quantum-hero h1 {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--quantum-primary), var(--quantum-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--quantum-glow);
+            animation: quantumPulse 4s infinite alternate;
+        }
+
+        .quantum-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: var(--quantum-light);
+            line-height: 1.6;
+        }
+
+        .quantum-hero .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(45deg, var(--quantum-primary), var(--quantum-secondary));
+            color: var(--quantum-dark);
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(0, 247, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .quantum-hero .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 247, 255, 0.6);
+        }
+
+        .quantum-hero .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .quantum-hero .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Quantum Particles Background */
+        .quantum-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--quantum-primary);
+            opacity: 0;
+            animation: quantumFloat linear infinite;
+            filter: drop-shadow(0 0 5px var(--quantum-primary));
+        }
+
+        /* Quantum Services Section */
+        .quantum-services {
+            padding: 8rem 2rem;
+            background: var(--quantum-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="40" fill="none" stroke="%239d00ff" stroke-width="0.3" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.1;
+        }
+
+        .quantum-services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantum-section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .quantum-section-title {
+            font-size: 3rem;
+            color: var(--quantum-primary);
+            margin-bottom: 1.5rem;
+            text-shadow: var(--quantum-glow);
+        }
+
+        .quantum-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--quantum-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quantum-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .quantum-service-card {
+            background: rgba(10, 14, 35, 0.7);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 10px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .quantum-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
+            border-color: var(--quantum-primary);
+        }
+
+        .quantum-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.1) 0%, rgba(157, 0, 255, 0.1) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .quantum-service-card:hover::before {
+            opacity: 1;
+        }
+
+        .quantum-service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--quantum-primary);
+            text-shadow: var(--quantum-glow);
+        }
+
+        .quantum-service-title {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .quantum-service-desc {
+            color: var(--quantum-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .quantum-service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--quantum-primary);
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .quantum-service-link svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .quantum-service-link:hover {
+            color: var(--quantum-accent);
+        }
+
+        .quantum-service-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Quantum Computing Process */
+        .quantum-process {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, var(--quantum-dark) 0%, #131735 100%);
+            position: relative;
+        }
+
+        .quantum-process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quantum-process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .quantum-process-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            background: rgba(10, 14, 35, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .quantum-process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
+            border-color: var(--quantum-primary);
+        }
+
+        .quantum-step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--quantum-primary), var(--quantum-secondary));
+            color: var(--quantum-dark);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+
+        .quantum-step-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .quantum-step-desc {
+            color: var(--quantum-light);
+            line-height: 1.6;
+        }
+
+        /* Quantum Connection Line */
+        .quantum-connection {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--quantum-primary), transparent);
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Quantum CTA Section */
+        .quantum-cta {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #0a0e23 0%, #1a134a 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantum-cta h2 {
+            font-size: 3rem;
+            color: var(--quantum-primary);
+            margin-bottom: 1.5rem;
+            text-shadow: var(--quantum-glow);
+        }
+
+        .quantum-cta p {
+            font-size: 1.2rem;
+            color: var(--quantum-light);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .quantum-cta .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(45deg, var(--quantum-primary), var(--quantum-secondary));
+            color: var(--quantum-dark);
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(0, 247, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .quantum-cta .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 247, 255, 0.6);
+        }
+
+        /* Quantum Floating Elements */
+        .quantum-floating {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quantum-float-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--quantum-primary) 0%, transparent 70%);
+            opacity: 0.1;
+            filter: blur(10px);
+            animation: quantumFloat 15s infinite linear;
+        }
+
+        /* Animations */
+        @keyframes quantumPulse {
+            0% { text-shadow: 0 0 15px rgba(0, 247, 255, 0.7); }
+            50% { text-shadow: 0 0 25px rgba(0, 247, 255, 0.9); }
+            100% { text-shadow: 0 0 15px rgba(0, 247, 255, 0.7); }
+        }
+
+        @keyframes quantumFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .quantum-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .quantum-section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quantum-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .quantum-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .quantum-section-title {
+                font-size: 2rem;
+            }
+            
+            .quantum-service-card, .quantum-process-step {
+                min-width: 100%;
+            }
+            
+            .quantum-connection {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quantum-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .quantum-hero .btn, .quantum-cta .btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Quantum Hero Section -->
+    <section class="quantum-hero">
+        <div class="quantum-particles" id="quantumParticles"></div>
+        <div class="quantum-hero-content">
+            <h1>Quantum Computing Solutions</h1>
+            <p>Harness the power of quantum mechanics to solve complex problems exponentially faster than classical computers. Our quantum computing services provide the cutting-edge solutions your business needs to stay ahead.</p>
+            <a href="#quantum-services" class="btn">Explore Quantum Services</a>
+        </div>
+    </section>
+
+    <!-- Quantum Services Section -->
+    <section class="quantum-services" id="quantum-services">
+        <div class="quantum-floating">
+            <div class="quantum-float-element" style="width: 300px; height: 300px; top: -150px; left: -150px; animation-duration: 20s;"></div>
+            <div class="quantum-float-element" style="width: 200px; height: 200px; bottom: -100px; right: -100px; animation-duration: 25s;"></div>
+        </div>
+        <div class="quantum-services-container">
+            <div class="quantum-section-header">
+                <h2 class="quantum-section-title">Our Quantum Computing Services</h2>
+                <p class="quantum-section-subtitle">From algorithm development to full-stack quantum solutions, we provide comprehensive services to help your organization leverage quantum computing technology.</p>
+            </div>
+            <div class="quantum-services-grid">
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">⚛️</div>
+                    <h3 class="quantum-service-title">Quantum Algorithm Development</h3>
+                    <p class="quantum-service-desc">Custom quantum algorithms designed to solve your specific business problems, from optimization to machine learning applications.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">🔬</div>
+                    <h3 class="quantum-service-title">Quantum Simulation</h3>
+                    <p class="quantum-service-desc">Accurate modeling of quantum systems for materials science, chemistry, and pharmaceutical research applications.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">🔐</div>
+                    <h3 class="quantum-service-title">Quantum Cryptography</h3>
+                    <p class="quantum-service-desc">Unbreakable encryption solutions leveraging quantum key distribution and post-quantum cryptography protocols.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">🤖</div>
+                    <h3 class="quantum-service-title">Quantum Machine Learning</h3>
+                    <p class="quantum-service-desc">Quantum-enhanced machine learning models that process complex datasets with unprecedented speed and accuracy.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">📊</div>
+                    <h3 class="quantum-service-title">Quantum Optimization</h3>
+                    <p class="quantum-service-desc">Solving complex optimization problems in logistics, finance, and operations with quantum annealing techniques.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+                <div class="quantum-service-card">
+                    <div class="quantum-service-icon">🖥️</div>
+                    <h3 class="quantum-service-title">Quantum Cloud Access</h3>
+                    <p class="quantum-service-desc">Managed access to leading quantum computing platforms through our secure cloud infrastructure.</p>
+                    <a href="#" class="quantum-service-link">Learn more <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quantum Process Section -->
+    <section class="quantum-process">
+        <div class="quantum-process-container">
+            <div class="quantum-section-header">
+                <h2 class="quantum-section-title">Our Quantum Development Process</h2>
+                <p class="quantum-section-subtitle">A structured approach to implementing quantum computing solutions tailored to your specific needs.</p>
+            </div>
+            <div class="quantum-process-steps">
+                <div class="quantum-process-step">
+                    <div class="quantum-step-number">1</div>
+                    <h3 class="quantum-step-title">Quantum Readiness Assessment</h3>
+                    <p class="quantum-step-desc">We evaluate your organization's needs and identify quantum-compatible problem spaces where you can gain competitive advantage.</p>
+                </div>
+                <div class="quantum-process-step">
+                    <div class="quantum-step-number">2</div>
+                    <h3 class="quantum-step-title">Problem Formulation</h3>
+                    <p class="quantum-step-desc">Our experts work with your team to translate business challenges into quantum-computable formulations.</p>
+                </div>
+                <div class="quantum-process-step">
+                    <div class="quantum-step-number">3</div>
+                    <h3 class="quantum-step-title">Algorithm Design</h3>
+                    <p class="quantum-step-desc">We develop custom quantum algorithms optimized for your specific use case and target hardware.</p>
+                </div>
+                <div class="quantum-process-step">
+                    <div class="quantum-step-number">4</div>
+                    <h3 class="quantum-step-title">Implementation & Testing</h3>
+                    <p class="quantum-step-desc">Our team implements the solution on quantum simulators and actual quantum hardware, rigorously testing for accuracy.</p>
+                </div>
+                <div class="quantum-process-step">
+                    <div class="quantum-step-number">5</div>
+                    <h3 class="quantum-step-title">Integration & Deployment</h3>
+                    <p class="quantum-step-desc">We integrate the quantum solution with your existing systems and provide ongoing support and optimization.</p>
+                </div>
+            </div>
+            <div class="quantum-connection"></div>
+        </div>
+    </section>
+
+    <!-- Quantum CTA Section -->
+    <section class="quantum-cta">
+        <div class="quantum-cta-container">
+            <h2>Ready to Explore Quantum Computing?</h2>
+            <p>Schedule a consultation with our quantum computing experts to discover how your organization can benefit from this revolutionary technology.</p>
+            <a href="#contact" class="btn">Get Quantum Consultation</a>
+        </div>
+    </section>
+
+    <script>
+        // Create quantum particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('quantumParticles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'quantum-particle';
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100 + 100; // Start below visible area
+                
+                // Random size
+                const size = Math.random() * 3 + 2;
+                
+                // Random animation duration
+                const duration = Math.random() * 10 + 10;
+                
+                // Random delay
+                const delay = Math.random() * 15;
+                
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animation = `particleFloat ${duration}s linear ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Animate elements on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.quantum-service-card, .quantum-process-step');
+                
+                elements.forEach((element) => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state
+            document.querySelectorAll('.quantum-service-card, .quantum-process-step').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+            });
+            
+            // Check on load
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>

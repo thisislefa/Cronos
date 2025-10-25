@@ -1,0 +1,499 @@
+<style>
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* GLOBAL STYLING */
+.defcon-section-wrapper {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* HERO SECTION STYLING */
+.defcon-hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #06273e;
+}
+.defcon-hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+    opacity: 0;
+    animation: defcon-fade-in 2s 1s forwards;
+}
+.defcon-hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: defcon-slide-up-fade-in 1s 0.5s forwards;
+}
+.defcon-hero-h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    line-height: 1.1;
+}
+.defcon-hero-h1-span {
+    color: #0091ff;
+}
+.defcon-hero-p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: #e5e5e5;
+}
+.defcon-hero-cta-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #0091ff;
+    border: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+.defcon-hero-cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 145, 255, 0.3);
+}
+
+/* WHY US SECTION STYLING */
+.defcon-why-us-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ffffff;
+}
+.defcon-why-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.defcon-why-us-h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.defcon-why-us-p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+.defcon-why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.defcon-why-us-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 35px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.defcon-why-us-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(6, 39, 62, 0.1);
+}
+.defcon-card-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #0091ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.defcon-card-icon-img {
+    width: 30px;
+    height: 30px;
+}
+.defcon-card-h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #06273e;
+    margin-bottom: 15px;
+}
+.defcon-card-p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+.defcon-card-pattern {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background-color: #0091ff;
+    opacity: 0.05;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+.defcon-why-us-card:hover .defcon-card-pattern {
+    transform: scale(3);
+}
+
+/* CEO SECTION STYLING */
+.defcon-ceo-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+.defcon-ceo-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.defcon-ceo-image-wrapper {
+    flex-shrink: 0;
+    width: 350px;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+    opacity: 0;
+}
+.defcon-ceo-container.defcon-is-visible .defcon-ceo-image-wrapper {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0) rotateX(0);
+}
+.defcon-ceo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.defcon-ceo-content-wrapper {
+    flex-grow: 1;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+.defcon-ceo-container.defcon-is-visible .defcon-ceo-content-wrapper {
+    opacity: 1;
+    transform: translateX(0);
+}
+.defcon-ceo-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0091ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.defcon-ceo-name {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 20px;
+}
+.defcon-ceo-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+}
+.defcon-ceo-socials {
+    display: flex;
+    gap: 15px;
+}
+.defcon-social-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.defcon-social-link:hover {
+    background-color: #0091ff;
+    border-color: #0091ff;
+}
+.defcon-social-link:hover .defcon-social-icon {
+    filter: brightness(0) invert(1);
+}
+.defcon-social-icon {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.3s ease;
+}
+
+/* KEYFRAME ANIMATIONS */
+@keyframes defcon-fade-in {
+    to { opacity: 1; }
+}
+@keyframes defcon-slide-up-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .defcon-hero-h1 {
+        font-size: 3.5rem;
+    }
+    .defcon-ceo-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .defcon-ceo-image-wrapper {
+        width: 300px;
+        height: 380px;
+        margin-bottom: 30px;
+    }
+    .defcon-ceo-socials {
+        justify-content: center;
+    }
+}
+@media (max-width: 768px) {
+    .defcon-hero-h1 {
+        font-size: 2.5rem;
+    }
+    .defcon-hero-p {
+        font-size: 1rem;
+    }
+    .defcon-why-us-h2 {
+        font-size: 2.2rem;
+    }
+    .defcon-why-us-section,
+    .defcon-ceo-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .defcon-ceo-name {
+        font-size: 2.5rem;
+    }
+}
+@media (max-width: 480px) {
+    .defcon-why-us-grid {
+       grid-template-columns: 1fr;
+    }
+    .defcon-ceo-image-wrapper {
+        width: 250px;
+        height: 320px;
+    }
+}
+</style>
+
+<div class="defcon-section-wrapper">
+
+    <section class="defcon-hero-section">
+        <div class="defcon-hero-pattern"></div>
+        <div class="defcon-hero-content">
+            <h1 class="defcon-hero-h1">Innovate, Integrate<br>and <span class="defcon-hero-h1-span">Elevate</span></h1>
+            <p class="defcon-hero-p">Defcon delivers forward-thinking IT solutions that drive growth, efficiency, and security for your business.</p>
+            <a href="#contact" class="defcon-hero-cta-button">Discover Our Solutions</a>
+        </div>
+    </section>
+
+    <section class="defcon-why-us-section" id="defcon-why-us">
+        <div class="defcon-why-us-container">
+            <h2 class="defcon-why-us-h2">The Defcon Advantage</h2>
+            <p class="defcon-why-us-p">We aren't just another IT company. We are your strategic partner, dedicated to leveraging technology to solve your most complex challenges and unlock new opportunities.</p>
+            <div class="defcon-why-us-grid">
+                <div class="defcon-why-us-card">
+                    <div class="defcon-card-icon-container">
+                        <img src="https://img.icons8.com/ios-filled/100/ffffff/brain.png" alt="Strategic Expertise Icon" class="defcon-card-icon-img"/>
+                    </div>
+                    <h3 class="defcon-card-h3">Strategic Expertise</h3>
+                    <p class="defcon-card-p">Our team combines deep industry knowledge with technological foresight to build robust, scalable solutions tailored to your specific business goals.</p>
+                    <div class="defcon-card-pattern"></div>
+                </div>
+                <div class="defcon-why-us-card">
+                    <div class="defcon-card-icon-container">
+                        <img src="https://img.icons8.com/ios-filled/100/ffffff/shield.png" alt="Unmatched Security Icon" class="defcon-card-icon-img"/>
+                    </div>
+                    <h3 class="defcon-card-h3">Unmatched Security</h3>
+                    <p class="defcon-card-p">With a security-first approach, we integrate cutting-edge cyber defense mechanisms to protect your critical assets against emerging threats.</p>
+                    <div class="defcon-card-pattern"></div>
+                </div>
+                <div class="defcon-why-us-card">
+                    <div class="defcon-card-icon-container">
+                        <img src="https://img.icons8.com/ios-filled/100/ffffff/rocket.png" alt="Future-Proof Innovation Icon" class="defcon-card-icon-img"/>
+                    </div>
+                    <h3 class="defcon-card-h3">Future-Proof Innovation</h3>
+                    <p class="defcon-card-p">We are committed to continuous innovation, ensuring your infrastructure is not just current but prepared for the technological advancements of tomorrow.</p>
+                    <div class="defcon-card-pattern"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="defcon-ceo-section" id="defcon-ceo">
+        <div class="defcon-ceo-container">
+            <div class="defcon-ceo-image-wrapper">
+                
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop" alt="Johnathan Techstone, CEO of Defcon" class="defcon-ceo-img">
+            </div>
+            <div class="defcon-ceo-content-wrapper">
+                <h4 class="defcon-ceo-title">Founder & Chief Executive Officer</h4>
+                <h2 class="defcon-ceo-name">Johnathan Techstone</h2>
+                <p class="defcon-ceo-description">
+                    With over two decades of experience at the forefront of digital transformation, Johnathan founded Defcon with a singular vision: to create an IT consultancy that acts as a true partner to its clients. His leadership is driven by a passion for solving complex problems and a relentless commitment to excellence and client success.
+                </p>
+                <div class="defcon-ceo-socials">
+                    <a href="#" class="defcon-social-link" aria-label="LinkedIn Profile">
+                        <img src="https://img.icons8.com/ios-filled/50/06273e/linkedin.png" alt="LinkedIn" class="defcon-social-icon"/>
+                    </a>
+                    <a href="#" class="defcon-social-link" aria-label="Twitter Profile">
+                        <img src="https://img.icons8.com/ios-filled/50/06273e/twitterx.png" alt="Twitter X" class="defcon-social-icon"/>
+                    </a>
+                    <a href="#" class="defcon-social-link" aria-label="Company Profile">
+                       <img src="https://img.icons8.com/ios-filled/50/06273e/link.png" alt="Website" class="defcon-social-icon"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+    const defconCreateObserver = (targetSelector, visibleClass) => {
+        const targets = document.querySelectorAll(targetSelector);
+        if (targets.length === 0) return;
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(visibleClass);
+                    // Optional: unobserve after animation
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+
+        targets.forEach(target => {
+            observer.observe(target);
+        });
+    };
+
+    // SETUP OBSERVERS FOR DIFFERENT SECTIONS
+    
+    // Why Us Section Title and Paragraph
+    defconCreateObserver('.defcon-why-us-h2', 'defcon-is-visible');
+    defconCreateObserver('.defcon-why-us-p', 'defcon-is-visible');
+
+    // Why Us Section Cards
+    const whyUsCards = document.querySelectorAll('.defcon-why-us-card');
+    whyUsCards.forEach((card, index) => {
+        card.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
+    });
+    defconCreateObserver('.defcon-why-us-card', 'defcon-is-visible');
+
+    // CEO Section
+    defconCreateObserver('.defcon-ceo-container', 'defcon-is-visible');
+
+    // MOUSE MOVE EFFECT FOR CEO IMAGE (Subtle 3D tilt)
+    const ceoContainer = document.querySelector('.defcon-ceo-container');
+    const ceoImageWrapper = document.querySelector('.defcon-ceo-image-wrapper');
+
+    if (ceoContainer && ceoImageWrapper) {
+        ceoContainer.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 992) return; // Disable on smaller screens
+            const { left, top, width, height } = ceoContainer.getBoundingClientRect();
+            const x = e.clientX - left;
+            const y = e.clientY - top;
+
+            const rotateX = -10 * ((y - height / 2) / height);
+            const rotateY = 10 * ((x - width / 2) / width);
+            
+            ceoImageWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        ceoContainer.addEventListener('mouseleave', () => {
+             // Reset to visible state transform
+             if(ceoContainer.classList.contains('defcon-is-visible')) {
+                ceoImageWrapper.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+             }
+        });
+    }
+    
+    // Add is-visible classes to elements in view on load
+    const elementsToAnimate = [
+        { selector: '.defcon-why-us-h2', visibleClass: 'defcon-is-visible', animationStyle: 'opacity: 1; transform: translateY(0);' },
+        { selector: '.defcon-why-us-p', visibleClass: 'defcon-is-visible', animationStyle: 'opacity: 1; transform: translateY(0);' },
+        { selector: '.defcon-ceo-container', visibleClass: 'defcon-is-visible' },
+    ];
+
+    elementsToAnimate.forEach(item => {
+        const element = document.querySelector(item.selector);
+        if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                element.classList.add(item.visibleClass);
+                if (item.animationStyle) {
+                    const styleTag = document.createElement('style');
+                    styleTag.innerHTML = `.${item.visibleClass} { ${item.animationStyle} }`;
+                    document.head.appendChild(styleTag);
+                }
+            }
+        }
+    });
+
+    const cardElements = document.querySelectorAll('.defcon-why-us-card');
+    cardElements.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+</script>

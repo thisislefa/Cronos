@@ -1,0 +1,1560 @@
+<style>
+/* Reset and Base Styles */
+.defcon-ai-reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Main Container */
+.defcon-ai-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero Section */
+.defcon-ai-hero {
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-ai-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://via.placeholder.com/1920x1080/06273e/0091ff?text=AI+Automation') no-repeat center center;
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.defcon-ai-hero-content {
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+  z-index: 2;
+  color: #ffffff;
+  padding: 40px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.defcon-ai-hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.defcon-ai-hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.defcon-ai-hero-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+  box-shadow: 0 10px 20px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-ai-hero-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 145, 255, 0.4);
+}
+
+/* Section Headers */
+.defcon-ai-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.defcon-ai-section-title {
+  font-size: 2.5rem;
+  color: #06273e;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.defcon-ai-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #0091ff;
+}
+
+.defcon-ai-section-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Grid */
+.defcon-ai-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.defcon-ai-service-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-ai-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-service-icon {
+  width: 100%;
+  height: 200px;
+  background-color: #0091ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+}
+
+.defcon-ai-service-content {
+  padding: 30px;
+}
+
+.defcon-ai-service-title {
+  font-size: 1.5rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-ai-service-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.defcon-ai-service-button {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #0091ff;
+}
+
+.defcon-ai-service-button:hover {
+  background-color: transparent;
+  color: #0091ff;
+}
+
+/* AI Solutions Section */
+.defcon-ai-solutions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.defcon-ai-solution-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-ai-solution-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-solution-icon {
+  font-size: 2.5rem;
+  color: #0091ff;
+  margin-bottom: 20px;
+}
+
+.defcon-ai-solution-title {
+  font-size: 1.5rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-ai-solution-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.defcon-ai-solution-learn {
+  display: inline-block;
+  color: #0091ff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-solution-learn:hover {
+  color: #06273e;
+}
+
+/* Pricing Section */
+.defcon-ai-pricing-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+.defcon-ai-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-ai-pricing-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-ai-pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-pricing-header {
+  padding: 30px;
+  background-color: #06273e;
+  color: #ffffff;
+  text-align: center;
+}
+
+.defcon-ai-pricing-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.defcon-ai-pricing-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.defcon-ai-pricing-period {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.defcon-ai-pricing-features {
+  padding: 30px;
+}
+
+.defcon-ai-pricing-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.defcon-ai-pricing-feature::before {
+  content: '✓';
+  color: #0091ff;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.defcon-ai-pricing-button {
+  display: block;
+  text-align: center;
+  padding: 15px;
+  margin: 0 30px 30px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-pricing-button:hover {
+  background-color: #0077cc;
+}
+
+.defcon-ai-popular-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+/* Process Section */
+.defcon-ai-process-section {
+  margin-bottom: 80px;
+}
+
+.defcon-ai-process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-ai-process-step {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.defcon-ai-process-step-number {
+  width: 60px;
+  height: 60px;
+  background-color: #0091ff;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-ai-process-step-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-ai-process-step-title {
+  font-size: 1.3rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-ai-process-step-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Case Studies */
+.defcon-ai-cases-section {
+  margin-bottom: 80px;
+}
+
+.defcon-ai-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-ai-case-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-ai-case-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-case-image {
+  width: 100%;
+  height: 200px;
+  background-color: #e5e5e5;
+  background-size: cover;
+  background-position: center;
+}
+
+.defcon-ai-case-content {
+  padding: 30px;
+}
+
+.defcon-ai-case-title {
+  font-size: 1.3rem;
+  color: #06273e;
+  margin-bottom: 15px;
+}
+
+.defcon-ai-case-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.defcon-ai-case-button {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-case-button:hover {
+  background-color: #0077cc;
+}
+
+/* CTA Section */
+.defcon-ai-cta-section {
+  background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+  padding: 80px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-ai-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://via.placeholder.com/1920x1080/06273e/0091ff?text=AI+Future') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+}
+
+.defcon-ai-cta-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-ai-cta-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-ai-cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  color: #0091ff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.defcon-ai-cta-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Contact Form */
+.defcon-ai-contact-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+.defcon-ai-contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.defcon-ai-contact-form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-ai-form-group {
+  margin-bottom: 25px;
+}
+
+.defcon-ai-form-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.defcon-ai-form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  min-height: 150px;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-form-textarea:focus {
+  border-color: #0091ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-form-button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-form-button:hover {
+  background-color: #0077cc;
+}
+
+/* Modal Styles */
+.defcon-ai-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.defcon-ai-modal-active {
+  display: flex;
+  opacity: 1;
+}
+
+.defcon-ai-modal-content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.defcon-ai-modal-active .defcon-ai-modal-content {
+  transform: translateY(0);
+}
+
+.defcon-ai-modal-header {
+  padding: 20px;
+  background-color: #06273e;
+  color: #ffffff;
+  position: relative;
+}
+
+.defcon-ai-modal-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.defcon-ai-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.defcon-ai-modal-body {
+  padding: 30px;
+}
+
+/* Quick Contact Form */
+.defcon-ai-quick-form {
+  width: 100%;
+}
+
+.defcon-ai-quick-form-group {
+  margin-bottom: 20px;
+}
+
+.defcon-ai-quick-form-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.defcon-ai-quick-form-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.defcon-ai-quick-form-input:focus {
+  border-color: #0091ff;
+  outline: none;
+}
+
+.defcon-ai-quick-form-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #0091ff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-quick-form-button:hover {
+  background-color: #0077cc;
+}
+
+/* Tech Stack Section */
+.defcon-ai-tech-section {
+  margin-bottom: 80px;
+}
+
+.defcon-ai-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.defcon-ai-tech-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.defcon-ai-tech-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 145, 255, 0.1);
+}
+
+.defcon-ai-tech-icon {
+  font-size: 2.5rem;
+  color: #0091ff;
+  margin-bottom: 15px;
+}
+
+.defcon-ai-tech-name {
+  font-size: 1rem;
+  color: #06273e;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.defcon-ai-animate {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.defcon-ai-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.defcon-ai-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.defcon-ai-delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .defcon-ai-hero-title {
+    font-size: 3rem;
+  }
+  
+  .defcon-ai-hero-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-ai-hero {
+    height: auto;
+    padding: 100px 20px;
+    min-height: auto;
+  }
+  
+  .defcon-ai-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .defcon-ai-section-title {
+    font-size: 2rem;
+  }
+  
+  .defcon-ai-process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .defcon-ai-process-step {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .defcon-ai-process-step:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-ai-hero-title {
+    font-size: 2rem;
+  }
+  
+  .defcon-ai-hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .defcon-ai-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-ai-contact-form {
+    padding: 30px 20px;
+  }
+  
+  .defcon-ai-tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+</style>
+
+<div class="defcon-ai-reset defcon-ai-container">
+  <!-- Hero Section -->
+  <section class="defcon-ai-hero">
+    <div class="defcon-ai-hero-content">
+      <h1 class="defcon-ai-hero-title defcon-ai-animate">Automation & AI Integration</h1>
+      <p class="defcon-ai-hero-subtitle defcon-ai-animate defcon-ai-delay-1">Transform your business with intelligent automation solutions powered by cutting-edge artificial intelligence. Streamline operations, reduce costs, and unlock new opportunities.</p>
+      <a href="#" class="defcon-ai-hero-button defcon-ai-animate defcon-ai-delay-2" id="defcon-ai-hero-button">Schedule Consultation</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="defcon-ai-services-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Our AI & Automation Services</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">Comprehensive solutions tailored to your business needs</p>
+    </div>
+    
+    <div class="defcon-ai-services-grid">
+      <!-- Service 1 -->
+      <div class="defcon-ai-service-card defcon-ai-animate">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">Process Automation</h3>
+          <p class="defcon-ai-service-description">Eliminate repetitive tasks with custom workflow automation that integrates seamlessly with your existing systems.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="process-automation">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 2 -->
+      <div class="defcon-ai-service-card defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">AI Chatbots</h3>
+          <p class="defcon-ai-service-description">Intelligent conversational agents that provide 24/7 customer support and lead qualification.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="ai-chatbots">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 3 -->
+      <div class="defcon-ai-service-card defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">Predictive Analytics</h3>
+          <p class="defcon-ai-service-description">Leverage machine learning to forecast trends, customer behavior, and business outcomes with remarkable accuracy.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="predictive-analytics">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 4 -->
+      <div class="defcon-ai-service-card defcon-ai-animate">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">IT Automation</h3>
+          <p class="defcon-ai-service-description">Automate IT operations, monitoring, and incident response to improve efficiency and reduce downtime.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="it-automation">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 5 -->
+      <div class="defcon-ai-service-card defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">E-commerce AI</h3>
+          <p class="defcon-ai-service-description">Personalized recommendations, dynamic pricing, and inventory optimization powered by AI.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="ecommerce-ai">Learn More</a>
+        </div>
+      </div>
+      
+      <!-- Service 6 -->
+      <div class="defcon-ai-service-card defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-service-icon">
+          <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <div class="defcon-ai-service-content">
+          <h3 class="defcon-ai-service-title">Document Processing</h3>
+          <p class="defcon-ai-service-description">AI-powered document analysis, classification, and data extraction for faster processing.</p>
+          <a href="#" class="defcon-ai-service-button defcon-ai-modal-trigger" data-modal="document-processing">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Solutions Section -->
+  <section class="defcon-ai-solutions-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">AI-Powered Business Solutions</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">Transformative applications of artificial intelligence across industries</p>
+    </div>
+    
+    <div class="defcon-ai-solutions">
+      <!-- Solution 1 -->
+      <div class="defcon-ai-solution-card defcon-ai-animate">
+        <div class="defcon-ai-solution-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3 class="defcon-ai-solution-title">Customer Service Enhancement</h3>
+        <p class="defcon-ai-solution-description">Implement AI-driven support systems that reduce response times by 80% while improving customer satisfaction scores.</p>
+        <a href="#" class="defcon-ai-solution-learn defcon-ai-modal-trigger" data-modal="customer-service-ai">Learn more →</a>
+      </div>
+      
+      <!-- Solution 2 -->
+      <div class="defcon-ai-solution-card defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-solution-icon">
+          <i class="fas fa-warehouse"></i>
+        </div>
+        <h3 class="defcon-ai-solution-title">Supply Chain Optimization</h3>
+        <p class="defcon-ai-solution-description">AI algorithms that predict demand fluctuations and optimize inventory levels, reducing carrying costs by 30-50%.</p>
+        <a href="#" class="defcon-ai-solution-learn defcon-ai-modal-trigger" data-modal="supply-chain-ai">Learn more →</a>
+      </div>
+      
+      <!-- Solution 3 -->
+      <div class="defcon-ai-solution-card defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-solution-icon">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <h3 class="defcon-ai-solution-title">Fraud Detection</h3>
+        <p class="defcon-ai-solution-description">Machine learning models that identify fraudulent activity in real-time with 99.9% accuracy, minimizing financial losses.</p>
+        <a href="#" class="defcon-ai-solution-learn defcon-ai-modal-trigger" data-modal="fraud-detection">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="defcon-ai-tech-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Our Technology Stack</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">We work with leading AI and automation platforms</p>
+    </div>
+    
+    <div class="defcon-ai-tech-grid">
+      <!-- Tech 1 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate">
+        <div class="defcon-ai-tech-icon">
+          <i class="fab fa-python"></i>
+        </div>
+        <div class="defcon-ai-tech-name">Python</div>
+      </div>
+      
+      <!-- Tech 2 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-tech-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="defcon-ai-tech-name">TensorFlow</div>
+      </div>
+      
+      <!-- Tech 3 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-tech-icon">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="defcon-ai-tech-name">PyTorch</div>
+      </div>
+      
+      <!-- Tech 4 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate">
+        <div class="defcon-ai-tech-icon">
+          <i class="fab fa-microsoft"></i>
+        </div>
+        <div class="defcon-ai-tech-name">Azure AI</div>
+      </div>
+      
+      <!-- Tech 5 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-tech-icon">
+          <i class="fab fa-aws"></i>
+        </div>
+        <div class="defcon-ai-tech-name">AWS SageMaker</div>
+      </div>
+      
+      <!-- Tech 6 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-tech-icon">
+          <i class="fab fa-google"></i>
+        </div>
+        <div class="defcon-ai-tech-name">Google AI</div>
+      </div>
+      
+      <!-- Tech 7 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate">
+        <div class="defcon-ai-tech-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="defcon-ai-tech-name">RPA Tools</div>
+      </div>
+      
+      <!-- Tech 8 -->
+      <div class="defcon-ai-tech-item defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-tech-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <div class="defcon-ai-tech-name">Cloud AI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="defcon-ai-pricing-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Automation & AI Packages</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">Flexible solutions for businesses of all sizes</p>
+    </div>
+    
+    <div class="defcon-ai-pricing-grid">
+      <!-- Package 1 -->
+      <div class="defcon-ai-pricing-card defcon-ai-animate">
+        <div class="defcon-ai-pricing-header">
+          <h3 class="defcon-ai-pricing-title">Starter</h3>
+          <div class="defcon-ai-pricing-price">$2,999</div>
+          <div class="defcon-ai-pricing-period">per month</div>
+        </div>
+        <div class="defcon-ai-pricing-features">
+          <div class="defcon-ai-pricing-feature">1-2 Process Automations</div>
+          <div class="defcon-ai-pricing-feature">Basic AI Chatbot</div>
+          <div class="defcon-ai-pricing-feature">Monthly Analytics Report</div>
+          <div class="defcon-ai-pricing-feature">Email Support</div>
+          <div class="defcon-ai-pricing-feature">Up to 10,000 transactions/mo</div>
+        </div>
+        <a href="#" class="defcon-ai-pricing-button defcon-ai-modal-trigger" data-modal="starter-package">Get Started</a>
+      </div>
+      
+      <!-- Package 2 -->
+      <div class="defcon-ai-pricing-card defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-popular-badge">Most Popular</div>
+        <div class="defcon-ai-pricing-header">
+          <h3 class="defcon-ai-pricing-title">Professional</h3>
+          <div class="defcon-ai-pricing-price">$6,999</div>
+          <div class="defcon-ai-pricing-period">per month</div>
+        </div>
+        <div class="defcon-ai-pricing-features">
+          <div class="defcon-ai-pricing-feature">3-5 Process Automations</div>
+          <div class="defcon-ai-pricing-feature">Advanced AI Chatbot</div>
+          <div class="defcon-ai-pricing-feature">Predictive Analytics</div>
+          <div class="defcon-ai-pricing-feature">Priority Support</div>
+          <div class="defcon-ai-pricing-feature">Up to 50,000 transactions/mo</div>
+          <div class="defcon-ai-pricing-feature">API Integrations</div>
+        </div>
+        <a href="#" class="defcon-ai-pricing-button defcon-ai-modal-trigger" data-modal="professional-package">Get Started</a>
+      </div>
+      
+      <!-- Package 3 -->
+      <div class="defcon-ai-pricing-card defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-pricing-header">
+          <h3 class="defcon-ai-pricing-title">Enterprise</h3>
+          <div class="defcon-ai-pricing-price">$14,999</div>
+          <div class="defcon-ai-pricing-period">per month</div>
+        </div>
+        <div class="defcon-ai-pricing-features">
+          <div class="defcon-ai-pricing-feature">Unlimited Process Automations</div>
+          <div class="defcon-ai-pricing-feature">Custom AI Solutions</div>
+          <div class="defcon-ai-pricing-feature">Real-time Analytics Dashboard</div>
+          <div class="defcon-ai-pricing-feature">24/7 Dedicated Support</div>
+          <div class="defcon-ai-pricing-feature">Unlimited Transactions</div>
+          <div class="defcon-ai-pricing-feature">Custom Machine Learning Models</div>
+          <div class="defcon-ai-pricing-feature">Quarterly Strategy Sessions</div>
+        </div>
+        <a href="#" class="defcon-ai-pricing-button defcon-ai-modal-trigger" data-modal="enterprise-package">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="defcon-ai-process-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Our Implementation Process</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">A structured approach to successful AI integration</p>
+    </div>
+    
+    <div class="defcon-ai-process-steps">
+      <!-- Step 1 -->
+      <div class="defcon-ai-process-step defcon-ai-animate">
+        <div class="defcon-ai-process-step-number">1</div>
+        <div class="defcon-ai-process-step-content">
+          <h3 class="defcon-ai-process-step-title">Discovery</h3>
+          <p class="defcon-ai-process-step-description">We analyze your business processes to identify automation opportunities and AI use cases.</p>
+        </div>
+      </div>
+      
+      <!-- Step 2 -->
+      <div class="defcon-ai-process-step defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-process-step-number">2</div>
+        <div class="defcon-ai-process-step-content">
+          <h3 class="defcon-ai-process-step-title">Solution Design</h3>
+          <p class="defcon-ai-process-step-description">Our architects design custom automation workflows and AI models tailored to your needs.</p>
+        </div>
+      </div>
+      
+      <!-- Step 3 -->
+      <div class="defcon-ai-process-step defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-process-step-number">3</div>
+        <div class="defcon-ai-process-step-content">
+          <h3 class="defcon-ai-process-step-title">Development</h3>
+          <p class="defcon-ai-process-step-description">We build, train, and test the automation solutions and AI models with your data.</p>
+        </div>
+      </div>
+      
+      <!-- Step 4 -->
+      <div class="defcon-ai-process-step defcon-ai-animate">
+        <div class="defcon-ai-process-step-number">4</div>
+        <div class="defcon-ai-process-step-content">
+          <h3 class="defcon-ai-process-step-title">Integration</h3>
+          <p class="defcon-ai-process-step-description">Seamless integration with your existing systems and workflows for minimal disruption.</p>
+        </div>
+      </div>
+      
+      <!-- Step 5 -->
+      <div class="defcon-ai-process-step defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-process-step-number">5</div>
+        <div class="defcon-ai-process-step-content">
+          <h3 class="defcon-ai-process-step-title">Optimization</h3>
+          <p class="defcon-ai-process-step-description">Continuous monitoring and improvement to ensure peak performance and ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section class="defcon-ai-cases-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Success Stories</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">Real-world results from our AI implementations</p>
+    </div>
+    
+    <div class="defcon-ai-cases-grid">
+      <!-- Case 1 -->
+      <div class="defcon-ai-case-card defcon-ai-animate">
+        <div class="defcon-ai-case-image" style="background-image: url('https://via.placeholder.com/600x400/0091ff/ffffff?text=E-commerce')"></div>
+        <div class="defcon-ai-case-content">
+          <h3 class="defcon-ai-case-title">E-commerce Personalization</h3>
+          <p class="defcon-ai-case-description">Implemented AI-driven product recommendations that increased average order value by 35% for a retail client.</p>
+          <a href="#" class="defcon-ai-case-button defcon-ai-modal-trigger" data-modal="ecommerce-case">Read Case Study</a>
+        </div>
+      </div>
+      
+      <!-- Case 2 -->
+      <div class="defcon-ai-case-card defcon-ai-animate defcon-ai-delay-1">
+        <div class="defcon-ai-case-image" style="background-image: url('https://via.placeholder.com/600x400/06273e/ffffff?text=Finance')"></div>
+        <div class="defcon-ai-case-content">
+          <h3 class="defcon-ai-case-title">Banking Process Automation</h3>
+          <p class="defcon-ai-case-description">Reduced loan processing time from 5 days to 2 hours for a financial services provider using intelligent automation.</p>
+          <a href="#" class="defcon-ai-case-button defcon-ai-modal-trigger" data-modal="banking-case">Read Case Study</a>
+        </div>
+      </div>
+      
+      <!-- Case 3 -->
+      <div class="defcon-ai-case-card defcon-ai-animate defcon-ai-delay-2">
+        <div class="defcon-ai-case-image" style="background-image: url('https://via.placeholder.com/600x400/e5e5e5/06273e?text=Healthcare')"></div>
+        <div class="defcon-ai-case-content">
+          <h3 class="defcon-ai-case-title">Healthcare Chatbots</h3>
+          <p class="defcon-ai-case-description">AI-powered virtual assistants that handle 80% of routine patient inquiries for a hospital network.</p>
+          <a href="#" class="defcon-ai-case-button defcon-ai-modal-trigger" data-modal="healthcare-case">Read Case Study</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="defcon-ai-cta-section">
+    <h2 class="defcon-ai-cta-title defcon-ai-animate">Ready to Automate Your Future?</h2>
+    <p class="defcon-ai-cta-text defcon-ai-animate defcon-ai-delay-1">Discover how AI and automation can transform your business operations and drive growth.</p>
+    <a href="#" class="defcon-ai-cta-button defcon-ai-animate defcon-ai-delay-2" id="defcon-ai-cta-button">Schedule Free Assessment</a>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="defcon-ai-contact-section">
+    <div class="defcon-ai-section-header">
+      <h2 class="defcon-ai-section-title defcon-ai-animate">Get in Touch</h2>
+      <p class="defcon-ai-section-subtitle defcon-ai-animate defcon-ai-delay-1">Our AI experts are ready to discuss your automation needs</p>
+    </div>
+    
+    <div class="defcon-ai-contact-container">
+      <form class="defcon-ai-contact-form defcon-ai-animate">
+        <div class="defcon-ai-form-group">
+          <label for="defcon-ai-name" class="defcon-ai-form-label">Your Name</label>
+          <input type="text" id="defcon-ai-name" class="defcon-ai-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-ai-form-group">
+          <label for="defcon-ai-email" class="defcon-ai-form-label">Email Address</label>
+          <input type="email" id="defcon-ai-email" class="defcon-ai-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <div class="defcon-ai-form-group">
+          <label for="defcon-ai-phone" class="defcon-ai-form-label">Phone Number</label>
+          <input type="tel" id="defcon-ai-phone" class="defcon-ai-form-input" placeholder="(123) 456-7890">
+        </div>
+        
+        <div class="defcon-ai-form-group">
+          <label for="defcon-ai-service" class="defcon-ai-form-label">Service Interest</label>
+          <select id="defcon-ai-service" class="defcon-ai-form-input">
+            <option value="">Select a service</option>
+            <option value="process-automation">Process Automation</option>
+            <option value="ai-chatbots">AI Chatbots</option>
+            <option value="predictive-analytics">Predictive Analytics</option>
+            <option value="it-automation">IT Automation</option>
+            <option value="ecommerce-ai">E-commerce AI</option>
+            <option value="document-processing">Document Processing</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="defcon-ai-form-group">
+          <label for="defcon-ai-message" class="defcon-ai-form-label">Your Message</label>
+          <textarea id="defcon-ai-message" class="defcon-ai-form-textarea" placeholder="Tell us about your automation needs..."></textarea>
+        </div>
+        
+        <button type="submit" class="defcon-ai-form-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- Modals -->
+<!-- Process Automation Modal -->
+<div class="defcon-ai-modal" id="defcon-ai-process-automation-modal">
+  <div class="defcon-ai-modal-content">
+    <div class="defcon-ai-modal-header">
+      <h3 class="defcon-ai-modal-title">Process Automation</h3>
+      <button class="defcon-ai-modal-close">&times;</button>
+    </div>
+    <div class="defcon-ai-modal-body">
+      <p>Our process automation solutions eliminate repetitive tasks and streamline operations across your organization:</p>
+      <ul>
+        <li>Custom workflow automation tailored to your business processes</li>
+        <li>Seamless integration with existing software and systems</li>
+        <li>Error reduction through intelligent validation</li>
+        <li>Real-time monitoring and analytics</li>
+        <li>Scalable solutions that grow with your business</li>
+      </ul>
+      <p>Typical ROI ranges from 200-500% within the first year by reducing labor costs and improving efficiency.</p>
+      
+      <form class="defcon-ai-quick-form">
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-automation-name" class="defcon-ai-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-ai-automation-name" class="defcon-ai-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-automation-email" class="defcon-ai-quick-form-label">Email</label>
+          <input type="email" id="defcon-ai-automation-email" class="defcon-ai-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-ai-quick-form-button">Request Consultation</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- AI Chatbots Modal -->
+<div class="defcon-ai-modal" id="defcon-ai-ai-chatbots-modal">
+  <div class="defcon-ai-modal-content">
+    <div class="defcon-ai-modal-header">
+      <h3 class="defcon-ai-modal-title">AI Chatbots</h3>
+      <button class="defcon-ai-modal-close">&times;</button>
+    </div>
+    <div class="defcon-ai-modal-body">
+      <p>Our intelligent chatbot solutions provide 24/7 customer engagement with human-like interactions:</p>
+      <ul>
+        <li>Natural Language Processing for fluid conversations</li>
+        <li>Omnichannel deployment (website, social, messaging apps)</li>
+        <li>Seamless handoff to human agents when needed</li>
+        <li>Continuous learning from interactions</li>
+        <li>Integration with CRM and support systems</li>
+      </ul>
+      <p>Clients typically see 40-70% reduction in support costs while improving customer satisfaction scores.</p>
+      
+      <form class="defcon-ai-quick-form">
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-chatbot-name" class="defcon-ai-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-ai-chatbot-name" class="defcon-ai-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-chatbot-email" class="defcon-ai-quick-form-label">Email</label>
+          <input type="email" id="defcon-ai-chatbot-email" class="defcon-ai-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-ai-quick-form-button">Request Demo</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Professional Package Modal -->
+<div class="defcon-ai-modal" id="defcon-ai-professional-package-modal">
+  <div class="defcon-ai-modal-content">
+    <div class="defcon-ai-modal-header">
+      <h3 class="defcon-ai-modal-title">Professional Package</h3>
+      <button class="defcon-ai-modal-close">&times;</button>
+    </div>
+    <div class="defcon-ai-modal-body">
+      <p>Our most popular package offers comprehensive automation and AI solutions for growing businesses:</p>
+      <ul>
+        <li><strong>3-5 Process Automations</strong> tailored to your workflows</li>
+        <li><strong>Advanced AI Chatbot</strong> with natural language capabilities</li>
+        <li><strong>Predictive Analytics</strong> for data-driven decision making</li>
+        <li><strong>Priority Support</strong> with SLA guarantees</li>
+        <li><strong>Up to 50,000 transactions/mo</strong> included</li>
+        <li><strong>API Integrations</strong> with your existing systems</li>
+      </ul>
+      <p>This package delivers <strong>$6,999/month</strong> with a 6-month minimum commitment.</p>
+      
+      <form class="defcon-ai-quick-form">
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-pro-name" class="defcon-ai-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-ai-pro-name" class="defcon-ai-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-pro-email" class="defcon-ai-quick-form-label">Email</label>
+          <input type="email" id="defcon-ai-pro-email" class="defcon-ai-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-pro-company" class="defcon-ai-quick-form-label">Company</label>
+          <input type="text" id="defcon-ai-pro-company" class="defcon-ai-quick-form-input" placeholder="Your Company" required>
+        </div>
+        
+        <button type="submit" class="defcon-ai-quick-form-button">Subscribe Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- E-commerce Case Study Modal -->
+<div class="defcon-ai-modal" id="defcon-ai-ecommerce-case-modal">
+  <div class="defcon-ai-modal-content">
+    <div class="defcon-ai-modal-header">
+      <h3 class="defcon-ai-modal-title">E-commerce Personalization Case Study</h3>
+      <button class="defcon-ai-modal-close">&times;</button>
+    </div>
+    <div class="defcon-ai-modal-body">
+      <h4>Client: Premium Fashion Retailer</h4>
+      <p><strong>Challenge:</strong> Low conversion rates and stagnant average order values despite high traffic volumes.</p>
+      <p><strong>Solution:</strong> Implemented AI-driven personalization engine that:</p>
+      <ul>
+        <li>Analyzed customer behavior in real-time</li>
+        <li>Generated dynamic product recommendations</li>
+        <li>Optimized pricing based on demand forecasting</li>
+        <li>Personalized email campaigns</li>
+      </ul>
+      <p><strong>Results:</strong></p>
+      <ul>
+        <li>35% increase in average order value</li>
+        <li>28% improvement in conversion rates</li>
+        <li>22% reduction in cart abandonment</li>
+        <li>300% ROI within first 6 months</li>
+      </ul>
+      
+      <form class="defcon-ai-quick-form">
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-case-name" class="defcon-ai-quick-form-label">Your Name</label>
+          <input type="text" id="defcon-ai-case-name" class="defcon-ai-quick-form-input" placeholder="John Doe" required>
+        </div>
+        
+        <div class="defcon-ai-quick-form-group">
+          <label for="defcon-ai-case-email" class="defcon-ai-quick-form-label">Email</label>
+          <input type="email" id="defcon-ai-case-email" class="defcon-ai-quick-form-input" placeholder="john@example.com" required>
+        </div>
+        
+        <button type="submit" class="defcon-ai-quick-form-button">Get Full Case Study</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all modal triggers
+  const modalTriggers = document.querySelectorAll('.defcon-ai-modal-trigger');
+  const modals = document.querySelectorAll('.defcon-ai-modal');
+  const closeButtons = document.querySelectorAll('.defcon-ai-modal-close');
+  
+  // Hero and CTA buttons also trigger modals
+  const heroButton = document.getElementById('defcon-ai-hero-button');
+  const ctaButton = document.getElementById('defcon-ai-cta-button');
+  
+  if (heroButton) {
+    heroButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('defcon-ai-professional-package-modal').classList.add('defcon-ai-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('defcon-ai-professional-package-modal').classList.add('defcon-ai-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  // Set up modal triggers
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      const modalId = this.getAttribute('data-modal');
+      document.getElementById(`defcon-ai-${modalId}-modal`).classList.add('defcon-ai-modal-active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  
+  // Set up close buttons
+  closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      this.closest('.defcon-ai-modal').classList.remove('defcon-ai-modal-active');
+      document.body.style.overflow = 'auto';
+    });
+  });
+  
+  // Close modal when clicking outside content
+  modals.forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('defcon-ai-modal-active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  });
+  
+  // Animation on scroll
+  const animateElements = document.querySelectorAll('.defcon-ai-animate');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+
+// Form submission handling
+document.querySelectorAll('.defcon-ai-quick-form, .defcon-ai-contact-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Here you would typically send the form data to your server
+    // For demonstration, we'll just show an alert
+    alert('Thank you for your submission! Our AI experts will contact you shortly to discuss your automation needs.');
+    
+    // Reset the form
+    this.reset();
+    
+    // If this is a modal form, close the modal
+    const modal = this.closest('.defcon-ai-modal');
+    if (modal) {
+      modal.classList.remove('defcon-ai-modal-active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
+</script>

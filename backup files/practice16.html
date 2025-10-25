@@ -1,0 +1,820 @@
+<style>
+    /* Base Styles */
+    .defcon-techsupport-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 30px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    /* Hero Section */
+    .defcon-techsupport-hero {
+        height: 90vh;
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(229,229,229,0.95) 100%), 
+                    url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+    }
+
+    .defcon-techsupport-hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 650px;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .defcon-techsupport-hero-content.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-techsupport-heading {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #06273e;
+        position: relative;
+        line-height: 1.2;
+    }
+
+    .defcon-techsupport-heading::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 100px;
+        height: 5px;
+        background-color: #0091ff;
+    }
+
+    .defcon-techsupport-subheading {
+        font-size: 1.5rem;
+        color: #06273e;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    .defcon-techsupport-cta {
+        display: inline-block;
+        padding: 16px 45px;
+        background-color: #0091ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 20px rgba(0, 145, 255, 0.3);
+    }
+
+    .defcon-techsupport-cta:hover {
+        background-color: #0077cc;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+    }
+
+    /* Service Overview */
+    .defcon-techsupport-overview {
+        padding: 120px 0;
+        background-color: #ffffff;
+    }
+
+    .defcon-techsupport-section-title {
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+        color: #06273e;
+        position: relative;
+        padding-bottom: 15px;
+        text-align: center;
+    }
+
+    .defcon-techsupport-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: #0091ff;
+    }
+
+    .defcon-techsupport-section-desc {
+        font-size: 1.3rem;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto 60px;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    /* Service Cards */
+    .defcon-techsupport-service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+    }
+
+    .defcon-techsupport-service-card {
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0;
+        transform: translateY(50px);
+        border: 1px solid #e5e5e5;
+    }
+
+    .defcon-techsupport-service-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-techsupport-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .defcon-techsupport-service-icon {
+        height: 80px;
+        width: 80px;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0091ff;
+        border-radius: 50%;
+        color: white;
+        font-size: 2.5rem;
+    }
+
+    .defcon-techsupport-service-title {
+        font-size: 1.8rem;
+        color: #06273e;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .defcon-techsupport-service-desc {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .defcon-techsupport-service-link {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: transparent;
+        color: #0091ff;
+        text-decoration: none;
+        border: 2px solid #0091ff;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .defcon-techsupport-service-link:hover {
+        background-color: #0091ff;
+        color: white;
+    }
+
+    /* Pricing Section */
+    .defcon-techsupport-pricing {
+        padding: 120px 0;
+        background-color: #f9f9f9;
+    }
+
+    .defcon-techsupport-pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .defcon-techsupport-pricing-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    .defcon-techsupport-pricing-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-techsupport-pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .defcon-techsupport-pricing-card.popular {
+        border: 2px solid #0091ff;
+        position: relative;
+    }
+
+    .defcon-techsupport-pricing-card.popular::before {
+        content: 'Most Popular';
+        position: absolute;
+        top: 15px;
+        right: -40px;
+        background-color: #0091ff;
+        color: white;
+        padding: 5px 40px;
+        font-size: 0.9rem;
+        transform: rotate(45deg);
+        transform-origin: center;
+    }
+
+    .defcon-techsupport-pricing-header {
+        padding: 30px;
+        background-color: #06273e;
+        color: white;
+        text-align: center;
+    }
+
+    .defcon-techsupport-pricing-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .defcon-techsupport-pricing-price {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .defcon-techsupport-pricing-period {
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+
+    .defcon-techsupport-pricing-body {
+        padding: 30px;
+    }
+
+    .defcon-techsupport-pricing-features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 30px;
+    }
+
+    .defcon-techsupport-pricing-feature {
+        padding: 12px 0;
+        position: relative;
+        padding-left: 30px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .defcon-techsupport-pricing-feature::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #0091ff;
+        font-weight: bold;
+    }
+
+    .defcon-techsupport-pricing-cta {
+        display: block;
+        text-align: center;
+        padding: 14px;
+        background-color: #0091ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-techsupport-pricing-cta:hover {
+        background-color: #0077cc;
+    }
+
+    /* Process Section */
+    .defcon-techsupport-process {
+        padding: 120px 0;
+        background-color: #ffffff;
+    }
+
+    .defcon-techsupport-process-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 80px;
+        position: relative;
+    }
+
+    .defcon-techsupport-process-steps::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 3px;
+        background-color: #e5e5e5;
+        z-index: 0;
+    }
+
+    .defcon-techsupport-process-step {
+        flex: 1;
+        max-width: 200px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+
+    .defcon-techsupport-process-step.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-techsupport-step-number {
+        width: 60px;
+        height: 60px;
+        background-color: #0091ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0 auto 25px;
+        position: relative;
+    }
+
+    .defcon-techsupport-step-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #06273e;
+    }
+
+    .defcon-techsupport-step-desc {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Testimonials */
+    .defcon-techsupport-testimonials {
+        padding: 120px 0;
+        background-color: #06273e;
+        color: white;
+    }
+
+    .defcon-techsupport-testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .defcon-techsupport-testimonial-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 8px;
+        position: relative;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+
+    .defcon-techsupport-testimonial-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-techsupport-testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 5rem;
+        color: rgba(255, 255, 255, 0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+        z-index: 0;
+    }
+
+    .defcon-techsupport-testimonial-content {
+        margin-bottom: 25px;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+    }
+
+    .defcon-techsupport-testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+
+    .defcon-techsupport-testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 20px;
+        object-fit: cover;
+    }
+
+    .defcon-techsupport-author-info h4 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .defcon-techsupport-author-info p {
+        margin: 5px 0 0;
+        opacity: 0.8;
+        font-size: 0.9rem;
+    }
+
+    /* CTA Section */
+    .defcon-techsupport-final-cta {
+        padding: 120px 0;
+        background: linear-gradient(135deg, #0091ff 0%, #06273e 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .defcon-techsupport-cta-heading {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .defcon-techsupport-cta-subheading {
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+
+    .defcon-techsupport-cta-button {
+        display: inline-block;
+        padding: 18px 50px;
+        background-color: white;
+        color: #0091ff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .defcon-techsupport-cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .defcon-techsupport-hero-content {
+            max-width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .defcon-techsupport-process-steps {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .defcon-techsupport-process-steps::before {
+            display: none;
+        }
+
+        .defcon-techsupport-process-step {
+            max-width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .defcon-techsupport-process-step:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .defcon-techsupport-heading {
+            font-size: 2.5rem;
+        }
+
+        .defcon-techsupport-subheading {
+            font-size: 1.2rem;
+        }
+
+        .defcon-techsupport-section-title {
+            font-size: 2.2rem;
+        }
+
+        .defcon-techsupport-service-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="defcon-techsupport-hero">
+    <div class="defcon-techsupport-container">
+        <div class="defcon-techsupport-hero-content">
+            <h1 class="defcon-techsupport-heading">Premium Technical Support Solutions</h1>
+            <p class="defcon-techsupport-subheading">24/7 expert IT support tailored to your business needs. Minimize downtime and maximize productivity with our comprehensive technical support services.</p>
+            <a href="#contact" class="defcon-techsupport-cta">Get Immediate Support</a>
+        </div>
+    </div>
+</div>
+
+<!-- Service Overview -->
+<div class="defcon-techsupport-overview">
+    <div class="defcon-techsupport-container">
+        <h2 class="defcon-techsupport-section-title">Comprehensive Technical Support</h2>
+        <p class="defcon-techsupport-section-desc">From remote troubleshooting to on-site assistance, our certified technicians provide rapid response and resolution for all your IT challenges.</p>
+        
+        <div class="defcon-techsupport-service-grid">
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">🖥️</div>
+                <h3 class="defcon-techsupport-service-title">Hardware Support</h3>
+                <p class="defcon-techsupport-service-desc">Diagnosis, repair, and maintenance for all computer hardware including desktops, laptops, servers, and peripherals.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+            
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">📱</div>
+                <h3 class="defcon-techsupport-service-title">Software Support</h3>
+                <p class="defcon-techsupport-service-desc">Installation, configuration, and troubleshooting for operating systems and business applications.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+            
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">🌐</div>
+                <h3 class="defcon-techsupport-service-title">Network Support</h3>
+                <p class="defcon-techsupport-service-desc">Setup, maintenance, and security for wired and wireless networks, including routers and switches.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+            
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">🔒</div>
+                <h3 class="defcon-techsupport-service-title">Security Support</h3>
+                <p class="defcon-techsupport-service-desc">Virus removal, firewall configuration, and comprehensive cybersecurity solutions.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+            
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">☁️</div>
+                <h3 class="defcon-techsupport-service-title">Cloud Support</h3>
+                <p class="defcon-techsupport-service-desc">Migration, management, and optimization of cloud services and hybrid environments.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+            
+            <div class="defcon-techsupport-service-card">
+                <div class="defcon-techsupport-service-icon">📞</div>
+                <h3 class="defcon-techsupport-service-title">Help Desk</h3>
+                <p class="defcon-techsupport-service-desc">Dedicated phone, email, and chat support for immediate technical assistance.</p>
+                <a href="#" class="defcon-techsupport-service-link">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pricing Section -->
+<div class="defcon-techsupport-pricing">
+    <div class="defcon-techsupport-container">
+        <h2 class="defcon-techsupport-section-title">Flexible Support Plans</h2>
+        <p class="defcon-techsupport-section-desc">Choose the perfect technical support package for your business needs and budget.</p>
+        
+        <div class="defcon-techsupport-pricing-grid">
+            <div class="defcon-techsupport-pricing-card">
+                <div class="defcon-techsupport-pricing-header">
+                    <h3 class="defcon-techsupport-pricing-title">Basic</h3>
+                    <div class="defcon-techsupport-pricing-price">$99<span class="defcon-techsupport-pricing-period">/month</span></div>
+                </div>
+                <div class="defcon-techsupport-pricing-body">
+                    <ul class="defcon-techsupport-pricing-features">
+                        <li class="defcon-techsupport-pricing-feature">Remote Support (8am-6pm)</li>
+                        <li class="defcon-techsupport-pricing-feature">Email Support</li>
+                        <li class="defcon-techsupport-pricing-feature">Basic Troubleshooting</li>
+                        <li class="defcon-techsupport-pricing-feature">Software Installation</li>
+                        <li class="defcon-techsupport-pricing-feature">Virus Removal</li>
+                    </ul>
+                    <a href="#" class="defcon-techsupport-pricing-cta">Get Started</a>
+                </div>
+            </div>
+            
+            <div class="defcon-techsupport-pricing-card popular">
+                <div class="defcon-techsupport-pricing-header">
+                    <h3 class="defcon-techsupport-pricing-title">Professional</h3>
+                    <div class="defcon-techsupport-pricing-price">$299<span class="defcon-techsupport-pricing-period">/month</span></div>
+                </div>
+                <div class="defcon-techsupport-pricing-body">
+                    <ul class="defcon-techsupport-pricing-features">
+                        <li class="defcon-techsupport-pricing-feature">24/7 Remote Support</li>
+                        <li class="defcon-techsupport-pricing-feature">Phone & Email Support</li>
+                        <li class="defcon-techsupport-pricing-feature">Advanced Troubleshooting</li>
+                        <li class="defcon-techsupport-pricing-feature">Network Support</li>
+                        <li class="defcon-techsupport-pricing-feature">Security Monitoring</li>
+                        <li class="defcon-techsupport-pricing-feature">Priority Response</li>
+                    </ul>
+                    <a href="#" class="defcon-techsupport-pricing-cta">Get Started</a>
+                </div>
+            </div>
+            
+            <div class="defcon-techsupport-pricing-card">
+                <div class="defcon-techsupport-pricing-header">
+                    <h3 class="defcon-techsupport-pricing-title">Enterprise</h3>
+                    <div class="defcon-techsupport-pricing-price">$899<span class="defcon-techsupport-pricing-period">/month</span></div>
+                </div>
+                <div class="defcon-techsupport-pricing-body">
+                    <ul class="defcon-techsupport-pricing-features">
+                        <li class="defcon-techsupport-pricing-feature">24/7 Dedicated Support</li>
+                        <li class="defcon-techsupport-pricing-feature">On-Site Visits (2/month)</li>
+                        <li class="defcon-techsupport-pricing-feature">Full Network Management</li>
+                        <li class="defcon-techsupport-pricing-feature">Cloud Integration</li>
+                        <li class="defcon-techsupport-pricing-feature">Security Audits</li>
+                        <li class="defcon-techsupport-pricing-feature">Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#" class="defcon-techsupport-pricing-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Process Section -->
+<div class="defcon-techsupport-process">
+    <div class="defcon-techsupport-container">
+        <h2 class="defcon-techsupport-section-title">Our Support Process</h2>
+        <p class="defcon-techsupport-section-desc">A streamlined approach to ensure your technical issues are resolved quickly and efficiently.</p>
+        
+        <div class="defcon-techsupport-process-steps">
+            <div class="defcon-techsupport-process-step">
+                <div class="defcon-techsupport-step-number">1</div>
+                <h3 class="defcon-techsupport-step-title">Initial Contact</h3>
+                <p class="defcon-techsupport-step-desc">Reach out via phone, email, or our support portal with your technical issue.</p>
+            </div>
+            
+            <div class="defcon-techsupport-process-step">
+                <div class="defcon-techsupport-step-number">2</div>
+                <h3 class="defcon-techsupport-step-title">Diagnosis</h3>
+                <p class="defcon-techsupport-step-desc">Our technicians analyze the problem using advanced diagnostic tools.</p>
+            </div>
+            
+            <div class="defcon-techsupport-process-step">
+                <div class="defcon-techsupport-step-number">3</div>
+                <h3 class="defcon-techsupport-step-title">Resolution</h3>
+                <p class="defcon-techsupport-step-desc">We implement the most effective solution, either remotely or on-site.</p>
+            </div>
+            
+            <div class="defcon-techsupport-process-step">
+                <div class="defcon-techsupport-step-number">4</div>
+                <h3 class="defcon-techsupport-step-title">Verification</h3>
+                <p class="defcon-techsupport-step-desc">We confirm the issue is fully resolved and your systems are operational.</p>
+            </div>
+            
+            <div class="defcon-techsupport-process-step">
+                <div class="defcon-techsupport-step-number">5</div>
+                <h3 class="defcon-techsupport-step-title">Follow-Up</h3>
+                <p class="defcon-techsupport-step-desc">We check back to ensure continued performance and satisfaction.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials -->
+<div class="defcon-techsupport-testimonials">
+    <div class="defcon-techsupport-container">
+        <h2 class="defcon-techsupport-section-title" style="color: white;">Client Testimonials</h2>
+        <p class="defcon-techsupport-section-desc" style="color: rgba(255,255,255,0.8);">Hear from businesses that trust Defcon for their technical support needs.</p>
+        
+        <div class="defcon-techsupport-testimonial-grid">
+            <div class="defcon-techsupport-testimonial-card">
+                <div class="defcon-techsupport-testimonial-content">
+                    Defcon's technical support team has been instrumental in keeping our operations running smoothly. Their rapid response time and deep expertise have saved us countless hours of downtime.
+                </div>
+                <div class="defcon-techsupport-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 1">
+                    <div class="defcon-techsupport-author-info">
+                        <h4>Jennifer K.</h4>
+                        <p>CFO, Financial Services Inc.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="defcon-techsupport-testimonial-card">
+                <div class="defcon-techsupport-testimonial-content">
+                    Switching to Defcon's support services was the best IT decision we've made. Their proactive approach has prevented issues before they impact our business, and their team is always professional.
+                </div>
+                <div class="defcon-techsupport-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 2">
+                    <div class="defcon-techsupport-author-info">
+                        <h4>Robert T.</h4>
+                        <p>IT Director, Manufacturing Co.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="defcon-techsupport-testimonial-card">
+                <div class="defcon-techsupport-testimonial-content">
+                    The enterprise support package gives us peace of mind knowing we have experts available 24/7. Their knowledge of both our industry-specific software and general IT infrastructure is impressive.
+                </div>
+                <div class="defcon-techsupport-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 3">
+                    <div class="defcon-techsupport-author-info">
+                        <h4>Sarah M.</h4>
+                        <p>CEO, Healthcare Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Final CTA -->
+<div class="defcon-techsupport-final-cta">
+    <div class="defcon-techsupport-container">
+        <h2 class="defcon-techsupport-cta-heading">Ready for Stress-Free IT Support?</h2>
+        <p class="defcon-techsupport-cta-subheading">Join hundreds of businesses that trust Defcon for reliable, professional technical support. Our experts are standing by to assist you.</p>
+        <a href="#contact" class="defcon-techsupport-cta-button">Get Started Today</a>
+    </div>
+</div>
+
+<script>
+    // Intersection Observer for scroll animations
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.defcon-techsupport-hero-content, .defcon-techsupport-service-card, .defcon-techsupport-pricing-card, .defcon-techsupport-process-step, .defcon-techsupport-testimonial-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    };
+
+    // Smooth scrolling for anchor links
+    const smoothScroll = () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    };
+
+    // Initialize animations when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+        smoothScroll();
+        
+        // Animate hero content after a slight delay
+        setTimeout(() => {
+            const heroContent = document.querySelector('.defcon-techsupport-hero-content');
+            if (heroContent) heroContent.classList.add('visible');
+        }, 300);
+    });
+
+    // Additional animation triggers on scroll
+    window.addEventListener('scroll', () => {
+        animateOnScroll();
+    });
+</script>

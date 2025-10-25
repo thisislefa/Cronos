@@ -1,0 +1,266 @@
+
+
+
+<style>
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --- Main "What Sets Us Apart" Wrapper --- */
+defcon-wsa-section {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #111827;
+    display: block;
+    overflow-x: hidden;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 100%;
+    box-sizing: border-box;
+    
+}
+
+/* --- Main Grid Layout --- */
+defcon-wsa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: start;
+    gap: 60px;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Left Content Block (Text) --- */
+defcon-wsa-content-block {
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: 0.1s;
+}
+
+defcon-wsa-content-block.defcon-wsa-is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- "WHY DEFCON" Subheading --- */
+defcon-wsa-subheading {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #06273e;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+/* --- Main Heading "What Sets Us Apart" --- */
+defcon-wsa-heading {
+    display: block;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #06273e;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Paragraph Description --- */
+defcon-wsa-paragraph {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+/* --- Right Cards Grid --- */
+defcon-wsa-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* --- Individual Feature Card --- */
+defcon-wsa-card {
+    background-color: #ffffff;
+    border: 1px solid var(--grey);
+    border-radius: 20px;
+    padding: 30px;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+    transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+defcon-wsa-card.defcon-wsa-is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggering the animation delay for each card */
+defcon-wsa-card:nth-child(1) { transition-delay: 0.2s; }
+defcon-wsa-card:nth-child(2) { transition-delay: 0.3s; }
+defcon-wsa-card:nth-child(3) { transition-delay: 0.4s; }
+defcon-wsa-card:nth-child(4) { transition-delay: 0.5s; }
+
+/* --- Icon Container --- */
+defcon-wsa-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #f4f4f4d5;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+defcon-wsa-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* --- Card Title --- */
+defcon-wsa-card-title {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #06273e;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+/* --- Card Description --- */
+defcon-wsa-card-description {
+    display: block;
+    font-size: 15px;
+    color: #4B5563;
+    line-height: 1.6;
+}
+
+/* --- Responsive Design for Tablets and Mobile --- */
+@media (max-width: 992px) {
+    defcon-wsa-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    defcon-wsa-paragraph {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    defcon-wsa-heading {
+        font-size: 36px;
+    }
+    defcon-wsa-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    defcon-wsa-card {
+        padding: 25px;
+    }
+}
+</style>
+
+<!-- DEFCON "WHAT SETS US APART" SECTION START -->
+<defcon-wsa-section>
+    <defcon-wsa-grid>
+        
+        <!-- Left Side: Text Content -->
+        <defcon-wsa-content-block class="defcon-wsa-reveal">
+            <defcon-wsa-subheading>WHY DEFCON</defcon-wsa-subheading>
+            <defcon-wsa-heading>What Sets Us Apart</defcon-wsa-heading>
+            <defcon-wsa-paragraph>
+                We're more than just developers – we're your trusted digital partner. 
+                From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence.
+            </defcon-wsa-paragraph>
+        </defcon-wsa-content-block>
+        
+        <!-- Right Side: Feature Cards -->
+        <defcon-wsa-cards-grid>
+            <!-- Card 1: Strategic Insight -->
+            <defcon-wsa-card class="defcon-wsa-reveal">
+                <defcon-wsa-icon-wrapper>
+                    <span class="defcon-wsa-icon"><i class="fas fa-chart-line" style="font-size: 25px; color: #0091ff;"></i></span>
+                </defcon-wsa-icon-wrapper>
+                <defcon-wsa-card-title>Strategic Insight</defcon-wsa-card-title>
+                <defcon-wsa-card-description>
+                    Deep understanding of market trends, user behavior, and digital strategy to ensure your project succeeds.
+                </defcon-wsa-card-description>
+            </defcon-wsa-card>
+
+            <!-- Card 2: Pro Team -->
+            <defcon-wsa-card class="defcon-wsa-reveal">
+                <defcon-wsa-icon-wrapper>
+                    <span class="defcon-wsa-icon"><i class="fas fa-users" style="font-size: 25px; color: #0091ff;"></i></span>
+                </defcon-wsa-icon-wrapper>
+                <defcon-wsa-card-title>Pro Team</defcon-wsa-card-title>
+                <defcon-wsa-card-description>
+                    Skilled, certified developers and project managers committed to delivering high-quality, scalable solutions.
+                </defcon-wsa-card-description>
+            </defcon-wsa-card>
+            
+            <!-- Card 3: Smart Designs -->
+            <defcon-wsa-card class="defcon-wsa-reveal">
+                <defcon-wsa-icon-wrapper>
+                    <span class="defcon-wsa-icon"><i class="fas fa-paint-brush" style="font-size: 25px; color: #0091ff;"></i></span>
+                </defcon-wsa-icon-wrapper>
+                <defcon-wsa-card-title>Smart Designs</defcon-wsa-card-title>
+                <defcon-wsa-card-description>
+                    Modern UI/UX and features built for exceptional usability, function, and aesthetic appeal.
+                </defcon-wsa-card-description>
+            </defcon-wsa-card>
+
+            <!-- Card 4: Client Focus -->
+            <defcon-wsa-card class="defcon-wsa-reveal">
+                <defcon-wsa-icon-wrapper>
+                    <span class="defcon-wsa-icon"><i class="fas fa-headset" style="font-size: 25px; color: #0091ff;"></i></span>
+                </defcon-wsa-icon-wrapper>
+                <defcon-wsa-card-title>Client Focus</defcon-wsa-card-title>
+                <defcon-wsa-card-description>
+                    Responsive service and clear communication – your satisfaction is our absolute priority.
+                </defcon-wsa-card-description>
+            </defcon-wsa-card>
+        </defcon-wsa-cards-grid>
+        
+    </defcon-wsa-grid>
+</defcon-wsa-section>
+<!-- DEFCON "WHAT SETS US APART" SECTION END -->
+
+<script>
+// This script provides a simple and performant scroll-reveal animation.
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Select all elements that should be animated when they appear.
+    const revealElements = document.querySelectorAll('.defcon-wsa-reveal');
+
+    // Set up the Intersection Observer.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the element is in the viewport...
+            if (entry.isIntersecting) {
+                // ...add the 'is-visible' class to trigger the CSS transition.
+                entry.target.classList.add('defcon-wsa-is-visible');
+                // Stop observing this element to prevent re-animation.
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is visible.
+    });
+
+    // Start observing each target element.
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
+
+});
+</script>

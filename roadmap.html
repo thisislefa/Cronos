@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap | Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --defcon-primary-dark: #0a192f;
+            --defcon-secondary-dark: #112240;
+            --defcon-accent: #64ffda;
+            --defcon-text-primary: #e6f1ff;
+            --defcon-text-secondary: #8892b0;
+            --defcon-card-bg: #112240;
+            --defcon-roadmap-completed: #64ffda;
+            --defcon-roadmap-current: #ff6b6b;
+            --defcon-roadmap-future: #4d79ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-primary-dark);
+            color: var(--defcon-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .defcon-roadmap-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .defcon-roadmap-header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .defcon-roadmap-logo {
+            color: var(--defcon-accent);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .defcon-roadmap-header-line {
+            height: 3px;
+            width: 50px;
+            background: var(--defcon-accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .defcon-roadmap-hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .defcon-roadmap-hero-title {
+            font-size: 3.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.5s;
+        }
+        
+        .defcon-roadmap-hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.8s;
+        }
+        
+        /* Roadmap Navigation */
+        .defcon-roadmap-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .defcon-roadmap-nav-btn {
+            background: transparent;
+            border: 1px solid var(--defcon-accent);
+            color: var(--defcon-text-secondary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+        
+        .defcon-roadmap-nav-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .defcon-roadmap-nav-btn.active {
+            background: var(--defcon-accent);
+            color: var(--defcon-primary-dark);
+            font-weight: 600;
+        }
+        
+        /* Roadmap Timeline */
+        .defcon-roadmap-timeline {
+            position: relative;
+            padding: 60px 0;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .defcon-roadmap-timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 4px;
+            background: var(--defcon-text-secondary);
+            opacity: 0.3;
+            border-radius: 10px;
+        }
+        
+        .defcon-roadmap-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-roadmap-item.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-roadmap-item:nth-child(odd) {
+            left: 0;
+            padding-right: 60px;
+        }
+        
+        .defcon-roadmap-item:nth-child(even) {
+            left: 50%;
+            padding-left: 60px;
+        }
+        
+        .defcon-roadmap-item:before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            width: 30px;
+            height: 4px;
+            background: var(--defcon-text-secondary);
+            opacity: 0.3;
+        }
+        
+        .defcon-roadmap-item:nth-child(odd):before {
+            right: -30px;
+        }
+        
+        .defcon-roadmap-item:nth-child(even):before {
+            left: -30px;
+        }
+        
+        .defcon-roadmap-item:after {
+            content: '';
+            position: absolute;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--defcon-text-secondary);
+        }
+        
+        .defcon-roadmap-item:nth-child(odd):after {
+            right: -42px;
+        }
+        
+        .defcon-roadmap-item:nth-child(even):after {
+            left: -42px;
+        }
+        
+        /* Roadmap Item Status */
+        .defcon-roadmap-item.completed:after {
+            background: var(--defcon-roadmap-completed);
+            box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2), 0 0 15px var(--defcon-roadmap-completed);
+        }
+        
+        .defcon-roadmap-item.current:after {
+            background: var(--defcon-roadmap-current);
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2), 0 0 15px var(--defcon-roadmap-current);
+            animation: defcon-pulse 2s infinite;
+        }
+        
+        .defcon-roadmap-item.future:after {
+            background: var(--defcon-roadmap-future);
+            box-shadow: 0 0 0 4px rgba(77, 121, 255, 0.2);
+        }
+        
+        /* Roadmap Content */
+        .defcon-roadmap-content {
+            background: var(--defcon-card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-roadmap-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .defcon-roadmap-date {
+            color: var(--defcon-text-primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .defcon-roadmap-date i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .defcon-roadmap-title {
+            font-size: 1.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .defcon-roadmap-desc {
+            margin-bottom: 20px;
+        }
+        
+        .defcon-roadmap-features {
+            list-style-type: none;
+        }
+        
+        .defcon-roadmap-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .defcon-roadmap-features li:before {
+            content: '•';
+            color: var(--defcon-accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 10px;
+        }
+        
+        /* Status Labels */
+        .defcon-roadmap-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .defcon-roadmap-status.completed {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--defcon-roadmap-completed);
+        }
+        
+        .defcon-roadmap-status.current {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--defcon-roadmap-current);
+        }
+        
+        .defcon-roadmap-status.future {
+            background: rgba(77, 121, 255, 0.1);
+            color: var(--defcon-roadmap-future);
+        }
+        
+        /* Footer */
+        .defcon-roadmap-footer {
+            background-color: var(--defcon-primary-dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            margin-top: 60px;
+        }
+        
+        .defcon-roadmap-footer-text {
+            color: var(--defcon-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes defcon-fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes defcon-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-roadmap-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-roadmap-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .defcon-roadmap-timeline:before {
+                left: 30px;
+            }
+            
+            .defcon-roadmap-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .defcon-roadmap-item:nth-child(odd),
+            .defcon-roadmap-item:nth-child(even) {
+                left: 0;
+                padding-right: 0;
+                padding-left: 70px;
+            }
+            
+            .defcon-roadmap-item:nth-child(odd):before,
+            .defcon-roadmap-item:nth-child(even):before {
+                left: 30px;
+                right: auto;
+                width: 20px;
+            }
+            
+            .defcon-roadmap-item:nth-child(odd):before {
+                right: auto;
+            }
+            
+            .defcon-roadmap-item:nth-child(odd):after,
+            .defcon-roadmap-item:nth-child(even):after {
+                left: 21px;
+                right: auto;
+            }
+            
+            .defcon-roadmap-item:nth-child(odd):after {
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="defcon-roadmap-header">
+        <div class="defcon-roadmap-container">
+            <div class="defcon-roadmap-logo">DEFCON</div>
+            <div class="defcon-roadmap-header-line"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="defcon-roadmap-hero">
+        <div class="defcon-roadmap-container">
+            <h1 class="defcon-roadmap-hero-title">Our Strategic Roadmap</h1>
+            <p class="defcon-roadmap-hero-subtitle">Discover our journey—from foundational innovations to future advancements in cybersecurity. This roadmap outlines our completed achievements, current initiatives, and exciting developments ahead.</p>
+        </div>
+    </section>
+
+    <!-- Roadmap Navigation -->
+    <div class="defcon-roadmap-container">
+        <div class="defcon-roadmap-nav">
+            <button class="defcon-roadmap-nav-btn active" data-filter="all">All</button>
+            <button class="defcon-roadmap-nav-btn" data-filter="completed">Completed</button>
+            <button class="defcon-roadmap-nav-btn" data-filter="current">In Progress</button>
+            <button class="defcon-roadmap-nav-btn" data-filter="future">Upcoming</button>
+        </div>
+    </div>
+
+    <!-- Roadmap Timeline -->
+    <div class="defcon-roadmap-timeline">
+        <!-- 2023 Q4 -->
+        <div class="defcon-roadmap-item completed" data-status="completed">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q4 2023</div>
+                <h3 class="defcon-roadmap-title">AI-Powered Threat Detection</h3>
+                <p class="defcon-roadmap-desc">Launched our next-generation threat detection system using machine learning algorithms.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Reduced false positives by 42%</li>
+                    <li>Implemented real-time behavioral analysis</li>
+                    <li>Integrated with cloud security platforms</li>
+                </ul>
+                <span class="defcon-roadmap-status completed">Completed</span>
+            </div>
+        </div>
+
+        <!-- 2024 Q1 -->
+        <div class="defcon-roadmap-item completed" data-status="completed">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q1 2024</div>
+                <h3 class="defcon-roadmap-title">Global Expansion Phase 1</h3>
+                <p class="defcon-roadmap-desc">Established regional offices in Europe and Asia to better serve our international clients.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Opened offices in London and Singapore</li>
+                    <li>Hired 25 regional security specialists</li>
+                    <li>24/7 multilingual support implemented</li>
+                </ul>
+                <span class="defcon-roadmap-status completed">Completed</span>
+            </div>
+        </div>
+
+        <!-- 2024 Q2 -->
+        <div class="defcon-roadmap-item current" data-status="current">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q2 2024</div>
+                <h3 class="defcon-roadmap-title">Quantum Encryption Research</h3>
+                <p class="defcon-roadmap-desc">Developing next-generation encryption methods resistant to quantum computing attacks.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Partnered with leading quantum computing labs</li>
+                    <li>Prototype testing underway</li>
+                    <li>Expected completion Q3 2024</li>
+                </ul>
+                <span class="defcon-roadmap-status current">In Progress</span>
+            </div>
+        </div>
+
+        <!-- 2024 Q3 -->
+        <div class="defcon-roadmap-item future" data-status="future">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q3 2024</div>
+                <h3 class="defcon-roadmap-title">Zero Trust Architecture Suite</h3>
+                <p class="defcon-roadmap-desc">Comprehensive zero trust implementation tools for enterprise security modernization.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Network segmentation automation</li>
+                    <li>Identity-aware proxy services</li>
+                    <li>Continuous verification protocols</li>
+                </ul>
+                <span class="defcon-roadmap-status future">Upcoming</span>
+            </div>
+        </div>
+
+        <!-- 2024 Q4 -->
+        <div class="defcon-roadmap-item future" data-status="future">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q4 2024</div>
+                <h3 class="defcon-roadmap-title">IoT Security Platform</h3>
+                <p class="defcon-roadmap-desc">Specialized security solution for Internet of Things devices and networks.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Device fingerprinting technology</li>
+                    <li>Anomaly detection for IoT networks</li>
+                    <li>Low-power consumption security protocols</li>
+                </ul>
+                <span class="defcon-roadmap-status future">Upcoming</span>
+            </div>
+        </div>
+
+        <!-- 2025 Q1 -->
+        <div class="defcon-roadmap-item future" data-status="future">
+            <div class="defcon-roadmap-content">
+                <div class="defcon-roadmap-date"><i class="fas fa-calendar-alt"></i> Q1 2025</div>
+                <h3 class="defcon-roadmap-title">Autonomous Threat Response</h3>
+                <p class="defcon-roadmap-desc">AI-driven system that automatically contains and neutralizes threats without human intervention.</p>
+                <ul class="defcon-roadmap-features">
+                    <li>Self-learning threat containment algorithms</li>
+                    <li>Integration with major cloud platforms</li>
+                    <li>Customizable response protocols</li>
+                </ul>
+                <span class="defcon-roadmap-status future">Upcoming</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="defcon-roadmap-footer">
+        <div class="defcon-roadmap-container">
+            <p class="defcon-roadmap-footer-text">&copy; 2023 Defcon. All rights reserved. | Protecting the digital world.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const defconRoadmapItems = document.querySelectorAll('.defcon-roadmap-item');
+            
+            const defconRoadmapObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('defcon-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            defconRoadmapItems.forEach(item => {
+                defconRoadmapObserver.observe(item);
+            });
+            
+            // Filter functionality
+            const defconFilterButtons = document.querySelectorAll('.defcon-roadmap-nav-btn');
+            const defconRoadmapItemsAll = document.querySelectorAll('.defcon-roadmap-item');
+            
+            defconFilterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    defconFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter items
+                    const filter = button.getAttribute('data-filter');
+                    
+                    defconRoadmapItemsAll.forEach(item => {
+                        if (filter === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.getAttribute('data-status') === filter) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

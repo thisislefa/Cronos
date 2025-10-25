@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEFCON AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0091ff;
+            --dark-blue: #005fa3;
+            --cyber-green: #00ff88;
+            --matrix-green: #00ff41;
+            --neon-purple: #bc13fe;
+            --white: #fff;
+            --light-gray: #f2f4f8;
+            --dark-gray: #1a1a1a;
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            --glow: 0 0 10px var(--cyber-green);
+        }
+
+        /* Cyberpunk-inspired communication panel */
+        .communication-panel {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+            filter: drop-shadow(0 0 8px rgba(0, 145, 255, 0.6));
+        }
+
+        .main-comm-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(0, 145, 255, 0.4);
+            transition: var(--transition);
+            position: relative;
+            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .main-comm-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 5px 30px rgba(0, 145, 255, 0.7);
+            background: linear-gradient(145deg, var(--dark-blue), var(--primary-blue));
+        }
+
+        .main-comm-button i {
+            font-size: 1.8rem;
+        }
+
+        .comm-tooltip {
+            position: absolute;
+            right: 80px;
+            background: var(--dark-gray);
+            color: var(--cyber-green);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            border: 1px solid var(--cyber-green);
+            box-shadow: var(--glow);
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+        }
+
+        .main-comm-button:hover .comm-tooltip {
+            opacity: 1;
+            right: 90px;
+        }
+
+        .secondary-comm-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+            transform: translateY(20px);
+            opacity: 0;
+            height: 0;
+            overflow: visible;
+            padding-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .secondary-comm-buttons.active {
+            transform: translateY(0);
+            opacity: 1;
+            height: auto;
+        }
+
+        .secondary-button {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            color: var(--cyber-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid var(--cyber-green);
+            position: relative;
+        }
+
+        .secondary-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--glow);
+        }
+
+        .secondary-button::before {
+            content: attr(title);
+            position: absolute;
+            right: 65px;
+            background: var(--dark-gray);
+            color: var(--cyber-green);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: var(--transition);
+            border: 1px solid var(--cyber-green);
+            pointer-events: none;
+        }
+
+        .secondary-button:hover::before {
+            opacity: 1;
+            right: 70px;
+        }
+
+        .secondary-button.whatsapp:hover {
+            background: #25D366;
+            color: white;
+            border-color: #25D366;
+            box-shadow: 0 0 15px #25D366;
+        }
+
+        .secondary-button.chat:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .secondary-button.ai:hover {
+            background: var(--neon-purple);
+            color: white;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+
+        /* Cyber Chatbot Modal */
+        .chatbot-modal {
+            position: fixed;
+            bottom: 130px;
+            right: 30px;
+            width: 380px;
+            background: var(--dark-gray);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), var(--glow);
+            z-index: 1000;
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--cyber-green);
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .chatbot-modal.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(90deg, var(--dark-gray), #0d0d0d);
+            color: var(--cyber-green);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--cyber-green);
+            box-shadow: var(--glow);
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chatbot-header h3::before {
+            content: "◈";
+            color: var(--neon-purple);
+        }
+
+        .powered-by {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-left: 5px;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: var(--cyber-green);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-close:hover {
+            transform: rotate(90deg);
+            color: var(--neon-purple);
+        }
+
+        .chatbot-messages {
+            height: 320px;
+            overflow-y: auto;
+            padding: 15px;
+            background: var(--dark-gray);
+            text-align: left;
+            scrollbar-width: thin;
+            scrollbar-color: var(--cyber-green) var(--dark-gray);
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: var(--dark-gray);
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background-color: var(--cyber-green);
+            border-radius: 10px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            text-align: left;
+            position: relative;
+            animation: messageIn 0.3s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes messageIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--cyber-green);
+            border-bottom-left-radius: 2px;
+            margin-right: auto;
+            border-left: 3px solid var(--cyber-green);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .user-message {
+            background: rgba(0, 145, 255, 0.15);
+            color: var(--primary-blue);
+            border-bottom-right-radius: 2px;
+            margin-left: auto;
+            border-right: 3px solid var(--primary-blue);
+            border-top: 1px solid rgba(0, 145, 255, 0.2);
+        }
+
+        .message-time {
+            display: block;
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .chatbot-input-container {
+            padding: 12px;
+            border-top: 1px solid var(--cyber-green);
+            background: #0d0d0d;
+            position: relative;
+        }
+
+        .chatbot-input {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95rem;
+            color: white;
+            font-family: 'Courier New', monospace;
+            transition: var(--transition);
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .chatbot-input button {
+            background: var(--cyber-green);
+            color: var(--dark-gray);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .chatbot-input button:hover {
+            background: var(--matrix-green);
+            transform: rotate(15deg);
+        }
+
+        .disclaimer {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .typing-indicator.active {
+            opacity: 1;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--cyber-green);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        /* Matrix-like binary rain effect */
+        .binary-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .binary-digit {
+            position: absolute;
+            color: var(--cyber-green);
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+
+        /* Advanced Features Panel */
+        .features-panel {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .feature-btn {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--cyber-green);
+            border: 1px solid var(--cyber-green);
+            border-radius: 15px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .feature-btn:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* WhatsApp Modal - Cyber Style */
+        .whatsapp-modal {
+            position: fixed;
+            bottom: 130px;
+            right: 30px;
+            width: 350px;
+            background: var(--dark-gray);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 15px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: 1px solid #25D366;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .whatsapp-modal.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .whatsapp-header {
+            background: linear-gradient(90deg, #128C7E, #25D366);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whatsapp-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: auto;
+            transition: var(--transition);
+        }
+
+        .whatsapp-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .whatsapp-body {
+            padding: 20px;
+            text-align: center;
+            background: var(--dark-gray);
+        }
+
+        .whatsapp-body p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .communication-panel {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chatbot-modal, .whatsapp-modal {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cyber Communication Panel -->
+    <div class="communication-panel">
+        <div class="secondary-comm-buttons" id="secondaryButtons">
+            <button class="secondary-button whatsapp" title="WhatsApp" onclick="openWhatsAppModal()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="secondary-button chat" title="Live Chat" onclick="openChatbotModal()">
+                <i class="fas fa-comment-dots"></i>
+            </button>
+            <button class="secondary-button ai" title="AI Assistant" onclick="openChatbotModal()">
+                <i class="fas fa-robot"></i>
+            </button>
+        </div>
+        
+        <button class="main-comm-button" id="mainCommButton" onclick="toggleSecondaryButtons()">
+            <i class="fas fa-headset"></i>
+            <span class="comm-tooltip">DEFCON SUPPORT</span>
+        </button>
+    </div>
+
+    <!-- Cyber Chatbot Modal -->
+    <div class="chatbot-modal" id="chatbotModal">
+        <div class="binary-rain" id="binaryRain"></div>
+        <div class="chatbot-header">
+            <h3>DEFCON AI <span class="powered-by">POWERED BY ADVANCED AI</span></h3>
+            <button class="chatbot-close" onclick="closeChatbotModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <div class="message-content">Initializing DEFCON AI Assistant v1.0...</div>
+                <div class="message-content">System check complete. All protocols operational.</div>
+                <div class="message-content">Hello! I'm DEFCON's advanced AI assistant. How can I help you today?</div>
+                <div class="features-panel">
+                    <div class="feature-btn" onclick="quickQuestion('IT Support')">IT Support</div>
+                    <div class="feature-btn" onclick="quickQuestion('Cybersecurity')">Cybersecurity</div>
+                    <div class="feature-btn" onclick="quickQuestion('Cloud Services')">Cloud Services</div>
+                    <div class="feature-btn" onclick="quickQuestion('Network Solutions')">Network</div>
+                </div>
+                <span class="message-time" id="message-time">${getCurrentTime()}</span>
+            </div>
+        </div>
+        <div class="chatbot-input-container">
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                <button onclick="sendChatbotMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="disclaimer">AI Assistant v1.0 · May occasionally generate incorrect information</div>
+        </div>
+    </div>
+
+    <!-- Cyber WhatsApp Modal -->
+    <div class="whatsapp-modal" id="whatsappModal">
+        <div class="whatsapp-header">
+            <i class="fab fa-whatsapp"></i>
+            <h3>DEFCON SUPPORT</h3>
+            <button class="whatsapp-close" onclick="closeWhatsAppModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="whatsapp-body">
+            <p>For immediate assistance, connect with our DEFCON support team directly via WhatsApp. Our response time is typically under 15 minutes during business hours.</p>
+            <a href="https://wa.me/1234567890?text=Hello%20DEFCON%20Support%20Team" class="whatsapp-button" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Open WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Binary rain effect
+        function createBinaryRain() {
+            const container = document.getElementById('binaryRain');
+            const digits = '01';
+            const columns = Math.floor(container.offsetWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.style.left = `${i * 20}px`;
+                digit.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                digit.style.animationDelay = `${Math.random() * 2}s`;
+                digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
+                container.appendChild(digit);
+                
+                // Make it fall continuously
+                setInterval(() => {
+                    digit.style.top = '-20px';
+                    digit.textContent = digits.charAt(Math.floor(Math.random() * digits.length));
+                    setTimeout(() => {
+                        digit.style.top = '0';
+                    }, 10);
+                }, parseFloat(digit.style.animationDuration) * 1000);
+            }
+        }
+
+        // Initialize binary rain when modal opens
+        function initBinaryRain() {
+            if (!document.getElementById('binaryRain').hasChildNodes()) {
+                createBinaryRain();
+            }
+        }
+
+        // Communication Panel Functionality
+        function toggleSecondaryButtons() {
+            const secondaryButtons = document.getElementById('secondaryButtons');
+            secondaryButtons.classList.toggle('active');
+        }
+
+        function openChatbotModal() {
+            closeAllModals();
+            document.getElementById('chatbotModal').classList.add('active');
+            toggleSecondaryButtons();
+            initBinaryRain();
+        }
+
+        function closeChatbotModal() {
+            document.getElementById('chatbotModal').classList.remove('active');
+        }
+
+        function openWhatsAppModal() {
+            closeAllModals();
+            document.getElementById('whatsappModal').classList.add('active');
+            toggleSecondaryButtons();
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsappModal').classList.remove('active');
+        }
+
+        function closeAllModals() {
+            closeChatbotModal();
+            closeWhatsAppModal();
+        }
+
+        // Get current time for messages
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator active';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            document.getElementById('chatbotMessages').appendChild(typing);
+            document.getElementById('chatbotMessages').scrollTop = document.getElementById('chatbotMessages').scrollHeight;
+        }
+
+        // Hide typing indicator
+        function hideTypingIndicator() {
+            const typing = document.querySelector('.typing-indicator');
+            if (typing) typing.remove();
+        }
+
+        // Quick question from feature buttons
+        function quickQuestion(topic) {
+            document.getElementById('chatbotInput').value = `Tell me about ${topic}`;
+            sendChatbotMessage();
+        }
+
+        // Enhanced Chatbot functionality
+        function sendChatbotMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messagesContainer = document.getElementById('chatbotMessages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.innerHTML = `
+                <div class="message-content">${input.value}</div>
+                <span class="message-time">${getCurrentTime()}</span>
+            `;
+            messagesContainer.appendChild(userMessage);
+            
+            // Prepare bot response
+            const userText = input.value.toLowerCase();
+            let botReply = generateAIResponse(userText);
+
+            // Clear input
+            input.value = '';
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate bot response after a delay
+            setTimeout(() => {
+                hideTypingIndicator();
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                
+                // Format response with multiple paragraphs if needed
+                const responseContent = botReply.split('\n').map(paragraph => 
+                    `<div class="message-content">${paragraph}</div>`
+                ).join('');
+                
+                botMessage.innerHTML = `
+                    ${responseContent}
+                    <span class="message-time">${getCurrentTime()}</span>
+                `;
+                
+                messagesContainer.appendChild(botMessage);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Add quick features if it's the first response
+                if (!document.querySelector('.features-panel')) {
+                    const featuresPanel = document.createElement('div');
+                    featuresPanel.className = 'features-panel';
+                    featuresPanel.innerHTML = `
+                        <div class="feature-btn" onclick="quickQuestion('IT Support')">IT Support</div>
+                        <div class="feature-btn" onclick="quickQuestion('Cybersecurity')">Cybersecurity</div>
+                        <div class="feature-btn" onclick="quickQuestion('Cloud Services')">Cloud Services</div>
+                        <div class="feature-btn" onclick="quickQuestion('Network Solutions')">Network</div>
+                    `;
+                    botMessage.appendChild(featuresPanel);
+                }
+            }, 1500 + Math.random() * 1000);
+        }
+
+        // Advanced AI response generation
+        function generateAIResponse(userText) {
+            // Service keywords
+            const serviceKeywords = [
+                'what services', 'services do you offer', 'your services', 'what do you provide', 
+                'what does defcon do', 'service list', 'offerings', 'solutions', 'what can you do', 
+                'what can i get', 'what can you help with', 'capabilities'
+            ];
+
+            // IT Support keywords
+            const supportKeywords = [
+                'support', 'help', 'problem', 'issue', 'trouble', 'not working', 'error', 
+                'fix', 'broken', 'assistance', 'ticket', 'service request'
+            ];
+
+            // Cybersecurity keywords
+            const securityKeywords = [
+                'security', 'cyber', 'hack', 'malware', 'virus', 'phishing', 'firewall', 
+                'vpn', 'protection', 'secure', 'breach', 'pentest', 'vulnerability'
+            ];
+
+            // Cloud keywords
+            const cloudKeywords = [
+                'cloud', 'aws', 'azure', 'google cloud', 'gcp', 'hosting', 'serverless', 
+                'migration', 'storage', 'saas', 'iaas', 'paas', 'virtual machine'
+            ];
+
+            // Network keywords
+            const networkKeywords = [
+                'network', 'wifi', 'internet', 'lan', 'wan', 'router', 'switch', 
+                'bandwidth', 'latency', 'throughput', 'connectivity', 'vpn'
+            ];
+
+            // Check for service-related questions
+            if (serviceKeywords.some(kw => userText.includes(kw))) {
+                return `DEFCON offers advanced technology solutions:\n\n` +
+                       `• CYBERSECURITY: Penetration testing, threat detection, security audits\n` +
+                       `• CLOUD SERVICES: Migration, optimization, multi-cloud management\n` +
+                       `• IT SUPPORT: 24/7 monitoring, helpdesk, on-site assistance\n` +
+                       `• NETWORK SOLUTIONS: Design, implementation, optimization\n` +
+                       `\nWhich area would you like more details about?`;
+            } 
+            
+            // IT Support responses
+            else if (supportKeywords.some(kw => userText.includes(kw))) {
+                return `Our IT support team is available 24/7 to resolve your technical issues.\n\n` +
+                       `For immediate assistance:\n1. Describe your issue in detail\n2. Provide any error messages\n3. Let me know if it's urgent\n\n` +
+                       `Would you like me to create a support ticket for you?`;
+            }
+            
+            // Cybersecurity responses
+            else if (securityKeywords.some(kw => userText.includes(kw))) {
+                return `DEFCON cybersecurity services include:\n` +
+                       `• Threat Assessment\n• Vulnerability Scanning\n• Penetration Testing\n` +
+                       `• Security Awareness Training\n• Incident Response\n\n` +
+                       `Our team can evaluate your current security posture and recommend improvements. ` +
+                       `Would you like to schedule a security consultation?`;
+            }
+            
+            // Cloud services responses
+            else if (cloudKeywords.some(kw => userText.includes(kw))) {
+                return `We specialize in cloud solutions across all major platforms:\n\n` +
+                       `• AWS: Architecture design, cost optimization\n` +
+                       `• Azure: Hybrid cloud solutions, AI integration\n` +
+                       `• Google Cloud: Data analytics, machine learning\n\n` +
+                       `Are you looking to migrate to the cloud or optimize existing infrastructure?`;
+            }
+            
+            // Network services responses
+            else if (networkKeywords.some(kw => userText.includes(kw))) {
+                return `Our network solutions ensure high-performance connectivity:\n\n` +
+                       `• Network Design & Implementation\n• Wireless Solutions\n` +
+                       `• Bandwidth Optimization\n• Security Hardening\n` +
+                       `• 24/7 Monitoring\n\n` +
+                       `Is this for a new setup or troubleshooting an existing network?`;
+            }
+            
+            // Greetings
+            else if (userText.includes('hello') || userText.includes('hi') || userText.includes('hey')) {
+                return `Greetings! I'm DEFCON AI v1.0. How can I assist with your technology needs today?`;
+            }
+            
+            // Thanks
+            else if (userText.includes('thank') || userText.includes('thanks')) {
+                return `You're welcome! Always happy to assist with your technology challenges. ` +
+                       `Is there anything else you'd like to know?`;
+            }
+            
+            // Goodbye
+            else if (userText.includes('bye') || userText.includes('goodbye')) {
+                return `Goodbye! Remember, DEFCON support is available 24/7 if you need assistance. ` +
+                       `Type "help" anytime to reconnect.`;
+            }
+            
+            // Default advanced response
+            else {
+                return `I'm DEFCON's advanced AI assistant specialized in technology solutions.\n\n` +
+                       `I can help with:\n• Cybersecurity threats\n• Cloud architecture\n` +
+                       `• Network optimization\n• IT support issues\n\n` +
+                       `Could you please provide more details about your inquiry?`;
+            }
+        }
+
+        // Allow pressing Enter to send message
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotInput = document.getElementById('chatbotInput');
+            if (chatbotInput) {
+                chatbotInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChatbotMessage();
+                    }
+                });
+            }
+            
+            // Initialize with welcome message
+            setTimeout(() => {
+                const messagesContainer = document.getElementById('chatbotMessages');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 500);
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.chatbot-modal') && !e.target.closest('.secondary-button.chat') && !e.target.closest('.secondary-button.ai')) {
+                closeChatbotModal();
+            }
+            
+            if (!e.target.closest('.whatsapp-modal') && !e.target.closest('.secondary-button.whatsapp')) {
+                closeWhatsAppModal();
+            }
+            
+            if (!e.target.closest('.communication-panel')) {
+                document.getElementById('secondaryButtons').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

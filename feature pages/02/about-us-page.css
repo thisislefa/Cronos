@@ -1,0 +1,259 @@
+/* Scoped styles for the DEF CON About component */
+        .dc-about-container {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;  
+        }
+
+        /* Main padded section */
+        .dc-about-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 7rem 0;
+        }
+
+        /* Grid layout for images and text */
+        .dc-about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.1rem;
+            align-items: center;
+            padding: 2rem 0;
+            
+        }
+
+        /* Image container styles */
+        .dc-about-image-container {
+            position: relative;
+            padding-right: 2rem;
+            padding-bottom: 2rem;
+        }
+        .dc-about-main-image {
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 90%;
+            height: 30vw;
+            object-fit: cover;
+        }
+        .dc-about-image-overlap {
+            position: absolute;
+            bottom: -5%;
+            right: 7%;
+            width: 40%;
+            height: 15vw;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 1rem;
+        }
+
+        /* Text content styles */
+        .dc-about-heading {
+            font-weight: 700;
+            font-size: 54px;
+            letter-spacing: -0.04em;
+            color: #0d2a3a;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .dc-about-subheading {
+            color: #06273e;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .dc-about-text {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.625;
+            margin-bottom: 2rem;
+        }
+        
+        /* List styles */
+        .dc-about-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dc-about-list-item-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .dc-about-list-item-wrapper:first-child {
+            margin-top: 0;
+        }
+        .dc-about-list-item-text {
+            color: #0d2a3a;
+            font-weight: 500;
+        }
+        .dc-about-list-icon {
+            height: 1.5rem;
+            width: 1.5rem;
+            color: #0d2a3a;
+            margin-right: 0.75rem;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 640px) {
+            .dc-about-section {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .dc-about-heading {
+                font-size: 2.5rem;
+            }
+            .dc-about-image-overlap {
+                bottom: -5%;
+                right: -5%;
+                width: 45%;
+            }
+        }
+        @media (min-width: 768px) {
+            .dc-about-image-container {
+                padding-right: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .dc-about-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            .dc-about-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+          /* From Uiverse.io by gharsh11032000 */ 
+          .animated-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid;
+            border-color: transparent;
+            font-size: 16px;
+            background-color: inherit;
+            border-radius: 100px;
+            font-weight: 600;
+            color: #06273e;
+            box-shadow: 0 0 0 2px #06273e;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+          }
+
+          .animated-button svg {
+            position: absolute;
+            width: 24px;
+            fill: #06273e;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+          }
+
+          .animated-button .arr-1 {
+            right: 16px;
+          }
+
+          .animated-button .arr-2 {
+            left: -25%;
+          }
+
+          .animated-button .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: #06273e;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+          }
+
+          .animated-button .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+          }
+
+          .animated-button:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: white;
+            border-radius: 12px;
+          }
+
+          .animated-button:hover .arr-1 {
+            right: -25%;
+          }
+
+          .animated-button:hover .arr-2 {
+            left: 16px;
+          }
+
+          .animated-button:hover .text {
+            transform: translateX(12px);
+          }
+
+          .animated-button:hover svg {
+            fill: white;
+          }
+
+          .animated-button:active {
+            scale: 0.95;
+            box-shadow: 0 0 0 4px #0091ff;
+          }
+
+          .animated-button:hover .circle {
+            width: 350px;
+            height: 250px;
+            opacity: 1;
+          }
+
+  /* Stats Section*/
+
+          .stats-section { 
+              padding: 0;
+              margin: 0;
+              padding-top: 5rem;
+              align-content: center;
+              justify-items: center;
+          }
+
+          .stats-grid {
+              display: flex;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 200px;
+          }
+
+          .stat-item {
+              text-align: center;
+              padding: 10px;
+          }
+
+          .stat-number {
+              font-size: 56px;
+              font-weight: 600;
+              color: #0091ff;
+              margin-bottom: 10px;
+              display: block;
+              text-align: center;
+              letter-spacing: -0.03em;
+              line-height: 1.3;
+              font-display: swap;
+              text-rendering: optimizeLegibility;
+          }
+
+          .stat-label {
+              font-size: 24px;
+              color: #06273e;
+              font-weight: 700;
+              text-align: center;
+              line-height: 1.7;
+              opacity: 1;
+          }

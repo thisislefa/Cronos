@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEFCON Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to ensure precise replication and avoid conflicts */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light gray background to showcase the component */
+        }
+        .defcon-component-wrapper {
+            /* This is the main wrapper for the whole section */
+            max-width: 1200px;
+            margin: 4rem auto;
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            overflow: hidden; /* Important for the layout */
+            padding: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .defcon-component-wrapper {
+                padding: 0; /* No padding on larger screens, handled by columns */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This is the main component wrapper. You can copy everything inside this div. -->
+    <div class="defcon-component-wrapper">
+        <div class="defcon-main-grid grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+            
+            <!-- Left Column: Text Content -->
+            <div class="defcon-text-content-container flex flex-col justify-center p-4 sm:p-8 lg:p-12">
+                <span class="defcon-pre-heading text-sm font-bold uppercase tracking-wider text-green-700 mb-4">
+                    SINCE 1993
+                </span>
+                <h1 class="defcon-main-heading text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+                    Forged in Code, Built on Community
+                </h1>
+                <p class="defcon-description-text max-w-xl text-gray-600 mb-10 text-base sm:text-lg">
+                    DEFCON has become the premier event for hackers, researchers, and security professionals. Whether it's your first time or you're a seasoned goon, you're in good company. Our strong community is a reflection of the shared passion our attendees place in us — year after year.
+                </p>
+                
+                <div class="defcon-stats-grid grid grid-cols-2 gap-8">
+                    <div class="defcon-stat-item">
+                        <p class="defcon-stat-number text-4xl sm:text-5xl font-bold text-gray-900">30+</p>
+                        <h2 class="defcon-stat-title font-bold text-gray-800 mt-2">Years of Hacking</h2>
+                        <p class="defcon-stat-description text-gray-600 mt-1">Over 30 years of groundbreaking talks and contests.</p>
+                    </div>
+                    <div class="defcon-stat-item">
+                        <p class="defcon-stat-number text-4xl sm:text-5xl font-bold text-gray-900">20k+</p>
+                        <h2 class="defcon-stat-title font-bold text-gray-800 mt-2">Annual Attendees</h2>
+                        <p class="defcon-stat-description text-gray-600 mt-1">A global gathering of the brightest minds in security.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Image -->
+            <div class="defcon-image-container relative min-h-[400px] lg:min-h-0">
+                 <img 
+                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                    alt="A person working on a complex setup of computers and servers in a dark room, representing the hacker community at DEFCON." 
+                    class="defcon-main-image absolute inset-0 w-full h-full object-cover rounded-2xl lg:rounded-none lg:rounded-tr-[60px] lg:rounded-bl-[60px]"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x700/222/fff?text=DEFCON';"
+                >
+                <div class="defcon-highlight-box absolute bottom-8 -left-8 sm:bottom-12 sm:-left-12 bg-lime-300 p-6 rounded-2xl shadow-xl transform -rotate-3">
+                    <p class="defcon-highlight-text text-xl font-bold text-gray-800">Capture The Flag</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

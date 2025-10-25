@@ -1,0 +1,660 @@
+<style>
+/* Corporate Landing Page Styles */
+.corporate-landing-container {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    color: #06273e;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Hero Section */
+.corporate-hero-section {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.corporate-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.corporate-hero-headline {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.corporate-hero-subhead {
+    font-size: 1.5rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    color: rgba(6, 39, 62, 0.8);
+}
+
+.corporate-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    background: #0091ff;
+    color: white;
+    padding: 18px 36px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(30px);
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+}
+
+.corporate-hero-cta:hover {
+    background: #06273e;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
+}
+
+.corporate-hero-cta-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.corporate-hero-cta:hover .corporate-hero-cta-icon {
+    transform: translateX(5px);
+}
+
+/* Animated Background Elements */
+.corporate-hero-shape-1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: rgba(0, 145, 255, 0.05);
+    border-radius: 50%;
+    top: -300px;
+    right: -200px;
+    z-index: 1;
+}
+
+.corporate-hero-shape-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(6, 39, 62, 0.03);
+    border-radius: 50%;
+    bottom: -200px;
+    left: -100px;
+    z-index: 1;
+}
+
+/* Services Section */
+.corporate-services-section {
+    padding: 100px 40px;
+    background: #ffffff;
+}
+
+.corporate-section-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.corporate-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.corporate-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #0091ff;
+    border-radius: 2px;
+}
+
+.corporate-section-subtitle {
+    font-size: 1.2rem;
+    color: rgba(6, 39, 62, 0.7);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.corporate-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.corporate-service-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.corporate-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.corporate-service-card-header {
+    height: 200px;
+    background: #e5e5e5;
+    position: relative;
+    overflow: hidden;
+}
+
+.corporate-service-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.corporate-service-card:hover .corporate-service-card-image {
+    transform: scale(1.05);
+}
+
+.corporate-service-card-icon {
+    position: absolute;
+    bottom: -30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background: #0091ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 145, 255, 0.3);
+}
+
+.corporate-service-card-body {
+    padding: 40px 30px;
+    position: relative;
+}
+
+.corporate-service-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.corporate-service-card-desc {
+    color: rgba(6, 39, 62, 0.7);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.corporate-service-card-link {
+    display: inline-flex;
+    align-items: center;
+    color: #0091ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.corporate-service-card-link:hover {
+    color: #06273e;
+}
+
+.corporate-service-card-link-icon {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.corporate-service-card-link:hover .corporate-service-card-link-icon {
+    transform: translateX(5px);
+}
+
+/* Contact Form Section */
+.corporate-contact-section {
+    padding: 100px 40px;
+    background: linear-gradient(135deg, #06273e 0%, #000f1a 100%);
+    color: white;
+}
+
+.corporate-contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.corporate-contact-info {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.corporate-contact-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.corporate-contact-desc {
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.corporate-contact-details {
+    margin-top: 40px;
+}
+
+.corporate-contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.corporate-contact-detail-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 145, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.corporate-contact-form {
+    background: white;
+    border-radius: 16px;
+    padding: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.corporate-form-group {
+    margin-bottom: 25px;
+}
+
+.corporate-form-label {
+    display: block;
+    font-weight: 600;
+    color: #06273e;
+    margin-bottom: 8px;
+}
+
+.corporate-form-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.corporate-form-input:focus {
+    border-color: #0091ff;
+    box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.2);
+    outline: none;
+}
+
+.corporate-form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.corporate-form-submit {
+    background: #0091ff;
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.corporate-form-submit:hover {
+    background: #0077d6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .corporate-contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .corporate-contact-info {
+        text-align: center;
+    }
+    
+    .corporate-contact-detail {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .corporate-hero-section {
+        padding: 80px 20px;
+    }
+    
+    .corporate-hero-headline {
+        font-size: 2.5rem;
+    }
+    
+    .corporate-hero-subhead {
+        font-size: 1.2rem;
+    }
+    
+    .corporate-services-section,
+    .corporate-contact-section {
+        padding: 70px 20px;
+    }
+    
+    .corporate-service-card-header {
+        height: 160px;
+    }
+    
+    .corporate-contact-form {
+        padding: 30px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utility Classes */
+.corporate-animate {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+</style>
+
+<div class="corporate-landing-container">
+    <!-- Hero Section -->
+    <section class="corporate-hero-section">
+        <div class="corporate-hero-shape-1"></div>
+        <div class="corporate-hero-shape-2"></div>
+        <div class="corporate-hero-content">
+            <h1 class="corporate-hero-headline">Transform Your Business With <span style="color: #0091ff;">Strategic Technology</span></h1>
+            <p class="corporate-hero-subhead">We deliver cutting-edge corporate solutions that drive growth, efficiency, and competitive advantage in today's digital landscape.</p>
+            <a href="#contact" class="corporate-hero-cta">
+                Get Started
+                <span class="corporate-hero-cta-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="corporate-services-section">
+        <div class="corporate-section-header">
+            <h2 class="corporate-section-title">Our Premium Services</h2>
+            <p class="corporate-section-subtitle">Comprehensive solutions designed to meet the unique challenges of modern enterprises</p>
+        </div>
+        
+        <div class="corporate-services-grid">
+            <!-- Service Card 1 -->
+            <div class="corporate-service-card">
+                <div class="corporate-service-card-header">
+                    <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=Digital+Transformation" alt="Digital Transformation" class="corporate-service-card-image">
+                    <div class="corporate-service-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="corporate-service-card-body">
+                    <h3 class="corporate-service-card-title">Digital Transformation</h3>
+                    <p class="corporate-service-card-desc">Comprehensive strategy and implementation to modernize your operations and leverage emerging technologies.</p>
+                    <a href="#" class="corporate-service-card-link">
+                        Learn more
+                        <span class="corporate-service-card-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service Card 2 -->
+            <div class="corporate-service-card">
+                <div class="corporate-service-card-header">
+                    <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=Data+Analytics" alt="Data Analytics" class="corporate-service-card-image">
+                    <div class="corporate-service-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 21H3v-2h18v2zM8 21V9h4v12H8zM16 4v17h4V4h-4z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="corporate-service-card-body">
+                    <h3 class="corporate-service-card-title">Data Analytics</h3>
+                    <p class="corporate-service-card-desc">Turn your data into actionable insights with our advanced analytics and business intelligence solutions.</p>
+                    <a href="#" class="corporate-service-card-link">
+                        Learn more
+                        <span class="corporate-service-card-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service Card 3 -->
+            <div class="corporate-service-card">
+                <div class="corporate-service-card-header">
+                    <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=Cloud+Solutions" alt="Cloud Solutions" class="corporate-service-card-image">
+                    <div class="corporate-service-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="corporate-service-card-body">
+                    <h3 class="corporate-service-card-title">Cloud Solutions</h3>
+                    <p class="corporate-service-card-desc">Scalable, secure cloud infrastructure and services tailored to your enterprise requirements.</p>
+                    <a href="#" class="corporate-service-card-link">
+                        Learn more
+                        <span class="corporate-service-card-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service Card 4 -->
+            <div class="corporate-service-card">
+                <div class="corporate-service-card-header">
+                    <img src="https://via.placeholder.com/600x400/e5e5e5/06273e?text=Cyber+Security" alt="Cyber Security" class="corporate-service-card-image">
+                    <div class="corporate-service-card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="corporate-service-card-body">
+                    <h3 class="corporate-service-card-title">Cyber Security</h3>
+                    <p class="corporate-service-card-desc">End-to-end protection for your digital assets with enterprise-grade security solutions.</p>
+                    <a href="#" class="corporate-service-card-link">
+                        Learn more
+                        <span class="corporate-service-card-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="corporate-contact-section">
+        <div class="corporate-contact-container">
+            <div class="corporate-contact-info">
+                <h2 class="corporate-contact-title">Ready to Elevate Your Business?</h2>
+                <p class="corporate-contact-desc">Our team of experts is ready to discuss your unique challenges and craft a customized solution that drives measurable results.</p>
+                
+                <div class="corporate-contact-details">
+                    <div class="corporate-contact-detail">
+                        <div class="corporate-contact-detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    
+                    <div class="corporate-contact-detail">
+                        <div class="corporate-contact-detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <span>info@yourcompany.com</span>
+                    </div>
+                    
+                    <div class="corporate-contact-detail">
+                        <div class="corporate-contact-detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span>123 Business Ave, Suite 500<br>New York, NY 10001</span>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="corporate-contact-form">
+                <div class="corporate-form-group">
+                    <label for="name" class="corporate-form-label">Full Name</label>
+                    <input type="text" id="name" class="corporate-form-input" required>
+                </div>
+                
+                <div class="corporate-form-group">
+                    <label for="email" class="corporate-form-label">Email Address</label>
+                    <input type="email" id="email" class="corporate-form-input" required>
+                </div>
+                
+                <div class="corporate-form-group">
+                    <label for="company" class="corporate-form-label">Company</label>
+                    <input type="text" id="company" class="corporate-form-input" required>
+                </div>
+                
+                <div class="corporate-form-group">
+                    <label for="message" class="corporate-form-label">How Can We Help?</label>
+                    <textarea id="message" class="corporate-form-input corporate-form-textarea" required></textarea>
+                </div>
+                
+                <button type="submit" class="corporate-form-submit">Request Consultation</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate hero elements on load
+    const heroHeadline = document.querySelector('.corporate-hero-headline');
+    const heroSubhead = document.querySelector('.corporate-hero-subhead');
+    const heroCta = document.querySelector('.corporate-hero-cta');
+    
+    setTimeout(() => {
+        heroHeadline.classList.add('corporate-animate');
+    }, 200);
+    
+    setTimeout(() => {
+        heroSubhead.classList.add('corporate-animate');
+    }, 400);
+    
+    setTimeout(() => {
+        heroCta.classList.add('corporate-animate');
+    }, 600);
+    
+    // Animate elements when they come into view
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.corporate-service-card, .corporate-contact-info, .corporate-contact-form');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('corporate-animate');
+            }
+        });
+    };
+    
+    // Initial check
+    animateOnScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Form submission handling
+    const contactForm = document.querySelector('.corporate-contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            this.reset();
+        });
+    }
+});
+</script>

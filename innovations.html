@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovations | Defcon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --defcon-primary-dark: #0a192f;
+            --defcon-secondary-dark: #112240;
+            --defcon-accent: #0091ff;
+            --defcon-text-primary: #fff;
+            --defcon-text-secondary: #dcdcdc;
+            --defcon-card-bg: #112240;
+            --defcon-innovation-ai: #fff;
+            --defcon-innovation-quantum: #fff;
+            --defcon-innovation-iot: #fff;
+            --defcon-innovation-biometric: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--defcon-primary-dark);
+            color: var(--defcon-text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .defcon-innovations-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .defcon-innovations-hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1525945995886-0ede2bd49ab6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170') no-repeat center center/cover;
+        }
+        
+        .defcon-innovations-hero-title {
+            font-size: 3.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 1;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.5s;
+        }
+        
+        .defcon-innovations-hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: defcon-fadeInUp 1s forwards 0.8s;
+        }
+        
+        /* Innovation Categories */
+        .defcon-innovations-categories {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .defcon-innovations-section-title {
+            font-size: 2.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        
+        .defcon-innovations-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .defcon-innovations-category {
+            background: var(--defcon-card-bg);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .defcon-innovations-category.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-innovations-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .defcon-innovations-category-ai {
+            border-bottom: 4px solid var(--defcon-innovation-ai);
+        }
+        
+        .defcon-innovations-category-quantum {
+            border-bottom: 4px solid var(--defcon-innovation-quantum);
+        }
+        
+        .defcon-innovations-category-iot {
+            border-bottom: 4px solid var(--defcon-innovation-iot);
+        }
+        
+        .defcon-innovations-category-biometric {
+            border-bottom: 4px solid var(--defcon-innovation-biometric);
+        }
+        
+        .defcon-innovations-category-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .defcon-innovations-category-ai .defcon-innovations-category-icon {
+            color: var(--defcon-innovation-ai);
+        }
+        
+        .defcon-innovations-category-quantum .defcon-innovations-category-icon {
+            color: var(--defcon-innovation-quantum);
+        }
+        
+        .defcon-innovations-category-iot .defcon-innovations-category-icon {
+            color: var(--defcon-innovation-iot);
+        }
+        
+        .defcon-innovations-category-biometric .defcon-innovations-category-icon {
+            color: var(--defcon-innovation-biometric);
+        }
+        
+        .defcon-innovations-category h3 {
+            color: var(--defcon-text-primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .defcon-innovations-category p {
+            margin-bottom: 20px;
+        }
+        
+        .defcon-innovations-category-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-innovations-category-ai .defcon-innovations-category-btn {
+            color: var(--defcon-innovation-ai);
+            border-color: var(--defcon-innovation-ai);
+        }
+        
+        .defcon-innovations-category-ai .defcon-innovations-category-btn:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .defcon-innovations-category-quantum .defcon-innovations-category-btn {
+            color: var(--defcon-innovation-quantum);
+            border-color: var(--defcon-innovation-quantum);
+        }
+        
+        .defcon-innovations-category-quantum .defcon-innovations-category-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .defcon-innovations-category-iot .defcon-innovations-category-btn {
+            color: var(--defcon-innovation-iot);
+            border-color: var(--defcon-innovation-iot);
+        }
+        
+        .defcon-innovations-category-iot .defcon-innovations-category-btn:hover {
+            background: rgba(77, 121, 255, 0.1);
+        }
+        
+        .defcon-innovations-category-biometric .defcon-innovations-category-btn {
+            color: var(--defcon-innovation-biometric);
+            border-color: var(--defcon-innovation-biometric);
+        }
+        
+        .defcon-innovations-category-biometric .defcon-innovations-category-btn:hover {
+            background: rgba(255, 209, 102, 0.1);
+        }
+        
+        /* Featured Innovations */
+        .defcon-innovations-featured {
+            padding: 100px 0;
+            background: var(--defcon-secondary-dark);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+        
+        .defcon-innovations-featured-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 100px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .defcon-innovations-featured-item.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-innovations-featured-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .defcon-innovations-featured-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+        }
+        
+        .defcon-innovations-featured-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 1px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .defcon-innovations-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+        
+        .defcon-innovations-featured-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .defcon-innovations-featured-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .defcon-innovations-featured-tag-ai {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--defcon-innovation-ai);
+        }
+        
+        .defcon-innovations-featured-tag-quantum {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--defcon-innovation-quantum);
+        }
+        
+        .defcon-innovations-featured-tag-iot {
+            background: rgba(77, 121, 255, 0.1);
+            color: var(--defcon-innovation-iot);
+        }
+        
+        .defcon-innovations-featured-tag-biometric {
+            background: rgba(255, 209, 102, 0.1);
+            color: var(--defcon-innovation-biometric);
+        }
+        
+        .defcon-innovations-featured-title {
+            font-size: 2.2rem;
+            color: #0091ff;
+            margin-bottom: 20px;
+        }
+        
+        .defcon-innovations-featured-desc {
+            margin-bottom: 30px;
+        }
+        
+        .defcon-innovations-featured-list {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+        
+        .defcon-innovations-featured-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .defcon-innovations-featured-list li:before {
+            content: '•';
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 10px;
+        }
+        
+        .defcon-innovations-featured-list-ai li:before {
+            color: var(--defcon-innovation-ai);
+        }
+        
+        .defcon-innovations-featured-list-quantum li:before {
+            color: var(--defcon-innovation-quantum);
+        }
+        
+        .defcon-innovations-featured-list-iot li:before {
+            color: var(--defcon-innovation-iot);
+        }
+        
+        .defcon-innovations-featured-list-biometric li:before {
+            color: var(--defcon-innovation-biometric);
+        }
+        
+        .defcon-innovations-featured-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-innovations-featured-cta:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Research & Development */
+        .defcon-innovations-research {
+            padding: 100px 0;
+        }
+        
+        .defcon-innovations-research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .defcon-innovations-research-item {
+            background: var(--defcon-card-bg);
+            border-radius: 1px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-innovations-research-item.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-innovations-research-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .defcon-innovations-research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .defcon-innovations-research-item:hover .defcon-innovations-research-image img {
+            transform: scale(1.1);
+        }
+        
+        .defcon-innovations-research-content {
+            padding: 30px;
+        }
+        
+        .defcon-innovations-research-tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .defcon-innovations-research-title {
+            font-size: 1.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .defcon-innovations-research-desc {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .defcon-innovations-research-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--defcon-accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .defcon-innovations-research-link i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .defcon-innovations-research-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Stats Section */
+        .defcon-innovations-stats {
+            padding: 100px 0;
+            background: var(--defcon-secondary-dark);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            text-align: center;
+        }
+        
+        .defcon-innovations-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .defcon-innovations-stat {
+            padding: 40px 20px;
+            background: var(--defcon-card-bg);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .defcon-innovations-stat.defcon-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .defcon-innovations-stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--defcon-accent), var(--defcon-innovation-iot));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .defcon-innovations-stat-text {
+            color: var(--defcon-text-primary);
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .defcon-innovations-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .defcon-innovations-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .defcon-innovations-cta-title {
+            font-size: 2.5rem;
+            color: var(--defcon-text-primary);
+            margin-bottom: 20px;
+        }
+        
+        .defcon-innovations-cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .defcon-innovations-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .defcon-innovations-cta-btn {
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .defcon-innovations-cta-btn-primary {
+            background: var(--defcon-accent);
+            color: var(--defcon-primary-dark);
+            border: 1px solid var(--defcon-accent);
+        }
+        
+        .defcon-innovations-cta-btn-primary:hover {
+            background: transparent;
+            color: var(--defcon-accent);
+            transform: translateY(-2px);
+        }
+        
+        .defcon-innovations-cta-btn-secondary {
+            background: transparent;
+            color: var(--defcon-text-primary);
+            border: 1px solid var(--defcon-text-primary);
+        }
+        
+        .defcon-innovations-cta-btn-secondary:hover {
+            background: var(--defcon-text-primary);
+            color: var(--defcon-primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .defcon-innovations-footer {
+            background-color: var(--defcon-primary-dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .defcon-innovations-footer-text {
+            color: var(--defcon-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes defcon-fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-innovations-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-innovations-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .defcon-innovations-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-innovations-featured-title {
+                font-size: 1.8rem;
+            }
+            
+            .defcon-innovations-featured-item,
+            .defcon-innovations-featured-item:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .defcon-innovations-featured-image {
+                margin-bottom: 30px;
+            }
+            
+            .defcon-innovations-stats {
+                clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+            }
+            
+            .defcon-innovations-featured {
+                clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+            }
+        }
+
+
+        
+.defcon-crypto-cta {
+  display: inline-flex;
+  align-items: center;
+  background: #dedede;
+  color: #06273e;
+  border: none;
+  padding: 5px 6px 5px 25px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  margin-top: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.defcon-crypto-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-crypto-cta:active {
+  transform: translateY(1px);
+}
+
+.defcon-crypto-text {
+  margin-right: 15px;
+}
+
+.defcon-crypto-icon {
+  width: 40px;
+  height: 40px;
+  background: #0091ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.defcon-crypto-cta:hover .defcon-crypto-icon {
+  background: #0066ff;
+  transform: translateX(3px);
+}
+    </style>
+</head>
+<body>
+    
+
+    <!-- Hero Section -->
+    <section class="defcon-innovations-hero">
+        <div class="defcon-innovations-container">
+            <h1 class="defcon-innovations-hero-title">Pioneering the Future of Technology</h1>
+            <p class="defcon-innovations-hero-subtitle">At Defcon, we're not just keeping pace with digital threats—we're defining the future of security through groundbreaking research and revolutionary technologies.</p>  
+        </div>
+        <!-- New Crypto CTA Button -->
+            <button class="defcon-crypto-cta">
+                <span class="defcon-crypto-text">Explore Innovations</span>
+                <span class="defcon-crypto-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                </span>
+            </button>
+    </section>
+
+    <!-- Innovation Categories -->
+    <section class="defcon-innovations-categories">
+        <div class="defcon-innovations-container">
+            <h2 class="defcon-innovations-section-title">Our Innovation Focus Areas</h2>
+            
+            <div class="defcon-innovations-categories-grid">
+                <div class="defcon-innovations-category defcon-innovations-category-ai">
+                    <div class="defcon-innovations-category-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Security</h3>
+                    <p>Machine learning systems that predict, identify, and neutralize threats before they impact your operations.</p>
+                    <a href="#" class="defcon-innovations-category-btn">Explore AI</a>
+                </div>
+                
+                <div class="defcon-innovations-category defcon-innovations-category-quantum">
+                    <div class="defcon-innovations-category-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Quantum Cryptography</h3>
+                    <p>Next-generation encryption methods that will remain secure even against quantum computing attacks.</p>
+                    <a href="#" class="defcon-innovations-category-btn">Explore Quantum</a>
+                </div>
+                
+                <div class="defcon-innovations-category defcon-innovations-category-iot">
+                    <div class="defcon-innovations-category-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>IoT Protection</h3>
+                    <p>Comprehensive security frameworks for the expanding universe of connected devices and smart infrastructure.</p>
+                    <a href="#" class="defcon-innovations-category-btn">Explore IoT</a>
+                </div>
+                
+                <div class="defcon-innovations-category defcon-innovations-category-biometric">
+                    <div class="defcon-innovations-category-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Advanced Biometrics</h3>
+                    <p>Multi-factor authentication systems that use physiological and behavioral characteristics for unparalleled security.</p>
+                    <a href="#" class="defcon-innovations-category-btn">Explore Biometrics</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Innovations -->
+    <section class="defcon-innovations-featured" id="defcon-innovations-featured">
+        <div class="defcon-innovations-container" style="margin-top: 100px;">
+            <h2 class="defcon-innovations-section-title">Featured Innovations</h2>
+            
+            <!-- Innovation 1 -->
+            <div class="defcon-innovations-featured-item">
+                <div class="defcon-innovations-featured-content">
+                    <span class="defcon-innovations-featured-tag defcon-innovations-featured-tag-ai">AI-Powered Security</span>
+                    <h3 class="defcon-innovations-featured-title">Sentinel AI Threat Prediction System</h3>
+                    <p class="defcon-innovations-featured-desc">Our flagship AI system doesn't just react to threats—it predicts them. Using advanced machine learning algorithms trained on petabytes of threat data, Sentinel identifies attack patterns months before they become widespread.</p>
+                    
+                    <ul class="defcon-innovations-featured-list defcon-innovations-featured-list-ai">
+                        <li>Predicts threats with 94.7% accuracy 60 days in advance</li>
+                        <li>Reduces false positives by 78% compared to traditional systems</li>
+                        <li>Self-learning architecture improves with each threat encountered</li>
+                        <li>Integrates seamlessly with existing security infrastructure</li>
+                    </ul>
+                    
+                    <a href="#" class="defcon-innovations-featured-cta">Request Demo</a>
+                </div>
+                
+                <div class="defcon-innovations-featured-image">
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80" alt="Sentinel AI System">
+                </div>
+            </div>
+            
+            <!-- Innovation 2 -->
+            <div class="defcon-innovations-featured-item">
+                <div class="defcon-innovations-featured-content">
+                    <span class="defcon-innovations-featured-tag defcon-innovations-featured-tag-quantum">Quantum Cryptography</span>
+                    <h3 class="defcon-innovations-featured-title">QuantumShield Encryption Suite</h3>
+                    <p class="defcon-innovations-featured-desc">Preparing for the quantum computing era, our QuantumShield technology uses quantum key distribution and lattice-based cryptography to create encryption that even quantum computers cannot break.</p>
+                    
+                    <ul class="defcon-innovations-featured-list defcon-innovations-featured-list-quantum">
+                        <li>Quantum-resistant algorithms secure against future attacks</li>
+                        <li>Key distribution using quantum entanglement principles</li>
+                        <li>Backward compatible with existing encryption standards</li>
+                        <li>5x faster encryption/decryption than traditional methods</li>
+                    </ul>
+                    
+                    <a href="#" class="defcon-innovations-featured-cta">Learn More</a>
+                </div>
+                
+                <div class="defcon-innovations-featured-image">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="QuantumShield Encryption">
+                </div>
+            </div>
+            
+            <!-- Innovation 3 -->
+            <div class="defcon-innovations-featured-item">
+                <div class="defcon-innovations-featured-content">
+                    <span class="defcon-innovations-featured-tag defcon-innovations-featured-tag-iot">IoT Protection</span>
+                    <h3 class="defcon-innovations-featured-title">Guardian IoT Security Platform</h3>
+                    <p class="defcon-innovations-featured-desc">As IoT devices proliferate, so do their vulnerabilities. Our Guardian platform provides comprehensive protection for connected devices, from industrial sensors to smart home assistants.</p>
+                    
+                    <ul class="defcon-innovations-featured-list defcon-innovations-featured-list-iot">
+                        <li>Lightweight security protocol with minimal resource usage</li>
+                        <li>Automatic device fingerprinting and behavior monitoring</li>
+                        <li>Real-time firmware vulnerability detection</li>
+                        <li>Centralized management for thousands of devices</li>
+                    </ul>
+                    
+                    <a href="#" class="defcon-innovations-featured-cta">See Case Studies</a>
+                </div>
+                
+                <div class="defcon-innovations-featured-image">
+                    <img src="thumbnails/pexels-dominick-davis.jpg" alt="Guardian IoT Platform">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research & Development -->
+    <section class="defcon-innovations-research">
+        <div class="defcon-innovations-container">
+            <h2 class="defcon-innovations-section-title">Cutting-Edge Research</h2>
+            
+            <div class="defcon-innovations-research-grid">
+                <div class="defcon-innovations-research-item">
+                    <div class="defcon-innovations-research-image">
+                        <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Neural Cryptography">
+                    </div>
+                    <div class="defcon-innovations-research-content">
+                        <span class="defcon-innovations-research-tag defcon-innovations-featured-tag-ai">AI Research</span>
+                        <h3 class="defcon-innovations-research-title">Neural Cryptography</h3>
+                        <p class="defcon-innovations-research-desc">Exploring how neural networks can develop and break encryption methods, leading to more robust security protocols.</p>
+                        <a href="#" class="defcon-innovations-research-link">Read White Paper <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="defcon-innovations-research-item">
+                    <div class="defcon-innovations-research-image">
+                        <img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt Behavioral Biometrics">
+                    </div>
+                    <div class="defcon-innovations-research-content">
+                        <span class="defcon-innovations-research-tag defcon-innovations-featured-tag-biometric">Biometrics</span>
+                        <h3 class="defcon-innovations-research-title">Behavioral Biometrics</h3>
+                        <p class="defcon-innovations-research-desc">Advanced authentication using unique patterns in user behavior like typing rhythm, mouse movements, and navigation patterns.</p>
+                        <a href="#" class="defcon-innovations-research-link">Read White Paper <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="defcon-innovations-research-item">
+                    <div class="defcon-innovations-research-image">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Post-Quantum Algorithms">
+                    </div>
+                    <div class="defcon-innovations-research-content">
+                        <span class="defcon-innovations-research-tag defcon-innovations-featured-tag-quantum">Quantum Security</span>
+                        <h3 class="defcon-innovations-research-title">Post-Quantum Algorithms</h3>
+                        <p class="defcon-innovations-research-desc">Developing cryptographic algorithms that will remain secure even when large-scale quantum computers become a reality.</p>
+                        <a href="#" class="defcon-innovations-research-link">Read White Paper <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="defcon-innovations-stats">
+        <div class="defcon-innovations-container">
+            <h2 class="defcon-innovations-section-title">Our Innovation Impact</h2>
+            
+            <div class="defcon-innovations-stats-grid">
+                <div class="defcon-innovations-stat">
+                    <div class="defcon-innovations-stat-number">47</div>
+                    <div class="defcon-innovations-stat-text">Patents Filed</div>
+                </div>
+                
+                <div class="defcon-innovations-stat">
+                    <div class="defcon-innovations-stat-number">$28M</div>
+                    <div class="defcon-innovations-stat-text">R&D Investment</div>
+                </div>
+                
+                <div class="defcon-innovations-stat">
+                    <div class="defcon-innovations-stat-number">62</div>
+                    <div class="defcon-innovations-stat-text">Research Papers</div>
+                </div>
+                
+                <div class="defcon-innovations-stat">
+                    <div class="defcon-innovations-stat-number">19</div>
+                    <div class="defcon-innovations-stat-text">Industry Awards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="defcon-innovations-cta">
+        <div class="defcon-innovations-container">
+            <div class="defcon-innovations-cta-content">
+                <h2 class="defcon-innovations-cta-title">Join Us in Shaping the Future of Cybersecurity</h2>
+                <p class="defcon-innovations-cta-text">Whether you're a business looking to enhance your security posture or a researcher eager to collaborate, Defcon is at the forefront of innovation. Let's build a safer digital world together.</p>
+                <div class="defcon-innovations-cta-buttons">
+                    <a href="#" class="defcon-innovations-cta-btn defcon-innovations-cta-btn-primary">Contact Us</a>
+                    <a href="#" class="defcon-innovations-cta-btn defcon-innovations-cta-btn-secondary">Careers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Footer -->
+    <footer class="defcon-innovations-footer">
+        <div class="defcon-innovations-container">
+            <p class="defcon-innovations-footer-text">&copy; 2024 Defcon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('defcon-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.defcon-innovations-category, .defcon-innovations-featured-item, .defcon-innovations-research-item, .defcon-innovations-stat').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">

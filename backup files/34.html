@@ -1,0 +1,611 @@
+<style>
+.defcon-showcase-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #06273e 0%, #003087 100%);
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.defcon-showcase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.defcon-showcase-header {
+    font-size: 56px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 80px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.defcon-showcase-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.defcon-showcase-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+.defcon-showcase-header:hover::after {
+    width: 200px;
+}
+
+.defcon-showcase-carousel {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 145, 255, 0.2);
+}
+
+.defcon-showcase-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.defcon-showcase-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.defcon-showcase-slide.prev {
+    transform: translateX(-100%);
+}
+
+.defcon-showcase-slide-content {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+}
+
+.defcon-showcase-media {
+    flex: 1;
+    margin-right: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.defcon-showcase-image,
+.defcon-showcase-video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.defcon-showcase-media:hover .defcon-showcase-image,
+.defcon-showcase-media:hover .defcon-showcase-video {
+    transform: scale(1.05);
+}
+
+.defcon-showcase-media-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 145, 255, 0.7);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.defcon-showcase-media:hover .defcon-showcase-media-overlay {
+    opacity: 1;
+}
+
+.defcon-showcase-media-text {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.defcon-showcase-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.defcon-showcase-title {
+    font-size: 32px;
+    color: #06273e;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.defcon-showcase-description {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.defcon-showcase-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.defcon-showcase-feature-item {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.defcon-showcase-feature-item::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #0091ff;
+    font-size: 16px;
+}
+
+.defcon-showcase-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.defcon-showcase-cta:hover {
+    background-color: #0078d4;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-showcase-cta::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.defcon-showcase-cta:hover::after {
+    margin-left: 15px;
+}
+
+.defcon-showcase-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.defcon-showcase-nav-button {
+    width: 12px;
+    height: 12px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.defcon-showcase-nav-button.active {
+    background-color: #0091ff;
+    transform: scale(1.3);
+}
+
+.defcon-showcase-nav-button:hover {
+    background-color: #0078d4;
+}
+
+.defcon-showcase-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://via.placeholder.com/1920x1080?text=Background+Texture');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.15;
+    transform: translateZ(0);
+}
+
+.defcon-showcase-particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .defcon-showcase-section {
+        padding: 60px 0;
+    }
+
+    .defcon-showcase-header {
+        font-size: 40px;
+        margin-bottom: 50px;
+    }
+
+    .defcon-showcase-carousel {
+        height: auto;
+    }
+
+    .defcon-showcase-slide-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .defcon-showcase-media {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .defcon-showcase-image,
+    .defcon-showcase-video {
+        height: 300px;
+    }
+
+    .defcon-showcase-title {
+        font-size: 26px;
+    }
+
+    .defcon-showcase-description {
+        font-size: 14px;
+    }
+
+    .defcon-showcase-feature-item {
+        font-size: 13px;
+    }
+
+    .defcon-showcase-cta {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .defcon-showcase-container {
+        padding: 0 15px;
+    }
+
+    .defcon-showcase-header {
+        font-size: 32px;
+    }
+
+    .defcon-showcase-image,
+    .defcon-showcase-video {
+        height: 200px;
+    }
+
+    .defcon-showcase-title {
+        font-size: 22px;
+    }
+}
+</style>
+
+<div class="defcon-showcase-section">
+    <div class="defcon-showcase-background"></div>
+    <canvas class="defcon-showcase-particle"></canvas>
+    <div class="defcon-showcase-container">
+        <h1 class="defcon-showcase-header">Defcon Showcase</h1>
+        
+        <div class="defcon-showcase-carousel">
+            <div class="defcon-showcase-slide active">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <img src="https://via.placeholder.com/600x400?text=Web+Project" class="defcon-showcase-image" alt="Web Design Project">
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Web Design & Development</h2>
+                        <p class="defcon-showcase-description">Transforming visions into stunning, responsive websites that drive engagement and conversions.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Custom UI/UX design</li>
+                            <li class="defcon-showcase-feature-item">SEO optimization</li>
+                            <li class="defcon-showcase-feature-item">E-commerce integration</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <video src="https://via.placeholder.com/600x400?text=Tech+Video" class="defcon-showcase-video" muted loop></video>
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Tech Support</h2>
+                        <p class="defcon-showcase-description">Unmatched 24/7 support to ensure your systems are always operational and secure.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Proactive monitoring</li>
+                            <li class="defcon-showcase-feature-item">Rapid response</li>
+                            <li class="defcon-showcase-feature-item">System optimization</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <img src="https://via.placeholder.com/600x400?text=IT+Project" class="defcon-showcase-image" alt="IT Consulting Project">
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">IT Consulting</h2>
+                        <p class="defcon-showcase-description">Strategic solutions to optimize your IT infrastructure for maximum efficiency.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Cloud integration</li>
+                            <li class="defcon-showcase-feature-item">Security audits</li>
+                            <li class="defcon-showcase-feature-item">Workflow automation</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <video src="https://via.placeholder.com/600x400?text=Marketing+Video" class="defcon-showcase-video" muted loop></video>
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Digital Marketing</h2>
+                        <p class="defcon-showcase-description">Data-driven campaigns that amplify your brand’s reach and engagement.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">SEO & PPC</li>
+                            <li class="defcon-showcase-feature-item">Social media strategy</li>
+                            <li class="defcon-showcase-feature-item">Content creation</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <img src="https://via.placeholder.com/600x400?text=Graphic+Project" class="defcon-showcase-image" alt="Graphic Design Project">
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Graphic Design</h2>
+                        <p class="defcon-showcase-description">Visually stunning designs that elevate your brand identity.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Logo & branding</li>
+                            <li class="defcon-showcase-feature-item">UI/UX design</li>
+                            <li class="defcon-showcase-feature-item">Marketing collateral</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <img src="https://via.placeholder.com/600x400?text=Photo+Project" class="defcon-showcase-image" alt="Photography Project">
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Photography</h2>
+                        <p class="defcon-showcase-description">High-quality images that capture your brand’s essence.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Product photography</li>
+                            <li class="defcon-showcase-feature-item">Corporate headshots</li>
+                            <li class="defcon-showcase-feature-item">Event coverage</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-slide">
+                <div class="defcon-showcase-slide-content">
+                    <div class="defcon-showcase-media">
+                        <video src="https://via.placeholder.com/600x400?text=Video+Project" class="defcon-showcase-video" muted loop></video>
+                        <div class="defcon-showcase-media-overlay">
+                            <span class="defcon-showcase-media-text">View Project</span>
+                        </div>
+                    </div>
+                    <div class="defcon-showcase-info">
+                        <h2 class="defcon-showcase-title">Videography</h2>
+                        <p class="defcon-showcase-description">Cinematic videos that tell your brand’s story with impact.</p>
+                        <ul class="defcon-showcase-features">
+                            <li class="defcon-showcase-feature-item">Promotional videos</li>
+                            <li class="defcon-showcase-feature-item">Corporate films</li>
+                            <li class="defcon-showcase-feature-item">Post-production editing</li>
+                        </ul>
+                        <a href="#contact" class="defcon-showcase-cta">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="defcon-showcase-nav">
+                <div class="defcon-showcase-nav-button active"></div>
+                <div class="defcon-showcase-nav-button"></div>
+                <div class="defcon-showcase-nav-button"></div>
+                <div class="defcon-showcase-nav-button"></div>
+                <div class="defcon-showcase-nav-button"></div>
+                <div class="defcon-showcase-nav-button"></div>
+                <div class="defcon-showcase-nav-button"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.defcon-showcase-slide');
+    const navButtons = document.querySelectorAll('.defcon-showcase-nav-button');
+    const header = document.querySelector('.defcon-showcase-header');
+    let currentSlide = 0;
+    let autoSlideInterval;
+
+    // Show header on load
+    setTimeout(() => {
+        header.classList.add('visible');
+    }, 100);
+
+    // Carousel logic
+    function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        slides[currentSlide].classList.add('prev');
+        navButtons[currentSlide].classList.remove('active');
+
+        currentSlide = index;
+        slides[currentSlide].classList.remove('prev');
+        slides[currentSlide].classList.add('active');
+        navButtons[currentSlide].classList.add('active');
+    }
+
+    navButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            goToSlide(index);
+            startAutoSlide();
+        });
+    });
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            goToSlide(nextSlide);
+        }, 5000);
+    }
+
+    startAutoSlide();
+
+    // Particle effect
+    const canvas = document.querySelector('.defcon-showcase-particle');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 80;
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 0.4 - 0.2;
+            this.speedY = Math.random() * 0.4 - 0.2;
+            this.opacity = Math.random() * 0.4 + 0.2;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(0, 145, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    // Auto-play videos on slide activation
+    slides.forEach(slide => {
+        const video = slide.querySelector('.defcon-showcase-video');
+        if (video) {
+            slide.addEventListener('transitionend', () => {
+                if (slide.classList.contains('active')) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        }
+    });
+});
+</script>

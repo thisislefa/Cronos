@@ -1,0 +1,1057 @@
+<style>
+    /* Base Styles */
+    .defcon-webdesign-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Typography */
+    .defcon-webdesign-heading {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #06273e;
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .defcon-webdesign-heading.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-heading::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background-color: #0091ff;
+    }
+
+    .defcon-webdesign-subheading {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.5rem;
+        color: #06273e;
+        margin-bottom: 2rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .defcon-webdesign-subheading.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-section-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        color: #06273e;
+        position: relative;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .defcon-webdesign-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: #0091ff;
+    }
+
+    /* Hero Section */
+    /* Modify the hero section styles */
+.defcon-webdesign-hero {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, #0091ff 100%), 
+                url('thumbnails/pexels-fauxels-3184455.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+/* Remove the existing hero image styles */
+.defcon-webdesign-hero-image {
+    display: none;
+}
+
+/* Ensure the content stays visible with proper contrast */
+.defcon-webdesign-hero-content {
+    position: relative;
+   padding: 100px 20px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+    .defcon-webdesign-hero-image.visible {
+        opacity: 1;
+        right: 0;
+    }
+
+    /* Service Tiers */
+    .defcon-webdesign-service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin: 80px 0;
+    }
+
+    .defcon-webdesign-service-card {
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .defcon-webdesign-service-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .defcon-webdesign-service-card-header {
+        background-color: #0091ff;
+        color: white;
+        padding: 25px;
+        position: relative;
+    }
+
+    .defcon-webdesign-service-card-header h3 {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        font-size: 1.6rem;
+    }
+
+    .defcon-webdesign-service-card-body {
+        padding: 30px;
+        border: 1px solid #e5e5e5;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .defcon-webdesign-service-features {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+    }
+
+    .defcon-webdesign-service-features li {
+        padding: 10px 0;
+        position: relative;
+        padding-left: 30px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .defcon-webdesign-service-features li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #0091ff;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .defcon-webdesign-service-price {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #06273e;
+        margin: 25px 0;
+    }
+
+    .defcon-webdesign-service-price span {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .defcon-webdesign-service-cta {
+        display: inline-block;
+        padding: 14px 35px;
+        background-color: #0091ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-webdesign-service-cta:hover {
+        background-color: #0077cc;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Process Section */
+    .defcon-webdesign-process-section {
+        padding: 100px 0;
+        background-color: #f9f9f9;
+        margin: 80px 0;
+        text-align: center;
+    }
+
+    .defcon-webdesign-process-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 60px;
+        flex-wrap: wrap;
+    }
+
+    .defcon-webdesign-process-step {
+        flex: 1;
+        min-width: 200px;
+        margin: 0 15px 40px;
+        text-align: center;
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .defcon-webdesign-process-step.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-step-number {
+        width: 60px;
+        height: 60px;
+        background-color: #0091ff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0 auto 25px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .defcon-webdesign-step-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: #06273e;
+    }
+
+    .defcon-webdesign-step-desc {
+        font-family: 'Times New Roman', Times, serif;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Portfolio Showcase */
+    .defcon-webdesign-portfolio {
+        margin: 100px 0;
+        text-align: center;
+    }
+
+    .defcon-webdesign-portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .defcon-webdesign-portfolio-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        height: 350px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .defcon-webdesign-portfolio-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-portfolio-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .defcon-webdesign-portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(6, 39, 62, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+       
+    }
+
+    .defcon-webdesign-portfolio-item:hover .defcon-webdesign-portfolio-overlay {
+        opacity: 1;
+    }
+
+    .defcon-webdesign-portfolio-item:hover .defcon-webdesign-portfolio-image {
+        transform: scale(1.1);
+    }
+
+    .defcon-webdesign-portfolio-title {
+        font-family: 'Times New Roman', Times, serif;
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .defcon-webdesign-portfolio-desc {
+        font-family: 'Times New Roman', Times, serif;
+        color: #e5e5e5;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .defcon-webdesign-portfolio-link {
+        font-family: 'Times New Roman', Times, serif;
+        color: white;
+        text-decoration: none;
+        border: 1px solid #0091ff;
+        padding: 8px 20px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-webdesign-portfolio-link:hover {
+        background-color: #0091ff;
+    }
+
+    /* Technologies Section */
+    .defcon-webdesign-tech-section {
+        padding: 80px 0;
+        background-color: #06273e;
+        color: white;
+        text-align: center;
+    }
+
+    .defcon-webdesign-tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .defcon-webdesign-tech-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .defcon-webdesign-tech-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-tech-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px);
+    }
+
+    .defcon-webdesign-tech-icon {
+        height: 60px;
+        margin-bottom: 15px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+    }
+
+    .defcon-webdesign-tech-name {
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        color: white;
+    }
+
+    /* Testimonials */
+    .defcon-webdesign-testimonials {
+        margin: 100px 0;
+        text-align: center;
+    }
+
+    .defcon-webdesign-testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .defcon-webdesign-testimonial-card {
+        background: white;
+        padding: 35px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .defcon-webdesign-testimonial-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .defcon-webdesign-testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 5rem;
+        color: #e5e5e5;
+        font-family: Georgia, serif;
+        line-height: 1;
+        z-index: 0;
+    }
+
+    .defcon-webdesign-testimonial-content {
+        margin-bottom: 25px;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+        font-family: 'Times New Roman', Times, serif;
+        line-height: 1.6;
+    }
+
+    .defcon-webdesign-testimonial-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .defcon-webdesign-testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 20px;
+        object-fit: cover;
+    }
+
+    .defcon-webdesign-author-info h4 {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        color: #06273e;
+    }
+
+    .defcon-webdesign-author-info p {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 5px 0 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* FAQ Section */
+    .defcon-webdesign-faq-section {
+        margin: 100px 0;
+        text-align: center;
+    }
+
+    .defcon-webdesign-faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .defcon-webdesign-faq-item {
+        margin-bottom: 20px;
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .defcon-webdesign-faq-question {
+        padding: 20px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        transition: background-color 0.3s ease;
+    }
+
+    .defcon-webdesign-faq-question:hover {
+        background-color: #f0f0f0;
+    }
+
+    .defcon-webdesign-faq-question::after {
+        content: '+';
+        font-size: 1.8rem;
+        transition: transform 0.3s ease;
+    }
+
+    .defcon-webdesign-faq-question.active::after {
+        transform: rotate(45deg);
+    }
+
+    .defcon-webdesign-faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, padding 0.5s ease;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .defcon-webdesign-faq-answer.open {
+        padding: 20px;
+        max-height: 500px;
+    }
+
+    /* CTA Section */
+    .defcon-webdesign-cta-section {
+        background-color: #06273e;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .defcon-webdesign-cta-heading {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+
+    .defcon-webdesign-cta-subheading {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+
+    .defcon-webdesign-cta-button {
+        display: inline-block;
+        padding: 16px 45px;
+        background-color: #0091ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        font-family: 'Times New Roman', Times, serif;
+        transition: all 0.3s ease;
+    }
+
+    .defcon-webdesign-cta-button:hover {
+        background-color: #0077cc;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .defcon-webdesign-hero-image {
+            display: none;
+        }
+
+        .defcon-webdesign-hero-content {
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .defcon-webdesign-process-steps {
+            flex-direction: column;
+        }
+
+        .defcon-webdesign-process-step {
+            margin-bottom: 50px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .defcon-webdesign-heading {
+            font-size: 2.5rem;
+        }
+
+        .defcon-webdesign-subheading {
+            font-size: 1.3rem;
+        }
+
+        .defcon-webdesign-service-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .defcon-webdesign-portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="defcon-webdesign-hero">
+    <div class="defcon-webdesign-container">
+        <div class="defcon-webdesign-hero-content">
+            <h1 class="defcon-webdesign-heading">Web Design & Development</h1>
+            <p class="defcon-webdesign-subheading">Crafting digital experiences that elevate brands and drive measurable results. Our bespoke web solutions combine cutting-edge technology with strategic design.</p>
+            <!-- Placeholder image - replace with your actual hero image -->
+            <img src="thumbnails/pexels-fauxels-3184455.jpg" alt="Defcon Web Design" class="defcon-webdesign-hero-image">
+        </div>
+    </div>
+</div>
+
+<div class="defcon-webdesign-container">
+    <h2 class="defcon-webdesign-section-title">Our Web Solutions</h2>
+    <p style="text-align: center; font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">From sleek brochure sites to complex web applications, we build digital experiences that convert. Every project receives our signature attention to detail and commitment to excellence.</p>
+
+    <div class="defcon-webdesign-service-grid">
+        <!-- Basic Website Package -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>Advanced Website</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">For growing businesses that need more sophisticated features and functionality.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>10-15 Custom Designed Pages</li>
+                    <li>Advanced Mobile Optimization</li>
+                    <li>Comprehensive SEO Setup</li>
+                    <li>Custom Contact Forms</li>
+                    <li>3 Rounds of Revisions</li>
+                    <li>Custom WordPress Theme</li>
+                    <li>Advanced Analytics Integration</li>
+                    <li>Performance Optimization</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">$7,500+ <span>one-time</span></div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+
+        <!-- Advanced Website Package -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>Advanced Website</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">For growing businesses that need more sophisticated features and functionality.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>10-15 Custom Designed Pages</li>
+                    <li>Advanced Mobile Optimization</li>
+                    <li>Comprehensive SEO Setup</li>
+                    <li>Custom Contact Forms</li>
+                    <li>3 Rounds of Revisions</li>
+                    <li>Custom WordPress Theme</li>
+                    <li>Advanced Analytics Integration</li>
+                    <li>Performance Optimization</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">$7,500+ <span>one-time</span></div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+
+        <!-- E-Commerce Package -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>E-Commerce Solution</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">Complete online store setup with secure payment processing and inventory management.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>Custom Store Design</li>
+                    <li>Product Catalog Setup (Up to 50 products)</li>
+                    <li>Secure Payment Gateway Integration</li>
+                    <li>Mobile-Optimized Checkout</li>
+                    <li>Inventory Management System</li>
+                    <li>Product SEO Optimization</li>
+                    <li>Shipping Calculator</li>
+                    <li>WooCommerce or Shopify Pro</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">$12,000+ <span>one-time</span></div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+
+        <!-- Web Application -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>Custom Web Application</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">Bespoke web applications built to solve your unique business challenges.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>Custom Requirements Analysis</li>
+                    <li>User Experience Design</li>
+                    <li>Database Architecture</li>
+                    <li>API Development & Integration</li>
+                    <li>User Authentication System</li>
+                    <li>Admin Dashboard</li>
+                    <li>Ongoing Maintenance Plans</li>
+                    <li>React/Angular/Vue Framework</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">$25,000+ <span>starting at</span></div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+
+        <!-- Enterprise Solution -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>Enterprise Solution</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">Large-scale web solutions for corporations with complex requirements.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>Dedicated Project Manager</li>
+                    <li>Custom Software Development</li>
+                    <li>Enterprise-Grade Security</li>
+                    <li>Scalable Cloud Infrastructure</li>
+                    <li>Multi-Language Support</li>
+                    <li>Advanced Analytics Integration</li>
+                    <li>CRM/ERP Integration</li>
+                    <li>Ongoing Support & Maintenance</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">$50,000+ <span>starting at</span></div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="defcon-webdesign-service-card">
+            <div class="defcon-webdesign-service-card-header">
+                <h3>Add-On Services</h3>
+            </div>
+            <div class="defcon-webdesign-service-card-body">
+                <p style="font-family: 'Times New Roman', Times, serif;">Enhance your website with these premium services.</p>
+                <ul class="defcon-webdesign-service-features">
+                    <li>Advanced SEO Package: $1,500/month</li>
+                    <li>Content Creation: $150/page</li>
+                    <li>Professional Photography: $1,000/day</li>
+                    <li>Video Production: $2,500/video</li>
+                    <li>Ongoing Maintenance: $150/hour</li>
+                    <li>Hosting & Security: $200/month</li>
+                    <li>Conversion Rate Optimization: $3,000 setup</li>
+                </ul>
+                <div class="defcon-webdesign-service-price">Custom Pricing</div>
+                <a href="#contact" class="defcon-webdesign-service-cta">Get Started</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Process Section -->
+<div class="defcon-webdesign-process-section">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-section-title">Our Design Process</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">We follow a meticulous approach to ensure every project exceeds expectations and delivers measurable results.</p>
+
+        <div class="defcon-webdesign-process-steps">
+            <div class="defcon-webdesign-process-step">
+                <div class="defcon-webdesign-step-number">1</div>
+                <h3 class="defcon-webdesign-step-title">Discovery</h3>
+                <p class="defcon-webdesign-step-desc">We dive deep into your business objectives, target audience, and technical requirements to establish a solid foundation.</p>
+            </div>
+            <div class="defcon-webdesign-process-step">
+                <div class="defcon-webdesign-step-number">2</div>
+                <h3 class="defcon-webdesign-step-title">Strategy</h3>
+                <p class="defcon-webdesign-step-desc">Our team crafts a comprehensive digital strategy tailored to your goals and market position.</p>
+            </div>
+            <div class="defcon-webdesign-process-step">
+                <div class="defcon-webdesign-step-number">3</div>
+                <h3 class="defcon-webdesign-step-title">Design</h3>
+                <p class="defcon-webdesign-step-desc">We create pixel-perfect designs that balance aesthetics with functionality and user experience.</p>
+            </div>
+            <div class="defcon-webdesign-process-step">
+                <div class="defcon-webdesign-step-number">4</div>
+                <h3 class="defcon-webdesign-step-title">Development</h3>
+                <p class="defcon-webdesign-step-desc">Our engineers build robust, scalable solutions using cutting-edge technologies and best practices.</p>
+            </div>
+            <div class="defcon-webdesign-process-step">
+                <div class="defcon-webdesign-step-number">5</div>
+                <h3 class="defcon-webdesign-step-title">Launch</h3>
+                <p class="defcon-webdesign-step-desc">We deploy your solution with precision and provide comprehensive training and documentation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Showcase -->
+<div class="defcon-webdesign-portfolio">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-section-title">Our Portfolio</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">Explore our recent work and see how we've helped businesses like yours achieve their digital goals.</p>
+
+        <div class="defcon-webdesign-portfolio-grid">
+            <div class="defcon-webdesign-portfolio-item">
+                <!-- Placeholder image - replace with actual project image -->
+                <img src="thumbnails/pexels-inspiredimages-5626726.jpg" alt="Project 1" class="defcon-webdesign-portfolio-image">
+                <div class="defcon-webdesign-portfolio-overlay">
+                    <h3 class="defcon-webdesign-portfolio-title">Corporate Website</h3>
+                    <p class="defcon-webdesign-portfolio-desc">A modern responsive website for a financial services firm with custom dashboard integration.</p>
+                    <a href="#" class="defcon-webdesign-portfolio-link">View Project</a>
+                </div>
+            </div>
+            <div class="defcon-webdesign-portfolio-item">
+                <img src="https://via.placeholder.com/600x400" alt="Project 2" class="defcon-webdesign-portfolio-image">
+                <div class="defcon-webdesign-portfolio-overlay">
+                    <h3 class="defcon-webdesign-portfolio-title">E-Commerce Platform</h3>
+                    <p class="defcon-webdesign-portfolio-desc">A high-performance online store with custom product configurator and checkout flow.</p>
+                    <a href="#" class="defcon-webdesign-portfolio-link">View Project</a>
+                </div>
+            </div>
+            <div class="defcon-webdesign-portfolio-item">
+                <img src="https://via.placeholder.com/600x400" alt="Project 3" class="defcon-webdesign-portfolio-image">
+                <div class="defcon-webdesign-portfolio-overlay">
+                    <h3 class="defcon-webdesign-portfolio-title">Web Application</h3>
+                    <p class="defcon-webdesign-portfolio-desc">A custom SaaS platform with user management, analytics, and reporting features.</p>
+                    <a href="#" class="defcon-webdesign-portfolio-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Technologies Section -->
+<div class="defcon-webdesign-tech-section">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-section-title" style="color: white;">Technologies We Master</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6; color: #e5e5e5;">We work with industry-leading technologies to deliver exceptional results for our clients.</p>
+
+        <div class="defcon-webdesign-tech-grid">
+            <!-- Placeholder icons - replace with actual technology logos -->
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="HTML5" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">HTML5</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="CSS3" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">CSS3</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="JavaScript" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">JavaScript</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="React" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">React</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="Node.js" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">Node.js</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="WordPress" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">WordPress</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="Shopify" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">Shopify</div>
+            </div>
+            <div class="defcon-webdesign-tech-item">
+                <img src="https://via.placeholder.com/60x60" alt="AWS" class="defcon-webdesign-tech-icon">
+                <div class="defcon-webdesign-tech-name">AWS</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="defcon-webdesign-testimonials">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-section-title">Client Success Stories</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">Don't just take our word for it. Here's what our clients say about working with us.</p>
+
+        <div class="defcon-webdesign-testimonial-grid">
+            <div class="defcon-webdesign-testimonial-card">
+                <div class="defcon-webdesign-testimonial-content">
+                    Defcon transformed our online presence completely. Their attention to detail and strategic approach resulted in a 300% increase in lead generation within three months of launching our new website.
+                </div>
+                <div class="defcon-webdesign-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 1">
+                    <div class="defcon-webdesign-author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>CEO, TechCorp Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="defcon-webdesign-testimonial-card">
+                <div class="defcon-webdesign-testimonial-content">
+                    The custom web application Defcon built for our logistics company has streamlined our operations and reduced processing time by 40%. Their team is exceptionally talented and a pleasure to work with.
+                </div>
+                <div class="defcon-webdesign-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 2">
+                    <div class="defcon-webdesign-author-info">
+                        <h4>Michael Chen</h4>
+                        <p>COO, Global Logistics Inc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="defcon-webdesign-testimonial-card">
+                <div class="defcon-webdesign-testimonial-content">
+                    We've worked with several web agencies before, but none delivered the level of sophistication and professionalism that Defcon brought to our e-commerce platform. The results speak for themselves.
+                </div>
+                <div class="defcon-webdesign-testimonial-author">
+                    <img src="https://via.placeholder.com/60x60" alt="Client 3">
+                    <div class="defcon-webdesign-author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Marketing Director, Luxe Retail</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="defcon-webdesign-faq-section">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-section-title">Frequently Asked Questions</h2>
+        <p style="font-family: 'Times New Roman', Times, serif; max-width: 800px; margin: 0 auto 40px; line-height: 1.6;">Answers to common questions about our web design and development services.</p>
+
+        <div class="defcon-webdesign-faq-container">
+            <div class="defcon-webdesign-faq-item">
+                <div class="defcon-webdesign-faq-question">How long does a typical web design project take?</div>
+                <div class="defcon-webdesign-faq-answer">
+                    <p style="font-family: 'Times New Roman', Times, serif;">Project timelines vary based on complexity. A basic website typically takes 4-6 weeks, while more complex projects can take 3-6 months. We provide a detailed timeline after our initial discovery phase.</p>
+                </div>
+            </div>
+
+            <div class="defcon-webdesign-faq-item">
+                <div class="defcon-webdesign-faq-question">Do you offer ongoing maintenance after launch?</div>
+                <div class="defcon-webdesign-faq-answer">
+                    <p style="font-family: 'Times New Roman', Times, serif;">Yes, we offer comprehensive maintenance plans that include security updates, performance optimization, content updates, and technical support. Plans start at $200/month.</p>
+                </div>
+            </div>
+
+            <div class="defcon-webdesign-faq-item">
+                <div class="defcon-webdesign-faq-question">What CMS platforms do you work with?</div>
+                <div class="defcon-webdesign-faq-answer">
+                    <p style="font-family: 'Times New Roman', Times, serif;">We specialize in WordPress, Shopify, and custom CMS solutions. We choose the platform that best fits your needs based on functionality requirements, scalability, and budget.</p>
+                </div>
+            </div>
+
+            <div class="defcon-webdesign-faq-item">
+                <div class="defcon-webdesign-faq-question">Can you redesign my existing website?</div>
+                <div class="defcon-webdesign-faq-answer">
+                    <p style="font-family: 'Times New Roman', Times, serif;">Absolutely. We analyze your current site, identify areas for improvement, and create a redesign strategy that enhances both aesthetics and performance while preserving your SEO value.</p>
+                </div>
+            </div>
+
+            <div class="defcon-webdesign-faq-item">
+                <div class="defcon-webdesign-faq-question">What's included in your SEO services?</div>
+                <div class="defcon-webdesign-faq-answer">
+                    <p style="font-family: 'Times New Roman', Times, serif;">Our SEO packages include technical optimization, keyword research, content strategy, on-page optimization, backlink analysis, and monthly performance reporting with actionable insights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="defcon-webdesign-cta-section">
+    <div class="defcon-webdesign-container">
+        <h2 class="defcon-webdesign-cta-heading">Ready to Elevate Your Digital Presence?</h2>
+        <p class="defcon-webdesign-cta-subheading">Contact our team today to discuss your project. We'll craft a custom solution that drives results and positions your brand as an industry leader.</p>
+        <a href="#contact" class="defcon-webdesign-cta-button">Schedule a Consultation</a>
+    </div>
+</div>
+
+<script>
+    // Intersection Observer for scroll animations
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.defcon-webdesign-heading, .defcon-webdesign-subheading, .defcon-webdesign-service-card, .defcon-webdesign-process-step, .defcon-webdesign-testimonial-card, .defcon-webdesign-hero-image, .defcon-webdesign-portfolio-item, .defcon-webdesign-tech-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    };
+
+    // FAQ Accordion
+    const setupFAQ = () => {
+        const questions = document.querySelectorAll('.defcon-webdesign-faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                
+                // Close all answers first
+                document.querySelectorAll('.defcon-webdesign-faq-answer').forEach(ans => {
+                    ans.classList.remove('open');
+                });
+                document.querySelectorAll('.defcon-webdesign-faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Open current if it was closed
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    question.classList.add('active');
+                }
+            });
+        });
+    };
+
+    // Smooth scrolling for anchor links
+    const smoothScroll = () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    };
+
+    // Initialize all functions when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+        setupFAQ();
+        smoothScroll();
+    });
+
+    // Additional animation for hero text
+    window.addEventListener('load', () => {
+        const heading = document.querySelector('.defcon-webdesign-heading');
+        const subheading = document.querySelector('.defcon-webdesign-subheading');
+        
+        if (heading) heading.classList.add('visible');
+        if (subheading) subheading.classList.add('visible');
+    });
+</script>

@@ -1,0 +1,657 @@
+<!-- Premium Cinema Showcase Section -->
+<section class="defcon-cinema-showcase">
+  <!-- Theater Background Elements -->
+  <div class="defcon-theater-curtain defcon-curtain-left"></div>
+  <div class="defcon-theater-curtain defcon-curtain-right"></div>
+  <div class="defcon-cinema-vignette"></div>
+  
+  <!-- Projector Light Effect -->
+  <div class="defcon-projector-light"></div>
+  
+  <!-- Floating Dust Particles -->
+  <div class="defcon-cinema-dust">
+    <div class="defcon-dust-particle defcon-dust-1"></div>
+    <div class="defcon-dust-particle defcon-dust-2"></div>
+    <div class="defcon-dust-particle defcon-dust-3"></div>
+    <div class="defcon-dust-particle defcon-dust-4"></div>
+    <div class="defcon-dust-particle defcon-dust-5"></div>
+  </div>
+  
+  <!-- Main Content Container -->
+  <div class="defcon-cinema-container">
+    <!-- Cinema Video Player -->
+    <div class="defcon-cinema-video-container">
+      <div class="defcon-film-strip defcon-film-top"></div>
+      <div class="defcon-film-strip defcon-film-bottom"></div>
+      <div class="defcon-video-frame-decoration defcon-corner-1"></div>
+      <div class="defcon-video-frame-decoration defcon-corner-2"></div>
+      <div class="defcon-video-frame-decoration defcon-corner-3"></div>
+      <div class="defcon-video-frame-decoration defcon-corner-4"></div>
+      <div class="defcon-cinema-video-wrapper">
+        <video class="defcon-cinema-video"  loop muted>
+          <source src="videos/techno.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="defcon-cinema-content">
+      <div class="defcon-cinema-glass-panel">
+        <h1 class="defcon-cinema-heading">
+          <span class="defcon-heading-text">Premium Digital Experiences</span>
+          <span class="defcon-heading-underline"></span>
+        </h1>
+        <p class="defcon-cinema-description">
+          Crafted with the precision of a blockbuster production, our digital solutions 
+          deliver unforgettable experiences that captivate and engage your audience.
+        </p>
+        <button class="defcon-cinema-cta">
+          <span class="defcon-cta-text">Explore Showcase</span>
+          <span class="defcon-cta-glow"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ambient Lighting -->
+  <div class="defcon-ambient-light defcon-light-1"></div>
+  <div class="defcon-ambient-light defcon-light-2"></div>
+</section>
+
+<style>
+/* Base Styles */
+.defcon-cinema-showcase {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at center, rgba(6, 39, 62, 0.9) 0%, #000913 100%),
+    url('https://example.com/velvet-texture.jpg');
+  background-blend-mode: overlay;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  color: #e5e5e5;
+}
+
+.defcon-cinema-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  z-index: 3;
+  position: relative;
+}
+
+/* Theater Curtains */
+.defcon-theater-curtain {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  z-index: 2;
+  animation: defconCurtainSway 8s infinite ease-in-out;
+}
+
+.defcon-curtain-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  animation-delay: 0s;
+}
+
+.defcon-curtain-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  animation-delay: -2s;
+}
+
+/* Cinema Video Container */
+.defcon-cinema-video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-right: auto;
+  perspective: 1200px;
+}
+
+.defcon-cinema-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 40%; /* Ultra-wide aspect ratio */
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 
+    0 0 60px rgba(0, 145, 255, 0.3),
+    0 0 120px rgba(0, 145, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  background: #000;
+}
+
+.defcon-cinema-video-wrapper:hover {
+  transform: scale(1.02) translateZ(20px);
+  box-shadow: 
+    0 0 80px rgba(0, 145, 255, 0.4),
+    0 0 140px rgba(0, 145, 255, 0.15);
+}
+
+.defcon-cinema-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Film Strip Effects */
+.defcon-film-strip {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: repeating-linear-gradient(
+    to right,
+    #000 0px,
+    #000 20px,
+    #333 20px,
+    #333 40px
+  );
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.defcon-film-top {
+  top: -15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.defcon-film-bottom {
+  bottom: -15px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Frame Decorations */
+.defcon-video-frame-decoration {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 145, 255, 0.7);
+  z-index: 3;
+  opacity: 0;
+  animation: defconCornerAppear 4s infinite;
+}
+
+.defcon-corner-1 {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+  animation-delay: 0.5s;
+}
+
+.defcon-corner-2 {
+  top: -10px;
+  right: -10px;
+  border-left: none;
+  border-bottom: none;
+  animation-delay: 1s;
+}
+
+.defcon-corner-3 {
+  bottom: -10px;
+  left: -10px;
+  border-right: none;
+  border-top: none;
+  animation-delay: 1.5s;
+}
+
+.defcon-corner-4 {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
+  animation-delay: 2s;
+}
+
+/* Content Area */
+.defcon-cinema-content {
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+}
+
+.defcon-cinema-glass-panel {
+  background: rgba(6, 39, 62, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid rgba(0, 145, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-cinema-heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+  line-height: 1.2;
+  position: relative;
+}
+
+.defcon-heading-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: defconTypewriter 1.5s steps(30) 0.5s forwards;
+  width: 0;
+}
+
+.defcon-heading-underline {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0091ff 0%, transparent 100%);
+  animation: defconUnderlineExpand 0.8s ease-out 2s forwards;
+}
+
+.defcon-cinema-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+  opacity: 0;
+  transform: translateX(30px);
+  animation: defconSlideInFade 0.8s ease-out 1.8s forwards;
+}
+
+/* CTA Button */
+.defcon-cinema-cta {
+  position: relative;
+  background: linear-gradient(90deg, #0091ff 0%, #0066ff 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: defconButtonAppear 0.6s ease-out 2.5s forwards;
+  z-index: 1;
+}
+
+.defcon-cta-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0066ff 0%, #0091ff 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.defcon-cinema-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-cinema-cta:hover .defcon-cta-glow {
+  opacity: 1;
+}
+
+.defcon-cinema-cta:active {
+  transform: translateY(1px);
+}
+
+/* Theater Effects */
+.defcon-cinema-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.defcon-projector-light {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba(0, 145, 255, 0.1) 0%, transparent 100%);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  z-index: 1;
+  animation: defconProjectorPulse 8s infinite alternate;
+}
+
+.defcon-ambient-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.defcon-light-1 {
+  width: 300px;
+  height: 300px;
+  background: #0091ff;
+  top: -100px;
+  left: -100px;
+  animation: defconLightFloat 12s infinite ease-in-out;
+}
+
+.defcon-light-2 {
+  width: 400px;
+  height: 400px;
+  background: #ffffff;
+  bottom: -150px;
+  right: -100px;
+  animation: defconLightFloat 15s infinite ease-in-out reverse;
+}
+
+/* Cinema Dust Particles */
+.defcon-cinema-dust {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.defcon-dust-particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: defconDustFloat linear infinite;
+}
+
+.defcon-dust-1 {
+  width: 2px;
+  height: 2px;
+  top: 20%;
+  left: 15%;
+  animation-duration: 20s;
+}
+
+.defcon-dust-2 {
+  width: 1px;
+  height: 1px;
+  top: 60%;
+  left: 70%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+.defcon-dust-3 {
+  width: 3px;
+  height: 3px;
+  top: 40%;
+  left: 30%;
+  animation-duration: 15s;
+  animation-delay: -3s;
+}
+
+.defcon-dust-4 {
+  width: 1px;
+  height: 1px;
+  top: 80%;
+  left: 50%;
+  animation-duration: 30s;
+  animation-delay: -7s;
+}
+
+.defcon-dust-5 {
+  width: 2px;
+  height: 2px;
+  top: 30%;
+  left: 80%;
+  animation-duration: 18s;
+  animation-delay: -2s;
+}
+
+/* Animations */
+@keyframes defconTypewriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes defconUnderlineExpand {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes defconSlideInFade {
+  from { 
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes defconButtonAppear {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes defconCurtainSway {
+  0%, 100% { transform: translateX(0) }
+  50% { transform: translateX(10px) }
+}
+
+@keyframes defconCornerAppear {
+  0%, 100% { opacity: 0 }
+  50% { opacity: 1 }
+}
+
+@keyframes defconProjectorPulse {
+  from { opacity: 0.3 }
+  to { opacity: 0.1 }
+}
+
+@keyframes defconLightFloat {
+  0%, 100% { transform: translate(0, 0) }
+  25% { transform: translate(50px, 50px) }
+  50% { transform: translate(0, 100px) }
+  75% { transform: translate(-50px, 50px) }
+}
+
+@keyframes defconDustFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Responsive Adjustments */
+@media (min-width: 992px) {
+  .defcon-cinema-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+  }
+  
+  .defcon-cinema-video-container {
+    flex: 1.5;
+  }
+  
+  .defcon-cinema-content {
+    flex: 1;
+  }
+  
+  .defcon-cinema-heading {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .defcon-cinema-showcase {
+    padding: 60px 5%;
+  }
+  
+  .defcon-cinema-video-wrapper {
+    padding-top: 56.25%; /* Switch to 16:9 on mobile */
+  }
+  
+  .defcon-theater-curtain {
+    width: 60px;
+  }
+  
+  .defcon-cinema-heading {
+    font-size: 1.8rem;
+  }
+  
+  .defcon-cinema-description {
+    font-size: 1rem;
+  }
+  
+  .defcon-cinema-cta {
+    padding: 14px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .defcon-cinema-glass-panel {
+    padding: 20px;
+  }
+  
+  .defcon-cinema-heading {
+    font-size: 1.6rem;
+  }
+  
+  .defcon-film-strip {
+    height: 20px;
+  }
+  
+  .defcon-film-top {
+    top: -10px;
+  }
+  
+  .defcon-film-bottom {
+    bottom: -10px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Auto-play video when in viewport
+  const cinemaVideo = document.querySelector('.defcon-cinema-video');
+  
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        cinemaVideo.play();
+      } else {
+        cinemaVideo.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  if (cinemaVideo) {
+    videoObserver.observe(cinemaVideo);
+  }
+  
+  // Enhanced hover effect for video container
+  const videoWrapper = document.querySelector('.defcon-cinema-video-wrapper');
+  if (videoWrapper) {
+    videoWrapper.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const angleX = (y - centerY) / 30;
+      const angleY = (centerX - x) / 30;
+      
+      this.style.transform = `scale(1.02) translateZ(20px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      
+      // Move projector light with cursor
+      const projectorLight = document.querySelector('.defcon-projector-light');
+      if (projectorLight) {
+        const posX = (x / rect.width) * 100;
+        projectorLight.style.left = `${posX}%`;
+      }
+    });
+    
+    videoWrapper.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1) translateZ(0) rotateX(0) rotateY(0)';
+    });
+  }
+  
+  // Button press animation
+  const cinemaCTA = document.querySelector('.defcon-cinema-cta');
+  if (cinemaCTA) {
+    cinemaCTA.addEventListener('mousedown', function() {
+      this.style.transform = 'translateY(2px)';
+    });
+    
+    cinemaCTA.addEventListener('mouseup', function() {
+      this.style.transform = 'translateY(0)';
+    });
+  }
+  
+  // Ambient light intensity based on scroll
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    const showcase = document.querySelector('.defcon-cinema-showcase');
+    if (!showcase) return;
+    
+    const rect = showcase.getBoundingClientRect();
+    const scrollPercent = Math.max(0, Math.min(1, (scrollY - rect.top + window.innerHeight) / (rect.height * 0.5)));
+    
+    const ambientLights = document.querySelectorAll('.defcon-ambient-light');
+    ambientLights.forEach(light => {
+      light.style.opacity = 0.05 + (scrollPercent * 0.1);
+    });
+  });
+});
+</script>

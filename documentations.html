@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Tools & Resources | Defcon</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Domine:wght@400..700&family=Fjalla+One&family=Francois+One&family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libertinus+Math&family=Lora:ital,wght@0,400..700;1,400..700&family=Manrope:wght@200..800&family=Patua+One&family=Rowdies:wght@300;400;700&family=Satisfy&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #06273e;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 54px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.2rem;
+            color: #06273e;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #06273e;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Cards */
+        .resource-card {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e5e5e5;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .resource-card:nth-child(1) { animation-delay: 0.1s; }
+        .resource-card:nth-child(2) { animation-delay: 0.2s; }
+        .resource-card:nth-child(3) { animation-delay: 0.3s; }
+        .resource-card:nth-child(4) { animation-delay: 0.4s; }
+        .resource-card:nth-child(5) { animation-delay: 0.5s; }
+        .resource-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 145, 255, 0.1);
+        }
+
+        .card-image {
+            height: 180px;
+            background-color: #e5e5e5;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(6, 39, 62, 0.1), rgba(6, 39, 62, 0.7));
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0091ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #0077d6;
+            transform: translateY(-2px);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #06273e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+
+        /* Filter System */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            margin: 0.5rem;
+            background: #e5e5e5;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #0091ff;
+            color: white;
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 39, 62, 0.9);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: #06273e;
+            color: white;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-color: #e5e5e5;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Featured Section */
+        .featured-resource {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 5rem 0;
+            background: linear-gradient(to right, #ffffff, #f5faff);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e5e5;
+        }
+
+        .featured-image {
+            height: 400px;
+            background-color: #e5e5e5;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .featured-content {
+            padding: 2rem;
+        }
+
+        .featured-content h3 {
+            font-weight: 700;
+        }
+
+        .featured-content .download-btn {
+            padding: 1rem 2rem;
+        }
+
+        /* Animated Underline */
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0091ff;
+            transition: width 0.3s ease;
+        }
+
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-resource {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="section-header">
+            <h4>Documentations</h4>
+            <h1 class="reveal">Got the Papers</h1>
+            <p class="reveal">Access our premium collection of digital assets, frameworks, and tools designed to elevate your projects. All resources are meticulously crafted by our team of experts.</p>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Resources</button>
+                <button class="filter-btn" data-filter="design">Design Tools</button>
+                <button class="filter-btn" data-filter="development">Development</button>
+                <button class="filter-btn" data-filter="templates">Templates</button>
+                <button class="filter-btn" data-filter="guides">Guides & Docs</button>
+            </div>
+        </header>
+        
+        <section>
+            <h2 class="reveal">Featured Resource</h2>
+            <div class="featured-resource reveal">
+                <div class="featured-image" style="background-image: url('thumbnails/pexels-altabena-10142683.jpg')"></div>
+                <div class="featured-content">
+                    <h3>Defcon Pro Suite 2023</h3>
+                    <p>Our comprehensive suite includes everything you need for modern web development and design. This all-in-one package features premium templates, UI kits, icon sets, and documentation to accelerate your workflow.</p>
+                    <p><strong>Includes:</strong> 50+ component templates, 300+ vector icons, Style guide generator, Documentation templates</p>
+                    <a href="#" class="download-btn" data-modal="modal-1">Download Now</a>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="reveal">All Resources</h2>
+            <div class="grid">
+                <!-- Resource Card 1 -->
+                <div class="resource-card" data-category="design">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-sumaja-lippert-164426904-11177632.jpg')">
+                        <span class="category-tag">Design</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Defcon UI Framework</h3>
+                        <p>A comprehensive design system with modular components for creating consistent, beautiful interfaces.</p>
+                        <a href="#" class="download-btn" data-modal="modal-2">Download</a>
+                    </div>
+                </div>
+                
+                <!-- Resource Card 2 -->
+                <div class="resource-card" data-category="development">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-resourceboy-18541715.jpg')">
+                        <span class="category-tag">Development</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Advanced Animation Library</h3>
+                        <p>Premium collection of ready-to-use animations for web projects. CSS and JavaScript implementations.</p>
+                        <a href="#" class="download-btn" data-modal="modal-3">Download</a>
+                    </div>
+                </div>
+                
+                <!-- Resource Card 3 -->
+                <div class="resource-card" data-category="templates">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-pixabay-265087.jpg')">
+                        <span class="category-tag">Templates</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Enterprise Dashboard Template</h3>
+                        <p>Fully responsive admin dashboard with 50+ customizable components and 6 color schemes.</p>
+                        <a href="#" class="download-btn" data-modal="modal-4">Download</a>
+                    </div>
+                </div>
+                
+                <!-- Resource Card 4 -->
+                <div class="resource-card" data-category="guides">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-knownasovan-62693.jpg')">
+                        <span class="category-tag">Guides</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Web Design Master Guide</h3>
+                        <p>200-page comprehensive guide covering modern design principles, workflows, and case studies.</p>
+                        <a href="#" class="download-btn" data-modal="modal-5">Download</a>
+                    </div>
+                </div>
+                
+                <!-- Resource Card 5 -->
+                <div class="resource-card" data-category="design">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-fauxels-3184455.jpg')">
+                        <span class="category-tag">Design</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Ultimate Icon Collection</h3>
+                        <p>1000+ vector icons in 4 styles (filled, outline, duotone, color) with adjustable strokes.</p>
+                        <a href="#" class="download-btn" data-modal="modal-6">Download</a>
+                    </div>
+                </div>
+                
+                <!-- Resource Card 6 -->
+                <div class="resource-card" data-category="development">
+                    <div class="card-image" style="background-image: url('thumbnails/pexels-pixabay-265087.jpg')">
+                        <span class="category-tag">Development</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>API Development Toolkit</h3>
+                        <p>Complete set of tools, templates, and documentation for building robust RESTful APIs.</p>
+                        <a href="#" class="download-btn" data-modal="modal-7">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Modal/Popup Templates -->
+    <div id="modal-1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Defcon Pro Suite 2023</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image" style="background-image: url('https://via.placeholder.com/800x400/0091ff/ffffff?text=Defcon+Pro+Suite+Preview')"></div>
+                <p>The Defcon Pro Suite is our flagship collection of design and development resources, curated to provide everything you need for modern digital projects.</p>
+                <h4>Features:</h4>
+                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                    <li>50+ fully customizable component templates</li>
+                    <li>300+ premium vector icons in multiple styles</li>
+                    <li>Style guide generator with brand customization</li>
+                    <li>Comprehensive documentation templates</li>
+                    <li>Access to regular updates</li>
+                </ul>
+                <p><strong>File formats included:</strong> .sketch, .fig, .ai, .svg, .pdf, .docx</p>
+                <a href="#" class="download-btn" style="margin-top: 1.5rem;">Download Package (2.4GB)</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Defcon UI Framework</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image" style="background-image: url('https://via.placeholder.com/800x400/e5e5e5/06273e?text=UI+Framework+Preview')"></div>
+                <p>A comprehensive design system with modular components for creating consistent, beautiful interfaces across all platforms.</p>
+                <a href="#" class="download-btn" style="margin-top: 1.5rem;">Download (480MB)</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional modals would follow the same pattern -->
+    
+    <script>
+        // Scroll Reveal Animation
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealElements);
+        document.addEventListener('DOMContentLoaded', revealElements);
+        
+        // Filter System
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const resourceCards = document.querySelectorAll('.resource-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Filter cards
+                resourceCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Modal System
+        const modalTriggers = document.querySelectorAll('[data-modal]');
+        const modals = document.querySelectorAll('.modal');
+        const modalCloseButtons = document.querySelectorAll('.modal-close');
+        
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalId = trigger.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        modalCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close modal when clicking outside content
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Smooth hover effects
+        const animatedUnderlines = document.querySelectorAll('.animated-underline');
+        animatedUnderlines.forEach(underline => {
+            underline.addEventListener('mouseenter', () => {
+                underline.classList.add('hover');
+            });
+            underline.addEventListener('mouseleave', () => {
+                underline.classList.remove('hover');
+            });
+        });
+    </script>
+</body>
+</html>

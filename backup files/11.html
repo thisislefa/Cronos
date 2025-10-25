@@ -1,0 +1,439 @@
+<!-- Technologies Showcase Section -->
+<section class="defcon-tech-showcase">
+  <div class="defcon-tech-header">
+    <h2 class="defcon-tech-title">Defcon IT Support Technologies</h2>
+    <p class="defcon-tech-subtitle">Enterprise-grade solutions powering your digital infrastructure</p>
+    <div class="defcon-tech-header-decoration"></div>
+  </div>
+
+  <div class="defcon-tech-grid">
+    <!-- Technology Card 1 -->
+    <div class="defcon-tech-card">
+      <div class="defcon-tech-card-inner">
+        <div class="defcon-tech-card-front">
+          <div class="defcon-tech-icon-container">
+            <img src="https://via.placeholder.com/80x80/0091ff/ffffff?text=AI" alt="AI Icon" class="defcon-tech-icon">
+          </div>
+          <h3 class="defcon-tech-card-title">AI-Powered Monitoring</h3>
+          <p class="defcon-tech-card-desc">Proactive anomaly detection</p>
+        </div>
+        <div class="defcon-tech-card-back">
+          <p class="defcon-tech-card-detail">Our neural networks analyze 10,000+ metrics in real-time to predict issues before they occur.</p>
+          <button class="defcon-tech-card-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology Card 2 -->
+    <div class="defcon-tech-card">
+      <div class="defcon-tech-card-inner">
+        <div class="defcon-tech-card-front">
+          <div class="defcon-tech-icon-container">
+            <img src="https://via.placeholder.com/80x80/0091ff/ffffff?text=Cloud" alt="Cloud Icon" class="defcon-tech-icon">
+          </div>
+          <h3 class="defcon-tech-card-title">Hybrid Cloud Solutions</h3>
+          <p class="defcon-tech-card-desc">Seamless infrastructure</p>
+        </div>
+        <div class="defcon-tech-card-back">
+          <p class="defcon-tech-card-detail">Enterprise-grade cloud orchestration across AWS, Azure, and private data centers.</p>
+          <button class="defcon-tech-card-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology Card 3 -->
+    <div class="defcon-tech-card">
+      <div class="defcon-tech-card-inner">
+        <div class="defcon-tech-card-front">
+          <div class="defcon-tech-icon-container">
+            <img src="https://via.placeholder.com/80x80/0091ff/ffffff?text=Security" alt="Security Icon" class="defcon-tech-icon">
+          </div>
+          <h3 class="defcon-tech-card-title">Zero Trust Security</h3>
+          <p class="defcon-tech-card-desc">Military-grade protection</p>
+        </div>
+        <div class="defcon-tech-card-back">
+          <p class="defcon-tech-card-detail">Continuous verification architecture with micro-segmentation and behavioral analysis.</p>
+          <button class="defcon-tech-card-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology Card 4 -->
+    <div class="defcon-tech-card">
+      <div class="defcon-tech-card-inner">
+        <div class="defcon-tech-card-front">
+          <div class="defcon-tech-icon-container">
+            <img src="https://via.placeholder.com/80x80/0091ff/ffffff?text=Automation" alt="Automation Icon" class="defcon-tech-icon">
+          </div>
+          <h3 class="defcon-tech-card-title">Smart Automation</h3>
+          <p class="defcon-tech-card-desc">Intelligent workflows</p>
+        </div>
+        <div class="defcon-tech-card-back">
+          <p class="defcon-tech-card-detail">Self-healing systems with 92% first-contact resolution for common issues.</p>
+          <button class="defcon-tech-card-button">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="defcon-tech-cta">
+    <button class="defcon-tech-cta-button">Explore Our Full Technology Stack</button>
+    <div class="defcon-tech-cta-decoration"></div>
+  </div>
+</section>
+
+<style>
+/* Base Styles */
+.defcon-tech-showcase {
+  font-family: "Times New Roman", Times, serif;
+  background-color: #ffffff;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.defcon-tech-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.defcon-tech-title {
+  color: #06273e;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.2s forwards;
+}
+
+.defcon-tech-subtitle {
+  color: #0091ff;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.4s forwards;
+}
+
+.defcon-tech-header-decoration {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #0091ff, #06273e);
+  opacity: 0;
+  animation: fadeIn 0.8s 0.6s forwards;
+}
+
+/* Grid Layout */
+.defcon-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Technology Cards */
+.defcon-tech-card {
+  perspective: 1000px;
+  height: 320px;
+}
+
+.defcon-tech-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 15px 30px rgba(6, 39, 62, 0.1);
+  border-radius: 8px;
+}
+
+.defcon-tech-card:hover .defcon-tech-card-inner {
+  transform: rotateY(180deg);
+}
+
+.defcon-tech-card-front,
+.defcon-tech-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.defcon-tech-card-front {
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+}
+
+.defcon-tech-card-back {
+  background-color: #06273e;
+  transform: rotateY(180deg);
+  color: #ffffff;
+}
+
+.defcon-tech-icon-container {
+  width: 100px;
+  height: 100px;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.defcon-tech-card:hover .defcon-tech-icon-container {
+  background-color: #0091ff;
+}
+
+.defcon-tech-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.defcon-tech-card-title {
+  color: #06273e;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.defcon-tech-card-desc {
+  color: #0091ff;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.defcon-tech-card-back .defcon-tech-card-detail {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.defcon-tech-card-button {
+  background-color: #0091ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.defcon-tech-card-button:hover {
+  background-color: #0077d6;
+  transform: translateY(-2px);
+}
+
+/* CTA Section */
+.defcon-tech-cta {
+  text-align: center;
+  margin-top: 60px;
+  position: relative;
+}
+
+.defcon-tech-cta-button {
+  background-color: transparent;
+  color: #0091ff;
+  border: 2px solid #0091ff;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.defcon-tech-cta-button:hover {
+  color: #ffffff;
+  border-color: #06273e;
+}
+
+.defcon-tech-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #06273e;
+  transition: width 0.4s ease;
+  z-index: -1;
+}
+
+.defcon-tech-cta-button:hover::before {
+  width: 100%;
+}
+
+.defcon-tech-cta-decoration {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0091ff, transparent);
+  opacity: 0.5;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .defcon-tech-title {
+    font-size: 2rem;
+  }
+  
+  .defcon-tech-subtitle {
+    font-size: 1rem;
+  }
+  
+  .defcon-tech-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all tech cards
+  const techCards = document.querySelectorAll('.defcon-tech-card');
+  techCards.forEach((card, index) => {
+    observer.observe(card);
+    card.style.transitionDelay = `${index * 0.1}s`;
+  });
+
+  // Add ripple effect to buttons
+  const buttons = document.querySelectorAll('.defcon-tech-card-button, .defcon-tech-cta-button');
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      const x = e.clientX - e.target.getBoundingClientRect().left;
+      const y = e.clientY - e.target.getBoundingClientRect().top;
+      
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 1000);
+    });
+  });
+
+  // Add decorative particles
+  const showcase = document.querySelector('.defcon-tech-showcase');
+  for (let i = 0; i < 15; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'defcon-tech-particle';
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.width = `${Math.random() * 4 + 1}px`;
+    particle.style.height = particle.style.width;
+    particle.style.animationDelay = `${Math.random() * 5}s`;
+    showcase.appendChild(particle);
+  }
+});
+
+// Add particle styles dynamically
+const style = document.createElement('style');
+style.textContent = `
+  .defcon-tech-particle {
+    position: absolute;
+    background-color: #0091ff;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 15s infinite linear;
+    z-index: 0;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(-100px) translateX(50px);
+      opacity: 0.3;
+    }
+  }
+  
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>

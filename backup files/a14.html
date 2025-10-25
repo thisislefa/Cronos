@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Storytelling Section</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Left content blocks */
+    .content {
+      flex: 1;
+      padding: 5rem 0;
+    }
+
+    .defcon-story-subheading {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0091ff;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.5s;
+      }
+
+    .defcon-story-heading {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color 0.5s;
+      background: linear-gradient(90deg, #0091ff 0%, #06273e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .defcon-story-link {
+      display: inline-block;
+      color: #0091ff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      border-bottom: 2px solid #0091ff;
+      padding-bottom: 2px;
+      transition: color 0.3s, border-bottom 0.3s;
+      position: relative;
+      z-index: 2;
+      width: fit-content;
+      }
+
+      .defcon-story-link:hover {
+      color: #06273e;
+      border-bottom: 2px solid #06273e;
+      }
+
+    .block {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0.3;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+    }
+
+    .block.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    .block p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      width: 370px;
+    }
+
+    /* Right sticky image panel */
+    .image-panel {
+      flex: 1;
+      position: relative;
+      padding-left: 2rem;
+      max-width: 420px;
+    }
+
+    .image-panel .image-wrapper {
+      position: sticky;
+      top: 70px;
+      height: 60vh;
+      max-height: 500px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      width: 100%;
+      background: #eee;
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 0.8s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .image-panel img.active {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="section-container">
+    <!-- Left Content -->
+    <div class="content">
+    <div class="block active" data-image="img1">
+      <div class="defcon-story-subheading">Discovery</div>
+      <div class="defcon-story-heading">Uncovering Your Vision</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat felis nec mi facilisis, sit amet.</p>
+      <a href="#" class="defcon-story-link">Learn about our process →</a>
+    </div>
+
+    <div class="block" data-image="img2">
+      <div class="defcon-story-subheading">Strategy</div>
+      <div class="defcon-story-heading">Crafting the Blueprint</div>
+      <p>We analyze your goals and challenges to develop a tailored strategy that sets the foundation for success.</p>
+      <a href="#" class="defcon-story-link">See our approach →</a>
+    </div>
+
+    <div class="block" data-image="img3">
+      <div class="defcon-story-subheading">Design</div>
+      <div class="defcon-story-heading">Bringing Ideas to Life</div>
+      <p>Our creative team transforms concepts into engaging designs that resonate with your audience.</p>
+      <a href="#" class="defcon-story-link">View our designs →</a>
+    </div>
+
+    <div class="block" data-image="img4">
+      <div class="defcon-story-subheading">Development</div>
+      <div class="defcon-story-heading">Building with Precision</div>
+      <p>We turn designs into robust, scalable solutions using the latest technologies and best practices.</p>
+      <a href="#" class="defcon-story-link">Explore our builds →</a>
+    </div>
+
+    <div class="block" data-image="img5">
+      <div class="defcon-story-subheading">Launch</div>
+      <div class="defcon-story-heading">Delivering Results</div>
+      <p>After rigorous testing, we launch your project and provide ongoing support to ensure lasting impact.</p>
+      <a href="#" class="defcon-story-link">Start your journey →</a>
+    </div>
+
+      
+    </div>
+
+    <!-- Right Image Panel -->
+    <div class="image-panel">
+      <div class="image-wrapper">
+        <img id="img1" src="https://picsum.photos/id/1015/800/1000" class="active">
+        <img id="img2" src="https://picsum.photos/id/1016/800/1000">
+        <img id="img3" src="https://picsum.photos/id/1018/800/1000">
+        <img id="img4" src="https://picsum.photos/id/1020/800/1000">
+        <img id="img5" src="https://picsum.photos/id/1024/800/1000">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const blocks = document.querySelectorAll(".block");
+    const images = document.querySelectorAll(".image-panel img");
+
+    window.addEventListener("scroll", () => {
+      let index = 0;
+      blocks.forEach((block, i) => {
+        const rect = block.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+          index = i;
+        }
+      });
+
+      // Update active text block
+      blocks.forEach((block, i) => block.classList.toggle("active", i === index));
+
+      // Update active image
+      images.forEach((img, i) => img.classList.toggle("active", i === index));
+    });
+  </script>
+</body>
+</html>

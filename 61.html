@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Contact Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        .contact-section-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contact-section-wrapper {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contact-section-container {
+            max-width: 1200px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Left column styles */
+        .contact-section-left {
+            flex: 1;
+            min-width: 300px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .contact-section-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0091ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .contact-section-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #06273e;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .contact-section-button {
+            display: inline-block;
+            background-color: #0091ff;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            max-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section-button:hover {
+            background-color: #0078d4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 145, 255, 0.3);
+        }
+
+        .contact-section-button:active {
+            transform: translateY(0);
+        }
+
+        .contact-section-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .contact-section-button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
+        }
+
+        /* Right column styles */
+        .contact-section-right {
+            flex: 1;
+            min-width: 300px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #06273e;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section-heading {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-section-heading-highlight {
+            color: #0091ff;
+        }
+
+        .contact-section-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(0, 145, 255, 0.1);
+            top: -50px;
+            right: -50px;
+            z-index: 1;
+        }
+
+        .contact-section-decoration::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(0, 145, 255, 0.15);
+            bottom: -70px;
+            left: -70px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .contact-section-container {
+                flex-direction: column-reverse;
+            }
+            
+            .contact-section-left, 
+            .contact-section-right {
+                padding: 40px 30px;
+            }
+            
+            .contact-section-heading {
+                font-size: 36px;
+            }
+            
+            .contact-section-description {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-section-heading {
+                font-size: 28px;
+            }
+            
+            .contact-section-left, 
+            .contact-section-right {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-section-wrapper">
+        <div class="contact-section-container">
+            <div class="contact-section-left">
+                <p class="contact-section-subtitle">Get In Touch</p>
+                <p class="contact-section-description">
+                    We're here to help with any questions you might have about our services. 
+                    Our team is ready to provide the support and information you need to 
+                    make the best decisions for your business.
+                </p>
+                <button class="contact-section-button" id="contact-section-button">
+                    Contact Us
+                </button>
+            </div>
+            <div class="contact-section-right">
+                <div class="contact-section-decoration"></div>
+                <h1 class="contact-section-heading">
+                    Let's Start <span class="contact-section-heading-highlight">Something</span> Great Together
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButton = document.getElementById('contact-section-button');
+            
+            // Add click animation to button
+            contactButton.addEventListener('click', function() {
+                // Add a temporary class for the click animation
+                this.classList.add('contact-section-button-clicked');
+                
+                // Remove the class after animation completes
+                setTimeout(() => {
+                    this.classList.remove('contact-section-button-clicked');
+                }, 300);
+                
+                // In a real implementation, this would open a contact form or redirect
+                alert('Contact form would open here in a real implementation');
+            });
+            
+            // Add focus effect for accessibility
+            contactButton.addEventListener('focus', function() {
+                this.style.outline = '2px solid #0091ff';
+                this.style.outlineOffset = '2px';
+            });
+            
+            contactButton.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+            
+            // Add subtle animation to the decorative element
+            const decoration = document.querySelector('.contact-section-decoration');
+            if (decoration) {
+                // Create a subtle floating animation
+                let floatDirection = 1;
+                let floatPosition = 0;
+                
+                function floatAnimation() {
+                    floatPosition += 0.2 * floatDirection;
+                    
+                    if (floatPosition > 5) {
+                        floatDirection = -1;
+                    } else if (floatPosition < -5) {
+                        floatDirection = 1;
+                    }
+                    
+                    decoration.style.transform = `translate(${floatPosition}px, ${floatPosition * 0.5}px)`;
+                    requestAnimationFrame(floatAnimation);
+                }
+                
+                // Start the animation
+                floatAnimation();
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

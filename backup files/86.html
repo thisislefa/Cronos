@@ -1,0 +1,1064 @@
+<style>
+/* Azure Integration Service Page Styles - Unique to prevent conflicts */
+.defcon-azure-section {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
+    color: #06273e;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.defcon-azure-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.defcon-azure-hero {
+    background: linear-gradient(135deg, #e5e5e5 0%, #ffffff 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.defcon-azure-hero::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background-color: #0091ff;
+    opacity: 0.1;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.defcon-azure-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: #06273e;
+    opacity: 0.05;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.defcon-azure-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.defcon-azure-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #06273e;
+    position: relative;
+    display: inline-block;
+}
+
+.defcon-azure-hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background-color: #0091ff;
+}
+
+.defcon-azure-hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    color: #06273e;
+}
+
+.defcon-azure-hero-cta {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-azure-hero-cta:hover {
+    background-color: #0077cc;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
+}
+
+.defcon-azure-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #06273e;
+    text-align: center;
+    position: relative;
+}
+
+.defcon-azure-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #0091ff;
+}
+
+.defcon-azure-capabilities {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.defcon-azure-capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.defcon-azure-capability-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.defcon-azure-capability-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-azure-capability-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background-color: #0091ff;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.defcon-azure-capability-card:hover::before {
+    height: 100%;
+}
+
+.defcon-azure-capability-icon {
+    font-size: 2.5rem;
+    color: #0091ff;
+    margin-bottom: 20px;
+}
+
+.defcon-azure-capability-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.defcon-azure-capability-desc {
+    color: #555;
+}
+
+.defcon-azure-solutions {
+    padding: 80px 0;
+}
+
+.defcon-azure-solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.defcon-azure-solution-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 40px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid #e5e5e5;
+}
+
+.defcon-azure-solution-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: #0091ff;
+}
+
+.defcon-azure-solution-card.popular {
+    border: 2px solid #0091ff;
+    position: relative;
+}
+
+.defcon-azure-solution-card.popular::before {
+    content: 'Recommended';
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.defcon-azure-solution-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #06273e;
+    text-align: center;
+}
+
+.defcon-azure-solution-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0091ff;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.defcon-azure-solution-price span {
+    font-size: 1rem;
+    color: #555;
+}
+
+.defcon-azure-solution-features {
+    margin-bottom: 30px;
+}
+
+.defcon-azure-solution-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.defcon-azure-solution-feature i {
+    color: #0091ff;
+    margin-right: 10px;
+}
+
+.defcon-azure-solution-cta {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    background-color: #0091ff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.defcon-azure-solution-cta:hover {
+    background-color: #0077cc;
+}
+
+.defcon-azure-process {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.defcon-azure-process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+    position: relative;
+}
+
+.defcon-azure-process-steps::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #e5e5e5;
+    z-index: 1;
+}
+
+.defcon-azure-process-step {
+    width: calc(20% - 20px);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.defcon-azure-process-step-number {
+    width: 80px;
+    height: 80px;
+    background-color: #0091ff;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 145, 255, 0.3);
+}
+
+.defcon-azure-process-step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #06273e;
+}
+
+.defcon-azure-process-step-desc {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.defcon-azure-benefits {
+    padding: 80px 0;
+}
+
+.defcon-azure-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.defcon-azure-benefit-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid #0091ff;
+}
+
+.defcon-azure-benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-azure-benefit-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #06273e;
+}
+
+.defcon-azure-benefit-desc {
+    color: #555;
+}
+
+.defcon-azure-cta {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #06273e 0%, #0091ff 100%);
+    color: #ffffff;
+    text-align: center;
+}
+
+.defcon-azure-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.defcon-azure-cta-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.defcon-azure-cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    color: #0091ff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.defcon-azure-cta-button:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Styles */
+.defcon-azure-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.defcon-azure-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.defcon-azure-modal-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    padding: 30px;
+    position: relative;
+    transform: translateY(-50px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+
+.defcon-azure-modal.active .defcon-azure-modal-content {
+    transform: translateY(0);
+}
+
+.defcon-azure-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.defcon-azure-modal-close:hover {
+    color: #0091ff;
+}
+
+.defcon-azure-modal-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #06273e;
+}
+
+.defcon-azure-form-group {
+    margin-bottom: 0;
+}
+
+.defcon-azure-form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #06273e;
+}
+
+.defcon-azure-form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.defcon-azure-form-input:focus {
+    border-color: #0091ff;
+    outline: none;
+}
+
+.defcon-azure-form-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: #0091ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.defcon-azure-form-submit:hover {
+    background-color: #0077cc;
+}
+
+.defcon-azure-consult-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add consistent gap between form elements */
+  }
+
+/* Animations */
+@keyframes defcon-azure-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes defcon-azure-slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.defcon-azure-animate {
+    opacity: 0;
+}
+
+.defcon-azure-animate-fade {
+    animation: defcon-azure-fadeIn 1s ease forwards;
+}
+
+.defcon-azure-animate-slide {
+    animation: defcon-azure-slideUp 0.8s ease forwards;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .defcon-azure-hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .defcon-azure-hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .defcon-azure-process-step {
+        width: calc(33.33% - 20px);
+    }
+    
+    .defcon-azure-process-steps::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .defcon-azure-hero {
+        padding: 60px 0;
+    }
+    
+    .defcon-azure-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .defcon-azure-section-title {
+        font-size: 2rem;
+    }
+    
+    .defcon-azure-process-step {
+        width: calc(50% - 20px);
+    }
+    
+    .defcon-azure-solutions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .defcon-azure-capabilities-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .defcon-azure-hero {
+        padding: 40px 0;
+    }
+    
+    .defcon-azure-hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .defcon-azure-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .defcon-azure-process-step {
+        width: 100%;
+    }
+    
+    .defcon-azure-process-step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<!-- Azure Integration Service Page Content -->
+<section class="defcon-azure-section">
+    <!-- Hero Section -->
+    <div class="defcon-azure-hero">
+        <div class="defcon-azure-container">
+            <div class="defcon-azure-hero-content">
+                <h1 class="defcon-azure-hero-title defcon-azure-animate defcon-azure-animate-slide">Azure Integration Services</h1>
+                <p class="defcon-azure-hero-subtitle defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.2s">
+                    Seamlessly connect your business systems with Microsoft Azure's powerful cloud platform. Our experts design, implement, and optimize Azure integrations that drive efficiency and innovation.
+                </p>
+                <a href="#defcon-azure-solutions" class="defcon-azure-hero-cta defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.4s">Explore Solutions</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Capabilities Section -->
+    <section class="defcon-azure-capabilities">
+        <div class="defcon-azure-container">
+            <h2 class="defcon-azure-section-title defcon-azure-animate defcon-azure-animate-fade">Our Azure Integration Capabilities</h2>
+            
+            <div class="defcon-azure-capabilities-grid">
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.1s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">Cloud Migration</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Smooth transition of your applications, data, and workloads to Azure with minimal downtime and maximum security.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.2s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">API Integration</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Connect your systems with Azure API Management for secure, scalable, and monitored API ecosystems.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.3s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">Data Integration</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Implement Azure Data Factory solutions to orchestrate and automate data movement and transformation.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.4s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">AI & Automation</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Leverage Azure AI and automation services to create intelligent workflows and business processes.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.5s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">Security Integration</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Implement Azure Security Center and integrate with your existing security infrastructure.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-capability-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.6s">
+                    <div class="defcon-azure-capability-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="defcon-azure-capability-title">Business Intelligence</h3>
+                    <p class="defcon-azure-capability-desc">
+                        Connect your data sources with Power BI for powerful analytics and reporting capabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="defcon-azure-solutions" id="defcon-azure-solutions">
+        <div class="defcon-azure-container">
+            <h2 class="defcon-azure-section-title defcon-azure-animate defcon-azure-animate-fade">Integration Solutions</h2>
+            <p class="defcon-azure-section-subtitle" style="text-align: center; margin-bottom: 50px; color: #555;">
+                Tailored Azure integration packages designed for businesses of all sizes.
+            </p>
+            
+            <div class="defcon-azure-solutions-grid">
+                <div class="defcon-azure-solution-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.1s">
+                    <h3 class="defcon-azure-solution-title">Basic Integration</h3>
+                    <div class="defcon-azure-solution-price">$8,500 <span>/ one-time</span></div>
+                    <div class="defcon-azure-solution-features">
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Up to 3 system integrations
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Azure API Management setup
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Basic data pipeline configuration
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> 2 weeks post-implementation support
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-azure-solution-cta defcon-azure-open-modal" data-modal="defcon-azure-modal-consult">Get Started</a>
+                </div>
+                
+                <div class="defcon-azure-solution-card popular defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.2s">
+                    <h3 class="defcon-azure-solution-title">Enterprise Integration</h3>
+                    <div class="defcon-azure-solution-price">$25,000 <span>/ one-time</span></div>
+                    <div class="defcon-azure-solution-features">
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Up to 10 system integrations
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Advanced API Management
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Complex data pipelines
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Custom workflow automation
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> 1 month premium support
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-azure-solution-cta defcon-azure-open-modal" data-modal="defcon-azure-modal-consult">Get Started</a>
+                </div>
+                
+                <div class="defcon-azure-solution-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.3s">
+                    <h3 class="defcon-azure-solution-title">Custom Solution</h3>
+                    <div class="defcon-azure-solution-price">Custom <span>/ quote-based</span></div>
+                    <div class="defcon-azure-solution-features">
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Fully customized integration
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Enterprise-grade security
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> AI-powered automation
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Advanced analytics
+                        </div>
+                        <div class="defcon-azure-solution-feature">
+                            <i class="fas fa-check"></i> Ongoing maintenance
+                        </div>
+                    </div>
+                    <a href="#" class="defcon-azure-solution-cta defcon-azure-open-modal" data-modal="defcon-azure-modal-consult">Get Quote</a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 40px; color: #555;">
+                Need something different? <a href="#" class="defcon-azure-open-modal" data-modal="defcon-azure-modal-consult" style="color: #0091ff; text-decoration: none;">Let's discuss</a> your specific Azure integration needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="defcon-azure-process">
+        <div class="defcon-azure-container">
+            <h2 class="defcon-azure-section-title defcon-azure-animate defcon-azure-animate-fade">Our Integration Process</h2>
+            
+            <div class="defcon-azure-process-steps">
+                <div class="defcon-azure-process-step defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.1s">
+                    <div class="defcon-azure-process-step-number">1</div>
+                    <h3 class="defcon-azure-process-step-title">Discovery</h3>
+                    <p class="defcon-azure-process-step-desc">
+                        In-depth analysis of your current systems and integration requirements.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-process-step defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.2s">
+                    <div class="defcon-azure-process-step-number">2</div>
+                    <h3 class="defcon-azure-process-step-title">Architecture</h3>
+                    <p class="defcon-azure-process-step-desc">
+                        Design of optimal Azure integration solution for your business.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-process-step defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.3s">
+                    <div class="defcon-azure-process-step-number">3</div>
+                    <h3 class="defcon-azure-process-step-title">Development</h3>
+                    <p class="defcon-azure-process-step-desc">
+                        Implementation of the integration with Azure services.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-process-step defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.4s">
+                    <div class="defcon-azure-process-step-number">4</div>
+                    <h3 class="defcon-azure-process-step-title">Testing</h3>
+                    <p class="defcon-azure-process-step-desc">
+                        Rigorous testing to ensure reliability and performance.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-process-step defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.5s">
+                    <div class="defcon-azure-process-step-number">5</div>
+                    <h3 class="defcon-azure-process-step-title">Deployment</h3>
+                    <p class="defcon-azure-process-step-desc">
+                        Smooth rollout with comprehensive documentation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="defcon-azure-benefits">
+        <div class="defcon-azure-container">
+            <h2 class="defcon-azure-section-title defcon-azure-animate defcon-azure-animate-fade">Business Benefits</h2>
+            
+            <div class="defcon-azure-benefits-grid">
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.1s">
+                    <h3 class="defcon-azure-benefit-title">Increased Efficiency</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Automate workflows and eliminate manual data entry between systems, reducing errors and saving time.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.2s">
+                    <h3 class="defcon-azure-benefit-title">Enhanced Visibility</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Gain real-time insights across all integrated systems with Azure's powerful analytics tools.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.3s">
+                    <h3 class="defcon-azure-benefit-title">Scalability</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Easily scale your integrations as your business grows with Azure's cloud infrastructure.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.4s">
+                    <h3 class="defcon-azure-benefit-title">Cost Savings</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Reduce IT costs by eliminating redundant systems and automating manual processes.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.5s">
+                    <h3 class="defcon-azure-benefit-title">Future-Proof</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Built on Microsoft Azure, your integrations will stay current with the latest cloud technologies.
+                    </p>
+                </div>
+                
+                <div class="defcon-azure-benefit-card defcon-azure-animate defcon-azure-animate-slide" style="animation-delay: 0.6s">
+                    <h3 class="defcon-azure-benefit-title">Security & Compliance</h3>
+                    <p class="defcon-azure-benefit-desc">
+                        Leverage Azure's enterprise-grade security and compliance certifications for your data.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="defcon-azure-cta">
+        <div class="defcon-azure-container">
+            <h2 class="defcon-azure-cta-title defcon-azure-animate defcon-azure-animate-fade">Ready to Transform Your Business with Azure?</h2>
+            <p class="defcon-azure-cta-subtitle defcon-azure-animate defcon-azure-animate-fade" style="animation-delay: 0.2s">
+                Our Azure-certified integration specialists will design a solution tailored to your specific business needs.
+            </p>
+            <a href="#" class="defcon-azure-cta-button defcon-azure-animate defcon-azure-animate-slide defcon-azure-open-modal" data-modal="defcon-azure-modal-consult" style="animation-delay: 0.4s">Schedule Free Assessment</a>
+        </div>
+    </section>
+</section>
+
+<!-- Consultation Modal -->
+<div class="defcon-azure-modal" id="defcon-azure-modal-consult">
+    <div class="defcon-azure-modal-content">
+        <span class="defcon-azure-modal-close">&times;</span>
+        <h3 class="defcon-azure-modal-title">Azure Integration Consultation</h3>
+        <form class="defcon-azure-consult-form">
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-name">Full Name</label>
+                <input type="text" class="defcon-azure-form-input" id="defcon-azure-consult-name" required>
+            </div>
+            
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-email">Email</label>
+                <input type="email" class="defcon-azure-form-input" id="defcon-azure-consult-email" required>
+            </div>
+            
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-phone">Phone</label>
+                <input type="tel" class="defcon-azure-form-input" id="defcon-azure-consult-phone">
+            </div>
+            
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-company">Company</label>
+                <input type="text" class="defcon-azure-form-input" id="defcon-azure-consult-company">
+            </div>
+            
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-needs">Integration Needs</label>
+                <select class="defcon-azure-form-input" id="defcon-azure-consult-needs">
+                    <option value="">Select an option</option>
+                    <option value="cloud-migration">Cloud Migration</option>
+                    <option value="api-integration">API Integration</option>
+                    <option value="data-integration">Data Integration</option>
+                    <option value="hybrid-solution">Hybrid Solution</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="defcon-azure-form-group">
+                <label class="defcon-azure-form-label" for="defcon-azure-consult-message">Additional Details</label>
+                <textarea class="defcon-azure-form-input" id="defcon-azure-consult-message" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="defcon-azure-form-submit">Request Consultation</button>
+        </form>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="defcon-azure-modal" id="defcon-azure-modal-success">
+    <div class="defcon-azure-modal-content">
+        <span class="defcon-azure-modal-close">&times;</span>
+        <div style="text-align: center; padding: 20px;">
+            <div style="font-size: 4rem; color: #0091ff; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="defcon-azure-modal-title">Thank You!</h3>
+            <p style="margin-bottom: 0;">Your consultation request has been submitted. Our Azure integration specialist will contact you within 24 hours to schedule your assessment.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize animations when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Add animation classes to elements when they come into view
+    const animateElements = document.querySelectorAll('.defcon-azure-animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const animationType = element.classList.contains('defcon-azure-animate-fade') ? 'defcon-azure-animate-fade' : 'defcon-azure-animate-slide';
+                element.style.animationName = animationType === 'defcon-azure-animate-fade' ? 'defcon-azure-fadeIn' : 'defcon-azure-slideUp';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Modal functionality
+    const openModalButtons = document.querySelectorAll('.defcon-azure-open-modal');
+    const closeModalButtons = document.querySelectorAll('.defcon-azure-modal-close');
+    const modals = document.querySelectorAll('.defcon-azure-modal');
+    
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.defcon-azure-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Form submission
+    const consultForm = document.querySelector('.defcon-azure-consult-form');
+    if (consultForm) {
+        consultForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For demo purposes, we'll just show the success modal
+            
+            // Close the consultation modal
+            document.getElementById('defcon-azure-modal-consult').classList.remove('active');
+            
+            // Show success modal
+            document.getElementById('defcon-azure-modal-success').classList.add('active');
+            
+            // Reset form
+            this.reset();
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+// Load Font Awesome if not already loaded
+if (!document.querySelector('link[href*="font-awesome"]')) {
+    const faLink = document.createElement('link');
+    faLink.rel = 'stylesheet';
+    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+    document.head.appendChild(faLink);
+}
+</script>

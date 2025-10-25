@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community & CSR Initiatives | Defcon IT Solutions</title>
+  <style>
+    /* ================ */
+    /* BASE STYLES */
+    /* ================ */
+    :root {
+      --defcon-primary: #0091ff;
+      --defcon-primary-dark: #0077d6;
+      --defcon-dark: #06273e;
+      --defcon-dark-light: #0a3658;
+      --defcon-light: #e5e5e5;
+      --defcon-white: #ffffff;
+      --defcon-text: #333333;
+      --defcon-text-light: #777777;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      color: var(--defcon-text);
+      line-height: 1.6;
+      background-color: var(--defcon-white);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================ */
+    /* PAGE STRUCTURE */
+    /* ================ */
+    .defcon-csr-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 100px 30px;
+    }
+
+    /* Section Header */
+    .defcon-csr-header {
+      text-align: center;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards;
+    }
+
+    .defcon-csr-title {
+      font-size: 2.8rem;
+      color: var(--defcon-dark);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .defcon-csr-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--defcon-primary);
+    }
+
+    .defcon-csr-subtitle {
+      font-size: 1.2rem;
+      color: var(--defcon-text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Impact Stats */
+    .defcon-impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards 0.3s;
+    }
+
+    .defcon-stat-card {
+      background-color: var(--defcon-white);
+      border-radius: 8px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .defcon-stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .defcon-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: var(--defcon-primary);
+    }
+
+    .defcon-stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--defcon-primary);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .defcon-stat-label {
+      font-size: 1.1rem;
+      color: var(--defcon-dark);
+    }
+
+    /* Initiatives Grid */
+    .defcon-initiatives {
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards 0.6s;
+    }
+
+    .defcon-initiatives-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--defcon-dark);
+      margin-bottom: 60px;
+    }
+
+    .defcon-initiatives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .defcon-initiative-card {
+      background-color: var(--defcon-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .defcon-initiative-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .defcon-initiative-image {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .defcon-initiative-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .defcon-initiative-card:hover .defcon-initiative-img {
+      transform: scale(1.05);
+    }
+
+    .defcon-initiative-category {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: var(--defcon-primary);
+      color: var(--defcon-white);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .defcon-initiative-content {
+      padding: 30px;
+    }
+
+    .defcon-initiative-title {
+      font-size: 1.5rem;
+      color: var(--defcon-dark);
+      margin-bottom: 15px;
+    }
+
+    .defcon-initiative-desc {
+      color: var(--defcon-text);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .defcon-initiative-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--defcon-primary);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .defcon-initiative-link:hover {
+      color: var(--defcon-primary-dark);
+    }
+
+    .defcon-initiative-link svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      fill: var(--defcon-primary);
+      transition: transform 0.3s ease;
+    }
+
+    .defcon-initiative-link:hover svg {
+      transform: translateX(5px);
+    }
+
+    /* Partners Section */
+    .defcon-partners {
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards 0.9s;
+    }
+
+    .defcon-partners-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--defcon-dark);
+      margin-bottom: 60px;
+    }
+
+    .defcon-partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .defcon-partner-logo {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .defcon-partner-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Testimonials */
+    .defcon-csr-testimonials {
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards 1.2s;
+    }
+
+    .defcon-testimonial-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--defcon-dark);
+      margin-bottom: 60px;
+    }
+
+    .defcon-testimonial-slider {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .defcon-testimonial-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .defcon-testimonial-slide {
+      min-width: 100%;
+      padding: 0 20px;
+    }
+
+    .defcon-testimonial-card {
+      background-color: var(--defcon-white);
+      border-radius: 8px;
+      padding: 50px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .defcon-testimonial-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: var(--defcon-dark);
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 30px;
+      font-style: italic;
+    }
+
+    .defcon-testimonial-text::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -10px;
+      font-size: 4rem;
+      color: var(--defcon-primary);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .defcon-testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .defcon-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--defcon-light);
+      margin-right: 20px;
+      overflow: hidden;
+    }
+
+    .defcon-author-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .defcon-author-info h4 {
+      font-size: 1.1rem;
+      color: var(--defcon-dark);
+      margin-bottom: 5px;
+    }
+
+    .defcon-author-info p {
+      color: var(--defcon-text-light);
+      font-size: 0.9rem;
+    }
+
+    .defcon-testimonial-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .defcon-testimonial-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--defcon-light);
+      margin: 0 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .defcon-testimonial-dot.active {
+      background-color: var(--defcon-primary);
+      transform: scale(1.2);
+    }
+
+    /* CTA Section */
+    .defcon-csr-cta {
+      text-align: center;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: defconFadeInUp 1s ease forwards 1.5s;
+    }
+
+    .defcon-cta-title {
+      font-size: 2rem;
+      color: var(--defcon-dark);
+      margin-bottom: 20px;
+    }
+
+    .defcon-cta-subtitle {
+      font-size: 1.1rem;
+      color: var(--defcon-text-light);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .defcon-cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      background-color: var(--defcon-primary);
+      color: var(--defcon-white);
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .defcon-cta-button:hover {
+      background-color: var(--defcon-primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 145, 255, 0.3);
+    }
+
+    /* ================ */
+    /* ANIMATIONS */
+    /* ================ */
+    @keyframes defconFadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================ */
+    /* RESPONSIVE STYLES */
+    /* ================ */
+    @media (max-width: 1024px) {
+      .defcon-csr-title {
+        font-size: 2.4rem;
+      }
+      
+      .defcon-initiatives-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      
+      .defcon-testimonial-text {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .defcon-csr-container {
+        padding: 80px 20px;
+      }
+      
+      .defcon-csr-header {
+        margin-bottom: 60px;
+      }
+      
+      .defcon-csr-title {
+        font-size: 2rem;
+      }
+      
+      .defcon-impact-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .defcon-initiatives-title,
+      .defcon-partners-title,
+      .defcon-testimonial-title,
+      .defcon-cta-title {
+        font-size: 1.8rem;
+      }
+      
+      .defcon-testimonial-card {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .defcon-csr-title {
+        font-size: 1.8rem;
+      }
+      
+      .defcon-impact-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .defcon-initiatives-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .defcon-partners-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      
+      .defcon-stat-number {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="defcon-csr-container">
+    <!-- Page Header -->
+    <div class="defcon-csr-header">
+      <h1 class="defcon-csr-title">Community & CSR Initiatives</h1>
+      <p class="defcon-csr-subtitle">At Defcon, we believe in using our expertise and resources to create positive change in the communities we serve.</p>
+    </div>
+
+    <!-- Impact Stats -->
+    <div class="defcon-impact-stats">
+      <div class="defcon-stat-card">
+        <div class="defcon-stat-number">250+</div>
+        <div class="defcon-stat-label">Community Projects Supported</div>
+      </div>
+      <div class="defcon-stat-card">
+        <div class="defcon-stat-number">10,000+</div>
+        <div class="defcon-stat-label">Volunteer Hours Contributed</div>
+      </div>
+      <div class="defcon-stat-card">
+        <div class="defcon-stat-number">$5M+</div>
+        <div class="defcon-stat-label">Invested in Social Causes</div>
+      </div>
+      <div class="defcon-stat-card">
+        <div class="defcon-stat-number">85%</div>
+        <div class="defcon-stat-label">Employee Participation Rate</div>
+      </div>
+    </div>
+
+    <!-- Initiatives Grid -->
+    <div class="defcon-initiatives">
+      <h2 class="defcon-initiatives-title">Our Key Initiatives</h2>
+      
+      <div class="defcon-initiatives-grid">
+        <!-- Initiative 1 -->
+        <div class="defcon-initiative-card">
+          <div class="defcon-initiative-image">
+            <img src="https://source.unsplash.com/random/600x400/?education,technology" alt="Tech Education Initiative" class="defcon-initiative-img">
+            <div class="defcon-initiative-category">Education</div>
+          </div>
+          <div class="defcon-initiative-content">
+            <h3 class="defcon-initiative-title">Tech for Tomorrow</h3>
+            <p class="defcon-initiative-desc">
+              Our flagship program that provides STEM education and technology resources to underprivileged schools, reaching over 5,000 students annually.
+            </p>
+            <a href="#" class="defcon-initiative-link">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Initiative 2 -->
+        <div class="defcon-initiative-card">
+          <div class="defcon-initiative-image">
+            <img src="https://source.unsplash.com/random/600x400/?sustainability,environment" alt="Green Computing Initiative" class="defcon-initiative-img">
+            <div class="defcon-initiative-category">Sustainability</div>
+          </div>
+          <div class="defcon-initiative-content">
+            <h3 class="defcon-initiative-title">Green Computing</h3>
+            <p class="defcon-initiative-desc">
+              Reducing our carbon footprint through energy-efficient data centers, e-waste recycling programs, and sustainable technology practices.
+            </p>
+            <a href="#" class="defcon-initiative-link">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Initiative 3 -->
+        <div class="defcon-initiative-card">
+          <div class="defcon-initiative-image">
+            <img src="https://source.unsplash.com/random/600x400/?diversity,workshop" alt="Diversity in Tech Initiative" class="defcon-initiative-img">
+            <div class="defcon-initiative-category">Diversity</div>
+          </div>
+          <div class="defcon-initiative-content">
+            <h3 class="defcon-initiative-title">Diversity in Tech</h3>
+            <p class="defcon-initiative-desc">
+              Programs and partnerships aimed at increasing representation of underrepresented groups in the technology sector.
+            </p>
+            <a href="#" class="defcon-initiative-link">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partners Section -->
+    <div class="defcon-partners">
+      <h2 class="defcon-partners-title">Our CSR Partners</h2>
+      
+      <div class="defcon-partners-grid">
+        <img src="https://via.placeholder.com/200x100/e5e5e5/777777?text=Partner+1" alt="Partner 1" class="defcon-partner-logo">
+        <img src="https://via.placeholder.com/200x100/e5e5e5/777777?text=Partner+2" alt="Partner 2" class="defcon-partner-logo">
+        <img src="https://via.placeholder.com/200x100/e5e5e5/777777?text=Partner+3" alt="Partner 3" class="defcon-partner-logo">
+        <img src="https://via.placeholder.com/200x100/e5e5e5/777777?text=Partner+4" alt="Partner 4" class="defcon-partner-logo">
+        <img src="https://via.placeholder.com/200x100/e5e5e5/777777?text=Partner+5" alt="Partner 5" class="defcon-partner-logo">
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="defcon-csr-testimonials">
+      <h2 class="defcon-testimonial-title">Community Impact Stories</h2>
+      
+      <div class="defcon-testimonial-slider">
+        <div class="defcon-testimonial-track">
+          <!-- Testimonial 1 -->
+          <div class="defcon-testimonial-slide">
+            <div class="defcon-testimonial-card">
+              <p class="defcon-testimonial-text">
+                Defcon's Tech for Tomorrow program transformed our school's computer lab and provided teacher training that has significantly improved our students' digital literacy. Their commitment goes beyond donations—they've become true partners in education.
+              </p>
+              <div class="defcon-testimonial-author">
+                <div class="defcon-author-avatar">
+                  <img src="https://source.unsplash.com/random/100x100/?portrait,teacher" alt="Maria Gonzalez" class="defcon-author-img">
+                </div>
+                <div class="defcon-author-info">
+                  <h4>Maria Gonzalez</h4>
+                  <p>Principal, City Heights Elementary</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="defcon-testimonial-slide">
+            <div class="defcon-testimonial-card">
+              <p class="defcon-testimonial-text">
+                As a nonprofit focused on environmental sustainability, we've been impressed with Defcon's holistic approach to green computing. Their expertise helped us reduce our own carbon footprint while their financial support expanded our programs.
+              </p>
+              <div class="defcon-testimonial-author">
+                <div class="defcon-author-avatar">
+                  <img src="https://source.unsplash.com/random/100x100/?portrait,executive" alt="James Wilson" class="defcon-author-img">
+                </div>
+                <div class="defcon-author-info">
+                  <h4>James Wilson</h4>
+                  <p>Executive Director, Green Earth Initiative</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="defcon-testimonial-nav">
+          <div class="defcon-testimonial-dot active"></div>
+          <div class="defcon-testimonial-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="defcon-csr-cta">
+      <h2 class="defcon-cta-title">Join Us in Making a Difference</h2>
+      <p class="defcon-cta-subtitle">Whether you're a potential partner, nonprofit organization, or community leader, we'd love to explore how we can work together to create positive change.</p>
+      <a href="#" class="defcon-cta-button">Get in Touch</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Testimonial slider functionality
+      const track = document.querySelector('.defcon-testimonial-track');
+      const slides = document.querySelectorAll('.defcon-testimonial-slide');
+      const dots = document.querySelectorAll('.defcon-testimonial-dot');
+      let currentSlide = 0;
+
+      function goToSlide(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+        currentSlide = index;
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+      });
+
+      // Auto-advance testimonials
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        goToSlide(currentSlide);
+      }, 7000);
+
+      // Animate elements when they come into view
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.defcon-impact-stats, .defcon-initiatives, .defcon-partners, .defcon-csr-testimonials, .defcon-csr-cta');
+        
+        elements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+          
+          if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+
+      // Initial check
+      animateOnScroll();
+
+      // Check on scroll
+      window.addEventListener('scroll', animateOnScroll);
+    });
+  </script>
+</body>
+</html>

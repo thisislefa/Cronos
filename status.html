@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon | Minimalist System Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="minimalist-status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="light-theme">
+
+    <header class="defcon-status-hero">
+        <h1 class="status-main-title">Defcon System Health Ticker</h1>
+        
+        <div class="current-status-badge operational">
+            <i class="fas fa-check-circle"></i> ALL SYSTEMS ARE FUNCTIONAL
+        </div>
+        
+        <p class="status-update-time">Last checked: <span id="lastUpdated">5:15 PM SAST, October 12, 2025</span></p>
+    </header>
+
+    <section class="global-tally-section">
+        <div class="tally-box">
+            <i class="fas fa-chart-line tally-icon"></i>
+            <span class="tally-value">99.98%</span>
+            <span class="tally-label">90-Day Uptime</span>
+        </div>
+        <div class="tally-box">
+            <i class="fas fa-layer-group tally-icon"></i>
+            <span class="tally-value">12</span>
+            <span class="tally-label">Total Components Monitored</span>
+        </div>
+        <div class="tally-box">
+            <i class="fas fa-shield-alt tally-icon"></i>
+            <span class="tally-value">0</span>
+            <span class="tally-label">Active Incidents</span>
+        </div>
+    </section>
+
+
+    <main class="dashboard-container">
+
+        <section class="component-health-section">
+            <h2 class="section-heading"><i class="fas fa-circle-notch"></i> Individual Component Status</h2>
+            
+            <div class="component-list">
+                
+                <div class="component-item operational">
+                    <span class="component-name">Cloud Infrastructure Core (JHB Region)</span>
+                    <span class="component-status-pill operational-pill">Operational</span>
+                </div>
+                
+                <div class="component-item operational">
+                    <span class="component-name">Client API Gateway & SDKs</span>
+                    <span class="component-status-pill operational-pill">Operational</span>
+                </div>
+                
+                <div class="component-item degraded">
+                    <span class="component-name">Managed Database Services</span>
+                    <span class="component-status-pill degraded-pill">Degraded</span>
+                </div>
+                
+                <div class="component-item operational">
+                    <span class="component-name">Monitoring & Support Portal</span>
+                    <span class="component-status-pill operational-pill">Operational</span>
+                </div>
+
+                <div class="component-item operational">
+                    <span class="component-name">Real-Time Data Analytics Processing</span>
+                    <span class="component-status-pill operational-pill">Operational</span>
+                </div>
+                
+            </div>
+        </section>
+
+        
+
+        <section class="incident-updates-section">
+            <h2 class="section-heading"><i class="fas fa-clipboard-list"></i> Incident History</h2>
+            
+            <div class="incident-log">
+                <div class="log-entry">
+                    <span class="log-date">Oct 12, 09:30 AM</span>
+                    <span class="log-status resolved-status"><i class="fas fa-check-double"></i> RESOLVED: DB Performance</span>
+                    <p class="log-message">The observed latency spikes on Managed Database Services have been mitigated and stabilized following a cluster rebalance.</p>
+                </div>
+                <div class="log-entry">
+                    <span class="log-date">Oct 12, 08:00 AM</span>
+                    <span class="log-status investigating-status"><i class="fas fa-magnifying-glass"></i> INVESTIGATING: DB Latency</span>
+                    <p class="log-message">Engineers were dispatched to investigate reports of high read/write latency on Johannesburg database clusters.</p>
+                </div>
+            </div>
+
+            <a href="#" class="view-archive-link">View Full 90-Day Incident Archive <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+    </main>
+
+    <script src="minimalist-status.js"></script>
+</body>
+</html>
+
+<style>
+    /* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.light-theme {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff; /* Crisp white background */
+    color: #333;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #0091ff;
+    transition: color 0.3s ease;
+}
+
+/* Status Colors (Highly Visible) */
+:root {
+    --color-operational: #28a745;   /* Green */
+    --color-degraded: #ffc107;      /* Yellow */
+    --color-major: #dc3545;         /* Red */
+    --color-maintenance: #0091ff;   /* Defcon Blue */
+    --color-light-bg: #f4f4f4;
+}
+
+/* --- HERO SECTION --- */
+.defcon-status-hero {
+    background-color: #f8f8f8;
+    padding: 80px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.status-main-title {
+    font-size: clamp(2.5rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 25px;
+}
+
+/* Primary Status Badge (High Contrast) */
+.current-status-badge {
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 2px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.current-status-badge i {
+    margin-right: 10px;
+}
+
+.current-status-badge.operational {
+    background-color: var(--color-operational);
+    color: #fff;
+}
+.current-status-badge.degraded {
+    background-color: var(--color-degraded);
+    color: #000;
+}
+.current-status-badge.major {
+    background-color: var(--color-major);
+    color: #fff;
+}
+
+.status-update-time {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* --- NEW FEATURE: GLOBAL TALLY --- */
+.global-tally-section {
+    max-width: 900px;
+    margin: -30px auto 60px; /* Pulls it up */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.tally-box {
+    text-align: center;
+    flex: 1;
+    border-right: 1px solid #eee;
+}
+.tally-box:last-child {
+    border-right: none;
+}
+
+.tally-icon {
+    font-size: 1.5rem;
+    color: #0091ff;
+    margin-bottom: 5px;
+}
+.tally-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #000;
+}
+.tally-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- MAIN DASHBOARD CONTAINER --- */
+.dashboard-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+}
+.section-heading i {
+    color: #0091ff;
+    margin-right: 10px;
+}
+
+/* SECTION 1: Component Health List */
+.component-health-section {
+    margin-bottom: 40px;
+}
+
+.component-list {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.component-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fcfcfc;
+}
+.component-item:last-child {
+    border-bottom: none;
+}
+
+.component-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.component-status-pill {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.operational-pill {
+    background-color: var(--color-operational);
+    color: #fff;
+}
+.degraded-pill {
+    background-color: var(--color-degraded);
+    color: #000;
+}
+.major-pill {
+    background-color: var(--color-major);
+    color: #fff;
+}
+
+/* SECTION 2: Incident History */
+.incident-log {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.log-entry {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fcfcfc;
+}
+.log-entry:last-child { border-bottom: none; }
+
+.log-date {
+    font-size: 0.85rem;
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.log-status {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.log-status i { margin-right: 5px; }
+
+.resolved-status { color: var(--color-operational); }
+.investigating-status { color: var(--color-degraded); }
+
+.log-message {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.view-archive-link {
+    display: inline-block;
+    font-weight: 600;
+    padding: 10px 0;
+    color: #0091ff;
+}
+.view-archive-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .global-tally-section {
+        flex-wrap: wrap;
+        gap: 20px 0;
+    }
+    .tally-box {
+        width: 50%;
+        border-right: none;
+    }
+    .tally-box:nth-child(even) {
+        border-right: none;
+    }
+    .tally-box:nth-child(odd) {
+        border-right: 1px solid #eee;
+    }
+    .dashboard-container {
+        padding: 0 20px;
+    }
+}
+@media (max-width: 480px) {
+    .tally-box {
+        width: 100%;
+        border-right: none !important;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+    .tally-box:last-child {
+        border-bottom: none;
+    }
+}
+</style>
+
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+    const monthBoxes = document.querySelectorAll('.month-box');
+    const detailDisplay = document.getElementById('historyDetailDisplay');
+    const lastUpdatedElement = document.getElementById('lastUpdated');
+    
+    // Function to update the last updated time to client's current time
+    const updateTime = () => {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+            timeZoneName: 'short'
+        });
+        const dateString = now.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
+        lastUpdatedElement.textContent = `${timeString}, ${dateString}`;
+    };
+    
+    // Initialize the last updated time
+    updateTime();
+
+    /**
+     * Handles the click event for the historical month boxes.
+     */
+    monthBoxes.forEach(box => {
+        box.addEventListener('click', () => {
+            
+            const month = box.dataset.month;
+            const status = box.dataset.status;
+            const service = box.closest('.service-history-container').querySelector('.history-title').textContent;
+            
+            // Generate dynamic content for the detail panel
+            let detailContent = `
+                <h4 style="color: #fff; margin-bottom: 10px;">Status for ${service} (${month})</h4>
+                <p>Uptime: <span style="font-weight: 700; color: ${box.style.backgroundColor || '#28a745'};">${status}</span></p>
+            `;
+
+            if (status !== '100.0%' && !status.includes('Maint.')) {
+                detailContent += `
+                    <p style="margin-top: 10px;">**Summary of Incident(s):** <br>
+                    Minor network latency spikes (3-hour duration) were reported and mitigated. Full root cause analysis available on request.
+                    </p>
+                `;
+            } else if (status.includes('Maint.')) {
+                 detailContent += `
+                    <p style="margin-top: 10px;">**Summary:** Scheduled maintenance was successfully performed without major disruption.
+                    </p>
+                `;
+            }
+
+            detailDisplay.innerHTML = detailContent;
+            
+            // Visually highlight the selected box
+            monthBoxes.forEach(b => b.classList.remove('selected-box'));
+            box.classList.add('selected-box');
+        });
+    });
+});
+</script>

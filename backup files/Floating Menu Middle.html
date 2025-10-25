@@ -1,0 +1,774 @@
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Floating Menu Styles */
+        .defcon-floating-menu {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .defcon-floating-menu.defcon-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: all;
+        }
+
+        .defcon-menu-container {
+            background: rgba(0, 0, 0, 0.319);
+            backdrop-filter: blur(20px);
+            border-radius: 6px;
+            padding: 5.5px 6px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 20px rgba(0, 45, 99, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-menu-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 145, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .defcon-menu-container:hover::before {
+            left: 100%;
+        }
+
+        .defcon-menu-item {
+            background: rgba(0, 0, 0, 0.468);
+           
+            border-radius: 6px;
+            padding: 12px 24px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
+
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .defcon-menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #0091ff;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2,1);
+            z-index: -1;
+        } 
+
+        .defcon-menu-item:hover::before {
+            width: 100%;
+        }
+
+        .defcon-menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(0, 145, 255, 0.4),
+                0 0 20px rgba(0, 145, 255, 0.2);
+        }
+
+          .defcon-menu-item:active {
+            transform: translateY(0);
+        }
+
+        /* Pro Tier Button Styles */
+
+      .defcon-menu-item-pro {
+          background: #06273e;
+          
+          border-radius: 6px;
+          padding: 12px 15px;
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+          user-select: none;
+          min-width: 90px;
+          text-align: center;
+          
+          }
+
+        .defcon-menu-item-pro:hover {
+        color: #0091ff;
+        }
+
+        .button-content {
+        position: relative;
+        z-index: 2;
+        }
+
+        .defcon-menu-item-pro::before,
+        .defcon-menu-item-pro::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        box-sizing: border-box;
+        border-radius: 6px;
+        }
+
+        .defcon-menu-item-pro::before {
+        top: 0;
+        left: 0;
+        border-top: 4px solid #0091ff;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 4px solid transparent;
+        }
+
+        .defcon-menu-item-pro::after {
+        bottom: 0;
+        right: 0;
+        border-top: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid #0091ff;
+        border-left: 4px solid transparent;
+        }
+
+        .defcon-menu-item-pro:hover::before {
+        animation: borderTopRight 0.75s linear forwards;
+        }
+
+        .defcon-menu-item-pro:hover::after {
+        animation: borderBottomLeft 0.75s linear forwards;
+        }
+
+        @keyframes borderTopRight {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        25% {
+          width: 100%;
+          height: 0;
+          border-right: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+        }
+        50% {
+          width: 100%;
+          height: 100%;
+          border-right: 4px solid #0091ff;
+          border-bottom: 4px solid transparent;
+        }
+        100% {
+          width: 100%;
+          height: 100%;
+          border-right: 4px solid #0091ff;
+          border-bottom: 4px solid #0091ff;
+          opacity: 1;
+        }
+        }
+
+        @keyframes borderBottomLeft {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        25% {
+          width: 100%;
+          height: 0;
+          border-top: 4px solid transparent;
+          border-left: 4px solid transparent;
+        }
+        50% {
+          width: 100%;
+          height: 100%;
+          border-top: 4px solid transparent;
+          border-left: 4px solid #0091ff;
+        }
+        100% {
+          width: 100%;
+          height: 100%;
+          border-top: 4px solid #0091ff;
+          border-left: 4px solid #0091ff;
+          opacity: 1;
+        }
+        }
+        /* ends here*/
+
+
+      
+        /* Popup Panel Styles */
+        .defcon-popup-panel {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 320px;
+            background: rgba(6, 39, 62, 0.98);
+            backdrop-filter: blur(25px);
+            
+            border-radius: 4px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        .defcon-popup-panel.defcon-active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: all;
+        }
+
+        .defcon-popup-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #0091ff;
+            text-align: left;
+        }
+
+        .defcon-popup-content {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e5e5e5;
+            text-align: left;
+        }
+
+        .defcon-feature-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .defcon-feature-list li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #e5e5e5;
+            font-size: 13px;
+        }
+
+        .defcon-feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0091ff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .defcon-popup-cta {
+            background:#0091ff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            outline: none;
+            letter-spacing: 0.5px;
+        }
+
+        .defcon-popup-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 145, 255, 0.5);
+        }
+
+        .defcon-popup-cta:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .defcon-menu-container {
+                padding: 8px 12px;
+                gap: 6px;
+            }
+
+            .defcon-menu-item {
+                padding: 10px 16px;
+                font-size: 12px;
+                min-width: 70px;
+            }
+
+            .defcon-popup-panel {
+                width: 280px;
+                padding: 20px;
+            }
+
+            .defcon-popup-title {
+                font-size: 1.3rem;
+            }
+
+            .defcon-services-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-floating-menu {
+                bottom: 20px;
+            }
+
+            .defcon-popup-panel {
+                width: 260px;
+                padding: 16px;
+            }
+
+            .defcon-menu-item {
+                padding: 8px 12px;
+                font-size: 11px;
+                min-width: 60px;
+            }
+        }
+
+        /* Accessibility */
+        
+        /* Animation keyframes */
+        @keyframes defcon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .defcon-menu-item:hover {
+            animation: defcon-pulse 2s infinite;
+        }
+    </style>
+
+
+    <!-- Floating Menu Component -->
+    <nav class="defcon-floating-menu" id="defcon-floating-menu" role="navigation" aria-label="Tier selection menu">
+        <div class="defcon-menu-container">
+            <!-- Personal Tier -->
+            <a href="#" class="defcon-menu-item" 
+               role="button" 
+               aria-describedby="defcon-personal-popup"
+               data-tier="personal"
+               tabindex="0">
+                Personal
+            </a>
+
+            <!-- Business Tier -->
+            <a href="#" class="defcon-menu-item" 
+               role="button" 
+               aria-describedby="defcon-business-popup"
+               data-tier="business"
+               tabindex="0">
+                Business
+            </a>
+
+            <!-- Enterprise Tier -->
+            <a href="#" class="defcon-menu-item" 
+               role="button" 
+               aria-describedby="defcon-enterprise-popup"
+               data-tier="enterprise"
+               tabindex="0">
+                Enterprise
+            </a>
+
+            <a href="techsupport.html" class="defcon-menu-item-pro" 
+               role="button" 
+               aria-describedby="defcon-enterprise-popup"
+               data-tier="GoPro"
+               tabindex="0">
+                <img src="thumbnails/lefa.jpg" alt="GoPro Icon" style="width: 30px; height: 30px; display: inline; vertical-align: middle; margin-right: 8px; border-radius: 50%;">
+               Get Expert Advice
+            </a>
+        </div>
+
+        <!-- Popup Panels -->
+        <div class="defcon-popup-panel" id="defcon-personal-popup" role="dialog" aria-labelledby="defcon-personal-title">
+            <h3 class="defcon-popup-title" id="defcon-personal-title">Personal Tier</h3>
+            <p class="defcon-popup-content">Perfect for individual users and small projects with essential features.</p>
+            <ul class="defcon-feature-list">
+                <li>Up to 5 projects</li>
+                <li>Basic support</li>
+                <li>Standard security</li>
+                <li>Monthly reports</li>
+            </ul>
+            <button class="defcon-popup-cta" onclick="selectTier('personal')">Get Started</button>
+        </div>
+
+        <div class="defcon-popup-panel" id="defcon-business-popup" role="dialog" aria-labelledby="defcon-business-title">
+            <h3 class="defcon-popup-title" id="defcon-business-title">Business Tier</h3>
+            <p class="defcon-popup-content">Designed for growing businesses with advanced features and priority support.</p>
+            <ul class="defcon-feature-list">
+                <li>Unlimited projects</li>
+                <li>Priority support</li>
+                <li>Advanced security</li>
+                <li>Real-time analytics</li>
+                <li>Team collaboration</li>
+            </ul>
+            <button class="defcon-popup-cta" onclick="selectTier('business')">Choose Business</button>
+        </div>
+
+        <div class="defcon-popup-panel" id="defcon-enterprise-popup" role="dialog" aria-labelledby="defcon-enterprise-title">
+            <h3 class="defcon-popup-title" id="defcon-enterprise-title">Enterprise Tier</h3>
+            <p class="defcon-popup-content">Ultimate solution for large organizations with custom requirements.</p>
+            <ul class="defcon-feature-list">
+                <li>Custom integrations</li>
+                <li>Dedicated support</li>
+                <li>Enterprise security</li>
+                <li>Custom reporting</li>
+                <li>SLA guarantee</li>
+                <li>White-label options</li>
+            </ul>
+            <button class="defcon-popup-cta" onclick="selectTier('enterprise')">Contact Sales</button>
+        </div>
+    </nav>
+
+    <script>
+        /**
+         * Advanced Floating Tier Menu Controller
+         * Handles contextual visibility, interactions, and accessibility
+         */
+        class DefconFloatingMenu {
+            constructor() {
+                // DOM elements
+                this.menu = document.getElementById('defcon-floating-menu');
+                this.servicesSection = document.getElementById('services');
+                this.menuItems = document.querySelectorAll('.defcon-menu-item');
+                this.popupPanels = document.querySelectorAll('.defcon-popup-panel');
+                
+                // State management
+                this.isMenuVisible = false;
+                this.activePopup = null;
+                this.scrollTimeout = null;
+                
+                // Configuration
+                this.scrollThreshold = 50; // Pixels of buffer for smoother transitions
+                
+                this.init();
+            }
+
+            /**
+             * Initialize the menu system
+             */
+            init() {
+                this.setupScrollDetection();
+                this.setupMenuInteractions();
+                this.setupKeyboardNavigation();
+                this.setupAccessibility();
+                
+                // Initial visibility check
+                this.checkMenuVisibility();
+                
+                console.log('DefconFloatingMenu initialized successfully');
+            }
+
+            /**
+             * Setup scroll detection for contextual visibility
+             */
+            setupScrollDetection() {
+                // Optimized scroll handler with throttling
+                let ticking = false;
+                
+                const scrollHandler = () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            this.checkMenuVisibility();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                };
+
+                window.addEventListener('scroll', scrollHandler, { passive: true });
+                window.addEventListener('resize', () => {
+                    clearTimeout(this.scrollTimeout);
+                    this.scrollTimeout = setTimeout(() => {
+                        this.checkMenuVisibility();
+                    }, 100);
+                });
+            }
+
+            /**
+             * Check if menu should be visible based on services section position
+             */
+            checkMenuVisibility() {
+                if (!this.servicesSection) return;
+
+                const rect = this.servicesSection.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                // Menu should be visible when services section is in viewport
+                const shouldBeVisible = (
+                    rect.top < viewportHeight - this.scrollThreshold &&
+                    rect.bottom > this.scrollThreshold
+                );
+
+                if (shouldBeVisible && !this.isMenuVisible) {
+                    this.showMenu();
+                } else if (!shouldBeVisible && this.isMenuVisible) {
+                    this.hideMenu();
+                }
+            }
+
+            /**
+             * Show the floating menu with animation
+             */
+            showMenu() {
+                this.menu.classList.add('defcon-visible');
+                this.isMenuVisible = true;
+                
+                // Announce to screen readers
+                this.announceToScreenReader('Tier selection menu is now available');
+            }
+
+            /**
+             * Hide the floating menu with animation
+             */
+            hideMenu() {
+                this.menu.classList.remove('defcon-visible');
+                this.isMenuVisible = false;
+                this.closeAllPopups();
+            }
+
+            /**
+             * Setup menu item interactions (hover and click)
+             */
+            setupMenuInteractions() {
+                this.menuItems.forEach(item => {
+                    const tier = item.dataset.tier;
+                    const popup = document.getElementById(`defcon-${tier}-popup`);
+                    
+                    if (!popup) return;
+
+                    // Mouse events
+                    item.addEventListener('mouseenter', () => {
+                        this.showPopup(popup);
+                    });
+
+                    item.addEventListener('mouseleave', () => {
+                        this.hidePopup(popup);
+                    });
+
+                    // Click events for mobile and accessibility
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.togglePopup(popup);
+                    });
+
+                    // Popup hover to keep it open
+                    popup.addEventListener('mouseenter', () => {
+                        this.showPopup(popup);
+                    });
+
+                    popup.addEventListener('mouseleave', () => {
+                        this.hidePopup(popup);
+                    });
+                });
+
+                // Close popups when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.menu.contains(e.target)) {
+                        this.closeAllPopups();
+                    }
+                });
+            }
+
+            /**
+             * Show popup panel
+             */
+            showPopup(popup) {
+                this.closeAllPopups();
+                popup.classList.add('defcon-active');
+                this.activePopup = popup;
+                
+                // Focus management for accessibility
+                const firstFocusable = popup.querySelector('button, [tabindex]');
+                if (firstFocusable) {
+                    setTimeout(() => firstFocusable.focus(), 100);
+                }
+            }
+
+            /**
+             * Hide specific popup panel
+             */
+            hidePopup(popup) {
+                popup.classList.remove('defcon-active');
+                if (this.activePopup === popup) {
+                    this.activePopup = null;
+                }
+            }
+
+            /**
+             * Toggle popup visibility
+             */
+            togglePopup(popup) {
+                if (popup.classList.contains('defcon-active')) {
+                    this.hidePopup(popup);
+                } else {
+                    this.showPopup(popup);
+                }
+            }
+
+            /**
+             * Close all popup panels
+             */
+            closeAllPopups() {
+                this.popupPanels.forEach(popup => {
+                    popup.classList.remove('defcon-active');
+                });
+                this.activePopup = null;
+            }
+
+            /**
+             * Setup keyboard navigation
+             */
+            setupKeyboardNavigation() {
+                // Escape key to close popups
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.activePopup) {
+                        this.closeAllPopups();
+                    }
+                });
+
+                // Arrow key navigation
+                this.menuItems.forEach((item, index) => {
+                    item.addEventListener('keydown', (e) => {
+                        switch (e.key) {
+                            case 'ArrowLeft':
+                                e.preventDefault();
+                                this.focusMenuItem(index - 1);
+                                break;
+                            case 'ArrowRight':
+                                e.preventDefault();
+                                this.focusMenuItem(index + 1);
+                                break;
+                            case 'Enter':
+                            case ' ':
+                                e.preventDefault();
+                                const tier = item.dataset.tier;
+                                const popup = document.getElementById(`defcon-${tier}-popup`);
+                                if (popup) this.togglePopup(popup);
+                                break;
+                        }
+                    });
+                });
+            }
+
+            /**
+             * Focus specific menu item with wrapping
+             */
+            focusMenuItem(index) {
+                const items = Array.from(this.menuItems);
+                const newIndex = ((index % items.length) + items.length) % items.length;
+                items[newIndex].focus();
+            }
+
+            /**
+             * Setup accessibility features
+             */
+            setupAccessibility() {
+                // Add ARIA live region for announcements
+                const liveRegion = document.createElement('div');
+                liveRegion.setAttribute('aria-live', 'polite');
+                liveRegion.setAttribute('aria-atomic', 'true');
+                liveRegion.className = 'defcon-sr-only';
+                liveRegion.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;';
+                document.body.appendChild(liveRegion);
+                this.liveRegion = liveRegion;
+            }
+
+            /**
+             * Announce message to screen readers
+             */
+            announceToScreenReader(message) {
+                if (this.liveRegion) {
+                    this.liveRegion.textContent = message;
+                    setTimeout(() => {
+                        this.liveRegion.textContent = '';
+                    }, 1000);
+                }
+            }
+        }
+
+        /**
+         * Tier selection handler
+         */
+        function selectTier(tier) {
+            console.log(`Selected tier: ${tier}`);
+            
+            // Mock tier selection - replace with actual implementation
+            const messages = {
+                personal: 'Welcome to Personal tier! Redirecting to sign-up...',
+                business: 'Business tier selected! Connecting to sales team...',
+                enterprise: 'Enterprise tier selected! Preparing consultation...'
+            };
+            
+            alert(messages[tier] || 'Tier selected successfully!');
+            
+            // Close popup after selection
+            const menu = window.defconMenu;
+            if (menu) {
+                menu.closeAllPopups();
+            }
+        }
+
+        // Initialize the menu when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            window.defconMenu = new DefconFloatingMenu();
+        });
+
+        // Prevent conflicts with existing code
+        if (typeof window.defconFloatingMenuLoaded === 'undefined') {
+            window.defconFloatingMenuLoaded = true;
+            console.log('DefconFloatingMenu component loaded successfully');
+        }
+
+
+
+
+
+
+        // Reset animations on mouse leave
+        document.querySelectorAll('.animated-border-button').forEach(button => {
+          button.addEventListener('mouseleave', () => {
+            // Reset animations when mouse leaves
+            button.style.removeProperty('animation');
+            button.querySelector('.button-content').style.removeProperty('animation');
+            
+            // Force reflow to reset animations
+            void button.offsetWidth;
+          });
+        });
+    </script>

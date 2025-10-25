@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEF CON Showcase Component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to precisely match the image and theme */
+        .dc-showcase-body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light grey background from image */
+        }
+        .dc-showcase-h1 {
+            font-weight: 900;
+            font-size: 5.5rem; /* Large font size for main heading */
+            line-height: 1;
+            color: #1a1a1a;
+        }
+        .dc-showcase-accent-red {
+            color: #d93737; /* A striking red for links */
+        }
+        /* Style for the card background images */
+        .dc-showcase-card-bg {
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .dc-showcase-card:hover .dc-showcase-card-bg {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+        /* Gradient overlay for text readability on cards */
+        .dc-showcase-card-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+            border-radius: 0.75rem; /* Match parent's border-radius */
+        }
+        /* Custom scrollbar styles */
+        .dc-showcase-scrollbar-container::-webkit-scrollbar {
+            display: none; /* Hide default scrollbar for Chrome, Safari */
+        }
+        .dc-showcase-scrollbar-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="dc-showcase-body">
+
+    <defcon-showcase-component class="dc-showcase-component-wrapper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+            <!-- Top Section: Title and Description -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-10">
+                <!-- Left: Titles -->
+                <div>
+                    <p class="text-gray-500 text-lg mb-2">/ DEF CON TRACKS</p>
+                    <h1 class="dc-showcase-h1">Hacker<br>Excellence</h1>
+                </div>
+                <!-- Right: Description and Links -->
+                <div class="md:text-left pb-2">
+                    <p class="text-gray-700 text-base leading-relaxed mb-6">
+                        From repairs and installations to preventative maintenance, we've got you covered. Choose reliability, choose Razor. From workshops and villages to intense competitions, we've got you covered. For a true hacker experience, choose DEF CON.
+                    </p>
+                    <div class="flex items-center space-x-6">
+                        <a href="#" class="dc-showcase-accent-red font-bold hover:underline">View All Tracks &rarr;</a>
+                        <a href="#" class="dc-showcase-accent-red font-bold hover:underline">Register Now &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Section: Cards -->
+            <div id="dc-card-container" class="dc-showcase-scrollbar-container flex overflow-x-auto space-x-6 pb-4">
+                <!-- Card 1: Lockpicking Village -->
+                <div class="dc-showcase-card group flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden relative shadow-lg cursor-pointer">
+                    <div class="dc-showcase-card-bg absolute inset-0" style="background-image: url('https://placehold.co/600x800/2a2a2a/ffffff?text=Lockpicking');"></div>
+                    <div class="dc-showcase-card-overlay absolute inset-0"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-5 text-white">
+                        <h3 class="text-lg font-bold"><span class="bg-yellow-500 text-black px-2 py-1 rounded">Lockpicking</span> Village</h3>
+                        <div class="absolute bottom-4 right-4 bg-gray-800/70 group-hover:bg-red-600 transition-colors rounded-full w-12 h-12 flex items-center justify-center">
+                            <span class="text-2xl font-light">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Social Engineering -->
+                <div class="dc-showcase-card group flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden relative shadow-lg cursor-pointer">
+                    <div class="dc-showcase-card-bg absolute inset-0" style="background-image: url('https://placehold.co/600x800/3a3a3a/ffffff?text=Social+Engineering');"></div>
+                    <div class="dc-showcase-card-overlay absolute inset-0"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-5 text-white">
+                        <h3 class="text-lg font-bold"><span class="bg-blue-500 text-black px-2 py-1 rounded">Social</span> Engineering</h3>
+                        <div class="absolute bottom-4 right-4 bg-gray-800/70 group-hover:bg-red-600 transition-colors rounded-full w-12 h-12 flex items-center justify-center">
+                            <span class="text-2xl font-light">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: Capture The Flag -->
+                <div class="dc-showcase-card group flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden relative shadow-lg cursor-pointer">
+                    <div class="dc-showcase-card-bg absolute inset-0" style="background-image: url('thumbnails/pexels-altabena-10142683.jpg');"></div>
+                    <div class="dc-showcase-card-overlay absolute inset-0"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-5 text-white">
+                        <h3 class="text-lg font-bold"><span class="bg-green-500 text-black px-2 py-1 rounded">Capture</span> The Flag</h3>
+                        <div class="absolute bottom-4 right-4 bg-gray-800/70 group-hover:bg-red-600 transition-colors rounded-full w-12 h-12 flex items-center justify-center">
+                            <span class="text-2xl font-light">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: Hardware Hacking -->
+                <div class="dc-showcase-card group flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden relative shadow-lg cursor-pointer">
+                    <div class="dc-showcase-card-bg absolute inset-0" style="background-image: url('https://placehold.co/600x800/4a4a4a/ffffff?text=Hardware+Hacking');"></div>
+                    <div class="dc-showcase-card-overlay absolute inset-0"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-5 text-white">
+                        <h3 class="text-lg font-bold"><span class="bg-purple-500 text-black px-2 py-1 rounded">Hardware</span> Hacking</h3>
+                        <div class="absolute bottom-4 right-4 bg-gray-800/70 group-hover:bg-red-600 transition-colors rounded-full w-12 h-12 flex items-center justify-center">
+                            <span class="text-2xl font-light">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5: Bio Hacking -->
+                <div class="dc-showcase-card group flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden relative shadow-lg cursor-pointer">
+                    <div class="dc-showcase-card-bg absolute inset-0" style="background-image: url('https://placehold.co/600x800/5a5a5a/ffffff?text=Bio+Hacking');"></div>
+                    <div class="dc-showcase-card-overlay absolute inset-0"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full p-5 text-white">
+                        <h3 class="text-lg font-bold"><span class="bg-pink-500 text-black px-2 py-1 rounded">Bio</span> Hacking</h3>
+                        <div class="absolute bottom-4 right-4 bg-gray-800/70 group-hover:bg-red-600 transition-colors rounded-full w-12 h-12 flex items-center justify-center">
+                            <span class="text-2xl font-light">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Add more cards if needed -->
+            </div>
+
+            <!-- Bottom Section: Custom Scrollbar -->
+            <div class="w-full bg-gray-300 rounded-full h-1.5 mt-6">
+                <div id="dc-scrollbar-thumb" class="bg-gray-500 h-1.5 rounded-full" style="width: 40%;"></div>
+            </div>
+
+        </div>
+    </defcon-showcase-component>
+
+    <script>
+        // JavaScript for the custom scrollbar functionality
+        const cardContainer = document.getElementById('dc-card-container');
+        const scrollbarThumb = document.getElementById('dc-scrollbar-thumb');
+        
+        const updateScrollbar = () => {
+            if (cardContainer && scrollbarThumb) {
+                const maxScrollLeft = cardContainer.scrollWidth - cardContainer.clientWidth;
+                const scrollPercentage = (cardContainer.scrollLeft / maxScrollLeft) * 100;
+                const thumbWidth = (cardContainer.clientWidth / cardContainer.scrollWidth) * 100;
+
+                scrollbarThumb.style.width = `${thumbWidth}%`;
+                // Calculate thumb position
+                const thumbPosition = (scrollPercentage / 100) * (100 - thumbWidth);
+                scrollbarThumb.style.transform = `translateX(${thumbPosition}%)`;
+            }
+        };
+
+        if (cardContainer) {
+            cardContainer.addEventListener('scroll', updateScrollbar);
+            window.addEventListener('resize', updateScrollbar); // Update on resize
+            
+            // Initial call to set the scrollbar correctly on page load
+            // Using a timeout to ensure all elements are rendered
+            setTimeout(updateScrollbar, 100);
+        }
+    </script>
+</body>
+</html>

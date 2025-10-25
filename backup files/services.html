@@ -1,0 +1,838 @@
+ <style>
+
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1a252f;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+ /* Header */
+        header {
+            background: linear-gradient(135deg, #1a252f, #3498db);
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: fadeInScale 1s ease-in-out;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ecf0f1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            animation: pulse 2s infinite;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            vertical-align: middle;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            transition: transform 0.5s ease;
+        }
+
+        .logo:active {
+            animation: bounce 0.3s ease;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.7rem 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+            transform: translateY(-3px);
+        }
+        
+
+        /* Dropdown Menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #2c3e50;         
+            min-width: 220px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: #ecf0f1;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #3498db;
+            border-radius: 8px;
+            transform: translateX(5px);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a252f, #3498db);
+            padding: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-logo img {
+            width: 150px;
+            height: auto;
+            animation: pulse 2s infinite;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .footer-logo img:hover {
+             transform: scale(1.1) rotate(2deg);
+        }
+
+        .footer-logo img:active {
+            animation: bounce 0.3s ease;
+        }
+
+        .footer-container h3 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ecf0f1; /* White for dark background */
+        }
+
+        .footer-container p {
+            font-size: 1.2rem;
+            color: #ecf0f1; /* White for dark background */
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            position: relative;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #3498db;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ecf0f1;  
+            transform: scale(1.1) rotate(2deg);
+            transition: all 0.3s ease-out;
+        }
+
+        .footer-nav-item {
+            position: relative;
+        }
+
+        .footer-nav-link {
+            color: #3498db;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-nav-link:hover {
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .footer-dropdown-content {
+            display: none;
+            position: absolute;
+            background: #2c3e50;
+            min-width: 180px;
+            border-radius: 8px;
+            box-shadow: 0 -8px 16px rgba(0,0,0,0.4);
+            bottom: 100%; /* Position above for dropup */
+            left: 0;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .footer-nav-item:hover .footer-dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .footer-dropdown-content a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #ecf0f1;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-dropdown-content a:hover {
+            background: #3498db;
+            border-radius: 6px;
+            transform: translateX(3px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+        }
+
+        .footer-bottom ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 1rem;
+            color: #ecf0f1; /* White for dark background */
+        }
+
+        /* Icon Styling */
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .community .icon, .newsletter .icon {
+            font-size: 1.5rem;
+        }
+        </style>
+
+        <!-- Header -->
+</head>
+<body>
+    <header>
+        <div class="header-container">
+
+            <div class="logo">
+               <p>defcon.</p>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">Shop</a>
+                    <div class="dropdown-content">
+                        <a href="#web-templates">Web Templates</a>
+                        <a href="#hosting-plans">Hosting Plans</a>
+                        <a href="#software-tools">Software Tools</a>
+                        <a href="#all-products">All Products</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                    <div class="dropdown-content">
+                        <a href="#web-design">Web Design</a>
+                        <a href="#web-development">Web Development</a>
+                        <a href="#technical-support">Technical Support</a>
+                        <a href="#consulting">IT Consulting</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="dropdown-content">
+                        <a href="#our-story">Our Story</a>
+                        <a href="#team">Our Team</a>
+                        <a href="#mission">Our Mission</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#whats-next" class="nav-link">What's Next</a>
+                    <div class="dropdown-content">
+                        <a href="#innovations">Innovations</a>
+                        <a href="#roadmap">Roadmap</a>
+                        <a href="#beta-program">Beta Program</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Lupoid</title>
+  <style>
+    /* Services Page Styles */
+    .services-page {
+      background: linear-gradient(45deg, #2c3e50, #3498db);
+      color: #ecf0f1;
+      font-family: 'Times New Roman', Times, serif;
+      font-stretch: normal;
+      font-weight: normal;
+      text-decoration: none;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background overlay */
+    .services-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('thumbnails/pexels12.jpg') repeat center;
+      opacity: 0.05;
+      z-index: 1;
+    }
+
+    /* Hero section */
+    .services-hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInScale 1s ease-in-out;
+      text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+      margin-top: 80px;
+    }
+
+    
+
+    /* Services grid */
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    
+    }
+
+    /* Service card */
+    .service-card {
+      perspective: 1000px;
+      position: relative;
+      height: 300px;
+    }
+
+    .service-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .service-card:hover .service-card-inner {
+      transform: rotateY(180deg);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.7);
+    }
+
+    .service-card-front,
+    .service-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+    .service-card-front {
+      animation: slideInLeft 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .service-card-back {
+      transform: rotateY(180deg);
+      animation: slideInRight 1s ease-in-out;
+      background: rgba(44, 62, 80, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .service-card img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .service-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: #ecf0f1;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .service-btn:hover {
+      background: linear-gradient(135deg, #2980b9, #1a252f);
+      transform: scale(1.1) rotate(2deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: none;
+    }
+
+    .service-btn:active {
+      animation: bounce 0.3s ease;
+    }
+
+    /* Call-to-action section */
+    .services-cta {
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-cta h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInScale 1s ease-in-out;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: #ecf0f1;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(135deg, #c0392b, #1a252f);
+      transform: scale(1.1) rotate(2deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: none;
+    }
+
+    .cta-btn:active {
+      animation: bounce 0.3s ease;
+    }
+
+    /* Why choose section */
+    .services-why {
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-why h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .services-why .icon {
+      animation: pulse 1.5s infinite;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      animation: fadeInScale 1.2s ease-in-out;
+    }
+
+    .stat-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .stat-item .count {
+      font-size: 2.5rem;
+      color: #e74c3c;
+      font-weight: bold;
+      display: inline-block;
+      animation: countUp 2s ease-out forwards;
+    }
+
+    .stat-item p {
+      font-size: 1.2rem;
+      color: #bdc3c7;
+    }
+
+    @keyframes countUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+    }
+
+    .social-links img {
+      width: 40px;
+      height: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links img:hover {
+      transform: rotate(360deg);
+      animation: spin 0.5s ease;
+    }
+
+    .social-links img:active {
+      animation: bounce 0.3s ease;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .services-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .services-container {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        height: 250px;
+      }
+
+      .services-cta h2 {
+        font-size: 1.8rem;
+      }
+
+      .services-why h2 {
+        justify-content: center;
+      }
+
+      .stat-item .count {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="services-page">
+    <div class="services-overlay"></div>
+    <section class="services-hero">
+      <h1>Our Services: Powering Your Digital Future</h1>
+      <div class="circuit-wave"></div>
+    </section>
+    <section class="services-container">
+      <div class="service-card">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <img src="thumbnails/html-5.png" alt="Web Icon">
+            <h3>Web Development</h3>
+            <p>Custom, responsive websites tailored to your brand.</p>
+          </div>
+          <div class="service-card-back">
+            <p>From sleek portfolios to e-commerce platforms, we build websites that captivate and convert. Let’s create your digital jol!</p>
+            <a href="https://example.com/service-details" class="service-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <img src="thumbnails/cyber-security.png" alt="Cyber Icon">
+            <h3>Cybersecurity</h3>
+            <p>Protect your business with cutting-edge security.</p>
+          </div>
+          <div class="service-card-back">
+            <p>Our expert solutions safeguard against phishing, malware, and more. Secure your digital world with Lupoid!</p>
+            <a href="https://example.com/service-details" class="service-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <img src="thumbnails/briefcase.png" alt="Marketing Icon">
+            <h3>Digital Marketing</h3>
+            <p>Boost your brand with targeted campaigns.</p>
+          </div>
+          <div class="service-card-back">
+            <p>From SEO to social media, we drive engagement and growth. Let’s make your brand shine online!</p>
+            <a href="https://example.com/service-details" class="service-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="services-cta">
+      <h2>Ready to Transform Your Business? Let’s Build Your Digital Jol!</h2>
+      <a href="contact.html" class="cta-btn">Contact Us Now</a>
+    </section>
+    <section class="services-why">
+      <h2>Why Choose Lupoid?</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <img src="thumbnails/cloud-service.png" alt="Experience Icon">
+          <span class="count">5+</span>
+          <p>Years of Experience</p>
+        </div>
+        <div class="stat-item">
+          <img src="thumbnails/coding.png" alt="Projects Icon">
+          <span class="count">100+</span>
+          <p>Projects Completed</p>
+        </div>
+        <div class="stat-item">
+          <img src="thumbnails/teamwork.png" alt="Clients Icon">
+          <span class="count">50+</span>
+          <p>Happy Clients</p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://x.com/lupoid"><img src="thumbnails/twitter-removebg-preview.png" alt="Twitter Icon"></a>
+        <a href="https://linkedin.com/company/lupoid"><img src="thumbnails/linkedin.png" alt="LinkedIn Icon"></a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+    <!-- footer -->
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">
+                    <img src="thumbnails/lupoid.png" alt="Lupoid Logo">
+                </div>
+                <p>Proudly South African, crafting innovative IT solutions from Johannesburg.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p> 123 Phuthaditjhaba, Witsieshoek 9870</p>
+                <p><a href="tel:+27119876543">+27 11 987 6543</a></p>
+                <p><a href="mailto:support@lupoid.com">support@lupoid.com</a></p>
+            </div>
+            <div>
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com/lupoid" class="social-icon"><img src="thumbnails/twitter-removebg-preview.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                    <a href="https://twitter.com/lupoid" class="social-icon"><img src="thumbnails/facebook-removebg-preview.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                    <a href="https://linkedin.com/company/lupoid" class="social-icon"><img src="thumbnails/linkedin.png" alt="Success" style="display: inline; vertical-align: middle; width: 30px; height: 30px;"></a>
+                    <a href="https://instagram.com/lupoid" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <ul class="footer-links">
+                <li class="footer-nav-item">
+                    <a href="#more" class="footer-nav-link">More</a>
+                    <div class="footer-dropdown-content">
+                        <a href="#contact">Contact Us</a>
+                        <a href="#faqs">FAQs</a>
+                        <a href="#sell">Sell With Us</a>
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms & Conditions</a>
+                        <a href="#careers">Careers</a>
+                        <a href="#blog">Blog</a>
+                        <a href="#events">Events</a>
+                    </div>
+                </li>
+            </ul>
+            <p>© 2025 Defcon IT Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
