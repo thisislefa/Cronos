@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Business Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Replicating key styles from header.html for consistency */
+        :root {
+            --color-header-bg: #07071e;
+            --color-accent: #0091ff;
+            --color-text-light: #fff;
+            --color-background-dark: #000;
+            --color-off-white: #f4f4f4;
+            --color-text-muted: #a0a0c0;
+            --header-height: 55px;
+            --content-max-width: 1400px;
+            --section-padding: 80px 40px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--header-height);
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--color-accent);
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #4dafff;
+        }
+
+        /* Utility Class for Content Centering/Max-Width */
+        .content-container {
+            max-width: var(--content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        /* Hero Section */
+        .business-hero {
+            background-color: var(--color-header-bg);
+            padding: 120px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+        }
+        .business-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+        .business-hero p {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        .hero-cta {
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: background-color 0.2s ease;
+        }
+        .hero-cta:hover {
+            background-color: #0081ff;
+            color: var(--color-text-light); /* Maintain white text */
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            padding: var(--section-padding);
+        }
+        .solutions-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .solution-card {
+            background-color: #1a1a38; /* Slightly lighter background for the card */
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(0, 145, 255, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 145, 255, 0.1);
+        }
+        .solution-card i {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .solution-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .solution-card p {
+            color: var(--color-text-muted);
+            font-size: 1.05rem;
+        }
+        .solution-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .solution-card ul li {
+            position: relative;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            color: var(--color-off-white);
+            font-size: 0.95rem;
+        }
+        .solution-card ul li:before {
+            content: "\f058"; /* Checkmark icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+        
+        /* Call to Action Bar */
+        .cta-bar {
+            background-color: #0d0b25;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .cta-bar h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .cta-bar p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 1200px) {
+            .business-hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 0 20px;
+            }
+            .business-hero {
+                padding: 80px 0;
+            }
+            .business-hero h1 {
+                font-size: 2.5rem;
+            }
+            .business-hero p {
+                font-size: 1rem;
+            }
+            .solutions-section {
+                padding: 60px 0;
+            }
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div style="height: var(--header-height); background-color: var(--color-header-bg); position: fixed; top: 0; width: 100%; z-index: 999;">
+        </div>
+    
+    <section class="business-hero">
+        <div class="content-container">
+            <h1>Driving Your Business Forward with **Advanced Digital Solutions**</h1>
+            <p>Defcon provides the complete technology stack—from infrastructure and custom software to marketing strategy—allowing your business to **modernize, secure, and scale** without limits.</p>
+            <a href="contact-us.html" class="hero-cta">Start Your Digital Transformation <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+        </div>
+    </section>
+
+    <section class="solutions-section">
+        <div class="content-container">
+            <h2>Our Integrated Approach to Business Success</h2>
+            <div class="solutions-grid">
+                
+                <div class="solution-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Build & Innovate: Custom Software Solutions</h3>
+                    <p>Stop relying on off-the-shelf software. We engineer **bespoke digital products** that solve your unique operational challenges and deliver competitive advantages.</p>
+                    
+                    <h4>Core Capabilities:</h4>
+                    <ul>
+                        <li><span class="solution-link-title">Web & Mobile Applications</span></li>
+                        <li><span class="solution-link-title">E-commerce Solutions & API Development</span></li>
+                        <li><span class="solution-link-title">DevOps, CI/CD, and Blockchain/Web3 Integration</span></li>
+                    </ul>
+                    <p><a href="services/software-dev.html">Explore Software Development →</a></p>
+                </div>
+
+                <div class="solution-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Secure & Empower: Infrastructure & Operations</h3>
+                    <p>Establish a **reliable, highly available, and secure IT environment**. Our end-to-end management keeps your business running smoothly, 24/7/365.</p>
+
+                    <h4>Core Capabilities:</h4>
+                    <ul>
+                        <li><span class="solution-link-title">IT Support, Consulting, and Data Center Management</span></li>
+                        <li><span class="solution-link-title">Cloud Computing and Automation/AI Implementation</span></li>
+                        <li><span class="solution-link-title">Smart Tech (POS, Queue Systems) & CCTV Surveillance</span></li>
+                    </ul>
+                    <p><a href="services/it-infrastructure.html">Explore IT Infrastructure →</a></p>
+                </div>
+
+                <div class="solution-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Market & Grow: Branding & Digital Outreach</h3>
+                    <p>We transform your brand's presence with **strategic content, compelling design, and targeted campaigns**. Convert prospects into customers across all digital channels.</p>
+
+                    <h4>Core Capabilities:</h4>
+                    <ul>
+                        <li><span class="solution-link-title">Digital Marketing & Advertising Campaigns</span></li>
+                        <li><span class="solution-link-title">Graphic Design, Copywriting, and Content Management</span></li>
+                        <li><span class="solution-link-title">Multimedia Production for Web and Social Channels</span></li>
+                    </ul>
+                    <p><a href="services/marketing.html">Explore Creative Studio →</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-bar">
+        <div class="content-container">
+            <h2>Ready to Define Your Digital Future?</h2>
+            <p>Our team is prepared to architect a solution that is perfectly tailored to your business objectives.</p>
+            <a href="get-started.html" class="hero-cta">Request a Free Consultation</a>
+        </div>
+    </section>
+    
+    <footer style="padding: 40px 0; text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
+        <p>&copy; 2025 Defcon. All Rights Reserved. | Privacy Policy | Terms of Service</p>
+    </footer>
+
+</body>
+</html>
