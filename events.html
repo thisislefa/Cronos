@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Events & Webinars</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Define a custom color palette and font using Tailwind config */
+        :root {
+            /* Light Theme Palette */
+            --color-header-bg: #ffffff; /* White header */
+            --color-accent: #0091ff;
+            --color-text-dark: #1a1a1a; /* Dark text */
+            --color-background-light: #f9f9fd; /* Very light background */
+            --color-text-muted: #555566; /* Muted dark gray */
+            --color-card-bg: #ffffff; /* White card background */
+            --header-height: 55px;
+        }
+
+        /* Custom Tailwind Configuration */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'light-bg': 'var(--color-background-light)',
+                        'light-card': 'var(--color-card-bg)',
+                        'accent-blue': 'var(--color-accent)',
+                        'muted-text': 'var(--color-text-muted)',
+                        'header-light': 'var(--color-header-bg)',
+                        'date-highlight': '#eef6ff', /* Light blue background for date block */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </style>
+    
+    <style>
+        /*
+        =============================================
+        0. BASE & UTILITIES
+        =============================================
+        */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background-light); /* Light background */
+            color: var(--color-text-dark); /* Dark text */
+            line-height: 1.6;
+            padding-top: var(--header-height); /* For fixed header space */
+        }
+        
+        /* Utility for content max width and centering */
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Placeholder for sticky header (mimicking the header area) */
+        .header-placeholder {
+            height: var(--header-height); 
+            background-color: var(--color-header-bg); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 999;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1); 
+        }
+
+        /*
+        =============================================
+        1. EVENT CARD STYLES
+        =============================================
+        */
+        .event-card {
+            display: flex;
+            background-color: var(--color-card-bg);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-box {
+            flex-shrink: 0;
+            width: 100px; /* Fixed width for the date column */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--date-highlight);
+            color: var(--color-text-dark);
+            text-align: center;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .event-content {
+            flex-grow: 1;
+        }
+        
+        /* Button Styles */
+        .cta-button {
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        .cta-register {
+            background-color: var(--color-accent);
+            color: white;
+        }
+        
+        .cta-register:hover {
+            background-color: #0077d8; /* Darker blue on hover */
+        }
+        
+        .cta-view-details {
+            background-color: #f0f0f5;
+            color: var(--color-text-dark);
+            border: 1px solid #d0d0d0;
+        }
+        
+        .cta-view-details:hover {
+            background-color: #e5e5e8;
+        }
+
+
+        /*
+        =============================================
+        2. RESPONSIVENESS
+        =============================================
+        */
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 0 20px;
+            }
+            .event-card {
+                flex-direction: column;
+            }
+            .date-box {
+                width: 100%;
+                padding: 1rem 0;
+                border-bottom: 1px solid #e0e0e0;
+                border-right: none;
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+            .date-box .month {
+                font-size: 1.125rem; /* text-xl */
+            }
+            .date-box .day {
+                font-size: 2.25rem; /* text-4xl */
+                line-height: 1;
+            }
+            .date-box .year {
+                font-size: 1rem; /* text-base */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This div mimics the fixed header for visual layout consistency -->
+    <div class="header-placeholder"></div>
+    
+    <!-- =============================================
+         1. HERO SECTION
+         ============================================= -->
+    <section class="py-20 text-center bg-header-light border-b border-gray-200">
+        <div class="content-container">
+            <h1 class="text-6xl font-extrabold mb-4 leading-tight text-gray-900">
+                Explore Our Events
+            </h1>
+            <p class="text-xl max-w-4xl mx-auto text-gray-600">
+                Join our experts for upcoming webinars, conferences, and exclusive workshops on cloud security, DevOps automation, and digital transformation.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         2. UPCOMING EVENTS
+         ============================================= -->
+    <section class="py-16">
+        <div class="content-container">
+            <h2 class="text-4xl font-bold mb-10 text-gray-800 border-b pb-3 border-accent-blue/50">
+                Upcoming Webinars & Workshops
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="upcomingEventsContainer">
+                
+                <!-- UPCOMING EVENT 1: ZERO TRUST SECURITY (Expanded) -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box">
+                        <span class="month text-sm font-semibold uppercase text-accent-blue">AUG</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-900">22</span>
+                        <span class="year text-base font-medium text-gray-600">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                            The Future of Zero Trust Security
+                        </h3>
+                        <p class="text-sm font-medium text-accent-blue mb-3">
+                            <i class="fas fa-video mr-1"></i> Live Webinar | 10:00 AM PST
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            Dive deep into the Zero Trust model. We'll cover identity verification, micro-segmentation, and policy enforcement to eliminate implicit trust and secure all access requests, regardless of location.
+                        </p>
+                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- UPCOMING EVENT 2: DEVOPS & K8S (Expanded) -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box">
+                        <span class="month text-sm font-semibold uppercase text-accent-blue">SEP</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-900">15</span>
+                        <span class="year text-base font-medium text-gray-600">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                            DevOps Automation with Kubernetes
+                        </h3>
+                        <p class="text-sm font-medium text-accent-blue mb-3">
+                            <i class="fas fa-laptop-code mr-1"></i> Virtual Workshop | 1:00 PM EST
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            This practical workshop explores advanced **GitOps** practices, **Helm** chart management, and CI/CD pipelines to achieve faster, more reliable, and immutable deployments on Kubernetes clusters.
+                        </p>
+                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- UPCOMING EVENT 3: ANNUAL SUMMIT (Expanded) -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box">
+                        <span class="month text-sm font-semibold uppercase text-accent-blue">OCT</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-900">03</span>
+                        <span class="year text-base font-medium text-gray-600">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                            Defcon Annual Technology Summit
+                        </h3>
+                        <p class="text-sm font-medium text-accent-blue mb-3">
+                            <i class="fas fa-map-marker-alt mr-1"></i> Chicago, IL | All Day
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            A two-day event featuring over 50 speakers across three tracks: **Future AI & ML**, **Cyber Resilience**, and **Sustainable Infrastructure**. Includes networking sessions and live demos.
+                        </p>
+                        <a href="#" class="cta-button cta-register inline-block">Secure Your Ticket</a>
+                    </div>
+                </div>
+                
+                <!-- UPCOMING EVENT 4: NEW DATA GOVERNANCE -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box">
+                        <span class="month text-sm font-semibold uppercase text-accent-blue">NOV</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-900">10</span>
+                        <span class="year text-base font-medium text-gray-600">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
+                            Data Governance & Compliance Workshop
+                        </h3>
+                        <p class="text-sm font-medium text-accent-blue mb-3">
+                            <i class="fas fa-file-shield mr-1"></i> Live Webinar | 9:00 AM PST
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            Navigate complex global regulations like **GDPR and CCPA**. This session provides actionable frameworks for data lineage, quality management, and risk mitigation in a compliant enterprise environment.
+                        </p>
+                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         3. PAST EVENTS
+         ============================================= -->
+    <section class="py-16 bg-light-card border-t border-b border-gray-200">
+        <div class="content-container">
+            <h2 class="text-4xl font-bold mb-10 text-gray-800 border-b pb-3 border-gray-300">
+                Past Events & Recordings
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 opacity-75" id="pastEventsContainer">
+                
+                <!-- PAST EVENT 1: AI ADOPTION (Expanded) -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box bg-gray-100">
+                        <span class="month text-sm font-semibold uppercase text-gray-600">JUN</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-700">10</span>
+                        <span class="year text-base font-medium text-gray-500">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
+                            Introduction to Enterprise AI Adoption
+                        </h3>
+                        <p class="text-sm font-medium text-gray-500 mb-3">
+                            <i class="fas fa-check-circle mr-1"></i> Recorded Webinar
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            Review successful enterprise case studies. This recording covers identifying high-ROI AI use cases, building ethical models, and calculating the true financial impact of AI adoption.
+                        </p>
+                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
+                    </div>
+                </div>
+
+                <!-- PAST EVENT 2: COST OPTIMIZATION (Expanded) -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box bg-gray-100">
+                        <span class="month text-sm font-semibold uppercase text-gray-600">MAY</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-700">01</span>
+                        <span class="year text-base font-medium text-gray-500">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
+                            Multi-Cloud Cost Optimization Strategies
+                        </h3>
+                        <p class="text-sm font-medium text-gray-500 mb-3">
+                            <i class="fas fa-check-circle mr-1"></i> Recorded Workshop
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            Master **FinOps** principles. Learn vendor-specific cost monitoring (Cost Explorer, Azure Advisor), reservation strategies (RI/Savings Plans), and architectural rightsizing for maximum cloud efficiency.
+                        </p>
+                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
+                    </div>
+                </div>
+                
+                <!-- PAST EVENT 3: NEW SERVERLESS COMPUTING -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box bg-gray-100">
+                        <span class="month text-sm font-semibold uppercase text-gray-600">APR</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-700">18</span>
+                        <span class="year text-base font-medium text-gray-500">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
+                            Serverless Computing Deep Dive
+                        </h3>
+                        <p class="text-sm font-medium text-gray-500 mb-3">
+                            <i class="fas fa-check-circle mr-1"></i> Recorded Workshop
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            An in-depth look at **AWS Lambda** and **Azure Functions**. Understand event-driven architecture, optimize cold starts, and implement consumption-based billing models to reduce operational costs.
+                        </p>
+                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
+                    </div>
+                </div>
+
+                <!-- PAST EVENT 4: NEW DISASTER RECOVERY -->
+                <div class="event-card">
+                    <!-- Date Box -->
+                    <div class="date-box bg-gray-100">
+                        <span class="month text-sm font-semibold uppercase text-gray-600">MAR</span>
+                        <span class="day text-4xl font-extrabold leading-none text-gray-700">05</span>
+                        <span class="year text-base font-medium text-gray-500">2025</span>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="event-content p-5">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
+                            Disaster Recovery Planning & Automation
+                        </h3>
+                        <p class="text-sm font-medium text-gray-500 mb-3">
+                            <i class="fas fa-check-circle mr-1"></i> Recorded Webinar
+                        </p>
+                        <p class="text-muted-text mb-4 text-base">
+                            Establish robust recovery goals (RPO/RTO). This recording details automated failover setup, immutable backups, and routine testing protocols to ensure rapid business continuity.
+                        </p>
+                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placeholder Footer -->
+    <footer class="py-10 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 Defcon. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

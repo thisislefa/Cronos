@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - IT Solutions Glossary</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Define a custom color palette and font using Tailwind config */
+        :root {
+            --color-header-bg: #ffffff; /* White header */
+            --color-accent: #0091ff;
+            --color-text-dark: #1a1a1a; /* Dark text */
+            --color-background-light: #f9f9fd; /* Very light background */
+            --color-text-muted: #555566; /* Muted dark gray */
+            --header-height: 55px;
+        }
+
+        /* Custom Tailwind Configuration */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'light-bg': 'var(--color-background-light)',
+                        'light-card': '#eeeeee',
+                        'accent-blue': 'var(--color-accent)',
+                        'muted-text': 'var(--color-text-muted)',
+                        'header-light': 'var(--color-header-bg)',
+                        'nav-item-bg': '#f0f0f5', /* Subtle light background for index */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </style>
+    
+    <style>
+        /*
+        =============================================
+        0. BASE & UTILITIES
+        =============================================
+        */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background-light); /* Light background */
+            color: var(--color-text-dark); /* Dark text */
+            line-height: 1.6;
+            padding-top: var(--header-height); /* For fixed header space */
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility for content max width and centering */
+        .content-container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Placeholder for sticky header (mimicking the header area) */
+        .header-placeholder {
+            height: var(--header-height); 
+            background-color: var(--color-header-bg); /* Use light header bg */
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 999;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1); /* Add subtle shadow for white header */
+        }
+
+        /*
+        =============================================
+        1. GLOSSARY LAYOUT
+        =============================================
+        */
+
+        /* Alphabet Index (Left/Sticky Column) */
+        .alphabet-index-wrapper {
+            width: 180px; 
+            flex-shrink: 0;
+            padding-right: 40px;
+            position: sticky; 
+            top: calc(var(--header-height) + 20px); /* Sticks below the header */
+            height: fit-content;
+            max-height: 80vh; 
+            overflow-y: auto; 
+            box-sizing: border-box;
+            /* Hide scrollbar */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .alphabet-index-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .alphabet-index {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .alphabet-index a {
+            flex-grow: 1;
+            flex-basis: calc(33.33% - 5px); /* Three columns */
+            transition: background-color 0.1s, color 0.1s;
+        }
+
+        .alphabet-index a.disabled {
+            color: #aaaaaa; /* Lighter text for disabled links */
+            background-color: #f3f3f3; /* Light background for disabled links */
+            cursor: default;
+        }
+
+        .alphabet-index a.active-letter {
+            box-shadow: 0 0 10px rgba(0, 145, 255, 0.4);
+        }
+
+        /* Term List (Right/Content Column) */
+        .glossary-terms {
+            border-left: 1px solid rgba(0, 0, 0, 0.1); /* Darker border for light background */
+        }
+        
+        .term-group h2 {
+            line-height: 1;
+        }
+        
+        .term-item h3 {
+            position: relative;
+        }
+        
+        .term-item h3:after {
+            content: "\f05a"; /* Info icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--color-accent);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .term-item h3:hover:after {
+            opacity: 1;
+        }
+
+        /*
+        =============================================
+        2. RESPONSIVENESS
+        =============================================
+        */
+        @media (max-width: 1024px) {
+            body {
+                padding-top: 0;
+            }
+            .header-placeholder {
+                display: none;
+            }
+            .glossary-main-wrapper {
+                flex-direction: column;
+            }
+
+            .alphabet-index-wrapper {
+                width: 100%;
+                padding: 0 0 20px 0;
+                position: static; 
+                max-height: none;
+                overflow-y: visible;
+                margin-bottom: 20px;
+            }
+
+            .alphabet-index {
+                flex-wrap: nowrap; /* Single horizontal scrolling row */
+                overflow-x: auto;
+                padding: 10px 0;
+                gap: 10px;
+                
+                /* Hide scrollbar on mobile */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .alphabet-index::-webkit-scrollbar {
+                display: none;
+            }
+
+            .alphabet-index a {
+                flex-basis: 40px; 
+                flex-shrink: 0;
+            }
+            
+            .glossary-terms {
+                padding-left: 0;
+                border-left: none;
+            }
+            
+            .content-container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This div mimics the fixed header for visual layout consistency -->
+    <div class="header-placeholder"></div>
+    
+    <!-- =============================================
+         1. HERO SECTION
+         ============================================= -->
+    <section class="py-16 text-center bg-header-light border-b border-gray-200">
+        <div class="content-container">
+            <h1 class="text-5xl font-extrabold mb-3 leading-tight text-gray-900">Defcon IT & Digital Glossary</h1>
+            <p class="text-xl max-w-3xl mx-auto text-gray-600">
+                Demystifying the language of technology. Find clear, concise definitions for all the terms related to software, infrastructure, and digital strategy.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         2. MAIN GLOSSARY CONTENT
+         ============================================= -->
+    <section class="pb-20">
+        <div class="content-container flex pt-10 glossary-main-wrapper">
+            
+            <!-- Alphabet Index (Sticky on Desktop) -->
+            <div class="alphabet-index-wrapper">
+                <ul class="alphabet-index list-none p-0 m-0" id="alphabetIndex">
+                    <!-- Links will be generated here by JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Term List (Content Area) -->
+            <div class="glossary-terms flex-grow pl-5 md:pl-10" id="glossaryTermsContainer">
+                <!-- Content will be generated here by JavaScript -->
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Placeholder Footer -->
+    <footer class="py-10 text-center text-gray-500 text-sm border-t border-gray-100">
+        <p>&copy; 2025 Defcon. All Rights Reserved.</p>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample IT Glossary Data
+        const glossaryData = [
+            // A
+            { term: "Agile", definition: "A project management methodology focused on iterative development, delivering work in small, continuous cycles, and rapid adaptation to change." },
+            { term: "API", definition: "Application Programming Interface. A set of defined protocols and tools for building software applications. It specifies how software components should interact." },
+            { term: "Automation", definition: "The use of technology to perform repetitive tasks with minimal human intervention, often improving speed, efficiency, and reducing errors." },
+            // B
+            { term: "Blockchain", definition: "A decentralized, distributed digital ledger that records transactions across many computers, ensuring data integrity and making it resistant to tampering." },
+            { term: "Bandwidth", definition: "The maximum data transfer rate of a network or internet connection, measured in bits per second (bps). It determines how much data can be sent at one time." },
+            { term: "Backend", definition: "The server-side of a website or application, responsible for storing and organizing data, and ensuring everything on the client-side works correctly." },
+            // C
+            { term: "Cloud Computing", definition: "The delivery of computing services—including servers, storage, databases, networking, software, and analytics—over the internet ('the cloud')." },
+            { term: "CI/CD", definition: "Continuous Integration/Continuous Delivery. A DevOps practice that automates the merging of developer code changes and the delivery of new code to users." },
+            { term: "CRM", definition: "Customer Relationship Management. Software used to manage a company's interactions with current and potential customers, focusing on data analysis about customers' history." },
+            // D
+            { term: "DevOps", definition: "A set of practices that combines software development (Dev) and IT operations (Ops) to shorten the systems development life cycle and provide continuous delivery." },
+            { term: "Data Center", definition: "A dedicated physical facility where organizations house their critical computer systems and associated components, such as telecommunications and storage systems." },
+            { term: "DDoS Attack", definition: "Distributed Denial of Service Attack. An attempt to disrupt the normal traffic of a targeted server, service or network by overwhelming it with a flood of Internet traffic." },
+            // E
+            { term: "E-commerce", definition: "Electronic commerce. The buying and selling of goods or services using the internet, and the transfer of money and data to execute these transactions." },
+            { term: "Encryption", definition: "The process of encoding information in such a way that only authorized parties can access it, typically done using a secret key." },
+            { term: "ERP", definition: "Enterprise Resource Planning. Software that organizations use to manage day-to-day business activities such as accounting, procurement, project management, and manufacturing." },
+            // F
+            { term: "Firewall", definition: "A network security device that monitors and filters incoming and outgoing network traffic based on an organization's previously established security policies." },
+            { term: "Frontend", definition: "The user-facing side of a website or application, encompassing everything the user sees and interacts with, built using HTML, CSS, and JavaScript." },
+            // H
+            { term: "Hosting", definition: "The service of running and maintaining the computer systems (servers) that store a website and make it accessible on the World Wide Web." },
+            // I
+            { term: "IT Infrastructure", definition: "The foundational components (hardware, software, networks, facilities) that support a business's IT and overall enterprise operations." },
+            // L
+            { term: "Latency", definition: "The delay before a transfer of data begins following an instruction for its transfer. Often measured in milliseconds (ms) and impacts application responsiveness." },
+            // M
+            { term: "Mobile Application", definition: "Software designed to run on smartphones, tablet computers, and other mobile devices, built specifically for operating systems like iOS or Android." },
+            // P
+            { term: "POS System", definition: "Point of Sale System. The place where a customer executes the payment for goods or services. Modern systems are often integrated digital terminals." },
+            // S
+            { term: "Scalability", definition: "The ability of a system to handle a growing amount of work by adding resources. A scalable solution grows with the business." },
+            { term: "SSL Certificate", definition: "Secure Sockets Layer certificate. A digital certificate that authenticates the identity of a website and enables an encrypted connection." },
+            // V
+            { term: "VPN", definition: "Virtual Private Network. A technology that creates a safe and encrypted connection over a less secure network, like the internet." },
+            // W
+            { term: "Web3", definition: "The concept of a decentralized internet, built on blockchain technology, focusing on user ownership, decentralized applications (dApps), and token-based economies." }
+            
+        ].sort((a, b) => a.term.localeCompare(b.term)); // Sort terms alphabetically
+
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const indexContainer = document.getElementById('alphabetIndex');
+        const termsContainer = document.getElementById('glossaryTermsContainer');
+        const headerOffset = 100; // Account for the sticky header + padding
+
+        const termsByLetter = {};
+
+        // 1. Group terms and identify used letters
+        glossaryData.forEach(item => {
+            const firstLetter = item.term.charAt(0).toUpperCase();
+            if (!termsByLetter[firstLetter]) {
+                termsByLetter[firstLetter] = [];
+            }
+            termsByLetter[firstLetter].push(item);
+        });
+
+        // 2. Generate Alphabet Index Links (Sticky Left Nav)
+        alphabet.forEach(letter => {
+            const hasTerms = !!termsByLetter[letter];
+            const listItem = document.createElement('li');
+            listItem.className = 'w-1/3 p-0 m-0'; // Tailwind class for 3-column layout
+
+            const link = document.createElement('a');
+            link.textContent = letter;
+            link.href = hasTerms ? `#${letter}` : 'javascript:void(0)';
+            link.className = `block text-center p-2 rounded text-sm font-medium ${
+                hasTerms 
+                    ? 'bg-nav-item-bg hover:bg-accent-blue hover:text-white text-gray-700' 
+                    : 'disabled bg-header-light text-gray-400 border border-gray-300'
+            }`;
+            
+            if (hasTerms) {
+                link.addEventListener('click', function(e) {
+                    const target = document.getElementById(letter);
+                    if (target) {
+                        e.preventDefault();
+                        // Scroll to the element, adjusting for the fixed header
+                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        updateActiveIndex(letter); 
+                    }
+                });
+            }
+            
+            listItem.appendChild(link);
+            indexContainer.appendChild(listItem);
+        });
+
+        // 3. Generate Glossary Terms Content
+        let contentHTML = '';
+        alphabet.forEach(letter => {
+            const terms = termsByLetter[letter];
+            if (terms && terms.length > 0) {
+                // Term Group Header (A, B, C...)
+                contentHTML += `<div class="term-group mb-10" id="${letter}">`;
+                contentHTML += `<h2 class="text-5xl font-extrabold text-accent-blue mb-6 pb-4 border-b-2 border-accent-blue/20">${letter}</h2>`;
+
+                // Individual Terms
+                terms.forEach(item => {
+                    contentHTML += `
+                        <div class="term-item py-5 border-b border-gray-200 last:border-b-0">
+                            <h3 class="text-xl font-bold text-gray-900 mb-1 cursor-pointer">
+                                ${item.term} 
+                                <span class="ml-2 inline-block transition-opacity duration-200"></span>
+                            </h3>
+                            <p class="text-gray-600 text-base">${item.definition}</p>
+                        </div>
+                    `;
+                });
+                contentHTML += `</div>`;
+            }
+        });
+
+        termsContainer.innerHTML = contentHTML;
+
+        // 4. Scroll Spy Functionality (To highlight the active letter)
+        const termGroups = document.querySelectorAll('.term-group');
+
+        function updateActiveIndex(activeLetter) {
+             document.querySelectorAll('.alphabet-index a').forEach(a => a.classList.remove('active-letter', 'bg-accent-blue', 'font-bold'));
+             document.querySelectorAll('.alphabet-index a').forEach(a => {
+                if (!a.classList.contains('disabled')) {
+                    a.classList.add('bg-nav-item-bg', 'text-gray-700'); // Ensure non-active links have the right light theme style
+                }
+             });
+
+             const activeLink = document.querySelector(`.alphabet-index a[href="#${activeLetter}"]`);
+             if (activeLink) {
+                 activeLink.classList.remove('bg-nav-item-bg', 'text-gray-700');
+                 activeLink.classList.add('active-letter', 'bg-accent-blue', 'font-bold', 'text-white');
+                 
+                 // Ensure the active link is visible in the mobile/scrollable index
+                 if (window.innerWidth <= 1024) {
+                     activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                 }
+             }
+        }
+
+
+        function handleScroll() {
+            let currentLetter = '';
+            
+            // Determine which term group is currently at the top of the viewport
+            for (let i = 0; i < termGroups.length; i++) {
+                const group = termGroups[i];
+                // Check if the top of the group is visible, accounting for the fixed header
+                if (group.getBoundingClientRect().top <= headerOffset) {
+                    currentLetter = group.id;
+                } else {
+                    // Since the groups are sorted, we can stop checking once we pass the current one
+                    break; 
+                }
+            }
+            
+            // Apply the active state
+            if (currentLetter) {
+                updateActiveIndex(currentLetter);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        
+        // Initialize the active index on load
+        handleScroll();
+    });
+</script>
+
+</body>
+</html>
