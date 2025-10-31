@@ -1329,7 +1329,7 @@
                 
 <div class="jurisdiction-group" id="coastal-regions-group">
                     <button class="group-toggle" aria-expanded="true" aria-controls="coastal-licenses">
-                        Coastal Hubs (WC, KZN, EC) <i class="fas fa-chevron-down toggle-icon"></i>
+                        Coastal Hubs (WC, KZN, EC)
                     </button>
                     <div class="group-licenses-list" id="coastal-licenses">
                         <div class="license-row">
@@ -1359,7 +1359,7 @@
                 
 <div class="jurisdiction-group" id="economic-regions-group">
                     <button class="group-toggle" aria-expanded="true" aria-controls="economic-licenses">
-                        Economic Hubs (GP, MP, NW) <i class="fas fa-chevron-down toggle-icon"></i>
+                        Economic Hubs (GP, MP, NW)
                     </button>
                     <div class="group-licenses-list" id="economic-licenses">
                         <div class="license-row">
@@ -1389,7 +1389,7 @@
                 
 <div class="jurisdiction-group" id="inland-regions-group">
                     <button class="group-toggle" aria-expanded="true" aria-controls="inland-licenses">
-                        Inland & Northern Regions (FS, LP, NC) <i class="fas fa-chevron-down toggle-icon"></i>
+                        Inland & Northern Regions (FS, LP, NC)
                     </button>
                     <div class="group-licenses-list" id="inland-licenses">
                         <div class="license-row">
@@ -1661,41 +1661,7 @@ body.defcon-licenses-page {
 }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    const groupToggles = document.querySelectorAll('.group-toggle');
 
-    groupToggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const targetId = toggle.getAttribute('aria-controls');
-            const targetList = document.getElementById(targetId);
-            
-            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-
-            if (isExpanded) {
-                // Collapse the section
-                toggle.setAttribute('aria-expanded', 'false');
-                targetList.classList.add('collapsed');
-                // Remove the max-height after transition to ensure proper collapse for unknown heights
-                targetList.style.maxHeight = '0px'; 
-            } else {
-                // Expand the section
-                toggle.setAttribute('aria-expanded', 'true');
-                targetList.classList.remove('collapsed');
-                // Set max-height to scrollHeight to allow for dynamic content and smooth transition
-                targetList.style.maxHeight = targetList.scrollHeight + 'px';
-            }
-        });
-
-        // Initialize all groups to be expanded by default on page load (matching current HTML state)
-        // If you want them collapsed by default, set aria-expanded="false" in HTML and remove this part.
-        const targetId = toggle.getAttribute('aria-controls');
-        const targetList = document.getElementById(targetId);
-        targetList.style.maxHeight = targetList.scrollHeight + 'px'; // Set initial max-height
-    });
-});
-</script>
 
 
 

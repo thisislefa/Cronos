@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications - Defcon IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --defcon-primary: #1199fa;
+            --defcon-dark: #0b1426;
+            --defcon-white: #ffffff;
+            --defcon-light: #f4f4f4;
+            --text-secondary: #888888;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--defcon-dark);
+            background-color: var(--defcon-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .defcon-wa-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--defcon-dark) 0%, #1a2847 100%);
+        }
+
+        .defcon-wa-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            filter: blur(60px);
+            animation: defcon-wa-glow-pulse 4s ease-in-out infinite;
+        }
+
+        .defcon-wa-hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            filter: blur(80px);
+            animation: defcon-wa-glow-pulse 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes defcon-wa-glow-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .defcon-wa-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .defcon-wa-hero-badge {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(17, 153, 250, 0.15);
+            border: 1px solid var(--defcon-primary);
+            border-radius: 50px;
+            color: var(--defcon-primary);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .defcon-wa-hero-title {
+            font-size: clamp(32px, 8vw, 72px);
+            font-weight: 800;
+            color: var(--defcon-white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .defcon-wa-hero-title-accent {
+            background: linear-gradient(135deg, var(--defcon-primary) 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .defcon-wa-hero-subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-wa-hero-cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .defcon-wa-btn-primary {
+            padding: 16px 40px;
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-wa-btn-secondary {
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--defcon-white);
+            border: 2px solid var(--defcon-primary);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-btn-secondary:hover {
+            background: var(--defcon-primary);
+            transform: translateY(-3px);
+        }
+
+        /* ==================== SERVICES OVERVIEW SECTION ==================== */
+        .defcon-wa-services-overview {
+            padding: 80px 40px;
+            background: var(--defcon-light);
+        }
+
+        .defcon-wa-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .defcon-wa-section-title {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 15px;
+        }
+
+        .defcon-wa-section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .defcon-wa-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .defcon-wa-service-card {
+            background: var(--defcon-white);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .defcon-wa-service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(17, 153, 250, 0.15);
+            border-color: var(--defcon-primary);
+        }
+
+        .defcon-wa-service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--defcon-primary), #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .defcon-wa-service-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 10px;
+        }
+
+        .defcon-wa-service-card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ==================== PRICING SECTION ==================== */
+        .defcon-wa-pricing {
+            padding: 80px 40px;
+            background: var(--defcon-white);
+            position: relative;
+        }
+
+        .defcon-wa-pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .defcon-wa-pricing-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .defcon-wa-pricing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-wa-toggle-btn {
+            padding: 10px 20px;
+            background: var(--defcon-light);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-toggle-btn.active {
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+        }
+
+        .defcon-wa-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .defcon-wa-pricing-card {
+            background: var(--defcon-white);
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-wa-pricing-card:hover {
+            border-color: var(--defcon-primary);
+            box-shadow: 0 20px 50px rgba(17, 153, 250, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .defcon-wa-pricing-card.featured {
+            border-color: var(--defcon-primary);
+            box-shadow: 0 20px 50px rgba(17, 153, 250, 0.15);
+            transform: scale(1.05);
+        }
+
+        .defcon-wa-pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .defcon-wa-pricing-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 10px;
+        }
+
+        .defcon-wa-pricing-price {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--defcon-primary);
+            margin-bottom: 5px;
+        }
+
+        .defcon-wa-pricing-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .defcon-wa-pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-wa-pricing-features li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-wa-pricing-features li::before {
+            content: '✓';
+            color: var(--defcon-primary);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .defcon-wa-pricing-cta {
+            width: 100%;
+            padding: 14px;
+            background: var(--defcon-light);
+            color: var(--defcon-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-pricing-card.featured .defcon-wa-pricing-cta {
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+        }
+
+        .defcon-wa-pricing-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ==================== PRODUCTS SECTION ==================== */
+        .defcon-wa-products {
+            padding: 80px 40px;
+            background: var(--defcon-light);
+        }
+
+        .defcon-wa-products-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* F-Layout for first row */
+        .defcon-wa-products-row-1 {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .defcon-wa-products-featured-left {
+            background: var(--defcon-white);
+            padding: 50px;
+            border-radius: 12px;
+            border-left: 6px solid var(--defcon-primary);
+        }
+
+        .defcon-wa-products-featured-left h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 15px;
+        }
+
+        .defcon-wa-products-featured-left p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .defcon-wa-product-features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-wa-product-features-list li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-wa-product-features-list li::before {
+            content: '→';
+            color: var(--defcon-primary);
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .defcon-wa-products-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .defcon-wa-product-small-card {
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(17, 153, 250, 0.2);
+            text-align: center;
+        }
+
+        .defcon-wa-product-small-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--defcon-dark);
+            margin-bottom: 8px;
+        }
+
+        .defcon-wa-product-small-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Z-Layout for second row */
+        .defcon-wa-products-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .defcon-wa-products-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            order: -1;
+        }
+
+        .defcon-wa-products-featured-right {
+            background: var(--defcon-white);
+            padding: 50px;
+            border-radius: 12px;
+            border-right: 6px solid var(--defcon-primary);
+        }
+
+        .defcon-wa-products-featured-right h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Asymmetrical layout for third row */
+        .defcon-wa-products-row-3 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .defcon-wa-product-full-card {
+            background: var(--defcon-white);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-wa-product-full-card:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .defcon-wa-product-full-card:nth-child(3) {
+            grid-row: span 2;
+        }
+
+        .defcon-wa-product-full-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(17, 153, 250, 0.1);
+            border-color: var(--defcon-primary);
+        }
+
+        .defcon-wa-product-full-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 10px;
+        }
+
+        .defcon-wa-product-full-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .defcon-wa-product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--defcon-primary);
+            margin-bottom: 15px;
+        }
+
+        .defcon-wa-product-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-product-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ==================== HOW WE WORK SECTION ==================== */
+        .defcon-wa-how-we-work {
+            padding: 80px 40px;
+            background: var(--defcon-white);
+        }
+
+        .defcon-wa-steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .defcon-wa-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+
+        .defcon-wa-steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--defcon-primary) 20%, var(--defcon-primary) 80%, transparent 100%);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .defcon-wa-steps-grid::before {
+                display: block;
+            }
+        }
+
+        .defcon-wa-step {
+            position: relative;
+            text-align: center;
+        }
+
+        .defcon-wa-step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--defcon-primary), #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--defcon-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .defcon-wa-step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 10px;
+        }
+
+        .defcon-wa-step-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ==================== GETTING STARTED SECTION ==================== */
+        .defcon-wa-getting-started {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--defcon-dark) 0%, #1a2847 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-wa-getting-started::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+            filter: blur(60px);
+        }
+
+        .defcon-wa-getting-started::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -100px;
+            filter: blur(60px);
+        }
+
+        .defcon-wa-getting-started-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .defcon-wa-getting-started-title {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--defcon-white);
+            margin-bottom: 20px;
+        }
+
+        .defcon-wa-getting-started-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+        }
+
+        .defcon-wa-form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .defcon-wa-form-group.full {
+            grid-template-columns: 1fr;
+        }
+
+        .defcon-wa-form-input {
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(17, 153, 250, 0.3);
+            border-radius: 8px;
+            color: var(--defcon-white);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-wa-form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .defcon-wa-form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--defcon-primary);
+            box-shadow: 0 0 15px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-wa-form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--defcon-primary), #00d4ff);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-wa-form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(17, 153, 250, 0.4);
+        }
+
+        /* ==================== FAQ SECTION ==================== */
+        .defcon-wa-faq {
+            padding: 80px 40px;
+            background: var(--defcon-light);
+        }
+
+        .defcon-wa-faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .defcon-wa-faq-item {
+            background: var(--defcon-white);
+            padding: 25px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-wa-faq-item:hover {
+            border-color: var(--defcon-primary);
+            box-shadow: 0 5px 20px rgba(17, 153, 250, 0.1);
+        }
+
+        .defcon-wa-faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--defcon-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .defcon-wa-faq-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--defcon-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--defcon-white);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-wa-faq-item.active .defcon-wa-faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .defcon-wa-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .defcon-wa-faq-item.active .defcon-wa-faq-answer {
+            max-height: 500px;
+            margin-top: 15px;
+        }
+
+        /* ==================== RESPONSIVE DESIGN ==================== */
+        @media (max-width: 768px) {
+            .defcon-wa-hero-content {
+                padding: 40px 20px;
+            }
+
+            .defcon-wa-services-overview,
+            .defcon-wa-pricing,
+            .defcon-wa-products,
+            .defcon-wa-how-we-work,
+            .defcon-wa-getting-started,
+            .defcon-wa-faq {
+                padding: 60px 20px;
+            }
+
+            .defcon-wa-services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .defcon-wa-products-row-1,
+            .defcon-wa-products-row-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-products-grid-2,
+            .defcon-wa-products-grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-products-row-2 .defcon-wa-products-grid-3 {
+                order: 0;
+            }
+
+            .defcon-wa-products-row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-product-full-card:nth-child(1),
+            .defcon-wa-product-full-card:nth-child(3) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .defcon-wa-form-group {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-wa-products-featured-left,
+            .defcon-wa-products-featured-right {
+                padding: 30px;
+            }
+
+            .defcon-wa-hero-cta-group {
+                flex-direction: column;
+            }
+
+            .defcon-wa-btn-primary,
+            .defcon-wa-btn-secondary {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-wa-hero-title {
+                font-size: 32px;
+            }
+
+            .defcon-wa-section-title {
+                font-size: 24px;
+            }
+
+            .defcon-wa-products-featured-left,
+            .defcon-wa-products-featured-right {
+                padding: 20px;
+            }
+
+            .defcon-wa-pricing-card.featured {
+                scale: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="defcon-wa-hero" id="defcon-wa-hero-section">
+        <div class="defcon-wa-hero-content">
+            <div class="defcon-wa-hero-badge">🚀 Next-Gen Web Applications</div>
+            <h1 class="defcon-wa-hero-title">
+                Build Powerful Web Applications
+                <span class="defcon-wa-hero-title-accent">That Scale</span>
+            </h1>
+            <p class="defcon-wa-hero-subtitle">
+                From concept to production, we deliver cutting-edge web solutions that drive business growth and user engagement.
+            </p>
+            <div class="defcon-wa-hero-cta-group">
+                <button class="defcon-wa-btn-primary" onclick="document.getElementById('defcon-wa-getting-started-section').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                <button class="defcon-wa-btn-secondary" onclick="document.getElementById('defcon-wa-pricing-section').scrollIntoView({behavior: 'smooth'})">View Pricing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES OVERVIEW SECTION ==================== -->
+    <section class="defcon-wa-services-overview" id="defcon-wa-services-section">
+        <div class="defcon-wa-section-header">
+            <h2 class="defcon-wa-section-title">Our Web Development Services</h2>
+            <p class="defcon-wa-section-subtitle">Comprehensive solutions tailored to your business needs</p>
+        </div>
+        <div class="defcon-wa-services-grid">
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">💻</div>
+                <h3 class="defcon-wa-service-card-title">Custom Web Apps</h3>
+                <p class="defcon-wa-service-card-desc">Bespoke applications built from the ground up to match your exact requirements and business logic.</p>
+            </div>
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">⚡</div>
+                <h3 class="defcon-wa-service-card-title">Performance Optimization</h3>
+                <p class="defcon-wa-service-card-desc">Lightning-fast loading times and smooth interactions that keep users engaged and satisfied.</p>
+            </div>
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">🔒</div>
+                <h3 class="defcon-wa-service-card-title">Security & Compliance</h3>
+                <p class="defcon-wa-service-card-desc">Enterprise-grade security protocols ensuring your data and user information are always protected.</p>
+            </div>
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">📱</div>
+                <h3 class="defcon-wa-service-card-title">Responsive Design</h3>
+                <p class="defcon-wa-service-card-desc">Perfect experience across all devices—desktop, tablet, and mobile—every time.</p>
+            </div>
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">🔧</div>
+                <h3 class="defcon-wa-service-card-title">Maintenance & Support</h3>
+                <p class="defcon-wa-service-card-desc">Ongoing updates, bug fixes, and technical support to keep your application running smoothly.</p>
+            </div>
+            <div class="defcon-wa-service-card">
+                <div class="defcon-wa-service-icon">📊</div>
+                <h3 class="defcon-wa-service-card-title">Analytics Integration</h3>
+                <p class="defcon-wa-service-card-desc">Comprehensive insights into user behavior and application performance with real-time dashboards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRICING SECTION ==================== -->
+    <section class="defcon-wa-pricing" id="defcon-wa-pricing-section">
+        <div class="defcon-wa-pricing-content">
+            <div class="defcon-wa-section-header">
+                <h2 class="defcon-wa-section-title">Transparent Pricing</h2>
+                <p class="defcon-wa-section-subtitle">Choose the perfect plan for your web application needs</p>
+            </div>
+
+            <div class="defcon-wa-pricing-toggle">
+                <button class="defcon-wa-toggle-btn active" data-type="startup">Startup</button>
+                <button class="defcon-wa-toggle-btn" data-type="growth">Growth</button>
+                <button class="defcon-wa-toggle-btn" data-type="enterprise">Enterprise</button>
+            </div>
+
+            <div class="defcon-wa-pricing-grid" id="defcon-wa-pricing-grid">
+                <!-- Pricing cards will be dynamically inserted here -->
+                <div class="defcon-wa-pricing-card">
+                    <h3 class="defcon-wa-pricing-name">MVP Package</h3>
+                    <div class="defcon-wa-pricing-price">$3,500</div>
+                    <p class="defcon-wa-pricing-period">One-time project</p>
+                    <ul class="defcon-wa-pricing-features">
+                        <li>5 Core Features</li>
+                        <li>Basic Responsive Design</li>
+                        <li>User Authentication</li>
+                        <li>Database Setup</li>
+                        <li>30 Days Support</li>
+                    </ul>
+                    <button class="defcon-wa-pricing-cta">Choose Plan</button>
+                </div>
+
+                <div class="defcon-wa-pricing-card featured">
+                    <div class="defcon-wa-pricing-badge">Popular</div>
+                    <h3 class="defcon-wa-pricing-name">Starter Pro</h3>
+                    <div class="defcon-wa-pricing-price">$8,500</div>
+                    <p class="defcon-wa-pricing-period">One-time project</p>
+                    <ul class="defcon-wa-pricing-features">
+                        <li>15 Core Features</li>
+                        <li>Advanced Responsive</li>
+                        <li>OAuth Integration</li>
+                        <li>API Development</li>
+                        <li>3 Months Support</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                    <button class="defcon-wa-pricing-cta">Choose Plan</button>
+                </div>
+
+                <div class="defcon-wa-pricing-card">
+                    <h3 class="defcon-wa-pricing-name">Scale Up</h3>
+                    <div class="defcon-wa-pricing-price">$15,000</div>
+                    <p class="defcon-wa-pricing-period">One-time project</p>
+                    <ul class="defcon-wa-pricing-features">
+                        <li>30+ Features</li>
+                        <li>Premium UI/UX</li>
+                        <li>Advanced APIs</li>
+                        <li>Multi-Module System</li>
+                        <li>6 Months Support</li>
+                        <li>Analytics Dashboard</li>
+                    </ul>
+                    <button class="defcon-wa-pricing-cta">Choose Plan</button>
+                </div>
+
+                <div class="defcon-wa-pricing-card">
+                    <h3 class="defcon-wa-pricing-name">Custom Enterprise</h3>
+                    <div class="defcon-wa-pricing-price">Custom</div>
+                    <p class="defcon-wa-pricing-period">Tailored solution</p>
+                    <ul class="defcon-wa-pricing-features">
+                        <li>Unlimited Features</li>
+                        <li>White-Label Options</li>
+                        <li>Enterprise APIs</li>
+                        <li>Dedicated Team</li>
+                        <li>1 Year Support</li>
+                        <li>Custom SLA</li>
+                    </ul>
+                    <button class="defcon-wa-pricing-cta">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PRODUCTS SECTION ==================== -->
+    <section class="defcon-wa-products" id="defcon-wa-products-section">
+        <div class="defcon-wa-products-layout">
+            <div class="defcon-wa-section-header" style="margin-bottom: 60px;">
+                <h2 class="defcon-wa-section-title">Web Application Products & Solutions</h2>
+                <p class="defcon-wa-section-subtitle">Comprehensive suite of tools and technologies</p>
+            </div>
+
+            <!-- F-Layout: Left Featured, Right Grid -->
+            <div class="defcon-wa-products-row-1">
+                <div class="defcon-wa-products-featured-left">
+                    <h3>React & Modern Frontend Development</h3>
+                    <p>Build interactive, dynamic user interfaces with React.js, Vue.js, and Angular frameworks. Our expert developers leverage the latest frontend technologies to create responsive, performant applications.</p>
+                    <ul class="defcon-wa-product-features-list">
+                        <li>React.js / Next.js Applications</li>
+                        <li>Vue.js Development</li>
+                        <li>Angular Enterprise Apps</li>
+                        <li>TypeScript Implementation</li>
+                        <li>State Management (Redux, Zustand)</li>
+                        <li>Progressive Web Apps (PWA)</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 600; color: var(--defcon-primary);">Starting from $5,000</p>
+                </div>
+                <div class="defcon-wa-products-grid-2">
+                    <div class="defcon-wa-product-small-card">
+                        <h4>React Development</h4>
+                        <p>Component-based architecture with hooks and advanced patterns</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>Next.js Framework</h4>
+                        <p>Server-side rendering and static generation for optimal performance</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>State Management</h4>
+                        <p>Complex state handling with Redux, Zustand, or Context API</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>UI Components</h4>
+                        <p>Reusable, accessible component libraries built to scale</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Z-Layout: Right Featured, Left Grid -->
+            <div class="defcon-wa-products-row-2">
+                <div class="defcon-wa-products-grid-3">
+                    <div class="defcon-wa-product-small-card">
+                        <h4>Node.js Backend</h4>
+                        <p>Scalable server-side solutions with Express.js and NestJS</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>Database Design</h4>
+                        <p>MongoDB, PostgreSQL, MySQL optimization and schema design</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>API Development</h4>
+                        <p>RESTful and GraphQL APIs with authentication and authorization</p>
+                    </div>
+                    <div class="defcon-wa-product-small-card">
+                        <h4>Microservices</h4>
+                        <p>Distributed architecture with containerization and orchestration</p>
+                    </div>
+                </div>
+                <div class="defcon-wa-products-featured-right">
+                    <h3>Backend & Server-Side Solutions</h3>
+                    <p>Robust backend infrastructure built with Node.js, Python, and Java. Ensure scalability, security, and reliability with our enterprise-grade server solutions.</p>
+                    <ul class="defcon-wa-product-features-list">
+                        <li>Node.js / Express Development</li>
+                        <li>Python (Django, FastAPI)</li>
+                        <li>Java Spring Boot Applications</li>
+                        <li>RESTful & GraphQL APIs</li>
+                        <li>Database Architecture</li>
+                        <li>Microservices Architecture</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 600; color: var(--defcon-primary);">Starting from $6,000</p>
+                </div>
+            </div>
+
+            <!-- Asymmetrical Layout: Mixed Sizes -->
+            <div class="defcon-wa-products-row-3">
+                <div class="defcon-wa-product-full-card">
+                    <h4>E-Commerce Platforms</h4>
+                    <p>Complete e-commerce solutions with payment processing, inventory management, product catalogs, and customer management systems.</p>
+                    <div class="defcon-wa-product-price">From $8,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Real-Time Applications</h4>
+                    <p>WebSocket-based solutions with live updates, notifications, and collaborative features.</p>
+                    <div class="defcon-wa-product-price">From $7,500</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Data Visualization</h4>
+                    <p>Interactive dashboards with charts, graphs, and real-time data representation using D3.js and Recharts.</p>
+                    <div class="defcon-wa-product-price">From $5,500</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>SaaS Applications</h4>
+                    <p>Multi-tenant SaaS platforms with subscription management, user roles, and advanced features.</p>
+                    <div class="defcon-wa-product-price">From $12,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>CMS Solutions</h4>
+                    <p>Headless CMS platforms for content management with flexible publishing workflows.</p>
+                    <div class="defcon-wa-product-price">From $6,500</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Portal & Marketplace</h4>
+                    <p>Custom portals and marketplaces with vendor management, rating systems, and transaction processing.</p>
+                    <div class="defcon-wa-product-price">From $10,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Project Management Tools</h4>
+                    <p>Collaboration platforms with task management, team communication, and progress tracking.</p>
+                    <div class="defcon-wa-product-price">From $7,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Business Intelligence</h4>
+                    <p>Advanced analytics and BI tools for data-driven decision making and reporting.</p>
+                    <div class="defcon-wa-product-price">From $9,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>CRM Systems</h4>
+                    <p>Customer relationship management platforms with sales pipelines, lead tracking, and automation.</p>
+                    <div class="defcon-wa-product-price">From $8,500</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Booking & Reservation</h4>
+                    <p>Calendar-based booking systems for appointments, hotels, and service reservations.</p>
+                    <div class="defcon-wa-product-price">From $6,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Learning Management</h4>
+                    <p>LMS platforms with course creation, student management, and progress tracking.</p>
+                    <div class="defcon-wa-product-price">From $7,500</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+
+                <div class="defcon-wa-product-full-card">
+                    <h4>Social Networking</h4>
+                    <p>Community platforms with user profiles, messaging, feeds, and social features.</p>
+                    <div class="defcon-wa-product-price">From $11,000</div>
+                    <button class="defcon-wa-product-btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW WE WORK SECTION ==================== -->
+    <section class="defcon-wa-how-we-work" id="defcon-wa-how-we-work-section">
+        <div class="defcon-wa-section-header">
+            <h2 class="defcon-wa-section-title">How We Work</h2>
+            <p class="defcon-wa-section-subtitle">Our proven development process ensures success</p>
+        </div>
+        <div class="defcon-wa-steps-container">
+            <div class="defcon-wa-steps-grid">
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">1</div>
+                    <h3 class="defcon-wa-step-title">Discovery & Planning</h3>
+                    <p class="defcon-wa-step-desc">We understand your goals, analyze requirements, and create a detailed project roadmap with clear milestones and deliverables.</p>
+                </div>
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">2</div>
+                    <h3 class="defcon-wa-step-title">Design & Prototyping</h3>
+                    <p class="defcon-wa-step-desc">Our designers create wireframes and interactive prototypes, ensuring stakeholder approval before development begins.</p>
+                </div>
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">3</div>
+                    <h3 class="defcon-wa-step-title">Development</h3>
+                    <p class="defcon-wa-step-desc">Expert developers build your application using cutting-edge technologies, following agile principles for flexibility and quality.</p>
+                </div>
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">4</div>
+                    <h3 class="defcon-wa-step-title">Testing & QA</h3>
+                    <p class="defcon-wa-step-desc">Comprehensive testing including unit tests, integration tests, and user acceptance testing to ensure bug-free deployment.</p>
+                </div>
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">5</div>
+                    <h3 class="defcon-wa-step-title">Deployment</h3>
+                    <p class="defcon-wa-step-desc">Smooth production rollout with zero downtime, monitoring setup, and performance optimization for launch day success.</p>
+                </div>
+                <div class="defcon-wa-step">
+                    <div class="defcon-wa-step-number">6</div>
+                    <h3 class="defcon-wa-step-title">Support & Maintenance</h3>
+                    <p class="defcon-wa-step-desc">Ongoing support, regular updates, security patches, and feature enhancements to keep your app performing at its best.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GETTING STARTED SECTION ==================== -->
+    <section class="defcon-wa-getting-started" id="defcon-wa-getting-started-section">
+        <div class="defcon-wa-getting-started-content">
+            <h2 class="defcon-wa-getting-started-title">Ready to Build Your Web App?</h2>
+            <p class="defcon-wa-getting-started-subtitle">Get in touch with our team to start your project today</p>
+
+            <form id="defcon-wa-contact-form" onsubmit="handleFormSubmit(event)" style="margin-top: 40px;">
+                <div class="defcon-wa-form-group">
+                    <input type="text" class="defcon-wa-form-input" placeholder="Your Full Name" required>
+                    <input type="email" class="defcon-wa-form-input" placeholder="Email Address" required>
+                </div>
+                <div class="defcon-wa-form-group">
+                    <input type="tel" class="defcon-wa-form-input" placeholder="Phone Number" required>
+                    <input type="text" class="defcon-wa-form-input" placeholder="Company Name" required>
+                </div>
+                <div class="defcon-wa-form-group full">
+                    <select class="defcon-wa-form-input" required>
+                        <option value="">Select Your Project Type</option>
+                        <option value="ecommerce">E-Commerce Platform</option>
+                        <option value="saas">SaaS Application</option>
+                        <option value="portal">Portal / Marketplace</option>
+                        <option value="dashboard">Dashboard / Analytics</option>
+                        <option value="crm">CRM System</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="defcon-wa-form-group full">
+                    <textarea class="defcon-wa-form-input" placeholder="Tell us about your project..." rows="5" required></textarea>
+                </div>
+                <button type="submit" class="defcon-wa-form-submit">Start Your Project</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section class="defcon-wa-faq" id="defcon-wa-faq-section">
+        <div class="defcon-wa-section-header" style="margin-bottom: 50px;">
+            <h2 class="defcon-wa-section-title">Frequently Asked Questions</h2>
+            <p class="defcon-wa-section-subtitle">Find answers to common questions about our web development services</p>
+        </div>
+        <div class="defcon-wa-faq-container">
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>What technologies do you use for web development?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    We work with modern technologies including React, Vue.js, Angular for frontend; Node.js, Python, Java for backend; and databases like PostgreSQL, MongoDB, and MySQL. We choose the best tech stack based on your project requirements.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>How long does a typical web application project take?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Project timelines vary based on complexity. An MVP typically takes 4-8 weeks, while a full-featured application can take 3-6 months. We provide detailed timelines after the discovery phase.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>Do you provide post-launch support?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Yes! We offer comprehensive support packages ranging from 30 days to 1 year, including bug fixes, feature enhancements, security updates, and performance monitoring.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>Can you scale my existing application?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Absolutely! We specialize in optimizing and scaling existing applications. We perform audits, identify bottlenecks, and implement scalability improvements while maintaining stability.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>What about security and data privacy?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Security is paramount. We implement SSL encryption, secure authentication, data encryption, regular security audits, and compliance with GDPR, CCPA, and other regulations.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>Do you offer mobile responsive design?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defaq-answer">
+                    Yes, all our web applications are fully responsive and optimized for mobile, tablet, and desktop. We use modern responsive design techniques and progressive web app technologies.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>Can you integrate third-party services and APIs?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Definitely! We integrate with payment gateways (Stripe, PayPal), analytics tools, CRMs, email services, cloud platforms, and virtually any third-party API your business needs.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>What's your pricing model?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    We offer fixed-price packages for defined scope projects, hourly rates for flexible engagements, and retainer models for ongoing support. Custom packages are available for enterprise clients.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>How do you handle project communication?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    We maintain clear communication through regular updates, weekly status meetings, and a dedicated project manager. You'll have access to progress tracking and can review development milestones.
+                </div>
+            </div>
+
+            <div class="defcon-wa-faq-item" onclick="toggleFAQ(this)">
+                <div class="defcon-wa-faq-question">
+                    <span>Do you provide analytics and reporting?</span>
+                    <div class="defcon-wa-faq-icon">+</div>
+                </div>
+                <div class="defcon-wa-faq-answer">
+                    Yes! We implement analytics tracking, create custom dashboards, and provide detailed reports on user behavior, performance metrics, and conversion funnels.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ========== FAQ Toggle Functionality ==========
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
+        // ========== Form Submission Handler ==========
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // Add your form submission logic here
+            alert('Thank you for your inquiry! We will contact you soon.');
+            event.target.reset();
+        }
+
+        // ========== Smooth Scroll Behavior ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== Pricing Toggle ==========
+        document.querySelectorAll('.defcon-wa-toggle-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.defcon-wa-toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Add logic here to filter pricing cards by type
+            });
+        });
+
+        // ========== Intersection Observer for Animations ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.defcon-wa-service-card, .defcon-wa-pricing-card, .defcon-wa-step').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

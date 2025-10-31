@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="view</div>port" content="width=device-width, initial-scale=1.0">
+    <title>Learn IT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+        }
+
+        /* Hero Section */
+        .itlearnhub__hero {
+            background: linear-gradient(135deg, #001428 0%, #003d82 100%);
+            padding: 90px 0;
+            padding-left: 113px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .itlearnhub__hero::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background: url('https://images.pexels.com/photos/11032508/pexels-photo-11032508.jpeg');
+            background-size: cover;
+            pointer-events: none;
+        }
+
+        .itlearnhub__hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .itlearnhub__hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        /* Grid Section */
+        .itlearnhub__grid-container {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .itlearnhub__cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin-bottom: 50px;
+        }
+
+        .itlearnhub__card {
+            overflow: hidden;
+            cursor: pointer;
+            padding: 0 15px;
+            border-right: 1px solid #9999996c;
+            margin-bottom: 30px;
+        }
+
+        .itlearnhub__card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #001428 0%, #003d82 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 48px;
+        }
+
+        .itlearnhub__card-content {
+            padding-top: 15px;
+        }
+
+        .itlearnhub__card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: #0084d4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .itlearnhub__card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        /* Pagination */
+        .itlearnhub__pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1px;
+        }
+
+        .itlearnhub__pagination-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .itlearnhub__pagination-btn:hover {
+            color: #0084d4;
+        }
+
+        .itlearnhub__pagination-btn svg:hover {
+            border: 2px solid black;
+        }
+
+        .itlearnhub__pagination-number {
+            min-width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .itlearnhub__pagination-number.active {
+            color: #0084d4;
+            font-weight: 600;
+        }
+
+        .itlearnhub__pagination-number:hover {
+            color: #0084d4;
+        }
+
+        /* Footer Section */
+        .itlearnhub__footer-section {
+            background: #ffffff;
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .itlearnhub__footer-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #001b3c;
+            margin-bottom: 20px;
+            line-height: 1.15;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .itlearnhub__footer-links {
+            font-size: 16px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .itlearnhub__footer-links a {
+            color: #0084d4;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 8px;
+        }
+
+        .itlearnhub__footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .itlearnhub__footer-notice {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .itlearnhub__cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .itlearnhub__cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .itlearnhub__hero-title {
+                font-size: 40px;
+            }
+
+            .itlearnhub__grid-container,
+            .itlearnhub__footer-section {
+                padding: 40px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .itlearnhub__cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .itlearnhub__hero-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="itlearnhub__hero">
+        <div class="itlearnhub__hero-content">
+            <h1 class="itlearnhub__hero-title">Learn Hyperion</h1>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="itlearnhub__grid-container">
+        <!-- Cards Grid -->
+        <div class="itlearnhub__cards-grid">
+            <!-- Card 1 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/7577836/pexels-photo-7577836.jpeg" alt="Quantum Computing" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">Emerging Tech</div>
+                    <h3 class="itlearnhub__card-title">Quantum Computing: The Next Frontier</h3>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/10050684/pexels-photo-10050684.jpeg" alt="Blockchain" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">Security</div>
+                    <h3 class="itlearnhub__card-title">Blockchain Beyond Cryptocurrency</h3>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/10050551/pexels-photo-10050551.jpeg" alt="Edge Computing" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">Infrastructure</div>
+                    <h3 class="itlearnhub__card-title">Edge Computing: Power at the Periphery</h3>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/8193806/pexels-photo-8193806.jpeg" alt="Augmented Reality" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">Innovation</div>
+                    <h3 class="itlearnhub__card-title">Augmented Reality: Blending Worlds</h3>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/10050600/pexels-photo-10050600.jpeg" alt="Ethical Hacking" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">Security</div>
+                    <h3 class="itlearnhub__card-title">Ethical Hacking: Redefining Defense</h3>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/14171333/pexels-photo-14171333.jpeg" alt="DevOps" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">IT</div>
+                    <h3 class="itlearnhub__card-title">DevOps: Building Scalable Systems</h3>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/11032451/pexels-photo-11032451.jpeg" alt="System Administration" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">IT</div>
+                    <h3 class="itlearnhub__card-title">System Administration Essentials</h3>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="https://images.pexels.com/photos/10050552/pexels-photo-10050552.jpeg" alt="Mobile App Development" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">IT</div>
+                    <h3 class="itlearnhub__card-title">Mobile App Development Guide</h3>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="itlearnhub__card">
+                <div class="itlearnhub__card-image">
+                    <img src="thumbnails/pexels-pixabay-265087.jpg" alt="Mobile App Development" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="itlearnhub__card-content">
+                    <div class="itlearnhub__card-category">IT</div>
+                    <h3 class="itlearnhub__card-title">Mobile App Development Guide</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="itlearnhub__pagination">
+            <button class="itlearnhub__pagination-btn" aria-label="Previous page">
+                <svg width="40" height="40" viewBox="0 0 20 20" fill="none" style="vertical-align:middle; display:inline-block;">
+                    <path d="M13 16L7 10L13 4" stroke="#999" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button></button>
+            <button class="itlearnhub__pagination-number active">1</button>
+            <button class="itlearnhub__pagination-number">2</button>
+            <button class="itlearnhub__pagination-number">3</button>
+            <button class="itlearnhub__pagination-number">4</button>
+            <button class="itlearnhub__pagination-number">5</button>
+            <button class="itlearnhub__pagination-btn" aria-label="Next page">
+                <svg width="40" height="40" viewBox="0 0 20 20" fill="none" style="vertical-align:middle; display:inline-block;">
+                    <path d="M7 4L13 10L7 16" stroke="#999" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="itlearnhub__footer-section">
+        <h2 class="itlearnhub__footer-title">Want to explore IT with confidence? Our IT Learn Hub offers easy-to-follow guides, explainers and tools designed for everyone – whether you're just getting started or looking to deepen your knowledge. Our explainers will help you understand, navigate, and unlock the potential of modern technology. Start your learning journey and stay informed.</h2>
+        
+        <h2 class="itlearnhub__footer-title">Learn more about other IT Learn Hub products like <a href="#" class="itlearnhub__link">Certifications</a>, <a href="#" class="itlearnhub__link">Tutorials</a> and <a href="#" class="itlearnhub__link">Resources</a>.</h2>
+
+        <h2 class="itlearnhub__footer-title">This content is intended for all users.</h2>
+    </section>
+</body>
+</html>
+
+<script>
+    // Pagination functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.itlearnhub__card');
+        const itemsPerPage = 8;
+        const paginationNumbers = document.querySelectorAll('.itlearnhub__pagination-number');
+        const prevButton = document.querySelector('.itlearnhub__pagination-btn:first-child');
+        const nextButton = document.querySelector('.itlearnhub__pagination-btn:last-child');
+        let currentPage = 1;
+
+        function showPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            cards.forEach((card, index) => {
+                card.style.display = (index >= start && index < end) ? 'block' : 'none';
+            });
+
+            // Update active pagination number
+            paginationNumbers.forEach((btn, index) => {
+                btn.classList.toggle('active', index + 1 === page);
+            });
+
+            // Update prev/next button states
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === Math.ceil(cards.length / itemsPerPage);
+        }
+
+        // Add click handlers for pagination numbers
+        paginationNumbers.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentPage = index + 1;
+                showPage(currentPage);
+            });
+        });
+
+        // Add click handlers for prev/next buttons
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentPage < Math.ceil(cards.length / itemsPerPage)) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        // Show initial page
+        showPage(1);
+    });
+</script>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security & Data Privacy | Your Company</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #1abc9c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Principles Section */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .principle-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .principle-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .principle-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Data Privacy Section */
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .data-category {
+            margin-bottom: 40px;
+        }
+
+        .data-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .data-category h3::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        /* Security Measures Section */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .security-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .security-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Compliance Section */
+        .compliance-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .compliance-logo {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 100px;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            nav li {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Your<span>Company</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#" style="color: var(--secondary);">Security</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Security & Data Privacy</h1>
+            <p>Your trust is our foundation. We are committed to protecting your data with state-of-the-art security practices and transparent privacy policies.</p>
+            <div class="quick-nav">
+                <a href="#principles" class="nav-link">Our Principles</a>
+                <a href="#privacy" class="nav-link">Your Data & Privacy</a>
+                <a href="#security" class="nav-link">Security Measures</a>
+                <a href="#compliance" class="nav-link">Compliance</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section id="principles">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Principles</h2>
+                <p>We believe security and privacy are not features; they are fundamental to our product and our promise to you.</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-icon">🔒</div>
+                    <h3>Transparency</h3>
+                    <p>We are open about how we handle your data. No fine print, no secrets.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">🛡️</div>
+                    <h3>Security by Design</h3>
+                    <p>Security is integrated into every stage of our development process.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">📊</div>
+                    <h3>Data Minimization</h3>
+                    <p>We only collect data that is essential to provide and improve our service.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">👤</div>
+                    <h3>User Control</h3>
+                    <p>You own your data. We provide clear tools to access, manage, and delete it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Privacy Section -->
+    <section id="privacy">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Data & Privacy</h2>
+                <p>We are stewards of your information. Here's how we handle it.</p>
+            </div>
+            <div class="privacy-content">
+                <div class="data-category">
+                    <h3>What Data We Collect & Why</h3>
+                    <p><strong>Account Data:</strong> (e.g., Name, Email) To create and secure your account, and provide customer support.</p>
+                    <p><strong>Service Data:</strong> The data you create while using our services. This is your data, and we process it solely to provide the service you've requested.</p>
+                    <p><strong>Technical & Log Data:</strong> (e.g., IP address, device info) To ensure security, monitor system health, and diagnose issues.</p>
+                    <p><strong>Usage Data:</strong> (e.g., feature interaction) To understand how our product is used so we can make informed improvements.</p>
+                </div>
+                <div class="data-category">
+                    <h3>How We Use Your Data</h3>
+                    <p>To provide, operate, and maintain our services. To improve, personalize, and expand our services. To communicate with you, including for support and security alerts.</p>
+                    <p><strong>We do not and will never sell your personal data to third parties.</strong></p>
+                </div>
+                <div class="data-category">
+                    <h3>Data Sharing & Third Parties</h3>
+                    <p>We only share your data under strict conditions: with your consent, with trusted vendors who help us operate our service (bound by strict data protection contracts), or when required by law.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Measures Section -->
+    <section id="security">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Security Measures</h2>
+                <p>We protect your data through a multi-layered defense strategy.</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-card">
+                    <h3>Infrastructure & Network Security</h3>
+                    <p>Our systems are hosted on AWS, leveraging their world-class, secure data centers. All data is encrypted in transit (TLS 1.2+) and at rest (AES-256).</p>
+                </div>
+                <div class="security-card">
+                    <h3>Application Security</h3>
+                    <p>We follow secure development practices, conduct regular code reviews, and perform penetration testing to identify and remediate vulnerabilities.</p>
+                </div>
+                <div class="security-card">
+                    <h3>Access Control & Authentication</h3>
+                    <p>We implement the principle of least privilege, require multi-factor authentication for all administrative access, and conduct regular access reviews.</p>
+                </div>
+                <div class="security-card">
+                    <h3>Monitoring & Incident Response</h3>
+                    <p>Our systems are monitored 24/7 for suspicious activity. We have a dedicated incident response team and clear procedures for handling security events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section id="compliance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Compliance & Certifications</h2>
+                <p>Our security practices are validated by independent third parties.</p>
+            </div>
+            <div class="compliance-logos">
+                <div class="compliance-logo">SOC 2</div>
+                <div class="compliance-logo">ISO 27001</div>
+                <div class="compliance-logo">GDPR</div>
+                <div class="compliance-logo">CCPA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common security and privacy questions.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Where is my data stored?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All customer data is stored in secure AWS data centers located in the United States and Europe, depending on your selected region.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How can I delete my data?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can delete your data directly from your account settings, or contact our support team for assistance. Data deletion is completed within 30 days of request.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do you handle data breaches?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have a comprehensive incident response plan. In the unlikely event of a data breach, we will notify affected users within 72 hours as required by law and take immediate steps to contain and remediate the issue.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I export my data?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can export your data in standard formats (JSON, CSV) directly from your account dashboard at any time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Solutions</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Data Processing Addendum</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 YourCompany. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+                
+                // Toggle the plus/minus icon
+                const icon = question.querySelector('span');
+                icon.textContent = faqItem.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
