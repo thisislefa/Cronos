@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperion IT Cost Estimator</title>
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+          CSS Resets & Base Styles
+          ============================================================
+        */
+        :root {
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb; /* equivalent to border-gray-200 */
+        }
+
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            line-height: inherit;
+        }
+        
+        h1, h2, h3, h4, p, ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+        
+        svg {
+            display: block;
+            vertical-align: middle;
+        }
+
+        /* ============================================================
+          Body
+          ============================================================
+        */
+        .hprn-pricing-body {
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        /* ============================================================
+          General Container
+          ============================================================
+        */
+        .hprn-pricing-container {
+            width: 100%;
+            max-width: 80rem; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            width: 1100px;
+        }
+
+        @media (min-width: 640px) {
+            .hprn-pricing-container {
+                padding-left: 1.5rem; /* sm:px-6 */
+                padding-right: 1.5rem; /* sm:px-6 */
+            }
+        }
+        @media (min-width: 1024px) {
+            .hprn-pricing-container {
+                padding-left: 2rem; /* lg:px-8 */
+                padding-right: 2rem; /* lg:px-8 */
+            }
+        }
+
+        /* ============================================================
+          Hero Section (Dark Background)
+          ============================================================
+        */
+        .hprn-pricing-hero {
+            background-color: #080d1b; /* bg-slate-900 */
+            color: #ffffff; /* text-white */
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+        }
+        .hprn-pricing-hero > .hprn-pricing-container > div {
+             /* This is the inner div inside the container */
+        }
+
+        .hprn-pricing-hero-text h1 {
+            font-size: 1.5rem; /* text-4xl */
+            line-height: 2.5rem;
+            font-weight: 800; /* font-extrabold */
+            letter-spacing: -0.025em; /* tracking-tight */
+            color: #ffffff; /* text-white */
+        }
+        .hprn-pricing-hero-text p:nth-of-type(1) {
+            margin-top: 1.5rem; /* mt-6 */
+            font-size: 1.25rem; /* text-xl */
+            line-height: 1.75rem;
+            color: #cbd5e1; /* text-slate-300 */
+        }
+        .hprn-pricing-hero-text p:nth-of-type(2) {
+            margin-top: 1rem; /* mt-4 */
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75rem;
+            color: #94a3b8; /* text-slate-400 */
+        }
+
+        /* Hero CTA Box */
+        .hprn-pricing-hero-cta-box {
+            background-color: #ffffff; /* bg-white */
+            color: #111827; /* text-gray-900 */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 1px; /* rounded-lg */
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
+            width: 100%; /* w-full */
+            margin-top: 2.5rem; /* mt-10 */
+            flex-shrink: 0; /* flex-shrink-0 */
+        }
+        .hprn-pricing-hero-cta-box h2 {
+            font-size: 1.25rem; /* text-xl */
+            line-height: 1.75rem;
+            font-weight: 700; /* font-bold */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(1) {
+            color: #374151; /* text-gray-700 */
+            margin-bottom: 1.25rem; /* mb-5 */
+        }
+        .hprn-pricing-btn-primary {
+            display: block;
+            width: 100%; /* w-full */
+            text-align: center;
+            background-color: #f97316; /* bg-orange-500 */
+            color: #ffffff; /* text-white */
+            font-weight: 700; /* font-bold */
+            padding-top: 0.75rem; /* py-3 */
+            padding-bottom: 0.75rem;
+            padding-left: 1.25rem; /* px-5 */
+            padding-right: 1.25rem;
+            border-radius: 1px; /* rounded-lg */
+            transition-property: all; /* transition */
+            transition-duration: 200ms; /* duration-200 */
+        }
+        .hprn-pricing-btn-primary:hover {
+            background-color: #ea580c; /* hover:bg-orange-600 */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(2) { /* "Already a Hyperion Customer?" */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25rem;
+            font-weight: 600; /* font-semibold */
+            color: #4b5563; /* text-gray-600 */
+            margin-top: 1rem; /* my-4 */
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .hprn-pricing-btn-secondary {
+            display: flex; /* flex */
+            align-items: center; /* items-center */
+            justify-content: center; /* justify-center */
+            width: 100%; /* w-full */
+            text-align: center;
+            background-color: #ffffff; /* bg-white */
+            border: 1px solid #9ca3af; /* border border-gray-400 */
+            color: #1f2937; /* text-gray-800 */
+            font-weight: 700; /* font-bold */
+            padding-top: 0.75rem; /* py-3 */
+            padding-bottom: 0.75rem;
+            padding-left: 1.25rem; /* px-5 */
+            padding-right: 1.25rem;
+            border-radius: 1px; /* rounded-lg */
+            transition-property: all; /* transition */
+            transition-duration: 200ms; /* duration-200 */
+        }
+        .hprn-pricing-btn-secondary:hover {
+            background-color: #f3f4f6; /* hover:bg-gray-100 */
+        }
+        .hprn-pricing-btn-secondary svg {
+            width: 1rem; /* w-4 */
+            height: 1rem; /* h-4 */
+            margin-left: 0.5rem; /* ml-2 */
+            color: #4b5563; /* text-gray-600 */
+        }
+        .hprn-pricing-btn-secondary:hover svg {
+            color: #2563eb; /* group-hover:text-blue-600 */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(3) { /* "Log into the console..." */
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1rem;
+            color: #4b5563; /* text-gray-600 */
+            margin-top: 1.25rem; /* mt-5 */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(3) a {
+            color: #2563eb; /* text-blue-600 */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(3) a:hover {
+            text-decoration: underline; /* hover:underline */
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(3) span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .hprn-pricing-hero-cta-box p:nth-of-type(3) svg {
+            width: 0.75rem; /* w-3 */
+            height: 0.75rem; /* h-3 */
+        }
+        
+        /* Hero media queries */
+        @media (min-width: 1024px) {
+            .hprn-pricing-hero {
+                padding-top: 7rem; /* lg:py-28 */
+                padding-bottom: 7rem; /* lg:py-28 */
+            }
+            .hprn-pricing-hero > .hprn-pricing-container > div {
+                display: flex; /* lg:flex */
+                justify-content: space-between; /* lg:justify-between */
+                align-items: center; /* lg:items-center */
+            }
+            .hprn-pricing-hero-text {
+                width: 60%; /* lg:w-3/5 */
+            }
+            .hprn-pricing-hero-text h1 {
+                font-size: 3rem; /* lg:text-5xl */
+                line-height: 1;
+            }
+            .hprn-pricing-hero-text p:nth-of-type(1) {
+                font-size: 1.5rem; /* lg:text-2xl */
+                line-height: 2rem;
+            }
+            .hprn-pricing-hero-cta-box {
+                width: 40%; /* lg:w-2/5 */
+                margin-top: 0; /* lg:mt-0 */
+                margin-left: 3rem; /* lg:ml-12 */
+                padding: 2rem; /* lg:p-8 */
+            }
+        }
+        @media (min-width: 1280px) {
+             .hprn-pricing-hero-cta-box {
+                width: 33.333333%; /* xl:w-1/3 */
+             }
+        }
+
+        /* ============================================================
+          Main Content Section (White Background)
+          ============================================================
+        */
+        .hprn-pricing-main-wrapper {
+            background-color: #f4f4f4; /* bg-white */
+        }
+        .hprn-pricing-main-wrapper > .hprn-pricing-container {
+            padding-top: 4rem; /* py-16 */
+            padding-bottom: 4rem; /* py-16 */
+        }
+        .hprn-pricing-main-wrapper > .hprn-pricing-container > div {
+             /* Inner flex div */
+        }
+        
+        .hprn-pricing-main-content {
+             /* Left Column */
+        }
+        
+        /* "How it works" Section */
+        .hprn-pricing-how-it-works h2 {
+            font-size: 1.875rem; /* text-3xl */
+            line-height: 2.25rem;
+            font-weight: 700; /* font-bold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 1rem; /* mb-10 */
+        }
+        .hprn-pricing-how-it-works > div { /* Grid container */
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+            gap: 2rem 3rem; /* gap-x-8 gap-y-12 */
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
+            padding: 2rem;
+            background-color: #fff;
+        }
+        .hprn-pricing-icon-wrapper {
+            height: 4rem; /* h-16 */
+            width: 4rem; /* w-16 */
+            color: #6b7280; /* text-gray-500 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        .hprn-pricing-step h3 {
+            font-size: 1.25rem; /* text-xl */
+            line-height: 1.75rem;
+            font-weight: 600; /* font-semibold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .hprn-pricing-step p {
+            color: #4b5563; /* text-gray-600 */
+        }
+        
+        /* "Benefits and features" Section */
+        .hprn-pricing-benefits {
+            margin-top: 4rem; /* mt-16 */
+        }
+        .hprn-pricing-benefits h2 {
+            font-size: 1.875rem; /* text-3xl */
+            line-height: 2.25rem;
+            font-weight: 700; /* font-bold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 1rem; /* mb-10 */
+        }
+        .hprn-pricing-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+            gap: 1.5rem; /* gap-6 */
+        }
+        .hprn-pricing-feature-card {
+            padding: 1.5rem; /* p-6 */
+            border-radius: 1px; /* rounded-lg */
+            background-color: #ffffff; /* bg-white */
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641); /* shadow-sm */
+        }
+        .hprn-pricing-feature-card h3 {
+            font-size: 1.25rem; /* text-xl */
+            line-height: 1.75rem;
+            font-weight: 600; /* font-semibold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .hprn-pricing-feature-card p {
+            color: #4b5563; /* text-gray-600 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .hprn-pricing-link {
+            font-weight: 500; /* font-medium */
+            color: #0065b3; /* text-blue-600 */
+            display: flex; /* flex */
+            align-items: center; /* items-center */
+        }
+        .hprn-pricing-link:hover {
+            text-decoration: underline; /* hover:underline */
+        }
+        .hprn-pricing-link svg {
+            width: 1rem; /* w-4 */
+            height: 1rem; /* h-4 */
+            margin-left: 0.375rem; /* ml-1.5 */
+            color: #0065b3; /* text-blue-600 */
+        }
+
+        /* Sidebar (Right Column) */
+        .hprn-pricing-sidebar {
+            margin-top: 4rem; /* mt-16 */
+        }
+        
+        /* More resources box */
+        .hprn-pricing-sidebar-box:nth-of-type(1) {
+            padding-bottom: 1.5rem; /* pb-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
+            background-color: #fff;
+            
+        }
+        .hprn-pricing-sidebar-box h3 {
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75rem;
+            font-weight: 600; /* font-semibold */
+            color: #111827; /* text-gray-900 */
+            margin-bottom: 1rem; /* mb-4 or mb-3 */
+            display: flex;
+            align-items: center;
+        }
+        .hprn-pricing-sidebar-box h3 svg {
+            width: 1rem; /* w-4 */
+            height: 1rem; /* h-4 */
+            margin-left: 0.5rem; /* ml-2 */
+            color: #4b5563; /* text-gray-600 */
+        }
+        .hprn-pricing-sidebar-box ul {
+            display: grid;
+            gap: 0.75rem; /* space-y-3 */
+        }
+        .hprn-pricing-sidebar-box li a {
+            color: #0065b3; /* text-blue-600 */
+            
+        }
+        .hprn-pricing-sidebar-box li a:hover {
+            text-decoration: underline; /* hover:underline */
+        }
+        
+        /* Modernization calculator box */
+        .hprn-pricing-sidebar-box:nth-of-type(2) {
+            background-color: #fff;
+            border-radius: 1px; /* rounded-lg */
+            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
+          
+        }
+         .hprn-pricing-sidebar-box:nth-of-type(2) h3 {
+             margin-bottom: 0.75rem; /* mb-3 */
+         }
+        .hprn-pricing-sidebar-box:nth-of-type(2) p {
+            color: #4b5563; /* text-gray-600 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .hprn-pricing-sidebar-box:nth-of-type(2) a {
+            font-weight: 500; /* font-medium */
+            color: #0065b3; /* text-blue-600 */
+            display: flex;
+            align-items: center;
+        }
+        .hprn-pricing-sidebar-box:nth-of-type(2) a:hover {
+            text-decoration: underline; /* hover:underline */
+        }
+        
+        /* Main Content Media Queries */
+        @media (min-width: 768px) { /* md: */
+            .hprn-pricing-how-it-works > div { /* Grid container */
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+            }
+            .hprn-pricing-benefits-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+            }
+        }
+        
+        @media (min-width: 1024px) { /* lg: */
+            .hprn-pricing-main-wrapper > .hprn-pricing-container {
+                padding-top: 6rem; /* lg:py-24 */
+                padding-bottom: 6rem; /* lg:py-24 */
+            }
+            .hprn-pricing-main-wrapper > .hprn-pricing-container > div {
+                display: flex; /* lg:flex */
+                gap: 3rem; /* lg:space-x-12 */
+            }
+            .hprn-pricing-main-content {
+                width: 66.666667%; /* lg:w-2/3 */
+            }
+            .hprn-pricing-benefits {
+                margin-top: 6rem; /* lg:mt-24 */
+            }
+            .hprn-pricing-sidebar {
+                width: 33.333333%; /* lg:w-1/3 */
+                margin-top: 0; /* lg:mt-0 */
+            }
+        }
+        
+
+        /* ============================================================
+          Footer Section
+          ============================================================
+        */
+        .hprn-pricing-footer {
+            background-color: #ffffff; /* bg-white */
+            border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
+        }
+        .hprn-pricing-footer > .hprn-pricing-container {
+            padding-top: 2.5rem; /* py-10 */
+            padding-bottom: 2.5rem; /* py-10 */
+        }
+        .hprn-pricing-footer h4 {
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.25rem;
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .hprn-pricing-footer p {
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1rem;
+            color: #6c727e; /* text-gray-500 */
+        }
+        .hprn-pricing-footer p a {
+            color: #2563eb; /* text-blue-600 */
+        }
+        .hprn-pricing-footer p a:hover {
+            text-decoration: underline; /* hover:underline */
+        }
+        .hprn-pricing-footer p a span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .hprn-pricing-footer p a svg {
+            width: 0.75rem; /* w-3 */
+            height: 0.75rem; /* h-3 */
+        }
+    </style>
+</head>
+<body class="hprn-pricing-body">
+
+    <!-- 
+      ============================================================
+      Hero Section (Dark Background)
+      Based on Screenshot 1
+      ============================================================
+    -->
+    <header class="hprn-pricing-hero">
+        <div class="hprn-pricing-container">
+            <div>
+                
+                <!-- Hero Text Content -->
+                <div class="hprn-pricing-hero-text">
+                    <h1>
+                        Hyperion IT Cost Estimator
+                    </h1>
+                    <p>
+                        Estimate the cost for your architecture solution.
+                    </p>
+                    <p>
+                        Configure a cost estimate that fits your unique business needs
+                        with Hyperion IT products and services.
+                    </p>
+                </div>
+
+                <!-- Hero CTA Box -->
+                <div class="hprn-pricing-hero-cta-box">
+                    <h2>
+                        Create an estimate
+                    </h2>
+                    <p>
+                        Start your estimate with no commitment, and explore Hyperion IT
+                        services and pricing for your architecture needs.
+                    </p>
+                    <a href="#" class="hprn-pricing-btn-primary">
+                        Create estimate
+                    </a>
+                    <p>
+                        Already a Hyperion Customer?
+                    </p>
+                    <a href="#" class="hprn-pricing-btn-secondary">
+                        Log into the console
+                        <!-- External link icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                    </a>
+                    <p>
+                        Log into the console to estimate your costs
+                        including your volume discounts.
+                        <a href="#">Learn more
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                            </span>
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- 
+      ============================================================
+      Main Content Section (White Background)
+      Based on Screenshots 2 & 3
+      ============================================================
+    -->
+    <main class="hprn-pricing-main-wrapper">
+        <div class="hprn-pricing-container">
+            <div>
+
+                <!-- Main Content (Left Column) -->
+                <div class="hprn-pricing-main-content">
+
+                    <!-- "How it works" Section -->
+                    <section class="hprn-pricing-how-it-works">
+                        <h2>
+                            How it works
+                        </h2>
+                        
+                        <div>
+                            
+                            <!-- Step 1 -->
+                            <div class="hprn-pricing-step" style="border-right: 1px solid #e4e4e4;">
+                                <div class="hprn-pricing-icon-wrapper">
+                                    <!-- Calculator Icon -->
+                                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5"><path fill="#000000" d="M18 23.5q-2.3 0-3.9-1.6T12.5 18q0-2.3 1.6-3.9t3.9-1.6q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T18 23.5Zm0-1.5q1.65 0 2.825-1.175Q22 19.65 22 18q0-1.65-1.175-2.825Q19.65 14 18 14q-1.65 0-2.825 1.175Q14 16.35 14 18q0 1.65 1.175 2.825Q16.35 22 18 22ZM6 23.5q-2.3 0-3.9-1.6T.5 18q0-2.3 1.6-3.9T6 12.5q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T6 23.5ZM6 22q1.65 0 2.825-1.175Q10 19.65 10 18q0-1.65-1.175-2.825Q7.65 14 6 14q-1.65 0-2.825 1.175Q2 16.35 2 18q0 1.65 1.175 2.825Q4.35 22 6 22Zm0-10.5q-2.3 0-3.9-1.6T.5 6q0-2.3 1.6-3.9T6 .5q2.3 0 3.9 1.6T11.5 6q0 2.3-1.6 3.9T6 11.5ZM6 10q1.65 0 2.825-1.175Q10 7.65 10 6q0-1.65-1.175-2.825Q7.65 2 6 2Q4.35 2 3.175 3.175Q2 4.35 2 6q0 1.65 1.175 2.825Q4.35 10 6 10Zm12 1.5q-2.3 0-3.9-1.6T12.5 6q0-2.3 1.6-3.9T18 .5q2.3 0 3.9 1.6T23.5 6q0 2.3-1.6 3.9T18 11.5Zm0-1.5q1.65 0 2.825-1.175Q22 7.65 22 6q0-1.65-1.175-2.825Q19.65 2 18 2q-1.65 0-2.825 1.175Q14 4.35 14 6q0 1.65 1.175 2.825Q16.35 10 18 10Zm-2.5 10v-1.5h5V20Zm0-2.5V16h5v1.5Zm-10.25 3v-1.75H3.5v-1.5h1.75V15.5h1.5v1.75H8.5v1.5H6.75v1.75ZM3.5 6.75v-1.5h5v1.5ZM16.75 8.3L15.7 7.25L16.95 6L15.7 4.75l1.05-1.05L18 4.95l1.25-1.25l1.05 1.05L19.05 6l1.25 1.25l-1.05 1.05L18 7.05Z"/></svg>                                </div>
+                                <h3>
+                                    Hyperion Cost Estimator
+                                </h3>
+                                <p>
+                                    Estimate the cost of your Hyperion IT products and
+                                    services.
+                                </p>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="hprn-pricing-step">
+                                <div class="hprn-pricing-icon-wrapper">
+                                    <!-- Add Services Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#000000" d="M48 464V144H16v328a24.027 24.027 0 0 0 24 24h328v-32H48Z"/><path fill="#000000" d="M144 400h-32V80H80v328a24.027 24.027 0 0 0 24 24h328v-32H144Z"/><path fill="#000000" d="M472 16H168a24.027 24.027 0 0 0-24 24v304a24.027 24.027 0 0 0 24 24h304a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24Zm-8 320H176V48h288Z"/><path fill="#000000" d="M304 288h32v-84h84v-32h-84V88h-32v84h-84v32h84v84z"/></svg>
+                                </div>
+                                <h3>
+                                    Step 1: Add services
+                                </h3>
+                                <p>
+                                    Search and add the IT services that you
+                                    need for your solution.
+                                </p>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="hprn-pricing-step" style="border-right: 1px solid #e4e4e4;">
+                                <div class="hprn-pricing-icon-wrapper">
+                                    <!-- Configure Service Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M2.256 15.632c.034-.323.268-.583.736-1.104l1.031-1.153c.252-.32.431-.875.431-1.375s-.179-1.056-.43-1.375L2.991 9.472c-.468-.52-.702-.781-.736-1.104s.14-.627.49-1.234l.494-.857c.373-.648.56-.972.878-1.1c.317-.13.676-.028 1.395.176l1.22.343c.459.106.94.046 1.358-.169l.337-.194a2 2 0 0 0 .788-.968l.334-.997c.22-.66.33-.99.591-1.18C10.403 2 10.75 2 11.444 2h1.115c.694 0 1.042 0 1.303.189s.371.519.59 1.179l.335.997a2 2 0 0 0 .788.968l.337.194c.418.215.9.275 1.358.17l1.22-.344c.719-.204 1.078-.306 1.395-.177c.318.13.505.453.878 1.101l.493.857c.35.607.525.91.491 1.234s-.268.583-.736 1.104l-1.031 1.153c-.252.319-.431.875-.431 1.375s.179 1.056.43 1.375l1.032 1.153c.468.52.702.781.736 1.104s-.14.627-.49 1.234l-.494.857c-.373.648-.56.972-.878 1.1c-.317.13-.676.028-1.395-.176l-1.22-.343a2 2 0 0 0-1.359.169l-.336.194c-.36.23-.636.57-.788.968l-.334.997c-.22.66-.33.99-.591 1.18c-.261.188-.609.188-1.303.188h-1.115c-.694 0-1.041 0-1.303-.189c-.261-.189-.371-.518-.59-1.178"/><path d="M2.737 18.78c1.08-1.08 4.752-4.716 5.112-5.136c.381-.444.072-1.044.256-2.904c.089-.9.282-1.574.836-2.076c.66-.624 1.2-.624 3.06-.666c1.62.042 1.812-.138 1.98.282c.12.3-.24.48-.672.96c-.96.96-1.524 1.44-1.578 1.74c-.39 1.32 1.146 2.1 1.986 1.26c.318-.318 1.788-1.8 1.932-1.92c.108-.096.367-.092.492.06c.108.106.12.12.108.6c-.01.444-.006 1.082-.004 1.74c.001.852-.044 1.8-.404 2.28c-.72 1.08-1.92 1.14-3 1.188c-1.02.06-1.86-.048-2.124.144c-.216.108-1.356 1.308-2.736 2.688l-2.46 2.46c-2.04 1.62-4.284-.9-2.784-2.7"/></g></svg>                                </div>
+                                <h3>
+                                    Step 2: Configure service
+                                </h3>
+                                <p>
+                                    Enter the details of your usage to see
+                                    service costs.
+                                </p>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div class="hprn-pricing-step">
+                                <div class="hprn-pricing-icon-wrapper">
+                                    <!-- View Totals Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="#000000"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5.5h-7a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-7Z"/><path d="M8.5 5V.5l5 5H9a.5.5 0 0 1-.5-.5Zm-4-.5V3M3 8.5c0 .75.67 1 1.5 1s1.5 0 1.5-1C6 7 3 7 3 5.5c0-1 .67-1 1.5-1s1.5.38 1.5 1m-1.5 4V11m4-1.5h3"/></g></svg>
+                                </div>
+                                <h3>
+                                    Step 3: View estimate totals
+                                </h3>
+                                <p>
+                                    See estimated costs per service, service
+                                    groups, and totals.
+                                </p>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- "Benefits and features" Section -->
+                    <section class="hprn-pricing-benefits">
+                        <h2>
+                            Benefits and features
+                        </h2>
+                        
+                        <div class="hprn-pricing-benefits-grid">
+
+                            <!-- Feature 1 -->
+                            <div class="hprn-pricing-feature-card">
+                                <h3>
+                                    Transparent pricing
+                                </h3>
+                                <p>
+                                    See the math behind the price for your
+                                    service configurations. View prices per
+                                    service or per group of services to analyze
+                                    your architecture costs.
+                                </p>
+                                <a href="#" class="hprn-pricing-link">
+                                    Reading your estimate
+                                    <!-- External link icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="hprn-pricing-feature-card">
+                                <h3>
+                                    Share your estimates
+                                </h3>
+                                <p>
+                                    Save each estimate's unique link to share
+                                    or revisit directly through your browser.
+                                    Estimates are saved to Hyperion public
+                                    servers.
+                                </p>
+                                <a href="#" class="hprn-pricing-link">
+                                    Saving and sharing your estimate
+                                    <!-- External link icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="hprn-pricing-feature-card">
+                                <h3>
+                                    Hierarchical estimates
+                                </h3>
+                                <p>
+                                    See and analyze service costs grouped by
+                                    different parts of your architecture.
+                                </p>
+                                <a href="#" class="hprn-pricing-link">
+                                    Using groups
+                                    <!-- External link icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <!-- Feature 4 -->
+                            <div class="hprn-pricing-feature-card">
+                                <h3>
+                                    Estimate exports
+                                </h3>
+                                <p>
+                                    Export your estimate to a .csv, .pdf and
+                                    .json file to quickly share and analyze
+                                    your proposed architecture spend.
+                                </p>
+                                <a href="#" class="hprn-pricing-link">
+                                    Exporting estimates
+                                    <!-- External link icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar (Right Column) -->
+                <aside class="hprn-pricing-sidebar">
+                    
+                    <!-- More resources box -->
+                    <div class="hprn-pricing-sidebar-box">
+                    <div style="background-color: #e9e9e9;">
+                        <h3 style="padding: 1rem 1.5rem;">
+                            More resources
+                            <!-- External link icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                        </h3>
+                    </div>
+                        <ul style="padding: 0 1.5rem;">
+                            <li><a href="#">User guide</a></li>
+                            <li><a href="#">Pricing assumptions and variations</a></li>
+                            <li><a href="#">Need help with estimation? Connect with Hyperion experts</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Modernization calculator box -->
+                    <div class="hprn-pricing-sidebar-box">
+                        <div style="background-color: #e9e9e9;">
+                         <h3 style="padding: 1rem 1.5rem;">
+                            Hyperion Cloud Migration Calculator
+                            <!-- External link icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                        </h3>
+                        </div>
+                        <p style="padding: 0 1.5rem;">
+                            Estimate the cost of transforming legacy workloads
+                            to a modern architecture that uses
+                            open source and cloud-native services deployed
+                            on Hyperion.
+                        </p>
+                        <a href="#" class="hprn-pricing-link" style="padding: 0 0 1.5rem 1.5rem;">
+                            Get started
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+      ============================================================
+      Footer Section
+      Based on Screenshot 3
+      ============================================================
+    -->
+    <footer class="hprn-pricing-footer">
+        <div class="hprn-pricing-container">
+            <h4>
+                Acknowledgement
+            </h4>
+            <p>
+                The Hyperion IT Cost Estimator provides only an estimate of your Hyperion IT
+                fees and doesn't include any taxes that might apply. Your actual
+                fees depend on a variety of factors, including your actual usage
+                of Hyperion IT services.
+                <a href="#">Learn more
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                    </span>
+                </a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
+

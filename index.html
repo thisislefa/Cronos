@@ -656,10 +656,10 @@
             border-radius: 0; /* Remove border radius */
             transition: color 0s;
             position: relative;
-            margin: 1px 0; /* Tighter vertical spacing */
+            margin: 5px 0; /* Tighter vertical spacing */
             padding: 2px 0; /* Minimal padding */
             letter-spacing: -0.03em;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 600; /* Regular weight for links */
             color: var(--color-text-light); /* Make column headers light/white */
         }
@@ -4621,7 +4621,6 @@ margin-bottom: 3rem;
     .pc-footer-bottom {
         justify-content: center; /* Center on mobile */
         text-align: center;
-        border-top: 1px solid #303c55;
         padding: 1rem 0;
     }
 }
@@ -4972,9 +4971,49 @@ margin-bottom: 3rem;
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
 
-        <div class="footer-kv" style="display: inline-flex; align-items: flex-start; justify-content: flex-start; flex-grow: 1; line-height: 0.9;">
-          <a href="#" style="border-right: 1px solid #7b849b; padding: 0 8px 0 0;">Privacy Notice</a>
-          <a href="status.html" style="padding: 0 0 0 8px;">Status</a>
+        <style>
+          .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+          }
+          .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+          }
+          .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+          }
+
+          @media (max-width: 768px) {
+            .footer-kv {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              gap: 6px;
+              padding: 8px 0;
+              order: 1;
+            }
+            .footer-kv a + a {
+              border-left: none;
+              padding-left: 0;
+              margin-left: 0;
+            }
+          }
+        </style>
+
+        <div class="footer-kv">
+          <a href="#" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="status.html" aria-label="Status">Status</a>
         </div>
 
         <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Cloud Cost Estimator (Vertical Flow)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        
+        <header class="text-center mb-10 pb-4 border-b-4 border-slate-700">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-2">Enterprise Cloud Infrastructure Cost Modelling (OpEx)</h1>
+            <p class="text-lg text-slate-600">Dynamic estimation based on granular resource allocation and architectural requirements in ZAR.</p>
+        </header>
+
+        <div class="bg-white p-6 md:p-10 shadow-2xl border border-gray-200">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="lg:col-span-1 space-y-8">
+
+                    <div class="border border-gray-200 p-4">
+                        <h2 class="section-header">1. Infrastructure Foundation</h2>
+                        
+                        <div class="mb-5">
+                            <label for="instanceCount" class="block text-sm font-medium text-slate-700 mb-1">Number of Required Instances (VMs/Containers)</label>
+                            <input type="number" id="instanceCount" value="10" min="1" class="custom-input" oninput="calculateCost()">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="cores" class="block text-sm font-medium text-slate-700 mb-1">vCPU Cores per Instance</label>
+                            <input type="number" id="cores" value="4" min="1" max="64" class="custom-input" oninput="calculateCost()">
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label for="ram" class="block text-sm font-medium text-slate-700 mb-1">RAM (GB) per Instance</label>
+                            <input type="number" id="ram" value="8" min="1" max="512" class="custom-input" oninput="calculateCost()">
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label for="operatingSystem" class="block text-sm font-medium text-slate-700 mb-1">Operating System</label>
+                            <select id="operatingSystem" class="custom-input" onchange="calculateCost()">
+                                <option value="linux">Linux/Open Source (Base Cost)</option>
+                                <option value="windows">Windows Server (+15% Licensing)</option>
+                                <option value="custom">Custom RHEL/Oracle (+25% Premium)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4">
+                        <h2 class="section-header">2. Data & Persistence Sizing</h2>
+
+                        <div class="mb-5">
+                            <label for="ssdStorage" class="block text-sm font-medium text-slate-700 mb-1">SSD Storage (GB) per Instance</label>
+                            <input type="number" id="ssdStorage" value="250" min="10" class="custom-input" oninput="calculateCost()">
+                            <p class="text-xs text-slate-500 mt-1">Total provisioned storage across all instances.</p>
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="dataTransfer" class="block text-sm font-medium text-slate-700 mb-1">Egress Data Transfer (TB/Month)</label>
+                            <input type="number" id="dataTransfer" value="5" min="0" step="0.5" class="custom-input" oninput="calculateCost()">
+                            <p class="text-xs text-slate-500 mt-1">Total expected data leaving the cloud environment.</p>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4">
+                        <h2 class="section-header">3. Deployment Region Factor</h2>
+
+                        <div class="mb-5">
+                            <label for="cloudLocation" class="block text-sm font-medium text-slate-700 mb-1">Primary Deployment Region</label>
+                            <select id="cloudLocation" class="custom-input" onchange="calculateCost()">
+                                <option value="local">Local ZA Data Center (ZAR Base)</option>
+                                <option value="europe">European Region (USD-pegged factor +18%)</option>
+                                <option value="us_asia">US/APAC Region (USD-pegged factor +30%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 p-4">
+                        <h2 class="section-header">4. High-Level Architecture Overheads</h2>
+
+                        <div class="mb-6 space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="highAvailability" class="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 focus:ring-cyan-500" onchange="calculateCost()">
+                                <label for="highAvailability" class="ml-2 text-sm font-medium text-slate-700">Multi-Zone High Availability (HA) - **+25%**</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="disasterRecovery" class="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 focus:ring-cyan-500" onchange="calculateCost()">
+                                <label for="disasterRecovery" class="ml-2 text-sm font-medium text-slate-700">Geo-Redundancy / Disaster Recovery (DR) - **+40%**</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="managedDB" class="w-4 h-4 text-cyan-600 bg-gray-100 border-gray-300 focus:ring-cyan-500" onchange="calculateCost()">
+                                <label for="managedDB" class="ml-2 text-sm font-medium text-slate-700">Managed Database Service - **+20%**</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 p-4">
+                        <h2 class="section-header">5. Application Profile & Commitment</h2>
+
+                        <div class="mb-5">
+                            <label for="useCase" class="block text-sm font-medium text-slate-700 mb-1">Primary Application Profile</label>
+                            <select id="useCase" class="custom-input" onchange="calculateCost()">
+                                <option value="standard">Standard Web App / Internal Services</option>
+                                <option value="high_volume">High-Volume API / E-commerce (+40% Complexity)</option>
+                                <option value="data_warehouse">Big Data / Machine Learning (+80% Complexity)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-5 mt-8">
+                            <label for="commitment" class="block text-sm font-medium text-slate-700 mb-1">Pricing Commitment</label>
+                            <select id="commitment" class="custom-input" onchange="calculateCost()">
+                                <option value="monthly">Monthly Subscription (Standard Rate)</option>
+                                <option value="annual">Annual Commitment (5% Discount)</option>
+                                <option value="3year">3-Year Reserved Capacity (15% Discount)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-slate-500">
+                            *This estimate is indicative OpEx only. CapEx setup fees or specific implementation hours are excluded. This tool is for advanced internal cost modeling.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="lg:col-span-1">
+                    <div class="output-box p-6 text-white sticky-bottom-lg">
+                        <p class="text-sm font-medium text-cyan-300 uppercase tracking-wider mb-2 border-b border-gray-700 pb-2">Total Monthly OpEx Estimate</p>
+                        <div id="costDisplay" class="text-5xl font-extrabold text-orange-500 pt-1">
+                            R 0.00
+                        </div>
+                        
+                        <p class="text-sm font-medium text-cyan-300 uppercase tracking-wider mt-6 mb-2">Cost Breakdown</p>
+                        <div class="space-y-1 text-xs">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Compute (vCPU + RAM)</span>
+                                <span id="computeCost" class="breakdown-value">R 0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Storage & Data Egress</span>
+                                <span id="storageCost" class="breakdown-value">R 0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Architectural Overheads (HA/DR/DB)</span>
+                                <span id="archCost" class="breakdown-value">R 0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">OS Licensing & Region Factors</span>
+                                <span id="factorCost" class="breakdown-value">R 0.00</span>
+                            </div>
+                        </div>
+
+                        <p id="totalAnnualized" class="text-xs text-gray-400 mt-4 pt-4 border-t border-gray-700">
+                            Annualized Cost: R 0.00
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <script type="module" src="calculator.js"></script>
+</body>
+</html>
+
+<style>
+    /* Define custom theme colors for brand consistency (Charcoal/Cyan/Orange) */
+:root {
+    --color-primary: #0f172a; /* Slate-900 / Deep Charcoal */
+    --color-secondary: #06b6d4; /* Cyan-500 / Vibrant Teal (Accent 1) */
+    --color-accent: #f97316; /* Orange-500 (Accent 2 for financial output) */
+    --color-card-bg: #1e293b; /* Slate-800 for output card */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f1f5f9; /* Slate-50 */
+    /* Enforce 1px border radius everywhere */
+    --rounded: 1px;
+}
+
+/* Enforce 1px border radius globally */
+* {
+    border-radius: var(--rounded) !important;
+}
+
+/* Custom Styles for Select and Inputs (Using Tailwind @apply) */
+.custom-input {
+    width: 100%;
+    padding: 0.75rem; /* p-3 */
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    transition: all 150ms ease-in-out; /* transition duration-150 */
+}
+.custom-input:focus {
+    --tw-ring-color: var(--color-secondary); /* focus:ring-cyan-500 */
+    --tw-border-color: var(--color-secondary); /* focus:border-cyan-500 */
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--tw-ring-color);
+}
+
+.section-header {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: #1e293b; /* text-slate-800 */
+    margin-bottom: 1rem; /* mb-4 */
+    border-left: 4px solid var(--color-secondary); /* border-l-4 border-cyan-500 */
+    padding-left: 0.75rem; /* pl-3 */
+}
+
+/* Custom Styles for Output Box */
+.output-box {
+    background-color: var(--color-primary); 
+    border: 1px solid var(--color-secondary);
+    box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.3), 0 4px 6px -2px rgba(6, 182, 212, 0.1);
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+    border-bottom: 1px solid #374151; /* border-gray-700 */
+}
+.breakdown-label {
+    font-size: 0.875rem; /* text-sm */
+    color: #d1d5db; /* text-gray-300 */
+    font-weight: 500; /* font-medium */
+}
+.breakdown-value {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    color: white;
+}
+</style>
+
+<script>
+    // Mandatory Firebase Initialization for Canvas Environment Context
+// NOTE: These variables (__app_id, __firebase_config, etc.) are expected to be injected
+// by a specific execution environment, which is why the code is structured this way.
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+let db, auth;
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+if (firebaseConfig) {
+    try {
+        // setLogLevel('debug'); // Uncomment for debugging Firebase interactions
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        
+        // Sign in using custom token or anonymously
+        if (initialAuthToken) {
+            signInWithCustomToken(auth, initialAuthToken).catch(e => console.error("Firebase Custom Sign In Failed:", e));
+        } else {
+            signInAnonymously(auth).catch(e => console.error("Firebase Anonymous Sign In Failed:", e));
+        }
+    } catch (error) {
+        console.error("Firebase Initialization Error:", error);
+    }
+} else {
+    console.warn("Firebase configuration not available. Running calculator logic only.");
+}
+
+// --- CALCULATION LOGIC ---
+
+// Define Granular Base Rates (All ZAR/Month)
+const BASE_RATES = {
+    vCPU_CORE: 550,     // R 550 per vCPU Core / Month
+    RAM_GB: 180,        // R 180 per GB RAM / Month
+    SSD_STORAGE_GB: 8,  // R 8 per GB Storage / Month
+    DATA_TRANSFER_TB: 4500, // R 4,500 per TB Egress / Month
+    MANAGED_DB_ADDON: 0.20 // 20% multiplier on total Compute Cost if selected
+};
+
+// Define Multipliers
+const MULTIPLIERS = {
+    // OS Licensing (Applies to Compute Cost)
+    os: {
+        linux: 1.0,
+        windows: 1.15, // +15%
+        custom: 1.25,  // +25%
+    },
+    // Architectural Overheads (Additive percentages on base Compute/Storage cost)
+    arch: {
+        highAvailability: 0.25, // +25%
+        disasterRecovery: 0.40, // +40%
+    },
+    // Region Factor (Multiplies total cost)
+    location: {
+        local: 1.0,
+        europe: 1.18, // +18%
+        us_asia: 1.30,  // +30%
+    },
+    // Use Case Complexity (Multiplies total cost)
+    useCase: {
+        standard: 1.0,
+        high_volume: 1.4, // +40%
+        data_warehouse: 1.8, // +80%
+    },
+    // Commitment Discounts (Multiplies total cost)
+    commitment: {
+        monthly: 1.0,
+        annual: 0.95, // 5% off
+        '3year': 0.85, // 15% off
+    }
+};
+
+// Helper function for ZAR formatting
+function formatZAR(amount) {
+    return new Intl.NumberFormat('en-ZA', { 
+        style: 'currency', 
+        currency: 'ZAR', 
+        minimumFractionDigits: 2 
+    }).format(amount);
+}
+
+window.calculateCost = function() {
+    // 1. Get Base Inputs
+    const count = parseInt(document.getElementById('instanceCount').value) || 0;
+    const cores = parseInt(document.getElementById('cores').value) || 0;
+    const ram = parseInt(document.getElementById('ram').value) || 0;
+    const ssdStorage = parseInt(document.getElementById('ssdStorage').value) || 0;
+    const dataTransfer = parseFloat(document.getElementById('dataTransfer').value) || 0;
+    
+    const osKey = document.getElementById('operatingSystem').value;
+    const locationKey = document.getElementById('cloudLocation').value;
+    const useCaseKey = document.getElementById('useCase').value;
+    const commitmentKey = document.getElementById('commitment').value;
+
+    // 2. Checkbox Inputs
+    const haChecked = document.getElementById('highAvailability').checked;
+    const drChecked = document.getElementById('disasterRecovery').checked;
+    const managedDBChecked = document.getElementById('managedDB').checked;
+
+    if (count === 0 || cores === 0 || ram === 0) {
+        document.getElementById('costDisplay').textContent = 'R 0.00';
+        document.getElementById('computeCost').textContent = 'R 0.00';
+        document.getElementById('storageCost').textContent = 'R 0.00';
+        document.getElementById('archCost').textContent = 'R 0.00';
+        document.getElementById('factorCost').textContent = 'R 0.00';
+        document.getElementById('totalAnnualized').textContent = 'Annualized Cost: R 0.00';
+        return;
+    }
+
+    // --- STEP A: CALCULATE BASE COMPONENT COSTS ---
+    
+    // 1. Compute Cost
+    const totalCores = count * cores;
+    const totalRam = count * ram;
+    let compute_base = (totalCores * BASE_RATES.vCPU_CORE) + (totalRam * BASE_RATES.RAM_GB);
+    
+    // 2. Storage & Data Cost
+    const totalStorage = count * ssdStorage;
+    let storage_base = (totalStorage * BASE_RATES.SSD_STORAGE_GB) + (dataTransfer * BASE_RATES.DATA_TRANSFER_TB);
+
+    // 3. Apply OS Licensing (Factor Cost)
+    const osMultiplier = MULTIPLIERS.os[osKey] || 1.0;
+    let compute_after_os = compute_base * osMultiplier;
+    // let os_cost_addon = compute_after_os - compute_base; // Track the cost of the OS factor
+
+    // --- STEP B: ARCHITECTURAL OVERHEADS (Add-ons) ---
+    
+    let arch_cost = 0;
+    
+    // HA Overheads (applied to the core compute cost)
+    if (haChecked) {
+        arch_cost += (compute_after_os + storage_base) * MULTIPLIERS.arch.highAvailability;
+    }
+    
+    // DR Overheads (applied to the core compute cost)
+    if (drChecked) {
+        arch_cost += (compute_after_os + storage_base) * MULTIPLIERS.arch.disasterRecovery;
+    }
+
+    // Managed DB Add-on (applied to the core compute cost)
+    if (managedDBChecked) {
+        arch_cost += compute_after_os * BASE_RATES.MANAGED_DB_ADDON;
+    }
+    
+    // --- STEP C: CALCULATE SUBTOTALS ---
+    
+    let monthly_subtotal = compute_after_os + storage_base + arch_cost;
+    
+    // --- STEP D: APPLY GLOBAL FACTORS & DISCOUNTS ---
+    
+    // 1. Location Factor
+    const locationMultiplier = MULTIPLIERS.location[locationKey] || 1.0;
+    let total_after_location = monthly_subtotal * locationMultiplier;
+    
+    // let location_cost_addon = total_after_location - monthly_subtotal; // Track the cost of the Location factor
+
+    // 2. Use Case Complexity Factor
+    const useCaseMultiplier = MULTIPLIERS.useCase[useCaseKey] || 1.0;
+    let total_after_usecase = total_after_location * useCaseMultiplier;
+    
+    // 3. Commitment Discount
+    const commitmentMultiplier = MULTIPLIERS.commitment[commitmentKey] || 1.0;
+    const finalMonthlyCost = total_after_usecase * commitmentMultiplier;
+    
+    // --- STEP E: FINAL BREAKDOWN OUTPUT ---
+
+    // The breakdown should show the contribution of each *category* to the final cost.
+    
+    // Base Compute is simple base_rate * resource_count
+    const breakdownCompute = compute_base; 
+    
+    // Base Storage is simple base_rate * resource_count
+    const breakdownStorage = storage_base; 
+    
+    // Arch Cost is the sum of HA, DR, and Managed DB add-ons
+    const breakdownArch = arch_cost; 
+
+    // Factors Cost includes OS licensing, Location factor, Use Case factor, and Commitment discount/premium.
+    const breakdownFactors = finalMonthlyCost - (breakdownCompute + breakdownStorage + breakdownArch);
+
+    // Display totals
+    document.getElementById('costDisplay').textContent = formatZAR(finalMonthlyCost);
+    document.getElementById('computeCost').textContent = formatZAR(breakdownCompute);
+    document.getElementById('storageCost').textContent = formatZAR(breakdownStorage);
+    document.getElementById('archCost').textContent = formatZAR(breakdownArch);
+    document.getElementById('factorCost').textContent = formatZAR(breakdownFactors);
+
+    // Annualized Cost
+    const annualizedCost = finalMonthlyCost * 12;
+    document.getElementById('totalAnnualized').textContent = `Annualized Cost: ${formatZAR(annualizedCost)}`;
+};
+
+// Initial calculation on load
+document.addEventListener('DOMContentLoaded', window.calculateCost);
+</script>

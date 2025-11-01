@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Assumptions and Variations</title>
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+          CSS Global Consistency & Theming (Reusing Guide Theme)
+          ============================================================
+        */
+        :root {
+            --color-primary: #000; /* Slate-900 / Deep Charcoal */
+            --color-secondary: #000; /* Cyan-500 / Vibrant Teal (Accent 1) */
+            --color-accent: #f97316; /* Orange-500 (Accent 2 for Rates) */
+            --color-bg-light: #f1f5f9; /* Slate-50 */
+        }
+        
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7; /* Slightly increased for better reading */
+            color: #000;
+            background: linear-gradient(180deg, rgba(249, 116, 22, 0.818) 0%, rgba(255,255,255,1) 15%);
+        }
+        
+        .guide-container {
+            width: 100%;
+            max-width: 1100px; /* Slightly wider container */
+            margin-left: auto;
+            margin-right: auto;
+           
+        }
+
+        /* Header */
+        .guide-header {
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            margin-top: 8rem;
+        }
+        .guide-header h1 {
+            font-size: 2.5rem; 
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--color-primary);
+            line-height: 1.1;
+        }
+        .guide-header p {
+            margin-top: 0.75rem;
+            font-size: 1.125rem;
+            color: #475569;
+        }
+
+        /* Section Container */
+        .guide-section {
+            background-color: #ffffff;
+            margin-bottom: 8rem;
+        }
+
+        /* ------------------------------------------------------------
+          Pricing Grid (Headings on Left, Descriptions on Right)
+          ------------------------------------------------------------
+        */
+        .assumption-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on small screens */
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .assumption-grid {
+                /* Two columns: 1 part for the title, 2 parts for the description */
+                grid-template-columns: 1fr 2fr; 
+                gap: 3rem 3rem;
+            }
+        }
+
+        .assumption-heading {
+            /* On mobile, this will stack above the description */
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0; /* Light separator on mobile */
+        }
+        @media (min-width: 768px) {
+            .assumption-heading {
+                /* No border on desktop, as the grid separation is enough */
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+
+        .assumption-heading h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-secondary); /* Use cyan accent for clarity */
+            margin: 0;
+            line-height: 1.3;
+        }
+        
+        .assumption-description p {
+            color: #334155;
+            margin: 0;
+        }
+        
+        .strong-variation {
+            font-weight: 600;
+            color: var(--color-accent); /* Orange for critical variation points */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="guide-container">
+        <!-- Header -->
+        <header class="guide-header">
+            <h1>Pricing Assumptions and Variations</h1>
+            <p>A clear breakdown of the underlying assumptions and potential cost variations that affect the final quotation.</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <section class="guide-section">
+            <div class="assumption-grid">
+            
+            <!-- Assumption 1: Exchange Rate -->
+            <div class="assumption-heading">
+                <h3>Currency and Exchange Rate Stability</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                All rates are quoted in South African Rand (ZAR). The cost estimator assumes stable international exchange rates. <span class="strong-variation">Significant depreciation of the ZAR against the USD or EUR may necessitate a contract rate adjustment</span>, particularly for services with high imported component costs (e.g., Cloud Computing or specialized hardware). We actively monitor exchange rates and provide advance notice of any necessary adjustments to ensure transparency.
+                </p>
+            </div>
+
+            <!-- Assumption 2: Standard SLA Tier -->
+            <div class="assumption-heading">
+                <h3>Service Level Agreement (SLA) Options</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                The OpEx rates provided are based on our Standard Tier 2 SLA (99.5% uptime and 4-hour critical response). This includes regular maintenance, monitoring, and support during business hours. Upgrading to a Premium Tier 1 SLA (99.99% uptime) or customizing fault tolerance will result in a <span class="strong-variation">proportional increase of 15% to 25% on the affected monthly OpEx services</span>. Premium support includes 24/7 monitoring, instant alerts, and priority incident response.
+                </p>
+            </div>
+
+            <!-- Assumption 3: Project Customization -->
+            <div class="assumption-heading">
+                <h3>Scope and Customization Parameters</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                The quoted CapEx figures for Bespoke Development assume adherence to the **initial Statement of Work (SOW)**. This covers agreed-upon features, functionalities, and delivery timelines. Any requested changes to the project scope, technical specifications, or timeline after SOW finalization will be managed via a formal Change Request and <span class="strong-variation">will incur additional, quoted development hours</span>. We provide detailed documentation of all changes and their associated costs.
+                </p>
+            </div>
+
+            <!-- Assumption 4: Validity Period -->
+            <div class="assumption-heading">
+                <h3>Quotation Terms and Review Cycle</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                All estimated rates are **valid for a period of 90 days** from the date of calculation. This ensures price stability during your decision-making process. OpEx service fees are subject to an **annual review** to account for inflation, license fee changes, and increased operational costs. This typically results in a <span class="strong-variation">0% to 5% cost-of-living increase</span>. We provide a minimum of 60 days notice for any price adjustments.
+                </p>
+            </div>
+            
+            <!-- Assumption 5: Data Volume and Storage -->
+            <div class="assumption-heading">
+                <h3>Data Management and Growth</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                OpEx for Cloud Computing and Data Center services assumes a standard rate of data consumption and storage growth. Our baseline includes generous allocations for typical business growth. If your organization's data needs scale beyond the industry-standard rate (e.g., massive media archives, hyper-growth), an **additional per-gigabyte/terabyte rate will be applied**. We provide monthly usage reports and proactive alerts when approaching volume thresholds.
+                </p>
+            </div>
+
+            <!-- Assumption 6: Hardware Procurement -->
+            <div class="assumption-heading">
+                <h3>Hardware Procurement Process</h3>
+            </div>
+            <div class="assumption-description">
+                <p>
+                Hardware pricing is based on current supplier availability and market conditions. We maintain relationships with multiple vendors to ensure competitive pricing. Global supply chain disruptions may impact the cost and delivery timeline. <span class="strong-variation">Price increases of 10% or more due to lead-time variations will be communicated and must be authorized by the client prior to procurement</span>. We provide regular updates on order status and alternative options when available.
+                </p>
+            </div>
+
+            </div>
+        </section>
+        
+    </div>
+
+</body>
+</html>
