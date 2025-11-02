@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Portfolio & Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000;
+            --light-gray: #f4f4f4;
+            --white: #fff;
+            --primary-blue: #0091ff;
+            --dark-blue: #06273e;
+            --border-radius: 1px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(6, 39, 62, 0.85), rgba(6, 39, 62, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            padding: 40px 0;
+            background-color: var(--white);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background-color: var(--light-gray);
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+        
+        .project-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            background-color: var(--light-gray);
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        
+        .project-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        
+        .status-completed {
+            background-color: #e6f7ee;
+            color: #0d6832;
+        }
+        
+        .status-progress {
+            background-color: #fff4e6;
+            color: #cc6b00;
+        }
+        
+        .status-social {
+            background-color: #e6f3ff;
+            color: #0066cc;
+            width: fit-content;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .project-description {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .detail-item p {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .team-composition {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tech-tag {
+            background-color: var(--light-gray);
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 500;
+            width: fit-content;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Project Managers Section */
+        .managers-section {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+        
+        .managers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .manager-card {
+            margin-bottom: 3rem;
+            border-radius: var(--border-radius);
+            
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .manager-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .manager-avatar {
+            width: 100%;
+            height: 300px;
+            border-radius: 1px;
+            background-color: var(--dark-blue);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: 600;
+        }
+        
+        .manager-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .manager-role {
+            color: var(--primary-blue);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .manager-expertise {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+            margin-top: 15px;
+        }
+        
+        .expertise-tag {
+            background-color: #f4f4f4;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 12px;
+            font-weight: 500;
+            text-align: left;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-modal:hover {
+            color: var(--black);
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .project-preview {
+            width: 100%;
+            height: 400px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .managers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-actions {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon IT Section - Gradient Background</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Root Variables */
+        :root {
+            --defcon-navy: #0b1426;
+            --defcon-blue: #0091ff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-white: #ffffff;
+            --defcon-black: #000000;
+            --font-family-inter: 'Inter', sans-serif;
+            --border-radius-1px: 12px;
+            /* New Max Width for Inner Content */
+            --content-max-width: 1000px;
+        }
+
+        /* Container for the whole section */
+        .defcon-merchant-section-container {
+            font-family: var(--font-family-inter);
+            color: var(--defcon-white);
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            padding: 40px 0;
+            border: none; /* Ensure the gradient is full-width */
+            width: 100%;
+            margin: 0; /* Remove margin */
+            text-align: center;
+        }
+        
+        /* New Wrapper to constrain all content (Title and Cards) */
+        .defcon-content-wrapper {
+            /* === KEY CHANGE 2: Constrain and Center Content === */
+            max-width: var(--content-max-width);
+            width: 90%; /* Use percentage for responsiveness */
+            margin: 0 auto;
+            padding: 40px; /* Padding inside the border */   
+        }
+
+        /* Title styling */
+        .defcon-merchant-section-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-white);
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        /* --- Asymmetrical Grid (No Change to layout logic) --- */
+        .defcon-asym-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual feature card styling */
+        .defcon-asym-feature-card {
+            background-color: #EAEEF4;
+            border-radius: var(--border-radius-1px);
+            padding: 30px;
+            text-align: left; 
+            color: var(--defcon-black);
+            min-height: fit-content;
+            display: flex;
+        }
+        
+        /* Inner Wrapper for vertical alignment */
+        .defcon-card-content-wrapper {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        /* Grid Span Utility Classes */
+        .defcon-grid-span-2 {
+            grid-column: span 2;
+        }
+        
+        .defcon-grid-span-1 {
+            grid-column: span 1;
+        }
+
+
+        /* Large number in feature card */
+        .defcon-feature-card-number {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-navy);
+            line-height: 1;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        /* Small text next to large number */
+        .defcon-feature-card-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        /* Bold text inside the description */
+        .defcon-feature-card-text strong {
+            font-weight: 700;
+            color: var(--defcon-navy);
+        }
+
+        /* Styling for the superscript (1) */
+        .defcon-superscript {
+            vertical-align: super;
+            font-size: 0.7em;
+            margin-left: 2px;
+        }
+
+        /* Legal disclaimer at the bottom */
+        .defcon-legal-disclaimer {
+            font-size: 0.8rem;
+            color: var(--defcon-light-gray);
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .defcon-grid-span-2,
+            .defcon-grid-span-1 {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+             .defcon-content-wrapper {
+                padding: 25px;
+                width: 100%; /* Allow content wrapper to take full width on smallest screens */
+            }
+            
+            .defcon-merchant-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-feature-card-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<section class="defcon-merchant-section-container">
+    <div class="defcon-content-wrapper">
+        <h2 class="defcon-merchant-section-title">Our Extensive Project Gallery: From Concept to Completion</h2>
+
+        <div class="defcon-asym-feature-grid">
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">&lt;15</span>
+                    <span class="defcon-feature-card-text">
+                        minute average response time for all critical-level support incidents.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">1</span>
+                    <span class="defcon-feature-card-text">
+                        dedicated account manager per client.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">120<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                       successful projectS. 
+                    </span>
+                </div>
+            </div>
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">80K<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                        cyber threats neutralized on our clients' networks.
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="defcon-legal-disclaimer">
+            <span class="defcon-superscript">(1)</span> As per our Enterprise Service Level Agreement (SLA).
+        </p>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="software">Software Development</button>
+                <button class="filter-btn" data-filter="infrastructure">IT Infrastructure</button>
+                <button class="filter-btn" data-filter="marketing">Marketing & Creative</button>
+                <button class="filter-btn" data-filter="blockchain">Blockchain & Web3</button>
+                <button class="filter-btn" data-filter="cloud">Cloud Computing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="container">
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card" data-category="software,cloud">
+                <div class="project-image" style="background-color: #06273e;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Nexus Retail Platform" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-overlay">
+                        <button class="btn view-project" data-project="nexus-retail">View Site</button>
+                    </div>
+                    
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">Software Development</span>
+                        <span class="project-status status-completed">Completed</span>
+                    </div>
+                    <h3 class="project-title">Nexus Retail Platform</h3>
+                    <p class="project-description">A comprehensive e-commerce solution with inventory management, payment processing, and customer analytics. Built for a retail chain with 50+ locations to streamline their online and in-store operations.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>6 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>8 people</p>
+                            <div class="team-composition">(2 Frontend, 3 Backend, 1 DevOps, 1 QA, 1 UI/UX)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Stripe API</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn view-project" data-project="nexus-retail">View Site</button>
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card" data-category="infrastructure,cloud">
+                <div class="project-image" style="background-color: #0091ff;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Global Finance Cloud Migration" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-overlay">
+                        <button class="btn view-project" data-project="finance-migration">View Dashboard</button>
+                    </div>
+                    
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">IT Infrastructure</span>
+                        <span class="project-status status-progress">In Progress</span>
+                    </div>
+                    <h3 class="project-title">Global Finance Cloud Migration</h3>
+                    <p class="project-description">Migrated a financial services company's entire infrastructure to AWS, implementing security protocols and disaster recovery solutions. The project improved scalability and reduced operational costs by 40%.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>9 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>12 people</p>
+                            <div class="team-composition">(2 Cloud Architects, 4 DevOps, 3 Security, 2 Network, 1 PM)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn view-project" data-project="finance-migration">View Dashboard</button>
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card" data-category="blockchain">
+                <div class="project-image" style="background-color: #000;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="ArtChain NFT Marketplace" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-overlay">
+                        <button class="btn view-project" data-project="artchain">View Marketplace</button>
+                    </div>
+            
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">Blockchain & Web3</span>
+                        <span class="project-status status-social">Social Impact</span>
+                    </div>
+                    <h3 class="project-title">ArtChain NFT Marketplace</h3>
+                    <p class="project-description">A decentralized marketplace for digital art using blockchain technology to verify authenticity and ownership of digital assets. The platform enables artists to monetize their work through smart contracts.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>5 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>6 people</p>
+                            <div class="team-composition">(2 Blockchain, 1 Frontend, 1 Backend, 1 QA, 1 UI/UX)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag">Ethereum</span>
+                        <span class="tech-tag">Web3.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">IPFS</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn view-project" data-project="artchain">View Marketplace</button>
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card" data-category="marketing">
+                <div class="project-image" style="background-color: #06273e;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="TechLaunch 2023 Campaign" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-overlay">
+                        <button class="btn view-project" data-project="techlaunch">View Campaign</button>
+                    </div>
+                  
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">Marketing & Creative</span>
+                        <span class="project-status status-completed">Completed</span>
+                    </div>
+                    <h3 class="project-title">TechLaunch 2023 Campaign</h3>
+                    <p class="project-description">A comprehensive digital marketing campaign for a tech product launch, including social media, content creation, and targeted advertising. The campaign generated over 50,000 leads and increased brand awareness by 200%.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>3 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>5 people</p>
+                            <div class="team-composition">(1 Marketing Lead, 2 Designers, 1 Content, 1 Analytics)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">Adobe Creative Suite</span>
+                        <span class="tech-tag">Google Ads</span>
+                        <span class="tech-tag">Facebook Ads</span>
+                        <span class="tech-tag">Analytics</span>
+                        <span class="tech-tag">Content Strategy</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn view-project" data-project="techlaunch">View Campaign</button>
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card" data-category="software">
+                <div class="project-image" style="background-color: #0091ff;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="HealthTrack Pro Mobile App" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-overlay">
+                        <button class="btn view-project" data-project="healthtrack">View App</button>
+                    </div>
+                    
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">Software Development</span>
+                        <span class="project-status status-progress">In Progress</span>
+                    </div>
+                    <h3 class="project-title">HealthTrack Pro Mobile App</h3>
+                    <p class="project-description">A cross-platform mobile application for health monitoring with real-time data sync, medication reminders, and telehealth integration. The app helps users track their health metrics and connect with healthcare providers.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>7 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>10 people</p>
+                            <div class="team-composition">(3 Mobile, 2 Backend, 2 QA, 1 DevOps, 1 UI/UX, 1 PM)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn view-project" data-project="healthtrack">View App</button>
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card" data-category="infrastructure">
+                <div class="project-image" style="background-color: #000;">
+                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Smart Office Implementation" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="project-content">
+                    <div class="project-header">
+                        <span class="project-category">IT Infrastructure</span>
+                        <span class="project-status status-social">Designed for Social Impact</span>
+                    </div>
+                    <h3 class="project-title">Smart Office Implementation</h3>
+                    <p class="project-description">Implemented a complete smart office solution including POS systems, queue management, ambient lighting, and IoT device integration. The system improved operational efficiency and enhanced the customer experience.</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4>Timeline</h4>
+                            <p>4 months</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Team Size</h4>
+                            <p>7 people</p>
+                            <div class="team-composition">(2 IoT, 2 Hardware, 1 Network, 1 QA, 1 PM)</div>
+                        </div>
+                    </div>
+                    <div class="technologies">
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">POS Systems</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Custom Hardware</span>
+                        <span class="tech-tag">Network Setup</span>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-outline">Case Study</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Managers Section -->
+    <section class="managers-section">
+        <div class="container">
+            <h2 class="section-title">Our Project Managers</h2>
+            <div class="managers-grid">
+                <!-- Manager 1 -->
+                <div class="manager-card">
+                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_c3fhy0c3fhy0c3fh.png" alt="Jessica Smith" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <h3 class="manager-name">Jessica Smith</h3>
+                    <p class="manager-role">Senior Project Manager</p>
+                    <p>Specializes in software development projects with expertise in agile methodologies and cross-functional team leadership.</p>
+                    <div class="manager-expertise">
+                        <span class="expertise-tag">Agile Methodologies</span>
+                        <span class="expertise-tag">Software Development</span>
+                        <span class="expertise-tag">Team Leadership</span>
+                        <span class="expertise-tag">Risk Management</span>
+                    </div>
+                </div>
+                
+                <!-- Manager 2 -->
+                <div class="manager-card">
+                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_e1cpzre1cpzre1cp.png" alt="Michael Rodriguez" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <h3 class="manager-name">Michael Rodriguez</h3>
+                    <p class="manager-role">Infrastructure Project Manager</p>
+                    <p>Expert in IT infrastructure projects with a focus on cloud migrations, network security, and system integration.</p>
+                    <div class="manager-expertise">
+                        <span class="expertise-tag">Cloud Infrastructure</span>
+                        <span class="expertise-tag">Network Security</span>
+                        <span class="expertise-tag">System Integration</span>
+                        <span class="expertise-tag">Vendor Management</span>
+                    </div>
+                </div>
+                
+                <!-- Manager 3 -->
+                <div class="manager-card">
+                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_h910b2h910b2h910.png" alt="Amanda Kim" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <h3 class="manager-name">Amanda Kim</h3>
+                    <p class="manager-role">Creative Project Manager</p>
+                    <p>Leads marketing and creative projects with expertise in digital campaigns, brand strategy, and multimedia production.</p>
+                    <div class="manager-expertise">
+                        <span class="expertise-tag">Digital Marketing</span>
+                        <span class="expertise-tag">Brand Strategy</span>
+                        <span class="expertise-tag">Content Creation</span>
+                        <span class="expertise-tag">Client Relations</span>
+                    </div>
+                </div>
+                
+                <!-- Manager 4 -->
+                <div class="manager-card">
+                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_hji0m8hji0m8hji0.png" alt="David Thompson" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <h3 class="manager-name">David Thompson</h3>
+                    <p class="manager-role">Emerging Technologies PM</p>
+                    <p>Specializes in blockchain, AI, and Web3 projects with expertise in cutting-edge technology implementation.</p>
+                    <div class="manager-expertise">
+                        <span class="expertise-tag">Blockchain</span>
+                        <span class="expertise-tag">Web3</span>
+                        <span class="expertise-tag">AI Integration</span>
+                        <span class="expertise-tag">Innovation Strategy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal" id="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-project-title">Project Title</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="project-preview" id="modal-project-preview">
+                    Project Preview
+                </div>
+                <p id="modal-project-description">Project description will appear here.</p>
+                <div class="project-links">
+                    <a href="#" class="btn" id="modal-project-link" target="_blank">Visit Live Site</a>
+                    <button class="btn btn-outline">View Case Study</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Project modal functionality
+            const modal = document.getElementById('project-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const viewProjectButtons = document.querySelectorAll('.view-project');
+            const modalTitle = document.getElementById('modal-project-title');
+            const modalPreview = document.getElementById('modal-project-preview');
+            const modalDescription = document.getElementById('modal-project-description');
+            const modalLink = document.getElementById('modal-project-link');
+            
+            // Project data for modal
+            const projectData = {
+                'nexus-retail': {
+                    title: 'Nexus Retail Platform',
+                    description: 'A comprehensive e-commerce solution with inventory management, payment processing, and customer analytics. Built for a retail chain with 50+ locations to streamline their online and in-store operations.',
+                    preview: 'E-commerce Platform Preview',
+                    link: 'https://example.com/nexus-retail'
+                },
+                'finance-migration': {
+                    title: 'Global Finance Cloud Migration',
+                    description: 'Migrated a financial services company\'s entire infrastructure to AWS, implementing security protocols and disaster recovery solutions. The project improved scalability and reduced operational costs by 40%.',
+                    preview: 'Cloud Migration Dashboard Preview',
+                    link: 'https://example.com/finance-dashboard'
+                },
+                'artchain': {
+                    title: 'ArtChain NFT Marketplace',
+                    description: 'A decentralized marketplace for digital art using blockchain technology to verify authenticity and ownership of digital assets. The platform enables artists to monetize their work through smart contracts.',
+                    preview: 'NFT Marketplace Preview',
+                    link: 'https://example.com/artchain'
+                },
+                'techlaunch': {
+                    title: 'TechLaunch 2023 Campaign',
+                    description: 'A comprehensive digital marketing campaign for a tech product launch, including social media, content creation, and targeted advertising. The campaign generated over 50,000 leads and increased brand awareness by 200%.',
+                    preview: 'Marketing Campaign Preview',
+                    link: 'https://example.com/techlaunch'
+                },
+                'healthtrack': {
+                    title: 'HealthTrack Pro Mobile App',
+                    description: 'A cross-platform mobile application for health monitoring with real-time data sync, medication reminders, and telehealth integration. The app helps users track their health metrics and connect with healthcare providers.',
+                    preview: 'Mobile App Preview',
+                    link: 'https://example.com/healthtrack'
+                }
+            };
+            
+            // Open modal when view project button is clicked
+            viewProjectButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const projectId = button.getAttribute('data-project');
+                    const project = projectData[projectId];
+                    
+                    if (project) {
+                        modalTitle.textContent = project.title;
+                        modalPreview.textContent = project.preview;
+                        modalDescription.textContent = project.description;
+                        modalLink.href = project.link;
+                        
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
