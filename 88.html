@@ -19,7 +19,7 @@
             line-height: 1.6;
         }
 
-        /* ===== HERO SECTION (Existing) ===== */
+        /* ===== HERO SECTION (Existing Dark Theme) ===== */
         .hero-section {
             background-color: #07091d;
             background-image: 
@@ -31,7 +31,7 @@
             text-align: center;
             color: white;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            margin: 0 1.5rem; /* 1.5rem margin retained */
+            margin: 0 1.5rem;
         }
 
         .hero-container {
@@ -127,131 +127,59 @@
             margin-bottom: 16px;
         }
 
-        .intro-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ===== PROJECT CONTAINER (NEW STYLING) ===== */
+        /* ===== PROJECT CONTAINER (Calm & Professional Redesign) ===== */
         .project-section-wrapper {
-            /* Applies requested styling for the overall container */
-            margin: 3rem 1.5rem; /* 3rem vertical margin, 1.5rem horizontal margin */
+            margin: 3rem 1.5rem;
             padding: 40px 20px;
-            background-color: #ffffff; /* Add background for the new container */
-            border-radius: 20px; /* Requested border radius */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff; /* Clean white background */
+            color: #1a202c;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04); /* Very subtle shadow */
             max-width: 1280px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Adjusting main-container to be an inner wrapper without margin/padding */
         .main-container {
-            max-width: 100%; /* No fixed width, lets wrapper handle it */
-            margin: 0; /* Remove existing margin */
-            padding: 0; /* Remove existing padding */
-        }
-
-        .main-grid {
-            display: grid;
-            gap: 30px;
-        }
-
-        @media (min-width: 1024px) {
-            .main-grid {
-                grid-template-columns: 1fr 3fr;
-            }
-        }
-
-        /* ===== SIDEBAR (FILTERS) (Adjusted for Sticky Scroll) ===== */
-        .sidebar {
-            padding-top: 0; /* Adjusted padding as it's now inside a padded container */
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar {
-                /* Ensures the sidebar is sticky */
-                position: sticky;
-                top: 40px; /* Offset from the top to prevent it from sticking to the absolute top of the viewport */
-                height: auto; /* Allow height to adjust naturally */
-                max-height: calc(100vh - 80px); /* Limit height for scrolling inside the container */
-                overflow-y: auto;
-                padding-right: 30px;
-                padding-bottom: 30px; /* Ensure padding at the bottom */
-            }
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
         }
         
-        /* Mobile adjustment for filters list to flow horizontally */
-        .filters-list {
-            list-style: none;
-            margin-bottom: 30px;
+        /* ===== SUBTLE HORIZONTAL FILTER TABS (Seamless Navigation) ===== */
+        .filter-tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 0;
+            font-size: 16px;
+            font-weight: 500;
         }
 
-        @media (min-width: 1024px) {
-            .filters-list {
-                flex-direction: column;
-                gap: 8px;
-            }
-        }
-
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a202c;
-        }
-
-        .filter-button {
-            padding: 10px 16px;
+        .tab-button {
+            padding: 0 0 4px 0; /* Only padding bottom for underline effect */
             border: none;
-            border-radius: 1px;
-            font-weight: 700;
+            border-bottom: 2px solid transparent; /* Base for underline */
             cursor: pointer;
-            width: 100%;
             background-color: transparent;
-            color: #4b5563;
+            color: #6b7280; /* Muted text */
+            transition: all 0.2s ease;
             white-space: nowrap;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            text-align: left;
         }
 
-        .filter-button:hover {
-            background-color: #f1f5f9;
-        }
-        
-        /* Mobile: Let button width be flexible in the row */
-        @media (max-width: 1023px) {
-            .filter-button {
-                width: auto;
-                border-radius: 8px; /* Rounded corners for mobile buttons */
-            }
+        .tab-button:hover {
+            color: #1a202c;
+            border-bottom-color: #e5e7eb; /* Subtle hover underline */
         }
 
-
-        .filter-button.active {
-            background-color: #1c4587;
-            color: white;
-            border-radius: 8px;
-        }
-
-        .service-focus {
-            font-size: 12px;
-            color: #9ca3af;
-            padding-top: 16px;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 16px; /* Added separation */
-        }
-
-        .service-focus-title {
+        .tab-button.active {
+            color: #1c4587; /* Primary color for active */
+            border-bottom-color: #1c4587; /* Strong underline for active */
             font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
-        /* ===== PROJECTS SECTION (Existing) ===== */
+        /* ===== PROJECTS CONTENT & HEADERS ===== */
         .projects-section {
             flex: 1;
         }
@@ -271,152 +199,196 @@
             line-height: 1.4;
         }
 
-        /* ===== PROJECT TABLE (Existing) ===== */
-        .table-header {
-            display: none;
-            grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
-            gap: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #cbd5e1;
+        /* ===== PROJECT GRID LAYOUT ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+        }
+
+        /* ===== PROJECT CARD STYLE ===== */
+        .project-card {
+            background-color: #f7f9fb; /* Slightly off-white background */
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e5e7eb; /* Subtle border */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            border-color: #1c458750;
+        }
+
+        .card-header {
+            margin-bottom: 20px;
+        }
+
+        .card-service {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2563eb; /* Primary color for service */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .card-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.3;
+        }
+        
+        .card-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .tech-tag {
+            background-color: #eef2ff;
+            color: #4338ca;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
-            
-            color: #5b6067;
-            margin-bottom: 10px;
         }
 
-        @media (min-width: 768px) {
-            .table-header {
-                display: grid;
-            }
+        .card-footer {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 20px;
         }
 
-        .table-header-cell {
-            text-align: left;
-        }
-
-        .table-header-cell.text-center {
-            text-align: center;
-        }
-
-        .table-header-cell.text-right {
-            text-align: right;
-        }
-
-        /* ===== PROJECT ROW (Existing) ===== */
-       
-
-        .project-row {
-            display: grid;
-            gap: 16px;
-            padding: 16px 8px;
-            border-bottom: 1px solid #e5e7eb;
-            transition: background-color 0.2s ease;
-            cursor: pointer;
-        }
-
-        @media (min-width: 768px) {
-            .project-row {
-                grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
-                padding: 16px 0;
-            }
-        }
-
-        .project-row:hover {
-            background-color: #f1f5f9;
-        }
-
-        @media (min-width: 768px) {
-            .project-row:hover {
-                background-color: transparent;
-            }
-        }
-
-        .project-name {
-            font-weight: 600;
-            color: #1c4587;
-            grid-column: 1;
-        }
-
-        .project-service {
-            font-size: 16px;
-            font-weight: 600;
-            color: #4b5563;
-            grid-column: 1;
-            margin-top: -8px;
-        }
-
-        @media (min-width: 768px) {
-            .project-service {
-                grid-column: 2;
-                margin-top: 0;
-            }
-        }
-
-        .project-tech {
-            font-size: 16px;
-            font-weight: 600;
-            color: #9ca3af;
-        }
-
-        .project-team {
-            text-align: right;
-            font-size: 16px;
-            font-weight: 600;
-            color: #4b5563;
-            grid-column: 2;
-        }
-
-        @media (min-width: 768px) {
-            .project-team {
-                grid-column: 4;
-                text-align: center;
-            }
-        }
-
-        .project-date {
-            text-align: right;
-            font-size: 16px;
-            font-weight: 600;
-            color: #4b5563;
-            grid-column: 2;
-            order: 5;
-        }
-
-        @media (min-width: 768px) {
-            .project-date {
-                grid-column: 5;
-                order: initial;
-            }
-        }
-
-        .project-team-label,
-        .project-date-label {
-            display: inline;
-            color: #9ca3af;
-            font-weight: 500;
-            margin-right: 6px;
-        }
-
-        @media (min-width: 768px) {
-            .project-team-label,
-            .project-date-label {
-                display: none;
-            }
-        }
-
-        /* ===== EMPTY STATE (Existing) ===== */
+        /* ===== EMPTY/LOADING STATES (Existing) ===== */
         .empty-state {
             padding: 40px 20px;
             text-align: center;
             color: #9ca3af;
+            grid-column: 1 / -1; /* Center in the grid */
         }
 
         .loading-state {
             padding: 40px 20px;
             text-align: center;
             color: #9ca3af;
+            grid-column: 1 / -1;
         }
+        
+        /* --- CTA STYLES --- */
+        .cta-section {
+            padding: 80px 20px;
+            background-color: #f8fafc;
+            margin-top: 5rem;
+        }
+
+        .cta-inner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-inner-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .cta-text-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-text-content {
+                text-align: left;
+                max-width: 60%;
+            }
+        }
+
+        .cta-heading {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            background-color: #1c4587;
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #1a3a69;
+        }
+
+        .cta-button svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-image-symbol {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            background-color: #e2e8f0;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (min-width: 768px) {
+             .cta-image-symbol {
+                width: 300px;
+                height: 200px;
+             }
+        }
+
     </style>
 </head>
 <body>
@@ -451,50 +423,52 @@
         </div>
     </section>
 
-    <!-- MAIN CONTENT WRAPPER (New Container) -->
+    <!-- MAIN CONTENT WRAPPER (Card Grid Design) -->
     <div class="project-section-wrapper">
         <main id="projects" class="main-container">
-            <div class="main-grid">
-                
-                <!-- SIDEBAR -->
-                <aside class="sidebar">
-                    <h3 class="sidebar-title">Select a Category</h3>
-                    
-                    <div id="filters-container">
-                        <ul class="filters-list" id="category-filters">
-                            <!-- Filters will be generated here -->
-                        </ul>
-                    </div>
+            
+            <!-- PROJECTS CONTENT -->
+            <section class="projects-section">
+                <h2 class="section-heading">Proven Outcomes, Original Work.</h2>
+                <p class="section-description">Browse our comprehensive track record of client solutions across software, infrastructure, and marketing disciplines.</p>
 
-                    <div class="service-focus">
-                        <p class="service-focus-title">Service Focus</p>
-                        <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
+                <!-- NEW SUBTLE FILTER TABS NAVIGATION -->
+                <div id="filters-container">
+                    <div class="filter-tabs" id="category-filters">
+                        <div class="loading-state" id="loading-filters">Loading categories...</div>
                     </div>
-                </aside>
+                </div>
 
-                <!-- PROJECTS CONTENT -->
-                <section class="projects-section">
-                    <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
-                    <p class="section-description">Browse our comprehensive track record of client solutions across software, infrastructure, and marketing disciplines.</p>
-
-                    <!-- Table Header -->
-                    <div class="table-header">
-                        <div class="table-header-cell">Project Name</div>
-                        <div class="table-header-cell">Primary Service</div>
-                        <div class="table-header-cell">Technologies</div>
-                        <div class="table-header-cell text-center">Team Size</div>
-                        <div class="table-header-cell text-right">Completion Date</div>
-                    </div>
-
-                    <!-- Projects List -->
-                    <div id="projects-list" class="projects-list">
-                        <div class="loading-state" id="loading-message">Loading projects...</div>
-                    </div>
-                </section>
-            </div>
+                <!-- Projects List (Now a Grid) -->
+                <div id="projects-list" class="projects-grid">
+                    <div class="loading-state" id="loading-message">Loading projects...</div>
+                </div>
+            </section>
         </main>
     </div>
     <!-- END MAIN CONTENT WRAPPER -->
+
+    <!-- CALL TO ACTION SECTION -->
+    <section class="cta-section">
+        <div class="cta-inner-container">
+            <div class="cta-text-content">
+                <h3 class="cta-heading">Ready to Start Your Next Project?</h3>
+                <p class="cta-description">
+                    Let's collaborate on your vision. Contact our team today to discuss your digital strategy, project needs, or just to say hello!
+                </p>
+                <a href="#" class="cta-button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Get in Touch
+                </a>
+            </div>
+            <div class="cta-image-symbol">
+                [Image Symbol Placeholder 300x200]
+            </div>
+        </div>
+    </section>
+    <!-- END CALL TO ACTION SECTION -->
 
     <script>
         // ===== DATA =====
@@ -502,27 +476,24 @@
             {
                 id: 1,
                 name: "Q4 Hyper-Growth Digital Marketing Campaign",
-                service: "Digital Marketing & Advertising",
-                technologies: "Google Ads, Meta Business...",
-                team: 4,
+                service: "Digital Marketing",
+                technologies: "Google Ads, Meta Business, SEO",
                 date: "Dec 1, 2024",
                 category: "Marketing & Creative Studio"
             },
             {
                 id: 2,
                 name: "E-Commerce SaaS Platform Relaunch",
-                service: "Web Applicating & E commerce",
-                technologies: "React, Node.js...",
-                team: 7,
+                service: "Web Applicating",
+                technologies: "React, Node.js, PostgreSQL",
                 date: "Oct 15, 2024",
                 category: "Software Development"
             },
             {
                 id: 3,
-                name: "E-Comated Cloud Migration to AWS/Azure",
-                service: "Cloud Computing & Automation",
-                technologies: "AWS, Terraform...",
-                team: 6,
+                name: "Automated Cloud Migration to AWS/Azure",
+                service: "Cloud Infrastructure",
+                technologies: "AWS, Terraform, Kubernetes",
                 date: "Aug 20, 2024",
                 category: "IT Infrastructure"
             },
@@ -530,26 +501,23 @@
                 id: 4,
                 name: "Decentralized NFT Ticketing System",
                 service: "Blockchain & Web3",
-                technologies: "Solidity, Web3.js...",
-                team: 6,
+                technologies: "Solidity, Web3.js, IPFS",
                 date: "May 20, 2024",
                 category: "Software Development"
             },
             {
                 id: 5,
                 name: "Integrated Home Automation Hub V2",
-                service: "IoT & Smart Home Solutions",
+                service: "IoT Solutions",
                 technologies: "Zigbee, Python, MQTT",
-                team: 5,
                 date: "Feb 1, 2024",
                 category: "Smart Technology"
             },
             {
                 id: 6,
-                name: "Codex",
-                service: "AI",
-                technologies: "Zigbee, Python, MQTT",
-                team: 1,
+                name: "Codex AI Assistant Integration",
+                service: "AI/Machine Learning",
+                technologies: "TensorFlow, Python, APIs",
                 date: "In Progress",
                 category: "Software Development"
             }
@@ -571,11 +539,20 @@
             return projectsData.filter(p => p.category === currentFilter);
         }
 
-        // ===== RENDER FUNCTIONS =====
+        // Helper to split technologies string into an array
+        function getTechnologiesArray(techString) {
+            return techString.split(',').map(t => t.trim()).filter(t => t.length > 0);
+        }
+
+        // ===== RENDER FUNCTIONS (Updated for Cards & Subtle Tabs) =====
         function renderFilterButtons() {
             const container = document.getElementById("category-filters");
             const categories = getCategories();
             
+            const loadingFilters = document.getElementById("loading-filters");
+            if (loadingFilters) loadingFilters.remove();
+
+            // Generate HTML for the new subtle tab buttons
             container.innerHTML = categories
                 .map(category => {
                     const isActive = category === currentFilter;
@@ -584,14 +561,12 @@
                         : projectsData.filter(p => p.category === category).length;
                     
                     return `
-                        <li>
-                            <button 
-                                class="filter-button ${isActive ? "active" : ""}"
-                                data-category="${category}"
-                            >
-                                ${category} (${count})
-                            </button>
-                        </li>
+                        <button 
+                            class="tab-button ${isActive ? "active" : ""}"
+                            data-category="${category}"
+                        >
+                            ${category} (${count})
+                        </button>
                     `;
                 })
                 .join("");
@@ -599,26 +574,35 @@
             // Attach event listeners
             container.querySelectorAll("button").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    currentFilter = e.target.dataset.category;
-                    renderFilterButtons();
-                    renderProjects();
+                    const targetCategory = e.currentTarget.dataset.category;
+                    if (targetCategory) {
+                        currentFilter = targetCategory;
+                        renderFilterButtons();
+                        renderProjects();
+                    }
                 });
             });
         }
 
-        function createProjectRow(project) {
+        function createProjectCard(project) {
+            // Generate tags for the technologies list
+            const techTags = getTechnologiesArray(project.technologies)
+                .map(tech => `<li class="tech-tag">${tech}</li>`)
+                .join('');
+
+            // New Card Markup
             return `
-                <div class="project-row">
-                    <div class="project-name">${project.name}</div>
-                    <div class="project-service">${project.service}</div>
-                    <div class="project-tech">${project.technologies}</div>
-                    <div class="project-team">
-                        <span class="project-team-label">Team:</span>
-                        ${project.team}
+                <div class="project-card">
+                    <div class="card-header">
+                        <p class="card-service">${project.service}</p>
+                        <h3 class="card-name">${project.name}</h3>
+                        <ul class="card-tech-list">
+                            ${techTags}
+                        </ul>
                     </div>
-                    <div class="project-date">
-                        <span class="project-date-label">Completed:</span>
-                        ${project.date}
+                    <div class="card-footer">
+                        <span>Completed:</span>
+                        <span>${project.date}</span>
                     </div>
                 </div>
             `;
@@ -636,7 +620,8 @@
                 return;
             }
             
-            container.innerHTML = filtered.map(createProjectRow).join("");
+            // Use the new card rendering function
+            container.innerHTML = filtered.map(createProjectCard).join("");
         }
 
         // ===== INITIALIZATION =====

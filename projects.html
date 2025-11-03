@@ -1367,7 +1367,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1384,24 +1383,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #f8fafc;
+            background-color: #010119;
             color: #1a202c;
             line-height: 1.6;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION (Existing) ===== */
         .hero-section {
             background-color: #07091d;
             background-image: 
                 radial-gradient(at 0% 0%, rgba(39, 111, 255, 0.381) 0%, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(30, 143, 255, 0.451) 0%, transparent 60%);
             box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
-            border-radius: 0 0 50px 50px;
+            border-radius: 40px;
             padding: 80px 20px;
             text-align: center;
             color: white;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            margin: 0 1.5rem;
+            margin: 1.5rem 1.5rem; /* 1.5rem margin retained */
         }
 
         .hero-container {
@@ -1456,7 +1455,7 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: #e5e5e514;
         }
 
-        /* ===== INTRO SECTION ===== */
+        /* ===== INTRO SECTION (Existing) ===== */
         .intro-section {
             background-color: #ffffff;
             border-bottom: 1px solid #f0f0f0;
@@ -1501,11 +1500,24 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 0;
         }
 
-        /* ===== MAIN LAYOUT ===== */
+        /* ===== PROJECT CONTAINER (NEW STYLING) ===== */
+        .project-section-wrapper {
+            /* Applies requested styling for the overall container */
+            margin: 5rem; /* 3rem vertical margin, 1.5rem horizontal margin */
+            margin-bottom: 5rem;
+            padding: 50px;
+            background-color: #f4f4f4; /* Add background for the new container */
+            border-radius: 40px; /* Requested border radius */
+            max-width: 1460px;
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
+
+        /* Adjusting main-container to be an inner wrapper without margin/padding */
         .main-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 100%; /* No fixed width, lets wrapper handle it */
+            margin: 0; /* Remove existing margin */
+            padding: 0; /* Remove existing padding */
         }
 
         .main-grid {
@@ -1519,31 +1531,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        /* ===== SIDEBAR (FILTERS) ===== */
+        /* ===== SIDEBAR (FILTERS) (Adjusted for Sticky Scroll) ===== */
         .sidebar {
-            padding-top: 10px;
-            position: sticky;
-            overflow-y: auto;
-            top: 10px;
+            padding-top: 0; /* Adjusted padding as it's now inside a padded container */
         }
 
         @media (min-width: 1024px) {
             .sidebar {
+                /* Ensures the sidebar is sticky */
                 position: sticky;
-                top: 0;
-                height: 100vh;
+                top: 40px; /* Offset from the top to prevent it from sticking to the absolute top of the viewport */
+                height: auto; /* Allow height to adjust naturally */
+                max-height: calc(100vh - 80px); /* Limit height for scrolling inside the container */
                 overflow-y: auto;
                 padding-right: 30px;
+                padding-bottom: 30px; /* Ensure padding at the bottom */
             }
         }
-
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a202c;
-        }
-
+        
+        /* Mobile adjustment for filters list to flow horizontally */
         .filters-list {
             list-style: none;
             margin-bottom: 30px;
@@ -1559,10 +1565,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
         .filter-button {
             padding: 10px 16px;
             border: none;
-            border-radius: 1px;
+            border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
@@ -1577,10 +1590,20 @@ document.addEventListener('DOMContentLoaded', function() {
         .filter-button:hover {
             background-color: #f1f5f9;
         }
+        
+        /* Mobile: Let button width be flexible in the row */
+        @media (max-width: 1023px) {
+            .filter-button {
+                width: auto;
+                border-radius: 8px; /* Rounded corners for mobile buttons */
+            }
+        }
+
 
         .filter-button.active {
-            background-color: #1c4587;
-            color: white;
+            background-color:#0577da;
+            color: #fff;
+            border-radius: 50px;
         }
 
         .service-focus {
@@ -1588,6 +1611,7 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #9ca3af;
             padding-top: 16px;
             border-top: 1px solid #e5e7eb;
+            margin-top: 16px; /* Added separation */
         }
 
         .service-focus-title {
@@ -1596,7 +1620,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 8px;
         }
 
-        /* ===== PROJECTS SECTION ===== */
+        /* ===== PROJECTS SECTION (Existing) ===== */
         .projects-section {
             flex: 1;
         }
@@ -1616,13 +1640,13 @@ document.addEventListener('DOMContentLoaded', function() {
             line-height: 1.4;
         }
 
-        /* ===== PROJECT TABLE ===== */
+        /* ===== PROJECT TABLE (Existing) ===== */
         .table-header {
             display: none;
             grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
             gap: 16px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #cbd5e1;
+            border-bottom: 2px solid #cbd5e1;
             font-size: 12px;
             font-weight: 600;
             
@@ -1648,14 +1672,14 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: right;
         }
 
-        /* ===== PROJECT ROW ===== */
+        /* ===== PROJECT ROW (Existing) ===== */
        
 
         .project-row {
             display: grid;
             gap: 16px;
             padding: 16px 8px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 2px solid #e5e7eb;
             transition: background-color 0.2s ease;
             cursor: pointer;
         }
@@ -1679,14 +1703,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .project-name {
             font-weight: 600;
-            color: #1c4587;
+            color: #0577da;
             grid-column: 1;
         }
 
         .project-service {
             font-size: 16px;
             font-weight: 600;
-            color: #4b5563;
+            color: #0b1426;
             grid-column: 1;
             margin-top: -8px;
         }
@@ -1750,7 +1774,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        /* ===== EMPTY STATE ===== */
+        /* ===== EMPTY STATE (Existing) ===== */
         .empty-state {
             padding: 40px 20px;
             text-align: center;
@@ -1775,8 +1799,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="#projects" class="hero-button">View Our Work</a>
         </div>
     </header>
-
-
 
 
 
@@ -2072,7 +2094,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .defcon-merchant-section-container {
             font-family: var(--font-family-inter);
             color: var(--defcon-white);
-            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            background-color: #010119;
             padding: 40px 0;
             border: none; /* Ensure the gradient is full-width */
             width: 100%;
@@ -2331,67 +2353,172 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    <!-- INTRO SECTION -->
-    <section class="intro-section">
-        <div class="intro-container">
-            <div class="intro-grid">
-                <div>
-                    <span style="font-size: 15px; text-transform: uppercase; color: #0091ff; font-weight: 600; letter-spacing: 0.04em;">Our Methodology</span>
-                    <h2 class="intro-heading">How We Build Solutions</h2>
-                </div>
-                <div class="intro-content">
-                    <p>
-                        We combine strategic thinking, creative design, and deep technical expertise that drive growth, collaboration, and measurable impact for our clients. Every project begins with a deep dive into your unique challenges and ends with a robust, scalable, and beautifully crafted solution.
-                    </p>
-                    <p>
-                        Our process ensures seamless integration of design and development, guaranteeing the final product is not only functional but also perfectly aligned with your business objectives.
-                    </p>
-                </div>
+    
+
+    <!-- MAIN CONTENT WRAPPER (New Container) -->
+    <div class="project-section-wrapper">
+        <main id="projects" class="main-container">
+            <div class="main-grid">
+                
+                <!-- SIDEBAR -->
+                <aside class="sidebar">
+                    <h3 class="sidebar-title">Select a Category</h3>
+                    
+                    <div id="filters-container">
+                        <ul class="filters-list" id="category-filters">
+                            <!-- Filters will be generated here -->
+                        </ul>
+                    </div>
+
+                    <div class="service-focus">
+                        <p class="service-focus-title">Service Focus</p>
+                        <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
+                    </div>
+                </aside>
+
+                <!-- PROJECTS CONTENT -->
+                <section class="projects-section">
+                    <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
+
+                    <!-- Table Header -->
+                    <div class="table-header">
+                        <div class="table-header-cell">Project Name</div>
+                        <div class="table-header-cell">Primary Service</div>
+                        <div class="table-header-cell">Technologies</div>
+                        <div class="table-header-cell text-center">Team Size</div>
+                        <div class="table-header-cell text-right">Completion Date</div>
+                    </div>
+
+                    <!-- Projects List -->
+                    <div id="projects-list" class="projects-list">
+                        <div class="loading-state" id="loading-message">Loading projects...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- END MAIN CONTENT WRAPPER -->
+
+    <!-- CALL TO ACTION SECTION (New Section) -->
+    <section class="cta-section">
+        <div class="cta-inner-container">
+            <div class="cta-text-content">
+                <h3 class="cta-heading">Start Creating</h3>
+                <p class="cta-description">
+                    Potentially grow your business, and reach <br> more customers.
+                </p>
+                <a href="#" class="cta-button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Get in Touch
+                </a>
+            </div>
+            <div class="cta-image-symbol">
+                <img src="thumbnails/3d-rendering-neon-triangle-removebg-preview.png" alt="Symbolic Image" width="300" height="300">
             </div>
         </div>
     </section>
+    <!-- END CALL TO ACTION SECTION -->
 
-    <!-- MAIN CONTENT -->
-    <main id="projects" class="main-container">
-        <div class="main-grid">
+    <style>
+        /* --- NEW CTA STYLES --- */
+        .cta-section {
+            padding: 80px 20px;
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            margin-top: 6rem;
+        }
+
+        .cta-inner-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-inner-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .cta-text-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-text-content {
+                text-align: left;
+                max-width: 60%;
+            }
+        }
+
+        .cta-heading {
+            font-size: 60px;
+            font-weight: 600;
+            color: #fefefe;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            font-weight: 700;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            background-color: #0577da;
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #1a3a69;
+        }
+
+        .cta-button svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-image-symbol {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
             
-            <!-- SIDEBAR -->
-            <aside class="sidebar">
-                <h3 class="sidebar-title">Select a Category</h3>
-                
-                <div id="filters-container">
-                    <ul class="filters-list" id="category-filters">
-                        <!-- Filters will be generated here -->
-                    </ul>
-                </div>
-
-                <div class="service-focus">
-                    <p class="service-focus-title">Service Focus</p>
-                    <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
-                </div>
-            </aside>
-
-            <!-- PROJECTS CONTENT -->
-            <section class="projects-section">
-                <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
-                <p class="section-description">Browse our comprehensive track record of client solutions across software, infrastructure, and marketing disciplines.</p>
-
-                <!-- Table Header -->
-                <div class="table-header">
-                    <div class="table-header-cell">Project Name</div>
-                    <div class="table-header-cell">Primary Service</div>
-                    <div class="table-header-cell">Technologies</div>
-                    <div class="table-header-cell text-center">Team Size</div>
-                    <div class="table-header-cell text-right">Completion Date</div>
-                </div>
-
-                <!-- Projects List -->
-                <div id="projects-list" class="projects-list">
-                    <div class="loading-state" id="loading-message">Loading projects...</div>
-                </div>
-            </section>
-        </div>
-    </main>
+           
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+           
+        }
+        
+        @media (min-width: 768px) {
+             .cta-image-symbol {
+                width: 300px;
+                height: 200px;
+             }
+        }
+    </style>
 
     <script>
         // ===== DATA =====
@@ -2583,8 +2710,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
 <section class="dungeon-integration-section">
   <div class="dungeon-integration-container">
     <h2 class="dungeon-integration-title">Multiple options for easy integration</h2>
@@ -2667,7 +2792,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .dungeon-integration-section {
     width: 100%;
     padding: 80px 0;
-    background: #ffffff;
+    background: #fff;
     display: flex;
     justify-content: center;
     font-family: "Inter", sans-serif;
