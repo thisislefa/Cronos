@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work - Project Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        /* ===== HERO SECTION (Existing) ===== */
+        .hero-section {
+            background-color: #07091d;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(39, 111, 255, 0.381) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 143, 255, 0.451) 0%, transparent 60%);
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 50px 50px;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            margin: 0 1.5rem; /* 1.5rem margin retained */
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title{
+            font-size: 7rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 60px;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 40px;
+            font-weight: 600;
+            color: #a3d5ff;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 24px;
+            }
+        }
+
+        .hero-button {
+            display: inline-block;
+            border: 1px solid white;
+            color: #fff;
+            padding: 7px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+        }
+
+        .hero-button:hover {
+            background-color: #e5e5e514;
+        }
+
+        /* ===== INTRO SECTION (Existing) ===== */
+        .intro-section {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 60px 20px;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 5rem auto;
+        }
+
+        .intro-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .intro-grid {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .intro-heading {
+            font-size: 60px;
+            font-weight: 600;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+
+        .intro-content {
+            color: #4b5563;
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        .intro-content p {
+            margin-bottom: 16px;
+        }
+
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== PROJECT CONTAINER (NEW STYLING) ===== */
+        .project-section-wrapper {
+            /* Applies requested styling for the overall container */
+            margin: 3rem 1.5rem; /* 3rem vertical margin, 1.5rem horizontal margin */
+            padding: 40px 20px;
+            background-color: #ffffff; /* Add background for the new container */
+            border-radius: 20px; /* Requested border radius */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Adjusting main-container to be an inner wrapper without margin/padding */
+        .main-container {
+            max-width: 100%; /* No fixed width, lets wrapper handle it */
+            margin: 0; /* Remove existing margin */
+            padding: 0; /* Remove existing padding */
+        }
+
+        .main-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr 3fr;
+            }
+        }
+
+        /* ===== SIDEBAR (FILTERS) (Adjusted for Sticky Scroll) ===== */
+        .sidebar {
+            padding-top: 0; /* Adjusted padding as it's now inside a padded container */
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                /* Ensures the sidebar is sticky */
+                position: sticky;
+                top: 40px; /* Offset from the top to prevent it from sticking to the absolute top of the viewport */
+                height: auto; /* Allow height to adjust naturally */
+                max-height: calc(100vh - 80px); /* Limit height for scrolling inside the container */
+                overflow-y: auto;
+                padding-right: 30px;
+                padding-bottom: 30px; /* Ensure padding at the bottom */
+            }
+        }
+        
+        /* Mobile adjustment for filters list to flow horizontally */
+        .filters-list {
+            list-style: none;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        @media (min-width: 1024px) {
+            .filters-list {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .filter-button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 1px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            background-color: transparent;
+            color: #4b5563;
+            white-space: nowrap;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+        }
+
+        .filter-button:hover {
+            background-color: #f1f5f9;
+        }
+        
+        /* Mobile: Let button width be flexible in the row */
+        @media (max-width: 1023px) {
+            .filter-button {
+                width: auto;
+                border-radius: 8px; /* Rounded corners for mobile buttons */
+            }
+        }
+
+
+        .filter-button.active {
+            background-color: #1c4587;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .service-focus {
+            font-size: 12px;
+            color: #9ca3af;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 16px; /* Added separation */
+        }
+
+        .service-focus-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* ===== PROJECTS SECTION (Existing) ===== */
+        .projects-section {
+            flex: 1;
+        }
+
+        .section-heading {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a202c;
+        }
+
+        .section-description {
+            color: #4b5563;
+            margin-bottom: 40px;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* ===== PROJECT TABLE (Existing) ===== */
+        .table-header {
+            display: none;
+            grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+            gap: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            
+            color: #5b6067;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .table-header {
+                display: grid;
+            }
+        }
+
+        .table-header-cell {
+            text-align: left;
+        }
+
+        .table-header-cell.text-center {
+            text-align: center;
+        }
+
+        .table-header-cell.text-right {
+            text-align: right;
+        }
+
+        /* ===== PROJECT ROW (Existing) ===== */
+       
+
+        .project-row {
+            display: grid;
+            gap: 16px;
+            padding: 16px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .project-row {
+                grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+                padding: 16px 0;
+            }
+        }
+
+        .project-row:hover {
+            background-color: #f1f5f9;
+        }
+
+        @media (min-width: 768px) {
+            .project-row:hover {
+                background-color: transparent;
+            }
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #1c4587;
+            grid-column: 1;
+        }
+
+        .project-service {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 1;
+            margin-top: -8px;
+        }
+
+        @media (min-width: 768px) {
+            .project-service {
+                grid-column: 2;
+                margin-top: 0;
+            }
+        }
+
+        .project-tech {
+            font-size: 16px;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+
+        .project-team {
+            text-align: right;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 2;
+        }
+
+        @media (min-width: 768px) {
+            .project-team {
+                grid-column: 4;
+                text-align: center;
+            }
+        }
+
+        .project-date {
+            text-align: right;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 2;
+            order: 5;
+        }
+
+        @media (min-width: 768px) {
+            .project-date {
+                grid-column: 5;
+                order: initial;
+            }
+        }
+
+        .project-team-label,
+        .project-date-label {
+            display: inline;
+            color: #9ca3af;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .project-team-label,
+            .project-date-label {
+                display: none;
+            }
+        }
+
+        /* ===== EMPTY STATE (Existing) ===== */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .loading-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="background-color: 010119;">
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <div class="hero-container">
+            <h2 class="hero-title">Get the most of your digital<br>presence for your business</h2>
+            <p class="hero-subtitle">Over 10 years of experience in delivering high-quality digital solutions, and experts in various industries.</p>
+            <a href="#projects" class="hero-button">View Our Work</a>
+        </div>
+    </header>
+
+<!-- INTRO SECTION -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <div class="intro-grid">
+                <div>
+                    <span style="font-size: 15px; text-transform: uppercase; color: #0091ff; font-weight: 600; letter-spacing: 0.04em;">Our Methodology</span>
+                    <h2 class="intro-heading">How We Build Solutions</h2>
+                </div>
+                <div class="intro-content">
+                    <p>
+                        We combine strategic thinking, creative design, and deep technical expertise that drive growth, collaboration, and measurable impact for our clients. Every project begins with a deep dive into your unique challenges and ends with a robust, scalable, and beautifully crafted solution.
+                    </p>
+                    <p>
+                        Our process ensures seamless integration of design and development, guaranteeing the final product is not only functional but also perfectly aligned with your business objectives.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT WRAPPER (New Container) -->
+    <div class="project-section-wrapper">
+        <main id="projects" class="main-container">
+            <div class="main-grid">
+                
+                <!-- SIDEBAR -->
+                <aside class="sidebar">
+                    <h3 class="sidebar-title">Select a Category</h3>
+                    
+                    <div id="filters-container">
+                        <ul class="filters-list" id="category-filters">
+                            <!-- Filters will be generated here -->
+                        </ul>
+                    </div>
+
+                    <div class="service-focus">
+                        <p class="service-focus-title">Service Focus</p>
+                        <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
+                    </div>
+                </aside>
+
+                <!-- PROJECTS CONTENT -->
+                <section class="projects-section">
+                    <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
+                    <p class="section-description">Browse our comprehensive track record of client solutions across software, infrastructure, and marketing disciplines.</p>
+
+                    <!-- Table Header -->
+                    <div class="table-header">
+                        <div class="table-header-cell">Project Name</div>
+                        <div class="table-header-cell">Primary Service</div>
+                        <div class="table-header-cell">Technologies</div>
+                        <div class="table-header-cell text-center">Team Size</div>
+                        <div class="table-header-cell text-right">Completion Date</div>
+                    </div>
+
+                    <!-- Projects List -->
+                    <div id="projects-list" class="projects-list">
+                        <div class="loading-state" id="loading-message">Loading projects...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <!-- END MAIN CONTENT WRAPPER -->
+
+    <script>
+        // ===== DATA =====
+        const projectsData = [
+            {
+                id: 1,
+                name: "Q4 Hyper-Growth Digital Marketing Campaign",
+                service: "Digital Marketing & Advertising",
+                technologies: "Google Ads, Meta Business...",
+                team: 4,
+                date: "Dec 1, 2024",
+                category: "Marketing & Creative Studio"
+            },
+            {
+                id: 2,
+                name: "E-Commerce SaaS Platform Relaunch",
+                service: "Web Applicating & E commerce",
+                technologies: "React, Node.js...",
+                team: 7,
+                date: "Oct 15, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 3,
+                name: "E-Comated Cloud Migration to AWS/Azure",
+                service: "Cloud Computing & Automation",
+                technologies: "AWS, Terraform...",
+                team: 6,
+                date: "Aug 20, 2024",
+                category: "IT Infrastructure"
+            },
+            {
+                id: 4,
+                name: "Decentralized NFT Ticketing System",
+                service: "Blockchain & Web3",
+                technologies: "Solidity, Web3.js...",
+                team: 6,
+                date: "May 20, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 5,
+                name: "Integrated Home Automation Hub V2",
+                service: "IoT & Smart Home Solutions",
+                technologies: "Zigbee, Python, MQTT",
+                team: 5,
+                date: "Feb 1, 2024",
+                category: "Smart Technology"
+            },
+            {
+                id: 6,
+                name: "Codex",
+                service: "AI",
+                technologies: "Zigbee, Python, MQTT",
+                team: 1,
+                date: "In Progress",
+                category: "Software Development"
+            }
+        ];
+
+        // ===== STATE =====
+        let currentFilter = "All Projects";
+
+        // ===== UTILITIES =====
+        function getCategories() {
+            const unique = new Set(projectsData.map(p => p.category));
+            return ["All Projects", ...Array.from(unique)];
+        }
+
+        function getFilteredProjects() {
+            if (currentFilter === "All Projects") {
+                return projectsData;
+            }
+            return projectsData.filter(p => p.category === currentFilter);
+        }
+
+        // ===== RENDER FUNCTIONS =====
+        function renderFilterButtons() {
+            const container = document.getElementById("category-filters");
+            const categories = getCategories();
+            
+            container.innerHTML = categories
+                .map(category => {
+                    const isActive = category === currentFilter;
+                    const count = category === "All Projects" 
+                        ? projectsData.length 
+                        : projectsData.filter(p => p.category === category).length;
+                    
+                    return `
+                        <li>
+                            <button 
+                                class="filter-button ${isActive ? "active" : ""}"
+                                data-category="${category}"
+                            >
+                                ${category} (${count})
+                            </button>
+                        </li>
+                    `;
+                })
+                .join("");
+            
+            // Attach event listeners
+            container.querySelectorAll("button").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    currentFilter = e.target.dataset.category;
+                    renderFilterButtons();
+                    renderProjects();
+                });
+            });
+        }
+
+        function createProjectRow(project) {
+            return `
+                <div class="project-row">
+                    <div class="project-name">${project.name}</div>
+                    <div class="project-service">${project.service}</div>
+                    <div class="project-tech">${project.technologies}</div>
+                    <div class="project-team">
+                        <span class="project-team-label">Team:</span>
+                        ${project.team}
+                    </div>
+                    <div class="project-date">
+                        <span class="project-date-label">Completed:</span>
+                        ${project.date}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById("projects-list");
+            const filtered = getFilteredProjects();
+            
+            const loadingMsg = document.getElementById("loading-message");
+            if (loadingMsg) loadingMsg.remove();
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state">No projects found for this category.</div>';
+                return;
+            }
+            
+            container.innerHTML = filtered.map(createProjectRow).join("");
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFilterButtons();
+            renderProjects();
+        });
+    </script>
+
+</body>
+</html>

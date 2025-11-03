@@ -1,3 +1,1373 @@
+
+
+<style>
+        /*
+        =============================================
+        0. ROOT & FONT STYLES
+        =============================================
+        */
+        :root {
+            /* Palette */
+            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
+            --color-accent: #0091ff;      /* Bright Blue Accent */
+            --color-text-light: #fff;
+            --color-background-dark: #000;
+            --color-off-white: #f4f4f4;
+            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
+            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
+            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
+            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
+            
+            /* Sizing */
+            --header-height: 55px;
+            --content-max-width-header: 1500px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--header-height); /* Space for fixed header */
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /*
+        =============================================
+        1. HEADER WRAPPER (FIXED & DARK BLUE)
+        =============================================
+        */
+        .header-wrapper {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            z-index: 1000;
+            background-color: var(--color-header-bg);
+            /* Removed box-shadow as per request, keeping subtle bottom line */
+        }
+
+        .custom-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-header-container {
+            max-width: var(--content-max-width-header);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .custom-logo-text img{
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            height: 23px;
+            vertical-align: middle;
+        }
+        
+        .custom-logo-text:hover {
+             color: var(--color-accent);
+        }
+
+        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
+        .custom-main-nav {
+            flex-grow: 1; /* Allows nav to take up remaining space */
+            display: flex;
+            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
+            align-items: center;
+        }
+
+        .custom-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .custom-nav-list li {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .custom-nav-link {
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+            transition: color 0s ease;
+        }
+
+        .custom-nav-link:hover {
+            color: var(--color-accent);
+        }
+        
+        /* Action Buttons Wrapper - NEW */
+        .header-action-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Primary Action Button (Contact Us) */
+        .header-action-btn {
+            background: #0077cc;
+            color: var(--color-text-light);
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 20px; /* Space between the last nav item and this button */
+            transition: background-color 0.2s ease;
+        }
+
+        .header-action-btn a {
+            color: inherit;
+        }
+
+        .header-action-btn:hover {
+            background-color: #0081ff;
+        }
+        
+        /* Secondary Action Button (Get Started) - NEW */
+        .header-secondary-btn {
+            background-color: #62b8fa32; /* Light blue background */
+            color: #95d1ff;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
+            transition: background-color 0.2s ease;
+        }
+
+        .header-secondary-btn a {
+            color: inherit;
+        }
+
+        .header-secondary-btn:hover {
+            background-color: #4a4b6b; /* Slightly lighter on hover */
+        }
+
+        /* QR Code Dropdown Trigger - NEW */
+        .qr-dropdown-trigger {
+            position: relative;
+            margin-left: 10px; /* Space from Get Started button */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Circular button */
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: var(--color-text-light);
+            font-size: 18px; /* Icon size */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        .qr-dropdown-trigger:hover {
+            background-color: #2b294a;
+        }
+
+        /* QR Code Dropdown Content - NEW */
+        .qr-dropdown-content {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the header, with a gap */
+            right: 0; /* Align to the right of the trigger button */
+            background-color: #080d1b;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px; /* Fixed width for the dropdown */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+            z-index: 100; /* Ensure it's above other content */
+        }
+
+        .qr-dropdown-trigger svg {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            }
+
+        .qr-dropdown-content.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .qr-dropdown-content img {
+            width: 100px; /* Size of the QR code image */
+            height: 100px;
+            background-color: #fff; /* White background for QR code */
+            padding: 10px; /* Padding around QR code to make it look embedded */
+            border-radius: 8px; /* Slightly rounded corners for the QR code */
+            margin-bottom: 15px;
+        }
+
+        .qr-dropdown-content p {
+            color: var(--color-text-light);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /*
+        =============================================
+        2. MEGA MENU CONTAINER (Look-Alike Styles)
+        =============================================
+        */
+        .mega-menu-container {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--color-menu-bg);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0s, opacity 0s, transform 0s;
+        }
+
+        .header-wrapper.mega-menu-open .mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-panel {
+            display: none;
+            max-width: var(--content-max-width);
+            width: 100%; /* Ensure it spans the max width */
+            margin: 0 auto;
+            padding: 20px 40px 40px 40px; /* Reduced top padding */
+        }
+
+        .mega-menu-panel.active {
+            display: block;
+        }
+        
+        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
+        .megamenu-3-column-grid {
+            display: grid;
+            /* Use auto-fit with a min-max for column width, which helps alignment. 
+               Setting fixed columns here to ensure they stop at a reasonable width 
+               to look like the image, and the entire block is left-aligned within the 1200px container.
+            */
+            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
+            gap: 40px;
+            justify-content: start; /* Aligns the grid itself to the start (left) */
+            padding-left: 9rem;
+        }
+        
+        .menu-group-card {
+            padding: 0;
+            padding-top: 10px;
+            padding-bottom: 2.5rem;
+            border-radius: 8px; 
+        }
+
+        .menu-group-card h3 {
+            font-size: 13px; /* Slightly larger heading for better hierarchy */
+            font-weight: 600;
+            margin-bottom: 25px; /* More space below heading */
+            text-transform: none;
+            letter-spacing: 0.1px;
+            cursor: default; /* Not a clickable element */
+            display: block; /* Don't need flex for an icon */
+             color: var(--color-text-muted);
+        }
+        
+        .mega-menu-group-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
+        .mega-menu-group-list a {
+            display: block;
+            border-radius: 0; /* Remove border radius */
+            transition: color 0s;
+            position: relative;
+            margin: 5px 0; /* Tighter vertical spacing */
+            padding: 2px 0; /* Minimal padding */
+            letter-spacing: -0.03em;
+            font-size: 19px;
+            font-weight: 600; /* Regular weight for links */
+            color: var(--color-text-light); /* Make column headers light/white */
+        }
+
+        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
+        .mega-menu-link-title {
+            /* This class is now redundant but keeping it for structure if needed later */
+            font-size: inherit; 
+            font-weight: inherit;
+            color: inherit; 
+            margin-bottom: 0;
+        }
+        
+        .mega-menu-group-list a:hover {
+            color: #9cd4ff; /* White on hover */
+            background-color: transparent; /* No background change on hover */
+        }
+        
+        /* REMOVED: .mega-menu-link-desc is removed as requested */
+        .mega-menu-link-desc {
+            display: none; /* Hide descriptions */
+        }
+        
+        /*
+        =============================================
+        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
+        =============================================
+        */
+        
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: 1010;
+        }
+
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--color-text-light);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Mobile Overrides */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .custom-header-container {
+                padding: 0 20px;
+            }
+            
+            .mobile-toggle {
+                display: block; 
+            }
+
+            .custom-main-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-header-bg);
+                overflow-y: auto;
+                padding: 20px 0;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                display: block; 
+                z-index: 900;
+            }
+
+            .header-wrapper.mobile-menu-open .custom-main-nav {
+                transform: translateX(0);
+            }
+
+            .custom-nav-list {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px;
+                margin-left: 0; /* Reset desktop margin */
+            }
+
+            .custom-nav-list li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            }
+
+            .custom-nav-link {
+                padding: 15px 0;
+                font-size: 1.1rem;
+                width: 100%;
+                display: flex; /* Use flex to position icon */
+                justify-content: space-between; /* Pushes text left, icon right */
+                align-items: center;
+            }
+            
+            /* Show and style mobile icon */
+            .mobile-dropdown-icon {
+                display: inline-block; /* Show on mobile */
+            }
+            
+            /* Rotate icon when the parent menu item is active */
+            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
+                transform: rotate(180deg);
+            }
+            
+            /* Remove underline effect on mobile */
+            .custom-nav-link::after {
+                display: none;
+            }
+
+            
+            /* Mobile Action Buttons */
+            .header-action-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+                box-sizing: border-box; /* Include padding in width */
+                margin-top: 20px; /* Space from last nav item */
+            }
+
+            .header-action-btn,
+            .header-secondary-btn {
+                width: 100%;
+                margin: 10px 0 0 0; /* Stack vertically with space */
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .qr-dropdown-trigger {
+                width: 100%;
+                border-radius: 50px; /* Make it a full button shape */
+                margin: 10px 0 0 0;
+                padding: 15px 20px;
+                height: auto; /* Adjust height based on padding */
+                box-sizing: border-box;
+                justify-content: center; /* Center content horizontally */
+                display: none; /* HIDE QR TRIGGER ON MOBILE */
+            }
+
+            .qr-dropdown-trigger i {
+                margin-right: 10px; /* Space between icon and text if we add it */
+            }
+
+            /* Mobile QR Dropdown */
+            .qr-dropdown-content {
+                position: static; /* Remove absolute positioning */
+                width: 100%;
+                margin-top: 15px; /* Space from trigger */
+                padding: 15px;
+                box-shadow: none;
+                border-top: 1px solid rgba(0, 145, 255, 0.1);
+                border-radius: 0;
+                background-color: #0d0d29; /* Match mega menu background */
+                display: none; /* HIDE QR CONTENT ON MOBILE */
+            }
+            
+            .qr-dropdown-content img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .qr-dropdown-content.show {
+                transform: none; /* No transform on mobile */
+            }
+
+            /* Mobile Mega Menu */
+            .mega-menu-container {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                transition: max-height 0.3s ease;
+                overflow: hidden;
+                max-height: 0;
+                background-color: var(--color-menu-bg);
+                border-top: none;
+            }
+
+            .mega-menu-link-title {
+              padding: 0;
+              border-bottom: none;
+            }
+            
+            .custom-nav-item--has-megamenu.active .mega-menu-container {
+                max-height: 2000px;
+                padding: 0;
+            }
+            
+            .mega-menu-panel {
+                padding: 15px 0; /* Align content with parent link */
+                display: block; /* Make panel visible by default inside mobile menu */
+            }
+
+            .megamenu-3-column-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-left: 0; /* Reset desktop padding */
+            }
+            
+            .menu-group-card {
+                padding: 0;
+            }
+            
+            .menu-group-card h3 {
+                margin-top: 23px;
+            }
+            
+            .mega-menu-group-list a {
+                margin: 10px 0;
+            }
+
+            .mega-menu-group-list li {
+                
+                border: none;
+                
+            }
+            
+            .mega-menu-group-list a:hover {
+                background-color: rgba(0, 145, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-wrapper">
+    
+    <header class="custom-header">
+        <div class="custom-header-container">
+            
+            <div class="custom-logo-container">
+                <a href="index.html" class="custom-logo-link custom-logo-text">
+                    <img src="thumbnails/logo.png" alt="Defcon Logo">
+                </a>
+            </div>
+
+            <nav class="custom-main-nav">
+                <ul class="custom-nav-list">
+                    <li>
+                        <a href="#" class="custom-nav-link">Businesses
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="custom-nav-link">Projects</a>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
+                            Solutions
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="services">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>Software Development</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">API Development</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Database Management</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>IT Infrastructure</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Data Center Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>Marketing & Creative Studio</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                            Discover
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="discover">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>Defcon</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>Resources</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">YouTube Playlists</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>Connect</h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Media</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Partnerships</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Media</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Find a Local Office</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="header-action-buttons">
+                    <button class="header-secondary-btn">
+                        <a href="get-started.html">Get Started</a>
+                    </button>
+                    <button class="header-action-btn">
+                        <a href="contact-us.html">Contact Us</a>
+                    </button>
+                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                        <div class="qr-dropdown-content" id="qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mega-menu-container desktop-mega-menu">
+        
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>Software Development</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Web Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">API Development</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Database Management</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>IT Infrastructure</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Data Center Management</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Smart Technology</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>Marketing & Creative Studio</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Graphic Design</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Content Management</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Multimedia Production</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu-panel" data-megamenu-panel="discover">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>Hyperion</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">About Us</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Roadmap</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Innovations</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Product News</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Events</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Careers</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Partners</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="menu-group-card">
+                    <h3>Resources</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Blog</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">eBooks</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Webinars</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Podcasts</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Recommendations</span>
+                                </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>Connect</h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">X</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Facebook</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">LinkedIn</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Youtube</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Github</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// =============================================
+// JAVASCRIPT FOR MENU FUNCTIONALITY
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
+    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const body = document.body;
+    
+    // NEW: QR Code Dropdown elements
+    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
+    const qrDropdownContent = document.getElementById('qrDropdownContent');
+
+    let closeTimer = null;
+    let qrCloseTimer = null; // Timer for QR dropdown
+
+    // =============================================
+    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // =============================================
+    
+    // Function to set the active state on trigger and panel
+    function setActiveMenu(trigger, panel) {
+        // Deactivate all others first
+        megaMenuTriggers.forEach(t => t.classList.remove('active'));
+        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+
+        if (trigger && panel) {
+            trigger.classList.add('active');
+            panel.classList.add('active');
+            headerWrapper.classList.add('mega-menu-open');
+        } else {
+            // Close all
+            headerWrapper.classList.remove('mega-menu-open');
+        }
+    }
+
+    function handleOpen(trigger) {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
+            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
+            setActiveMenu(trigger, targetMenuPanel);
+            // Close QR dropdown if mega menu opens
+            if (qrDropdownContent.classList.contains('show')) {
+                hideQrDropdown();
+            }
+        }
+    }
+
+    function handleClose() {
+        if (window.innerWidth > 1024) {
+            // Set a slight delay to allow mouse transition from trigger to menu
+            closeTimer = setTimeout(() => {
+                setActiveMenu(null, null); // Close all
+            }, 150); 
+        }
+    }
+
+    // Attach mouse event listeners for desktop
+    megaMenuTriggers.forEach(trigger => {
+        // Open on mouse enter
+        trigger.addEventListener('mouseenter', () => {
+            handleOpen(trigger);
+        });
+        
+        // Use the common container as the exit point for the entire menu system
+        trigger.parentElement.addEventListener('mouseleave', () => {
+            handleClose();
+        });
+    });
+
+    // Prevent menu from closing when mouse is over the menu container
+    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+        }
+    });
+
+    // Close menu when mouse leaves the menu container
+    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        handleClose();
+    });
+
+    // =============================================
+    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // =============================================
+    function showQrDropdown() {
+        if (window.innerWidth > 1024) {
+            clearTimeout(qrCloseTimer);
+            qrDropdownContent.classList.add('show');
+            // Close mega menu if QR dropdown opens
+            setActiveMenu(null, null);
+        }
+    }
+
+    function hideQrDropdown() {
+        if (window.innerWidth > 1024) {
+            qrCloseTimer = setTimeout(() => {
+                qrDropdownContent.classList.remove('show');
+            }, 150); // Slight delay for smooth transition
+        }
+    }
+
+    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
+    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
+    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
+    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+
+    // =============================================
+    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // =============================================
+    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    
+    // Mobile hamburger toggle
+    mobileMenuToggle.addEventListener('click', function() {
+        headerWrapper.classList.toggle('mobile-menu-open');
+        body.classList.toggle('mobile-menu-active');
+        
+        // If closing the mobile menu, ensure all mega menu active states are cleared
+        if (!headerWrapper.classList.contains('mobile-menu-open')) {
+             mobileDropdownItems.forEach(item => item.classList.remove('active'));
+             // Also close QR dropdown on mobile close
+             qrDropdownContent.classList.remove('show');
+        }
+    });
+
+    // Mobile dropdown toggle (for Services and Discover links)
+    mobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.custom-nav-link');
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation(); 
+
+                // Close all other dropdowns
+                mobileDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current dropdown
+                item.classList.toggle('active');
+                // Close QR dropdown if a mega menu opens
+                qrDropdownContent.classList.remove('show');
+            }
+        });
+    });
+
+    // Toggle QR dropdown on click for mobile
+    qrDropdownTrigger.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            e.stopPropagation();
+            qrDropdownContent.classList.toggle('show');
+            // Close any open mega menus
+            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+        }
+    });
+
+    // Close mobile menu when a standard link is clicked
+    document.querySelectorAll('.custom-nav-list a').forEach(link => {
+        // Exclude links that trigger a mega menu, and links that are inside a mega menu
+        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                    body.classList.remove('mobile-menu-active');
+                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
+                }
+            });
+        }
+    });
+    
+    // Close QR dropdown if clicked outside on desktop
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
+            hideQrDropdown();
+        }
+    });
+
+    // =============================================
+    // WINDOW RESIZE HANDLER
+    // =============================================
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth > 1024) {
+                // Reset desktop/mobile states
+                headerWrapper.classList.remove('mobile-menu-open');
+                body.classList.remove('mobile-menu-active');
+                mobileDropdownItems.forEach(item => item.classList.remove('active'));
+                setActiveMenu(null, null); // Close any open mega menu
+            } else { // Mobile specific reset
+                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
+                 qrDropdownContent.classList.remove('show');
+            }
+        }, 250);
+    });
+});
+</script>
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +1393,15 @@
         .hero-section {
             background-color: #07091d;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(30, 144, 255, 0.2) 0%, transparent 60%);
+                radial-gradient(at 0% 0%, rgba(39, 111, 255, 0.381) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 143, 255, 0.451) 0%, transparent 60%);
             box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
-            border-radius: 0 0 16px 16px;
+            border-radius: 0 0 50px 50px;
             padding: 80px 20px;
             text-align: center;
             color: white;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            margin: 0 1.5rem;
         }
 
         .hero-container {
@@ -395,6 +1766,7 @@
 </head>
 <body>
 
+    <div style="background-color: 010119;">
     <!-- HERO SECTION -->
     <header class="hero-section">
         <div class="hero-container">
@@ -408,227 +1780,247 @@
 
 
 
+<!-- 
+  IT Project Pillars Section (Pure CSS Version)
+  A responsive, dark-themed four-column feature card layout
+  Designed to be embedded in a larger page, avoiding <body> tags.
+-->
+<style>
+    /* -------------------------------------- */
+    /* Custom Variables & Base Styling */
+    /* -------------------------------------- */
+    :root {
+        --it-proj-dark: #010119; /* Primary background (Dark Slate Blue) */
+        --it-proj-card: #15152a; /* Card background (Slightly Lighter Dark Slate) */
+        --it-proj-accent: #6366f1; /* Indigo Accent Color */
+        --it-proj-text-light: #f4f4f4; /* White/Light Text */
+        --it-proj-text-muted: #94a3b8; /* Gray/Muted Text */
+    }
 
+    .it-proj-section {
+        width: 100%;
+        padding: 4rem 0; /* py-16, only vertical padding here */
+        background-color: var(--it-proj-dark);
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+    }
 
+    /* New wrapper to handle max-width, center alignment, and responsive padding for content alignment */
+    .it-proj-wrapper {
+        max-width: 78rem; /* max-w-7xl */
+        margin: 0 auto;
+        padding: 0 1rem; /* Default horizontal padding (px-4) */
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon Image-Text Grid</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Root Variables */
-        :root {
-            --defcon-navy: #06273e;
-            --defcon-blue: #0091ff;
-            --defcon-light-gray: #e5e5e5;
-            --defcon-white: #ffffff;
-            --defcon-black: #000000;
-            --font-family-inter: 'Inter', sans-serif;
-            --border-radius-1px: 12px;
-            --content-max-width: 1100px; /* Adjusted for this section */
+    /* Tablet breakpoint: increase padding */
+    @media (min-width: 640px) {
+        .it-proj-wrapper {
+            padding: 0 2rem; /* md:px-8 */
         }
+    }
 
-        /* Container for the whole section */
-        .defcon-image-text-section-container {
-            font-family: var(--font-family-inter);
-            background-color: var(--defcon-white); /* White background for this section */
-            padding: 60px 0; /* Vertical padding */
-            width: 100%;
-            margin: 0;
-            text-align: center; /* Center content within */
-            color: var(--defcon-navy); /* Default text color for this section */
+    /* Desktop breakpoint: increase padding */
+    @media (min-width: 1024px) {
+        .it-proj-wrapper {
+            padding: 0 3rem; /* lg:px-12 */
         }
+    }
+
+    /* -------------------------------------- */
+    /* Header Styling */
+    /* -------------------------------------- */
+    .it-proj-header {
+        font-size: 2.25rem; /* text-3xl */
+        line-height: 2.5rem;
+        font-weight: 600; /* font-extrabold */
+        color: var(--it-proj-text-light);
+        text-align: left; /* CHANGED: Aligned to the left */
+        margin-bottom: 1rem; /* mb-12 */
+    }
+
+    /* Adjust header size for desktop */
+    @media (min-width: 768px) {
+        .it-proj-header {
+            font-size: 2.5rem; /* md:text-4xl */
+            line-height: 2.75rem;
+            margin-bottom: 4rem; /* lg:mb-16 */
+        }
+    }
+
+    /* -------------------------------------- */
+    /* Grid Layout */
+    /* -------------------------------------- */
+    .it-proj-grid-container {
+        /* max-width and margin: 0 auto; removed, now handled by .it-proj-wrapper */
+        display: grid;
+        grid-template-columns: 1fr; /* Default to 1 column */
+        gap: 1rem; /* gap-6 */
+    }
+
+    /* Tablet breakpoint: 2 columns, padding removed here */
+    @media (min-width: 640px) {
+        .it-proj-grid-container {
+            grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+        }
+    }
+
+    /* Desktop breakpoint: 4 columns, padding removed here */
+    @media (min-width: 1024px) {
+        .it-proj-grid-container {
+            grid-template-columns: repeat(4, 1fr); /* lg:grid-cols-4 */
+        }
+    }
+
+    /* -------------------------------------- */
+    /* Card Styling */
+    /* -------------------------------------- */
+    .it-proj-card {
+        background-color: var(--it-proj-card);
+        padding: 1.5rem 2rem; /* p-6 md:p-8 */
+        border-radius: 25px; /* rounded-xl */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-2xl */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* transition duration-300 */
+    }
+
+    /* Icon Badge */
+    .it-proj-icon-badge {
+        width: 3rem; /* w-12 */
+        height: 3rem; /* h-12 */
+        margin-bottom: 1.25rem; /* mb-5 */
+        border-radius: 0.5rem; /* rounded-lg */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(145deg, #05008b 0%, rgb(0, 0, 58) 100%); /* bg-gradient-to-br from-indigo-600 to-indigo-500 */
+    }
+
+    .it-proj-icon {
+        color: var(--it-proj-accent);
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    /* Card Title and Description */
+    .it-proj-title {
+        font-size: 1.25rem; /* text-xl */
+        font-weight: 700; /* font-bold */
+        color: var(--it-proj-text-light);
+        margin-bottom: 0.75rem; /* mb-3 */
+    }
+
+    .it-proj-description {
+        font-size: 1rem; /* text-base */
+        color: var(--it-proj-text-muted);
+    }
+</style>
+
+<div id="it-projects-section-pure-css" class="it-proj-section">
+    <!-- NEW WRAPPER TO ALIGN CONTENT -->
+    <div class="it-proj-wrapper">
         
-        /* Inner Wrapper to constrain all content */
-        .defcon-image-text-content-wrapper {
-            max-width: var(--content-max-width);
-            width: 90%; /* Use percentage for responsiveness */
-            margin: 0 auto;
-            text-align: left; /* Align grid content to left */
-        }
+        <!-- Main Header -->
+        <h2 class="it-proj-header">
+            Why work with Hyperion
+        </h2>
 
-        /* --- Image-Text Grid --- */
-        .defcon-content-grid {
-            display: grid;
-            /* Two main rows: Top (Text | Image) and Bottom (Image | Image | Text) */
-            /* Using a flexible 3-column layout for the items */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; /* Space between grid items */
-            align-items: stretch; /* Stretch items to fill height of cell */
-        }
+        <!-- Feature Grid Container -->
+        <div class="it-proj-grid-container">
 
-        /* Grid Item Styling */
-        .defcon-grid-item {
-            background-color: var(--defcon-light-gray); /* Light gray background for text boxes */
-            border-radius: var(--border-radius-1px);
-            overflow: hidden; /* Ensures image corners are rounded if item has padding/border-radius */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            padding: 0; /* Reset padding for individual control */
-        }
-
-        /* Text Block in Grid Item */
-        .defcon-grid-item-text {
-            padding: 30px; /* Padding for text content */
-            font-size: 1.25rem; /* Larger font for main text */
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--defcon-navy); /* Dark text on light gray background */
-        }
-
-        /* Image Block in Grid Item */
-        .defcon-grid-item-image {
-            width: auto;
-            height: 40vh;
-            object-fit: cover; /* Cover the area without distortion */
-            display: block; /* Remove extra space below image */
-            border-radius: var(--border-radius-1px); /* Match container radius */
-        }
-
-        /* --- Grid Spanning for Asymmetrical Layout --- */
-        /* Top Left Text */
-        .defcon-item-1-text {
-            grid-column: span 1;
-            background-color: #f4f4f4; /* Keep background white for text box */
-            text-align: left;
-            padding: 30px; /* Apply padding here for text */
-            font-size: 1.8rem; /* Slightly larger for this prominent text */
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--defcon-navy);
-            /* Ensure it stretches vertically in the grid */
-            align-self: stretch;
-            display: flex; /* Use flex to vertically center text */
-            align-items: center; /* Vertically center text */
-        }
-
-        /* Top Right Image - spans 2 columns */
-        .defcon-item-2-image {
-            grid-column: span 2;
-        }
-
-        /* Bottom Left Image - spans 1 column */
-        .defcon-item-3-image {
-            grid-column: span 1;
-        }
-
-        /* Bottom Middle Image - spans 1 column */
-        .defcon-item-4-image {
-            grid-column: span 1;
-        }
-
-        /* Bottom Right Text - spans 1 column */
-        .defcon-item-5-text {
-            grid-column: span 1;
-            background-color: #f4f4f4; /* Keep background white for text box */
-            text-align: left;
-            padding: 30px; /* Apply padding here for text */
-            font-size: 1.8rem; /* Consistent large font */
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--defcon-navy);
-            /* Ensure it stretches vertically in the grid */
-            align-self: stretch;
-            display: flex; /* Use flex to vertically center text */
-            align-items: center; /* Vertically center text */
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 992px) {
-            .defcon-content-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-            }
-            /* Reset column spans for all items on medium screens to avoid gaps */
-            .defcon-item-1-text,
-            .defcon-item-2-image,
-            .defcon-item-3-image,
-            .defcon-item-4-image,
-            .defcon-item-5-text {
-                grid-column: span 1;
-            }
-            .defcon-item-1-text,
-            .defcon-item-5-text {
-                font-size: 1.25rem; /* Adjust font size for smaller screens */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .defcon-content-grid {
-                grid-template-columns: 1fr; /* Stack all items on small screens */
-            }
-            .defcon-image-text-content-wrapper {
-                width: 95%; /* More width on small screens */
-            }
-            .defcon-grid-item-text,
-            .defcon-item-1-text,
-            .defcon-item-5-text {
-                padding: 20px;
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <section class="defcon-image-text-section-container">
-        <div class="defcon-image-text-content-wrapper">
-            <div class="defcon-content-grid">
-
-                <div class="defcon-grid-item defcon-item-1-text">
-                    Seamlessly integrate blockchain & Web3 solutions.
+            <!-- Card 1: Scalable Architecture -->
+            <div class="it-proj-card">
+                <!-- Icon Badge -->
+                <div class="it-proj-icon-badge">
+                    <!-- Inline SVG for 'Layers' icon (Architecture) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" fill="#fff"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M30 6h12v12M31 29H19V17M42 6L19 29"/><path d="M22 6H8a2 2 0 0 0-2 2v32a2 2 0 0 0 2 2h32a2 2 0 0 0 2-2V26"/></g></svg>
                 </div>
-
-                <div class="defcon-grid-item defcon-item-2-image">
-                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Modern IT Workplace" class="defcon-grid-item-image">
-                </div>
-
-                <div class="defcon-grid-item defcon-item-3-image">
-                    <img src="thumbnails/pexels-knownasovan-62693.jpg" alt="Team Collaboration" class="defcon-grid-item-image">
-                </div>
-
-                <div class="defcon-grid-item defcon-item-4-image">
-                    <img src="thumbnails/pexels-dominick-davis.jpg" alt="Mobile App Development" class="defcon-grid-item-image">
-                </div>
-
-                <div class="defcon-grid-item defcon-item-5-text">
-                    Leverage AI & Data Analytics to drive informed decisions.
-                </div>
-
+                
+                <!-- Title -->
+                <h3 class="it-proj-title">Scalable Architecture</h3>
+                
+                <!-- Description -->
+                <p class="it-proj-description">
+                    Every solution is built using modern design patterns, ensuring robustness, high availability, and the capacity to handle significant future growth.
+                </p>
             </div>
-        </div>
-    </section>
 
-</body>
-</html>
+            <!-- Card 2: Modern Tech Stack -->
+            <div class="it-proj-card">
+                <!-- Icon Badge -->
+                <div class="it-proj-icon-badge">
+                    <!-- Inline SVG for 'Wrench' icon (Tools/Tech) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1.75 11L8 14.25L14.25 11M1.75 8L8 11.25L14.25 8M8 1.75L1.75 5L8 8.25L14.25 5z"/></svg>                </div>
+                
+                <!-- Title -->
+                <h3 class="it-proj-title">Modern Tech Stack</h3>
+                
+                <!-- Description -->
+                <p class="it-proj-description">
+                    Proficient use of contemporary frameworks (React, Angular, Python, Node.js) and cloud services, ensuring reliable, high-performance applications.
+                </p>
+            </div>
+
+            <!-- Card 3: Iterative Development -->
+            <div class="it-proj-card">
+                <!-- Icon Badge -->
+                <div class="it-proj-icon-badge">
+                    <!-- Inline SVG for 'Refresh/Cycle' icon (Process) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><g fill="none"><path d="M0 0h24v24H0z"/><path fill="#fff" d="M14.486 3.143a1 1 0 0 1 .692 1.233l-4.43 15.788a1 1 0 0 1-1.926-.54l4.43-15.788a1 1 0 0 1 1.234-.693ZM7.207 7.05a1 1 0 0 1 0 1.414L3.672 12l3.535 3.535a1 1 0 1 1-1.414 1.415L1.55 12.707a1 1 0 0 1 0-1.414L5.793 7.05a1 1 0 0 1 1.414 0Zm9.586 1.414a1 1 0 1 1 1.414-1.414l4.243 4.243a1 1 0 0 1 0 1.414l-4.243 4.242a1 1 0 0 1-1.414-1.414L20.328 12l-3.535-3.536Z"/></g></svg>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="it-proj-title">Iterative Development</h3>
+                
+                <!-- Description -->
+                <p class="it-proj-description">
+                    Leveraging Agile principles and robust Git version control for continuous integration, transparent progress, and rapid response to critical feedback.
+                </p>
+            </div>
+
+            <!-- Card 4: User-Centric Quality -->
+            <div class="it-proj-card">
+                <!-- Icon Badge -->
+                <div class="it-proj-icon-badge">
+                    <!-- Inline SVG for 'Shield Check' icon (Quality) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48" fill="#fff"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"/><path d="M28.2 30h9.6l3.2 4.118L33 44l-8-9.882L28.2 30ZM30 4v10h10"/></g></svg>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="it-proj-title">User-Centric Quality</h3>
+                
+                <!-- Description -->
+                <p class="it-proj-description">
+                    A strong commitment to clean, well-documented, and fully tested code that prioritizes intuitive design and solves real-world user problems.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -673,7 +2065,7 @@
             --font-family-inter: 'Inter', sans-serif;
             --border-radius-1px: 12px;
             /* New Max Width for Inner Content */
-            --content-max-width: 1000px;
+            --content-max-width: 77rem;
         }
 
         /* Container for the whole section */
@@ -1391,3 +2783,344 @@
     }
   }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+  IT Project Details Accordion (Pure CSS Version)
+  A responsive, dark-themed collapsible FAQ/Specifications layout.
+  Designed to be embedded in a larger page, avoiding <body> tags.
+-->
+<style>
+    /* -------------------------------------- */
+    /* Custom Variables & Base Styling */
+    /* -------------------------------------- */
+    :root {
+        --dev-spec-dark: #010119; /* Primary background (Dark Slate Blue) */
+        --dev-spec-card: #1e293b; /* Accordion/Divider background */
+        --dev-spec-accent: #0091ff; /* Indigo Accent Color */
+        --dev-spec-text-light: #f8fafc; /* White/Light Text */
+        --dev-spec-text-muted: #94a3b8; /* Gray/Muted Text */
+    }
+
+    .dev-spec-section {
+        width: 100%;
+        padding: 4rem 0;
+        background-color: var(--dev-spec-dark);
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+    }
+
+    /* Wrapper to handle max-width, center alignment, and responsive padding */
+    .dev-spec-wrapper {
+        max-width: 80rem; /* max-w-7xl */
+        margin: 0 auto;
+        padding: 0 1rem; /* Default horizontal padding (px-4) */
+    }
+
+    /* Tablet breakpoint: increase padding */
+    @media (min-width: 640px) {
+        .dev-spec-wrapper {
+            padding: 0 2rem; /* md:px-8 */
+        }
+    }
+
+    /* Desktop breakpoint: increase padding */
+    @media (min-width: 1024px) {
+        .dev-spec-wrapper {
+            padding: 0 3rem; /* lg:px-12 */
+        }
+    }
+
+    /* -------------------------------------- */
+    /* Header Styling */
+    /* -------------------------------------- */
+    .dev-spec-header {
+        font-size: 3rem; /* Large text for main title */
+        line-height: 1.3;
+        font-weight: 600;
+        color: var(--dev-spec-text-light);
+        /* EDITED: Alignment back to left, but contained to match the accordion */
+        text-align: left;
+        max-width: 1000px;
+        margin: 0 auto 3rem auto; /* Center the header element itself, setting 3rem margin at the bottom */
+    }
+
+    /* Smaller devices header */
+    @media (max-width: 767px) {
+        .dev-spec-header {
+            font-size: 2rem;
+            line-height: 2.25rem;
+        }
+    }
+
+
+    /* -------------------------------------- */
+    /* Accordion Container and Items */
+    /* -------------------------------------- */
+    .dev-spec-accordion {
+        max-width: 1000px; /* Constrain accordion width slightly */
+        /* Center the container */
+        margin: 0 auto;
+    }
+
+    .dev-spec-accordion-item {
+        border-bottom: 1px solid #e5e5e5; /* Dark divider line */
+        margin-bottom: 25px;
+    }
+
+    .dev-spec-accordion-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1.5rem 0;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--dev-spec-text-light);
+        text-align: left;
+        font-size: 30px; /* text-xl */
+        font-weight: 600;
+        transition: color 0.2s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .dev-spec-accordion-toggle:hover {
+        color: var(--dev-spec-accent);
+    }
+
+    /* Plus/Minus Icon Styling */
+    .dev-spec-icon-plus {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        position: relative;
+        transition: transform 0.3s ease;
+        flex-shrink: 0; /* Prevents icon from shrinking on long titles */
+    }
+
+    .dev-spec-icon-plus::before,
+    .dev-spec-icon-plus::after {
+        content: '';
+        position: absolute;
+        background-color: var(--dev-spec-text-light);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .dev-spec-icon-plus::before {
+        width: 100%;
+        height: 2px; /* Horizontal bar */
+    }
+
+    .dev-spec-icon-plus::after {
+        width: 2px;
+        height: 100%; /* Vertical bar */
+    }
+
+    /* Style for open accordion state (hides the vertical bar to make it a minus sign) */
+    .dev-spec-accordion-toggle[aria-expanded="true"] .dev-spec-icon-plus::after {
+        transform: translate(-50%, -50%) scaleY(0);
+    }
+
+    /* Content Area */
+    .dev-spec-accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding-bottom: 0; /* Controlled by open state */
+    }
+
+    .dev-spec-accordion-content-text {
+        padding: 0 0 1.5rem 0; /* Padding at the bottom when open */
+        color: var(--dev-spec-text-muted);
+        line-height: 1.75rem;
+        font-size: 1rem;
+    }
+
+</style>
+
+<div id="it-projects-section-pure-css" class="dev-spec-section">
+    <div class="dev-spec-wrapper">
+        
+        <!-- Main Header -->
+        <h2 class="dev-spec-header">
+            Project Deliverables & Key Specifications
+        </h2>
+
+        <!-- Accordion Container -->
+        <div class="dev-spec-accordion">
+
+            <!-- Accordion Item 1 -->
+            <div class="dev-spec-accordion-item">
+                <button 
+                    class="dev-spec-accordion-toggle" 
+                    aria-expanded="false" 
+                    aria-controls="content-1" 
+                    onclick="toggleAccordion('content-1', this)">
+                    Microservices Architecture & Deployment
+                    <span class="dev-spec-icon-plus"></span>
+                </button>
+                <div id="content-1" class="dev-spec-accordion-content">
+                    <p class="dev-spec-accordion-content-text">
+                        **Architecture:** Deployed using Docker containers managed via Kubernetes (K8s) for high scalability and automatic fault tolerance. <br>
+                        **CI/CD:** Automated pipelines (e.g., GitHub Actions or Jenkins) ensuring zero-downtime deployments and rapid release cycles. <br>
+                        **Backend:** Built with Python/Flask or Node.js/Express, utilizing asynchronous processing for speed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="dev-spec-accordion-item">
+                <button 
+                    class="dev-spec-accordion-toggle" 
+                    aria-expanded="false" 
+                    aria-controls="content-2" 
+                    onclick="toggleAccordion('content-2', this)">
+                    Data Persistence and Real-time Sync
+                    <span class="dev-spec-icon-plus"></span>
+                </button>
+                <div id="content-2" class="dev-spec-accordion-content">
+                    <p class="dev-spec-accordion-content-text">
+                        **Database:** Primary data stored in PostgreSQL (relational) for strong consistency, supplemented by Redis (in-memory) for caching and session management. <br>
+                        **Real-Time:** WebSockets implemented via a dedicated service (e.g., Socket.IO or dedicated cloud messaging) for instantaneous updates across client applications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="dev-spec-accordion-item">
+                <button 
+                    class="dev-spec-accordion-toggle" 
+                    aria-expanded="false" 
+                    aria-controls="content-3" 
+                    onclick="toggleAccordion('content-3', this)">
+                    Security and Compliance Features
+                    <span class="dev-spec-icon-plus"></span>
+                </button>
+                <!-- FIXED: Added missing id="content-3" -->
+                <div id="content-3" class="dev-spec-accordion-content">
+                    <p class="dev-spec-accordion-content-text">
+                        **Authentication:** Implemented using OAuth 2.0 and JWTs (JSON Web Tokens) for secure, stateless authorization. <br>
+                        **Security:** All APIs protected by rate limiting, input validation, and secure headers (CSP, HSTS). Infrastructure secured using least-privilege principles and regular vulnerability scanning.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 4 - Last item without bottom border if desired, but kept for consistency -->
+            <div class="dev-spec-accordion-item">
+                <button 
+                    class="dev-spec-accordion-toggle" 
+                    aria-expanded="false" 
+                    aria-controls="content-4" 
+                    onclick="toggleAccordion('content-4', this)">
+                    Frontend Responsiveness and UX
+                    <span class="dev-spec-icon-plus"></span>
+                </button>
+                <!-- FIXED: Added missing id="content-4" -->
+                <div id="content-4" class="dev-spec-accordion-content">
+                    <p class="dev-spec-accordion-content-text">
+                        **Frameworks:** Built with modern JavaScript frameworks (e.g., React or Vue) for component-based, efficient UIs. <br>
+                        **Responsiveness:** Fully adaptive design using CSS Grid/Flexbox ensures optimal display and performance on all devices (mobile, tablet, desktop).
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+     * JavaScript function to handle the accordion toggle behavior.
+     * This simulates the open/close animation by adjusting the max-height.
+     */
+    function toggleAccordion(contentId, buttonElement) {
+        const content = document.getElementById(contentId);
+        const isExpanded = buttonElement.getAttribute('aria-expanded') === 'true';
+
+        // Error handling: if content element is not found, log error and exit.
+        if (!content) {
+            console.error(`Accordion content element not found for ID: ${contentId}`);
+            return;
+        }
+
+        if (isExpanded) {
+            // Collapse the content
+            content.style.maxHeight = '0';
+            buttonElement.setAttribute('aria-expanded', 'false');
+        } else {
+            // Expand the content
+            // Close all other open accordions first (optional but good UX)
+            document.querySelectorAll('.dev-spec-accordion-toggle[aria-expanded="true"]').forEach(openButton => {
+                if (openButton !== buttonElement) {
+                    openButton.setAttribute('aria-expanded', 'false');
+                    const otherContentId = openButton.getAttribute('aria-controls');
+                    const otherContent = document.getElementById(otherContentId);
+                    if (otherContent) {
+                        otherContent.style.maxHeight = '0';
+                    }
+                }
+            });
+
+            // Set max-height to the scrollHeight to enable CSS transition
+            // We need to briefly set max-height to 'none' or another large value 
+            // to correctly calculate scrollHeight if it was previously set to '0'
+            content.style.maxHeight = 'none';
+            const scrollHeight = content.scrollHeight;
+            content.style.maxHeight = '0'; // Reset for transition start
+            
+            // Wait a tiny bit (not strictly necessary here but good for robustness) 
+            // then set the final height to kick off the transition
+            requestAnimationFrame(() => {
+                content.style.maxHeight = scrollHeight + "px";
+                buttonElement.setAttribute('aria-expanded', 'true');
+            });
+        }
+    }
+</script>
