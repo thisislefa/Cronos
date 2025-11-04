@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Boutique | Beauty & Accessories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #d4af9a;
+            --secondary: #8b6b61;
+            --accent: #c2185b;
+            --dark: #3e2723;
+            --light: #f9f5f2;
+            --text: #333333;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-header {
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 154, 0.2);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-actions a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .header-actions a:hover {
+            color: var(--accent);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav {
+            background-color: var(--white);
+            border-top: 1px solid #eee;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: absolute;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown a {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1189&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #a0144a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        /* Featured Products */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .product-actions button {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--white);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-actions button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 0 30px;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: #a0144a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-bar {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 30px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-bar-content {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                background-color: #f9f9f9;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <i class="fas fa-phone"></i> +1 (555) 123-4567 | <i class="fas fa-envelope"></i> info@glamourboutique.com
+            </div>
+            <div class="promo-text">
+                Free shipping on orders over $50!
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container main-header">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-spa"></i> Glamour Boutique
+                </a>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#" class="cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li>
+                        <a href="#">Perfumes <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="#">Women's Perfumes</a>
+                            <a href="#">Men's Fragrances</a>
+                            <a href="#">Unisex Scents</a>
+                            <a href="#">Perfume Gift Sets</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Makeup <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="#">Face Makeup</a>
+                            <a href="#">Eye Makeup</a>
+                            <a href="#">Lip Products</a>
+                            <a href="#">Makeup Kits</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Nails <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="#">Nail Polish</a>
+                            <a href="#">Nail Care</a>
+                            <a href="#">Nail Art</a>
+                            <a href="#">Nail Kits</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Accessories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="#">Jewelry</a>
+                            <a href="#">Hair Accessories</a>
+                            <a href="#">Bags & Purses</a>
+                            <a href="#">Sunglasses</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Elevate Your Beauty Routine</h1>
+            <p>Discover our exclusive collection of perfumes, makeup, nails, and accessories designed to enhance your natural beauty.</p>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Shop By Category</h2>
+        </div>
+        
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Perfumes">
+                </div>
+                <div class="category-content">
+                    <h3>Perfumes</h3>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1526045478516-99145907023c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Makeup">
+                </div>
+                <div class="category-content">
+                    <h3>Makeup</h3>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Nails">
+                </div>
+                <div class="category-content">
+                    <h3>Nails</h3>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img">
+                    <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Accessories">
+                </div>
+                <div class="category-content">
+                    <h3>Accessories</h3>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Featured Products</h2>
+        </div>
+        
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1590736969955-71a48df1a0a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Chanel Perfume">
+                    <span class="product-badge">Bestseller</span>
+                    <div class="product-actions">
+                        <button><i class="far fa-heart"></i></button>
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Perfume</div>
+                    <h3 class="product-title">Chanel No. 5 Eau de Parfum</h3>
+                    <div class="product-price">
+                        <span class="current-price">$120.00</span>
+                        <span class="original-price">$145.00</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Makeup Kit">
+                    <div class="product-actions">
+                        <button><i class="far fa-heart"></i></button>
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Makeup</div>
+                    <h3 class="product-title">Complete Beauty Makeup Kit</h3>
+                    <div class="product-price">
+                        <span class="current-price">$89.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1608248549250-7cc4c540a3a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Nail Polish Set">
+                    <span class="product-badge">New</span>
+                    <div class="product-actions">
+                        <button><i class="far fa-heart"></i></button>
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Nails</div>
+                    <h3 class="product-title">Gel Nail Polish Set - 12 Colors</h3>
+                    <div class="product-price">
+                        <span class="current-price">$45.00</span>
+                        <span class="original-price">$60.00</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Earrings">
+                    <div class="product-actions">
+                        <button><i class="far fa-heart"></i></button>
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Accessories</div>
+                    <h3 class="product-title">Gold Plated Hoop Earrings</h3>
+                    <div class="product-price">
+                        <span class="current-price">$29.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container newsletter-content">
+            <h2>Join Our Beauty Community</h2>
+            <p>Subscribe to our newsletter and get 15% off your first order plus exclusive access to new arrivals and special promotions.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Glamour Boutique</h3>
+                    <p>Your one-stop destination for premium beauty products and accessories. We're committed to helping you express your unique beauty.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Perfumes</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Nails</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Track Your Order</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Beauty Street, New York, NY</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@glamourboutique.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Glamour Boutique. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    let count = parseInt(cartCount.textContent);
+                    count++;
+                    cartCount.textContent = count;
+                    
+                    // Add animation to cart icon
+                    const cartIcon = document.querySelector('.cart i');
+                    cartIcon.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        cartIcon.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    // Show confirmation (in a real app, this would be more sophisticated)
+                    alert('Product added to cart!');
+                });
+            });
+            
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                alert(`Thank you for subscribing with ${email}! Check your email for your 15% off coupon.`);
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

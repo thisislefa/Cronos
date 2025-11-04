@@ -3,456 +3,1154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Technology Stack</title>
+    <title>Mobile Applications - DEFCON Software Development</title>
     
-    <!-- Using the 'Inter' font for a premium feel -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-    </style>
-
-    <!-- 
-      CUSTOM NAMESPACED STYLESHEET
-      All classes are prefixed with 'ts-' (Tech Stack) to prevent conflicts.
-      No Tailwind CSS is used here.
-    -->
-    <style>
-        /* --- 1. Basic Reset & Page Setup --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #ffffff; /* Default light background */
-            color: #1a202c; /* Default text */
-            line-height: 1.6;
-        }
-
-        .ts-page-wrapper {
-            width: 100%;
-            overflow: hidden; /* Prevents horizontal scroll */
-        }
-
-        .ts-container {
-            width: 100%;
-            max-width: 1240px; /* Standard container width */
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 24px;
-        }
-
-        /* --- 2. Hero Section --- */
-        .ts-hero {
-            background-color: #1c4587; /* Your primary dark blue */
-            color: #ffffff;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .ts-hero-title {
-            font-size: 3rem; /* 48px */
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .ts-hero-subtitle {
-            font-size: 1.25rem; /* 20px */
-            font-weight: 300;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- 3. Section Styling (Dark & Light) --- */
-        .ts-section {
-            padding: 80px 0;
-        }
-
-        .ts-section-dark {
-            background-color: #1c4587; /* Dark blue */
-            color: #ffffff;
-        }
-
-        .ts-section-light {
-            background-color: #ffffff; /* White */
-            color: #1a202c;
-        }
-        
-        /* Ensures contrast on dark section titles */
-        .ts-section-dark .ts-section-title {
-            color: #ffffff;
-        }
-        
-        /* Ensures contrast on light section titles */
-        .ts-section-light .ts-section-title {
-            color: #1c4587;
-        }
-
-        .ts-section-title {
-            font-size: 2.5rem; /* 40px */
-            font-weight: 800;
-            margin-bottom: 48px; /* 3rem */
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        /* --- 4. Technology Grid --- */
-        .ts-grid {
-            display: grid;
-            /* Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop */
-            grid-template-columns: repeat(1, 1fr);
-            gap: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .ts-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .ts-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* --- 5. Technology Card --- */
-        .ts-tech-card {
-            border-radius: 1px; /* Your 1px border rule */
-            padding: 32px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Card variant for DARK sections */
-        .ts-section-dark .ts-tech-card {
-            background-color: #2a5a9e; /* Slightly lighter blue */
-            border: 1px solid #3a6aa8;
-        }
-
-        /* Card variant for LIGHT sections */
-        .ts-section-light .ts-tech-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-        }
-        
-        /* Premium hover effect */
-        .ts-tech-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-        }
-        
-        .ts-section-dark .ts-tech-card:hover {
-             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        .ts-tech-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .ts-tech-logo {
-            width: 48px;
-            height: 48px;
-            margin-right: 16px;
-            object-fit: contain;
-            /* Adds a subtle drop shadow to logos, looks great on light cards */
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
-        }
-
-        .ts-tech-name {
-            font-size: 1.5rem; /* 24px */
-            font-weight: 700;
-        }
-        
-        .ts-tech-description {
-            font-size: 1rem; /* 16px */
-            margin-bottom: 24px;
-            opacity: 0.9;
-            flex-grow: 1; /* Ensures card heights align if in flex column */
-        }
-        
-        .ts-tech-uses-title {
-             font-size: 0.875rem; /* 14px */
-             font-weight: 600;
-             text-transform: uppercase;
-             letter-spacing: 0.5px;
-             margin-bottom: 12px;
-             opacity: 0.7;
-        }
-
-        .ts-tech-uses {
-            list-style: none;
-        }
-
-        .ts-tech-uses li {
-            font-size: 0.95rem; /* 15px */
-            margin-bottom: 10px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        /* Custom bullet point for the 3-point list */
-        .ts-tech-uses li::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 12px;
-            margin-top: 8px; /* Aligns with text */
-            flex-shrink: 0;
-        }
-        
-        /* Custom bullet color for DARK cards */
-        .ts-section-dark .ts-tech-uses li::before {
-            background-color: #ffffff;
-            opacity: 0.8;
-        }
-
-        /* Custom bullet color for LIGHT cards */
-        .ts-section-light .ts-tech-uses li::before {
-            background-color: #1c4587;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="ts-page-wrapper">
+    <header class="defcon-header">
+        <nav class="defcon-container">
+            <div class="defcon-logo">DEFCON</div>
+            <ul class="defcon-nav-links">
+                <li><a href="#defcon-hero">Home</a></li>
+                <li><a href="#defcon-products">Products</a></li>
+                <li><a href="#defcon-process">Process</a></li>
+                <li><a href="#defcon-pricing">Pricing</a></li>
+                <li><a href="#defcon-contact" class="defcon-btn defcon-btn-small">Get Quote</a></li>
+            </ul>
+            <div class="defcon-mobile-menu-icon" id="defcon-mobile-menu">☰</div>
+        </nav>
+    </header>
 
-        <!-- === HERO === -->
-        <header class="ts-hero">
-            <div class="ts-container">
-                <h1 class="ts-hero-title">Our Technology Ecosystem</h1>
-                <p class="ts-hero-subtitle">The advanced tools, platforms, and frameworks we leverage to build, secure, and scale your solutions from concept to enterprise.</p>
+    <section class="defcon-hero" id="defcon-hero">
+        <div class="defcon-hero-glow"></div>
+        <div class="defcon-container defcon-fade-in">
+            <h1>Intelligent Mobile Applications</h1>
+            <p class="defcon-subheadline">We don't just build apps. We engineer immersive, high-performance mobile experiences that define the future.</p>
+            <div class="defcon-hero-cta">
+                <a href="#defcon-contact" class="defcon-btn defcon-btn-primary">Get a Quote</a>
+                <a href="#defcon-products" class="defcon-btn defcon-btn-secondary">Explore Products</a>
             </div>
-        </header>
+        </div>
+        <a href="#defcon-products" class="defcon-scroll-down">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+        </a>
+    </section>
 
-        <main>
-
-            <!-- === SECTION 1: SOFTWARE ENGINEERING === -->
-            <section class="ts-section ts-section-light">
-                <div class="ts-container">
-                    <h2 class="ts-section-title">Software Engineering Arsenal</h2>
-                    <div class="ts-grid">
-
-                        <!-- Tech Card: React.js -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=React" alt="React.js Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">React.js & Next.js</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: As our primary frontend library for building highly interactive, high-performance, and scalable user interfaces for web applications.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Developing complex single-page applications (SPAs) and dashboards.</li>
-                                <li>Building server-side rendered (SSR) e-commerce sites with Next.js.</li>
-                                <li>Creating reusable component libraries for design system consistency.</li>
-                            </ul>
+    <section class="defcon-products" id="defcon-products">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title defcon-fade-in">Our Mobile Solutions</h2>
+            <p class="defcon-section-subtitle defcon-fade-in">A complete suite of services to bring your vision to life, from concept to launch.</p>
+            
+            <div class="defcon-horizontal-scroll-wrapper defcon-fade-in">
+                <button class="defcon-scroll-arrow defcon-scroll-prev" id="defcon-scroll-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>                      
+                </button>
+                
+                <div class="defcon-products-scroller" id="defcon-products-scroller">
+                    <div class="defcon-product-card">
+                        <h3>iOS Apps</h3>
+                        <p>Native applications built for performance and pixel-perfect design on the Apple ecosystem.</p>
+                        <ul>
+                            <li>Swift & SwiftUI</li>
+                            <li>App Store Deployment</li>
+                            <li>iPhone, iPad, & WatchOS</li>
+                        </ul>
+                        <div class="defcon-card-footer">
+                            <span>Packages from $15k</span>
+                            <a href="#defcon-pricing">View</a>
                         </div>
-                        
-                        <!-- Tech Card: Node.js -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Node" alt="Node.js Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Node.js</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: As our main backend runtime for building fast, scalable, and data-intensive API & microservice architectures.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <li>Constructing secure RESTful and GraphQL APIs for web and mobile apps.</li>
-                            <li>Building real-time applications like chat services or live dashboards.</li>
-                            <li>Creating serverless functions that scale automatically in the cloud.</li>
-                            </ul>
+                    </div>
+                    <div class="defcon-product-card">
+                        <h3>Android Apps</h3>
+                        <p>Scalable, secure, and feature-rich native apps that reach the world's largest mobile audience.</p>
+                        <ul>
+                            <li>Kotlin & Java</li>
+                            <li>Google Play Console</li>
+                            <li>Diverse Device Support</li>
+                        </ul>
+                        <div class="defcon-card-footer">
+                            <span>Packages from $12k</span>
+                            <a href="#defcon-pricing">View</a>
                         </div>
-                        
-                        <!-- Tech Card: Python (AI/ML) -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Py" alt="Python Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Python & TensorFlow</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: The core of our AI & ML engineering, used for data analysis, model training, and integrating predictive insights into applications.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                                <li>Developing custom machine learning models for predictive analytics.</li>
-                                <li>Implementing natural language processing (NLP) for chatbots.</li>
-                                <li>Automating data processing pipelines and business intelligence tasks.</li>
-                            </ul>
+                    </div>
+                    <div class="defcon-product-card">
+                        <h3>Cross-Platform</h3>
+                        <p>One codebase, two platforms. Save time and cost without compromising on quality or performance.</p>
+                        <ul>
+                            <li>React Native & Flutter</li>
+                            <li>Simultaneous Deployment</li>
+                            <li>Shared UI/UX Logic</li>
+                        </ul>
+                        <div class="defcon-card-footer">
+                            <span>Packages from $20k</span>
+                            <a href="#defcon-pricing">View</a>
                         </div>
-                        
-                        <!-- Tech Card: Solidity -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Web3" alt="Blockchain Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Solidity & Web3.js</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: For our Blockchain & Web3 services, we build and deploy secure, audited smart contracts on EVM-compatible chains.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                                <li>Writing smart contracts for decentralized finance (DeFi) platforms.</li>
-                                <li>Creating and managing NFT (ERC-721/1155) collections and marketplaces.</li>
-                                <li>Integrating decentralized applications (dApps) with user wallets.</li>
-                            </ul>
+                    </div>
+                    <div class="defcon-product-card">
+                        <h3>Enterprise Solutions</h3>
+                        <p>Complex internal tools, secure communication platforms, and data-driven logistics apps.</p>
+                        <ul>
+                            <li>Internal B2E Apps</li>
+                            <li>Advanced Security</li>
+                            <li>Backend Integration</li>
+                        </ul>
+                        <div class="defcon-card-footer">
+                            <span>Custom Quotes</span>
+                            <a href="#defcon-contact">Contact Us</a>
                         </div>
-
+                    </div>
+                    <div class="defcon-product-card">
+                        <h3>App Maintenance</h3>
+                        <p>Keep your application secure, optimized, and up-to-date with OS changes and new features.</p>
+                        <ul>
+                            <li>24/7 Monitoring</li>
+                            <li>Bug Fixes & Patching</li>
+                            <li>Feature Upgrades</li>
+                        </ul>
+                        <div class="defcon-card-footer">
+                            <span>Retainers from $2k/mo</span>
+                            <a href="#defcon-pricing">View</a>
+                        </div>
                     </div>
                 </div>
-            </section>
+                
+                <button class="defcon-scroll-arrow defcon-scroll-next" id="defcon-scroll-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>                        
+                </button>
+            </div>
+        </div>
+    </section>
 
-            <!-- === SECTION 2: IT INFRASTRUCTURE === -->
-            <section class="ts-section ts-section-dark">
-                <div class="ts-container">
-                    <h2 class="ts-section-title">IT Infrastructure Backbone</h2>
-                    <div class="ts-grid">
+    <section class="defcon-process" id="defcon-process">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title defcon-fade-in">Our Development Lifecycle</h2>
+            <p class="defcon-section-subtitle defcon-fade-in">A transparent, agile process focused on precision and results.</p>
+            
+            <div class="defcon-timeline">
+                <div class="defcon-timeline-step defcon-fade-in">
+                    <div class="defcon-timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 15.75-2.489-2.489m0 0L13.25 11m-1.414 1.414L10.5 13.25m2.489-2.489-4.95-4.95a1.125 1.125 0 0 0-1.591 0L5.625 10.5a1.125 1.125 0 0 0 0 1.591l4.95 4.95m0 0a1.125 1.125 0 0 0 1.591 0l5.625-5.625a1.125 1.125 0 0 0 0-1.591l-4.95-4.95" /></svg>
+                    </div>
+                    <h3>01. Discovery & Strategy</h3>
+                    <p>We analyze your market, define user personas, and create a comprehensive technical roadmap.</p>
+                </div>
+                
+                <div class="defcon-timeline-step defcon-fade-in" style="--defcon-delay: 200ms;">
+                    <div class="defcon-timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487c-1.087 0-2.13.425-2.92 1.215M16.862 4.487v4.963m0-4.963H12.618M16.862 4.487l-3.268 3.268M16.862 20.25a4.125 4.125 0 1 1-8.25 0 4.125 4.125 0 0 1 8.25 0Zm0 0H12.618m4.244 0-3.268-3.268" /></svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25l3-3m0 0l3-3m-3 3l-3-3m3 3l3 3M3 17.25l9-9l9 9" /></svg>
+                    </div>
+                    <h3>02. UI/UX Design</h3>
+                    <p>Our designers craft intuitive, high-fidelity wireframes and prototypes that prioritize user engagement.</p>
+                </div>
+                
+                <div class="defcon-timeline-step defcon-fade-in" style="--defcon-delay: 400ms;">
+                    <div class="defcon-timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25m11.142 0l4.179-2.25L17.571 12l-4.179-2.25m0 4.5l5.571 3 5.571-3M6.429 9.75L5.625 12l.804 2.25m11.142 0L18.375 12l-.804 2.25" /></svg>
+                    </div>
+                    <h3>03. Development & Testing</h3>
+                    <p>Agile development sprints combined with rigorous QA testing ensure a robust and bug-free product.</p>
+                </div>
+                
+                <div class="defcon-timeline-step defcon-fade-in" style="--defcon-delay: 600ms;">
+                    <div class="defcon-timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
+                    </div>
+                    <h3>04. Deployment & Maintenance</h3>
+                    <p>We handle the complete App Store & Play Store submission process and provide ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <!-- Tech Card: AWS -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=AWS" alt="AWS Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Amazon Web Services</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: Our primary cloud computing partner for deploying, managing, and scaling our clients' entire infrastructure securely and efficiently.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Migrating on-premise servers to the cloud (EC2, RDS, S3).</li>
-                                <li>Designing and managing highly available, multi-region networks (VPC).</li>
-                                <li>Implementing robust disaster recovery and data backup strategies.</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Tech Card: Cisco / Meraki -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=Cisco" alt="Cisco Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Cisco & Meraki</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: The gold standard for our Network Infrastructure services, allowing us to build and manage secure, high-speed corporate networks.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Deploying next-generation firewalls (NGFW) and security appliances.</li>
-                                <li>Setting up enterprise-grade Wi-Fi 6 networks for dense environments.</li>
-                                <li>Managing multi-site connectivity with cloud-controlled Meraki SD-WAN.</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Tech Card: VMware -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=VM" alt="VMware Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">VMware vSphere</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: A key component of our Data Center Management, enabling us to virtualize servers, reduce hardware costs, and improve resource efficiency.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Consolidating physical servers into a virtualized ESXi cluster.</li>
-                                <li>Managing and monitoring virtual machine performance and health.</li>
-                                <li>Creating private cloud environments for enhanced control and security.</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Tech Card: ConnectWise -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=Help" alt="Helpdesk Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Helpdesk & RMM Tools</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: The engine for our Managed IT Support & Helpdesk, allowing for proactive monitoring, rapid response, and detailed ticket tracking.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Providing remote support to end-users to resolve issues quickly.</li>
-                                <li>Proactively monitoring network and device health to prevent downtime.</li>
-                                <li>Managing software patches, updates, and IT asset inventory.</li>
-                            </ul>
-                        </div>
+    <section class="defcon-pricing" id="defcon-pricing">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title defcon-fade-in">Find Your Perfect Package</h2>
+            <p class="defcon-section-subtitle defcon-fade-in">Transparent pricing for every stage of business growth.</p>
+            
+            <div class="defcon-pricing-grid">
+                <div class="defcon-pricing-card defcon-fade-in">
+                    <div class="defcon-pricing-header">
+                        <h3>Starter</h3>
+                        <p>Ideal for MVPs and startups testing a new concept.</p>
+                        <div class="defcon-price"><span>$10,000</span> /one-off</div>
+                    </div>
+                    <ul class="defcon-pricing-features">
+                        <li>1 Platform (iOS or Android)</li>
+                        <li>Up to 5 Screens</li>
+                        <li>Basic UI/UX Design</li>
+                        <li>3 Months Support</li>
+                    </ul>
+                    <a href="#defcon-contact" class="defcon-btn defcon-btn-secondary">Get Started</a>
+                </div>
+                
+                <div class="defcon-pricing-card defcon-pricing-popular defcon-fade-in" style="--defcon-delay: 200ms;">
+                    <div class="defcon-popular-badge">Most Popular</div>
+                    <div class="defcon-pricing-header">
+                        <h3>Business</h3>
+                        <p>The complete solution for established businesses.</p>
+                        <div class="defcon-price"><span>$25,000</span> /one-off</div>
+                    </div>
+                    <ul class="defcon-pricing-features">
+                        <li>Cross-Platform (iOS & Android)</li>
+                        <li>Up to 15 Screens</li>
+                        <li>Custom UI/UX & Branding</li>
+                        <li>Basic Backend & API</li>
+                        <li>6 Months Support</li>
+                    </ul>
+                    <a href="#defcon-contact" class="defcon-btn defcon-btn-primary">Get Started</a>
+                </div>
+                
+                <div class="defcon-pricing-card defcon-fade-in" style="--defcon-delay: 400ms;">
+                    <div class="defcon-pricing-header">
+                        <h3>Enterprise</h3>
+                        <p>For complex applications with custom needs.</p>
+                        <div class="defcon-price"><span>Custom</span></div>
+                    </div>
+                    <ul class="defcon-pricing-features">
+                        <li>All Business Features</li>
+                        <li>Advanced Backend & Admin</li>
+                        <li>Scalable Cloud Infrastructure</li>
+                        <li>Dedicated Project Manager</li>
+                        <li>24/7 Priority Support</li>
+                    </ul>
+                    <a href="#defcon-contact" class="defcon-btn defcon-btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="defcon-getting-started" id="defcon-getting-started">
+        <div class="defcon-container defcon-fade-in">
+            <div class="defcon-start-content">
+                <h2 class="defcon-section-title">Ready to Start?</h2>
+                <p>Beginning your project is simple. We start with a free, no-obligation consultation to understand your goals. From there, we provide a detailed proposal and a clear development timeline. Our team is ready to guide you from idea to launch.</p>
+                <a href="#defcon-contact" class="defcon-btn defcon-btn-primary">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="defcon-tech-stack" id="defcon-tech-stack">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title defcon-fade-in">Our Technology Stack</h2>
+            <p class="defcon-section-subtitle defcon-fade-in">We use modern, proven technologies to build scalable and future-proof applications.</p>
+            <div class="defcon-tech-grid defcon-fade-in">
+                <div class="defcon-tech-item">Swift</div>
+                <div class="defcon-tech-item">Kotlin</div>
+                <div class="defcon-tech-item">React Native</div>
+                <div class="defcon-tech-item">Flutter</div>
+                <div class="defcon-tech-item">Firebase</div>
+                <div class="defcon-tech-item">AWS</div>
+                <div class="defcon-tech-item">Node.js</div>
+                <div class="defcon-tech-item">PostgreSQL</div>
+                <div class="defcon-tech-item">Docker</div>
+                <div class="defcon-tech-item">Figma</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="defcon-testimonials" id="defcon-testimonials">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title defcon-fade-in">Client Success Stories</h2>
+            <p class="defcon-section-subtitle defcon-fade-in">Don't just take our word for it. See what our clients have achieved.</p>
+            <div class="defcon-testimonial-grid">
+                <div class="defcon-testimonial-card defcon-fade-in">
+                    <p class="defcon-quote">"DEFCON transformed our operations. Their enterprise app automated 90% of our logistics, saving us thousands of hours. Truly world-class."</p>
+                    <div class="defcon-client-info">
+                        <span class="defcon-client-name">Sarah Jenks</span>
+                        <span class="defcon-client-title">COO, Global Logistics</span>
                     </div>
                 </div>
-            </section>
-
-            <!-- === SECTION 3: MARKETING & CREATIVE === -->
-            <section class="ts-section ts-section-light">
-                <div class="ts-container">
-                    <h2 class="ts-section-title">Marketing & Creative Toolkit</h2>
-                    <div class="ts-grid">
-
-                        <!-- Tech Card: Adobe Creative Cloud -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Ps" alt="Adobe Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Adobe Creative Cloud</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: The industry-standard suite that powers our Creative Studio for graphic design, multimedia production, and advertising campaigns.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Creating vector logos and brand identity packages in Illustrator.</li>
-                                <li>Editing and producing high-definition video content in Premiere Pro.</li>
-                                <li>Designing website/app mockups and UI/UX prototypes in Adobe XD/Figma.</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Tech Card: Google Marketing Platform -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=GA" alt="Google Analytics Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">Google Marketing Platform</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: Our central hub for digital marketing, allowing us to track campaign performance, analyze user behavior, and optimize for results.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Analyzing website traffic and conversion funnels with Google Analytics 4.</li>
-                                <li>Managing and optimizing pay-per-click (PPC) advertising campaigns.</li>
-                                <li>Using Google Tag Manager to deploy tracking pixels and scripts.</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Tech Card: WordPress / CMS -->
-                        <div class="ts-tech-card">
-                            <div class="ts-tech-header">
-                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=WP" alt="WordPress Logo" class="ts-tech-logo">
-                                <h3 class="ts-tech-name">WordPress & Headless CMS</h3>
-                            </div>
-                            <p class="ts-tech-description">
-                                How we use it: We build robust, easy-to-use content management systems (CMS) that empower our clients to manage their own digital content.
-                            </p>
-                            <h4 class="ts-tech-uses-title">What we use it for</h4>
-                            <ul class="ts-tech-uses">
-                                <li>Building custom, high-performance WordPress themes and plugins.</li>
-                                <li>Developing e-commerce stores using the WooCommerce platform.</li>
-                                <li>Using Headless CMS (like Strapi or Contentful) to feed content to apps.</li>
-                            </ul>
-                        </div>
-
+                <div class="defcon-testimonial-card defcon-fade-in" style="--defcon-delay: 200ms;">
+                    <p class="defcon-quote">"The cross-platform app they built reached 1 million downloads in 6 months. The performance is flawless, and the UI is beautiful."</p>
+                    <div class="defcon-client-info">
+                        <span class="defcon-client-name">Mark Chen</span>
+                        <span class="defcon-client-title">Founder, FinTech Startup</span>
                     </div>
                 </div>
-            </section>
+                <div class="defcon-testimonial-card defcon-fade-in" style="--defcon-delay: 400ms;">
+                    <p class="defcon-quote">"From concept to final deployment, the process was seamless. Their team is professional, responsive, and incredibly talented."</p>
+                    <div class="defcon-client-info">
+                        <span class="defcon-client-name">Emily Rodriguez</span>
+                        <span class="defcon-client-title">CEO, HealthTrack</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        </main>
+    <section class="defcon-cta" id="defcon-contact">
+        <div class="defcon-container defcon-fade-in">
+            <h2>Have an Idea? Let's Build It.</h2>
+            <p>Turn your vision into a world-class mobile application. Contact us today to start your journey.</p>
+            <a href="#" class="defcon-btn defcon-btn-light">Build My App</a>
+        </div>
+    </section>
 
-    </div><!-- /ts-page-wrapper -->
+    <footer class="defcon-footer">
+        <div class="defcon-container">
+            <p>&copy; 2025 DEFCON Software Development. All rights reserved.</p>
+            <div class="defcon-footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
+
+<style>
+    /*
+ * DEFCON Mobile Applications Page Stylesheet
+ * -----------------------------------------
+ * Font: Inter
+ * Primary Accent: #1199FA
+ * Background Tones: #010119 (Primary), #0A0A2A (Card), #fff, #f4f4f4
+ */
+
+/* === 0. CSS Variables & Global Reset === */
+:root {
+    --defcon-primary: #1199FA;
+    --defcon-bg-dark: #010119;
+    --defcon-bg-card: #0A0A2A;
+    --defcon-bg-light: #f4f4f4;
+    --defcon-text-light: #e5e5e5;
+    --defcon-text-dark: #010119;
+    --defcon-text-muted: #a0a0b0;
+    --defcon-font-family: 'Inter', sans-serif;
+    --defcon-glow-primary: 0 0 20px 0 rgba(17, 153, 250, 0.4);
+    --defcon-glow-primary-hover: 0 0 30px 5px rgba(17, 153, 250, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--defcon-font-family);
+    background-color: var(--defcon-bg-dark);
+    color: var(--defcon-text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* === 1. Utility & Reusable Classes === */
+.defcon-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.defcon-btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.defcon-btn-primary {
+    background-color: var(--defcon-primary);
+    color: #fff;
+    box-shadow: var(--defcon-glow-primary);
+}
+.defcon-btn-primary:hover {
+    background-color: #0a84e0;
+    box-shadow: var(--defcon-glow-primary-hover);
+    transform: translateY(-3px);
+}
+
+.defcon-btn-secondary {
+    background-color: transparent;
+    color: var(--defcon-primary);
+    border: 2px solid var(--defcon-primary);
+}
+.defcon-btn-secondary:hover {
+    background-color: var(--defcon-primary);
+    color: #fff;
+    box-shadow: var(--defcon-glow-primary);
+    transform: translateY(-3px);
+}
+
+.defcon-btn-light {
+    background-color: #fff;
+    color: var(--defcon-bg-dark);
+    font-weight: 700;
+}
+.defcon-btn-light:hover {
+    background-color: var(--defcon-text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.defcon-btn-small {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+}
+
+.defcon-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.defcon-section-subtitle {
+    font-size: 1.1rem;
+    color: var(--defcon-text-muted);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Animation: Fade-in on scroll */
+.defcon-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: var(--defcon-delay, 0s);
+}
+.defcon-fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === 2. Header & Navigation === */
+.defcon-header {
+    background-color: rgba(1, 1, 25, 0.8); /* #010119 with alpha */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(17, 153, 250, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.defcon-header .defcon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.defcon-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.defcon-nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.defcon-nav-links li a {
+    color: var(--defcon-text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.defcon-nav-links li a:hover,
+.defcon-nav-links li a.active {
+    color: var(--defcon-primary);
+}
+
+.defcon-mobile-menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* === 3. Section 1: Hero === */
+.defcon-hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 70px; /* Offset for fixed header */
+    overflow: hidden;
+}
+
+.defcon-hero-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(17, 153, 250, 0.15) 0%, rgba(1, 1, 25, 0) 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.defcon-hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.defcon-subheadline {
+    font-size: 1.25rem;
+    color: var(--defcon-text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.defcon-hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.defcon-scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--defcon-primary);
+    animation: defcon-bounce 2s infinite;
+}
+.defcon-scroll-down svg {
+    width: 30px;
+    height: 30px;
+}
+@keyframes defcon-bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -10px); }
+    60% { transform: translate(-50%, -5px); }
+}
+
+/* === 4. Section 2: Our Products === */
+.defcon-products {
+    padding: 6rem 0;
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly different dark */
+}
+
+.defcon-horizontal-scroll-wrapper {
+    position: relative;
+    margin-top: 3rem;
+}
+
+.defcon-products-scroller {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1.5rem 0.5rem; /* Padding for glow effect */
+    scroll-behavior: smooth;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.defcon-products-scroller::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.defcon-product-card {
+    flex: 0 0 320px; /* Don't grow, don't shrink, base width 320px */
+    background: var(--defcon-bg-card);
+    border: 1px solid rgba(17, 153, 250, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+.defcon-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--defcon-glow-primary);
+    border-color: var(--defcon-primary);
+}
+
+.defcon-product-card h3 {
+    font-size: 1.5rem;
+    color: var(--defcon-primary);
+    margin-bottom: 1rem;
+}
+.defcon-product-card p {
+    color: var(--defcon-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    min-height: 60px;
+}
+.defcon-product-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+.defcon-product-card ul li {
+    color: var(--defcon-text-light);
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.defcon-product-card ul li::before {
+    content: '✓';
+    color: var(--defcon-primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.defcon-card-footer {
+    border-top: 1px solid rgba(17, 153, 250, 0.2);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--defcon-text-muted);
+}
+.defcon-card-footer a {
+    color: var(--defcon-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.defcon-scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(17, 153, 250, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.defcon-scroll-arrow:hover {
+    background: var(--defcon-primary);
+    box-shadow: var(--defcon-glow-primary);
+}
+.defcon-scroll-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+.defcon-scroll-prev {
+    left: -20px;
+}
+.defcon-scroll-next {
+    right: -20px;
+}
+
+/* === 5. Section 3: How It Works === */
+.defcon-process {
+    padding: 6rem 0;
+    background-color: var(--defcon-bg-dark);
+}
+
+.defcon-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    position: relative;
+}
+
+/* Timeline connector line */
+.defcon-timeline::before {
+    content: '';
+    position: absolute;
+    top: 35px; /* Aligns with icon center */
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--defcon-primary), rgba(17, 153, 250, 0.1));
+    z-index: 1;
+}
+
+.defcon-timeline-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.defcon-timeline-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--defcon-bg-card);
+    border: 2px solid var(--defcon-primary);
+    box-shadow: var(--defcon-glow-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+}
+.defcon-timeline-icon svg {
+    width: 30px;
+    height: 30px;
+    color: var(--defcon-primary);
+}
+
+.defcon-timeline-step h3 {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.defcon-timeline-step p {
+    color: var(--defcon-text-muted);
+    font-size: 0.95rem;
+}
+
+/* === 6. Section 4: Pricing === */
+.defcon-pricing {
+    padding: 6rem 0;
+    background-color: var(--defcon-bg-card);
+}
+
+.defcon-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.defcon-pricing-card {
+    background: var(--defcon-bg-dark);
+    border: 1px solid rgba(17, 153, 250, 0.2);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.defcon-pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--defcon-glow-primary-hover);
+    border-color: var(--defcon-primary);
+}
+
+/* Gradient border effect */
+.defcon-pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--defcon-primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.defcon-pricing-card:hover::before {
+    opacity: 1;
+}
+
+.defcon-pricing-header {
+    margin-bottom: 2rem;
+}
+.defcon-pricing-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--defcon-primary);
+    margin-bottom: 0.5rem;
+}
+.defcon-pricing-header p {
+    color: var(--defcon-text-muted);
+    font-size: 0.9rem;
+    min-height: 40px;
+}
+.defcon-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 1.5rem 0;
+}
+.defcon-price span {
+    font-size: 3rem;
+}
+.defcon-price /one-off {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--defcon-text-muted);
+}
+
+.defcon-pricing-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    min-height: 150px;
+}
+.defcon-pricing-features li {
+    color: var(--defcon-text-light);
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+.defcon-pricing-features li::before {
+    content: '•';
+    color: var(--defcon-primary);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Popular Badge */
+.defcon-pricing-popular {
+    border-color: var(--defcon-primary);
+    transform: scale(1.05);
+    box-shadow: var(--defcon-glow-primary);
+}
+.defcon-popular-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--defcon-primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* === 7. Section 5: Getting Started === */
+.defcon-getting-started {
+    padding: 6rem 0;
+    background: linear-gradient(rgba(1,1,25,0) 0%, rgba(10,10,42,1) 100%), var(--defcon-bg-dark);
+}
+.defcon-start-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+.defcon-start-content p {
+    font-size: 1.1rem;
+    color: var(--defcon-text-muted);
+    margin-bottom: 2.5rem;
+}
+
+/* === 8. Section 6: Tech Stack === */
+.defcon-tech-stack {
+    padding: 6rem 0;
+    background-color: var(--defcon-bg-card);
+}
+.defcon-tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+.defcon-tech-item {
+    background: var(--defcon-bg-dark);
+    border: 1px solid rgba(17, 153, 250, 0.2);
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    color: var(--defcon-text-light);
+    transition: all 0.3s ease;
+}
+.defcon-tech-item:hover {
+    color: var(--defcon-primary);
+    border-color: var(--defcon-primary);
+    box-shadow: var(--defcon-glow-primary);
+    transform: translateY(-5px);
+}
+
+/* === 9. Section 7: Testimonials === */
+.defcon-testimonials {
+    padding: 6rem 0;
+    background-color: var(--defcon-bg-dark);
+}
+.defcon-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+}
+.defcon-testimonial-card {
+    background: var(--defcon-bg-card);
+    border: 1px solid rgba(17, 153, 250, 0.2);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.defcon-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--defcon-glow-primary);
+    border-color: var(--defcon-primary);
+}
+/* Quotation mark */
+.defcon-testimonial-card::before {
+    content: '“';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 6rem;
+    color: var(--defcon-primary);
+    opacity: 0.1;
+    line-height: 1;
+}
+
+.defcon-quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--defcon-text-light);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+.defcon-client-info {
+    border-top: 1px solid rgba(17, 153, 250, 0.2);
+    padding-top: 1.5rem;
+}
+.defcon-client-name {
+    display: block;
+    font-weight: 600;
+    color: #fff;
+}
+.defcon-client-title {
+    font-size: 0.9rem;
+    color: var(--defcon-text-muted);
+}
+
+/* === 10. Section 8: Call to Action === */
+.defcon-cta {
+    padding: 6rem 2rem;
+    background: linear-gradient(90deg, var(--defcon-primary) 0%, #0a4e8c 100%);
+    text-align: center;
+    color: #fff;
+}
+.defcon-cta h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.defcon-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* === 11. Footer === */
+.defcon-footer {
+    padding: 3rem 0;
+    background-color: #000;
+    border-top: 1px solid rgba(17, 153, 250, 0.2);
+}
+.defcon-footer .defcon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--defcon-text-muted);
+    font-size: 0.9rem;
+}
+.defcon-footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.defcon-footer-links a {
+    color: var(--defcon-text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.defcon-footer-links a:hover {
+    color: var(--defcon-primary);
+}
+
+/* === 12. Responsive Design === */
+
+/* Tablet: 1024px */
+@media (max-width: 1024px) {
+    .defcon-timeline {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .defcon-timeline::before {
+        display: none; /* Hide horizontal line on 2x2 grid */
+    }
+    .defcon-pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .defcon-pricing-popular {
+        transform: scale(1); /* Don't scale on stacked view */
+    }
+    .defcon-testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Large: 768px */
+@media (max-width: 768px) {
+    .defcon-section-title {
+        font-size: 2rem;
+    }
+    .defcon-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    /* Mobile Nav */
+    .defcon-nav-links {
+        display: none; /* Hide for mobile */
+    }
+    .defcon-mobile-menu-icon {
+        display: block;
+    }
+    /* TODO: Add JS to toggle a full-screen mobile menu */
+
+    .defcon-timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .defcon-scroll-arrow {
+        /* Hide arrows on mobile, rely on touch scroll */
+        display: none;
+    }
+    .defcon-product-card {
+        flex: 0 0 280px; /* Slightly smaller cards for mobile */
+    }
+
+    .defcon-footer .defcon-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Mobile Small: 480px */
+@media (max-width: 480px) {
+    .defcon-hero h1 {
+        font-size: 2.2rem;
+    }
+    .defcon-subheadline {
+        font-size: 1rem;
+    }
+    .defcon-hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    .defcon-btn {
+        width: 90%;
+        text-align: center;
+    }
+    .defcon-pricing-grid {
+        gap: 1.5rem;
+    }
+    .defcon-pricing-card {
+        padding: 2rem 1.5rem;
+    }
+}
+</style>
+
+<script>
+    /*
+ * DEFCON Mobile Applications Page JavaScript
+ * -----------------------------------------
+ * 1. Horizontal Product Scroller
+ * 2. Intersection Observer (Fade-in on scroll)
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // === 1. Horizontal Product Scroller ===
+    const scroller = document.getElementById('defcon-products-scroller');
+    const prevBtn = document.getElementById('defcon-scroll-prev');
+    const nextBtn = document.getElementById('defcon-scroll-next');
+
+    if (scroller && prevBtn && nextBtn) {
+        // Calculate scroll amount (e.g., one card width + gap)
+        const scrollAmount = 320 + 24; // 320px card + 24px (1.5rem) gap
+
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+            scroller.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Previous button click
+        prevBtn.addEventListener('click', () => {
+            scroller.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Note: Active card highlighting on scroll can be added here
+        // by listening to the 'scroll' event on 'scroller' and
+        // calculating the card closest to the center.
+    }
+
+
+    // === 2. Intersection Observer (Fade-in on scroll) ===
+    const fadeElements = document.querySelectorAll('.defcon-fade-in');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+    } else {
+        // Fallback for older browsers
+        // Just show all elements immediately
+        fadeElements.forEach(el => {
+            el.classList.add('is-visible');
+        });
+    }
+
+    // Note: Mobile menu functionality would be added here
+    // const mobileMenuIcon = document.getElementById('defcon-mobile-menu');
+    // const navLinks = document.querySelector('.defcon-nav-links');
+    // ... add click listener to toggle a 'nav-active' class.
+
+});
+</script>

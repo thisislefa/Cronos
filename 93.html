@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology Stack</title>
+    
+    <!-- Using the 'Inter' font for a premium feel -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    </style>
+
+    <!-- 
+      CUSTOM NAMESPACED STYLESHEET
+      All classes are prefixed with 'ts-', 'it-', or 'nav-' to prevent conflicts.
+      No Tailwind CSS is used here.
+    -->
+    <style>
+        /* --- 1. Basic Reset & Page Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff; /* Default light background */
+            color: #1a202c; /* Default text - will adjust for dark sections */
+            line-height: 1.6;
+        }
+
+        .ts-page-wrapper {
+            width: 100%;
+            overflow: hidden; /* Prevents horizontal scroll */
+        }
+
+        .ts-container {
+            width: 100%;
+            max-width: 1240px; /* Standard container width */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+        }
+
+        /* --- 2. Hero Section --- */
+        .ts-hero {
+            background-image: url(https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170);
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(30, 143, 255, 0.089);
+            color: #ffffff;
+            padding: 100px 0;
+            text-align: left;
+            margin: 2rem;
+            border-radius: 40px;
+        }
+
+        .ts-hero-title {
+            font-size: 3rem; /* 48px */
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .ts-hero-subtitle {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 700;
+            color: #e2e8f0;
+            width: 700px;
+           
+        }
+
+        /* --- 3. Section Styling (Dark & Light) --- */
+        .ts-section {
+            padding: 80px 0;
+            /* Scroll padding for sticky navigation */
+            scroll-margin-top: 80px; 
+        }
+
+        .ts-section-dark {
+            background: #010119; /* Dark Blue */
+            color: #ffffff;
+        }
+
+        .ts-section-light {
+            background-color: #f4f4f4; /* White */
+            color: #000;
+        }
+        
+        /* Ensures contrast on dark section titles */
+        .ts-section-dark .ts-section-title {
+            color: #ffffff;
+        }
+        
+        /* Ensures contrast on light section titles */
+        .ts-section-light .ts-section-title {
+            color: #010119;
+        }
+
+        .ts-section-title {
+            font-size: 3rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 48px; /* 3rem */
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        /* --- 4. Technology Grid --- */
+        .ts-grid {
+            display: grid;
+            /* Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop */
+            grid-template-columns: repeat(1, 1fr);
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .ts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .ts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* --- 5. Technology Card --- */
+        .ts-tech-card {
+            border-radius: 1px; /* Your 1px border rule */
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Ensure cards in a grid have equal height */
+        }
+
+        /* Card variant for DARK sections */
+        .ts-section-dark .ts-tech-card {
+            background-color: #001f3f; /* Slightly lighter blue */
+            border: 1px solid #002e5b;
+            color: #ffffff;
+        }
+
+        /* Card variant for LIGHT sections */
+        .ts-section-light .ts-tech-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            color: #000;
+        }
+        
+        /* Premium hover effect */
+        .ts-tech-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .ts-section-dark .ts-tech-card:hover {
+             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .ts-tech-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .ts-tech-logo {
+            width: 48px;
+            height: 48px;
+            margin-right: 16px;
+            object-fit: contain;
+            /* Adds a subtle drop shadow to logos, looks great on light cards */
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+        .ts-section-dark .ts-tech-logo {
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); /* Stronger shadow for dark */
+        }
+
+        .ts-tech-name {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+        }
+        
+        .ts-tech-description {
+            font-size: 1rem; /* 16px */
+            margin-bottom: 24px;
+            opacity: 0.9;
+            flex-grow: 1; /* Ensures card heights align if in flex column */
+        }
+        
+        .ts-tech-uses-title {
+             font-size: 0.875rem; /* 14px */
+             font-weight: 600;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+             margin-bottom: 12px;
+             opacity: 0.7;
+        }
+
+        .ts-tech-uses {
+            list-style: none;
+        }
+
+        .ts-tech-uses li {
+            font-size: 0.95rem; /* 15px */
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* Custom bullet point for the 3-point list */
+        .ts-tech-uses li::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-top: 8px; /* Aligns with text */
+            flex-shrink: 0;
+        }
+        
+        /* Custom bullet color for DARK cards */
+        .ts-section-dark .ts-tech-uses li::before {
+            background-color: #0091fa; /* Bright blue bullet */
+            opacity: 1;
+        }
+
+        /* Custom bullet color for LIGHT cards */
+        .ts-section-light .ts-tech-uses li::before {
+            background-color: #010119; /* Dark blue bullet */
+        }
+
+        /* --- IT Section Specific Styles --- */
+        .it-section-bg {
+            background-color: #07091d;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(39, 111, 255, 0.381) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 143, 255, 0.451) 0%, transparent 60%);
+            color: #ffffff;
+            padding: 10px 0 80px 0;
+        }
+
+        .it-header {
+            text-align: left;
+            margin-bottom: 10px;
+            margin-top: 6rem;
+        }
+
+        .it-title {
+            font-size: 2.8rem; /* 45px */
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .it-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .it-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .it-card {
+            background-color: #001b3c; /* Slightly lighter blue */
+            border-radius: 25px;
+            padding: 30px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .it-card-icon {
+            color: #0091fa; /* Bright blue */
+            margin-bottom: 20px;
+            width: 60px;
+            height: 60px;
+        }
+        .it-card-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .it-card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .it-card-description {
+            font-size: 1rem;
+            color: #c1c1c1;
+            line-height: 1.5;
+        }
+        
+        .it-disclaimer {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-top: 40px;
+            text-align: left;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            line-height: 1.4;
+            backface-visibility: visible;
+        }
+
+        
+        /* --- Tech Stack Navigation (STICKY) --- */
+        .nav-tech-stack {
+            position: sticky; /* Make the navigation sticky */
+            top: 0; /* Stick it to the top of the viewport */
+            z-index: 1000;
+            background-color: #010119; /* Dark blue background */
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            border: 1px solid #e2e8f0; /* MODIFIED: Was white */
+            width: fit-content;
+            margin: 0 auto;
+            padding: 10px 5px;
+            border-radius: 50px;
+            background-color: #ffffff; /* ADDED: To make text visible */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* ADDED: For depth */
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            
+            color: #010119; /* Dark blue text (now visible on white) */
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 15px;
+            border-radius: 50px;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid transparent; /* MODIFIED: Was white, now transparent for no jump */
+            width: fit-content;
+            position: relative;
+        }
+
+        .nav-item a:hover,
+        .nav-item a.active {
+            background-color: #0091fa; /* Bright blue background */
+            color: #ffffff;
+            border-color: transparent; /* Ensure border is gone on hover */
+        }
+
+        /* --- Random Section (Innovation Hub) --- */
+        .random-section {
+            /* MODIFIED: Changed to blue radial gradient */
+            background-image: radial-gradient(circle at 50% 50%, #001f3f, #010119 70%);
+            padding: 80px 0;
+            color: #ffffff; /* MODIFIED: Text color changed to white */
+            border-top: 1px solid #002e5b; /* MODIFIED: Darker border */
+        }
+
+        .random-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .random-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .random-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff; /* MODIFIED: Was #010119 */
+        }
+
+        .random-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: #e2e8f0; /* MODIFIED: Was opacity: 0.9 */
+        }
+
+        .random-feature-list {
+            list-style: none;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+        }
+        @media (min-width: 768px) {
+             .random-feature-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .random-feature-list li {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff; /* MODIFIED: Was #010119 */
+        }
+
+        .random-feature-list li svg {
+            margin-right: 12px;
+            color: #0091fa; /* Bright blue checkmark */
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .random-image {
+            text-align: center;
+        }
+
+        .random-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ts-page-wrapper">
+
+        <!-- === HERO === -->
+        <header class="ts-hero">
+            <div class="ts-container">
+                <h1 class="ts-hero-title">Our Technology Ecosystem</h1>
+                <p class="ts-hero-subtitle">The advanced tools, platforms, and frameworks we leverage to build, secure, and scale your solutions from concept to enterprise.</p>
+            </div>
+        </header>
+
+        <!-- === IT PARTNER SECTION (MODIFIED to Tech Stack Philosophy) === -->
+        <section class="it-section-bg">
+            <div class="ts-container">
+                <div class="it-header">
+                    <!-- MODIFIED: Title changed -->
+                    <h2 class="it-title">Our Core Technology Philosophy</h2>
+                </div>
+                <div class="it-grid">
+                    
+                    <div class="it-card">
+                        <div class="it-card-icon">
+                            <!-- Shield/Lock Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 12 12"><path fill="#0091fa" d="M10.282 7.4a4.5 4.5 0 0 1-8.666-.376l.851-.168L.847 5.18l-.848 2.167l.897-.176a5.25 5.25 0 0 0 10.125.461zm.836-2.54A5.25 5.25 0 0 0 .993 4.4l.713.232a4.5 4.5 0 0 1 8.666.375l-.851.169l1.62 1.672l.858-2.164z"/><path fill="#0091fa" fill-rule="evenodd" d="m9.048 3.977l-.244 1.952a3.75 3.75 0 0 1-1.84 2.779L6 9.267l-.964-.56a3.75 3.75 0 0 1-1.84-2.778l-.244-1.952l.344-.262l.454.597l.19 1.524a3 3 0 0 0 1.472 2.223L6 8.4l.588-.341A3 3 0 0 0 8.06 5.836l.19-1.524l.454-.597zm-.798.335S7.313 3.6 6 3.6s-2.25.712-2.25.712l-.454-.597h.001v-.001l.003-.002l.005-.004l.015-.01a2.48 2.48 0 0 1 .204-.135c.132-.082.319-.187.553-.291C4.54 3.064 5.21 2.85 6 2.85s1.459.214 1.923.422a4.779 4.779 0 0 1 .71.393l.047.033l.015.01l.005.004l.002.002l.002.001z" clip-rule="evenodd"/></svg>
+                        </div>
+                        <!-- MODIFIED: Content updated -->
+                        <h3 class="it-card-title">Scalable & Performant</h3>
+                        <p class="it-card-description">
+                            Our stack is built on technologies like AWS, Next.js, and Node.js, chosen for their proven ability to scale from a prototype to millions of users.
+                        </p>
+                    </div>
+
+                    
+                    <div class="it-card">
+                        <div class="it-card-icon">
+                            <!-- Secure Lock Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><circle cx="21.5" cy="7.5" r="1.5" fill="#0091fa"/><path fill="#0091fa" d="M14.414 20H9v-5.414l6.03-6.03A5.352 5.352 0 0 1 15 8a6 6 0 1 1 6 6a5.358 5.358 0 0 1-.556-.03zM11 18h2.586l6.17-6.17l.518.095A3.935 3.935 0 0 0 21 12a4.05 4.05 0 1 0-3.925-3.273l.095.517l-6.17 6.17zm17 2h-9v2h9v6H4v-6h2v-2H4a2.002 2.002 0 0 0-2 2v6a2.002 2.002 0 0 0 2 2h24a2.002 2.002 0 0 0 2-2v-6a2.002 2.002 0 0 0-2-2z"/><circle cx="7" cy="25" r="1" fill="#0091fa"/></svg>
+                        </div>
+                        <!-- MODIFIED: Content updated -->
+                        <h3 class="it-card-title">Secure by Design</h3>
+                        <p class="it-card-description">
+                           We integrate security at every layer, from network infrastructure (Cisco) to application code (Python, Node.js) following zero-trust principles.
+                        </p>
+                    </div>
+
+                    
+                    <div class="it-card">
+                        <div class="it-card-icon">
+                            <!-- Lightning/Efficiency Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#0091fa" d="M12 18.5c0 .5.07 1 .18 1.5H6.5c-1.5 0-2.81-.5-3.89-1.57C1.54 17.38 1 16.09 1 14.58c0-1.3.39-2.46 1.17-3.48S4 9.43 5.25 9.15c.42-1.53 1.25-2.77 2.5-3.72S10.42 4 12 4c1.95 0 3.6.68 4.96 2.04C18.32 7.4 19 9.05 19 11c1.15.13 2.1.63 2.86 1.5c.24.26.43.55.6.86A6.37 6.37 0 0 0 18.5 12c-.5 0-1 .07-1.5.18V11c0-1.38-.5-2.56-1.46-3.54C14.56 6.5 13.38 6 12 6s-2.56.5-3.54 1.46C7.5 8.44 7 9.62 7 11h-.5c-.97 0-1.79.34-2.47 1.03c-.69.68-1.03 1.5-1.03 2.47s.34 1.79 1.03 2.5c.68.66 1.5 1 2.47 1h5.53c-.03.17-.03.33-.03.5m6-4c-2.21 0-4 1.79-4 4s1.79 4 4 4c1.68 0 3.12-1.03 3.71-2.5H20a2.5 2.5 0 1 1-.23-3.27L18 18.5h4v-4l-1.17 1.17A3.99 3.99 0 0 0 18 14.5Z"/></svg>
+                        </div>
+                        <!-- MODIFIED: Content updated -->
+                        <h3 class="it-card-title">Future-Ready & Extensible</h3>
+                        <p class="it-card-description">
+                            We embrace modern standards, including AI/ML (TensorFlow) and Web3 (Solidity), ensuring your platform is adaptable for future innovation.
+                        </p>
+                    </div>
+                </div>
+                <!-- MODIFIED: Removed disclaimer div -->
+            </div>
+        </section>
+
+        <!-- === TECH STACK NAVIGATION (STICKY) === -->
+        <nav class="nav-tech-stack">
+            <div class="ts-container">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#software-engineering">Software Engineering</a></li>
+                    <li class="nav-item"><a href="#it-infrastructure">IT Infrastructure</a></li>
+                    <li class="nav-item"><a href="#marketing-creative">Marketing & Creative</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+
+            <!-- === SECTION 1: SOFTWARE ENGINEERING === -->
+            <!-- MODIFIED: This section already had ts-section-light, which is white. No change needed. -->
+            <section id="software-engineering" class="ts-section ts-section-light">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">Software Engineering Arsenal</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: React.js -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=React" alt="React.js Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">React.js & Next.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: As our primary frontend library for building highly interactive, high-performance, and scalable user interfaces for web applications.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Developing complex single-page applications (SPAs) and dashboards.</li>
+                                <li>Building server-side rendered (SSR) e-commerce sites with Next.js.</li>
+                                <li>Creating reusable component libraries for design system consistency.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Node.js -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Node" alt="Node.js Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Node.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: As our main backend runtime for building fast, scalable, and data-intensive API & microservice architectures.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                                <li>Constructing secure RESTful and GraphQL APIs for web and mobile apps.</li>
+                                <li>Building real-time applications like chat services or live dashboards.</li>
+                                <li>Creating serverless functions that scale automatically in the cloud.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Python (AI/ML) -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Py" alt="Python Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Python & TensorFlow</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The core of our AI & ML engineering, used for data analysis, model training, and integrating predictive insights into applications.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                                <li>Developing custom machine learning models for predictive analytics.</li>
+                                <li>Implementing natural language processing (NLP) for chatbots.</li>
+                                <li>Automating data processing pipelines and business intelligence tasks.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Solidity -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Web3" alt="Blockchain Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Solidity & Web3.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: For our Blockchain & Web3 services, we build and deploy secure, audited smart contracts on EVM-compatible chains.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                                <li>Writing smart contracts for decentralized finance (DeFi) platforms.</li>
+                                <li>Creating and managing NFT (ERC-721/1155) collections and marketplaces.</li>
+                                <li>Integrating decentralized applications (dApps) with user wallets.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+            <!-- === SECTION 2: IT INFRASTRUCTURE === -->
+            <!-- MODIFIED: Changed class from ts-section-dark to ts-section-light for white background -->
+            <section id="it-infrastructure" class="ts-section ts-section-light">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">IT Infrastructure Backbone</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: AWS -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <!-- MODIFIED: Placeholder for light background -->
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=AWS" alt="AWS Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Amazon Web Services</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: Our primary cloud computing partner for deploying, managing, and scaling our clients' entire infrastructure securely and efficiently.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Migrating on-premise servers to the cloud (EC2, RDS, S3).</li>
+                                <li>Designing and managing highly available, multi-region networks (VPC).</li>
+                                <li>Implementing robust disaster recovery and data backup strategies.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Cisco / Meraki -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <!-- MODIFIED: Placeholder for light background -->
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Cisco" alt="Cisco Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Cisco & Meraki</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The gold standard for our Network Infrastructure services, allowing us to build and manage secure, high-speed corporate networks.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Deploying next-generation firewalls (NGFW) and security appliances.</li>
+                                <li>Setting up enterprise-grade Wi-Fi 6 networks for dense environments.</li>
+                                <li>Managing multi-site connectivity with cloud-controlled Meraki SD-WAN.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: VMware -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <!-- MODIFIED: Placeholder for light background -->
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=VM" alt="VMware Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">VMware vSphere</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: A key component of our Data Center Management, enabling us to virtualize servers, reduce hardware costs, and improve resource efficiency.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Consolidating physical servers into a virtualized ESXi cluster.</li>
+                                <li>Managing and monitoring virtual machine performance and health.</li>
+                                <li>Creating private cloud environments for enhanced control and security.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: ConnectWise -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <!-- MODIFIED: Placeholder for light background -->
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Help" alt="Helpdesk Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Helpdesk & RMM Tools</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The engine for our Managed IT Support & Helpdesk, allowing for proactive monitoring, rapid response, and detailed ticket tracking.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Providing remote support to end-users to resolve issues quickly.</li>
+                                <li>Proactively monitoring network and device health to prevent downtime.</li>
+                                <li>Managing software patches, updates, and IT asset inventory.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- === SECTION 3: MARKETING & CREATIVE === -->
+            <!-- MODIFIED: This section already had ts-section-light, which is white. No change needed. -->
+            <section id="marketing-creative" class="ts-section ts-section-light">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">Marketing & Creative Toolkit</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: Adobe Creative Cloud -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=Ps" alt="Adobe Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Adobe Creative Cloud</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The industry-standard suite that powers our Creative Studio for graphic design, multimedia production, and advertising campaigns.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Creating vector logos and brand identity packages in Illustrator.</li>
+                                <li>Editing and producing high-definition video content in Premiere Pro.</li>
+                                <li>Designing website/app mockups and UI/UX prototypes in Adobe XD/Figma.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Google Marketing Platform -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=GA" alt="Google Analytics Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Google Marketing Platform</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: Our central hub for digital marketing, allowing us to track campaign performance, analyze user behavior, and optimize for results.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Analyzing website traffic and conversion funnels with Google Analytics 4.</li>
+                                <li>Managing and optimizing pay-per-click (PPC) advertising campaigns.</li>
+                                <li>Using Google Tag Manager to deploy tracking pixels and scripts.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: WordPress / CMS -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/010119?text=WP" alt="WordPress Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">WordPress & Headless CMS</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: We build robust, easy-to-use content management systems (CMS) that empower our clients to manage their own digital content.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Building custom, high-performance WordPress themes and plugins.</li>
+                                <li>Developing e-commerce stores using the WooCommerce platform.</li>
+                                <li>Using Headless CMS (like Strapi or Contentful) to feed content to apps.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- === NEW RANDOM SECTION: INNOVATION HUB === -->
+            <!-- MODIFIED: Background changed in CSS -->
+            <section class="random-section">
+                <div class="ts-container">
+                    <div class="random-grid">
+                        <div class="random-content">
+                            <h2>The Innovation Hub: Driving Tomorrow's Solutions</h2>
+                            <p>
+                                Beyond our core services, we continuously explore emerging technologies and foster a culture of innovation. Our dedicated R&D team ensures we're always at the forefront, ready to integrate the next big advancement into your projects.
+                            </p>
+                            <p>
+                                We're not just users of technology; we're pioneers. This commitment translates into forward-thinking solutions that give you a competitive edge.
+                            </p>
+                            <ul class="random-feature-list">
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Advanced R&D Initiatives
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Future-Proofing Your Business
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Strategic Tech Integration
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Expert Advisory
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="random-image">
+                            <!-- Placeholder image for visual break and interest -->
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Innovation and Future Technology" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+
+    </div><!-- /ts-page-wrapper -->
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-list a');
+            const navBar = document.querySelector('.nav-tech-stack');
+            const navHeight = navBar.offsetHeight;
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default anchor click behavior
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+
+                    const targetId = this.getAttribute('href').substring(1); // Get the section ID
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        // Calculate scroll position, subtracting the height of the sticky nav
+                        const offsetPosition = targetSection.offsetTop - navHeight; 
+                        
+                        window.scrollTo({
+                            top: offsetPosition, 
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Optional: Add active class to nav item on scroll
+            const sections = document.querySelectorAll('.ts-section');
+            
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                // Use a slightly larger offset to activate the link before the section hits the very top
+                const scrollOffset = window.pageYOffset + navHeight + 50; 
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollOffset >= sectionTop && scrollOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Set initial active state for the first link on page load
+            if (navLinks.length > 0) {
+                // Determine which section is currently in view on load
+                const initialScrollOffset = window.pageYOffset + navHeight + 50;
+                let initialCurrent = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (initialScrollOffset >= sectionTop && initialScrollOffset < sectionTop + sectionHeight) {
+                        initialCurrent = section.getAttribute('id');
+                    }
+                });
+
+                if (initialCurrent) {
+                    const initialLink = document.querySelector(`.nav-list a[href="#${initialCurrent}"]`);
+                    if (initialLink) {
+                         initialLink.classList.add('active');
+                    }
+                } else {
+                     navLinks[0].classList.add('active');
+                }
+            }
+        });
+    </script>
+
+
+
+
+    <!-- === NEW FAQ/ACCORDION SECTION (Tech Stack Focused) === -->
+    <!-- MODIFIED: Background changed in CSS -->
+    <section class="ts-faq-section">
+                <div class="ts-container">
+                    <div class="ts-faq-layout">
+                        <div class="ts-faq-intro">
+                            <h2>What Defines Our Technology Stack Approach?</h2>
+                            <p>
+                                Our technology choices are driven by strategic objectives: scalability, security, performance, and future-proofing. We don't just use tools; we master them to deliver bespoke solutions that align perfectly with your business goals and industry demands.
+                                Our approach combines battle-tested reliability with cutting-edge innovation.
+                            </p>
+                        </div>
+                        <div class="ts-accordion-items">
+                            <!-- Accordion Item 1 --><div class="ts-accordion-item">
+                                <div class="ts-accordion-header">
+                                    <h3>Our Core Principles for Tech Selection</h3>
+                                    <span class="ts-accordion-icon">+</span>
+                                </div>
+                                <div class="ts-accordion-content">
+                                    <p>
+                                        We meticulously evaluate each technology based on robust criteria including:
+                                    </p>
+                                    <ul>
+                                        <li>**Scalability:** Ensuring your solutions can grow with your business.</li>
+                                        <li>**Security:** Implementing enterprise-grade protection at every layer.</li>
+                                        <li>**Maintainability:** Building clean, well-documented code for long-term viability.</li>
+                                        <li>**Performance:** Optimizing for speed and responsiveness across all platforms.</li>
+                                        <li>**Cost-Effectiveness:** Delivering maximum value without compromising quality.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 2 --><div class="ts-accordion-item">
+                                <div class="ts-accordion-header">
+                                    <h3>How We Ensure Future-Proofing</h3>
+                                    <span class="ts-accordion-icon">+</span>
+                                </div>
+                                <div class="ts-accordion-content">
+                                    <p>
+                                        Our strategy involves adopting open standards, embracing cloud-native architectures, and continuous R&D into emerging trends like serverless computing, advanced AI models, and next-generation blockchain protocols.
+                                    </p>
+                                    <p>
+                                        We aim to build systems that are adaptable and extensible, allowing for seamless integration of new features and technologies as your business evolves.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 3 --><div class="ts-accordion-item">
+                                <div class="ts-accordion-header">
+                                    <h3>Collaboration & Transparency in Tech Decisions</h3>
+                                    <span class="ts-accordion-icon">+</span>
+                                </div>
+                                <div class="ts-accordion-content">
+                                    <p>
+                                        We believe in transparent communication throughout the project lifecycle. Our clients are actively involved in key technology decisions, understanding the 'why' behind every choice. We provide clear explanations, risk assessments, and benefits analyses to ensure complete alignment.
+                                    </p>
+                                    <p>
+                                        This collaborative approach ensures that the final solution not only meets technical requirements but also perfectly suits your operational needs and business strategy.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 4 --><div class="ts-accordion-item">
+                                <div class="ts-accordion-header">
+                                    <h3>Our Approach to Emerging Technologies (Web3, AI/ML)</h3>
+                                    <span class="ts-accordion-icon">+</span>
+                                </div>
+                                <div class="ts-accordion-content">
+                                    <p>
+                                        For cutting-edge domains like AI/ML engineering and Blockchain/Web3 development, we combine deep theoretical understanding with practical implementation experience.
+                                    </p>
+                                    <ul>
+                                        <li>**AI/ML:** Custom model training, data pipeline automation, predictive analytics, intelligent automation.</li>
+                                        <li>**Web3:** Smart contract development (Solidity), dApp creation, tokenomics design, decentralized identity solutions.</li>
+                                    </ul>
+                                    <p>
+                                        Our expertise allows us to responsibly harness the power of these advanced technologies to create truly innovative and impactful solutions.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<script>
+     // --- Accordion Logic (ts-faq-*) ---
+            const accordionHeaders = document.querySelectorAll('.ts-accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const accordionItem = header.closest('.ts-accordion-item');
+                    const accordionContent = accordionItem.querySelector('.ts-accordion-content');
+
+                    // Toggle active class on the item
+                    accordionItem.classList.toggle('active');
+
+                    // Set max-height for smooth transition
+                    if (accordionItem.classList.contains('active')) {
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    } else {
+                        accordionContent.style.maxHeight = null; // Reset to 0
+                    }
+                });
+            });
+</script>            
+
+<style>
+    /* --- New FAQ/Accordion Section Styles (ts-faq-*) --- */
+        .ts-faq-section {
+            /* MODIFIED: Changed to blue radial gradient */
+            background-image: radial-gradient(circle at 50% 50%, #001f3f, #010119 70%);
+            padding: 80px 0;
+            color: #ffffff; /* MODIFIED: Text color changed to white */
+        }
+
+        .ts-faq-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px; /* Space between text and accordion */
+        }
+
+        @media (min-width: 992px) {
+            .ts-faq-layout {
+                grid-template-columns: 0.8fr 1.2fr; /* Asymmetrical split */
+            }
+        }
+
+        .ts-faq-intro h2 {
+            font-size: 2.8rem; /* Large heading, similar to image */
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #ffffff; /* MODIFIED: Was #010119 */
+            line-height: 1.2;
+        }
+
+        .ts-faq-intro p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #e2e8f0; /* MODIFIED: Was #333 */
+        }
+
+        .ts-accordion-item {
+            border-bottom: 1px solid #002e5b; /* MODIFIED: Darker border */
+            padding: 20px 0;
+        }
+        
+        /* No bottom border for the last item */
+        .ts-accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .ts-accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0; /* Some internal padding */
+        }
+
+        .ts-accordion-header h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #ffffff; /* MODIFIED: Was #010119 */
+            margin-right: 15px; /* Space before icon */
+        }
+
+        .ts-accordion-icon {
+            font-size: 1.8rem; /* Large plus/minus */
+            color: #0091fa; /* Bright blue icon */
+            font-weight: 300; /* Lighter weight for the plus/minus */
+            transition: transform 0.3s ease;
+        }
+
+        .ts-accordion-item.active .ts-accordion-icon {
+            transform: rotate(45deg); /* Rotates '+' to 'x' or can be 'rotate(180deg)' for '-' */
+        }
+
+        .ts-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding-left: 0; /* Default hidden state */
+            padding-right: 0;
+        }
+
+        .ts-accordion-item.active .ts-accordion-content {
+            max-height: 300px; /* Adjust max-height based on expected content length */
+            padding-top: 15px;
+            padding-bottom: 5px;
+        }
+
+        .ts-accordion-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e2e8f0; /* MODIFIED: Was #555 */
+            padding-bottom: 10px; /* Space at bottom of content */
+        }
+        
+        .ts-accordion-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: #e2e8f0; /* MODIFIED: Was #555 */
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .ts-accordion-content ul li {
+            margin-bottom: 8px;
+        }
+</style>
+
+
+</body>
+</html>
