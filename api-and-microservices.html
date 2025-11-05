@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API & Microservices Architecture | Defcon IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --defcon-primary: #1199fa;
+            --defcon-dark: #010119;
+            --defcon-white: #fff;
+            --defcon-light: #f4f4f4;
+            --defcon-black: #000;
+            --defcon-gray: #e5e5e5;
+            --defcon-container-width: 1200px;
+            --defcon-border-radius: 8px;
+            --defcon-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --defcon-transition: all 0.3s ease;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--defcon-dark);
+            background-color: var(--defcon-white);
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: var(--defcon-container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .defcon-api-hero {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(1, 1, 25, 0.85), rgba(1, 1, 25, 0.7)), 
+                        url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover no-repeat;
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--defcon-white);
+            max-width: 650px;
+        }
+
+        .defcon-hero-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--defcon-primary), #2ac7ff);
+            color: var(--defcon-white);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(17, 153, 250, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(17, 153, 250, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(17, 153, 250, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(17, 153, 250, 0.5); }
+        }
+
+        .defcon-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .defcon-hero-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--defcon-border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--defcon-transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+            box-shadow: 0 4px 10px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #0d8ae5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(17, 153, 250, 0.4);
+        }
+
+        .defcon-btn-secondary {
+            background-color: transparent;
+            color: var(--defcon-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .defcon-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== SERVICES OVERVIEW SECTION ===== */
+        .defcon-services-overview {
+            padding: 100px 0;
+            background-color: var(--defcon-light);
+        }
+
+        .defcon-section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .defcon-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-section-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .defcon-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-service-card {
+            background: var(--defcon-white);
+            border-radius: var(--defcon-border-radius);
+            padding: 30px;
+            box-shadow: var(--defcon-box-shadow);
+            transition: var(--defcon-transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .defcon-service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--defcon-white);
+            font-size: 1.5rem;
+        }
+
+        .defcon-service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-service-description {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .defcon-service-link {
+            color: var(--defcon-primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-service-link:hover {
+            color: #0d8ae5;
+        }
+
+        /* ===== SOLUTIONS SECTION ===== */
+        .defcon-solutions {
+            padding: 100px 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-solutions-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .defcon-solutions-filter {
+            flex: 0 0 280px;
+        }
+
+        .defcon-filter-card {
+            background: var(--defcon-light);
+            border-radius: var(--defcon-border-radius);
+            padding: 25px;
+            box-shadow: var(--defcon-box-shadow);
+            position: sticky;
+            top: 30px;
+        }
+
+        .defcon-filter-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-filter-group {
+            margin-bottom: 25px;
+        }
+
+        .defcon-filter-group-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-filter-options {
+            list-style: none;
+        }
+
+        .defcon-filter-option {
+            margin-bottom: 10px;
+        }
+
+        .defcon-filter-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-filter-label:hover {
+            color: var(--defcon-primary);
+        }
+
+        .defcon-filter-checkbox {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--defcon-primary);
+        }
+
+        .defcon-solutions-content {
+            flex: 1;
+        }
+
+        .defcon-solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-solution-card {
+            background: var(--defcon-white);
+            border-radius: var(--defcon-border-radius);
+            overflow: hidden;
+            box-shadow: var(--defcon-box-shadow);
+            transition: var(--defcon-transition);
+            border: 1px solid var(--defcon-gray);
+        }
+
+        .defcon-solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-solution-header {
+            padding: 25px 25px 0;
+        }
+
+        .defcon-solution-badge {
+            display: inline-block;
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .defcon-solution-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-solution-description {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .defcon-solution-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--defcon-primary);
+            margin-bottom: 5px;
+        }
+
+        .defcon-solution-period {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .defcon-solution-body {
+            padding: 0 25px 25px;
+        }
+
+        .defcon-solution-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .defcon-solution-feature {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--defcon-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-solution-feature:last-child {
+            border-bottom: none;
+        }
+
+        .defcon-feature-check {
+            color: var(--defcon-primary);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .defcon-solution-cta {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ===== HOW IT WORKS SECTION ===== */
+        .defcon-how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--defcon-light) 0%, var(--defcon-white) 100%);
+        }
+
+        .defcon-steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .defcon-steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--defcon-primary), transparent);
+            z-index: 1;
+        }
+
+        .defcon-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .defcon-step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--defcon-white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-step-description {
+            color: #555;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .defcon-cta-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(1, 1, 25, 0.9), rgba(1, 1, 25, 0.9)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover no-repeat;
+            color: var(--defcon-white);
+            text-align: center;
+        }
+
+        .defcon-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .defcon-cta-description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1024px) {
+            .defcon-solutions-container {
+                flex-direction: column;
+            }
+            
+            .defcon-solutions-filter {
+                flex: 1;
+                margin-bottom: 40px;
+            }
+            
+            .defcon-filter-card {
+                position: static;
+            }
+            
+            .defcon-steps-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .defcon-steps-container::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-hero-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 1.8rem;
+            }
+            
+            .defcon-container {
+                padding: 0 15px;
+            }
+            
+            .defcon-service-card, 
+            .defcon-solution-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="defcon-api-hero">
+        <div class="defcon-container">
+            <div class="defcon-hero-content">
+                <span class="defcon-hero-badge">NEW: AI-Powered API Analytics</span>
+                <h1 class="defcon-hero-title">Scalable API & Microservices Architecture</h1>
+                <p class="defcon-hero-subtitle">Build resilient, scalable, and high-performance digital ecosystems with our expert API and microservices solutions. Transform your business with cutting-edge architecture designed for growth.</p>
+                <div class="defcon-hero-cta">
+                    <a href="#defcon-solutions" class="defcon-btn defcon-btn-primary">Explore Solutions</a>
+                    <a href="#defcon-contact" class="defcon-btn defcon-btn-secondary">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES OVERVIEW SECTION -->
+    <section class="defcon-services-overview">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">Comprehensive API & Microservices Solutions</h2>
+                <p class="defcon-section-subtitle">We deliver end-to-end API and microservices architecture that powers digital transformation, enhances scalability, and accelerates time-to-market for your applications.</p>
+            </div>
+            <div class="defcon-services-grid">
+                <div class="defcon-service-card">
+                    <div class="defcon-service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="defcon-service-title">API Design & Development</h3>
+                    <p class="defcon-service-description">Craft robust, well-documented RESTful and GraphQL APIs following industry best practices for security, performance, and maintainability.</p>
+                    <a href="#" class="defcon-service-link">Learn more →</a>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="defcon-service-title">Microservices Architecture</h3>
+                    <p class="defcon-service-description">Design and implement scalable microservices ecosystems with proper service boundaries, communication patterns, and resilience.</p>
+                    <a href="#" class="defcon-service-link">Learn more →</a>
+                </div>
+                <div class="defcon-service-card">
+                    <div class="defcon-service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="defcon-service-title">API Security & Governance</h3>
+                    <p class="defcon-service-description">Implement comprehensive security measures including authentication, authorization, rate limiting, and threat protection.</p>
+                    <a href="#" class="defcon-service-link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section class="defcon-solutions" id="defcon-solutions">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">API & Microservices Solutions</h2>
+                <p class="defcon-section-subtitle">Choose from our comprehensive range of API and microservices solutions tailored to your business needs and technical requirements.</p>
+            </div>
+            <div class="defcon-solutions-container">
+                <!-- FILTER SIDEBAR -->
+                <div class="defcon-solutions-filter">
+                    <div class="defcon-filter-card">
+                        <h3 class="defcon-filter-title">Filter Solutions</h3>
+                        
+                        <div class="defcon-filter-group">
+                            <h4 class="defcon-filter-group-title">Service Type</h4>
+                            <ul class="defcon-filter-options">
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="api-development" checked>
+                                        <span>API Development</span>
+                                    </label>
+                                </li>
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="microservices" checked>
+                                        <span>Microservices</span>
+                                    </label>
+                                </li>
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="integration" checked>
+                                        <span>Integration</span>
+                                    </label>
+                                </li>
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="security" checked>
+                                        <span>Security</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="defcon-filter-group">
+                            <h4 class="defcon-filter-group-title">Business Size</h4>
+                            <ul class="defcon-filter-options">
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="startup" checked>
+                                        <span>Startup</span>
+                                    </label>
+                                </li>
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="sme" checked>
+                                        <span>SME</span>
+                                    </label>
+                                </li>
+                                <li class="defcon-filter-option">
+                                    <label class="defcon-filter-label">
+                                        <input type="checkbox" class="defcon-filter-checkbox" data-filter="enterprise" checked>
+                                        <span>Enterprise</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SOLUTIONS CONTENT -->
+                <div class="defcon-solutions-content">
+                    <div class="defcon-solutions-grid">
+                        <!-- API Development Solutions -->
+                        <div class="defcon-solution-card" data-categories="api-development startup sme">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">API Development</span>
+                                <h3 class="defcon-solution-title">Starter API Package</h3>
+                                <p class="defcon-solution-description">Perfect for startups and small businesses looking to build their first API or modernize existing endpoints.</p>
+                                <div class="defcon-solution-price">$4,999</div>
+                                <div class="defcon-solution-period">one-time development</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Up to 5 RESTful API endpoints</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Basic authentication & authorization</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>API documentation</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Basic testing & deployment</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>30 days support</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                            </div>
+                        </div>
+                        
+                        <div class="defcon-solution-card" data-categories="api-development sme enterprise">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">API Development</span>
+                                <h3 class="defcon-solution-title">Professional API Package</h3>
+                                <p class="defcon-solution-description">Comprehensive API solution for growing businesses with advanced requirements and integration needs.</p>
+                                <div class="defcon-solution-price">$12,999</div>
+                                <div class="defcon-solution-period">one-time development</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Up to 20 RESTful/GraphQL endpoints</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Advanced authentication (OAuth 2.0)</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Rate limiting & throttling</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Comprehensive documentation</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>API versioning strategy</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>90 days support</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Microservices Solutions -->
+                        <div class="defcon-solution-card" data-categories="microservices sme enterprise">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">Microservices</span>
+                                <h3 class="defcon-solution-title">Microservices Foundation</h3>
+                                <p class="defcon-solution-description">Begin your microservices journey with a solid foundation and best-practice architecture.</p>
+                                <div class="defcon-solution-price">$24,999</div>
+                                <div class="defcon-solution-period">one-time implementation</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>3-5 microservices architecture</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Service discovery & registration</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>API Gateway setup</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Basic monitoring & logging</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Containerization with Docker</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>6 months support</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                            </div>
+                        </div>
+                        
+                        <div class="defcon-solution-card" data-categories="microservices enterprise">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">Microservices</span>
+                                <h3 class="defcon-solution-title">Enterprise Microservices</h3>
+                                <p class="defcon-solution-description">Full-scale microservices transformation for large enterprises with complex systems and high availability requirements.</p>
+                                <div class="defcon-solution-price">$89,999+</div>
+                                <div class="defcon-solution-period">custom implementation</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>10+ microservices architecture</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Advanced service mesh (Istio/Linkerd)</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Kubernetes orchestration</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Comprehensive monitoring & alerting</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>CI/CD pipeline implementation</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>12 months support & maintenance</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Contact Sales</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Integration Solutions -->
+                        <div class="defcon-solution-card" data-categories="integration sme enterprise">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">Integration</span>
+                                <h3 class="defcon-solution-title">Third-Party Integration</h3>
+                                <p class="defcon-solution-description">Seamlessly connect your systems with popular third-party services and APIs.</p>
+                                <div class="defcon-solution-price">$7,499</div>
+                                <div class="defcon-solution-period">per integration</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Integration with 3rd party APIs</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Data mapping & transformation</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Error handling & retry logic</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Webhook implementation</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>60 days support</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Solutions -->
+                        <div class="defcon-solution-card" data-categories="security sme enterprise">
+                            <div class="defcon-solution-header">
+                                <span class="defcon-solution-badge">Security</span>
+                                <h3 class="defcon-solution-title">API Security Audit</h3>
+                                <p class="defcon-solution-description">Comprehensive security assessment and hardening for your existing API infrastructure.</p>
+                                <div class="defcon-solution-price">$5,999</div>
+                                <div class="defcon-solution-period">one-time audit</div>
+                            </div>
+                            <div class="defcon-solution-body">
+                                <ul class="defcon-solution-features">
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Vulnerability assessment</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Penetration testing</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Authentication & authorization review</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Data encryption assessment</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Comprehensive security report</span>
+                                    </li>
+                                    <li class="defcon-solution-feature">
+                                        <span class="defcon-feature-check">✓</span>
+                                        <span>Remediation guidance</span>
+                                    </li>
+                                </ul>
+                                <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="defcon-how-it-works">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">How Our Process Works</h2>
+                <p class="defcon-section-subtitle">Our streamlined approach ensures we deliver high-quality API and microservices solutions that align with your business objectives.</p>
+            </div>
+            <div class="defcon-steps-container">
+                <div class="defcon-step">
+                    <div class="defcon-step-number">1</div>
+                    <h3 class="defcon-step-title">Discovery & Planning</h3>
+                    <p class="defcon-step-description">We analyze your requirements, technical landscape, and business goals to create a tailored solution architecture.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">2</div>
+                    <h3 class="defcon-step-title">Design & Prototyping</h3>
+                    <p class="defcon-step-description">Our experts design the API specifications and microservices architecture, creating prototypes for validation.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">3</div>
+                    <h3 class="defcon-step-title">Development & Testing</h3>
+                    <p class="defcon-step-description">We implement the solution following best practices, with comprehensive testing at every stage.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">4</div>
+                    <h3 class="defcon-step-title">Deployment & Support</h3>
+                    <p class="defcon-step-description">We deploy the solution to your environment and provide ongoing support and maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="defcon-cta-section" id="defcon-contact">
+        <div class="defcon-container">
+            <h2 class="defcon-cta-title">Ready to Transform Your Digital Infrastructure?</h2>
+            <p class="defcon-cta-description">Let's discuss how our API and microservices expertise can help your business scale, innovate, and stay ahead of the competition.</p>
+            <a href="#" class="defcon-btn defcon-btn-primary">Schedule a Free Consultation</a>
+        </div>
+    </section>
+
+    <script>
+        // Filter functionality for solutions
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterCheckboxes = document.querySelectorAll('.defcon-filter-checkbox');
+            const solutionCards = document.querySelectorAll('.defcon-solution-card');
+            
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterSolutions);
+            });
+            
+            function filterSolutions() {
+                const selectedServiceTypes = Array.from(document.querySelectorAll('.defcon-filter-checkbox[data-filter]:checked'))
+                    .map(checkbox => checkbox.getAttribute('data-filter'));
+                
+                const selectedBusinessSizes = Array.from(document.querySelectorAll('.defcon-filter-checkbox[data-filter]:checked'))
+                    .map(checkbox => checkbox.getAttribute('data-filter'));
+                
+                const allSelectedFilters = [...selectedServiceTypes, ...selectedBusinessSizes];
+                
+                solutionCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-categories').split(' ');
+                    
+                    // Show card if it matches any of the selected filters
+                    const shouldShow = allSelectedFilters.some(filter => cardCategories.includes(filter));
+                    
+                    if (shouldShow) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

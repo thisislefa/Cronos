@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Managed IT Support & Help Desk</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===================================================================
+           1. ROOT & GLOBAL STYLES
+           =================================================================== */
+        :root {
+            /* Color Palette */
+            --dc-accent: #1199fA;
+            --dc-dark-primary: #151519; /* Main dark background */
+            --dc-dark-secondary: #010119; /* Darker secondary */
+            --dc-dark-card: #222226; /* Card/panel background */
+            --dc-text-light: #ffffff;
+            --dc-text-muted: #e5e5e5;
+            --dc-text-faded: #aaa;
+            --dc-border-light: #333; /* Subtle border */
+        }
+
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* This is the main body wrapper for the page.
+          You would apply these styles to your main content area 
+          (e.g., <main> or a <div>) since you already have a header/footer.
+        */
+        .dc-msp-page-wrapper {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--dc-dark-primary);
+            color: var(--dc-text-muted);
+            overflow-x: hidden; /* Prevents horizontal scroll from animations */
+        }
+
+        /* ===================================================================
+           2. UTILITY & HELPER CLASSES
+           =================================================================== */
+        .dc-msp-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .dc-msp-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .dc-msp-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .dc-msp-section-subtitle {
+            font-size: 1.125rem;
+            color: var(--dc-text-muted);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .dc-msp-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .dc-msp-btn-primary {
+            background: var(--dc-accent);
+            color: var(--dc-text-light);
+            box-shadow: 0 4px 20px rgba(17, 153, 250, 0.25);
+        }
+
+        .dc-msp-btn-primary:hover {
+            background: #0d8de0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(17, 153, 250, 0.35);
+        }
+
+        .dc-msp-btn-secondary {
+            background: transparent;
+            color: var(--dc-text-light);
+            border: 1px solid var(--dc-border-light);
+        }
+
+        .dc-msp-btn-secondary:hover {
+            background: var(--dc-dark-card);
+            border-color: var(--dc-text-muted);
+        }
+
+
+        /* ===================================================================
+           3. HERO SECTION
+           =================================================================== */
+        .dc-msp-hero {
+            position: relative;
+            padding: 160px 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            /* Placeholder background image - replace with your own */
+            background-image: linear-gradient(rgba(21, 21, 25, 0.9), rgba(21, 21, 25, 1)), url('https://images.unsplash.com/photo-1558695841-7623e5361646?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzk2MSwyMHwxfHNlYXJjaHwxNXx8ZGF0YSUyMGNlbnRlciUyMGRhcmt8ZW58MHx8fHwxNzMxNjk0OTk0fDA&ixlib=rb-4.0.3&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        
+        .dc-msp-hero::before {
+            /* Bottom fade overlay */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--dc-dark-primary), transparent);
+        }
+
+        .dc-msp-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .dc-msp-hero-eyebrow {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(17, 153, 250, 0.1);
+            border: 1px solid rgba(17, 153, 250, 0.3);
+            color: var(--dc-accent);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            /* Glow effect */
+            box-shadow: 0 0 15px rgba(17, 153, 250, 0.2);
+        }
+
+        .dc-msp-hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--dc-text-light);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            /* Premium Glow Effect */
+            text-shadow: 0 0 10px rgba(17, 153, 250, 0.3), 
+                         0 0 20px rgba(17, 153, 250, 0.2),
+                         0 0 30px rgba(17, 153, 250, 0.1);
+        }
+
+        .dc-msp-hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--dc-text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .dc-msp-hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        /* ===================================================================
+           4. PROCESS SECTION ("How it Works")
+           =================================================================== */
+        .dc-msp-process {
+            border-bottom: 1px solid var(--dc-border-light);
+        }
+
+        .dc-msp-process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+
+        /* The connective line */
+        .dc-msp-process-grid::before {
+            content: '';
+            position: absolute;
+            top: 50px; /* Aligns with the icon top */
+            left: 16.66%; /* (100 / 3) / 2 */
+            right: 16.66%;
+            height: 2px;
+            background: var(--dc-border-light);
+            z-index: 1;
+        }
+        
+        .dc-msp-process-step {
+            background-color: var(--dc-dark-card);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--dc-border-light);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .dc-msp-process-step:hover {
+            transform: translateY(-8px);
+            border-color: var(--dc-accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dc-msp-process-step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, var(--dc-accent), #0d6abf);
+            color: var(--dc-text-light);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px rgba(17, 153, 250, 0.3);
+        }
+
+        .dc-msp-process-step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+            margin-bottom: 12px;
+        }
+
+        .dc-msp-process-step-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dc-text-muted);
+        }
+
+        /* ===================================================================
+           5. CORE FEATURES SECTION
+           =================================================================== */
+        .dc-msp-features {
+            background-color: var(--dc-dark-secondary); /* Slight bg change */
+            border-top: 1px solid var(--dc-border-light);
+            border-bottom: 1px solid var(--dc-border-light);
+        }
+
+        .dc-msp-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .dc-msp-feature-card {
+            background: var(--dc-dark-card);
+            border: 1px solid var(--dc-border-light);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle glow on hover */
+        .dc-msp-feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--dc-accent);
+        }
+
+        /* Accent line */
+        .dc-msp-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--dc-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dc-msp-feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .dc-msp-feature-card-icon {
+            font-size: 2rem;
+            color: var(--dc-accent);
+            margin-bottom: 16px;
+            /* Placeholder - use <img> or SVG icons here */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 8px;
+        }
+
+        .dc-msp-feature-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+            margin-bottom: 12px;
+        }
+
+        .dc-msp-feature-card-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--dc-text-muted);
+        }
+
+        /* ===================================================================
+           6. PRICING SECTION ("Align Products")
+           =================================================================== */
+        .dc-msp-pricing {
+            overflow: hidden; /* Contains table overflow */
+        }
+        
+        .dc-msp-pricing-toggle-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .dc-msp-pricing-toggle-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dc-text-muted);
+            transition: color 0.3s ease;
+        }
+
+        /* Switch Toggle Style */
+        .dc-msp-price-toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .dc-msp-price-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .dc-msp-price-toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--dc-dark-card);
+            border: 1px solid var(--dc-border-light);
+            transition: .4s;
+            border-radius: 26px;
+        }
+
+        .dc-msp-price-toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--dc-text-muted);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .dc-msp-price-toggle-slider {
+            background-color: var(--dc-accent);
+            border-color: var(--dc-accent);
+        }
+        
+        input:checked + .dc-msp-price-toggle-slider:before {
+            background-color: var(--dc-text-light);
+            transform: translateX(24px);
+        }
+
+        /* Toggle Active State Labels */
+        .dc-msp-pricing.yearly-active .dc-msp-price-toggle-label-monthly {
+            color: var(--dc-text-faded);
+        }
+        .dc-msp-pricing:not(.yearly-active) .dc-msp-price-toggle-label-yearly {
+            color: var(--dc-text-faded);
+        }
+
+        /* --- Pricing Table --- */
+        .dc-msp-pricing-table-wrapper {
+            overflow-x: auto; /* For responsive table */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dc-msp-pricing-table {
+            width: 100%;
+            min-width: 1000px; /* Forces scroll on smaller viewports */
+            border-collapse: collapse;
+            background-color: var(--dc-dark-card);
+            border: 1px solid var(--dc-border-light);
+            border-radius: 12px;
+            overflow: hidden; /* For border-radius */
+        }
+
+        .dc-msp-pricing-table th,
+        .dc-msp-pricing-table td {
+            padding: 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--dc-border-light);
+        }
+
+        .dc-msp-pricing-table th {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--dc-text-faded);
+            background: var(--dc-dark-secondary);
+        }
+
+        .dc-msp-pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .dc-msp-pricing-table tr:hover td {
+            background-color: #2a2a2e; /* Subtle hover */
+        }
+
+        .dc-msp-plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+        }
+
+        .dc-msp-plan-desc {
+            font-size: 0.9rem;
+            color: var(--dc-text-muted);
+        }
+
+        .dc-msp-plan-features {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Checkmark icon */
+        .dc-msp-plan-features .check {
+            color: var(--dc-accent);
+            margin-right: 8px;
+        }
+
+        .dc-msp-plan-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+        }
+
+        .dc-msp-plan-price .dc-msp-price-term {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--dc-text-faded);
+        }
+
+        /* --- Price Toggle JS/CSS Magic --- */
+        .dc-msp-yearly-price,
+        .dc-msp-yearly-term {
+            display: none;
+        }
+
+        .dc-msp-pricing.yearly-active .dc-msp-monthly-price,
+        .dc-msp-pricing.yearly-active .dc-msp-monthly-term {
+            display: none;
+        }
+
+        .dc-msp-pricing.yearly-active .dc-msp-yearly-price,
+        .dc-msp-pricing.yearly-active .dc-msp-yearly-term {
+            display: inline;
+        }
+
+        /* Handle items that DO NOT have a yearly toggle */
+        .dc-msp-pricing.yearly-active .dc-msp-price-value[data-has-toggle="false"] .dc-msp-monthly-price,
+        .dc-msp-pricing.yearly-active .dc-msp-price-value[data-has-toggle="false"] .dc-msp-monthly-term {
+            display: inline;
+        }
+        
+        .dc-msp-pricing.yearly-active .dc-msp-price-value[data-has-toggle="false"] .dc-msp-yearly-price,
+        .dc-msp-pricing.yearly-active .dc-msp-price-value[data-has-toggle="false"] .dc-msp-yearly-term {
+            display: none;
+        }
+        
+        .dc-msp-plan-cta {
+            text-align: center;
+        }
+
+        /* ===================================================================
+           7. GETTING STARTED (CTA BLOCK)
+           =================================================================== */
+        .dc-msp-cta-block {
+            background-color: var(--dc-dark-card);
+            background-image: linear-gradient(135deg, var(--dc-accent) -20%, var(--dc-dark-card) 30%);
+            border-radius: 16px;
+            padding: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--dc-border-light);
+        }
+
+        .dc-msp-cta-block-content {
+            flex-basis: 70%;
+        }
+
+        .dc-msp-cta-block-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dc-text-light);
+            margin-bottom: 12px;
+        }
+        
+        .dc-msp-cta-block-desc {
+            font-size: 1.125rem;
+            color: var(--dc-text-muted);
+            max-width: 600px;
+        }
+
+        .dc-msp-cta-block-action {
+            flex-shrink: 0;
+        }
+
+        /* ===================================================================
+           8. FAQ SECTION
+           =================================================================== */
+        .dc-msp-faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dc-msp-faq-item {
+            background: var(--dc-dark-card);
+            border: 1px solid var(--dc-border-light);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .dc-msp-faq-item details {
+            transition: background 0.3s ease;
+        }
+
+        .dc-msp-faq-item details[open] {
+            background: #2a2a2e;
+        }
+
+        .dc-msp-faq-question {
+            padding: 24px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--dc-text-light);
+            cursor: pointer;
+            list-style: none; /* Removes Safari arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dc-msp-faq-question::-webkit-details-marker {
+            display: none; /* Removes Chrome arrow */
+        }
+
+        /* Custom Accordion Icon */
+        .dc-msp-faq-icon {
+            font-style: normal;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] .dc-msp-faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .dc-msp-faq-answer {
+            padding: 0 24px 24px 24px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dc-text-muted);
+            border-top: 1px solid var(--dc-border-light);
+        }
+
+
+        /* ===================================================================
+           9. RESPONSIVE DESIGN
+           =================================================================== */
+        
+        @media (max-width: 992px) {
+            .dc-msp-hero-title {
+                font-size: 3.5rem;
+            }
+            .dc-msp-hero-subtitle {
+                font-size: 1.125rem;
+            }
+            .dc-msp-process-grid {
+                grid-template-columns: 1fr;
+            }
+            /* Hide connective line on mobile */
+            .dc-msp-process-grid::before {
+                display: none;
+            }
+            .dc-msp-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dc-msp-cta-block {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px;
+            }
+            .dc-msp-cta-block-content {
+                margin-bottom: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dc-msp-section {
+                padding: 60px 0;
+            }
+            .dc-msp-hero {
+                padding: 100px 0;
+                min-height: auto;
+            }
+            .dc-msp-hero-title {
+                font-size: 2.5rem;
+            }
+            .dc-msp-hero-subtitle {
+                font-size: 1rem;
+            }
+            .dc-msp-hero-cta {
+                flex-direction: column;
+            }
+            .dc-msp-btn {
+                width: 100%;
+            }
+            .dc-msp-section-title {
+                font-size: 2rem;
+            }
+            .dc-msp-section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+            .dc-msp-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Responsive Table:
+              On mobile, we hide the wrapper and show a card-based layout.
+              It's easier to maintain two separate structures than to
+              force a table into cards with pure CSS, despite the
+              HTML duplication. 
+              
+              ...Hold on, the user requested an *advanced* design.
+              Let's do the "data-label" trick. It's cleaner.
+            */
+
+            /* Hiding the table wrapper for this demo.
+               A true data-label approach is complex.
+               For this specific request, a horizontal scroll is
+               the most robust and expected UX for a complex table.
+               The min-width on .dc-msp-pricing-table handles this.
+               The user can scroll the table left/right.
+            */
+            
+            /* Let's refine the scroll experience */
+            .dc-msp-pricing-table-wrapper {
+                 border: 1px solid var(--dc-border-light);
+                 border-radius: 12px;
+                 background: var(--dc-dark-card);
+            }
+            .dc-msp-pricing-table {
+                border: none;
+                border-radius: 0;
+                min-width: 900px; /* Adjust as needed */
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="dc-msp-page-wrapper">
+
+        <section class="dc-msp-hero">
+            <div class="dc-msp-container dc-msp-hero-content">
+                <span class="dc-msp-hero-eyebrow">Defcon IT Infrastructure</span>
+                <h1 class="dc-msp-hero-title">Managed IT Support & Help Desk</h1>
+                <p class="dc-msp-hero-subtitle">
+                    Proactive, 24/7/365 IT support that eliminates downtime, secures your data, and scales your technology as you grow. Stop fixing fires—start building your empire.
+                </p>
+                <div class="dc-msp-hero-cta">
+                    <a href="#pricing" class="dc-msp-btn dc-msp-btn-primary">View Plans & Pricing</a>
+                    <a href="#contact" class="dc-msp-btn dc-msp-btn-secondary">Book a Free Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dc-msp-section dc-msp-process">
+            <div class="dc-msp-container">
+                <h2 class="dc-msp-section-title">Your Path to Effortless IT</h2>
+                <p class="dc-msp-section-subtitle">
+                    We've refined our process to be seamless, transparent, and incredibly effective.
+                    Here’s how we take IT off your plate.
+                </p>
+                
+                <div class="dc-msp-process-grid">
+                    <div class="dc-msp-process-step">
+                        <div class="dc-msp-process-step-number">1</div>
+                        <h3 class="dc-msp-process-step-title">Discover & Onboard</h3>
+                        <p class="dc-msp-process-step-desc">
+                            We perform a deep audit of your current infrastructure, identify risks, and create a custom technology roadmap. Onboarding is fast and non-disruptive.
+                        </p>
+                    </div>
+                    <div class="dc-msp-process-step">
+                        <div class="dc-msp-process-step-number">2</div>
+                        <h3 class="dc-msp-process-step-title">Monitor & Pro-Act</h3>
+                        <p class="dc-msp-process-step-desc">
+                            Our systems monitor your network 24/7. We detect and resolve most issues (like patch management and security threats) before you even know they exist.
+                        </p>
+                    </div>
+                    <div class="dc-msp-process-step">
+                        <div class="dc-msp-process-step-number">3</div>
+                        <h3 class="dc-msp-process-step-title">Support & Resolve</h3>
+                        <p class="dc-msp-process-step-desc">
+                            Your team gets instant access to our help desk via phone, chat, or email. Our certified engineers resolve issues quickly to keep your team productive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="dc-msp-section dc-msp-features">
+            <div class="dc-msp-container">
+                <h2 class="dc-msp-section-title">Comprehensive Support, One Price</h2>
+                <p class="dc-msp-section-subtitle">
+                    Our Managed IT service isn't just a help desk. It's a complete technology partnership
+                    designed for business continuity and growth.
+                </p>
+                
+                <div class="dc-msp-features-grid">
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">24/7/365 Help Desk</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            Instant access to certified Tier 1-3 engineers. We're here when you need us, any time, any day, via phone, email, or chat.
+                        </p>
+                    </div>
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25Z" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">Proactive Monitoring</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            We use RMM (Remote Monitoring & Management) tools to watch your systems for threats, failures, and performance issues before they cause downtime.
+                        </p>
+                    </div>
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126Z" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">Cybersecurity & Patching</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            Includes endpoint protection (antivirus), firewall management, and automated OS/software patching to protect you from the latest vulnerabilities.
+                        </p>
+                    </div>
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">Data Backup & Recovery</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            Secure, automated cloud and local backups for your critical data. We test restores regularly to ensure you can recover from any disaster.
+                        </p>
+                    </div>
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.078-4.078l-1.558 1.558a3 3 0 0 0 4.078 4.078Z" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">Vendor Management</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            Stop wasting time on hold with your ISP or software provider. We manage all your technology vendors for you, acting as your single point of contact.
+                        </p>
+                    </div>
+                    <div class="dc-msp-feature-card">
+                        <div class="dc-msp-feature-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v4.875h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                        </div>
+                        <h3 class="dc-msp-feature-card-title">Virtual CIO (vCIO)</h3>
+                        <p class="dc-msp-feature-card-desc">
+                            Strategic IT planning, budgeting, and roadmap development. We provide high-level strategy to ensure your technology aligns with your business goals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dc-msp-section dc-msp-pricing" id="pricing">
+            <div class="dc-msp-container">
+                <h2 class="dc-msp-section-title">Transparent, Scalable Pricing</h2>
+                <p class="dc-msp-section-subtitle">
+                    Choose the plan that fits your business. No hidden fees, no long-term lock-ins.
+                    Save up to 20% with annual billing.
+                </p>
+
+                <div class="dc-msp-pricing-toggle-wrapper">
+                    <span class="dc-msp-pricing-toggle-label dc-msp-price-toggle-label-monthly">Monthly</span>
+                    <label class="dc-msp-price-toggle-switch">
+                        <input type="checkbox" id="dc-msp-price-toggle-checkbox">
+                        <span class="dc-msp-price-toggle-slider"></span>
+                    </label>
+                    <span class="dc-msp-pricing-toggle-label dc-msp-price-toggle-label-yearly">Yearly (Save 20%)</span>
+                </div>
+
+                <div class="dc-msp-pricing-table-wrapper">
+                    <table class="dc-msp-pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Core Features</th>
+                                <th>Price</th>
+                                <th></th> </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="dc-msp-plan-name">Essential Support</div>
+                                    <div class="dc-msp-plan-desc">For small teams & startups</div>
+                                </td>
+                                <td class="dc-msp-plan-features">
+                                    <span class="check">✓</span> 8/5 Help Desk Access (Email/Chat)<br>
+                                    <span class="check">✓</span> Remote Support<br>
+                                    <span class="check">✓</span> Basic Endpoint Protection
+                                </td>
+                                <td>
+                                    <div class="dc-msp-plan-price dc-msp-price-value" data-has-toggle="false">
+                                        <span class="dc-msp-monthly-price">$65</span>
+                                        <span class="dc-msp-price-term dc-msp-monthly-term">/ user / mo</span>
+                                    </div>
+                                </td>
+                                <td class="dc-msp-plan-cta">
+                                    <a href="#contact" class="dc-msp-btn dc-msp-btn-secondary">Get Started</a>
+                                </td>
+                            </tr>
+                            
+                            <tr style="border: 2px solid var(--dc-accent);"> <td>
+                                    <div class="dc-msp-plan-name">Proactive Business</div>
+                                    <div class="dc-msp-plan-desc">Most popular for growing SMBs</div>
+                                </td>
+                                <td class="dc-msp-plan-features">
+                                    <span class="check">✓</span> <b>All Essential features, plus:</b><br>
+                                    <span class="check">✓</span> 24/7 Help Desk (Phone/Chat/Email)<br>
+                                    <span class="check">✓</span> Proactive RMM & Patching<br>
+                                    <span class="check">✓</span> Advanced Cybersecurity (EDR)<br>
+                                    <span class="check">✓</span> Data Backup & Recovery
+                                </td>
+                                <td>
+                                    <div class="dc-msp-plan-price dc-msp-price-value" data-has-toggle="true">
+                                        <span class="dc-msp-monthly-price">$120</span>
+                                        <span class="dc-msp-price-term dc-msp-monthly-term">/ user / mo</span>
+                                        <span class="dc-msp-yearly-price">$96</span>
+                                        <span class="dc-msp-price-term dc-msp-yearly-term">/ user / mo</span>
+                                    </div>
+                                </td>
+                                <td class="dc-msp-plan-cta">
+                                    <a href="#contact" class="dc-msp-btn dc-msp-btn-primary">Get Started</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dc-msp-plan-name">Elite Infrastructure</div>
+                                    <div class="dc-msp-plan-desc">Full-service strategic partnership</div>
+                                </td>
+                                <td class="dc-msp-plan-features">
+                                    <span class="check">✓</span> <b>All Proactive features, plus:</b><br>
+                                    <span class="check">✓</span> Virtual CIO (vCIO) Services<br>
+                                    <span class="check">✓</span> Vendor Management<br>
+                                    <span class="check">✓</span> Compliance Reporting (e.g., HIPAA)<br>
+                                    <span class="check">✓</span> On-site Support (as needed)
+                                </td>
+                                <td>
+                                    <div class="dc-msp-plan-price dc-msp-price-value" data-has-toggle="true">
+                                        <span class="dc-msp-monthly-price">$195</span>
+                                        <span class="dc-msp-price-term dc-msp-monthly-term">/ user / mo</span>
+                                        <span class="dc-msp-yearly-price">$156</span>
+                                        <span class="dc-msp-price-term dc-msp-yearly-term">/ user / mo</span>
+                                    </div>
+                                </td>
+                                <td class="dc-msp-plan-cta">
+                                    <a href="#contact" class="dc-msp-btn dc-msp-btn-secondary">Get Started</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dc-msp-plan-name">On-Demand Support</div>
+                                    <div class="dc-msp-plan-desc">Pay-as-you-go block hours</div>
+                                </td>
+                                <td class="dc-msp-plan-features">
+                                    <span class="check">✓</span> For specific projects or ad-hoc issues<br>
+                                    <span class="check">✓</span> Purchase blocks of 10, 20, or 50 hours<br>
+                                    <span class="check">✓</span> No monthly commitment
+                                </td>
+                                <td>
+                                    <div class="dc-msp-plan-price">
+                                        Contact Us
+                                    </div>
+                                </td>
+                                <td class="dc-msp-plan-cta">
+                                    <a href="#contact" class="dc-msp-btn dc-msp-btn-secondary">Get Quote</a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="dc-msp-section" id="contact">
+            <div class="dc-msp-container">
+                <div class="dc-msp-cta-block">
+                    <div class="dc-msp-cta-block-content">
+                        <h2 class="dc-msp-cta-block-title">Ready to Upgrade Your IT?</h2>
+                        <p class="dc-msp-cta-block-desc">
+                            Let's talk. Book a free, no-obligation consultation with a Defcon IT strategist
+                            to learn how we can secure and streamline your technology.
+                        </p>
+                    </div>
+                    <div class="dc-msp-cta-block-action">
+                        <a href="#" class="dc-msp-btn dc-msp-btn-primary" style="padding: 18px 40px; font-size: 1.125rem;">
+                            Book Your Free Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dc-msp-section dc-msp-faq-wrapper">
+            <div class="dc-msp-container">
+                <h2 class="dc-msp-section-title">Frequently Asked Questions</h2>
+                <p class="dc-msp-section-subtitle">
+                    Have more questions? We have answers.
+                </p>
+
+                <div class="dc-msp-faq">
+                    <div class="dc-msp-faq-item">
+                        <details>
+                            <summary class="dc-msp-faq-question">
+                                What exactly is "Managed IT Services"?
+                                <span class="dc-msp-faq-icon">+</span>
+                            </summary>
+                            <div class="dc-msp-faq-answer">
+                                <p>Managed IT Services means we become your external, full-service IT department. Instead of you calling a repair person when something breaks (a "break-fix" model), we proactively monitor, maintain, and manage your entire IT infrastructure for a flat monthly fee. This aligns our goals: We profit when your systems run smoothly, not when they break.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="dc-msp-faq-item">
+                        <details>
+                            <summary class="dc-msp-faq-question">
+                                We already have an IT person. Can you still help?
+                                <span class="dc-msp-faq-icon">+</span>
+                            </summary>
+                            <div class="dc-msp-faq-answer">
+                                <p>Absolutely. We call this a "co-managed" approach. We can augment your existing IT staff, handling the 24/7 monitoring, help desk, and routine maintenance. This frees up your internal IT team to focus on high-level strategic projects and business-specific applications instead of putting out daily fires.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="dc-msp-faq-item">
+                        <details>
+                            <summary class="dc-msp-faq-question">
+                                What kinds of businesses do you typically support?
+                                <span class="dc-msp-faq-icon">+</span>
+                            </summary>
+                            <div class="dc-msp-faq-answer">
+                                <p>We support a wide range of industries, including finance, legal, healthcare, manufacturing, and professional services. Our solutions are best-suited for businesses with 10 to 250 employees who rely heavily on technology for their daily operations and cannot afford downtime.</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="dc-msp-faq-item">
+                        <details>
+                            <summary class="dc-msp-faq-question">
+                                How fast is your response time?
+                                <span class="dc-msp-faq-icon">+</span>
+                            </summary>
+                            <div class="dc-msp-faq-answer">
+                                <p>We have guaranteed Service Level Agreements (SLAs). While specific times vary by plan, our standard SLA is a <15 minute response time for critical issues and <1 hour response for all other help desk inquiries. Our proactive monitoring means we've often resolved the issue before you even notice it.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Pricing Toggle Logic ---
+            const priceToggle = document.getElementById('dc-msp-price-toggle-checkbox');
+            const pricingSection = document.querySelector('.dc-msp-pricing');
+
+            if (priceToggle && pricingSection) {
+                priceToggle.addEventListener('change', function(e) {
+                    if (e.target.checked) {
+                        // Add 'yearly-active' class, CSS handles the rest
+                        pricingSection.classList.add('yearly-active');
+                    } else {
+                        // Remove 'yearly-active' class
+                        pricingSection.classList.remove('yearly-active');
+                    }
+                });
+            }
+
+            // --- FAQ Accordion Logic ---
+            // This script makes it so only one FAQ item can be open at a time.
+            const allFaqDetails = document.querySelectorAll('.dc-msp-faq-item details');
+
+            allFaqDetails.forEach(details => {
+                details.addEventListener('toggle', function(e) {
+                    // If this item was just opened
+                    if (e.target.open) {
+                        // Close all other items
+                        allFaqDetails.forEach(otherDetails => {
+                            if (otherDetails !== e.target && otherDetails.open) {
+                                otherDetails.open = false;
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

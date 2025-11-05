@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing Services | Defcon IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary: #1199fa;
+            --dark-bg: #151519;
+            --darker-bg: #010119;
+            --light-text: #fff;
+            --light-bg: #f4f4f4;
+            --light-gray: #e5e5e5;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-cloud-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .defcon-cloud-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .defcon-cloud-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(1, 1, 25, 0.85), rgba(1, 1, 25, 0.9)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .defcon-cloud-hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
+            border-radius: 50%;
+            top: 50%;
+            right: -200px;
+            transform: translateY(-50%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .defcon-cloud-hero-content {
+            max-width: 650px;
+            z-index: 1;
+        }
+
+        .defcon-cloud-hero-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), #0d7bc9);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .defcon-cloud-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--light-gray));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .defcon-cloud-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            max-width: 550px;
+        }
+
+        .defcon-cloud-hero-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #0d8ae6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-btn-secondary {
+            background-color: transparent;
+            color: var(--light-text);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-btn-secondary:hover {
+            border-color: var(--primary);
+            background-color: rgba(17, 153, 250, 0.1);
+        }
+
+        /* Section Common Styles */
+        .defcon-cloud-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .defcon-cloud-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        /* Services Overview Section */
+        .defcon-cloud-services {
+            padding: 100px 0;
+        }
+
+        .defcon-cloud-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .defcon-cloud-service-card {
+            background: linear-gradient(145deg, rgba(30, 30, 40, 0.8), rgba(20, 20, 30, 0.9));
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-cloud-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .defcon-cloud-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-cloud-service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), #0a6db3);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .defcon-cloud-service-icon i {
+            font-size: 28px;
+        }
+
+        .defcon-cloud-service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .defcon-cloud-service-desc {
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        .defcon-cloud-service-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .defcon-cloud-service-link:hover {
+            gap: 12px;
+        }
+
+        /* Pricing Section */
+        .defcon-cloud-pricing {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+        }
+
+        .defcon-cloud-pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .defcon-cloud-pricing-toggle-text {
+            font-weight: 500;
+            color: var(--light-gray);
+        }
+
+        .defcon-cloud-pricing-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .defcon-cloud-pricing-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .defcon-cloud-pricing-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .defcon-cloud-pricing-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .defcon-cloud-pricing-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .defcon-cloud-pricing-slider:before {
+            transform: translateX(30px);
+        }
+
+        .defcon-cloud-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-cloud-pricing-card {
+            background: linear-gradient(145deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.95));
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-cloud-pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(17, 153, 250, 0.2);
+        }
+
+        .defcon-cloud-pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 40px;
+            font-size: 12px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .defcon-cloud-pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-cloud-pricing-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .defcon-cloud-pricing-desc {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .defcon-cloud-pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+
+        .defcon-cloud-pricing-period {
+            font-size: 1rem;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+
+        .defcon-cloud-pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-cloud-pricing-feature {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .defcon-cloud-pricing-feature i {
+            color: var(--primary);
+        }
+
+        .defcon-cloud-pricing-feature.disabled {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .defcon-cloud-pricing-feature.disabled i {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* How It Works Section */
+        .defcon-cloud-how-it-works {
+            padding: 100px 0;
+        }
+
+        .defcon-cloud-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .defcon-cloud-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            z-index: 0;
+        }
+
+        .defcon-cloud-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .defcon-cloud-step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), #0a6db3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-cloud-step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .defcon-cloud-step-desc {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .defcon-cloud-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1), rgba(1, 1, 25, 0.9));
+            text-align: center;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+
+        .defcon-cloud-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .defcon-cloud-cta-subtitle {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .defcon-cloud-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .defcon-cloud-steps {
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .defcon-cloud-steps::before {
+                display: none;
+            }
+            
+            .defcon-cloud-pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-cloud-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .defcon-cloud-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-cloud-hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .defcon-cloud-pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-cloud-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .defcon-cloud-section-title {
+                font-size: 1.7rem;
+            }
+            
+            .defcon-cloud-services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cloud Computing Hero Section -->
+    <section class="defcon-cloud-section defcon-cloud-hero">
+        <div class="defcon-cloud-hero-bg"></div>
+        <div class="defcon-cloud-hero-glow"></div>
+        <div class="defcon-cloud-hero-content">
+            <span class="defcon-cloud-hero-badge">NEW FEATURE: AI-POWERED OPTIMIZATION</span>
+            <h1 class="defcon-cloud-hero-title">Transform Your Business With Advanced Cloud Solutions</h1>
+            <p class="defcon-cloud-hero-subtitle">Leverage our enterprise-grade cloud infrastructure with cutting-edge security, scalability, and performance to accelerate your digital transformation.</p>
+            <div class="defcon-cloud-hero-cta">
+                <button class="defcon-btn-primary">Start Free Trial</button>
+                <button class="defcon-btn-secondary">Schedule a Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Services Overview Section -->
+    <section class="defcon-cloud-section defcon-cloud-services">
+        <h2 class="defcon-cloud-section-title">Comprehensive Cloud Services</h2>
+        <p class="defcon-cloud-section-subtitle">From infrastructure setup to advanced AI integration, we provide end-to-end cloud solutions tailored to your business needs.</p>
+        
+        <div class="defcon-cloud-services-grid">
+            <!-- Service Card 1 -->
+            <div class="defcon-cloud-service-card">
+                <div class="defcon-cloud-service-icon">
+                    <i>☁️</i>
+                </div>
+                <h3 class="defcon-cloud-service-title">Infrastructure as a Service</h3>
+                <p class="defcon-cloud-service-desc">Fully managed virtual servers, storage, and networking with 99.9% uptime guarantee and enterprise-grade security.</p>
+                <a href="#" class="defcon-cloud-service-link">
+                    Learn More <span>→</span>
+                </a>
+            </div>
+            
+            <!-- Service Card 2 -->
+            <div class="defcon-cloud-service-card">
+                <div class="defcon-cloud-service-icon">
+                    <i>🔧</i>
+                </div>
+                <h3 class="defcon-cloud-service-title">Platform as a Service</h3>
+                <p class="defcon-cloud-service-desc">Complete development and deployment environment for building, testing, and running applications without infrastructure management.</p>
+                <a href="#" class="defcon-cloud-service-link">
+                    Learn More <span>→</span>
+                </a>
+            </div>
+            
+            <!-- Service Card 3 -->
+            <div class="defcon-cloud-service-card">
+                <div class="defcon-cloud-service-icon">
+                    <i>💡</i>
+                </div>
+                <h3 class="defcon-cloud-service-title">Software as a Service</h3>
+                <p class="defcon-cloud-service-desc">Access our cloud-based software applications on a subscription basis, with automatic updates and seamless scalability.</p>
+                <a href="#" class="defcon-cloud-service-link">
+                    Learn More <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Pricing Section -->
+    <section class="defcon-cloud-section defcon-cloud-pricing">
+        <h2 class="defcon-cloud-section-title">Flexible Pricing Plans</h2>
+        <p class="defcon-cloud-section-subtitle">Choose the perfect plan for your business needs with transparent pricing and no hidden fees.</p>
+        
+        <div class="defcon-cloud-pricing-toggle">
+            <span class="defcon-cloud-pricing-toggle-text">Monthly</span>
+            <label class="defcon-cloud-pricing-switch">
+                <input type="checkbox" id="defcon-pricing-toggle">
+                <span class="defcon-cloud-pricing-slider"></span>
+            </label>
+            <span class="defcon-cloud-pricing-toggle-text">Yearly (Save 20%)</span>
+        </div>
+        
+        <div class="defcon-cloud-pricing-grid">
+            <!-- Pricing Card 1 -->
+            <div class="defcon-cloud-pricing-card">
+                <div class="defcon-cloud-pricing-header">
+                    <h3 class="defcon-cloud-pricing-name">Starter</h3>
+                    <p class="defcon-cloud-pricing-desc">Perfect for small businesses and startups</p>
+                    <div class="defcon-cloud-pricing-price">
+                        $49<span class="defcon-cloud-pricing-period">/month</span>
+                    </div>
+                </div>
+                
+                <ul class="defcon-cloud-pricing-features">
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 2 vCPU Cores
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 4GB RAM
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 50GB SSD Storage
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 1TB Bandwidth
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> Basic Support
+                    </li>
+                    <li class="defcon-cloud-pricing-feature disabled">
+                        <i>✗</i> DDoS Protection
+                    </li>
+                    <li class="defcon-cloud-pricing-feature disabled">
+                        <i>✗</i> Auto Backups
+                    </li>
+                </ul>
+                
+                <button class="defcon-btn-secondary" style="width: 100%;">Get Started</button>
+            </div>
+            
+            <!-- Pricing Card 2 -->
+            <div class="defcon-cloud-pricing-card featured">
+                <div class="defcon-cloud-pricing-badge">POPULAR</div>
+                <div class="defcon-cloud-pricing-header">
+                    <h3 class="defcon-cloud-pricing-name">Business</h3>
+                    <p class="defcon-cloud-pricing-desc">Ideal for growing businesses</p>
+                    <div class="defcon-cloud-pricing-price">
+                        $99<span class="defcon-cloud-pricing-period">/month</span>
+                    </div>
+                </div>
+                
+                <ul class="defcon-cloud-pricing-features">
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 4 vCPU Cores
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 8GB RAM
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 100GB SSD Storage
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 5TB Bandwidth
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> Priority Support
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> DDoS Protection
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> Daily Backups
+                    </li>
+                </ul>
+                
+                <button class="defcon-btn-primary" style="width: 100%;">Get Started</button>
+            </div>
+            
+            <!-- Pricing Card 3 -->
+            <div class="defcon-cloud-pricing-card">
+                <div class="defcon-cloud-pricing-header">
+                    <h3 class="defcon-cloud-pricing-name">Enterprise</h3>
+                    <p class="defcon-cloud-pricing-desc">For large organizations with high demands</p>
+                    <div class="defcon-cloud-pricing-price">
+                        $199<span class="defcon-cloud-pricing-period">/month</span>
+                    </div>
+                </div>
+                
+                <ul class="defcon-cloud-pricing-features">
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 8 vCPU Cores
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 16GB RAM
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 250GB SSD Storage
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 10TB Bandwidth
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> 24/7 Premium Support
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> Advanced DDoS Protection
+                    </li>
+                    <li class="defcon-cloud-pricing-feature">
+                        <i>✓</i> Hourly Backups
+                    </li>
+                </ul>
+                
+                <button class="defcon-btn-secondary" style="width: 100%;">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="defcon-cloud-section defcon-cloud-how-it-works">
+        <h2 class="defcon-cloud-section-title">How Our Cloud Solutions Work</h2>
+        <p class="defcon-cloud-section-subtitle">A streamlined process to get your business on the cloud quickly and efficiently.</p>
+        
+        <div class="defcon-cloud-steps">
+            <!-- Step 1 -->
+            <div class="defcon-cloud-step">
+                <div class="defcon-cloud-step-number">1</div>
+                <h3 class="defcon-cloud-step-title">Consultation & Planning</h3>
+                <p class="defcon-cloud-step-desc">We analyze your business needs and design a customized cloud strategy.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="defcon-cloud-step">
+                <div class="defcon-cloud-step-number">2</div>
+                <h3 class="defcon-cloud-step-title">Migration & Setup</h3>
+                <p class="defcon-cloud-step-desc">Our experts seamlessly migrate your data and applications to the cloud.</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="defcon-cloud-step">
+                <div class="defcon-cloud-step-number">3</div>
+                <h3 class="defcon-cloud-step-title">Optimization & Management</h3>
+                <p class="defcon-cloud-step-desc">We continuously monitor and optimize your cloud infrastructure for peak performance.</p>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="defcon-cloud-step">
+                <div class="defcon-cloud-step-number">4</div>
+                <h3 class="defcon-cloud-step-title">Support & Scaling</h3>
+                <p class="defcon-cloud-step-desc">Our team provides ongoing support and helps scale your infrastructure as needed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="defcon-cloud-section defcon-cloud-cta">
+        <h2 class="defcon-cloud-cta-title">Ready to Transform Your Business?</h2>
+        <p class="defcon-cloud-cta-subtitle">Join thousands of businesses that have accelerated their growth with our cloud solutions. Start your journey today with a free consultation.</p>
+        <button class="defcon-btn-primary">Start Free Trial</button>
+    </section>
+
+    <script>
+        // Pricing Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const pricingToggle = document.getElementById('defcon-pricing-toggle');
+            const monthlyPrices = [49, 99, 199];
+            const yearlyPrices = [39, 79, 159]; // 20% discount
+            
+            pricingToggle.addEventListener('change', function() {
+                const priceElements = document.querySelectorAll('.defcon-cloud-pricing-price');
+                
+                priceElements.forEach((element, index) => {
+                    const price = this.checked ? yearlyPrices[index] : monthlyPrices[index];
+                    element.innerHTML = `$${price}<span class="defcon-cloud-pricing-period">/${this.checked ? 'year' : 'month'}</span>`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

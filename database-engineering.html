@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Engineering & Management | Defcon IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --defcon-primary: #1199fa;
+            --defcon-dark: #010119;
+            --defcon-white: #fff;
+            --defcon-light: #f4f4f4;
+            --defcon-black: #000;
+            --defcon-gray: #e5e5e5;
+            --defcon-container-width: 1200px;
+            --defcon-border-radius: 8px;
+            --defcon-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --defcon-transition: all 0.3s ease;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--defcon-dark);
+            background-color: var(--defcon-white);
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: var(--defcon-container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .defcon-db-hero {
+            position: relative;
+            height: 85vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(17, 153, 250, 0.15) 100%), 
+                        url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover no-repeat;
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--defcon-white);
+            max-width: 700px;
+        }
+
+        .defcon-hero-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--defcon-primary), #2ac7ff);
+            color: var(--defcon-white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px rgba(17, 153, 250, 0.6);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 25px rgba(17, 153, 250, 0.6); }
+            50% { box-shadow: 0 0 35px rgba(17, 153, 250, 0.9); }
+            100% { box-shadow: 0 0 25px rgba(17, 153, 250, 0.6); }
+        }
+
+        .defcon-hero-title {
+            font-size: 3.75rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #ffffff, #e0f4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .defcon-hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: var(--defcon-border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--defcon-transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+            box-shadow: 0 4px 12px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #0d8ae5;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 153, 250, 0.4);
+        }
+
+        .defcon-btn-secondary {
+            background-color: transparent;
+            color: var(--defcon-white);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .defcon-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .defcon-db-features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--defcon-light) 0%, #f9fdff 100%);
+        }
+
+        .defcon-section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 70px;
+        }
+
+        .defcon-section-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-section-subtitle {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .defcon-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .defcon-feature-card {
+            background: var(--defcon-white);
+            border-radius: var(--defcon-border-radius);
+            padding: 40px 30px;
+            box-shadow: var(--defcon-box-shadow);
+            transition: var(--defcon-transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--defcon-primary), #2ac7ff);
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .defcon-feature-card:hover::before {
+            width: 8px;
+        }
+
+        .defcon-feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--defcon-white);
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-feature-description {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .defcon-feature-link {
+            color: var(--defcon-primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-feature-link:hover {
+            color: #0d8ae5;
+            transform: translateX(5px);
+        }
+
+        /* ===== SOLUTIONS SECTION ===== */
+        .defcon-db-solutions {
+            padding: 100px 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-solutions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .defcon-solutions-title-container {
+            max-width: 600px;
+        }
+
+        .defcon-solutions-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-solutions-subtitle {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .defcon-solutions-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .defcon-tab-btn {
+            padding: 12px 24px;
+            background: var(--defcon-light);
+            border: none;
+            border-radius: var(--defcon-border-radius);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--defcon-transition);
+            color: #555;
+        }
+
+        .defcon-tab-btn.active {
+            background: var(--defcon-primary);
+            color: var(--defcon-white);
+            box-shadow: 0 4px 10px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-tab-btn:hover:not(.active) {
+            background: #e0e0e0;
+        }
+
+        .defcon-solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 35px;
+        }
+
+        .defcon-solution-card {
+            background: var(--defcon-white);
+            border-radius: var(--defcon-border-radius);
+            overflow: hidden;
+            box-shadow: var(--defcon-box-shadow);
+            transition: var(--defcon-transition);
+            border: 1px solid var(--defcon-gray);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .defcon-solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-solution-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--defcon-primary), #2ac7ff);
+            color: var(--defcon-white);
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .defcon-solution-header {
+            padding: 30px 30px 0;
+            flex-grow: 1;
+        }
+
+        .defcon-solution-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-solution-description {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .defcon-solution-price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .defcon-solution-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--defcon-primary);
+        }
+
+        .defcon-solution-period {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .defcon-solution-body {
+            padding: 0 30px 30px;
+        }
+
+        .defcon-solution-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-solution-feature {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--defcon-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-solution-feature:last-child {
+            border-bottom: none;
+        }
+
+        .defcon-feature-check {
+            color: var(--defcon-primary);
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        .defcon-solution-cta {
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+            font-size: 1rem;
+        }
+
+        /* ===== DATABASE TYPES SECTION ===== */
+        .defcon-db-types {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f9fdff 0%, var(--defcon-light) 100%);
+        }
+
+        .defcon-db-types-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-db-type-card {
+            background: var(--defcon-white);
+            border-radius: var(--defcon-border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--defcon-box-shadow);
+            transition: var(--defcon-transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-db-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--defcon-primary), #2ac7ff);
+        }
+
+        .defcon-db-type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-db-type-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--defcon-white);
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-db-type-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-db-type-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .defcon-db-process {
+            padding: 100px 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-process-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .defcon-process-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .defcon-process-visual {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .defcon-process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .defcon-process-step {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: var(--defcon-light);
+            border-radius: var(--defcon-border-radius);
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-process-step:hover {
+            background: #e9f7ff;
+            transform: translateX(5px);
+        }
+
+        .defcon-process-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--defcon-white);
+            font-size: 1.3rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .defcon-process-text {
+            flex: 1;
+        }
+
+        .defcon-process-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-process-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .defcon-process-visual-content {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--defcon-primary), #2ac7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(17, 153, 250, 0.2);
+        }
+
+        .defcon-process-visual-content::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: var(--defcon-white);
+            border-radius: 50%;
+        }
+
+        .defcon-process-visual-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--defcon-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            max-width: 200px;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .defcon-db-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(17, 153, 250, 0.2) 100%), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover no-repeat;
+            color: var(--defcon-white);
+            text-align: center;
+        }
+
+        .defcon-cta-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .defcon-cta-description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 45px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1024px) {
+            .defcon-solutions-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+            
+            .defcon-process-container {
+                flex-direction: column;
+            }
+            
+            .defcon-process-visual {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .defcon-section-title, .defcon-solutions-title {
+                font-size: 2.2rem;
+            }
+            
+            .defcon-cta-title {
+                font-size: 2.2rem;
+            }
+            
+            .defcon-solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-features-grid, .defcon-db-types-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .defcon-section-title, .defcon-solutions-title {
+                font-size: 1.9rem;
+            }
+            
+            .defcon-cta-title {
+                font-size: 1.9rem;
+            }
+            
+            .defcon-container {
+                padding: 0 15px;
+            }
+            
+            .defcon-feature-card, 
+            .defcon-solution-card,
+            .defcon-db-type-card {
+                padding: 30px 20px;
+            }
+            
+            .defcon-solution-header {
+                padding: 25px 25px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="defcon-db-hero">
+        <div class="defcon-container">
+            <div class="defcon-hero-content">
+                <span class="defcon-hero-badge">NEW: AI-Powered Database Optimization</span>
+                <h1 class="defcon-hero-title">Enterprise Database Engineering & Management</h1>
+                <p class="defcon-hero-subtitle">Design, optimize, and maintain high-performance database systems that power your business applications. Our expert database solutions ensure scalability, security, and reliability for your most critical data assets.</p>
+                <div class="defcon-hero-cta">
+                    <a href="#defcon-db-solutions" class="defcon-btn defcon-btn-primary">Explore Database Solutions</a>
+                    <a href="#defcon-db-consultation" class="defcon-btn defcon-btn-secondary">Free Database Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="defcon-db-features">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">Comprehensive Database Solutions</h2>
+                <p class="defcon-section-subtitle">We provide end-to-end database engineering and management services that ensure your data infrastructure is robust, scalable, and optimized for performance.</p>
+            </div>
+            <div class="defcon-features-grid">
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">Database Design & Architecture</h3>
+                    <p class="defcon-feature-description">Design scalable database architectures with proper normalization, indexing strategies, and data modeling for optimal performance.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">Performance Optimization</h3>
+                    <p class="defcon-feature-description">Identify and resolve performance bottlenecks through query optimization, indexing strategies, and database configuration tuning.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">Security & Compliance</h3>
+                    <p class="defcon-feature-description">Implement robust security measures including encryption, access controls, and auditing to meet compliance requirements.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">Cloud Migration</h3>
+                    <p class="defcon-feature-description">Seamlessly migrate your databases to cloud platforms with minimal downtime and optimized cloud-native configurations.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">High Availability & Replication</h3>
+                    <p class="defcon-feature-description">Implement replication, clustering, and failover solutions to ensure database availability and business continuity.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="defcon-feature-title">Managed Database Services</h3>
+                    <p class="defcon-feature-description">24/7 monitoring, maintenance, and support for your database systems, ensuring optimal performance and reliability.</p>
+                    <a href="#" class="defcon-feature-link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section class="defcon-db-solutions" id="defcon-db-solutions">
+        <div class="defcon-container">
+            <div class="defcon-solutions-header">
+                <div class="defcon-solutions-title-container">
+                    <h2 class="defcon-solutions-title">Database Solutions & Pricing</h2>
+                    <p class="defcon-solutions-subtitle">Choose from our comprehensive database engineering and management solutions tailored to your specific needs and infrastructure requirements.</p>
+                </div>
+                <div class="defcon-solutions-tabs">
+                    <button class="defcon-tab-btn active" data-tab="all">All Solutions</button>
+                    <button class="defcon-tab-btn" data-tab="design">Design</button>
+                    <button class="defcon-tab-btn" data-tab="optimization">Optimization</button>
+                    <button class="defcon-tab-btn" data-tab="management">Management</button>
+                </div>
+            </div>
+            <div class="defcon-solutions-grid">
+                <!-- Database Design Solutions -->
+                <div class="defcon-solution-card" data-categories="design">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Database Design</span>
+                        <h3 class="defcon-solution-title">Starter Database Design</h3>
+                        <p class="defcon-solution-description">Perfect for startups and small projects needing a well-structured database foundation with basic optimization.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$3,999</div>
+                            <div class="defcon-solution-period">one-time design</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Comprehensive database schema design</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Up to 20 tables with relationships</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Basic normalization & indexing strategy</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Data modeling documentation</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>30 days design support</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+                
+                <div class="defcon-solution-card" data-categories="design optimization">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Database Design</span>
+                        <h3 class="defcon-solution-title">Enterprise Database Architecture</h3>
+                        <p class="defcon-solution-description">Comprehensive database architecture for large-scale applications with complex data relationships and high throughput requirements.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$14,999</div>
+                            <div class="defcon-solution-period">one-time architecture</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Advanced database architecture design</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Unlimited tables with complex relationships</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Advanced normalization & indexing strategy</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Partitioning & sharding strategies</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Performance optimization recommendations</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>90 days architecture support</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+                
+                <!-- Database Optimization Solutions -->
+                <div class="defcon-solution-card" data-categories="optimization">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Performance Optimization</span>
+                        <h3 class="defcon-solution-title">Database Performance Tuning</h3>
+                        <p class="defcon-solution-description">Comprehensive analysis and optimization of your existing database to improve performance and efficiency.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$4,499</div>
+                            <div class="defcon-solution-period">one-time optimization</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Comprehensive performance analysis</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Query optimization & index recommendations</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Database configuration tuning</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Bottleneck identification & resolution</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Performance monitoring setup</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>60 days optimization support</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+                
+                <!-- Database Management Solutions -->
+                <div class="defcon-solution-card" data-categories="management">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Managed Services</span>
+                        <h3 class="defcon-solution-title">Basic Database Management</h3>
+                        <p class="defcon-solution-description">Ongoing database management and maintenance for small to medium-sized database systems.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$499</div>
+                            <div class="defcon-solution-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>24/7 monitoring & alerting</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Regular backups & recovery testing</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Performance monitoring & reporting</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Security patches & updates</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Up to 5GB database size</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+                
+                <div class="defcon-solution-card" data-categories="management">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Managed Services</span>
+                        <h3 class="defcon-solution-title">Enterprise Database Management</h3>
+                        <p class="defcon-solution-description">Comprehensive managed database service for large-scale, mission-critical database systems with high availability requirements.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$2,499</div>
+                            <div class="defcon-solution-period">per month</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>24/7 proactive monitoring & management</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>High availability & disaster recovery</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Advanced performance tuning</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Security compliance & auditing</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Unlimited database size</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Dedicated database administrator</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+                
+                <div class="defcon-solution-card" data-categories="optimization management">
+                    <div class="defcon-solution-header">
+                        <span class="defcon-solution-badge">Cloud Migration</span>
+                        <h3 class="defcon-solution-title">Database Cloud Migration</h3>
+                        <p class="defcon-solution-description">Seamless migration of your on-premise databases to cloud platforms with optimized configurations and minimal downtime.</p>
+                        <div class="defcon-solution-price-container">
+                            <div class="defcon-solution-price">$7,999</div>
+                            <div class="defcon-solution-period">one-time migration</div>
+                        </div>
+                    </div>
+                    <div class="defcon-solution-body">
+                        <ul class="defcon-solution-features">
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Comprehensive migration planning</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Schema conversion & optimization</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Data migration with minimal downtime</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Cloud-native configuration & optimization</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>Post-migration support & optimization</span>
+                            </li>
+                            <li class="defcon-solution-feature">
+                                <span class="defcon-feature-check">✓</span>
+                                <span>90 days migration support</span>
+                            </li>
+                        </ul>
+                        <button class="defcon-btn defcon-btn-primary defcon-solution-cta">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATABASE TYPES SECTION -->
+    <section class="defcon-db-types">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">Database Technologies We Specialize In</h2>
+                <p class="defcon-section-subtitle">Our expertise spans across a wide range of database technologies, ensuring we can provide the optimal solution for your specific use case and requirements.</p>
+            </div>
+            <div class="defcon-db-types-container">
+                <div class="defcon-db-type-card">
+                    <div class="defcon-db-type-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="defcon-db-type-title">Relational Databases</h3>
+                    <p class="defcon-db-type-description">MySQL, PostgreSQL, Oracle, SQL Server, MariaDB with ACID compliance and complex transaction support.</p>
+                </div>
+                <div class="defcon-db-type-card">
+                    <div class="defcon-db-type-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="defcon-db-type-title">NoSQL Databases</h3>
+                    <p class="defcon-db-type-description">MongoDB, Cassandra, Redis, Couchbase for flexible schema design and horizontal scalability.</p>
+                </div>
+                <div class="defcon-db-type-card">
+                    <div class="defcon-db-type-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="defcon-db-type-title">Cloud Databases</h3>
+                    <p class="defcon-db-type-description">Amazon RDS, Azure SQL, Google Cloud SQL, DynamoDB with managed services and auto-scaling.</p>
+                </div>
+                <div class="defcon-db-type-card">
+                    <div class="defcon-db-type-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 class="defcon-db-type-title">Data Warehousing</h3>
+                    <p class="defcon-db-type-description">Amazon Redshift, Google BigQuery, Snowflake for analytical processing and business intelligence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="defcon-db-process">
+        <div class="defcon-container">
+            <div class="defcon-section-header">
+                <h2 class="defcon-section-title">Our Database Engineering Process</h2>
+                <p class="defcon-section-subtitle">We follow a systematic approach to database engineering that ensures optimal performance, security, and scalability for your applications.</p>
+            </div>
+            <div class="defcon-process-container">
+                <div class="defcon-process-content">
+                    <div class="defcon-process-steps">
+                        <div class="defcon-process-step">
+                            <div class="defcon-process-number">1</div>
+                            <div class="defcon-process-text">
+                                <h3 class="defcon-process-title">Requirements Analysis</h3>
+                                <p class="defcon-process-description">We thoroughly analyze your business requirements, data models, performance needs, and scalability requirements to design the optimal database solution.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-process-step">
+                            <div class="defcon-process-number">2</div>
+                            <div class="defcon-process-text">
+                                <h3 class="defcon-process-title">Architecture Design</h3>
+                                <p class="defcon-process-description">Our experts design a robust database architecture with proper normalization, indexing strategies, and scalability considerations.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-process-step">
+                            <div class="defcon-process-number">3</div>
+                            <div class="defcon-process-text">
+                                <h3 class="defcon-process-title">Implementation & Migration</h3>
+                                <p class="defcon-process-description">We implement the database design, migrate existing data if needed, and ensure proper configuration for optimal performance.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-process-step">
+                            <div class="defcon-process-number">4</div>
+                            <div class="defcon-process-text">
+                                <h3 class="defcon-process-title">Optimization & Testing</h3>
+                                <p class="defcon-process-description">We perform comprehensive testing, query optimization, and performance tuning to ensure your database meets all requirements.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-process-step">
+                            <div class="defcon-process-number">5</div>
+                            <div class="defcon-process-text">
+                                <h3 class="defcon-process-title">Monitoring & Maintenance</h3>
+                                <p class="defcon-process-description">We provide ongoing monitoring, maintenance, and support to ensure your database continues to perform optimally as your business grows.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="defcon-process-visual">
+                    <div class="defcon-process-visual-content">
+                        <div class="defcon-process-visual-text">Structured Database Engineering Process</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="defcon-db-cta" id="defcon-db-consultation">
+        <div class="defcon-container">
+            <h2 class="defcon-cta-title">Optimize Your Database Performance Today</h2>
+            <p class="defcon-cta-description">Let our database experts analyze your current infrastructure and provide recommendations to improve performance, security, and scalability. Schedule a free database assessment now.</p>
+            <a href="#" class="defcon-btn defcon-btn-primary">Schedule Free Database Assessment</a>
+        </div>
+    </section>
+
+    <script>
+        // Tab functionality for solutions
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.defcon-tab-btn');
+            const solutionCards = document.querySelectorAll('.defcon-solution-card');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-tab');
+                    
+                    // Show/hide solution cards based on filter
+                    solutionCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'flex';
+                        } else {
+                            const categories = card.getAttribute('data-categories').split(' ');
+                            if (categories.includes(filter)) {
+                                card.style.display = 'flex';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
