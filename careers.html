@@ -1,798 +1,712 @@
-
+<!-- HYPERION-HEADER START -->
 <style>
-        /*
-        =============================================
-        0. ROOT & FONT STYLES
-        =============================================
-        */
-        :root {
-            /* Palette */
-            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
-            --color-accent: #0091ff;      /* Bright Blue Accent */
-            --color-text-light: #fff;
-            --color-background-dark: #000;
-            --color-off-white: #f4f4f4;
-            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
-            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
-            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
-            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
-            
-            /* Sizing */
-            --header-height: 55px;
-            --content-max-width-fg: 1500px;
-        }
+    /* =============================================
+        HYPERION HEADER - UNIQUE STYLES
+        ============================================= */
+    :root {
+        /* Palette */
+        --hyperion-color-header-bg: #080d1b;
+        --hyperion-color-accent: #0091ff;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #080d1b;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #1c1a3b;
+        
+        /* Sizing */
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding-top: var(--header-height); /* Space for fixed header */
-            background-color: var(--color-background-dark);
-            color: var(--color-text-light);
-            overflow-x: hidden;
+    .hyperion-header-wrapper {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%; 
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    .hyperion-custom-logo-text img {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 23px;
+        vertical-align: middle;
+    }
+    
+    .hyperion-custom-logo-text:hover {
+         color: var(--hyperion-color-accent);
+    }
+
+    /* Desktop Navigation */
+    .hyperion-custom-main-nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px;
+        position: relative;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500;
+        padding: 10px 0;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-link:hover {
+        color: #a0a9be;
+    }
+    
+    /* Icon for desktop links */
+    .hyperion-desktop-link-icon {
+        width: 14px;
+        height: 14px;
+        margin-left: 6px;
+        color: var(--hyperion-color-text-muted);
+        stroke-width: 2;
+    }
+    
+    .hyperion-custom-nav-link:hover .hyperion-desktop-link-icon {
+        color: #a0a9be;
+    }
+    
+    /* Action Buttons Wrapper */
+    .hyperion-header-action-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Primary Action Button (Contact Us) */
+    .hyperion-header-action-btn {
+        background: #0077cc;
+        color: var(--hyperion-color-text-light);
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: background-color 0.2s ease;
+    }
+
+    .hyperion-header-action-btn a {
+        color: inherit;
+    }
+
+    .hyperion-header-action-btn:hover {
+        background-color: #0081ff;
+    }
+    
+    /* Secondary Action Button (Get Started) */
+    .hyperion-header-secondary-btn {
+        background-color: #62b8fa32;
+        color: #95d1ff;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.2s ease;
+    }
+
+    .hyperion-header-secondary-btn a {
+        color: inherit;
+    }
+
+    .hyperion-header-secondary-btn:hover {
+        background-color: #4a4b6b;
+    }
+
+    /* QR Code Dropdown Trigger */
+    .hyperion-qr-dropdown-trigger {
+        position: relative;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        color: var(--hyperion-color-text-light);
+        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .hyperion-qr-dropdown-trigger:hover {
+        background-color: #2b294a;
+    }
+
+    .hyperion-qr-dropdown-trigger svg {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no;
+    }
+
+    /* QR Code Dropdown Content */
+    .hyperion-qr-dropdown-content {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: #080d1b;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 130px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        z-index: 100;
+    }
+
+    .hyperion-qr-dropdown-content.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-qr-dropdown-content img {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .hyperion-qr-dropdown-content p {
+        color: var(--hyperion-color-text-light);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* MEGA MENU CONTAINER */
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0s, opacity 0s, transform 0s;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 40px 40px 40px;
+    }
+
+    .hyperion-mega-menu-panel.active {
+        display: block;
+    }
+    
+    /* 3-Column Grid for Mega Menus */
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        gap: 40px;
+        justify-content: start;
+        padding-left: 8.45rem;
+    }
+    
+    .hyperion-menu-group-card {
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 2.5rem;
+        border-radius: 8px;
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-transform: none;
+        letter-spacing: 0.1px;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        color: var(--hyperion-color-text-muted);
+    }
+    
+    /* Image Icon for mega menu group headings */
+    .hyperion-menu-group-img-icon {
+        width: auto;
+        height: 40px;
+        margin-right: 8px;
+        flex-shrink: 0;
+        backface-visibility: visible;
+    }
+    
+    /* Container for Heading Text and Tagline */
+    .hyperion-menu-group-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Tagline Style */
+    .hyperion-menu-group-tagline {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hyperion-color-text-muted);
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .hyperion-mega-menu-group-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Link Items inside Mega Menu */
+    .hyperion-mega-menu-group-list a {
+        display: block;
+        border-radius: 0;
+        transition: color 0s;
+        position: relative;
+        margin: 7px 0;
+        padding: 2px 0;
+        letter-spacing: -0.03em;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--hyperion-color-text-light);
+    }
+
+    .hyperion-mega-menu-link-title {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        margin-bottom: 0;
+    }
+    
+    .hyperion-mega-menu-group-list a:hover {
+        color: #9cd4ff;
+        background-color: transparent;
+    }
+    
+    /* SVG Icon for mobile dropdown */
+    .hyperion-mobile-dropdown-icon {
+        display: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Mobile Toggle */
+    .hyperion-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 1010;
+    }
+
+    .hyperion-mobile-toggle span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0;
+        transition: all 0.3s ease;
+    }
+
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Mobile Overrides */
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container {
+            padding: 0 20px;
         }
         
-        a {
-            text-decoration: none;
-            color: inherit;
+        .hyperion-mobile-toggle {
+            display: block;
         }
 
-        /*
-        =============================================
-        1. HEADER WRAPPER (FIXED & DARK BLUE)
-        =============================================
-        */
-        .header-wrapper {
-            position: fixed; 
-            top: 0;
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height);
             left: 0;
-            width: 100%; 
-            z-index: 1000;
-            background-color: var(--color-header-bg);
-            /* Removed box-shadow as per request, keeping subtle bottom line */
-        }
-
-        .custom-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-        }
-
-        .custom-header-container {
-            max-width: var(--content-max-width-fg);
             width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
+            height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto;
+            padding: 20px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: block;
+            z-index: 900;
+        }
+
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px;
+            margin-left: 0;
+        }
+
+        .hyperion-custom-nav-list li {
+            margin: 0;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+        }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0;
+            font-size: 1.1rem;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        /* Logo */
-        .custom-logo-text img{
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--color-text-light);
-            transition: color 0.3s ease;
-            height: 23px;
-            vertical-align: middle;
-        }
         
-        .custom-logo-text:hover {
-             color: var(--color-accent);
-        }
-
-        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
-        .custom-main-nav {
-            flex-grow: 1; /* Allows nav to take up remaining space */
-            display: flex;
-            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
-            align-items: center;
-        }
-
-        .custom-nav-list {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-
-        .custom-nav-list li {
-            margin-left: 35px;
-            position: relative;
-        }
-
-        .custom-nav-link {
-            text-decoration: none;
-            color: var(--color-text-light);
-            font-weight: 500;
-            padding: 10px 0;
-            display: flex;
-            font-size: 14px;
-            align-items: center;
-        }
-
-        .custom-nav-link:hover {
-            color: #a0a9be;
-        }
-        
-        /* NEW - Icon for desktop links like Pricing/Projects */
-        .desktop-link-icon {
-            width: 14px;
-            height: 14px;
-            margin-left: 6px;
-            color: var(--color-text-muted);
-            stroke-width: 2;
-        }
-        
-        .custom-nav-link:hover .desktop-link-icon {
-            color: #a0a9be; /* Match the link hover color */
-        }
-        
-        /* Action Buttons Wrapper - NEW */
-        .header-action-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Primary Action Button (Contact Us) */
-        .header-action-btn {
-            background: #0077cc;
-            color: var(--color-text-light);
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 20px; /* Space between the last nav item and this button */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-action-btn a {
-            color: inherit;
-        }
-
-        .header-action-btn:hover {
-            background-color: #0081ff;
-        }
-        
-        /* Secondary Action Button (Get Started) - NEW */
-        .header-secondary-btn {
-            background-color: #62b8fa32; /* Light blue background */
-            color: #95d1ff;
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-secondary-btn a {
-            color: inherit;
-        }
-
-        .header-secondary-btn:hover {
-            background-color: #4a4b6b; /* Slightly lighter on hover */
-        }
-
-        /* QR Code Dropdown Trigger - NEW */
-        .qr-dropdown-trigger {
-            position: relative;
-            margin-left: 10px; /* Space from Get Started button */
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; /* Circular button */
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            color: var(--color-text-light);
-            font-size: 18px; /* Icon size */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-        }
-        
-        .qr-dropdown-trigger:hover {
-            background-color: #2b294a;
-        }
-
-        /* QR Code Dropdown Content - NEW */
-        .qr-dropdown-content {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the header, with a gap */
-            right: 0; /* Align to the right of the trigger button */
-            background-color: #080d1b;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 130px; /* Fixed width for the dropdown */
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
-            z-index: 100; /* Ensure it's above other content */
-        }
-
-        .qr-dropdown-trigger svg {
-            content: '';
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            }
-
-        .qr-dropdown-content.show {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .qr-dropdown-content img {
-            width: 100px; /* Size of the QR code image */
-            height: 100px;
-            background-color: #fff; /* White background for QR code */
-            padding: 10px; /* Padding around QR code to make it look embedded */
-            border-radius: 8px; /* Slightly rounded corners for the QR code */
-            margin-bottom: 15px;
-        }
-
-        .qr-dropdown-content p {
-            color: var(--color-text-light);
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /*
-        =============================================
-        2. MEGA MENU CONTAINER (Look-Alike Styles)
-        =============================================
-        */
-        .mega-menu-container {
-            position: absolute;
-            top: var(--header-height);
-            left: 0;
-            width: 100%;
-            background-color: var(--color-menu-bg);
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0s, opacity 0s, transform 0s;
-        }
-
-        .header-wrapper.mega-menu-open .mega-menu-container {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mega-menu-panel {
+        /* Hide desktop-only icons on mobile */
+        .hyperion-desktop-link-icon {
             display: none;
-            max-width: var(--content-max-width-fg);
-            width: 100%; /* Ensure it spans the max width */
-            margin: 0 auto;
-            padding: 20px 40px 40px 40px; /* Reduced top padding */
-        }
-
-        .mega-menu-panel.active {
-            display: block;
         }
         
-        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
-        .megamenu-3-column-grid {
-            display: grid;
-            /* Use auto-fit with a min-max for column width, which helps alignment. 
-               Setting fixed columns here to ensure they stop at a reasonable width 
-               to look like the image, and the entire block is left-aligned within the 1200px container.
-            */
-            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
-            gap: 40px;
-            justify-content: start; /* Aligns the grid itself to the start (left) */
-            padding-left: 9rem;
+        /* Hide the tagline on mobile */
+        .hyperion-menu-group-tagline {
+            display: none;
         }
         
-        .menu-group-card {
-            padding: 0;
-            padding-top: 10px;
-            padding-bottom: 2.5rem;
-            border-radius: 8px; 
-        }
-
-        .menu-group-card h3 {
-            font-size: 13px; /* Slightly larger heading for better hierarchy */
-            font-weight: 600;
-            margin-bottom: 25px; /* More space below heading */
-            text-transform: none;
-            letter-spacing: 0.1px;
-            cursor: default; /* Not a clickable element */
-            
-            /* MODIFIED to contain icon, heading, and tagline */
-            display: flex; 
-            align-items: center; /* Vertically center icon with the text block */
-            color: var(--color-text-muted);
+        /* Show and style mobile icon */
+        .hyperion-mobile-dropdown-icon {
+            display: inline-block;
         }
         
-        /* NEW - Icon for mega menu group headings */
-        .menu-group-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 8px; /* Space between icon and text */
-            color: var(--color-accent); /* Use the accent color */
-            stroke-width: 2;
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0; 
+        /* Rotate icon when the parent menu item is active */
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
         }
         
-        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
-        .menu-group-img-icon {
-            width: auto;
-            height: 40px;
-            margin-right: 8px; /* Space between icon and text */
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0;
-            backface-visibility: visible
-        }
-        
-        /* NEW - Container for Heading Text and Tagline */
-        .menu-group-text-container {
-            display: flex;
+        /* Mobile Action Buttons */
+        .hyperion-header-action-buttons {
             flex-direction: column;
-            justify-content: center; /* Vertically center the text block if icon is taller */
-        }
-
-        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
-        .menu-group-tagline {
-            font-size: 12px; /* Smaller font for tagline */
-            font-weight: 500; /* Lighter weight */
-            color: var(--color-text-muted); /* Subtler color */
-            margin-top: 5px; /* Small space below the main heading */
-            display: block; /* Ensure it takes up its own line */
-        }
-        
-        .mega-menu-group-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
-        .mega-menu-group-list a {
-            display: block;
-            border-radius: 0; /* Remove border radius */
-            transition: color 0s;
-            position: relative;
-            margin: 5px 0; /* Tighter vertical spacing */
-            padding: 2px 0; /* Minimal padding */
-            letter-spacing: -0.03em;
-            font-size: 19px;
-            font-weight: 600; /* Regular weight for links */
-            color: var(--color-text-light); /* Make column headers light/white */
-        }
-
-        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
-        .mega-menu-link-title {
-            /* This class is now redundant but keeping it for structure if needed later */
-            font-size: inherit; 
-            font-weight: inherit;
-            color: inherit; 
-            margin-bottom: 0;
-        }
-        
-        .mega-menu-group-list a:hover {
-            color: #9cd4ff; /* White on hover */
-            background-color: transparent; /* No background change on hover */
-        }
-        
-        /* REMOVED: .mega-menu-link-desc is removed as requested */
-        .mega-menu-link-desc {
-            display: none; /* Hide descriptions */
-        }
-        
-        /*
-        =============================================
-        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
-        =============================================
-        */
-        
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        /* Mobile Toggle */
-        .mobile-toggle {
-            display: none; 
-            background: none;
-            border: none;
-            width: 30px;
-            height: 24px;
-            cursor: pointer;
-            padding: 0;
-            position: relative;
-            z-index: 1010;
-        }
-
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-toggle span {
-            display: block;
-            height: 2px;
             width: 100%;
-            background-color: var(--color-text-light);
-            margin: 6px 0;
-            transition: all 0.3s ease;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
         }
 
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            text-align: center;
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
-            opacity: 0;
+
+        .hyperion-qr-dropdown-trigger {
+            width: 100%;
+            border-radius: 50px;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            height: auto;
+            box-sizing: border-box;
+            justify-content: center;
+            display: none; /* HIDE QR TRIGGER ON MOBILE */
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+
+        .hyperion-qr-dropdown-content {
+            position: static;
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: none;
+            border-top: 1px solid rgba(0, 145, 255, 0.1);
+            border-radius: 0;
+            background-color: #0d0d29;
+            display: none; /* HIDE QR CONTENT ON MOBILE */
         }
         
-        /* Mobile Overrides */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .custom-header-container {
-                padding: 0 20px;
-            }
-            
-            .mobile-toggle {
-                display: block; 
-            }
-
-            .custom-main-nav {
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                height: calc(100vh - var(--header-height));
-                background-color: var(--color-header-bg);
-                overflow-y: auto;
-                padding: 20px 0;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                display: block; 
-                z-index: 900;
-            }
-
-            .header-wrapper.mobile-menu-open .custom-main-nav {
-                transform: translateX(0);
-            }
-
-            .custom-nav-list {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 20px;
-                margin-left: 0; /* Reset desktop margin */
-            }
-
-            .custom-nav-list li {
-                margin: 0;
-                width: 100%;
-                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
-            }
-
-            .custom-nav-link {
-                padding: 15px 0;
-                font-size: 1.1rem;
-                width: 100%;
-                display: flex; /* Use flex to position icon */
-                justify-content: space-between; /* Pushes text left, icon right */
-                align-items: center;
-            }
-            
-            /* NEW - Hide desktop-only icons on mobile */
-            .desktop-link-icon {
-                display: none;
-            }
-            
-            /* Hide the tagline on mobile */
-            .menu-group-tagline {
-                display: none; 
-            }
-            
-            /* Show and style mobile icon */
-            .mobile-dropdown-icon {
-                display: inline-block; /* Show on mobile */
-            }
-            
-            /* Rotate icon when the parent menu item is active */
-            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
-                transform: rotate(180deg);
-            }
-            
-            /* Remove underline effect on mobile */
-            .custom-nav-link::after {
-                display: none;
-            }
-
-            
-            /* Mobile Action Buttons */
-            .header-action-buttons {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
-                box-sizing: border-box; /* Include padding in width */
-                margin-top: 20px; /* Space from last nav item */
-            }
-
-            .header-action-btn,
-            .header-secondary-btn {
-                width: 100%;
-                margin: 10px 0 0 0; /* Stack vertically with space */
-                padding: 15px 20px;
-                text-align: center;
-            }
-
-            .qr-dropdown-trigger {
-                width: 100%;
-                border-radius: 50px; /* Make it a full button shape */
-                margin: 10px 0 0 0;
-                padding: 15px 20px;
-                height: auto; /* Adjust height based on padding */
-                box-sizing: border-box;
-                justify-content: center; /* Center content horizontally */
-                display: none; /* HIDE QR TRIGGER ON MOBILE */
-            }
-
-            .qr-dropdown-trigger i {
-                margin-right: 10px; /* Space between icon and text if we add it */
-            }
-
-            /* Mobile QR Dropdown */
-            .qr-dropdown-content {
-                position: static; /* Remove absolute positioning */
-                width: 100%;
-                margin-top: 15px; /* Space from trigger */
-                padding: 15px;
-                box-shadow: none;
-                border-top: 1px solid rgba(0, 145, 255, 0.1);
-                border-radius: 0;
-                background-color: #0d0d29; /* Match mega menu background */
-                display: none; /* HIDE QR CONTENT ON MOBILE */
-            }
-            
-            .qr-dropdown-content img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .qr-dropdown-content.show {
-                transform: none; /* No transform on mobile */
-            }
-
-            /* Mobile Mega Menu */
-            .mega-menu-container {
-                position: static;
-                visibility: visible;
-                opacity: 1;
-                transform: none;
-                transition: max-height 0.3s ease;
-                overflow: hidden;
-                max-height: 0;
-                background-color: var(--color-menu-bg);
-                border-top: none;
-            }
-
-            .mega-menu-link-title {
-              padding: 0;
-              border-bottom: none;
-            }
-            
-            .custom-nav-item--has-megamenu.active .mega-menu-container {
-                max-height: 2000px;
-                padding: 0;
-            }
-            
-            .mega-menu-panel {
-                padding: 15px 0; /* Align content with parent link */
-                display: block; /* Make panel visible by default inside mobile menu */
-            }
-
-            .megamenu-3-column-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding-left: 0; /* Reset desktop padding */
-            }
-            
-            .menu-group-card {
-                padding: 0;
-            }
-            
-            .menu-group-card h3 {
-                margin-top: 23px;
-                /* Reset mobile h3 layout to default */
-                flex-direction: row; 
-                align-items: center;
-                display: flex;
-            }
-            
-            .mega-menu-group-list a {
-                margin: 10px 0;
-            }
-
-            .mega-menu-group-list li {
-                
-                border: none;
-                
-            }
-            
-            .mega-menu-group-list a:hover {
-                background-color: rgba(0, 145, 255, 0.1);
-            }
+        .hyperion-qr-dropdown-content img {
+            width: 120px;
+            height: 120px;
         }
-    </style>
-</head>
-<body>
 
-<div class="header-wrapper">
+        .hyperion-qr-dropdown-content.show {
+            transform: none;
+        }
+
+        /* Mobile Mega Menu */
+        .hyperion-mega-menu-container {
+            position: static;
+            visibility: visible;
+            opacity: 1;
+            transform: none;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+            background-color: var(--hyperion-color-menu-bg);
+            border-top: none;
+        }
+
+        .hyperion-mega-menu-link-title {
+          padding: 0;
+          border-bottom: none;
+        }
+        
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 2000px;
+            padding: 0;
+        }
+        
+        .hyperion-mega-menu-panel {
+            padding: 15px 0;
+            display: block;
+        }
+
+        .hyperion-megamenu-3-column-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-left: 0;
+        }
+        
+        .hyperion-menu-group-card {
+            padding: 0;
+        }
+        
+        .hyperion-menu-group-card h3 {
+            margin-top: 23px;
+            flex-direction: row;
+            align-items: center;
+            display: flex;
+        }
+        
+        .hyperion-mega-menu-group-list a {
+            margin: 10px 0;
+        }
+
+        .hyperion-mega-menu-group-list li {
+            border: none;
+        }
+        
+        .hyperion-mega-menu-group-list a:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+    }
+</style>
+
+<div class="hyperion-header-wrapper">
     
-    <header class="custom-header">
-        <div class="custom-header-container">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
             
-            <div class="custom-logo-container">
-                <a href="index.html" class="custom-logo-link custom-logo-text">
-                    <img src="thumbnails/hyperion.png" alt="Defcon Logo">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="thumbnails/hyperion logo (2).png" alt="Hyperion Logo">
                 </a>
             </div>
 
-            <nav class="custom-main-nav">
-                <ul class="custom-nav-list">
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
                     <li>
-                        <a href="pricing.html" class="custom-nav-link">Pricing
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                         </svg>
                         </a>
                     </li>
                     <li>
-                        <a href="projects.html" class="custom-nav-link">Projects
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <a href="page.html" class="hyperion-custom-nav-link">Projects
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                         </svg>
                         </a>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="page.html" class="custom-nav-link" data-megamenu-trigger="services">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
                             Solutions
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="services">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Software Development
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">Web Applications</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">API Development</span>
+                                                    <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Database Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             IT Infrastructure
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                                    <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Data Center Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Marketing & Creative Studio
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Content Management</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -801,116 +715,116 @@
                             </div>
                         </div>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
                             Discover
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="discover">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
-                                            Defcon
+                                            Hyperion
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    <span class="hyperion-mega-menu-link-title">About Us</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    <span class="hyperion-mega-menu-link-title">Product News</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Innovations</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="careers.html">
-                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    <span class="hyperion-mega-menu-link-title">Careers</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="partners.html">
-                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    <span class="hyperion-mega-menu-link-title">Partners</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="licenses-and-registrations.html">
-                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Resources
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blog</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    <span class="hyperion-mega-menu-link-title">eBooks</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    <span class="hyperion-mega-menu-link-title">Webinars</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">YouTube Playlists</span>
+                                                    <span class="hyperion-mega-menu-link-title">Recommendations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Connect
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Media</span>
+                                                    <span class="hyperion-mega-menu-link-title">X</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">X</span>
-                                                    </a>
-                                            </li>
-                                            <li>
-                                                <a href="page.html">
-                                                    <span class="mega-menu-link-title">Facebook</span>
+                                                    <span class="hyperion-mega-menu-link-title">Facebook</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Youtube</span>
+                                                    <span class="hyperion-mega-menu-link-title">LinkedIn</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Github</span>
+                                                    <span class="hyperion-mega-menu-link-title">Youtube</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">Github</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -920,23 +834,23 @@
                         </div>
                     </li>
                 </ul>
-                <div class="header-action-buttons">
-                    <button class="header-secondary-btn">
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
                         <a href="page.html">Get Started</a>
                     </button>
-                    <button class="header-action-btn">
+                    <button class="hyperion-header-action-btn">
                         <a href="page.html">Contact Us</a>
                     </button>
-                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
+                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
                       <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
-                        <div class="qr-dropdown-content" id="qrDropdownContent">
+                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
                             <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
                         </div>
                     </div>
                 </div>
             </nav>
 
-            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -944,127 +858,127 @@
         </div>
     </header>
 
-    <div class="mega-menu-container desktop-mega-menu">
+    <div class="hyperion-mega-menu-container hyperion-desktop-mega-menu">
         
-        <div class="mega-menu-panel" data-megamenu-panel="services">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
-                            Software Engineering
-                            <span class="menu-group-tagline">Build your custom vision</span>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Development
+                            <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Web Applications</span>
+                                <span class="hyperion-mega-menu-link-title">Web Applications</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
+                                <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
-                         <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/02.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             IT Infrastructure
-                            <span class="menu-group-tagline">Power your business</span>
+                            <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">IT Consulting</span>
+                                <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Data Center & Storage</span>
+                                <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Smart Technology</span>
+                                <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             Marketing & Creative Studio
-                            <span class="menu-group-tagline">Grow your audience</span>
+                            <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Graphic Design</span>
+                                <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Content Management</span>
+                                <span class="hyperion-mega-menu-link-title">Content Management</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Multimedia Production</span>
+                                <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
                                 </a>
                         </li>
                     </ul>
@@ -1072,119 +986,119 @@
             </div>
         </div>
 
-        <div class="mega-menu-panel" data-megamenu-panel="discover">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Hyperion
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">About Us</span>
+                                <span class="hyperion-mega-menu-link-title">About Us</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Roadmap</span>
+                                <span class="hyperion-mega-menu-link-title">Roadmap</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Innovations</span>
+                                <span class="hyperion-mega-menu-link-title">Innovations</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Product News</span>
+                                <span class="hyperion-mega-menu-link-title">Product News</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Events</span>
+                                <span class="hyperion-mega-menu-link-title">Events</span>
                                 </a>
                         </li>
                         <li>
                             <a href="careers.html">
-                                <span class="mega-menu-link-title">Careers</span>
+                                <span class="hyperion-mega-menu-link-title">Careers</span>
                                 </a>
                         </li>
                         <li>
                             <a href="partners.html">
-                                <span class="mega-menu-link-title">Partners</span>
+                                <span class="hyperion-mega-menu-link-title">Partners</span>
                                 </a>
                         </li>
                         <li>
                             <a href="licenses-and-registrations.html">
-                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Resources
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Blog</span>
+                                <span class="hyperion-mega-menu-link-title">Blog</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">eBooks</span>
+                                <span class="hyperion-mega-menu-link-title">eBooks</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Webinars</span>
+                                <span class="hyperion-mega-menu-link-title">Webinars</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Podcasts</span>
+                                <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Recommendations</span>
+                                <span class="hyperion-mega-menu-link-title">Recommendations</span>
                                 </a>
                         </li>
 
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Connect
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">X</span>
+                                <span class="hyperion-mega-menu-link-title">X</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Facebook</span>
+                                <span class="hyperion-mega-menu-link-title">Facebook</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">LinkedIn</span>
+                                <span class="hyperion-mega-menu-link-title">LinkedIn</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Youtube</span>
+                                <span class="hyperion-mega-menu-link-title">Youtube</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Github</span>
+                                <span class="hyperion-mega-menu-link-title">Github</span>
                                 </a>
                         </li>
                     </ul>
@@ -1194,221 +1108,187 @@
     </div>
 </div>
 
-
 <script>
 // =============================================
-// JAVASCRIPT FOR MENU FUNCTIONALITY
+// HYPERION HEADER JAVASCRIPT
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const headerWrapper = document.querySelector('.header-wrapper');
-    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
-    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
-    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const body = document.body;
+    const hyperionHeaderWrapper = document.querySelector('.hyperion-header-wrapper');
+    const hyperionDesktopMegaMenuContainer = document.querySelector('.hyperion-desktop-mega-menu');
+    const hyperionMegaMenuTriggers = document.querySelectorAll('[data-hyperion-megamenu-trigger]');
+    const hyperionDesktopMegaMenuPanels = hyperionDesktopMegaMenuContainer.querySelectorAll('.hyperion-mega-menu-panel');
+    const hyperionMobileMenuToggle = document.getElementById('hyperion-mobileMenuToggle');
+    const hyperionBody = document.body;
     
-    // NEW: QR Code Dropdown elements
-    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
-    const qrDropdownContent = document.getElementById('qrDropdownContent');
+    // QR Code Dropdown elements
+    const hyperionQrDropdownTrigger = document.getElementById('hyperion-qrDropdownTrigger');
+    const hyperionQrDropdownContent = document.getElementById('hyperion-qrDropdownContent');
 
-    let closeTimer = null;
-    let qrCloseTimer = null; // Timer for QR dropdown
+    let hyperionCloseTimer = null;
+    let hyperionQrCloseTimer = null;
 
     // =============================================
-    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // DESKTOP MEGA MENU LOGIC
     // =============================================
     
-    // Function to set the active state on trigger and panel
-    function setActiveMenu(trigger, panel) {
-        // Deactivate all others first
-        megaMenuTriggers.forEach(t => t.classList.remove('active'));
-        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+    function hyperionSetActiveMenu(trigger, panel) {
+        hyperionMegaMenuTriggers.forEach(t => t.classList.remove('active'));
+        hyperionDesktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
 
         if (trigger && panel) {
             trigger.classList.add('active');
             panel.classList.add('active');
-            headerWrapper.classList.add('mega-menu-open');
+            hyperionHeaderWrapper.classList.add('hyperion-mega-menu-open');
         } else {
-            // Close all
-            headerWrapper.classList.remove('mega-menu-open');
+            hyperionHeaderWrapper.classList.remove('hyperion-mega-menu-open');
         }
     }
 
-    function handleOpen(trigger) {
+    function hyperionHandleOpen(trigger) {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
-            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
-            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
-            setActiveMenu(trigger, targetMenuPanel);
-            // Close QR dropdown if mega menu opens
-            if (qrDropdownContent.classList.contains('show')) {
-                hideQrDropdown();
+            clearTimeout(hyperionCloseTimer);
+            const targetMenuId = trigger.getAttribute('data-hyperion-megamenu-trigger');
+            const targetMenuPanel = hyperionDesktopMegaMenuContainer.querySelector(`[data-hyperion-megamenu-panel="${targetMenuId}"]`);
+            hyperionSetActiveMenu(trigger, targetMenuPanel);
+            if (hyperionQrDropdownContent.classList.contains('show')) {
+                hyperionHideQrDropdown();
             }
         }
     }
 
-    function handleClose() {
+    function hyperionHandleClose() {
         if (window.innerWidth > 1024) {
-            // Set a slight delay to allow mouse transition from trigger to menu
-            closeTimer = setTimeout(() => {
-                setActiveMenu(null, null); // Close all
+            hyperionCloseTimer = setTimeout(() => {
+                hyperionSetActiveMenu(null, null);
             }, 150); 
         }
     }
 
-    // Attach mouse event listeners for desktop
-    megaMenuTriggers.forEach(trigger => {
-        // Open on mouse enter
+    hyperionMegaMenuTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', () => {
-            handleOpen(trigger);
+            hyperionHandleOpen(trigger);
         });
         
-        // Use the common container as the exit point for the entire menu system
         trigger.parentElement.addEventListener('mouseleave', () => {
-            handleClose();
+            hyperionHandleClose();
         });
     });
 
-    // Prevent menu from closing when mouse is over the menu container
-    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseenter', () => {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
+            clearTimeout(hyperionCloseTimer);
         }
     });
 
-    // Close menu when mouse leaves the menu container
-    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
-        handleClose();
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        hyperionHandleClose();
     });
 
     // =============================================
-    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // QR CODE DROPDOWN LOGIC
     // =============================================
-    function showQrDropdown() {
+    function hyperionShowQrDropdown() {
         if (window.innerWidth > 1024) {
-            clearTimeout(qrCloseTimer);
-            qrDropdownContent.classList.add('show');
-            // Close mega menu if QR dropdown opens
-            setActiveMenu(null, null);
+            clearTimeout(hyperionQrCloseTimer);
+            hyperionQrDropdownContent.classList.add('show');
+            hyperionSetActiveMenu(null, null);
         }
     }
 
-    function hideQrDropdown() {
+    function hyperionHideQrDropdown() {
         if (window.innerWidth > 1024) {
-            qrCloseTimer = setTimeout(() => {
-                qrDropdownContent.classList.remove('show');
-            }, 150); // Slight delay for smooth transition
+            hyperionQrCloseTimer = setTimeout(() => {
+                hyperionQrDropdownContent.classList.remove('show');
+            }, 150);
         }
     }
 
-    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
-    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
-    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
-    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseleave', hyperionHideQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseleave', hyperionHideQrDropdown);
 
     // =============================================
-    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // MOBILE MENU LOGIC
     // =============================================
-    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    const hyperionMobileDropdownItems = document.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
     
-    // Mobile hamburger toggle
-    mobileMenuToggle.addEventListener('click', function() {
-        headerWrapper.classList.toggle('mobile-menu-open');
-        body.classList.toggle('mobile-menu-active');
+    hyperionMobileMenuToggle.addEventListener('click', function() {
+        hyperionHeaderWrapper.classList.toggle('hyperion-mobile-menu-open');
+        hyperionBody.classList.toggle('hyperion-mobile-menu-active');
         
-        // If closing the mobile menu, ensure all mega menu active states are cleared
-        if (!headerWrapper.classList.contains('mobile-menu-open')) {
-             mobileDropdownItems.forEach(item => item.classList.remove('active'));
-             // Also close QR dropdown on mobile close
-             qrDropdownContent.classList.remove('show');
+        if (!hyperionHeaderWrapper.classList.contains('hyperion-mobile-menu-open')) {
+             hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+             hyperionQrDropdownContent.classList.remove('show');
         }
     });
 
-    // Mobile dropdown toggle (for Services and Discover links)
-    mobileDropdownItems.forEach(item => {
-        const trigger = item.querySelector('.custom-nav-link');
+    hyperionMobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.hyperion-custom-nav-link');
         trigger.addEventListener('click', function(e) {
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
                 e.stopPropagation(); 
 
-                // Close all other dropdowns
-                mobileDropdownItems.forEach(otherItem => {
+                hyperionMobileDropdownItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
 
-                // Toggle current dropdown
                 item.classList.toggle('active');
-                // Close QR dropdown if a mega menu opens
-                qrDropdownContent.classList.remove('show');
+                hyperionQrDropdownContent.classList.remove('show');
             }
         });
     });
 
-    // Toggle QR dropdown on click for mobile
-    qrDropdownTrigger.addEventListener('click', function(e) {
+    hyperionQrDropdownTrigger.addEventListener('click', function(e) {
         if (window.innerWidth <= 1024) {
             e.preventDefault();
             e.stopPropagation();
-            qrDropdownContent.classList.toggle('show');
-            // Close any open mega menus
-            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+            hyperionQrDropdownContent.classList.toggle('show');
+            hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
         }
     });
 
-    // Close mobile menu when a standard link is clicked
-    document.querySelectorAll('.custom-nav-list a').forEach(link => {
-        // Exclude links that trigger a mega menu, and links that are inside a mega menu
-        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+    document.querySelectorAll('.hyperion-custom-nav-list a').forEach(link => {
+        if (!link.hasAttribute('data-hyperion-megamenu-trigger') && !link.closest('.hyperion-mega-menu-container')) {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 1024) {
-                    headerWrapper.classList.remove('mobile-menu-open');
-                    body.classList.remove('mobile-menu-active');
-                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
+                    hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                    hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                    hyperionQrDropdownContent.classList.remove('show');
                 }
             });
         }
     });
     
-    // Close QR dropdown if clicked outside on desktop
     document.addEventListener('click', function(event) {
-        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
-            hideQrDropdown();
+        if (window.innerWidth > 1024 && !hyperionQrDropdownTrigger.contains(event.target) && !hyperionQrDropdownContent.contains(event.target)) {
+            hyperionHideQrDropdown();
         }
     });
 
     // =============================================
     // WINDOW RESIZE HANDLER
     // =============================================
-    let resizeTimer;
+    let hyperionResizeTimer;
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
+        clearTimeout(hyperionResizeTimer);
+        hyperionResizeTimer = setTimeout(function() {
             if (window.innerWidth > 1024) {
-                // Reset desktop/mobile states
-                headerWrapper.classList.remove('mobile-menu-open');
-                body.classList.remove('mobile-menu-active');
-                mobileDropdownItems.forEach(item => item.classList.remove('active'));
-                setActiveMenu(null, null); // Close any open mega menu
-            } else { // Mobile specific reset
-                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
-                 qrDropdownContent.classList.remove('show');
+                hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+                hyperionSetActiveMenu(null, null);
+            } else {
+                hyperionQrDropdownContent.classList.remove('show');
             }
         }, 250);
     });
 });
 </script>
-
-
-
-
-
-
-
-
-
+<!-- HYPERION-HEADER END -->
 
 
 
@@ -1497,7 +1377,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         /* Utility Classes */
-        .defcon-container {
+        .dc-careers-container {
             max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
@@ -1505,13 +1385,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         /* Hero Section */
-        .defcon-hero {
+        .dc-careers-hero {
             background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1497366616365-e78dd380d3dd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169') no-repeat center center/cover;
             padding: 16rem 0 0 0;
             text-align: center;
             height: 700px;
         }
-        .defcon-hero-title {
+        .dc-careers-hero-title {
             font-size: 70px;
             color: #fff;
             font-weight: 600;
@@ -1519,11 +1399,20 @@ document.addEventListener('DOMContentLoaded', function() {
             /* Replaced CSS-only animation with a focus on stability */
         }
         @media (min-width: 640px) {
-            .defcon-hero-title {
+            .dc-careers-hero-title {
                 font-size: 4.5rem; /* 72px */
             }
         }
-        .defcon-hero-cta {
+        @media (max-width: 480px) {
+            .dc-careers-hero {
+                padding: 8rem 0 0 0;
+                height: 500px;
+            }
+            .dc-careers-hero-title {
+                font-size: 2.5rem;
+            }
+        }
+        .dc-careers-hero-cta {
              display: inline-block;
             padding: 15px 32px;
             color: #004599;
@@ -1537,13 +1426,19 @@ document.addEventListener('DOMContentLoaded', function() {
             text-decoration: none;
             letter-spacing: 0.02em;
         }
-        .defcon-hero-cta:hover {
+        @media (max-width: 480px) {
+            .dc-careers-hero-cta {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+        .dc-careers-hero-cta:hover {
             background-color: #004599;
             color: #fff;
         }
 
         /* Value Proposition Section (What It's Like) */
-        .dc-solutions-title {
+        .dc-careers-solutions-title {
             font-size: 2.25rem;
             font-weight: 700;
             color: black;
@@ -1552,42 +1447,62 @@ document.addEventListener('DOMContentLoaded', function() {
             letter-spacing: -0.04em;
         }
         @media (min-width: 1024px) {
-            .dc-solutions-title {
+            .dc-careers-solutions-title {
                 font-size: 3.375rem; /* 54px */
             }
         }
-        .dc-solutions-card {
+        @media (max-width: 480px) {
+            .dc-careers-solutions-title {
+                font-size: 1.75rem;
+            }
+        }
+        .dc-careers-solutions-card {
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
             background-color: #ffffff;
             transition: transform 0.3s;
         }
-        .dc-solutions-card:hover {
+        @media (max-width: 480px) {
+            .dc-careers-solutions-card {
+                padding: 1.5rem;
+            }
+        }
+        .dc-careers-solutions-card:hover {
             transform: translateY(-4px);
         }
-        .dc-solutions-card--primary {
+        .dc-careers-solutions-card--primary {
             background-color: var(--color-primary);
             color: white;
         }
-        .dc-solutions-card--primary h3, .dc-solutions-card--primary h2 {
+        .dc-careers-solutions-card--primary h3, .dc-careers-solutions-card--primary h2 {
             color: white !important;
         }
-        .dc-solutions-card h2 {
+        .dc-careers-solutions-card h2 {
             font-size: 2rem;
             font-weight: 700;
             color: var(--color-primary);
             margin-bottom: 0.5rem;
         }
-        .dc-solutions-card h3 {
+        @media (max-width: 480px) {
+            .dc-careers-solutions-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+        .dc-careers-solutions-card h3 {
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--color-text-dark);
         }
+        @media (max-width: 480px) {
+            .dc-careers-solutions-card h3 {
+                font-size: 1.1rem;
+            }
+        }
 
         /* Jobs Section Header */
-        .defcon-jobs-title {
+        .dc-careers-jobs-title {
             font-size: 2.45rem;
             font-weight: 700;
             color: black;
@@ -1595,32 +1510,48 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 1rem;
         }
         @media (min-width: 640px) {
-            .defcon-jobs-title {
+            .dc-careers-jobs-title {
                 font-size: 3.375rem; /* 54px */
             }
         }
+        @media (max-width: 480px) {
+            .dc-careers-jobs-title {
+                font-size: 2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            text-align: center;
+            padding: 0 1rem;
+            letter-spacing: -0.02em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            max-width: 100%;
+            box-sizing: border-box;
+            display: block;
+        }
+        }
 
         /* Search Form */
-        .defcon-search-form {
+        .dc-careers-search-form {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
         @media (min-width: 768px) {
-            .defcon-search-form {
+            .dc-careers-search-form {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        .def-label {
+        .dc-careers-label {
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--color-primary);
             font-size: 1rem;
             text-transform: uppercase;
         }
-        .defcon-search-input,
-        .defcon-search-select {
+        .dc-careers-search-input,
+        .dc-careers-search-select {
             padding: 15px;
             border: 2px solid #777;
             border-radius: 0.5rem;
@@ -1630,9 +1561,11 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: border-color 0.3s, box-shadow 0.3s;
             width: 100%;
             background: transparent;
+            box-sizing: border-box;
+            height: 56px;
         }
 
-        .defcon-search-select option {
+        .dc-careers-search-select option {
             font-weight: 600;
             /* Removed variable that was not defined globally for stability */
             background: var(--color-text-dark, #06273e); 
@@ -1640,26 +1573,26 @@ document.addEventListener('DOMContentLoaded', function() {
             border: 1px solid grey;
         }
 
-        .defcon-search-input::placeholder {
+        .dc-careers-search-input::placeholder {
             color: #555;
         }
 
-        .defcon-search-input:focus,
-        .defcon-search-select:focus {
+        .dc-careers-search-input:focus,
+        .dc-careers-search-select:focus {
             border-color: var(--color-primary);
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
         }
 
         /* Job Card Styling */
-        .defcon-jobs-grid {
+        .dc-careers-jobs-grid {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
         
         /* IMPORTANT: Use flex-none to manage visibility with JS, but ensure default display is flex on desktop */
-        .defcon-job-card {
+        .dc-careers-job-card {
             display: flex; 
             justify-content: space-between;
             align-items: center;
@@ -1669,7 +1602,7 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: transparent; /* Ensure it looks like a list item */
         }
         
-        .defcon-job-title {
+        .dc-careers-job-title {
             font-size: 1.4rem;
             font-weight: 600;
             color: #000;
@@ -1677,24 +1610,24 @@ document.addEventListener('DOMContentLoaded', function() {
             line-height: 1.1; 
             letter-spacing: 0.02em;
         }
-        .defcon-job-department, .defcon-job-location {
+        .dc-careers-job-department, .dc-careers-job-location {
             font-size: 1.2rem;
             color: #004599;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
 
-        .defcon-job-department {
+        .dc-careers-job-department {
             border-right: 1px solid grey;
             padding-right: 10px;
         }
 
-        .defcon-job-location {
+        .dc-careers-job-location {
             padding-left: 5px;
         }
 
         /* Apply Now Hover Effect and Arrow Color Change (Desktop) */
-        .apply-link {
+        .dc-careers-apply-link {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -1703,7 +1636,7 @@ document.addEventListener('DOMContentLoaded', function() {
             justify-content: flex-end;
         }
 
-        .apply-now {
+        .dc-careers-apply-now {
             opacity: 0;
             color: var(--color-primary);
             text-decoration: none;
@@ -1714,20 +1647,20 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: opacity 0s ease;
         }
 
-        .apply-arrow svg {
+        .dc-careers-apply-arrow svg {
             height: 60px;
         }
 
-        .apply-arrow svg path {
+        .dc-careers-apply-arrow svg path {
             fill: var(--color-text-faded); /* Default grey color */
             transition: fill 0s ease;
         }
         
         /* State when card is hovered */
-        .defcon-job-card:hover .apply-now {
+        .dc-careers-job-card:hover .dc-careers-apply-now {
             opacity: 1; /* Make 'Apply Now' visible */
         }
-        .defcon-job-card:hover .apply-arrow svg path {
+        .dc-careers-job-card:hover .dc-careers-apply-arrow svg path {
             fill: var(--color-primary); /* Change arrow color to blue */
         }
         
@@ -1735,51 +1668,52 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Mobile Adjustments for Job Card (List View) */
         /* ------------------------------------------- */
         @media (max-width: 640px) {
-            .defcon-job-card {
+            .dc-careers-job-card {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 1rem 0; /* Adjusted padding for cleaner list */
             }
-            .defcon-job-card > div:first-child {
+            .dc-careers-job-card > div:first-child {
                 margin-bottom: 0.75rem;
             }
-            .defcon-job-title {
+            .dc-careers-job-title {
                 font-size: 1.2rem;
             }
-            .defcon-job-department, .defcon-job-location {
+            .dc-careers-job-department, .dc-careers-job-location {
                 font-size: 1rem; /* Smaller font size for mobile details */
-                margin-right: 0.5rem;
+                
                 display: inline;
-                line-height: 1.2;
+                line-height: 0.8;
             }
-            .defcon-job-department {
+            .dc-careers-job-department {
                 border-right: 1px solid grey;
-                padding-right: 5px;
+                padding-right: 8px;
             }
-            .apply-link {
+            .dc-careers-apply-link {
                 justify-content: flex-start;
                 width: 100%;
                 min-width: unset;
                 margin-top: 0.5rem;
             }
-            .apply-now {
+            .dc-careers-apply-now {
                 opacity: 1; /* Always show 'Apply Now' on mobile for usability */
                 font-size: 1rem;
             }
-            .apply-arrow svg path {
+            .dc-careers-apply-arrow svg path {
                 fill: var(--color-primary); /* Always blue on mobile */
             }
         }
 
         /* Pagination Styling */
-        .defcon-pagination-controls {
+        .dc-careers-pagination-controls {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 2rem 0;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
-        .page-btn {
+        .dc-careers-page-btn {
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-weight: 600;
@@ -1789,21 +1723,21 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--color-text-dark);
             border: 1px solid #ddd;
         }
-        .page-btn:hover:not(.active):not(.disabled) {
+        .dc-careers-page-btn:hover:not(.dc-careers-active):not(.dc-careers-disabled) {
             background-color: #e5e5e5;
         }
-        .page-btn.active {
+        .dc-careers-page-btn.dc-careers-active {
             background-color: var(--color-primary);
             color: white;
             border-color: var(--color-primary);
         }
-        .page-btn.disabled {
+        .dc-careers-page-btn.dc-careers-disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
         /* Utility class for JS to hide/show elements */
-        .hidden-by-js {
+        .dc-careers-hidden-by-js {
             display: none !important;
         }
 
@@ -1811,42 +1745,42 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
     
-    <section class="defcon-hero">
-        <div class="defcon-hero-content max-w-7xl mx-auto">
-            <h1 class="defcon-hero-title">Find Your Role</h1>
-            <a href="#jobs" class="defcon-hero-cta">View Open Positions</a>
+    <section class="dc-careers-hero">
+        <div class="dc-careers-hero-content max-w-7xl mx-auto">
+            <h1 class="dc-careers-hero-title">Find Your Role</h1>
+            <a href="#jobs" class="dc-careers-hero-cta">View Open Positions</a>
         </div>
     </section>
 
     <section class="py-16 lg:py-24 bg-white">
-        <div class="defcon-container">
+        <div class="dc-careers-container">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 <div class="lg:pr-8">
-                    <h2 class="dc-solutions-title">What It's Like<br>Working With Us.</h2>
+                    <h2 class="dc-careers-solutions-title">What It's Like<br>Working With Us.</h2>
                     <p class="text-xl font-medium text-gray-600 leading-relaxed">
                         We are not just a company, we are a community of passionate individuals dedicated to innovation and excellence. We provide an environment where your ideas are valued, your growth is prioritized, and your impact is measurable.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                    <div class="dc-solutions-card dc-solutions-card--primary shadow-xl">
+                    <div class="dc-careers-solutions-card dc-careers-solutions-card--primary shadow-xl">
                         <h2>01</h2>
-                        <h3 class="dc-solutions-card__title">Flexible work arrangements</h3>
+                        <h3 class="dc-careers-solutions-card__title">Flexible work arrangements</h3>
                         <p class="text-gray-200 text-sm">Empowering our team with flexible schedules and remote options.</p>
                     </div>
-                    <div class="dc-solutions-card">
+                    <div class="dc-careers-solutions-card">
                         <h2>02</h2>
-                        <h3 class="dc-solutions-card__title">Continuous learning opportunities</h3>
+                        <h3 class="dc-careers-solutions-card__title">Continuous learning opportunities</h3>
                         <p class="text-gray-600 text-sm">Dedicated budget and time for professional development and training.</p>
                     </div>
-                    <div class="dc-solutions-card">
+                    <div class="dc-careers-solutions-card">
                         <h2>03</h2>
-                        <h3 class="dc-solutions-card__title">Cutting-edge projects</h3>
+                        <h3 class="dc-careers-solutions-card__title">Cutting-edge projects</h3>
                         <p class="text-gray-600 text-sm">Working on challenging and impactful projects that define the future.</p>
                     </div>
-                    <div class="dc-solutions-card dc-solutions-card--primary shadow-xl">
+                    <div class="dc-careers-solutions-card dc-careers-solutions-card--primary shadow-xl">
                         <h2>04</h2>
-                        <h3 class="dc-solutions-card__title">Inclusive and diverse culture</h3>
+                        <h3 class="dc-careers-solutions-card__title">Inclusive and diverse culture</h3>
                         <p class="text-gray-200 text-sm">A welcoming environment where all voices are heard and celebrated.</p>
                     </div>
                 </div>
@@ -1855,21 +1789,21 @@ document.addEventListener('DOMContentLoaded', function() {
     </section>
 
     <section class="py-16 lg:py-24" id="jobs">
-        <div class="defcon-container">
+        <div class="dc-careers-container">
             
-            <h2 class="defcon-jobs-title">Join the Team.</h2>
+            <h2 class="dc-careers-jobs-title">Join the Team.</h2>
             
-            <div class="defcon-jobs-search mb-8">
-                <form class="defcon-search-form" onsubmit="event.preventDefault(); defconFilterJobs(true);">
+            <div class="dc-careers-jobs-search mb-8">
+                <form class="dc-careers-search-form" onsubmit="event.preventDefault(); dcCareersFilterJobs(true);">
                     
                     <div class="flex flex-col">
-                        <label for="defcon-search-title" class="def-label">Job Title</label>
-                        <input type="text" class="defcon-search-input" placeholder="e.g., Web Developer" id="defcon-search-title">
+                        <label for="dc-careers-search-title" class="dc-careers-label">Job Title</label>
+                        <input type="text" class="dc-careers-search-input" placeholder="e.g., Web Developer" id="dc-careers-search-title">
                     </div>
 
                     <div class="flex flex-col">
-                        <label for="defcon-search-department" class="def-label">Department</label>
-                        <select class="defcon-search-select" id="defcon-search-department">
+                        <label for="dc-careers-search-department" class="dc-careers-label">Department</label>
+                        <select class="dc-careers-search-select" id="dc-careers-search-department">
                             <option value="">All Departments</option>
                             <option value="Engineering">Engineering</option>
                             <option value="IT Operations">IT Operations</option>
@@ -1883,234 +1817,231 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
 
                     <div class="flex flex-col">
-                        <label for="defcon-search-location" class="def-label">Location</label>
-                        <input type="text" class="defcon-search-input" placeholder="e.g., Cape Town" id="defcon-search-location">
+                        <label for="dc-careers-search-location" class="dc-careers-label">Location</label>
+                        <input type="text" class="dc-careers-search-input" placeholder="e.g., Cape Town" id="dc-careers-search-location">
                     </div>
 
                 </form>
-                <div class="text-right text-gray-600 text-md mt-4 lg:mt-0" id="defcon-search-results" style="text-align: left; border-bottom: 1px solid grey; padding-bottom: 10px;">Showing <span id="defcon-jobs-count">0</span> jobs</div>
+                <div class="text-right text-gray-600 text-md mt-4 lg:mt-0" id="dc-careers-search-results" style="text-align: left; border-bottom: 1px solid grey; padding-bottom: 10px;">Showing <span id="dc-careers-jobs-count">0</span> jobs</div>
             </div>
             
-            <div class="defcon-jobs-grid" id="defcon-jobs-container">
+            <div class="dc-careers-jobs-grid" id="dc-careers-jobs-container">
                 
-                <div class="defcon-job-card" data-department="Engineering" data-title="senior frontend developer" data-location="san francisco remote" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Engineering" data-title="senior frontend developer" data-location="Phuthaditjhaba" data-url="about-us.html">
                     <div class="flex flex-col">
-                        <h3 class="defcon-job-title">(Mid / Senior) Frontend Developer</h3>
+                        <h3 class="dc-careers-job-title">(Mid / Senior) Frontend Developer</h3>
                         <div>
-                            <span class="defcon-job-department">Engineering</span>
-                            <span class="defcon-job-location">San Francisco, California / Remote</span>
+                            <span class="dc-careers-job-department">Engineering</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State / Remote</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Frontend Developer">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Frontend Developer">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Security" data-title="cybersecurity specialist" data-location="sandton city" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Security" data-title="cybersecurity specialist" data-location="Phuthaditjhaba" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">(Junior / Mid) Cybersecurity Specialist (Security Engineering & Threat Intelligence)</h3>
+                        <h3 class="dc-careers-job-title">(Junior / Mid) Cybersecurity Specialist (Security Engineering & Threat Intelligence)</h3>
                         <div>
-                            <span class="defcon-job-department">Security</span>
-                            <span class="defcon-job-location">Sandton City, Gauteng</span>
+                            <span class="dc-careers-job-department">Security</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Cybersecurity Specialist">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Cybersecurity Specialist">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Data Analytics" data-title="data scientist" data-location="remote" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Data Analytics" data-title="data scientist" data-location="remote" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">(Senior) Data Scientist</h3>
+                        <h3 class="dc-careers-job-title">(Senior) Data Scientist</h3>
                         <div>
-                            <span class="defcon-job-department">Data Analytics</span>
-                            <span class="defcon-job-location">Remote</span>
+                            <span class="dc-careers-job-department">Data Analytics</span>
+                            <span class="dc-careers-job-location">Remote</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Data Scientist">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Data Scientist">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Design" data-title="ux ui designer" data-location="austin" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Design" data-title="ux ui designer" data-location="Phuthaditjhaba" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">UX/UI Designer</h3>
+                        <h3 class="dc-careers-job-title">UX/UI Designer</h3>
                         <div>
-                            <span class="defcon-job-department">Design</span>
-                            <span class="defcon-job-location">Austin, Texas</span>
+                            <span class="dc-careers-job-department">Design</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for UX/UI Designer">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for UX/UI Designer">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Engineering" data-title="backend engineer" data-location="london remote" data-url="01.html">
+                <div class="dc-careers-job-card" data-department="Engineering" data-title="backend engineer" data-location="Bethlehem remote" data-url="01.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">Backend Engineer</h3>
+                        <h3 class="dc-careers-job-title">Backend Engineer</h3>
                         <div>
-                            <span class="defcon-job-department">Engineering</span>
-                            <span class="defcon-job-location">London, United Kingdom / Remote</span>
+                            <span class="dc-careers-job-department">Engineering</span>
+                            <span class="dc-careers-job-location">Bethlehem, Free State / Remote</span>
                         </div>
                     </div>
-                    <a href="01.html" class="apply-link" aria-label="Apply for Backend Engineer">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="01.html" class="dc-careers-apply-link" aria-label="Apply for Backend Engineer">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Marketing" data-title="digital marketing manager" data-location="los angeles" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Marketing" data-title="digital marketing manager" data-location="Phuthaditjhaba data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">Digital Marketing Manager</h3>
+                        <h3 class="dc-careers-job-title">Digital Marketing Manager</h3>
                         <div>
-                            <span class="defcon-job-department">Marketing</span>
-                            <span class="defcon-job-location">Los Angeles, California</span>
+                            <span class="dc-careers-job-department">Marketing</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Digital Marketing Manager">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Digital Marketing Manager">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="Customer Care" data-title="sales development representative" data-location="chicago remote" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Customer Care" data-title="sales development representative" data-location="Phuthaditjhaba" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">Sales Development Representative (Customer Care Product Management & Marketing)</h3>
+                        <h3 class="dc-careers-job-title">Sales Development Representative (Customer Care Product Management & Marketing)</h3>
                         <div>
-                            <span class="defcon-job-department">Customer Care</span>
-                            <span class="defcon-job-location">Chicago, Illinois / Remote</span>
+                            <span class="dc-careers-job-department">Customer Care</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Sales Development Representative">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Sales Development Representative">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
                 
-                <div class="defcon-job-card" data-department="IT Operations" data-title="computer technician" data-location="boston" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="IT Operations" data-title="computer technician" data-location="Kestell" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">Computer Technician</h3>
+                        <h3 class="dc-careers-job-title">Computer Technician</h3>
                         <div>
-                            <span class="defcon-job-department">IT Operations</span>
-                            <span class="defcon-job-location">Boston, Massachussets</span>
+                            <span class="dc-careers-job-department">IT Operations</span>
+                            <span class="dc-careers-job-location">Kestell, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for Computer Technician">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for Computer Technician">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
 
-                <div class="defcon-job-card" data-department="IT Operations" data-title="it support technician" data-location="qwaqwa" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="IT Operations" data-title="it support technician" data-location="Phuthaditjhaba" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">IT Support Technician (Tier 1-3)</h3>
+                        <h3 class="dc-careers-job-title">IT Support Technician (Tier 1-3)</h3>
                         <div>
-                            <span class="defcon-job-department">IT Operations</span>
-                            <span class="defcon-job-location">Qwaqwa, Free State</span>
+                            <span class="dc-careers-job-department">IT Operations</span>
+                            <span class="dc-careers-job-location">Phuthaditjhaba, Free State</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for IT Support Technician">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for IT Support Technician">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
 
-                <div class="defcon-job-card" data-department="Engineering" data-title="ai specialist" data-location="qwaqwa" data-url="about-us.html">
+                <div class="dc-careers-job-card" data-department="Engineering" data-title="ai specialist" data-location="Johannesburg" data-url="about-us.html">
                    <div class="flex flex-col">
-                        <h3 class="defcon-job-title">AI Specialist</h3>
+                        <h3 class="dc-careers-job-title">AI Specialist</h3>
                         <div>
-                            <span class="defcon-job-department">Engineering</span>
-                            <span class="defcon-job-location">Qwaqwa, Free State</span>
+                            <span class="dc-careers-job-department">Engineering</span>
+                            <span class="dc-careers-job-location">Johannesburg, Gauteng</span>
                         </div>
                     </div>
-                    <a href="about-us.html" class="apply-link" aria-label="Apply for AI Specialist">
-                        <span class="apply-now">Apply Now</span>
-                        <span class="apply-arrow flex items-center">
+                    <a href="about-us.html" class="dc-careers-apply-link" aria-label="Apply for AI Specialist">
+                        <span class="dc-careers-apply-now">Apply Now</span>
+                        <span class="dc-careers-apply-arrow flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#8c8c8c" fill-rule="evenodd" d="M8.512 4.43a.75.75 0 0 1 1.057.082l6 7a.75.75 0 0 1 0 .976l-6 7a.75.75 0 0 1-1.138-.976L14.012 12L8.431 5.488a.75.75 0 0 1 .08-1.057Z" clip-rule="evenodd"/></svg>
                         </span>
                     </a>
                 </div>
             </div>
 
-            <div id="defcon-no-results" class="hidden-by-js p-8 text-center text-gray-500 bg-white">
+            <div id="dc-careers-no-results" class="dc-careers-hidden-by-js p-8 text-center text-gray-500 bg-white">
                 <p class="text-lg font-medium">No jobs match your search criteria. Try adjusting your filters.</p>
             </div>
 
 
-            <div class="defcon-pagination-controls" id="defcon-pagination-controls">
+            <div class="dc-careers-pagination-controls" id="dc-careers-pagination-controls">
                 </div>
 
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white p-6 text-center text-sm mt-12">
-        <p>&copy; 2025 Defcon Solutions. All rights reserved.</p>
-    </footer>
     
     <script>
         // JAVASCRIPT LOGIC FOR FILTERING AND PAGINATION - STABILITY IMPROVED
-        let allJobs = []; // Stores all job elements initially loaded from the DOM
-        let filteredJobs = []; // Stores jobs matching current search/filters
-        let currentPage = 1;
-        const jobsPerPage = 6;
+        let dcCareersAllJobs = []; // Stores all job elements initially loaded from the DOM
+        let dcCareersFilteredJobs = []; // Stores jobs matching current search/filters
+        let dcCareersCurrentPage = 1;
+        const dcCareersJobsPerPage = 6;
         
         // DOM Elements
-        const jobContainer = document.getElementById('defcon-jobs-container');
-        const paginationControls = document.getElementById('defcon-pagination-controls');
-        const searchTitle = document.getElementById('defcon-search-title');
-        const searchDepartment = document.getElementById('defcon-search-department');
-        const searchLocation = document.getElementById('defcon-search-location');
-        const jobCountElement = document.getElementById('defcon-jobs-count');
-        const noResults = document.getElementById('defcon-no-results');
+        const dcCareersJobContainer = document.getElementById('dc-careers-jobs-container');
+        const dcCareersPaginationControls = document.getElementById('dc-careers-pagination-controls');
+        const dcCareersSearchTitle = document.getElementById('dc-careers-search-title');
+        const dcCareersSearchDepartment = document.getElementById('dc-careers-search-department');
+        const dcCareersSearchLocation = document.getElementById('dc-careers-search-location');
+        const dcCareersJobCountElement = document.getElementById('dc-careers-jobs-count');
+        const dcCareersNoResults = document.getElementById('dc-careers-no-results');
 
         /**
          * Initializes the job system by pulling all jobs from the visible container.
          */
-        function initializeJobs() {
+        function dcCareersInitializeJobs() {
             // Get all job cards directly from the grid container
-            allJobs = Array.from(jobContainer.children).filter(el => el.classList.contains('defcon-job-card'));
+            dcCareersAllJobs = Array.from(dcCareersJobContainer.children).filter(el => el.classList.contains('dc-careers-job-card'));
             
             // Set up event listeners for filtering
-            searchTitle.addEventListener('input', () => defconFilterJobs(true));
-            searchDepartment.addEventListener('change', () => defconFilterJobs(true));
-            searchLocation.addEventListener('input', () => defconFilterJobs(true));
+            dcCareersSearchTitle.addEventListener('input', () => dcCareersFilterJobs(true));
+            dcCareersSearchDepartment.addEventListener('change', () => dcCareersFilterJobs(true));
+            dcCareersSearchLocation.addEventListener('input', () => dcCareersFilterJobs(true));
 
             // Initial call to filter and render the first page
-            defconFilterJobs(true);
+            dcCareersFilterJobs(true);
         }
 
         /**
          * Filters the job cards based on current search inputs.
          * @param {boolean} resetPage - If true, resets currentPage to 1 after filtering.
          */
-        function defconFilterJobs(resetPage) {
-            const titleSearch = searchTitle.value.toLowerCase().trim();
-            const departmentSearch = searchDepartment.value;
-            const locationSearch = searchLocation.value.toLowerCase().trim();
+        function dcCareersFilterJobs(resetPage) {
+            const titleSearch = dcCareersSearchTitle.value.toLowerCase().trim();
+            const departmentSearch = dcCareersSearchDepartment.value;
+            const locationSearch = dcCareersSearchLocation.value.toLowerCase().trim();
             
-            filteredJobs = allJobs.filter(card => {
+            dcCareersFilteredJobs = dcCareersAllJobs.filter(card => {
                 // Read data- attributes, ensure they are normalized (lowercase and trimmed)
                 const title = card.getAttribute('data-title') ? card.getAttribute('data-title').toLowerCase().trim() : '';
                 const department = card.getAttribute('data-department') ? card.getAttribute('data-department').trim() : '';
@@ -2124,79 +2055,79 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (resetPage) {
-                currentPage = 1;
+                dcCareersCurrentPage = 1;
             }
             
-            jobCountElement.textContent = filteredJobs.length;
-            renderJobs();
+            dcCareersJobCountElement.textContent = dcCareersFilteredJobs.length;
+            dcCareersRenderJobs();
         }
 
         /**
          * Renders the current page of filtered jobs and updates pagination controls.
          */
-        function renderJobs() {
+        function dcCareersRenderJobs() {
             // Hide all jobs initially
-            allJobs.forEach(job => job.classList.add('hidden-by-js'));
-            noResults.classList.add('hidden-by-js'); // Hide no results message
+            dcCareersAllJobs.forEach(job => job.classList.add('dc-careers-hidden-by-js'));
+            dcCareersNoResults.classList.add('dc-careers-hidden-by-js'); // Hide no results message
 
-            const start = (currentPage - 1) * jobsPerPage;
-            const end = start + jobsPerPage;
-            const paginatedJobs = filteredJobs.slice(start, end);
+            const start = (dcCareersCurrentPage - 1) * dcCareersJobsPerPage;
+            const end = start + dcCareersJobsPerPage;
+            const paginatedJobs = dcCareersFilteredJobs.slice(start, end);
             
             // Show jobs for the current page
             if (paginatedJobs.length > 0) {
                 paginatedJobs.forEach(job => {
-                    job.classList.remove('hidden-by-js');
+                    job.classList.remove('dc-careers-hidden-by-js');
                 });
             } else {
-                noResults.classList.remove('hidden-by-js'); // Show no results message
+                dcCareersNoResults.classList.remove('dc-careers-hidden-by-js'); // Show no results message
             }
             
-            renderPaginationControls();
+            dcCareersRenderPaginationControls();
         }
 
         /**
          * Generates and updates the pagination buttons.
          */
-        function renderPaginationControls() {
-            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
-            paginationControls.innerHTML = ''; // Clear previous controls
+        function dcCareersRenderPaginationControls() {
+            const totalPages = Math.ceil(dcCareersFilteredJobs.length / dcCareersJobsPerPage);
+            dcCareersPaginationControls.innerHTML = ''; // Clear previous controls
 
             if (totalPages <= 1) {
                 return;
             }
             
             // Previous Button
-            const prevBtn = createPageButton('<i class="fas fa-chevron-left"></i> Prev', currentPage - 1);
-            if (currentPage === 1) prevBtn.classList.add('disabled');
-            paginationControls.appendChild(prevBtn);
+            const prevBtn = dcCareersCreatePageButton('<i class="fas fa-chevron-left"></i> Prev', dcCareersCurrentPage - 1);
+            if (dcCareersCurrentPage === 1) prevBtn.classList.add('dc-careers-disabled');
+            dcCareersPaginationControls.appendChild(prevBtn);
 
             // Page Number Buttons
             for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = createPageButton(i, i);
-                if (i === currentPage) pageBtn.classList.add('active');
-                paginationControls.appendChild(pageBtn);
+                const pageBtn = dcCareersCreatePageButton(i, i);
+                if (i === dcCareersCurrentPage) pageBtn.classList.add('dc-careers-active');
+                dcCareersPaginationControls.appendChild(pageBtn);
             }
 
             // Next Button
-            const nextBtn = createPageButton('Next <i class="fas fa-chevron-right"></i>', currentPage + 1);
-            if (currentPage === totalPages) nextBtn.classList.add('disabled');
-            paginationControls.appendChild(nextBtn);
+            const nextBtn = dcCareersCreatePageButton('Next <i class="fas fa-chevron-right"></i>', dcCareersCurrentPage + 1);
+            if (dcCareersCurrentPage === totalPages) nextBtn.classList.add('dc-careers-disabled');
+            dcCareersPaginationControls.appendChild(nextBtn);
         }
 
         /**
          * Creates a clickable button for pagination.
          */
-        function createPageButton(text, pageNum) {
+        function dcCareersCreatePageButton(text, pageNum) {
             const button = document.createElement('button');
-            button.className = 'page-btn';
+            button.className = 'dc-careers-page-btn';
             button.innerHTML = text; // Use innerHTML for icon support
             
             button.addEventListener('click', () => {
-                const maxPage = Math.ceil(filteredJobs.length / jobsPerPage);
+                const maxPage = Math.ceil(dcCareersFilteredJobs.length / dcCareersJobsPerPage);
                 if (pageNum >= 1 && pageNum <= maxPage) {
-                    currentPage = pageNum;
-                    renderJobs();
+                    dcCareersCurrentPage = pageNum;
+                    dcCareersRenderJobs();
                     // Scroll to jobs section after page change
                     document.getElementById('jobs').scrollIntoView({ behavior: 'smooth' });
                 }
@@ -2205,11 +2136,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Initialize the app when the window loads
-        window.addEventListener('load', initializeJobs);
+        window.addEventListener('load', dcCareersInitializeJobs);
     </script>
 </body>
 </html>
-
 
 
 

@@ -1,799 +1,729 @@
-
-
+<!-- HYPERION-HEADER START -->
 <style>
-        /*
-        =============================================
-        0. ROOT & FONT STYLES
-        =============================================
-        */
-        :root {
-            /* Palette */
-            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
-            --color-accent: #0091ff;      /* Bright Blue Accent */
-            --color-text-light: #fff;
-            --color-background-dark: #000;
-            --color-off-white: #f4f4f4;
-            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
-            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
-            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
-            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
-            
-            /* Sizing */
-            --header-height: 55px;
-            --content-max-width-fg: 1500px;
-        }
+    /* =============================================
+        HYPERION HEADER - UNIQUE STYLES
+        ============================================= */
+    :root {
+        /* Palette */
+        --hyperion-color-header-bg: #080d1b;
+        --hyperion-color-accent: #0091ff;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #080d1b;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #1c1a3b;
+        
+        /* Sizing */
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding-top: var(--header-height); /* Space for fixed header */
-            background-color: var(--color-background-dark);
-            color: var(--color-text-light);
-            overflow-x: hidden;
+    .hyperion-header-wrapper {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%; 
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: none;
+
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    .hyperion-custom-logo-text img {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 23px;
+        vertical-align: middle;
+    }
+    
+    .hyperion-custom-logo-text:hover {
+         color: var(--hyperion-color-accent);
+    }
+
+    /* Desktop Navigation */
+    .hyperion-custom-main-nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px;
+        position: relative;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500;
+        padding: 10px 0;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-link:hover {
+        color: #a0a9be;
+    }
+    
+    /* Icon for desktop links */
+    .hyperion-desktop-link-icon {
+        width: 14px;
+        height: 14px;
+        margin-left: 6px;
+        color: var(--hyperion-color-text-muted);
+        stroke-width: 2;
+    }
+    
+    .hyperion-custom-nav-link:hover .hyperion-desktop-link-icon {
+        color: #a0a9be;
+    }
+    
+    /* Action Buttons Wrapper */
+    .hyperion-header-action-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Primary Action Button (Contact Us) */
+    .hyperion-header-action-btn {
+        background: #0077cc;
+        color: var(--hyperion-color-text-light);
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        border-bottom: none;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hyperion-header-action-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-action-btn:hover {
+        background-color: #0081ff;
+    }
+    
+    /* Secondary Action Button (Get Started) */
+    .hyperion-header-secondary-btn {
+        background-color: #62b8fa32;
+        color: #95d1ff;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        border-bottom: none;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hyperion-header-secondary-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-secondary-btn:hover {
+        background-color: #4a4b6b;
+    }
+
+    /* QR Code Dropdown Trigger */
+    .hyperion-qr-dropdown-trigger {
+        position: relative;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        color: var(--hyperion-color-text-light);
+        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .hyperion-qr-dropdown-trigger:hover {
+        background-color: #2b294a;
+    }
+
+    .hyperion-qr-dropdown-trigger svg {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no;
+    }
+
+    /* QR Code Dropdown Content */
+    .hyperion-qr-dropdown-content {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: #080d1b;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 130px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        z-index: 100;
+    }
+
+    .hyperion-qr-dropdown-content.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-qr-dropdown-content img {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .hyperion-qr-dropdown-content p {
+        color: var(--hyperion-color-text-light);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* MEGA MENU CONTAINER */
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0s, opacity 0s, transform 0s;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 40px 40px 40px;
+    }
+
+    .hyperion-mega-menu-panel.active {
+        display: block;
+    }
+    
+    /* 3-Column Grid for Mega Menus */
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        gap: 40px;
+        justify-content: start;
+        padding-left: 8.45rem;
+    }
+    
+    .hyperion-menu-group-card {
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 2.5rem;
+        border-radius: 8px;
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-transform: none;
+        letter-spacing: 0.1px;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        color: var(--hyperion-color-text-muted);
+    }
+    
+    /* Image Icon for mega menu group headings */
+    .hyperion-menu-group-img-icon {
+        width: auto;
+        height: 40px;
+        margin-right: 8px;
+        flex-shrink: 0;
+        backface-visibility: visible;
+    }
+    
+    /* Container for Heading Text and Tagline */
+    .hyperion-menu-group-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Tagline Style */
+    .hyperion-menu-group-tagline {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hyperion-color-text-muted);
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .hyperion-mega-menu-group-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Link Items inside Mega Menu */
+    .hyperion-mega-menu-group-list a {
+        display: block;
+        border-radius: 0;
+        transition: color 0s;
+        position: relative;
+        margin: 7px 0;
+        padding: 2px 0;
+        letter-spacing: -0.03em;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--hyperion-color-text-light);
+         text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-mega-menu-link-title {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        margin-bottom: 0;
+    }
+    
+    .hyperion-mega-menu-group-list a:hover {
+        color: #9cd4ff;
+        background-color: transparent;
+    }
+    
+    /* SVG Icon for mobile dropdown */
+    .hyperion-mobile-dropdown-icon {
+        display: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Mobile Toggle */
+    .hyperion-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 1010;
+    }
+
+    .hyperion-mobile-toggle span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0;
+        transition: all 0.3s ease;
+    }
+
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Mobile Overrides */
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container {
+            padding: 0 20px;
         }
         
-        a {
-            text-decoration: none;
-            color: inherit;
+        .hyperion-mobile-toggle {
+            display: block;
         }
 
-        /*
-        =============================================
-        1. HEADER WRAPPER (FIXED & DARK BLUE)
-        =============================================
-        */
-        .header-wrapper {
-            position: fixed; 
-            top: 0;
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height);
             left: 0;
-            width: 100%; 
-            z-index: 1000;
-            background-color: var(--color-header-bg);
-            /* Removed box-shadow as per request, keeping subtle bottom line */
-        }
-
-        .custom-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-        }
-
-        .custom-header-container {
-            max-width: var(--content-max-width-fg);
             width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
+            height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto;
+            padding: 20px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: block;
+            z-index: 900;
+        }
+
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px;
+            margin-left: 0;
+        }
+
+        .hyperion-custom-nav-list li {
+            margin: 0;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+        }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0;
+            font-size: 1.1rem;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        /* Logo */
-        .custom-logo-text img{
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--color-text-light);
-            transition: color 0.3s ease;
-            height: 23px;
-            vertical-align: middle;
-        }
         
-        .custom-logo-text:hover {
-             color: var(--color-accent);
-        }
-
-        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
-        .custom-main-nav {
-            flex-grow: 1; /* Allows nav to take up remaining space */
-            display: flex;
-            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
-            align-items: center;
-        }
-
-        .custom-nav-list {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-
-        .custom-nav-list li {
-            margin-left: 35px;
-            position: relative;
-        }
-
-        .custom-nav-link {
-            text-decoration: none;
-            color: var(--color-text-light);
-            font-weight: 500;
-            padding: 10px 0;
-            display: flex;
-            font-size: 14px;
-            align-items: center;
-        }
-
-        .custom-nav-link:hover {
-            color: #a0a9be;
-        }
-        
-        /* NEW - Icon for desktop links like Pricing/Projects */
-        .desktop-link-icon {
-            width: 14px;
-            height: 14px;
-            margin-left: 6px;
-            color: var(--color-text-muted);
-            stroke-width: 2;
-        }
-        
-        .custom-nav-link:hover .desktop-link-icon {
-            color: #a0a9be; /* Match the link hover color */
-        }
-        
-        /* Action Buttons Wrapper - NEW */
-        .header-action-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Primary Action Button (Contact Us) */
-        .header-action-btn {
-            background: #0077cc;
-            color: var(--color-text-light);
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 20px; /* Space between the last nav item and this button */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-action-btn a {
-            color: inherit;
-        }
-
-        .header-action-btn:hover {
-            background-color: #0081ff;
-        }
-        
-        /* Secondary Action Button (Get Started) - NEW */
-        .header-secondary-btn {
-            background-color: #62b8fa32; /* Light blue background */
-            color: #95d1ff;
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-secondary-btn a {
-            color: inherit;
-        }
-
-        .header-secondary-btn:hover {
-            background-color: #4a4b6b; /* Slightly lighter on hover */
-        }
-
-        /* QR Code Dropdown Trigger - NEW */
-        .qr-dropdown-trigger {
-            position: relative;
-            margin-left: 10px; /* Space from Get Started button */
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; /* Circular button */
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            color: var(--color-text-light);
-            font-size: 18px; /* Icon size */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-        }
-        
-        .qr-dropdown-trigger:hover {
-            background-color: #2b294a;
-        }
-
-        /* QR Code Dropdown Content - NEW */
-        .qr-dropdown-content {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the header, with a gap */
-            right: 0; /* Align to the right of the trigger button */
-            background-color: #080d1b;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 130px; /* Fixed width for the dropdown */
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
-            z-index: 100; /* Ensure it's above other content */
-        }
-
-        .qr-dropdown-trigger svg {
-            content: '';
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            }
-
-        .qr-dropdown-content.show {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .qr-dropdown-content img {
-            width: 100px; /* Size of the QR code image */
-            height: 100px;
-            background-color: #fff; /* White background for QR code */
-            padding: 10px; /* Padding around QR code to make it look embedded */
-            border-radius: 8px; /* Slightly rounded corners for the QR code */
-            margin-bottom: 15px;
-        }
-
-        .qr-dropdown-content p {
-            color: var(--color-text-light);
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /*
-        =============================================
-        2. MEGA MENU CONTAINER (Look-Alike Styles)
-        =============================================
-        */
-        .mega-menu-container {
-            position: absolute;
-            top: var(--header-height);
-            left: 0;
-            width: 100%;
-            background-color: var(--color-menu-bg);
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0s, opacity 0s, transform 0s;
-        }
-
-        .header-wrapper.mega-menu-open .mega-menu-container {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mega-menu-panel {
+        /* Hide desktop-only icons on mobile */
+        .hyperion-desktop-link-icon {
             display: none;
-            max-width: var(--content-max-width-fg);
-            width: 100%; /* Ensure it spans the max width */
-            margin: 0 auto;
-            padding: 20px 40px 40px 40px; /* Reduced top padding */
-        }
-
-        .mega-menu-panel.active {
-            display: block;
         }
         
-        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
-        .megamenu-3-column-grid {
-            display: grid;
-            /* Use auto-fit with a min-max for column width, which helps alignment. 
-               Setting fixed columns here to ensure they stop at a reasonable width 
-               to look like the image, and the entire block is left-aligned within the 1200px container.
-            */
-            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
-            gap: 40px;
-            justify-content: start; /* Aligns the grid itself to the start (left) */
-            padding-left: 9rem;
+        /* Hide the tagline on mobile */
+        .hyperion-menu-group-tagline {
+            display: none;
         }
         
-        .menu-group-card {
-            padding: 0;
-            padding-top: 10px;
-            padding-bottom: 2.5rem;
-            border-radius: 8px; 
-        }
-
-        .menu-group-card h3 {
-            font-size: 13px; /* Slightly larger heading for better hierarchy */
-            font-weight: 600;
-            margin-bottom: 25px; /* More space below heading */
-            text-transform: none;
-            letter-spacing: 0.1px;
-            cursor: default; /* Not a clickable element */
-            
-            /* MODIFIED to contain icon, heading, and tagline */
-            display: flex; 
-            align-items: center; /* Vertically center icon with the text block */
-            color: var(--color-text-muted);
+        /* Show and style mobile icon */
+        .hyperion-mobile-dropdown-icon {
+            display: inline-block;
         }
         
-        /* NEW - Icon for mega menu group headings */
-        .menu-group-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 8px; /* Space between icon and text */
-            color: var(--color-accent); /* Use the accent color */
-            stroke-width: 2;
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0; 
+        /* Rotate icon when the parent menu item is active */
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
         }
         
-        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
-        .menu-group-img-icon {
-            width: auto;
-            height: 40px;
-            margin-right: 8px; /* Space between icon and text */
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0;
-            backface-visibility: visible
-        }
-        
-        /* NEW - Container for Heading Text and Tagline */
-        .menu-group-text-container {
-            display: flex;
+        /* Mobile Action Buttons */
+        .hyperion-header-action-buttons {
             flex-direction: column;
-            justify-content: center; /* Vertically center the text block if icon is taller */
-        }
-
-        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
-        .menu-group-tagline {
-            font-size: 12px; /* Smaller font for tagline */
-            font-weight: 500; /* Lighter weight */
-            color: var(--color-text-muted); /* Subtler color */
-            margin-top: 5px; /* Small space below the main heading */
-            display: block; /* Ensure it takes up its own line */
-        }
-        
-        .mega-menu-group-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
-        .mega-menu-group-list a {
-            display: block;
-            border-radius: 0; /* Remove border radius */
-            transition: color 0s;
-            position: relative;
-            margin: 5px 0; /* Tighter vertical spacing */
-            padding: 2px 0; /* Minimal padding */
-            letter-spacing: -0.03em;
-            font-size: 19px;
-            font-weight: 600; /* Regular weight for links */
-            color: var(--color-text-light); /* Make column headers light/white */
-        }
-
-        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
-        .mega-menu-link-title {
-            /* This class is now redundant but keeping it for structure if needed later */
-            font-size: inherit; 
-            font-weight: inherit;
-            color: inherit; 
-            margin-bottom: 0;
-        }
-        
-        .mega-menu-group-list a:hover {
-            color: #9cd4ff; /* White on hover */
-            background-color: transparent; /* No background change on hover */
-        }
-        
-        /* REMOVED: .mega-menu-link-desc is removed as requested */
-        .mega-menu-link-desc {
-            display: none; /* Hide descriptions */
-        }
-        
-        /*
-        =============================================
-        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
-        =============================================
-        */
-        
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        /* Mobile Toggle */
-        .mobile-toggle {
-            display: none; 
-            background: none;
-            border: none;
-            width: 30px;
-            height: 24px;
-            cursor: pointer;
-            padding: 0;
-            position: relative;
-            z-index: 1010;
-        }
-
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-toggle span {
-            display: block;
-            height: 2px;
             width: 100%;
-            background-color: var(--color-text-light);
-            margin: 6px 0;
-            transition: all 0.3s ease;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
         }
 
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            text-align: center;
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
-            opacity: 0;
+
+        .hyperion-qr-dropdown-trigger {
+            width: 100%;
+            border-radius: 50px;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            height: auto;
+            box-sizing: border-box;
+            justify-content: center;
+            display: none; /* HIDE QR TRIGGER ON MOBILE */
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+
+        .hyperion-qr-dropdown-content {
+            position: static;
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: none;
+            border-top: 1px solid rgba(0, 145, 255, 0.1);
+            border-radius: 0;
+            background-color: #0d0d29;
+            display: none; /* HIDE QR CONTENT ON MOBILE */
         }
         
-        /* Mobile Overrides */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .custom-header-container {
-                padding: 0 20px;
-            }
-            
-            .mobile-toggle {
-                display: block; 
-            }
-
-            .custom-main-nav {
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                height: calc(100vh - var(--header-height));
-                background-color: var(--color-header-bg);
-                overflow-y: auto;
-                padding: 20px 0;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                display: block; 
-                z-index: 900;
-            }
-
-            .header-wrapper.mobile-menu-open .custom-main-nav {
-                transform: translateX(0);
-            }
-
-            .custom-nav-list {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 20px;
-                margin-left: 0; /* Reset desktop margin */
-            }
-
-            .custom-nav-list li {
-                margin: 0;
-                width: 100%;
-                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
-            }
-
-            .custom-nav-link {
-                padding: 15px 0;
-                font-size: 1.1rem;
-                width: 100%;
-                display: flex; /* Use flex to position icon */
-                justify-content: space-between; /* Pushes text left, icon right */
-                align-items: center;
-            }
-            
-            /* NEW - Hide desktop-only icons on mobile */
-            .desktop-link-icon {
-                display: none;
-            }
-            
-            /* Hide the tagline on mobile */
-            .menu-group-tagline {
-                display: none; 
-            }
-            
-            /* Show and style mobile icon */
-            .mobile-dropdown-icon {
-                display: inline-block; /* Show on mobile */
-            }
-            
-            /* Rotate icon when the parent menu item is active */
-            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
-                transform: rotate(180deg);
-            }
-            
-            /* Remove underline effect on mobile */
-            .custom-nav-link::after {
-                display: none;
-            }
-
-            
-            /* Mobile Action Buttons */
-            .header-action-buttons {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
-                box-sizing: border-box; /* Include padding in width */
-                margin-top: 20px; /* Space from last nav item */
-            }
-
-            .header-action-btn,
-            .header-secondary-btn {
-                width: 100%;
-                margin: 10px 0 0 0; /* Stack vertically with space */
-                padding: 15px 20px;
-                text-align: center;
-            }
-
-            .qr-dropdown-trigger {
-                width: 100%;
-                border-radius: 50px; /* Make it a full button shape */
-                margin: 10px 0 0 0;
-                padding: 15px 20px;
-                height: auto; /* Adjust height based on padding */
-                box-sizing: border-box;
-                justify-content: center; /* Center content horizontally */
-                display: none; /* HIDE QR TRIGGER ON MOBILE */
-            }
-
-            .qr-dropdown-trigger i {
-                margin-right: 10px; /* Space between icon and text if we add it */
-            }
-
-            /* Mobile QR Dropdown */
-            .qr-dropdown-content {
-                position: static; /* Remove absolute positioning */
-                width: 100%;
-                margin-top: 15px; /* Space from trigger */
-                padding: 15px;
-                box-shadow: none;
-                border-top: 1px solid rgba(0, 145, 255, 0.1);
-                border-radius: 0;
-                background-color: #0d0d29; /* Match mega menu background */
-                display: none; /* HIDE QR CONTENT ON MOBILE */
-            }
-            
-            .qr-dropdown-content img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .qr-dropdown-content.show {
-                transform: none; /* No transform on mobile */
-            }
-
-            /* Mobile Mega Menu */
-            .mega-menu-container {
-                position: static;
-                visibility: visible;
-                opacity: 1;
-                transform: none;
-                transition: max-height 0.3s ease;
-                overflow: hidden;
-                max-height: 0;
-                background-color: var(--color-menu-bg);
-                border-top: none;
-            }
-
-            .mega-menu-link-title {
-              padding: 0;
-              border-bottom: none;
-            }
-            
-            .custom-nav-item--has-megamenu.active .mega-menu-container {
-                max-height: 2000px;
-                padding: 0;
-            }
-            
-            .mega-menu-panel {
-                padding: 15px 0; /* Align content with parent link */
-                display: block; /* Make panel visible by default inside mobile menu */
-            }
-
-            .megamenu-3-column-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding-left: 0; /* Reset desktop padding */
-            }
-            
-            .menu-group-card {
-                padding: 0;
-            }
-            
-            .menu-group-card h3 {
-                margin-top: 23px;
-                /* Reset mobile h3 layout to default */
-                flex-direction: row; 
-                align-items: center;
-                display: flex;
-            }
-            
-            .mega-menu-group-list a {
-                margin: 10px 0;
-            }
-
-            .mega-menu-group-list li {
-                
-                border: none;
-                
-            }
-            
-            .mega-menu-group-list a:hover {
-                background-color: rgba(0, 145, 255, 0.1);
-            }
+        .hyperion-qr-dropdown-content img {
+            width: 120px;
+            height: 120px;
         }
-    </style>
-</head>
-<body>
 
-<div class="header-wrapper">
+        .hyperion-qr-dropdown-content.show {
+            transform: none;
+        }
+
+        /* Mobile Mega Menu */
+        .hyperion-mega-menu-container {
+            position: static;
+            visibility: visible;
+            opacity: 1;
+            transform: none;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+            background-color: var(--hyperion-color-menu-bg);
+            border-top: none;
+        }
+
+        .hyperion-mega-menu-link-title {
+          padding: 0;
+          border-bottom: none;
+        }
+        
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 2000px;
+            padding: 0;
+        }
+        
+        .hyperion-mega-menu-panel {
+            padding: 15px 0;
+            display: block;
+        }
+
+        .hyperion-megamenu-3-column-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-left: 0;
+        }
+        
+        .hyperion-menu-group-card {
+            padding: 0;
+        }
+        
+        .hyperion-menu-group-card h3 {
+            margin-top: 23px;
+            flex-direction: row;
+            align-items: center;
+            display: flex;
+        }
+        
+        .hyperion-mega-menu-group-list a {
+            margin: 10px 0;
+        }
+
+        .hyperion-mega-menu-group-list li {
+            border: none;
+        }
+        
+        .hyperion-mega-menu-group-list a:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+    }
+</style>
+
+<div class="hyperion-header-wrapper">
     
-    <header class="custom-header">
-        <div class="custom-header-container">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
             
-            <div class="custom-logo-container">
-                <a href="index.html" class="custom-logo-link custom-logo-text">
-                    <img src="thumbnails/hyperion.png" alt="Defcon Logo">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="thumbnails/hyperion logo (2).png" alt="Hyperion Logo">
                 </a>
             </div>
 
-            <nav class="custom-main-nav">
-                <ul class="custom-nav-list">
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
                     <li>
-                        <a href="pricing.html" class="custom-nav-link">Pricing
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                         </svg>
                         </a>
                     </li>
                     <li>
-                        <a href="projects.html" class="custom-nav-link">Projects
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <a href="page.html" class="hyperion-custom-nav-link">Projects
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                         </svg>
                         </a>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="page.html" class="custom-nav-link" data-megamenu-trigger="services">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
                             Solutions
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="services">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Software Development
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">Web Applications</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">API Development</span>
+                                                    <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Database Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             IT Infrastructure
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                                    <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Data Center Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Marketing & Creative Studio
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Content Management</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -802,116 +732,116 @@
                             </div>
                         </div>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
                             Discover
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="discover">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
-                                            Defcon
+                                            Hyperion
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    <span class="hyperion-mega-menu-link-title">About Us</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    <span class="hyperion-mega-menu-link-title">Product News</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Innovations</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="careers.html">
-                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    <span class="hyperion-mega-menu-link-title">Careers</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="partners.html">
-                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    <span class="hyperion-mega-menu-link-title">Partners</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="licenses-and-registrations.html">
-                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Resources
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blog</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    <span class="hyperion-mega-menu-link-title">eBooks</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    <span class="hyperion-mega-menu-link-title">Webinars</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">YouTube Playlists</span>
+                                                    <span class="hyperion-mega-menu-link-title">Recommendations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Connect
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Media</span>
+                                                    <span class="hyperion-mega-menu-link-title">X</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">X</span>
-                                                    </a>
-                                            </li>
-                                            <li>
-                                                <a href="page.html">
-                                                    <span class="mega-menu-link-title">Facebook</span>
+                                                    <span class="hyperion-mega-menu-link-title">Facebook</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Youtube</span>
+                                                    <span class="hyperion-mega-menu-link-title">LinkedIn</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Github</span>
+                                                    <span class="hyperion-mega-menu-link-title">Youtube</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">Github</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -921,23 +851,23 @@
                         </div>
                     </li>
                 </ul>
-                <div class="header-action-buttons">
-                    <button class="header-secondary-btn">
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
                         <a href="page.html">Get Started</a>
                     </button>
-                    <button class="header-action-btn">
+                    <button class="hyperion-header-action-btn">
                         <a href="page.html">Contact Us</a>
                     </button>
-                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
+                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
                       <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
-                        <div class="qr-dropdown-content" id="qrDropdownContent">
+                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
                             <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
                         </div>
                     </div>
                 </div>
             </nav>
 
-            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -945,127 +875,127 @@
         </div>
     </header>
 
-    <div class="mega-menu-container desktop-mega-menu">
+    <div class="hyperion-mega-menu-container hyperion-desktop-mega-menu">
         
-        <div class="mega-menu-panel" data-megamenu-panel="services">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
-                            Software Engineering
-                            <span class="menu-group-tagline">Build your custom vision</span>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Development
+                            <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Web Applications</span>
+                                <span class="hyperion-mega-menu-link-title">Web Applications</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
+                                <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
-                         <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/02.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             IT Infrastructure
-                            <span class="menu-group-tagline">Power your business</span>
+                            <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">IT Consulting</span>
+                                <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Data Center & Storage</span>
+                                <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Smart Technology</span>
+                                <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             Marketing & Creative Studio
-                            <span class="menu-group-tagline">Grow your audience</span>
+                            <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Graphic Design</span>
+                                <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Content Management</span>
+                                <span class="hyperion-mega-menu-link-title">Content Management</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Multimedia Production</span>
+                                <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
                                 </a>
                         </li>
                     </ul>
@@ -1073,119 +1003,119 @@
             </div>
         </div>
 
-        <div class="mega-menu-panel" data-megamenu-panel="discover">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Hyperion
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">About Us</span>
+                                <span class="hyperion-mega-menu-link-title">About Us</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Roadmap</span>
+                                <span class="hyperion-mega-menu-link-title">Roadmap</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Innovations</span>
+                                <span class="hyperion-mega-menu-link-title">Innovations</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Product News</span>
+                                <span class="hyperion-mega-menu-link-title">Product News</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Events</span>
+                                <span class="hyperion-mega-menu-link-title">Events</span>
                                 </a>
                         </li>
                         <li>
                             <a href="careers.html">
-                                <span class="mega-menu-link-title">Careers</span>
+                                <span class="hyperion-mega-menu-link-title">Careers</span>
                                 </a>
                         </li>
                         <li>
                             <a href="partners.html">
-                                <span class="mega-menu-link-title">Partners</span>
+                                <span class="hyperion-mega-menu-link-title">Partners</span>
                                 </a>
                         </li>
                         <li>
                             <a href="licenses-and-registrations.html">
-                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Resources
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Blog</span>
+                                <span class="hyperion-mega-menu-link-title">Blog</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">eBooks</span>
+                                <span class="hyperion-mega-menu-link-title">eBooks</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Webinars</span>
+                                <span class="hyperion-mega-menu-link-title">Webinars</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Podcasts</span>
+                                <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Recommendations</span>
+                                <span class="hyperion-mega-menu-link-title">Recommendations</span>
                                 </a>
                         </li>
 
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Connect
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">X</span>
+                                <span class="hyperion-mega-menu-link-title">X</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Facebook</span>
+                                <span class="hyperion-mega-menu-link-title">Facebook</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">LinkedIn</span>
+                                <span class="hyperion-mega-menu-link-title">LinkedIn</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Youtube</span>
+                                <span class="hyperion-mega-menu-link-title">Youtube</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Github</span>
+                                <span class="hyperion-mega-menu-link-title">Github</span>
                                 </a>
                         </li>
                     </ul>
@@ -1195,215 +1125,187 @@
     </div>
 </div>
 
-
 <script>
 // =============================================
-// JAVASCRIPT FOR MENU FUNCTIONALITY
+// HYPERION HEADER JAVASCRIPT
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const headerWrapper = document.querySelector('.header-wrapper');
-    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
-    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
-    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const body = document.body;
+    const hyperionHeaderWrapper = document.querySelector('.hyperion-header-wrapper');
+    const hyperionDesktopMegaMenuContainer = document.querySelector('.hyperion-desktop-mega-menu');
+    const hyperionMegaMenuTriggers = document.querySelectorAll('[data-hyperion-megamenu-trigger]');
+    const hyperionDesktopMegaMenuPanels = hyperionDesktopMegaMenuContainer.querySelectorAll('.hyperion-mega-menu-panel');
+    const hyperionMobileMenuToggle = document.getElementById('hyperion-mobileMenuToggle');
+    const hyperionBody = document.body;
     
-    // NEW: QR Code Dropdown elements
-    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
-    const qrDropdownContent = document.getElementById('qrDropdownContent');
+    // QR Code Dropdown elements
+    const hyperionQrDropdownTrigger = document.getElementById('hyperion-qrDropdownTrigger');
+    const hyperionQrDropdownContent = document.getElementById('hyperion-qrDropdownContent');
 
-    let closeTimer = null;
-    let qrCloseTimer = null; // Timer for QR dropdown
+    let hyperionCloseTimer = null;
+    let hyperionQrCloseTimer = null;
 
     // =============================================
-    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // DESKTOP MEGA MENU LOGIC
     // =============================================
     
-    // Function to set the active state on trigger and panel
-    function setActiveMenu(trigger, panel) {
-        // Deactivate all others first
-        megaMenuTriggers.forEach(t => t.classList.remove('active'));
-        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+    function hyperionSetActiveMenu(trigger, panel) {
+        hyperionMegaMenuTriggers.forEach(t => t.classList.remove('active'));
+        hyperionDesktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
 
         if (trigger && panel) {
             trigger.classList.add('active');
             panel.classList.add('active');
-            headerWrapper.classList.add('mega-menu-open');
+            hyperionHeaderWrapper.classList.add('hyperion-mega-menu-open');
         } else {
-            // Close all
-            headerWrapper.classList.remove('mega-menu-open');
+            hyperionHeaderWrapper.classList.remove('hyperion-mega-menu-open');
         }
     }
 
-    function handleOpen(trigger) {
+    function hyperionHandleOpen(trigger) {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
-            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
-            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
-            setActiveMenu(trigger, targetMenuPanel);
-            // Close QR dropdown if mega menu opens
-            if (qrDropdownContent.classList.contains('show')) {
-                hideQrDropdown();
+            clearTimeout(hyperionCloseTimer);
+            const targetMenuId = trigger.getAttribute('data-hyperion-megamenu-trigger');
+            const targetMenuPanel = hyperionDesktopMegaMenuContainer.querySelector(`[data-hyperion-megamenu-panel="${targetMenuId}"]`);
+            hyperionSetActiveMenu(trigger, targetMenuPanel);
+            if (hyperionQrDropdownContent.classList.contains('show')) {
+                hyperionHideQrDropdown();
             }
         }
     }
 
-    function handleClose() {
+    function hyperionHandleClose() {
         if (window.innerWidth > 1024) {
-            // Set a slight delay to allow mouse transition from trigger to menu
-            closeTimer = setTimeout(() => {
-                setActiveMenu(null, null); // Close all
+            hyperionCloseTimer = setTimeout(() => {
+                hyperionSetActiveMenu(null, null);
             }, 150); 
         }
     }
 
-    // Attach mouse event listeners for desktop
-    megaMenuTriggers.forEach(trigger => {
-        // Open on mouse enter
+    hyperionMegaMenuTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', () => {
-            handleOpen(trigger);
+            hyperionHandleOpen(trigger);
         });
         
-        // Use the common container as the exit point for the entire menu system
         trigger.parentElement.addEventListener('mouseleave', () => {
-            handleClose();
+            hyperionHandleClose();
         });
     });
 
-    // Prevent menu from closing when mouse is over the menu container
-    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseenter', () => {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
+            clearTimeout(hyperionCloseTimer);
         }
     });
 
-    // Close menu when mouse leaves the menu container
-    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
-        handleClose();
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        hyperionHandleClose();
     });
 
     // =============================================
-    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // QR CODE DROPDOWN LOGIC
     // =============================================
-    function showQrDropdown() {
+    function hyperionShowQrDropdown() {
         if (window.innerWidth > 1024) {
-            clearTimeout(qrCloseTimer);
-            qrDropdownContent.classList.add('show');
-            // Close mega menu if QR dropdown opens
-            setActiveMenu(null, null);
+            clearTimeout(hyperionQrCloseTimer);
+            hyperionQrDropdownContent.classList.add('show');
+            hyperionSetActiveMenu(null, null);
         }
     }
 
-    function hideQrDropdown() {
+    function hyperionHideQrDropdown() {
         if (window.innerWidth > 1024) {
-            qrCloseTimer = setTimeout(() => {
-                qrDropdownContent.classList.remove('show');
-            }, 150); // Slight delay for smooth transition
+            hyperionQrCloseTimer = setTimeout(() => {
+                hyperionQrDropdownContent.classList.remove('show');
+            }, 150);
         }
     }
 
-    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
-    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
-    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
-    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseleave', hyperionHideQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseleave', hyperionHideQrDropdown);
 
     // =============================================
-    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // MOBILE MENU LOGIC
     // =============================================
-    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    const hyperionMobileDropdownItems = document.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
     
-    // Mobile hamburger toggle
-    mobileMenuToggle.addEventListener('click', function() {
-        headerWrapper.classList.toggle('mobile-menu-open');
-        body.classList.toggle('mobile-menu-active');
+    hyperionMobileMenuToggle.addEventListener('click', function() {
+        hyperionHeaderWrapper.classList.toggle('hyperion-mobile-menu-open');
+        hyperionBody.classList.toggle('hyperion-mobile-menu-active');
         
-        // If closing the mobile menu, ensure all mega menu active states are cleared
-        if (!headerWrapper.classList.contains('mobile-menu-open')) {
-             mobileDropdownItems.forEach(item => item.classList.remove('active'));
-             // Also close QR dropdown on mobile close
-             qrDropdownContent.classList.remove('show');
+        if (!hyperionHeaderWrapper.classList.contains('hyperion-mobile-menu-open')) {
+             hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+             hyperionQrDropdownContent.classList.remove('show');
         }
     });
 
-    // Mobile dropdown toggle (for Services and Discover links)
-    mobileDropdownItems.forEach(item => {
-        const trigger = item.querySelector('.custom-nav-link');
+    hyperionMobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.hyperion-custom-nav-link');
         trigger.addEventListener('click', function(e) {
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
                 e.stopPropagation(); 
 
-                // Close all other dropdowns
-                mobileDropdownItems.forEach(otherItem => {
+                hyperionMobileDropdownItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
 
-                // Toggle current dropdown
                 item.classList.toggle('active');
-                // Close QR dropdown if a mega menu opens
-                qrDropdownContent.classList.remove('show');
+                hyperionQrDropdownContent.classList.remove('show');
             }
         });
     });
 
-    // Toggle QR dropdown on click for mobile
-    qrDropdownTrigger.addEventListener('click', function(e) {
+    hyperionQrDropdownTrigger.addEventListener('click', function(e) {
         if (window.innerWidth <= 1024) {
             e.preventDefault();
             e.stopPropagation();
-            qrDropdownContent.classList.toggle('show');
-            // Close any open mega menus
-            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+            hyperionQrDropdownContent.classList.toggle('show');
+            hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
         }
     });
 
-    // Close mobile menu when a standard link is clicked
-    document.querySelectorAll('.custom-nav-list a').forEach(link => {
-        // Exclude links that trigger a mega menu, and links that are inside a mega menu
-        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+    document.querySelectorAll('.hyperion-custom-nav-list a').forEach(link => {
+        if (!link.hasAttribute('data-hyperion-megamenu-trigger') && !link.closest('.hyperion-mega-menu-container')) {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 1024) {
-                    headerWrapper.classList.remove('mobile-menu-open');
-                    body.classList.remove('mobile-menu-active');
-                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
+                    hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                    hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                    hyperionQrDropdownContent.classList.remove('show');
                 }
             });
         }
     });
     
-    // Close QR dropdown if clicked outside on desktop
     document.addEventListener('click', function(event) {
-        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
-            hideQrDropdown();
+        if (window.innerWidth > 1024 && !hyperionQrDropdownTrigger.contains(event.target) && !hyperionQrDropdownContent.contains(event.target)) {
+            hyperionHideQrDropdown();
         }
     });
 
     // =============================================
     // WINDOW RESIZE HANDLER
     // =============================================
-    let resizeTimer;
+    let hyperionResizeTimer;
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
+        clearTimeout(hyperionResizeTimer);
+        hyperionResizeTimer = setTimeout(function() {
             if (window.innerWidth > 1024) {
-                // Reset desktop/mobile states
-                headerWrapper.classList.remove('mobile-menu-open');
-                body.classList.remove('mobile-menu-active');
-                mobileDropdownItems.forEach(item => item.classList.remove('active'));
-                setActiveMenu(null, null); // Close any open mega menu
-            } else { // Mobile specific reset
-                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
-                 qrDropdownContent.classList.remove('show');
+                hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+                hyperionSetActiveMenu(null, null);
+            } else {
+                hyperionQrDropdownContent.classList.remove('show');
             }
         }, 250);
     });
 });
 </script>
-
-
-
+<!-- HYPERION-HEADER END -->
 
 
 
@@ -1443,41 +1345,482 @@ document.addEventListener('DOMContentLoaded', function() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Security First, Always | Hyperion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="hyperion_styles.css">
+    <style>
+        /* --- CSS Variables for Consistency --- */
+        :root {
+            --primary-color: #007bff;
+            --dark-bg: #0f0f0f;
+            --light-bg: #f5f5f5;
+            --light-grey-bg: #e5e5e5;
+            --card-bg: #f7f9fa;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-grey: #565f76;
+            --text-light-grey: #ccc;
+            --container-max-width: 1100px;
+            --container-padding: 0 20px;
+            --section-padding-mobile: 60px 0;
+            --section-padding-tablet: 80px 0;
+            --section-padding-desktop: 100px 0;
+            --font-size-xs: 14px;
+            --font-size-sm: 16px;
+            --font-size-md: 18px;
+            --font-size-lg: 20px;
+            --font-size-xl: 24px;
+            --font-size-2xl: 32px;
+            --font-size-3xl: 40px;
+            --font-size-4xl: 48px;
+            --font-size-5xl: 60px;
+        }
+
+        /* --- Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .sec-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+
+        .sec-text-center {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Security Hero Section --- */
+        .sec-hero {
+            background-color: var(--light-bg);
+            padding: var(--section-padding-mobile);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sec-hero-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sec-hero-subtext {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text-grey);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* --- Philosophy Section --- */
+        .sec-philosophy {
+            background-color: var(--light-grey-bg);
+            padding: var(--section-padding-mobile);
+        }
+
+        .sec-philosophy-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        .sec-philosophy-point {
+            margin-bottom: 40px;
+            max-width: 900px;
+        }
+
+        .sec-philosophy-point-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .sec-philosophy-point-text {
+            font-size: var(--font-size-lg);
+            font-weight: 400;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        /* --- Certifications Section --- */
+        .sec-certifications {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: var(--section-padding-mobile);
+        }
+
+        .sec-app-label {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: var(--font-size-xs);
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .sec-transparency-title {
+            font-size: var(--font-size-3xl);
+            line-height: 1.1;
+            margin-bottom: 40px;
+            max-width: 900px;
+        }
+
+        .sec-certifications-title {
+            font-size: var(--font-size-2xl);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .sec-certifications-text {
+            font-size: var(--font-size-md);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-light-grey);
+            max-width: 900px;
+        }
+
+        .sec-certifications-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            align-items: center;
+            margin-bottom: 60px;
+            color: #888;
+            font-size: var(--font-size-xs);
+        }
+
+        .sec-cert-logo {
+            flex: 1 0 120px;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        .sec-cert-logo img {
+            height: 110px;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        /* --- Bug Bounty Section --- */
+        .sec-bug-bounty {
+            padding: 0;
+            border-radius: 12px;
+            position: relative;
+            max-width: 100%;
+        }
+
+        .sec-bug-bounty-title {
+            font-size: var(--font-size-3xl);
+            margin-bottom: 15px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .sec-bug-bounty-text {
+            max-width: 600px;
+            margin-bottom: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .sec-hacker-button {
+            display: inline-block;
+            padding: 12px 25px;
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+            z-index: 10;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .sec-hacker-button:hover {
+            background-color: var(--text-light);
+            color: #000000;
+        }
+
+        .sec-external-link-icon {
+            font-size: var(--font-size-sm);
+            line-height: 1;
+            vertical-align: top;
+            margin-left: 5px;
+        }
+
+        .sec-h1-graphic {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            opacity: 1;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            font-size: var(--font-size-lg);
+            color: var(--text-light-grey);
+        }
+
+        /* --- Security Learn Cards Section --- */
+        .sec-learn-cards {
+            padding: var(--section-padding-mobile);
+            background-color: var(--card-bg);
+        }
+
+        .sec-learn-cards-title {
+            font-size: var(--font-size-2xl);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .sec-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .sec-card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            backface-visibility: visible;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                -4px 0 6px rgba(50, 150, 255, 0.2),
+                4px 0 6px rgba(255, 100, 100, 0.2),
+                0 -4px 6px rgba(100, 255, 100, 0.2);
+        }
+
+        .sec-card-image {
+            height: 190px;
+            width: 100%;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ccc;
+            font-size: var(--font-size-xs);
+            overflow: hidden;
+        }
+
+        .sec-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sec-card-title {
+            font-weight: 600;
+            font-size: var(--font-size-xl);
+            line-height: 1.4;
+            text-align: left;
+            color: #444;
+        }
+
+        .sec-knowledge-cta {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                -4px 0 6px rgba(50, 150, 255, 0.2),
+                4px 0 6px rgba(255, 100, 100, 0.2),
+                0 -4px 6px rgba(100, 255, 100, 0.2);
+            backface-visibility: visible;
+        }
+
+        .sec-knowledge-cta-text {
+            font-weight: 600;
+            font-size: var(--font-size-xl);
+            margin: 0;
+        }
+
+        .sec-go-to-university {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .sec-go-to-university:hover {
+            text-decoration: underline;
+        }
+
+        .sec-svg-icon {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .sec-hero {
+                padding: var(--section-padding-tablet);
+            }
+            
+            .sec-hero-title {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .sec-philosophy {
+                padding: var(--section-padding-tablet);
+            }
+            
+            .sec-philosophy-title {
+                font-size: var(--font-size-5xl);
+            }
+            
+            .sec-certifications {
+                padding: var(--section-padding-tablet);
+            }
+            
+            .sec-transparency-title {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .sec-learn-cards {
+                padding: var(--section-padding-tablet);
+            }
+            
+            .sec-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sec-knowledge-cta {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .sec-cert-logo {
+                flex: 0 1 calc(50% - 20px);
+            }
+            
+            .sec-h1-graphic {
+                height: 250px;
+                justify-content: flex-end;
+                padding-right: 0;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .sec-hero {
+                padding: var(--section-padding-desktop);
+            }
+            
+            .sec-philosophy {
+                padding: var(--section-padding-desktop);
+            }
+            
+            .sec-certifications {
+                padding: 80px 0 120px 0;
+            }
+            
+            .sec-cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .sec-cert-logo {
+                flex: 0 1 calc(25% - 20px);
+            }
+            
+            .sec-h1-graphic {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100%;
+                margin-top: 0;
+                justify-content: flex-end;
+                padding-right: 50px;
+            }
+        }
+
+        /* Large Desktop Styles */
+        @media (min-width: 1200px) {
+            .sec-hero-title {
+                font-size: var(--font-size-5xl);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sec-hacker-button,
+            .sec-go-to-university {
+                color: #000;
+                text-decoration: underline;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <section class="security-hero">
-        <div class="container text-center">
-            <h1>Security First, Always</h1>
-            <p class="hero-subtext">
+    <section class="sec-hero">
+        <div class="sec-container sec-text-center">
+            <h1 class="sec-hero-title">Security First, Always</h1>
+            <p class="sec-hero-subtext">
                 As a leading IT solutions provider focused on data security, compliance,
                 and secure infrastructure, our commitment to our customers is built on
                 trust. We believe that security and data privacy are the foundations of
                 achieving successful digital transformation.
             </p>
         </div>
-        <div class="dial-placeholder">
-            <img src="thumbnails/3d-rendering-neon-triangle-removebg-preview.png" alt="Security Dial Graphic" style="width: 500px; height: 500px; object-fit: contain;">
-        </div>
     </section>
 
-    <section class="our-philosophy-section">
-        <div class="container">
-            <h2>Our Philosophy</h2>
+    <section class="sec-philosophy">
+        <div class="sec-container">
+            <h2 class="sec-philosophy-title">Our Philosophy</h2>
             
-            <div class="philosophy-point">
-                <h3>Security and Privacy by Design and By Default</h3>
-                <p>
+            <div class="sec-philosophy-point">
+                <h3 class="sec-philosophy-point-title">Security and Privacy by Design and By Default</h3>
+                <p class="sec-philosophy-point-text">
                     We drive a Zero Trust, Defence in Depth security strategy across our systems and
                     platforms. Data privacy assessments are built into our processes to safeguard your
                     personal information.
                 </p>
             </div>
 
-            <div class="philosophy-point">
-                <h3>Empowering a Growth Mindset</h3>
-                <p>
+            <div class="sec-philosophy-point">
+                <h3 class="sec-philosophy-point-title">Empowering a Growth Mindset</h3>
+                <p class="sec-philosophy-point-text">
                     To continually strengthen our security posture, we invest heavily in ongoing security
                     and privacy awareness training for all staff.
                 </p>
@@ -1485,383 +1828,84 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 
-    <section class="certifications-section">
-        <div class="container">
-            <p class="app-label" style="color: #007bff;">Hyperion</p>
-            <h2 class="transparency-title">Setting the highest standard for transparency and accountability</h2>
+    <section class="sec-certifications">
+        <div class="sec-container">
+            <p class="sec-app-label">Hyperion</p>
+            <h2 class="sec-transparency-title">Setting the highest standard for transparency and accountability</h2>
 
-            <h3>Certifications and Assessments</h3>
-            <p>
+            <h3 class="sec-certifications-title">Certifications and Assessments</h3>
+            <p class="sec-certifications-text">
                 Hyperion is built on a solid foundation of security, privacy and compliance. We adhere to
-                global standards including ISO/IEC 27001, GDPR, and SOC 2 Type II compliance. 
+                global standards including ISO/IEC 27001, 14001, and kudelski Security compliance. 
                 We are independently assessed at the highest level for both NIST Cybersecurity and Privacy Frameworks. 
                 Hyperion also engages globally recognised security consulting and auditing firms to stress test and audit 
                 our core infrastructure systems.
             </p>
-            <div class="certification-logos">
-                <span><img src="thumbnails/AiCPA American Institute of Certified Public Accountants.png" alt="AICPA SOC Logo" style="width: auto; height: 90px;"></span>
-                <span><img src="thumbnails/bsi ISO_IEC 27001.png" alt="ISO 27001 Logo" style="width: auto; height: 90px;"></span>
-                <span><img src="thumbnails/gdpr-badge.png" alt="GDPR Badge" style="width: auto; height: 90px;"></span>
-                <span><img src="thumbnails/kudelski-security.png" alt="Kudelski Security Logo" style="width: auto; height: 90px;"></span>
+            <div class="sec-certifications-logos">
+                <div class="sec-cert-logo">
+                    <img src="thumbnails/ISO 14001.png" alt="AICPA SOC Logo">
+                </div>
+                <div class="sec-cert-logo">
+                    <img src="thumbnails/kudelski security.png" alt="ISO 27001 Logo">
+                </div>
+                <div class="sec-cert-logo">
+                    <img src="thumbnails/iso 1400.png" alt="ISO 1400 Logo">
+                </div>
+                <div class="sec-cert-logo">
+                    <img src="thumbnails/iso 27001.png" alt="ISO 27001 Logo">
+                </div>
             </div>
 
-            <div class="bug-bounty-section">
-                <h3>Vulnerability Disclosure Program</h3>
-                <p>
+            <div class="sec-bug-bounty">
+                <h3 class="sec-bug-bounty-title">Vulnerability Disclosure Program</h3>
+                <p class="sec-bug-bounty-text">
                     Hyperion recognises the importance of security researchers in helping to keep our
                     platform safe. We encourage responsible disclosure of security vulnerabilities via
                     our external program on the leading platform, Hacker One (or similar).
                 </p>
-                <a href="#" class="hacker-one-button">Submit a Vulnerability Report <span class="external-link-icon">&#x2197;</span></a>
-                <div class="h1-graphic-placeholder">
-                    <img src="thumbnails/logo.png" alt="HackerOne Logo" style="width: auto; height: 60px;">
+                <a href="#" class="sec-hacker-button">Submit a Vulnerability Report <span class="sec-external-link-icon">&#x2197;</span></a>
+                <div class="sec-h1-graphic">
+                    <img src="thumbnails/security-image.png" alt="HackerOne Logo">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="security-learn-cards">
-        <div class="container">
-            <h2 class="text-center">Learn more about robust security and staying safe online</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image-placeholder">
-                        <img src="thumbnails/background-3.jpg" alt="Disaster Recovery Plan Icon" style="width: 100%; height: 100%; object-fit: cover;">
+    <section class="sec-learn-cards">
+        <div class="sec-container">
+            <h2 class="sec-learn-cards-title sec-text-center">Learn more about robust security and staying safe online</h2>
+            <div class="sec-cards-grid">
+                <div class="sec-card">
+                    <div class="sec-card-image">
+                        <img src="thumbnails/background-3.jpg" alt="Disaster Recovery Plan Icon">
                     </div>
-                    <p class="card-title">What is a Disaster Recovery Plan (DRP)</p>
+                    <p class="sec-card-title">What is a Disaster Recovery Plan (DRP)</p>
                 </div>
-                <div class="card">
-                    <div class="card-image-placeholder best-practices">
-                       <img src="thumbnails/background-4.jpg" alt="Account Protection Shield" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="sec-card">
+                    <div class="sec-card-image">
+                       <img src="thumbnails/background-4.jpg" alt="Account Protection Shield">
                     </div>
-                    <p class="card-title">Protect Your Infrastructure With Data Privacy Best Practices</p>
+                    <p class="sec-card-title">Protect Your Infrastructure With Data Privacy Best Practices</p>
                 </div>
-                <div class="card">
-                    <div class="card-image-placeholder">
-                        <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Phishing Hook on Phone" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="sec-card">
+                    <div class="sec-card-image">
+                        <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Phishing Hook on Phone">
                     </div>
-                    <p class="card-title">How to Recognise Social Engineering Threats — With Examples</p>
+                    <p class="sec-card-title">How to Recognise Social Engineering Threats &#8213; With Examples</p>
                 </div>
             </div>
-            <div class="hyperion-knowledge-cta">
-                <p>Want to improve your team's IT knowledge?</p>
-                <a href="#" class="go-to-university">Go to Hyperion Learn
-                    <span style="display: inline-flex; align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="external-link-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;">
+            <div class="sec-knowledge-cta">
+                <p class="sec-knowledge-cta-text">Want to improve your team's IT knowledge?</p>
+                <a href="#" class="sec-go-to-university">Go to Hyperion Learn
+                    <svg xmlns="http://www.w3.org/2000/svg" class="sec-svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    </span>
                 </a>
             </div>
         </div>
     </section>
 </body>
 </html>
-
-<style>
-/* --- New Section Styling: Our Philosophy --- */
-.our-philosophy-section {
-    background-color: #e5e5e5; /* Light grey background from screenshot */
-    padding: 100px 0;
-}
-
-.our-philosophy-section h2 {
-    font-size: 60px;
-    font-weight: 600;
-    margin-bottom: 60px;
-    color: #000;
-}
-
-.philosophy-point {
-    margin-bottom: 40px;
-    max-width: 900px; /* Keep content centered/readable */
-}
-
-.philosophy-point h3 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #000;
-}
-
-.philosophy-point p {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #555; /* Slightly lighter text for body copy */
-}
-
-/* --- Existing Styles (Adjusted for consistency/perfection) --- */
-/* Basic Reset and Global Styles */
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #1a1a1a;
-}
-
-h1, h2, h3 {
-    margin: 0;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* 1. Security First, Always Section (Light Grey) */
-.security-hero {
-    background-color: #f5f5f5;
-    padding: 100px 0 200px 0; 
-    position: relative;
-    overflow: hidden;
-}
-
-.security-hero h1 {
-    font-size: 60px;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 20px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-subtext {
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: #565f76;
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-.dial-placeholder {
-    width: 100%;
-    height: 150px; 
-    position: absolute;
-    bottom: -75px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #a0a0a0;
-    font-weight: 600;
-}
-
-
-/* 3. Security Learning Cards Section (White/Light) */
-.security-learn-cards {
-    padding: 80px 0;
-    background-color: #f7f9fa;
-}
-
-.security-learn-cards h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
-    font-weight: 600;
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 50px;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 1px;
-    padding: 20px;
-    backface-visibility: visible;
-    text-align: center;
-
-    transform-style: preserve-3d;
-    transition: all 0.3s ease;
-    position: relative;
-    
-    box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        -4px 0 6px rgba(50, 150, 255, 0.2),
-        4px 0 6px rgba(255, 100, 100, 0.2),
-        0 -4px 6px rgba(100, 255, 100, 0.2);
-}
-
-.card-image-placeholder {
-    height: 190px; 
-    width: 100%;
-    margin-bottom: 15px;
-    background-color: #f9f9f9; 
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ccc;
-    font-size: 14px;
-}
-
-.card-title {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 1.4;
-    text-align: left;
-    color: #444;
-}
-
-.hyperion-knowledge-cta {
-    background-color: #fff;
-    padding: 30px 30px;
-    border-radius: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        -4px 0 6px rgba(50, 150, 255, 0.2),
-        4px 0 6px rgba(255, 100, 100, 0.2),
-        0 -4px 6px rgba(100, 255, 100, 0.2);
-        backface-visibility: visible;
-}
-
-
-.hyperion-knowledge-cta p {
-    font-weight: 600;
-    font-size: 26px;
-    margin: 0;
-}
-
-.go-to-university {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 20px;
-    transition: color 0.2s;
-}
-
-.go-to-university:hover {
-    text-decoration: underline;
-}
-
-/* 4. Transparency and Certifications Section (Dark Mode) */
-.certifications-section {
-    background-color: #0f0f0f;
-    color: #ffffff;
-    padding: 80px 0 120px 0;
-}
-
-.app-label {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-
-.transparency-title {
-    font-size: 48px;
-    line-height: 1.1;
-    margin-bottom: 50px;
-    max-width: 900px;
-}
-
-.certifications-section h3 {
-    font-size: 32px;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-
-.certifications-section p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #ccc;
-    max-width: 900px;
-}
-
-.certifications-section p strong {
-    font-weight: 700;
-}
-
-.certification-logos {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 80px;
-    color: #888;
-    font-size: 14px;
-}
-
-
-/* 5. Vulnerability Disclosure Program Section (Even Darker Mode) */
-.bug-bounty-section {
-    padding: 0;
-    border-radius: 12px;
-    position: relative;
-    max-width: 100%;
-}
-
-.bug-bounty-section h3 {
-    font-size: 40px;
-    margin-bottom: 15px;
-    z-index: 10;
-    position: relative;
-}
-
-.bug-bounty-section p {
-    max-width: 600px;
-    margin-bottom: 30px;
-    z-index: 10;
-    position: relative;
-}
-
-.hacker-one-button {
-    display: inline-block;
-    padding: 12px 25px;
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: background-color 0.2s, color 0.2s;
-    z-index: 10;
-    position: relative;
-}
-
-.hacker-one-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-.external-link-icon {
-    font-size: 16px;
-    line-height: 1;
-    vertical-align: top;
-    margin-left: 5px;
-}
-
-.h1-graphic-placeholder {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100%;
-    opacity: 0.1;
-    z-index: 5;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 50px;
-    font-size: 20px;
-    color: #ccc;
-}
-</style>
-
-
-
-
 
 
 
