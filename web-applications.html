@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Defcon Mobile Applications Service Page</title>
-    <!-- Google Fonts: Inter Font Family -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Global Styles for Defcon Mobile Applications Page - Labeled for Easy Editing */
@@ -14,8 +13,8 @@
         /* Root Variables for Easy Customization */
         :root {
             --defcon-accent: #1199FA; /* Primary accent color for buttons, highlights */
-            --defcon-dark-bg: #010119; /* Deep dark background */
-            --defcon-section-dark-bg: #151519; /* Specified dark section background */
+            --defcon-dark-bg: #001023; /* Deep dark background */
+            --defcon-section-dark-bg: #010119; /* Specified dark section background */
             --defcon-white: #fff; /* Text and accents */
             --defcon-light-gray: #f4f4f4; /* Subtle backgrounds */
             --defcon-medium-gray: #e5e5e5; /* Borders and dividers */
@@ -37,7 +36,7 @@
 
         /* Container for Page Content - Centered and Responsive */
         .defcon-mobile-container {
-            max-width: 1400px; /* Wide for premium feel */
+            max-width: 1200px; /* Changed to 1200px as requested */
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -51,29 +50,22 @@
 
         /* Hero Section - Immersive with Background Image, Gradient Overlay, and Glow */
         .defcon-mobile-hero {
-            background-color: var(--defcon-section-dark-bg);
-            background-image: linear-gradient(to bottom, rgba(1, 1, 25, 0.8), rgba(21, 21, 25, 0.9)), url('https://placeholder.co/1920x1080?text=Mobile+Apps+Hero+Image'); /* Edit URL for actual image: High-tech mobile app abstract */
+           background: linear-gradient(145%, #1199FA 10%, #001023 90%);
+            background-image: linear-gradient(to bottom, rgba(1, 1, 25, 0.8), rgba(25, 105, 224, 0.9)), url('https://placeholder.co/1920x1080?text=Mobile+Apps+Hero+Image'); /* Edit URL for actual image: High-tech mobile app abstract */
             background-size: cover;
             background-position: center;
-            height: 80vh; /* Immersive height */
+            height: 70vh; /* Immersive height */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
+            border-radius: 40px;
+            max-width: 100%; /* Hero section takes full width */
+            margin: 0 auto;
         }
 
-        .defcon-mobile-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(17, 153, 250, 0.2) 0%, transparent 70%);
-            animation: defcon-glow-pulse 5s infinite ease-in-out; /* Pulsing glow for new feature impression */
-        }
-
+       
         @keyframes defcon-glow-pulse {
             0%, 100% { opacity: 0.5; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
@@ -86,13 +78,14 @@
 
         .defcon-mobile-hero h1 {
             font-size: 3.5rem;
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 20px;
-            text-shadow: var(--defcon-glow); /* Glow on text */
+            line-height: 1.1;
         }
 
         .defcon-mobile-hero p {
             font-size: 1.2rem;
+            font-weight: 600;
             margin-bottom: 40px;
             color: var(--defcon-light-gray);
         }
@@ -108,22 +101,72 @@
             cursor: pointer;
             transition: var(--defcon-transition);
             box-shadow: var(--defcon-glow);
+            font-family: 'Inter', sans-serif;
         }
+        
 
         .defcon-mobile-cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(17, 153, 250, 0.5);
         }
+        
+        /* New style for card button */
+        .defcon-card-button {
+            display: block; /* Make the button fill the card width */
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px 0;
+            background-color: var(--defcon-accent);
+            color: var(--defcon-white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--defcon-transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-card-button:hover {
+            background-color: #0d82e0; /* Slightly darker accent on hover */
+            box-shadow: 0 0 15px rgba(17, 153, 250, 0.4);
+        }
 
         /* Products Section - Interactive Table with Toggle */
-        .defcon-mobile-products {
-            background: linear-gradient(to bottom, var(--defcon-section-dark-bg), var(--defcon-dark-bg)); /* Gradient for depth */
-        }
+        
 
         .defcon-mobile-products h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 50px;
+        }
+
+        /* Package Type Navigation */
+        .defcon-package-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-package-option {
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--defcon-transition);
+            text-align: center;
+            flex: 1;
+        }
+
+        .defcon-package-option.active {
+            background-color: var(--defcon-accent);
+            color: var(--defcon-white);
         }
 
         /* Toggle Switch for Yearly/Monthly - Labeled for Edit */
@@ -158,7 +201,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--defcon-medium-gray);
+            background-color: #73818d78;
             transition: var(--defcon-transition);
             border-radius: 34px;
         }
@@ -192,30 +235,47 @@
         }
 
         .defcon-mobile-product-card {
-            background-color: var(--defcon-dark-bg);
-            border: 1px solid var(--defcon-medium-gray);
+            background-color: transparent;
+            border: 1px solid #adadad57;
             border-radius: 15px;
             padding: 30px;
-            text-align: center;
+            text-align: left;
             transition: var(--defcon-transition);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for premium feel */
         }
 
-        .defcon-mobile-product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--defcon-glow);
-        }
-
+        
         .defcon-mobile-product-card h3 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+            line-height: 1.1;
         }
 
         .defcon-mobile-product-card .defcon-price {
             font-size: 2rem;
             font-weight: 700;
             color: var(--defcon-accent);
+            margin-bottom: 5px; /* Reduced margin */
+        }
+        
+        /* Style for installment plan text */
+        .defcon-installment-plan {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #86cdff;
             margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* Style for the 'Key Features' sub-heading */
+        .defcon-mobile-product-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--defcon-accent); /* Use accent color to distinguish */
+            margin-top: 15px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed rgba(17, 153, 250, 0.3); /* Subtle separator */
         }
 
         .defcon-mobile-product-card ul {
@@ -233,6 +293,19 @@
             color: var(--defcon-light-gray);
         }
 
+        /* Package note at bottom of cards */
+        .defcon-package-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            
+            font-size: 0.95rem;
+            color: var(--defcon-light-gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Hide Yearly/Monthly based on toggle - Managed by JS */
 
         /* Features Section - Grid Layout with Icons (Assume Icon URLs or SVG) */
@@ -241,7 +314,7 @@
         }
 
         .defcon-mobile-features h2 {
-            text-align: center;
+            text-align: left;
             font-size: 2.5rem;
             margin-bottom: 50px;
         }
@@ -277,7 +350,8 @@
 
         /* How It Works Section - Stepper Layout with Lines */
         .defcon-mobile-how-it-works {
-            background: linear-gradient(to right, var(--defcon-section-dark-bg), var(--defcon-dark-bg));
+            background: linear-gradient(to right, #002b74, #000723);
+            border-radius: 40px;
         }
 
         .defcon-mobile-how-it-works h2 {
@@ -291,6 +365,7 @@
             flex-wrap: wrap;
             justify-content: center;
             position: relative;
+            
         }
 
         .defcon-mobile-step {
@@ -299,6 +374,7 @@
             text-align: center;
             padding: 20px;
             position: relative;
+            border-right: 1px solid rgba(128, 128, 128, 0.381);
         }
 
         .defcon-mobile-step::before {
@@ -348,9 +424,7 @@
         }
 
         /* Benefits Section - Random Added Section for Immersion */
-        .defcon-mobile-benefits {
-            background: linear-gradient(to bottom, var(--defcon-dark-bg), var(--defcon-section-dark-bg));
-        }
+        
 
         .defcon-mobile-benefits h2 {
             text-align: center;
@@ -362,14 +436,14 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 10px;
         }
 
         .defcon-mobile-benefit-item {
             background-color: #1a1a2e; /* Slightly lighter dark */
             padding: 20px;
-            border-radius: 10px;
-            max-width: 300px;
+            border-radius: 40px;
+            max-width: 200px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
@@ -399,6 +473,7 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
+            font-size: 1.5rem;
             transition: var(--defcon-transition);
         }
 
@@ -433,15 +508,22 @@
             .defcon-mobile-products-table {
                 grid-template-columns: 1fr;
             }
+            
+            .defcon-package-navigation {
+                flex-direction: column;
+                max-width: 250px;
+            }
+            
+            .defcon-package-option {
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
 <body class="defcon-mobile-body">
 
-    <!-- Main Content Container - Exclude Header/Footer as Specified -->
     <div class="defcon-mobile-container">
 
-        <!-- Hero Section: Immersive Introduction -->
         <section class="defcon-mobile-section defcon-mobile-hero">
             <div class="defcon-mobile-hero-content">
                 <h1>Mobile Applications Development</h1>
@@ -450,9 +532,15 @@
             </div>
         </section>
 
-        <!-- Products Section: Table with Toggle (Some with Yearly/Monthly) -->
         <section class="defcon-mobile-section defcon-mobile-products">
             <h2>Our Mobile Application Products</h2>
+            
+            <!-- Package Type Navigation -->
+            <div class="defcon-package-navigation">
+                <div class="defcon-package-option active" data-package="individuals">For Individuals</div>
+                <div class="defcon-package-option" data-package="businesses">For Businesses</div>
+            </div>
+            
             <div class="defcon-mobile-toggle-container">
                 <span class="defcon-mobile-toggle-label">Monthly</span>
                 <label class="defcon-mobile-toggle">
@@ -461,28 +549,33 @@
                 </label>
                 <span class="defcon-mobile-toggle-label">Yearly (Save 20%)</span>
             </div>
+            
             <div class="defcon-mobile-products-table">
-                <!-- Product 1: Basic Mobile App - No Toggle -->
-                <div class="defcon-mobile-product-card">
+                <!-- Individual Products -->
+                <div class="defcon-mobile-product-card" data-package="individuals">
                     <h3>Basic Mobile App</h3>
-                    <div class="defcon-price">$5,000 One-Time</div>
+                    <div class="defcon-price">R5,999 <span style="font-size: 0.95rem; color: grey;">/One-Time</span></div>
+                    <span class="defcon-installment-plan">Or R559/month (12 Installments)</span>
                     <p>A simple, efficient mobile application for startups or small businesses needing core functionality.</p>
+                    <h4>Key Features</h4>
                     <ul>
                         <li>Custom UI/UX Design</li>
                         <li>Basic Features (e.g., User Login, Data Display)</li>
                         <li>Cross-Platform (iOS & Android)</li>
                         <li>1 Month Support</li>
                     </ul>
+                    <button class="defcon-card-button">Select Basic App</button>
                 </div>
 
-                <!-- Product 2: E-Commerce Mobile App - With Toggle -->
-                <div class="defcon-mobile-product-card">
+                <div class="defcon-mobile-product-card" data-package="individuals">
                     <h3>E-Commerce Mobile App</h3>
                     <div class="defcon-price">
-                        <span class="defcon-monthly">$1,500 /mo</span>
-                        <span class="defcon-yearly" style="display: none;">$14,400 /yr</span>
+                        <span class="defcon-monthly">R1,499 <span style="font-size: 0.95rem; color: grey;">/month</span></span>
+                        <span class="defcon-yearly" style="display: none;">R14,999 /year</span>
                     </div>
+                    <span class="defcon-installment-plan">Billed Monthly or Annually</span>
                     <p>Robust e-commerce solution with shopping cart, payments, and inventory management.</p>
+                    <h4>Key Features</h4>
                     <ul>
                         <li>Integrated Payment Gateways</li>
                         <li>Product Catalog & Search</li>
@@ -490,13 +583,15 @@
                         <li>Analytics Dashboard</li>
                         <li>6 Months Support</li>
                     </ul>
+                    <button class="defcon-card-button">Select E-Commerce</button>
                 </div>
 
-                <!-- Product 3: AI & ML Integrated App - No Toggle -->
-                <div class="defcon-mobile-product-card">
+                <div class="defcon-mobile-product-card" data-package="individuals">
                     <h3>AI & ML Integrated App</h3>
-                    <div class="defcon-price">$15,000 One-Time</div>
+                    <div class="defcon-price">R10,999 <span style="font-size: 0.95rem; color: grey;">/One-Time</span></div>
+                    <span class="defcon-installment-plan">Or R1,899/month (6 Installments)</span>
                     <p>Advanced app leveraging AI for personalized experiences, predictions, and automation.</p>
+                    <h4>Key Features</h4>
                     <ul>
                         <li>Machine Learning Models</li>
                         <li>Real-Time Data Processing</li>
@@ -504,31 +599,15 @@
                         <li>Scalable Architecture</li>
                         <li>3 Months Support</li>
                     </ul>
+                    <button class="defcon-card-button">Select AI/ML App</button>
                 </div>
 
-                <!-- Product 4: Enterprise Mobile Solution - With Toggle -->
-                <div class="defcon-mobile-product-card">
-                    <h3>Enterprise Mobile Solution</h3>
-                    <div class="defcon-price">
-                        <span class="defcon-monthly">$3,000 /mo</span>
-                        <span class="defcon-yearly" style="display: none;">$28,800 /yr</span>
-                    </div>
-                    <p>Comprehensive suite for large organizations with custom integrations and security.</p>
-                    <ul>
-                        <li>API & Microservices</li>
-                        <li>Blockchain Security</li>
-                        <li>Multi-User Roles</li>
-                        <li>Cloud Deployment</li>
-                        <li>Ongoing Maintenance</li>
-                    </ul>
-                </div>
-
-                <!-- Add More Products as Needed - Mentioned as Many as Possible -->
-                <!-- Product 5: Gaming Mobile App - No Toggle -->
-                <div class="defcon-mobile-product-card">
+                <div class="defcon-mobile-product-card" data-package="individuals">
                     <h3>Gaming Mobile App</h3>
-                    <div class="defcon-price">$10,000 One-Time</div>
+                    <div class="defcon-price">R12,499 <span style="font-size: 0.95rem; color: grey;">/One-Time</span></div>
+                    <span class="defcon-installment-plan">Or R1,399/month (12 Installments)</span>
                     <p>Engaging mobile games with high-performance graphics and multiplayer features.</p>
+                    <h4>Key Features</h4>
                     <ul>
                         <li>Unity Engine Integration</li>
                         <li>Multiplayer Support</li>
@@ -536,16 +615,18 @@
                         <li>AR/VR Elements</li>
                         <li>2 Months Support</li>
                     </ul>
+                    <button class="defcon-card-button">Select Gaming App</button>
                 </div>
 
-                <!-- Product 6: Health & Fitness App - With Toggle -->
-                <div class="defcon-mobile-product-card">
+                <div class="defcon-mobile-product-card" data-package="individuals">
                     <h3>Health & Fitness App</h3>
                     <div class="defcon-price">
-                        <span class="defcon-monthly">$800 /mo</span>
-                        <span class="defcon-yearly" style="display: none;">$7,680 /yr</span>
+                        <span class="defcon-monthly">R399 <span style="font-size: 0.95rem; color: grey;">/month</span></span>
+                        <span class="defcon-yearly" style="display: none;">R4,799 /year</span>
                     </div>
+                    <span class="defcon-installment-plan">Billed Monthly or Annually</span>
                     <p>Track wellness with sensors, goals, and community features.</p>
+                    <h4>Key Features</h4>
                     <ul>
                         <li>Wearable Integration</li>
                         <li>Goal Tracking</li>
@@ -553,38 +634,120 @@
                         <li>Social Sharing</li>
                         <li>4 Months Support</li>
                     </ul>
+                    <button class="defcon-card-button">Select Health App</button>
                 </div>
+                
+                <!-- Business Products -->
+                <div class="defcon-mobile-product-card" data-package="businesses" style="display: none;">
+                    <h3>Enterprise Mobile Solution</h3>
+                    <div class="defcon-price">
+                        <span class="defcon-monthly">R4,999 /month</span>
+                        <span class="defcon-yearly" style="display: none;">R59,999 <span style="font-size: 0.95rem; color: grey;">/year</span></span>
+                    </div>
+                    <span class="defcon-installment-plan">Billed Monthly or Annually</span>
+                    <p>Comprehensive suite for large organizations with custom integrations and security.</p>
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>API & Microservices</li>
+                        <li>Blockchain Security</li>
+                        <li>Multi-User Roles</li>
+                        <li>Cloud Deployment</li>
+                        <li>Ongoing Maintenance</li>
+                    </ul>
+                    <button class="defcon-card-button">Select Enterprise</button>
+                </div>
+
+                <div class="defcon-mobile-product-card" data-package="businesses" style="display: none;">
+                    <h3>Business Analytics App</h3>
+                    <div class="defcon-price">R24,999 <span style="font-size: 0.95rem; color: grey;">/One-Time</span></div>
+                    <span class="defcon-installment-plan">Or R2,499/month (12 Installments)</span>
+                    <p>Data-driven app with real-time analytics, reporting, and business intelligence features.</p>
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Custom Dashboards</li>
+                        <li>Real-Time Reporting</li>
+                        <li>Data Visualization</li>
+                        <li>Integration with Business Systems</li>
+                        <li>6 Months Support</li>
+                    </ul>
+                    <button class="defcon-card-button">Select Analytics App</button>
+                </div>
+
+                <div class="defcon-mobile-product-card" data-package="businesses" style="display: none;">
+                    <h3>Field Service Management</h3>
+                    <div class="defcon-price">
+                        <span class="defcon-monthly">R2,399 <span style="font-size: 0.95rem; color: grey;">/month</span></span>
+                        <span class="defcon-yearly" style="display: none;">R29,999 /year</span>
+                    </div>
+                    <span class="defcon-installment-plan">Billed Monthly or Annually</span>
+                    <p>Streamline field operations with scheduling, tracking, and customer management.</p>
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>GPS Tracking</li>
+                        <li>Job Scheduling</li>
+                        <li>Inventory Management</li>
+                        <li>Customer Portal</li>
+                        <li>12 Months Support</li>
+                    </ul>
+                    <button class="defcon-card-button">Select Field Service</button>
+                </div>
+
+                <div class="defcon-mobile-product-card" data-package="businesses" style="display: none;">
+                    <h3>Corporate Communication</h3>
+                    <div class="defcon-price">R9,499 <span style="font-size: 0.95rem; color: grey;">/One-Time</span></div>
+                    <span class="defcon-installment-plan">Or R829/month (5 Installments)</span>
+                    <p>Secure internal communication platform for teams and departments.</p>
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Secure Messaging</li>
+                        <li>File Sharing</li>
+                        <li>Video Conferencing</li>
+                        <li>Admin Controls</li>
+                        <li>9 Months Support</li>
+                    </ul>
+                    <button class="defcon-card-button">Select Communication</button>
+                </div>
+            </div>
+            
+            <!-- Package Note -->
+            <div class="defcon-package-note">
+                <p><strong>Note:</strong> All our packages include initial consultation, design mockups, and deployment assistance. Additional customization, premium features, and extended support options are available. Contact us for a tailored solution that fits your specific requirements.</p>
             </div>
         </section>
 
-        <!-- Features Section -->
         <section class="defcon-mobile-section defcon-mobile-features">
             <h2>Key Features of Our Mobile Applications</h2>
             <div class="defcon-mobile-features-grid">
                 <div class="defcon-mobile-feature-item">
-                    <div class="defcon-mobile-feature-icon">📱</div> <!-- Edit: Replace with SVG icon -->
-                    <h3>Cross-Platform Compatibility</h3>
+                    <div class="defcon-mobile-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path fill="#81bdfe" d="M14.54 23H7a2 2 0 0 1-2-2V3c0-1.11.89-2 2-2h10a2 2 0 0 1 2 2v10c-.7 0-1.37.13-2 .35V5H7v14h6c0 1.54.58 2.94 1.54 4m3.21-.84l-2.75-3L16.16 18l1.59 1.59L21.34 16l1.16 1.41l-4.75 4.75"/></svg>
+                    </div> <h3>Cross-Platform Compatibility</h3>
                     <p>Build once, deploy on iOS and Android with React Native or Flutter for efficiency.</p>
                 </div>
                 <div class="defcon-mobile-feature-item">
-                    <div class="defcon-mobile-feature-icon">🔒</div>
+                    <div class="defcon-mobile-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 26 26"><path fill="#81bdfe" d="m21.7 6.87l-8.5-3.78a.47.47 0 0 0-.4 0L4.3 6.87a.5.5 0 0 0-.3.45V10c0 4.92 2.94 10.88 8.82 12.94a.56.56 0 0 0 .36 0C19.06 20.88 22 14.92 22 10V7.32a.5.5 0 0 0-.3-.45m-4.012 3.31l-5.28 6.722a.88.88 0 0 1-.636.332l-.052.002a.88.88 0 0 1-.62-.257l-2.72-2.72a.875.875 0 1 1 1.24-1.237l2.022 2.022l4.67-5.945a.876.876 0 0 1 1.377 1.082z"/></svg>
+                    </div>
                     <h3>Robust Security</h3>
                     <p>End-to-end encryption, biometric auth, and compliance with GDPR/HIPAA.</p>
                 </div>
                 <div class="defcon-mobile-feature-item">
-                    <div class="defcon-mobile-feature-icon">⚡</div>
+                    <div class="defcon-mobile-feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 48 48"><path fill="none" stroke="#81bdfe" stroke-linejoin="round" stroke-width="4" d="M19 4h18L26 18h15L17 44l5-19H8L19 4Z"/></svg>
+                    </div>
                     <h3>High Performance</h3>
                     <p>Optimized code for fast loading, offline capabilities, and smooth animations.</p>
                 </div>
                 <div class="defcon-mobile-feature-item">
-                    <div class="defcon-mobile-feature-icon">🤖</div>
+                    <div class="defcon-mobile-feature-icon">
+                        <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#5cb8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17.75h8m3.5-5.5h.75a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 1-1.5 1.5h-.75m-15-5h-.75a1.5 1.5 0 0 0-1.5 1.5v2a1.5 1.5 0 0 0 1.5 1.5h.75M12 8V6m1.5-1.5A1.5 1.5 0 0 1 12 6a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 12 3a1.5 1.5 0 0 1 1.5 1.5m2.75 8.75a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5a1.5 1.5 0 0 1 1.5 1.5m-5.5 0a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5a1.5 1.5 0 0 1 1.5 1.5M8.25 8.5h7.5a3.74 3.74 0 0 1 3.75 3.75v5A3.74 3.74 0 0 1 15.75 21h-7.5a3.74 3.74 0 0 1-3.75-3.75v-5A3.74 3.74 0 0 1 8.25 8.5"/></svg>
+                    </div>
                     <h3>AI Integration</h3>
                     <p>Personalized recommendations and predictive analytics built-in.</p>
                 </div>
             </div>
         </section>
 
-        <!-- How It Works Section -->
         <section class="defcon-mobile-section defcon-mobile-how-it-works">
             <h2>How Our Mobile App Development Works</h2>
             <div class="defcon-mobile-steps">
@@ -603,7 +766,7 @@
                     <h3>Development</h3>
                     <p>Build the app with agile methodology, integrating features and testing iteratively.</p>
                 </div>
-                <div class="defcon-mobile-step">
+                <div class="defcon-mobile-step" style="border-right: none;">
                     <div class="defcon-mobile-step-number">4</div>
                     <h3>Deployment & Support</h3>
                     <p>Launch on app stores, provide training, and offer ongoing maintenance.</p>
@@ -611,14 +774,12 @@
             </div>
         </section>
 
-        <!-- Getting Started Section -->
         <section class="defcon-mobile-section defcon-mobile-getting-started">
             <h2>Getting Started with Defcon Mobile Apps</h2>
             <p>Contact our team for a free consultation. Provide your project details, and we'll guide you through the process from ideation to launch. Start by filling out our inquiry form or scheduling a call.</p>
             <button class="defcon-mobile-cta-button">Schedule Consultation</button>
         </section>
 
-        <!-- Benefits Section (Random Added) -->
         <section class="defcon-mobile-section defcon-mobile-benefits">
             <h2>Benefits of Choosing Defcon</h2>
             <div class="defcon-mobile-benefits-list">
@@ -641,7 +802,6 @@
             </div>
         </section>
 
-        <!-- FAQs Section (Random Added for Completeness) -->
         <section class="defcon-mobile-section defcon-mobile-faqs">
             <h2>Frequently Asked Questions</h2>
             <div class="defcon-mobile-faq-item">
@@ -693,11 +853,33 @@
                 icon.textContent = answer.style.display === 'block' ? '-' : '+';
             });
         });
+
+        // Package Type Navigation
+        const packageOptions = document.querySelectorAll('.defcon-package-option');
+        const productCards = document.querySelectorAll('.defcon-mobile-product-card');
+
+        packageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all options
+                packageOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                option.classList.add('active');
+                
+                // Get the selected package type
+                const selectedPackage = option.getAttribute('data-package');
+                
+                // Show/hide products based on package type
+                productCards.forEach(card => {
+                    if (card.getAttribute('data-package') === selectedPackage) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
     </script>
 
 </body>
 </html>
-
-
-
-

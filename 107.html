@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Mobile App | Defcon Mobile Applications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles for Defcon Mobile Applications Page */
+        :root {
+            --defcon-accent: #1199FA;
+            --defcon-dark-bg: #001023;
+            --defcon-section-dark-bg: #010119;
+            --defcon-white: #fff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-medium-gray: #e5e5e5;
+            --defcon-font-family: 'Inter', sans-serif;
+            --defcon-glow: 0 0 15px rgba(17, 153, 250, 0.3);
+            --defcon-transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--defcon-font-family);
+            background-color: var(--defcon-section-dark-bg);
+            color: var(--defcon-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .defcon-header {
+            background-color: rgba(1, 1, 25, 0.9);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .defcon-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--defcon-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-logo span {
+            color: var(--defcon-accent);
+        }
+
+        .defcon-nav a {
+            color: var(--defcon-light-gray);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-nav a:hover {
+            color: var(--defcon-accent);
+        }
+
+        /* Hero Section */
+        .defcon-basic-hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1), rgba(1, 1, 25, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-basic-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(17, 153, 250, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .defcon-basic-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .defcon-basic-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--defcon-light-gray);
+        }
+
+        .defcon-price-tag {
+            background: linear-gradient(135deg, var(--defcon-accent), #0d82e0);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            box-shadow: var(--defcon-glow);
+        }
+
+        .defcon-installment-plan {
+            font-size: 1rem;
+            color: var(--defcon-light-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Package Details Section */
+        .defcon-package-details {
+            padding: 80px 0;
+            background-color: var(--defcon-section-dark-bg);
+        }
+
+        .defcon-section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .defcon-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--defcon-accent);
+            border-radius: 2px;
+        }
+
+        .defcon-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .defcon-feature-card {
+            background: linear-gradient(135deg, var(--defcon-dark-bg), #1a1a2e);
+            padding: 30px;
+            border-radius: 15px;
+            transition: var(--defcon-transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--defcon-glow);
+        }
+
+        .defcon-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--defcon-accent);
+        }
+
+        .defcon-feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .defcon-feature-card p {
+            color: var(--defcon-light-gray);
+        }
+
+        /* Process Section */
+        .defcon-process {
+            padding: 80px 0;
+            background: linear-gradient(to right, var(--defcon-section-dark-bg), var(--defcon-dark-bg));
+        }
+
+        .defcon-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .defcon-step {
+            flex: 1 1 200px;
+            max-width: 220px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .defcon-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 50%;
+            height: 2px;
+            background: var(--defcon-accent);
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .defcon-step:last-child::before {
+            display: none;
+        }
+
+        .defcon-step-number {
+            background-color: var(--defcon-accent);
+            color: var(--defcon-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: var(--defcon-glow);
+        }
+
+        .defcon-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Form Section */
+        .defcon-form-section {
+            padding: 80px 0;
+            background-color: var(--defcon-section-dark-bg);
+        }
+
+        .defcon-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--defcon-dark-bg), #1a1a2e);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-form-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--defcon-accent);
+        }
+
+        .defcon-form-group {
+            margin-bottom: 25px;
+        }
+
+        .defcon-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .defcon-form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--defcon-white);
+            font-family: var(--defcon-font-family);
+            font-size: 1rem;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-form-control:focus {
+            outline: none;
+            border-color: var(--defcon-accent);
+            box-shadow: 0 0 0 2px rgba(17, 153, 250, 0.2);
+        }
+
+        .defcon-form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .defcon-form-row .defcon-form-group {
+            flex: 1;
+        }
+
+        .defcon-radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .defcon-radio-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .defcon-radio-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .defcon-radio-label {
+            display: block;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-radio-option input:checked + .defcon-radio-label {
+            background-color: rgba(17, 153, 250, 0.2);
+            border-color: var(--defcon-accent);
+            box-shadow: 0 0 10px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-cta-button {
+            background-color: var(--defcon-accent);
+            color: var(--defcon-white);
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--defcon-transition);
+            box-shadow: var(--defcon-glow);
+            font-family: var(--defcon-font-family);
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .defcon-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(17, 153, 250, 0.5);
+        }
+
+        /* Footer */
+        .defcon-footer {
+            background-color: var(--defcon-dark-bg);
+            padding: 50px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-footer p {
+            color: var(--defcon-light-gray);
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .defcon-basic-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .defcon-nav {
+                display: none;
+            }
+
+            .defcon-steps {
+                flex-direction: column;
+            }
+
+            .defcon-step::before {
+                display: none;
+            }
+
+            .defcon-step {
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .defcon-form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .defcon-form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="defcon-header">
+        <div class="defcon-container defcon-header-content">
+            <a href="#" class="defcon-logo">DEFCON <span>MOBILE</span></a>
+            <nav class="defcon-nav">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="defcon-basic-hero">
+        <div class="defcon-container">
+            <h1>Basic Mobile App Package</h1>
+            <p>A simple, efficient mobile application for startups or small businesses needing core functionality. Get your app to market quickly with our streamlined development process.</p>
+            <div class="defcon-price-tag">$5,000 One-Time</div>
+            <p class="defcon-installment-plan">Or $1,000/month for 5 months</p>
+            <button class="defcon-cta-button" onclick="scrollToForm()">Get Started Now</button>
+        </div>
+    </section>
+
+    <!-- Package Details Section -->
+    <section class="defcon-package-details">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">What's Included</h2>
+            <div class="defcon-features-grid">
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">🎨</div>
+                    <h3>Custom UI/UX Design</h3>
+                    <p>Professional, user-friendly interface designed specifically for your brand and target audience.</p>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">📱</div>
+                    <h3>Cross-Platform Development</h3>
+                    <p>Your app will work seamlessly on both iOS and Android devices, reaching the widest possible audience.</p>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">🔐</div>
+                    <h3>User Authentication</h3>
+                    <p>Secure login and registration system to protect user data and personalize the experience.</p>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">📊</div>
+                    <h3>Data Display & Management</h3>
+                    <p>Efficiently present and manage your content with clean, organized data structures.</p>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">🔄</div>
+                    <h3>Basic API Integration</h3>
+                    <p>Connect your app to essential external services and data sources as needed.</p>
+                </div>
+                <div class="defcon-feature-card">
+                    <div class="defcon-feature-icon">🛠️</div>
+                    <h3>1 Month Support</h3>
+                    <p>Comprehensive post-launch support to ensure everything runs smoothly after deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="defcon-process">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Simple 4-Step Process</h2>
+            <div class="defcon-steps">
+                <div class="defcon-step">
+                    <div class="defcon-step-number">1</div>
+                    <h3>Discovery & Planning</h3>
+                    <p>We discuss your vision and create a detailed project plan.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">2</div>
+                    <h3>Design & Prototyping</h3>
+                    <p>We create wireframes and design mockups for your approval.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Our team builds your app with regular progress updates.</p>
+                </div>
+                <div class="defcon-step">
+                    <div class="defcon-step-number">4</div>
+                    <h3>Testing & Launch</h3>
+                    <p>We thoroughly test your app and deploy it to app stores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="defcon-form-section" id="get-started-form">
+        <div class="defcon-container">
+            <div class="defcon-form-container">
+                <h2 class="defcon-form-title">Start Your Basic Mobile App Project</h2>
+                <form id="defcon-basic-app-form">
+                    <div class="defcon-form-row">
+                        <div class="defcon-form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" class="defcon-form-control" required>
+                        </div>
+                        <div class="defcon-form-group">
+                            <label for="company">Company/Organization</label>
+                            <input type="text" id="company" class="defcon-form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-form-row">
+                        <div class="defcon-form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="defcon-form-control" required>
+                        </div>
+                        <div class="defcon-form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="defcon-form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-form-group">
+                        <label for="app-concept">Tell us about your app concept</label>
+                        <textarea id="app-concept" class="defcon-form-control" rows="4" placeholder="Briefly describe your app idea, target audience, and main features..."></textarea>
+                    </div>
+                    
+                    <div class="defcon-form-group">
+                        <label>Preferred Payment Option</label>
+                        <div class="defcon-radio-group">
+                            <div class="defcon-radio-option">
+                                <input type="radio" id="one-time" name="payment" value="one-time" checked>
+                                <label for="one-time" class="defcon-radio-label">One-Time Payment: $5,000</label>
+                            </div>
+                            <div class="defcon-radio-option">
+                                <input type="radio" id="installment" name="payment" value="installment">
+                                <label for="installment" class="defcon-radio-label">Installment Plan: $1,000/month (5 months)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-form-group">
+                        <label for="timeline">Desired Timeline</label>
+                        <select id="timeline" class="defcon-form-control">
+                            <option value="">Select your preferred timeline</option>
+                            <option value="asap">As soon as possible</option>
+                            <option value="1-2">1-2 months</option>
+                            <option value="3-4">3-4 months</option>
+                            <option value="flexible">Flexible timeline</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="defcon-cta-button">Submit Your Project Details</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="defcon-footer">
+        <div class="defcon-container">
+            <p>&copy; 2023 Defcon Mobile Applications. All rights reserved.</p>
+            <p>Contact: info@defconmobile.com | +1 (555) 123-4567</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('defcon-basic-app-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, you would send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Thank you for your interest in our Basic Mobile App package! We will contact you shortly to discuss your project.');
+            
+            // Reset the form
+            this.reset();
+        });
+        
+        // Scroll to form function
+        function scrollToForm() {
+            document.getElementById('get-started-form').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>

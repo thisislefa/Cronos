@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications Services Page</title>
+    <style>
+        /* --- GLOBAL VARIABLES & FONT --- */
+        :root {
+            --wa-blue: #0091fa;          /* Electric Blue (Accent) */
+            --wa-dark-blue: #001023;     /* Dark Blue (Primary BG) */
+            --wa-light-grey: #f4f4f4;    /* Light Grey (Secondary BG) */
+            --wa-white: #fff;            /* White */
+            --wa-text-dark: #333;        /* General Text Color */
+            --wa-text-light: #aaa;       /* Secondary Text Color */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--wa-white);
+            color: var(--wa-text-dark);
+            line-height: 1.6;
+        }
+
+        .wa-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .wa-section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--wa-dark-blue);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .wa-section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--wa-text-light);
+            margin-bottom: 60px;
+        }
+
+        /* --- 1. HERO SECTION (wa-hero-) --- */
+        .wa-hero-container {
+            background-color: var(--wa-dark-blue);
+            color: var(--wa-white);
+            padding: 100px 0;
+        }
+        
+        .wa-hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .wa-hero-content {
+                flex-direction: row;
+                text-align: left;
+            }
+            .wa-hero-left {
+                flex: 1;
+                padding-right: 40px;
+            }
+            .wa-hero-right {
+                flex: 1;
+            }
+        }
+
+        .wa-hero-heading {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .wa-hero-subheading {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #ddd;
+            margin-bottom: 40px;
+        }
+
+        .wa-hero-button {
+            background-color: var(--wa-blue);
+            color: var(--wa-dark-blue);
+            font-weight: 700;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .wa-hero-button:hover {
+            background-color: #0077d4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 145, 250, 0.4);
+        }
+
+        .wa-hero-graphic {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--wa-blue), #1e3a5f);
+            border-radius: 12px;
+            margin-top: 40px;
+            /* Placeholder for 3D/abstract look */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.9; }
+            to { transform: scale(1.02); opacity: 1; }
+        }
+
+        /* --- 2. CORE SERVICES SHOWCASE (wa-services-) --- */
+        .wa-services-section {
+            background-color: var(--wa-light-grey);
+            padding: 80px 0;
+        }
+
+        .wa-services-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+        }
+        @media (min-width: 768px) {
+            .wa-services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .wa-services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .wa-services-card {
+            background-color: var(--wa-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .wa-services-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 145, 250, 0.1);
+        }
+
+        .wa-services-icon {
+            color: var(--wa-blue);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            height: 32px;
+            width: 32px;
+            line-height: 1;
+        }
+        .wa-services-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--wa-dark-blue);
+            margin-bottom: 10px;
+        }
+        .wa-services-description {
+            color: var(--wa-text-dark);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .wa-services-link {
+            color: var(--wa-dark-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+        .wa-services-link:hover {
+            color: var(--wa-blue);
+        }
+
+        /* --- 3. PRICE PACKAGES & TIERS (wa-pricing-) --- */
+        .wa-pricing-section {
+            background-color: var(--wa-white);
+            padding: 80px 0;
+        }
+
+        .wa-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+        }
+        @media (min-width: 900px) {
+            .wa-pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .wa-pricing-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            background-color: var(--wa-light-grey);
+            transition: all 0.3s;
+            position: relative;
+        }
+        .wa-pricing-card.wa-pricing-popular {
+            background-color: var(--wa-white);
+            border-color: var(--wa-blue);
+            border-width: 3px;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 145, 250, 0.2);
+            z-index: 10;
+        }
+
+        .wa-pricing-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--wa-blue);
+            color: var(--wa-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .wa-pricing-tier {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--wa-dark-blue);
+            margin-bottom: 15px;
+        }
+        .wa-pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--wa-blue);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        /* Toggle Switch Styling */
+        .wa-pricing-toggle-switch {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        .wa-pricing-toggle-switch label {
+            display: flex;
+            align-items: center;
+            background-color: var(--wa-light-grey);
+            padding: 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: fit-content;
+        }
+        .wa-pricing-toggle-switch input {
+            display: none;
+        }
+        .wa-pricing-toggle-option {
+            padding: 8px 15px;
+            font-weight: 600;
+            color: var(--wa-text-dark);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        .wa-pricing-toggle-switch input:checked + .wa-pricing-toggle-option[data-plan="installment"],
+        .wa-pricing-toggle-switch input:not(:checked) + .wa-pricing-toggle-option[data-plan="one-time"] {
+            background-color: var(--wa-white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: var(--wa-blue);
+        }
+        /* Fix for the non-active option to appear secondary */
+        .wa-pricing-toggle-switch input:checked ~ .wa-pricing-toggle-option[data-plan="one-time"],
+        .wa-pricing-toggle-switch input:not(:checked) ~ .wa-pricing-toggle-option[data-plan="installment"] {
+             background-color: transparent;
+             color: var(--wa-text-medium);
+        }
+
+
+        /* Features List */
+        .wa-pricing-features {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .wa-pricing-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--wa-text-dark);
+        }
+        .wa-pricing-features li::before {
+            content: '✓';
+            color: var(--wa-blue);
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        .wa-pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+            background-color: var(--wa-dark-blue);
+            color: var(--wa-white);
+            border: 2px solid var(--wa-dark-blue);
+        }
+        .wa-pricing-cta:hover {
+            opacity: 0.9;
+        }
+        .wa-pricing-card.wa-pricing-popular .wa-pricing-cta {
+            background-color: var(--wa-blue);
+            color: var(--wa-dark-blue);
+            border-color: var(--wa-blue);
+            box-shadow: 0 5px 15px rgba(0, 145, 250, 0.4);
+        }
+
+        /* --- 4. ADD-ONS & CUSTOMIZATIONS (wa-addons-) --- */
+        .wa-addons-section {
+            background-color: var(--wa-light-grey);
+            padding: 80px 0;
+        }
+        
+        .wa-addons-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .wa-addons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .wa-addons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .wa-addons-card {
+            background-color: var(--wa-white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s;
+        }
+        .wa-addons-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 145, 250, 0.1);
+        }
+        .wa-addons-info {
+            flex-grow: 1;
+            padding-right: 15px;
+        }
+        .wa-addons-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--wa-dark-blue);
+        }
+        .wa-addons-description {
+            font-size: 0.9rem;
+            color: var(--wa-text-medium);
+        }
+        .wa-addons-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--wa-blue);
+            margin-left: 10px;
+        }
+
+        /* Custom Checkbox Styling */
+        .wa-addons-card input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .wa-addons-checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .wa-addons-custom-checkbox {
+            height: 24px;
+            width: 24px;
+            background-color: #eee;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 2px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wa-addons-custom-checkbox::after {
+            content: '';
+            width: 8px;
+            height: 14px;
+            border: solid var(--wa-white);
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+            display: none;
+        }
+
+        .wa-addons-card input[type="checkbox"]:checked + .wa-addons-checkbox-label .wa-addons-custom-checkbox {
+            background-color: var(--wa-blue);
+            border-color: var(--wa-blue);
+        }
+
+        .wa-addons-card input[type="checkbox"]:checked + .wa-addons-checkbox-label .wa-addons-custom-checkbox::after {
+            display: block;
+        }
+        
+        /* --- 5. THE PROCESS / HOW IT WORKS (wa-process-) --- */
+        .wa-process-section {
+            background-color: var(--wa-white);
+            padding: 80px 0;
+        }
+        
+        .wa-process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Vertical Line */
+        .wa-process-timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #ddd;
+            top: 0;
+            bottom: 0;
+            left: 25px; /* Adjust for mobile/small screen center */
+            margin-left: -1px;
+        }
+
+        /* Responsive timeline positioning */
+        @media (min-width: 768px) {
+            .wa-process-timeline::after {
+                left: 50%;
+            }
+        }
+
+        .wa-process-step {
+            padding: 10px 0;
+            position: relative;
+            background-color: inherit;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .wa-process-step:nth-child(odd) {
+                padding-right: 40px;
+                text-align: right;
+            }
+            .wa-process-step:nth-child(even) {
+                padding-left: 40px;
+                left: 50%;
+            }
+            .wa-process-step {
+                width: 50%;
+            }
+        }
+        
+        /* Step Circle */
+        .wa-process-circle {
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            background-color: var(--wa-white);
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            z-index: 1;
+            color: var(--wa-dark-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0; /* Default left position for mobile */
+            transform: translateX(-50%);
+            transition: all 0.3s;
+        }
+
+        .wa-process-step:first-child .wa-process-circle {
+            background-color: var(--wa-blue);
+            color: var(--wa-white);
+            border-color: var(--wa-blue);
+        }
+
+        @media (min-width: 768px) {
+            .wa-process-circle {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .wa-process-step:nth-child(odd) .wa-process-circle {
+                transform: translateX(120%);
+            }
+            .wa-process-step:nth-child(even) .wa-process-circle {
+                transform: translateX(-220%);
+            }
+            
+             /* Fix circle position for odd/even on desktop */
+            .wa-process-step:nth-child(odd) { left: 0; }
+            .wa-process-step:nth-child(even) { left: 50%; }
+        }
+
+        .wa-process-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--wa-dark-blue);
+            margin-bottom: 5px;
+        }
+        .wa-process-description {
+            font-size: 0.95rem;
+            color: var(--wa-text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Mobile specific adjustments for alignment */
+        @media (max-width: 767px) {
+            .wa-process-circle {
+                left: 25px;
+                transform: translateX(-50%);
+            }
+            .wa-process-step {
+                padding-left: 70px; /* Space for circle */
+            }
+        }
+
+
+        /* --- 6. FINAL CALL-TO-ACTION (wa-cta-) --- */
+        .wa-cta-section {
+            background-color: var(--wa-dark-blue);
+            color: var(--wa-white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .wa-cta-headline {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+        .wa-cta-subheading {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+        .wa-cta-button {
+            background-color: var(--wa-blue);
+            color: var(--wa-dark-blue);
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            border: none;
+            font-size: 1.1rem;
+        }
+        .wa-cta-button:hover {
+            background-color: #0077d4;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 145, 250, 0.6);
+        }
+        .wa-cta-guarantee {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. HERO SECTION -->
+    <section class="wa-hero-container">
+        <div class="wa-container wa-hero-content">
+            <div class="wa-hero-left">
+                <h1 class="wa-hero-heading">Build Powerful Web Applications That Drive Your Business</h1>
+                <p class="wa-hero-subheading">From scalable APIs to enterprise-grade platforms, we engineer future-proof solutions designed for performance and growth.</p>
+                <a href="#cta" class="wa-hero-button">Get a Free Consultation</a>
+            </div>
+            <div class="wa-hero-right">
+                <div class="wa-hero-graphic"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CORE SERVICES SHOWCASE -->
+    <section class="wa-services-section">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Our Web Application Expertise</h2>
+            <p class="wa-section-subtitle">We cover the entire digital stack, ensuring robust architecture and stunning user experiences.</p>
+            <div class="wa-services-grid">
+                
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#128187;</div> <!-- Laptop/Code Icon -->
+                    <h3 class="wa-services-title">Custom Web Apps</h3>
+                    <p class="wa-services-description">Bespoke development tailored to your unique business logic and operational workflows.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#128717;</div> <!-- Shopping Cart Icon -->
+                    <h3 class="wa-services-title">E-commerce Platforms</h3>
+                    <p class="wa-services-description">High-conversion online stores and marketplaces built for scalability and security.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#9889;</div> <!-- Zap/Lightning Icon -->
+                    <h3 class="wa-services-title">API & Microservices</h3>
+                    <p class="wa-services-description">Decoupled architecture for faster deployments and seamless data integration across systems.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#9884;</div> <!-- Brain/AI Icon -->
+                    <h3 class="wa-services-title">AI & ML Integrations</h3>
+                    <p class="wa-services-description">Embed intelligence into your applications for predictive analytics and automated workflows.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#128241;</div> <!-- Mobile Phone Icon -->
+                    <h3 class="wa-services-title">Progressive Web Apps (PWA)</h3>
+                    <p class="wa-services-description">Deliver app-like experiences with offline capability and fast loading times on any device.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+                <div class="wa-services-card">
+                    <div class="wa-services-icon">&#128229;</div> <!-- Database Icon -->
+                    <h3 class="wa-services-title">Database Management</h3>
+                    <p class="wa-services-description">Designing and optimizing secure, high-performance database solutions for heavy load.</p>
+                    <a href="#" class="wa-services-link">Learn More &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PRICE PACKAGES & TIERS -->
+    <section class="wa-pricing-section">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Transparent Pricing Packages</h2>
+            <p class="wa-section-subtitle">Choose the package that aligns with your project complexity and budget.</p>
+
+            <div class="wa-pricing-grid">
+                
+                <!-- Pricing Card 1: Startup -->
+                <div class="wa-pricing-card" data-tier="startup">
+                    <h3 class="wa-pricing-tier">Startup</h3>
+                    <div class="wa-pricing-price" data-price-target="price">$8,500</div>
+                    
+                    <div class="wa-pricing-toggle-switch">
+                        <label for="pricing-toggle-startup">
+                            <input type="checkbox" id="pricing-toggle-startup">
+                            <span class="wa-pricing-toggle-option" data-plan="one-time">One-Time Payment</span>
+                            <span class="wa-pricing-toggle-option" data-plan="installment">Installment Plan</span>
+                        </label>
+                    </div>
+
+                    <ul class="wa-pricing-features">
+                        <li>Dedicated Project Manager</li>
+                        <li>Responsive UI/UX Design</li>
+                        <li>Basic Cloud Hosting Setup</li>
+                        <li>Up to 5 Core Features</li>
+                        <li>30-Day Post-Launch Support</li>
+                    </ul>
+
+                    <a href="#" class="wa-pricing-cta">Get Started</a>
+                </div>
+
+                <!-- Pricing Card 2: Business (Most Popular) -->
+                <div class="wa-pricing-card wa-pricing-popular" data-tier="business">
+                    <div class="wa-pricing-badge">MOST POPULAR</div>
+                    <h3 class="wa-pricing-tier">Business</h3>
+                    <div class="wa-pricing-price" data-price-target="price">$15,000</div>
+                    
+                    <div class="wa-pricing-toggle-switch">
+                        <label for="pricing-toggle-business">
+                            <input type="checkbox" id="pricing-toggle-business">
+                            <span class="wa-pricing-toggle-option" data-plan="one-time">One-Time Payment</span>
+                            <span class="wa-pricing-toggle-option" data-plan="installment">Installment Plan</span>
+                        </label>
+                    </div>
+
+                    <ul class="wa-pricing-features">
+                        <li>Senior Technical Lead & PM</li>
+                        <li>Custom API Integration</li>
+                        <li>**Advanced Security Audits**</li>
+                        <li>Up to 15 Core Features</li>
+                        <li>90-Day Priority Support</li>
+                    </ul>
+
+                    <a href="#" class="wa-pricing-cta">Get Started</a>
+                </div>
+
+                <!-- Pricing Card 3: Enterprise -->
+                <div class="wa-pricing-card" data-tier="enterprise">
+                    <h3 class="wa-pricing-tier">Enterprise</h3>
+                    <div class="wa-pricing-price" data-price-target="price">Custom</div>
+                    
+                    <div class="wa-pricing-toggle-switch" style="visibility: hidden;">
+                        <label>
+                            <span class="wa-pricing-toggle-option">One-Time Payment</span>
+                            <span class="wa-pricing-toggle-option">Installment Plan</span>
+                        </label>
+                    </div>
+
+                    <ul class="wa-pricing-features">
+                        <li>Dedicated Development Team</li>
+                        <li>Complex Microservices Arch.</li>
+                        <li>Full CI/CD Pipeline & DevOps</li>
+                        <li>Unlimited Features & Scale</li>
+                        <li>Annual Maintenance Contract</li>
+                    </ul>
+
+                    <a href="#" class="wa-pricing-cta">Contact for Quote</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ADD-ONS & CUSTOMIZATIONS -->
+    <section class="wa-addons-section">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Enhance Your Package</h2>
+            <p class="wa-section-subtitle">Optional services to maximize the functionality and success of your application.</p>
+            
+            <div class="wa-addons-grid">
+                
+                <!-- Add-on Card 1 -->
+                <div class="wa-addons-card">
+                    <div class="wa-addons-info">
+                        <div class="wa-addons-title">Priority Support</div>
+                        <div class="wa-addons-description">24/7 access to our engineering team with 1-hour response SLA.</div>
+                    </div>
+                    <div class="wa-addons-price">+ $1,200</div>
+                    <input type="checkbox" id="addon-1">
+                    <label for="addon-1" class="wa-addons-checkbox-label">
+                        <span class="wa-addons-custom-checkbox"></span>
+                    </label>
+                </div>
+
+                <!-- Add-on Card 2 -->
+                <div class="wa-addons-card">
+                    <div class="wa-addons-info">
+                        <div class="wa-addons-title">Advanced Analytics Dashboard</div>
+                        <div class="wa-addons-description">Custom reporting suite for in-depth user behavior and performance tracking.</div>
+                    </div>
+                    <div class="wa-addons-price">+ $950</div>
+                    <input type="checkbox" id="addon-2">
+                    <label for="addon-2" class="wa-addons-checkbox-label">
+                        <span class="wa-addons-custom-checkbox"></span>
+                    </label>
+                </div>
+
+                <!-- Add-on Card 3 -->
+                <div class="wa-addons-card">
+                    <div class="wa-addons-info">
+                        <div class="wa-addons-title">Third-Party API Integration</div>
+                        <div class="wa-addons-description">Seamless connection to external services (CRM, payment gateways, etc.).</div>
+                    </div>
+                    <div class="wa-addons-price">+ $700</div>
+                    <input type="checkbox" id="addon-3">
+                    <label for="addon-3" class="wa-addons-checkbox-label">
+                        <span class="wa-addons-custom-checkbox"></span>
+                    </label>
+                </div>
+                
+                <!-- Add-on Card 4 -->
+                <div class="wa-addons-card">
+                    <div class="wa-addons-info">
+                        <div class="wa-addons-title">Serverless Migration</div>
+                        <div class="wa-addons-description">Migrate core logic to AWS Lambda/Azure Functions for cost optimization.</div>
+                    </div>
+                    <div class="wa-addons-price">+ $2,500</div>
+                    <input type="checkbox" id="addon-4">
+                    <label for="addon-4" class="wa-addons-checkbox-label">
+                        <span class="wa-addons-custom-checkbox"></span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. THE PROCESS / HOW IT WORKS -->
+    <section class="wa-process-section">
+        <div class="wa-container">
+            <h2 class="wa-section-title">From Idea to Launch</h2>
+            <p class="wa-section-subtitle">Our proven 5-step development process ensures predictable results and transparency.</p>
+            
+            <div class="wa-process-timeline">
+                
+                <!-- Step 1: Discovery & Planning (Highlighted) -->
+                <div class="wa-process-step">
+                    <div class="wa-process-circle">1</div>
+                    <h3 class="wa-process-title">Discovery & Planning</h3>
+                    <p class="wa-process-description">We define requirements, create user stories, and map out the complete technical blueprint.</p>
+                </div>
+                
+                <!-- Step 2: UI/UX Design -->
+                <div class="wa-process-step">
+                    <div class="wa-process-circle">2</div>
+                    <h3 class="wa-process-title">UI/UX Design</h3>
+                    <p class="wa-process-description">Wireframing, prototyping, and user testing to guarantee an intuitive and engaging experience.</p>
+                </div>
+                
+                <!-- Step 3: Development & Iteration -->
+                <div class="wa-process-step">
+                    <div class="wa-process-circle">3</div>
+                    <h3 class="wa-process-title">Development & Iteration</h3>
+                    <p class="wa-process-description">Agile development cycles with regular demos, ensuring you see progress every week.</p>
+                </div>
+
+                <!-- Step 4: Testing & Quality Assurance -->
+                <div class="wa-process-step">
+                    <div class="wa-process-circle">4</div>
+                    <h3 class="wa-process-title">Testing & Quality Assurance</h3>
+                    <p class="wa-process-description">Rigorous manual and automated testing across devices and platforms to eliminate bugs.</p>
+                </div>
+                
+                <!-- Step 5: Launch & Support -->
+                <div class="wa-process-step">
+                    <div class="wa-process-circle">5</div>
+                    <h3 class="wa-process-title">Launch & Support</h3>
+                    <p class="wa-process-description">Seamless deployment, team training, and immediate post-launch monitoring and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FINAL CALL-TO-ACTION (CTA) SECTION -->
+    <section class="wa-cta-section" id="cta">
+        <div class="wa-container">
+            <h2 class="wa-cta-headline">Ready to Build Your Next Web Application?</h2>
+            <p class="wa-cta-subheading">Let's discuss your project and find the perfect solution for your business.</p>
+            <a href="#" class="wa-cta-button">Schedule a Free Strategy Call</a>
+            <p class="wa-cta-guarantee">No upfront commitment. 100% satisfaction guaranteed.</p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- PRICE TOGGLE LOGIC ---
+            const PRICE_DATA = {
+                startup: { oneTime: '$8,500', installment: '3 x $3,000' },
+                business: { oneTime: '$15,000', installment: '4 x $4,000' },
+                // Enterprise is custom and handled outside the toggle
+            };
+
+            const toggleCheckboxes = document.querySelectorAll('.wa-pricing-toggle-switch input[type="checkbox"]');
+            
+            toggleCheckboxes.forEach(checkbox => {
+                const tier = checkbox.closest('.wa-pricing-card').dataset.tier;
+                const priceElement = checkbox.closest('.wa-pricing-card').querySelector('[data-price-target="price"]');
+                
+                checkbox.addEventListener('change', (event) => {
+                    if (tier === 'enterprise') return;
+
+                    if (event.target.checked) {
+                        // Installment Plan is selected
+                        priceElement.textContent = PRICE_DATA[tier].installment;
+                    } else {
+                        // One-Time Payment is selected (default)
+                        priceElement.textContent = PRICE_DATA[tier].oneTime;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
