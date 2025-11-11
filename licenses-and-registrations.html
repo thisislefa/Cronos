@@ -1365,13 +1365,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <header class="licenses-hero-section">
         <div class="hero-background-gradient"></div>
-        <h1 class="hero-main-title">Defcon SA Compliance Ledger</h1>
+        <h1 class="hero-main-title">Hyperion SA Compliance Ledger</h1>
         <div class="hero-glow-effect"></div>
     </header>
 
     <main class="licenses-content-area">
         <div class="licenses-info-card">
-            <h2 class="card-intro-heading">Defcon is registered and authorized to operate across all nine South African provinces:</h2>
+            <h2 class="card-intro-heading">Hyperion is registered and authorized to operate across all nine South African provinces:</h2>
             
             <div class="licenses-table">
                 <div class="table-header-row">
@@ -2007,7 +2007,6 @@ body.defcon-licenses-page {
 
 
 
-
 <!-- =============================================
      *** FOOTER ***
      ============================================= -->
@@ -2020,14 +2019,14 @@ body.defcon-licenses-page {
   .pc-footer-container {
     font-family: 'Inter', sans-serif;
     background-color: #07071e;
-    color: #a8b2d1;
+    color: #7b849b;
     width: 100%;
     padding: 5rem 0;
     box-sizing: border-box;
   }
 
   .pc-footer-wrapper {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     
   }
@@ -2042,7 +2041,7 @@ body.defcon-licenses-page {
   }
 
   .image-logo {
-    height: 45px;
+    height: 30px;
     align-items: center;
     align-self: center;
     vertical-align: middle;
@@ -2139,6 +2138,7 @@ body.defcon-licenses-page {
     gap: 30px;
     margin-bottom: 30px;
     padding-top: 3.5rem;
+    width: 100%;
   }
 
   .footer-column h3 {
@@ -2172,7 +2172,7 @@ body.defcon-licenses-page {
   }
 
   .footer-column ul li {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 
   .footer-column ul li a {
@@ -2180,39 +2180,11 @@ body.defcon-licenses-page {
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
+    min-width: fit-content;
   }
 
   .footer-column ul li a:hover {
     color: #62b8fa;
-  }
-
-  /* QR Code Section */
-  .defcon-footer-qr-section {
-    text-align: center;
-    color: #fff;
-  }
-
-  .defcon-qr-code {
-    background-color: #ffffff;
-    height: 98px;
-    padding: 10px;
-    border-radius: 8px;
-    display: inline-block;
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-    transition: transform 0.3s ease;
-  }
-
-  .defcon-qr-image {
-    width: 78px;
-    height: 78px;
-    display: block;
-  }
-
-  .defcon-qr-caption {
-    margin-top: 14px;
-    font-size: 0.95rem;
-    color: #ffffff;
-    font-weight: 500;
   }
 
   /* Middle content section with paragraphs */
@@ -2265,7 +2237,6 @@ body.defcon-licenses-page {
     .pc-footer-bottom {
         justify-content: center; /* Center on mobile */
         text-align: center;
-        border-top: 1px solid #303c55;
         padding: 1rem 0;
     }
 }
@@ -2303,6 +2274,13 @@ body.defcon-licenses-page {
       padding: 3rem 0;
     }
 
+    .logo-ft {
+      font-size: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
     .pc-footer-top {
       justify-content: center;
       flex-direction: column;
@@ -2312,10 +2290,9 @@ body.defcon-licenses-page {
       display: none;
     }
     
-    .pc-footer-bottom {
+    .pc-footer-bottom .footer-kv {
       justify-content: center;
-      text-align: center;
-      border-top: 1px solid #303c55;
+      text-align: center; 
       padding: 1rem 0;
     }
     
@@ -2421,9 +2398,6 @@ body.defcon-licenses-page {
     }
   }
 
-
-
-
   /* Add top padding for nested columns on desktop */
 @media (min-width: 769px) {
     .footer-content > div > .footer-column:not(:first-child) {
@@ -2451,33 +2425,11 @@ body.defcon-licenses-page {
       <div class="pc-footer-top">
         <div class="pc-footer-logo">
           <a href="index.html">
-            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
+            <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
           </a>
         </div>
 
         <hr class="pc-footer-line">
-
-        <div class="social-icons-container">
-                <a href="https://x.com/defcon.com" class="social-icons twitter" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-
-                <a href="https://facebook.com/defcon" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-facebook"></i>
-                </a>
-
-                <a href="https://youtube.com/defconplaylists" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
-                <a href="https://linkedin.com/in/defcon" class="social-icons linkedin" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="htts://github.com/thisislefa" class="social-icons github" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-
       </div>
 
       <!-- *** MIDDLE CONTENT SECTION *** -->
@@ -2498,37 +2450,47 @@ body.defcon-licenses-page {
       <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
       <div class="footer-content">
         <!-- Resources Column -->
+        <div>
         <div class="footer-column">
           <h3>Resources</h3>
           <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="free-ebooks.html">Free eBooks</a></li>
-            <li><a href="podcasts.html">Podcasts</a></li>
-            <li><a href="webinars.html">Webinars</a></li>
-            <li><a href="youtube-playlists.html">YouTube Playlists</a></li>
-            <li><a href="recommendations.html">Recommendations</a></li>
-            <li><a href="guides-and-tutorials.html">Guides & Tutorials</a></li>
+            <li><a href="page.html">Blog</a></li>
+            <li><a href="page.html">Learn</a></li>
+            <li><a href="page.html">eBooks</a></li>
+            <li><a href="page.html">Podcasts</a></li>
+            <li><a href="page.html">Webinars</a></li>
+            <li><a href="page.html">YouTube Playlists</a></li>
+            <li><a href="page.html">Recommendations</a></li>
+            <li><a href="page.html">Training & Certification</a></li>
           </ul>
+        </div>
+
         </div>
 
         <div>
           <!-- Services Column -->
           <div class="footer-column">
-            <h3>Services</h3>
+            <h3>Solutions</h3>
             <ul>
-              <li><a href="#">Software Development</a></li>
-              <li><a href="#">IT Infrastructure</a></li>
-              <li><a href="#">Marketing & Creative Studio</a></li>
+              <li><a href="page.html">Software Development</a></li>
+              <li><a href="page.html">IT Infrastructure</a></li>
+              <li><a href="page.html">Communicative Media</a></li>
             </ul>
           </div>
 
           <div class="footer-column">
-            <h3>Features</h3>
+            <h3>Developers</h3>
             <ul>
-              <li><a href="#">Level Up</a></li>
-              <li><a href="#">Managed Services</a></li>
-              <li><a href="#">Data Science-as-a-Service</a></li>
-              <li><a href="#">Industrial IoT</a></li>
+              <li><a href="page.html">API Docs</a></li>
+              <li><a href="page.html">Github</a></li>
+              <li><a href="page.html">SDKs & Libraries</a></li>
+              <li><a href="page.html">Developer Guides</a></li>
+              <li><a href="page.html">Code of Conduct</a></li>
+              <li><a href="page.html">Support</a></li>
+              <li><a href="page.html">Community</a></li>
+              <li><a href="page.html">Open Source</a></li>
+            
+              
             </ul>
           </div>
         </div>
@@ -2537,28 +2499,45 @@ body.defcon-licenses-page {
         <div class="footer-column">
           <h3>Help</h3>
           <ul>
-            <li><a href="customer-care-support.html">Customer Support</a></li>
-            <li><a href="plan-comparison.html">Plan Comparison</a></li>
-            <li><a href="troubleshooting.html">Troubleshooting</a></li>
-            <li><a href="faqs.html">FAQs</a></li>
-            <li><a href="community-forum.html">Community Forum</a></li>
-            <li><a href="#">Beta Program</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-            <li><a href="status.html">Status</a></li>
+            <li><a href="page.html">Contact Support</a></li>
+            <li><a href="page.html">Plan Comparison</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="page.html">FAQs</a></li>
+            <li><a href="page.html">Account & Billing</a></li>
+            <li><a href="page.html">Feedback</a></li>
+            <li><a href="page.html">knowledge Base</a></li>
           </ul>
         </div>
+
+        <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Business</h3>
+            <ul>
+              <li><a href="page.html">Partnership</a></li>
+              <li><a href="page.html">Industries</a></li>
+              <li><a href="page.html">Investment</a></li>
+              <li><a href="page.html">Corporate Responsibility</a></li>
+              <li><a href="page.html">Global Network</a></li>
+              <li><a href="page.html">Market Insights</a></li>
+              <li><a href="page.html">Startup Collaboration</a></li>
+            </ul>
+          </div>
 
         <!-- Company Column -->
         <div class="footer-column">
           <h3>Company</h3>
           <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="roadmap.html">Roadmap</a></li>
-            <li><a href="innovations.html">Innovations</a></li>
+            <li><a href="page.html">About Us</a></li>
+            <li><a href="page.html">Roadmap</a></li>
+            <li><a href="page.html">Innovations</a></li>
             <li><a href="careers.html">Careers</a></li>
-            <li><a href="legal.html">Legal</a></li>
+            <li><a href="page.html">Legal</a></li>
             <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-            <li><a href="#">Affiliate & Partners</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="affiliates.html">Affiliate</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="page.html">Capital</a></li>
+            <li><a href="page.html">Verify</a></li>
           </ul>
         </div>
 
@@ -2569,33 +2548,69 @@ body.defcon-licenses-page {
             <h3>Updates</h3>
             <ul>
               <li><a href="#">X</a></li>
-              <li><a href="company-news.html">Company News</a></li>
-              <li><a href="#">Product Updates</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Youtube</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Github</a></li>
+              <li><a href="page.html">Company News</a></li>
+              <li><a href="page.html">Product Updates</a></li>
+              <li><a href="page.html">Events</a></li>
+              <li><a href="page.html">Facebook</a></li>
+              <li><a href="page.html">Youtube</a></li>
+              <li><a href="page.html">LinkedIn</a></li>
+              <li><a href="page.html">Github</a></li>
             </ul>
           </div>
         </div>
 
-        <!-- QR Code Section -->
-        <div class="defcon-footer-qr-section">
-          <p style="font-size: 18px; font-weight: 600; margin-bottom: 14px;">Get Started<br>With Defcon</p>
-          <div class="defcon-qr-code">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://defcon-itservices.com/get-started" alt="Scan to Get Started" class="defcon-qr-image">
-          </div>
-          <p class="defcon-qr-caption">Scan to request<br>a consultation</p>
-        </div>
       </div>
 
-      
-
-       <hr class="pc-footer-line">
+      <hr class="pc-footer-line">
       
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
+
+        <style>
+          .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+          }
+          .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+          }
+          .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+          }
+
+          @media (max-width: 768px) {
+            .footer-kv {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              gap: 6px;
+              padding: 8px 0;
+              order: 1;
+            }
+            .footer-kv a + a {
+              border-left: none;
+              padding-left: 0;
+              margin-left: 0;
+            }
+          }
+        </style>
+
+        <div class="footer-kv">
+          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Status">Status</a>
+        </div>
+
         <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
       </div>
     </div>
