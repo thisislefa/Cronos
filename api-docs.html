@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEFCON API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-blue: #1199fa;
+            --dark-blue: #010119;
+            --white: #fff;
+            --light-gray: #f4f4f4;
+            --black: #000;
+            --text-light: #e5e5e5;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .api-docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section with F-Layout - Full Width */
+        .api-hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+            margin-bottom: 80px;
+        }
+
+        .api-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(17, 153, 250, 0.2) 100%), 
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .api-hero-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.4) 0%, rgba(17, 153, 250, 0) 70%);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .api-hero-glow-1 {
+            top: 10%;
+            right: 10%;
+        }
+
+        .api-hero-glow-2 {
+            bottom: 10%;
+            left: 10%;
+        }
+
+        .api-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .api-hero-badge {
+            display: inline-block;
+            background: rgba(17, 153, 250, 0.2);
+            color: var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(17, 153, 250, 0.3);
+        }
+
+        .api-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--white);
+        }
+
+        .api-hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        .api-hero-cta {
+            display: flex;
+            gap: 15px;
+        }
+
+        .api-btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .api-btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .api-btn-primary:hover {
+            background-color: #0d8ae5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.3);
+        }
+
+        .api-btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .api-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-blue);
+        }
+
+        /* Section Headers */
+        .api-section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .api-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .api-section-subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        /* Asymmetrical Layout for Quick Start */
+        .api-quick-start-section {
+            margin-bottom: 100px;
+        }
+
+        .api-quick-start-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .api-quick-start-content {
+            padding-right: 20px;
+        }
+
+        .api-quick-start-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .api-quick-start-description {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        .api-code-block {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .api-code-title {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .api-code-copy {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .api-code-content {
+            font-family: monospace;
+            color: var(--text-light);
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .api-code-token {
+            color: var(--primary-blue);
+        }
+
+        /* Z-Layout for API Endpoints */
+        .api-endpoints-section {
+            margin-bottom: 100px;
+        }
+
+        .api-endpoints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .api-endpoint-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-endpoint-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(17, 153, 250, 0.3);
+        }
+
+        .api-endpoint-method {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .api-method-get {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+
+        .api-method-post {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+
+        .api-method-put {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
+        }
+
+        .api-method-delete {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        .api-endpoint-path {
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .api-endpoint-description {
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .api-endpoint-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        /* F-Layout for Authentication */
+        .api-auth-section {
+            margin-bottom: 100px;
+        }
+
+        .api-auth-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .api-auth-content {
+            padding-right: 20px;
+        }
+
+        .api-auth-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .api-auth-description {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        .api-auth-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .api-auth-step {
+            display: flex;
+            gap: 15px;
+        }
+
+        .api-step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(17, 153, 250, 0.2);
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .api-step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .api-step-content p {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        /* Accordion Layout for Installation Plans */
+        .api-plans-section {
+            margin-bottom: 100px;
+        }
+
+        .api-plans-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .api-plans-content {
+            padding-right: 20px;
+        }
+
+        .api-plans-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .api-plans-description {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        .api-plans-features {
+            list-style: none;
+        }
+
+        .api-plans-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .api-plans-features li:before {
+            content: "✓";
+            color: var(--primary-blue);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .api-accordion {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .api-accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .api-accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .api-accordion-header {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .api-accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .api-accordion-title {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .api-accordion-icon {
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .api-accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .api-accordion-item.active .api-accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .api-accordion-item.active .api-accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .api-plan-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .api-plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .api-plan-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .api-plan-features li:before {
+            content: "•";
+            color: var(--primary-blue);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .api-quick-start-grid,
+            .api-auth-grid,
+            .api-plans-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .api-quick-start-content,
+            .api-auth-content,
+            .api-plans-content {
+                padding-right: 0;
+            }
+            
+            .api-hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .api-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .api-section-title {
+                font-size: 2rem;
+            }
+            
+            .api-hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .api-endpoints-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .api-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .api-section-title {
+                font-size: 1.7rem;
+            }
+            
+            .api-quick-start-title,
+            .api-auth-title,
+            .api-plans-title {
+                font-size: 1.6rem;
+            }
+            
+            .api-code-block {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="api-docs-container">
+        <!-- Hero Section with F-Layout - Full Width -->
+        <section class="api-hero-section">
+            <div class="api-hero-background"></div>
+            <div class="api-hero-glow api-hero-glow-1"></div>
+            <div class="api-hero-glow api-hero-glow-2"></div>
+            <div class="api-hero-content">
+                <span class="api-hero-badge">NEW FEATURE</span>
+                <h1 class="api-hero-title">DEFCON API Documentation</h1>
+                <p class="api-hero-description">
+                    Integrate seamlessly with DEFCON's powerful platform. Our comprehensive API documentation provides everything you need to build, test, and deploy applications that leverage our services.
+                </p>
+                <div class="api-hero-cta">
+                    <button class="api-btn api-btn-primary">Get API Key</button>
+                    <button class="api-btn api-btn-secondary">View Examples</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section with Asymmetrical Layout -->
+        <section class="api-quick-start-section">
+            <div class="api-section-header">
+                <h2 class="api-section-title">Quick Start Guide</h2>
+                <p class="api-section-subtitle">Get up and running with our API in just a few minutes</p>
+            </div>
+            <div class="api-quick-start-grid">
+                <div class="api-quick-start-content">
+                    <h3 class="api-quick-start-title">Start Integrating in Minutes</h3>
+                    <p class="api-quick-start-description">
+                        Our API is designed with developers in mind. Follow these simple steps to make your first API call and start building amazing applications with DEFCON's services.
+                    </p>
+                    <p class="api-quick-start-description">
+                        All API requests must be authenticated using your API key, which you can obtain from your dashboard. Include the API key in the Authorization header of your requests.
+                    </p>
+                </div>
+                <div class="api-quick-start-code">
+                    <div class="api-code-block">
+                        <div class="api-code-header">
+                            <div class="api-code-title">Example Request</div>
+                            <button class="api-code-copy">
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <pre class="api-code-content">curl -X GET \
+  "https://api.defcon.com/v1/users" \
+  -H "Authorization: Bearer <span class="api-code-token">your_api_key_here</span>" \
+  -H "Content-Type: application/json"</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Endpoints Section with Z-Layout -->
+        <section class="api-endpoints-section">
+            <div class="api-section-header">
+                <h2 class="api-section-title">API Endpoints</h2>
+                <p class="api-section-subtitle">Explore our comprehensive API endpoints for seamless integration</p>
+            </div>
+            <div class="api-endpoints-grid">
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-get">GET</span>
+                    <div class="api-endpoint-path">/v1/users</div>
+                    <p class="api-endpoint-description">Retrieve a list of all users in your account with optional pagination and filtering.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>JSON Response</span>
+                    </div>
+                </div>
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-post">POST</span>
+                    <div class="api-endpoint-path">/v1/users</div>
+                    <p class="api-endpoint-description">Create a new user account with the provided information.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>JSON Payload</span>
+                    </div>
+                </div>
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-get">GET</span>
+                    <div class="api-endpoint-path">/v1/users/{id}</div>
+                    <p class="api-endpoint-description">Retrieve detailed information about a specific user by ID.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>JSON Response</span>
+                    </div>
+                </div>
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-put">PUT</span>
+                    <div class="api-endpoint-path">/v1/users/{id}</div>
+                    <p class="api-endpoint-description">Update an existing user's information with the provided data.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>JSON Payload</span>
+                    </div>
+                </div>
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-delete">DELETE</span>
+                    <div class="api-endpoint-path">/v1/users/{id}</div>
+                    <p class="api-endpoint-description">Permanently delete a user account from the system.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>No Response Body</span>
+                    </div>
+                </div>
+                <div class="api-endpoint-card">
+                    <span class="api-endpoint-method api-method-get">GET</span>
+                    <div class="api-endpoint-path">/v1/analytics</div>
+                    <p class="api-endpoint-description">Retrieve analytics data for your account with various filtering options.</p>
+                    <div class="api-endpoint-details">
+                        <span>Requires: Authentication</span>
+                        <span>JSON Response</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Section with F-Layout -->
+        <section class="api-auth-section">
+            <div class="api-section-header">
+                <h2 class="api-section-title">Authentication</h2>
+                <p class="api-section-subtitle">Secure your API requests with our robust authentication system</p>
+            </div>
+            <div class="api-auth-grid">
+                <div class="api-auth-content">
+                    <h3 class="api-auth-title">API Key Authentication</h3>
+                    <p class="api-auth-description">
+                        All requests to the DEFCON API must be authenticated using an API key. This ensures that only authorized applications can access your data.
+                    </p>
+                    <div class="api-auth-steps">
+                        <div class="api-auth-step">
+                            <div class="api-step-number">1</div>
+                            <div class="api-step-content">
+                                <h4>Get Your API Key</h4>
+                                <p>Navigate to your dashboard and generate a new API key in the settings section.</p>
+                            </div>
+                        </div>
+                        <div class="api-auth-step">
+                            <div class="api-step-number">2</div>
+                            <div class="api-step-content">
+                                <h4>Include in Requests</h4>
+                                <p>Add the API key to the Authorization header of all your HTTP requests.</p>
+                            </div>
+                        </div>
+                        <div class="api-auth-step">
+                            <div class="api-step-number">3</div>
+                            <div class="api-step-content">
+                                <h4>Keep It Secure</h4>
+                                <p>Never expose your API key in client-side code or public repositories.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="api-auth-code">
+                    <div class="api-code-block">
+                        <div class="api-code-header">
+                            <div class="api-code-title">Authentication Example</div>
+                            <button class="api-code-copy">
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        <pre class="api-code-content">// Include API key in request headers
+const options = {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer <span class="api-code-token">your_api_key_here</span>',
+    'Content-Type': 'application/json'
+  }
+};
+
+fetch('https://api.defcon.com/v1/users', options)
+  .then(response => response.json())
+  .then(data => console.log(data));</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Plans Section with Accordion Layout -->
+        <section class="api-plans-section">
+            <div class="api-section-header">
+                <h2 class="api-section-title">Installation Package Plans</h2>
+                <p class="api-section-subtitle">Choose the plan that best fits your integration needs</p>
+            </div>
+            <div class="api-plans-container">
+                <div class="api-plans-content">
+                    <h3 class="api-plans-title">Flexible Plans for Every Use Case</h3>
+                    <p class="api-plans-description">
+                        Whether you're a startup testing the waters or an enterprise with high-volume needs, we have a plan that will work for you. All plans include full API access and comprehensive documentation.
+                    </p>
+                    <ul class="api-plans-features">
+                        <li>Unlimited API calls during trial period</li>
+                        <li>Detailed documentation with examples</li>
+                        <li>Priority email support</li>
+                        <li>Regular API updates and new features</li>
+                        <li>99.9% uptime SLA for paid plans</li>
+                    </ul>
+                </div>
+                <div class="api-plans-accordion">
+                    <div class="api-accordion">
+                        <div class="api-accordion-item active">
+                            <div class="api-accordion-header">
+                                <h4 class="api-accordion-title">Starter Plan</h4>
+                                <span class="api-accordion-icon">▼</span>
+                            </div>
+                            <div class="api-accordion-content">
+                                <div class="api-plan-price">$49/month</div>
+                                <p>Perfect for small projects and startups getting started with our API.</p>
+                                <ul class="api-plan-features">
+                                    <li>10,000 API calls per month</li>
+                                    <li>Basic analytics</li>
+                                    <li>Email support</li>
+                                    <li>Community forum access</li>
+                                </ul>
+                                <button class="api-btn api-btn-primary">Select Plan</button>
+                            </div>
+                        </div>
+                        <div class="api-accordion-item">
+                            <div class="api-accordion-header">
+                                <h4 class="api-accordion-title">Professional Plan</h4>
+                                <span class="api-accordion-icon">▼</span>
+                            </div>
+                            <div class="api-accordion-content">
+                                <div class="api-plan-price">$149/month</div>
+                                <p>Ideal for growing businesses with increasing API needs.</p>
+                                <ul class="api-plan-features">
+                                    <li>100,000 API calls per month</li>
+                                    <li>Advanced analytics</li>
+                                    <li>Priority email support</li>
+                                    <li>Custom webhooks</li>
+                                    <li>API usage insights</li>
+                                </ul>
+                                <button class="api-btn api-btn-primary">Select Plan</button>
+                            </div>
+                        </div>
+                        <div class="api-accordion-item">
+                            <div class="api-accordion-header">
+                                <h4 class="api-accordion-title">Enterprise Plan</h4>
+                                <span class="api-accordion-icon">▼</span>
+                            </div>
+                            <div class="api-accordion-content">
+                                <div class="api-plan-price">Custom Pricing</div>
+                                <p>For large organizations with high-volume and custom requirements.</p>
+                                <ul class="api-plan-features">
+                                    <li>Unlimited API calls</li>
+                                    <li>Custom analytics dashboard</li>
+                                    <li>24/7 phone support</li>
+                                    <li>Dedicated account manager</li>
+                                    <li>SLA guarantee</li>
+                                    <li>Custom integration support</li>
+                                </ul>
+                                <button class="api-btn api-btn-primary">Contact Sales</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.api-accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentNode;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.api-accordion-item').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Copy code functionality
+            const copyButtons = document.querySelectorAll('.api-code-copy');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const codeBlock = this.closest('.api-code-block');
+                    const codeContent = codeBlock.querySelector('.api-code-content').textContent;
+                    
+                    navigator.clipboard.writeText(codeContent).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<span>Copied!</span>';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

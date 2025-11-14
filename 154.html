@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with the DEFCON API</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="defcon-quickstart.css">
+</head>
+<body>
+
+    <div class="defcon-guide-container">
+
+        <aside class="defcon-guide-toc">
+            <h3 class="defcon-toc-title">Guide Navigation</h3>
+            <nav>
+                <a href="#section-intro" class="defcon-toc-link active">1. Introduction</a>
+                <a href="#section-prereq" class="defcon-toc-link">2. Prerequisites</a>
+                <a href="#section-setup" class="defcon-toc-link">3. Project Setup</a>
+                <a href="#section-install" class="defcon-toc-link">4. Install SDK</a>
+                <a href="#section-first-call" class="defcon-toc-link">5. Your First Request</a>
+                <a href="#section-verify" class="defcon-toc-link">6. Verification</a>
+            </nav>
+            <div class="defcon-support-info">
+                <p>Need help?</p>
+                <a href="#" class="defcon-support-button">Contact Developer Support</a>
+            </div>
+        </aside>
+
+        <main class="defcon-guide-content">
+
+            <header class="defcon-guide-header">
+                <p class="defcon-header-breadcrumb">Developer Guides / Quickstart</p>
+                <h1 class="defcon-header-title">Getting Started with the DEFCON API</h1>
+                <p class="defcon-header-summary">
+                    The absolute beginner's guide. Learn how to set up your environment, install the necessary SDK, 
+                    and make your very first authenticated API call in minutes.
+                </p>
+                <div class="defcon-header-meta">
+                    <span class="defcon-meta-tag">🕑 5 Minute Read</span>
+                    <span class="defcon-meta-tag">Difficulty: Beginner</span>
+                </div>
+            </header>
+            
+            <hr class="defcon-section-divider">
+
+            <section id="section-intro" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">1. Introduction: Hello, DEFCON!</h2>
+                <p>Welcome to the DEFCON developer ecosystem! This Quickstart guide is designed to get you from zero to your first successful API request as quickly as possible. We recommend using our official Python SDK for this tutorial, but the principles apply across all supported languages.</p>
+
+                <blockquote class="defcon-tip-box">
+                    <strong>Pro Tip:</strong> All code examples on this page are copy-ready. Just click the copy icon when hovering over the code block!
+                </blockquote>
+            </section>
+
+            <section id="section-prereq" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">2. Prerequisites</h2>
+                <ul class="defcon-prereq-list">
+                    <li>A **DEFCON Developer Account** (Sign up is free).</li>
+                    <li>An **API Key** generated from your developer dashboard.</li>
+                    <li>**Python 3.8+** installed on your system.</li>
+                    <li>A functional **Terminal** or **Command Prompt** environment.</li>
+                </ul>
+            </section>
+
+            <section id="section-setup" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">3. Project Setup</h2>
+                <p>First, create a new directory for your project and navigate into it. We'll set up a virtual environment to manage dependencies cleanly.</p>
+                
+                <h3 class="defcon-subsection-heading">Step 3.1: Create Project Directory</h3>
+                <code class="defcon-code-block">
+mkdir defcon-quickstart
+cd defcon-quickstart
+                </code>
+
+                <h3 class="defcon-subsection-heading">Step 3.2: Initialize Virtual Environment</h3>
+                <code class="defcon-code-block">
+python -m venv venv
+source venv/bin/activate  # On Windows, use: .\venv\Scripts\activate
+                </code>
+                <p class="defcon-code-note">*(This step is optional but highly recommended for dependency isolation.)*</p>
+            </section>
+
+            <section id="section-install" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">4. Install the Official Python SDK</h2>
+                <p>Use Pip, the Python package installer, to download and install the official DEFCON SDK.</p>
+                
+                <h3 class="defcon-subsection-heading">Install Command</h3>
+                <code class="defcon-code-block">
+pip install defcon-sdk
+                </code>
+                
+                <h3 class="defcon-subsection-heading">Verify Installation</h3>
+                <code class="defcon-code-block">
+pip show defcon-sdk
+                </code>
+                <p class="defcon-code-note">The output should confirm the version and location of the installed package.</p>
+            </section>
+
+            <section id="section-first-call" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">5. Your First Request: The Status Endpoint</h2>
+                <p>Create a new file named <code>main.py</code> in your project directory. We will use the $\text{DEFCON API}$ to check the current system status.</p>
+
+                <h3 class="defcon-subsection-heading">Code: `main.py`</h3>
+                <code class="defcon-code-block">
+import os
+from defcon_sdk import Client
+
+# 1. Initialize the client using your API Key
+# For security, load the key from an environment variable
+API_KEY = os.environ.get("DEFCON_API_KEY")
+client = Client(api_key=API_KEY)
+
+# 2. Make the API call to the status endpoint
+try:
+    response = client.status.get_system_status()
+    print("API Call Successful:")
+    print(response)
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+                </code>
+                <p class="defcon-code-note">Remember to set your $\text{DEFCON\_API\_KEY}$ environment variable before running.</p>
+                
+                <h3 class="defcon-subsection-heading">Execution</h3>
+                <code class="defcon-code-block">
+python main.py
+                </code>
+            </section>
+
+            <section id="section-verify" class="defcon-guide-section">
+                <h2 class="defcon-section-heading">6. Expected Output & Verification</h2>
+                <p>If your setup and request were successful, the output in your terminal should look similar to this JSON response:</p>
+                
+                <code class="defcon-code-block defcon-code-json">
+{
+  "status": "operational",
+  "message": "All systems nominal.",
+  "timestamp": "2025-11-14T11:41:49Z",
+  "service_version": "v1.2.0"
+}
+                </code>
+                
+                <p class="defcon-final-message">
+                    **Congratulations!** You have successfully integrated with the $\text{DEFCON API}$. You are now ready to move on to more advanced tutorials like **"Authenticate Your First Request."**
+                </p>
+                
+                <a href="#" class="defcon-cta-button defcon-next-guide-link">
+                    Continue to Next Guide: Authenticate Your First Request →
+                </a>
+            </section>
+
+        </main>
+    </div>
+
+    <style>
+        /* --- Global Variables and Reset --- */
+:root {
+    /* Colors */
+    --defcon-color-accent: #1199fA; /* Primary Blue Accent */
+    --defcon-color-bg-dark: #010119; /* Main Dark Background */
+    --defcon-color-bg-light-text: #e5e5e5; /* Light text on dark BG / Main Text */
+    --defcon-color-text-primary: #fff; /* White Text */
+    --defcon-color-card-bg: #010425; /* Sidebar/Card BG */
+    --defcon-color-code-bg: #030a3b; /* Code Block Background */
+    --defcon-color-faint: #303d7e; /* Faint lines/borders */
+    --defcon-color-shadow: rgba(17, 153, 250, 0.4);
+
+    /* Font */
+    --defcon-font-family: 'Inter', sans-serif;
+
+    /* Spacing */
+    --defcon-padding-content: 80px 40px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--defcon-color-bg-dark);
+    color: var(--defcon-color-bg-light-text);
+    font-family: var(--defcon-font-family);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--defcon-color-accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #55b2ff;
+}
+
+/* --- Guide Layout (Two Column) --- */
+.defcon-guide-container {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Fixed TOC width, Fluid content */
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    border-left: 1px solid var(--defcon-color-faint);
+}
+
+/* --- Left Column: Table of Contents --- */
+.defcon-guide-toc {
+    background-color: var(--defcon-color-card-bg);
+    padding: 30px 20px 30px 40px;
+    position: sticky; /* Fixed TOC scrolling */
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid var(--defcon-color-faint);
+}
+
+.defcon-toc-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--defcon-color-text-primary);
+    margin-bottom: 20px;
+}
+
+.defcon-toc-link {
+    display: block;
+    padding: 8px 0;
+    padding-left: 15px;
+    border-left: 2px solid transparent;
+    color: var(--defcon-color-bg-light-text);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.defcon-toc-link:hover {
+    color: var(--defcon-color-text-primary);
+}
+
+.defcon-toc-link.active {
+    border-left-color: var(--defcon-color-accent);
+    color: var(--defcon-color-text-primary);
+    font-weight: 700;
+    background-color: rgba(17, 153, 250, 0.1);
+}
+
+.defcon-support-info {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--defcon-color-faint);
+    text-align: center;
+}
+
+.defcon-support-info p {
+    color: var(--defcon-color-accent);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.defcon-support-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--defcon-color-accent);
+    color: var(--defcon-color-bg-dark);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+/* --- Right Column: Guide Content --- */
+.defcon-guide-content {
+    padding: var(--defcon-padding-content);
+}
+
+/* Header Styling */
+.defcon-guide-header {
+    padding-bottom: 40px;
+}
+
+.defcon-header-breadcrumb {
+    color: var(--defcon-color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.defcon-header-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--defcon-color-text-primary);
+    line-height: 1.1;
+    margin-bottom: 15px;
+}
+
+.defcon-header-summary {
+    font-size: 1.2rem;
+    color: var(--defcon-color-bg-light-text);
+    margin-bottom: 20px;
+    max-width: 900px;
+}
+
+.defcon-header-meta {
+    display: flex;
+    gap: 20px;
+}
+
+.defcon-meta-tag {
+    background-color: var(--defcon-color-code-bg);
+    color: var(--defcon-color-accent);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.defcon-section-divider {
+    border: 0;
+    height: 1px;
+    background: var(--defcon-color-faint);
+    margin: 40px 0;
+}
+
+/* Section Content */
+.defcon-guide-section {
+    margin-bottom: 60px;
+}
+
+.defcon-section-heading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--defcon-color-text-primary);
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--defcon-color-faint);
+}
+
+.defcon-subsection-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--defcon-color-text-primary);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.defcon-prereq-list {
+    list-style-type: '→ ';
+    margin-left: 20px;
+    padding-left: 10px;
+}
+
+.defcon-prereq-list li {
+    margin-bottom: 10px;
+}
+
+/* Code Blocks */
+.defcon-code-block {
+    display: block;
+    background-color: var(--defcon-color-code-bg);
+    color: #e5e5e5;
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    border: 1px solid var(--defcon-color-faint);
+    margin: 15px 0 10px 0;
+    /* subtle highlight for the active part */
+    box-shadow: 0 0 10px rgba(17, 153, 250, 0.1); 
+}
+
+.defcon-code-note {
+    font-size: 0.9rem;
+    color: var(--defcon-color-accent);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* Blockquote Tip */
+.defcon-tip-box {
+    display: block;
+    background-color: rgba(17, 153, 250, 0.1); /* Light accent background */
+    border-left: 4px solid var(--defcon-color-accent);
+    padding: 15px 20px;
+    margin: 20px 0;
+    color: var(--defcon-color-bg-light-text);
+    font-style: normal;
+}
+
+/* Final Message */
+.defcon-final-message {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--defcon-color-accent);
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.defcon-next-guide-link {
+    display: inline-flex;
+    margin-top: 30px;
+    /* Inherit CTA button style from previous design */
+    padding: 1rem 2.5rem;
+    background-color: var(--defcon-color-accent);
+    color: var(--defcon-color-bg-dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.defcon-next-guide-link:hover {
+    background-color: #55b2ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--defcon-color-shadow);
+}
+
+/* --- Mobile Responsiveness --- */
+
+/* Tablet/Small Laptop (Max-width 1024px) */
+@media (max-width: 1024px) {
+    .defcon-guide-container {
+        grid-template-columns: 1fr; /* Stack TOC and Content */
+        border-left: none;
+    }
+    
+    .defcon-guide-toc {
+        position: static; /* Disable sticky TOC */
+        height: auto;
+        overflow-y: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--defcon-color-faint);
+        padding: 30px 40px;
+    }
+    
+    .defcon-guide-toc nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+        margin-top: 15px;
+    }
+    
+    .defcon-toc-title {
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .defcon-toc-link {
+        padding: 5px 10px;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 4px;
+    }
+    
+    .defcon-toc-link.active {
+        border-left: none;
+        border-bottom-color: var(--defcon-color-accent);
+        background-color: rgba(17, 153, 250, 0.2);
+    }
+    
+    .defcon-support-info {
+        display: none; /* Hide supplementary contact on mobile TOC */
+    }
+
+    .defcon-guide-content {
+        padding: 60px 5%;
+    }
+
+    .defcon-header-title {
+        font-size: 2.8rem;
+    }
+    
+    .defcon-section-heading {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile Phone (Max-width 600px) */
+@media (max-width: 600px) {
+    .defcon-guide-content {
+        padding: 40px 4%;
+    }
+    
+    .defcon-header-title {
+        font-size: 2rem;
+    }
+    
+    .defcon-header-summary {
+        font-size: 1rem;
+    }
+    
+    .defcon-header-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .defcon-section-heading {
+        font-size: 1.6rem;
+    }
+    
+    .defcon-subsection-heading {
+        font-size: 1.4rem;
+    }
+
+    .defcon-toc-title {
+        font-size: 1.3rem;
+    }
+    
+    .defcon-guide-toc nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .defcon-toc-link {
+        text-align: center;
+    }
+    
+    .defcon-code-block {
+        font-size: 0.85rem;
+        padding: 1rem;
+        word-break: break-all;
+    }
+    
+    .defcon-next-guide-link {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+    </style>
+</body>
+</html>

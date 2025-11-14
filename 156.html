@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Support Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-blue: #1199fa;
+            --dark-blue: #010119;
+            --white: #fff;
+            --light-gray: #f4f4f4;
+            --black: #000;
+            --border-gray: #e5e5e5;
+            --font-family: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Reset and Base Styles */
+        .dev-support-reset {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .dev-support-body {
+            font-family: var(--font-family);
+            background-color: var(--light-gray);
+            color: var(--dark-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container Styles */
+        .dev-support-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Spacing */
+        .dev-support-section {
+            padding: 80px 0;
+        }
+
+        .dev-support-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: #555;
+        }
+
+        /* Hero Section - Z Pattern Layout */
+        .dev-support-hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dev-support-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.1) 0%, rgba(17, 153, 250, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .dev-support-hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dev-support-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: dev-support-text-reveal 1s forwards 0.3s;
+        }
+
+        .dev-support-hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: #555;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: dev-support-text-reveal 1s forwards 0.5s;
+        }
+
+        .dev-support-hero-cta {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: dev-support-text-reveal 1s forwards 0.7s;
+        }
+
+        .dev-support-btn {
+            padding: 14px 30px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .dev-support-btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+        }
+
+        .dev-support-btn-primary:hover {
+            background-color: #0d8ae5;
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .dev-support-btn-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .dev-support-btn-secondary:hover {
+            background-color: rgba(17, 153, 250, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Help Center Section - F Pattern Layout */
+        .dev-support-help-center {
+            background-color: var(--white);
+        }
+
+        .dev-support-f-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .dev-support-f-left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .dev-support-f-right {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .dev-support-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-gray);
+        }
+
+        .dev-support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .dev-support-card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .dev-support-card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-blue);
+        }
+
+        .dev-support-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-card-text {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .dev-support-card-link {
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .dev-support-card-link:hover {
+            gap: 10px;
+        }
+
+        /* Support Portal Section - Asymmetrical Layout */
+        .dev-support-portal {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #0a1a3a 100%);
+            color: var(--white);
+        }
+
+        .dev-support-portal .dev-support-section-title,
+        .dev-support-portal .dev-support-section-subtitle {
+            color: var(--white);
+        }
+
+        .dev-support-asymmetrical {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .dev-support-ticket-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .dev-support-category {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dev-support-category:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .dev-support-category-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(17, 153, 250, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .dev-support-category-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-blue);
+        }
+
+        .dev-support-category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .dev-support-category-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .dev-support-portal-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dev-support-form-group {
+            margin-bottom: 25px;
+        }
+
+        .dev-support-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .dev-support-form-input,
+        .dev-support-form-select,
+        .dev-support-form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-family: var(--font-family);
+            transition: var(--transition);
+        }
+
+        .dev-support-form-input:focus,
+        .dev-support-form-select:focus,
+        .dev-support-form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .dev-support-form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Community Section - Symmetrical Grid Layout */
+        .dev-support-community {
+            background-color: var(--white);
+        }
+
+        .dev-support-grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .dev-support-grid-item {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-gray);
+        }
+
+        .dev-support-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .dev-support-grid-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0d8ae5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dev-support-grid-content {
+            padding: 25px;
+        }
+
+        .dev-support-grid-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-grid-text {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Status Section - Single Column Layout */
+        .dev-support-status {
+            background-color: var(--light-gray);
+        }
+
+        .dev-support-single-column {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dev-support-status-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-gray);
+        }
+
+        .dev-support-status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dev-support-status-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .dev-support-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+        }
+
+        .dev-support-status-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .dev-support-status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .dev-support-status-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .dev-support-service {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dev-support-service-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dev-support-service-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-blue);
+        }
+
+        .dev-support-service-name {
+            font-weight: 500;
+        }
+
+        .dev-support-service-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .dev-support-status-operational {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+
+        .dev-support-status-degraded {
+            background-color: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+        }
+
+        .dev-support-status-outage {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+        }
+
+        /* Resources Section - Accordion Layout */
+        .dev-support-resources {
+            background-color: var(--white);
+        }
+
+        .dev-support-accordion-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .dev-support-accordion-left {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .dev-support-accordion-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-accordion-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .dev-support-accordion-right {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dev-support-accordion-item {
+            border: 1px solid var(--border-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .dev-support-accordion-header {
+            padding: 20px;
+            background-color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .dev-support-accordion-header:hover {
+            background-color: var(--light-gray);
+        }
+
+        .dev-support-accordion-title-small {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-accordion-icon {
+            transition: var(--transition);
+        }
+
+        .dev-support-accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background-color: var(--light-gray);
+        }
+
+        .dev-support-accordion-item.active .dev-support-accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .dev-support-accordion-item.active .dev-support-accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .dev-support-accordion-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dev-support-accordion-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dev-support-accordion-list li:last-child {
+            border-bottom: none;
+        }
+
+        .dev-support-accordion-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            display: inline-block;
+        }
+
+        /* Contact Section - Z Pattern Layout */
+        .dev-support-contact {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+        }
+
+        .dev-support-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .dev-support-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .dev-support-contact-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .dev-support-contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .dev-support-contact-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-blue);
+        }
+
+        .dev-support-contact-details h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        .dev-support-contact-details p {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .dev-support-contact-form {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-gray);
+        }
+
+        /* Animations */
+        @keyframes dev-support-text-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dev-support-kinetic-text {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dev-support-kinetic-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-blue);
+            animation: dev-support-kinetic-anim 1.5s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+        }
+
+        @keyframes dev-support-kinetic-anim {
+            0% {
+                transform: translateX(-101%);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(101%);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .dev-support-f-layout,
+            .dev-support-asymmetrical,
+            .dev-support-grid-layout,
+            .dev-support-accordion-layout,
+            .dev-support-contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dev-support-ticket-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dev-support-section {
+                padding: 60px 0;
+            }
+
+            .dev-support-section-title {
+                font-size: 2rem;
+            }
+
+            .dev-support-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .dev-support-hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .dev-support-hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dev-support-ticket-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .dev-support-status-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .dev-support-status-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .dev-support-service {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dev-support-container {
+                padding: 0 15px;
+            }
+
+            .dev-support-section {
+                padding: 40px 0;
+            }
+
+            .dev-support-section-title {
+                font-size: 1.8rem;
+            }
+
+            .dev-support-hero-title {
+                font-size: 2rem;
+            }
+
+            .dev-support-card,
+            .dev-support-portal-form,
+            .dev-support-status-card,
+            .dev-support-contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="dev-support-body">
+    <!-- Hero Section - Z Pattern Layout -->
+    <section class="dev-support-hero dev-support-section">
+        <div class="dev-support-container">
+            <div class="dev-support-hero-content">
+                <h1 class="dev-support-hero-title">Developer Support Hub</h1>
+                <p class="dev-support-hero-subtitle">All the help developers need to build, debug, and deploy with our technology. From API troubleshooting to SDK issues, integration errors, and technical guidance.</p>
+                <div class="dev-support-hero-cta">
+                    <a href="#support-portal" class="dev-support-btn dev-support-btn-primary">Submit a Ticket</a>
+                    <a href="#help-center" class="dev-support-btn dev-support-btn-secondary">Browse Documentation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Center Section - F Pattern Layout -->
+    <section id="help-center" class="dev-support-help-center dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">Developer Help Center</h2>
+            <p class="dev-support-section-subtitle">A comprehensive hub containing everything you need to build successfully with our platform</p>
+            
+            <div class="dev-support-f-layout">
+                <div class="dev-support-f-left">
+                    <div class="dev-support-card">
+                        <div class="dev-support-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                            </svg>
+                        </div>
+                        <h3 class="dev-support-card-title">API Troubleshooting Guides</h3>
+                        <p class="dev-support-card-text">Step-by-step guides to identify and resolve common API issues, from authentication problems to response errors.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Explore Guides
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="dev-support-card">
+                        <div class="dev-support-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z" />
+                            </svg>
+                        </div>
+                        <h3 class="dev-support-card-title">Error Code Explanations</h3>
+                        <p class="dev-support-card-text">Detailed explanations of all error codes returned by our APIs, with possible causes and solutions.</p>
+                        <a href="#" class="dev-support-card-link">
+                            View Error Codes
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="dev-support-f-right">
+                    <div class="dev-support-card">
+                        <div class="dev-support-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                            </svg>
+                        </div>
+                        <h3 class="dev-support-card-title">SDK Installation & Setup</h3>
+                        <p class="dev-support-card-text">Comprehensive guides for installing and configuring our SDKs in various programming languages and frameworks.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Get Started
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="dev-support-card">
+                        <div class="dev-support-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                            </svg>
+                        </div>
+                        <h3 class="dev-support-card-title">Best Practices & Debugging</h3>
+                        <p class="dev-support-card-text">Learn industry best practices for implementing our APIs and effective debugging techniques for common issues.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Learn More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Portal Section - Asymmetrical Layout -->
+    <section id="support-portal" class="dev-support-portal dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">Technical Support Portal</h2>
+            <p class="dev-support-section-subtitle">Submit support tickets for technical issues, bug reports, or feature requests</p>
+            
+            <div class="dev-support-asymmetrical">
+                <div class="dev-support-ticket-categories">
+                    <div class="dev-support-category">
+                        <div class="dev-support-category-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,15V13H7V15H17M17,11V9H7V11H17Z" />
+                            </svg>
+                        </div>
+                        <h4 class="dev-support-category-title">API Not Responding</h4>
+                        <p class="dev-support-category-text">Endpoints returning errors or timeouts</p>
+                    </div>
+                    
+                    <div class="dev-support-category">
+                        <div class="dev-support-category-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" />
+                            </svg>
+                        </div>
+                        <h4 class="dev-support-category-title">Authentication Failure</h4>
+                        <p class="dev-support-category-text">Issues with API keys, tokens, or OAuth</p>
+                    </div>
+                    
+                    <div class="dev-support-category">
+                        <div class="dev-support-category-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L5,8.09V15.91L12,19.85L19,15.91V8.09L12,4.15Z" />
+                            </svg>
+                        </div>
+                        <h4 class="dev-support-category-title">Webhook Issues</h4>
+                        <p class="dev-support-category-text">Problems with webhook delivery or configuration</p>
+                    </div>
+                    
+                    <div class="dev-support-category">
+                        <div class="dev-support-category-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z" />
+                            </svg>
+                        </div>
+                        <h4 class="dev-support-category-title">SDK Malfunction</h4>
+                        <p class="dev-support-category-text">SDK not working as expected in your environment</p>
+                    </div>
+                </div>
+                
+                <div class="dev-support-portal-form">
+                    <form id="dev-support-ticket-form">
+                        <div class="dev-support-form-group">
+                            <label for="ticket-subject" class="dev-support-form-label">Subject</label>
+                            <input type="text" id="ticket-subject" class="dev-support-form-input" placeholder="Brief description of your issue" required>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="ticket-category" class="dev-support-form-label">Category</label>
+                            <select id="ticket-category" class="dev-support-form-select" required>
+                                <option value="">Select a category</option>
+                                <option value="api-not-responding">API Not Responding</option>
+                                <option value="authentication">Authentication Failure</option>
+                                <option value="webhooks">Webhook Issues</option>
+                                <option value="sdk">SDK Malfunction</option>
+                                <option value="rate-limits">Rate Limit Problems</option>
+                                <option value="data-errors">Data Mismatch/Errors</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="ticket-description" class="dev-support-form-label">Description</label>
+                            <textarea id="ticket-description" class="dev-support-form-textarea" placeholder="Please provide detailed information about your issue, including steps to reproduce, error messages, and your environment details" required></textarea>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="ticket-priority" class="dev-support-form-label">Priority</label>
+                            <select id="ticket-priority" class="dev-support-form-select" required>
+                                <option value="low">Low - General question or minor issue</option>
+                                <option value="medium" selected>Medium - Feature not working as expected</option>
+                                <option value="high">High - Critical functionality impaired</option>
+                                <option value="urgent">Urgent - System down or severe impact</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="dev-support-btn dev-support-btn-primary" style="width: 100%;">Submit Support Ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section - Symmetrical Grid Layout -->
+    <section class="dev-support-community dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">Community & Discussion</h2>
+            <p class="dev-support-section-subtitle">Connect with other developers, share solutions, and get help from the community</p>
+            
+            <div class="dev-support-grid-layout">
+                <div class="dev-support-grid-item">
+                    <div class="dev-support-grid-image">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="dev-support-grid-content">
+                        <h3 class="dev-support-grid-title">Developer Forum</h3>
+                        <p class="dev-support-grid-text">Join our public Q&A space to ask questions, share knowledge, and connect with other developers building on our platform.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Join Discussion
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="dev-support-grid-item">
+                    <div class="dev-support-grid-image">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.2L4 17.2V4H20V16Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="dev-support-grid-content">
+                        <h3 class="dev-support-grid-title">Discord Community</h3>
+                        <p class="dev-support-grid-text">Real-time chat with developers, share code snippets, get quick answers, and participate in community events.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Join Discord
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="dev-support-grid-item">
+                    <div class="dev-support-grid-image">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 5.5V7H9V5.5L3 7V9L9 10.5V12L3 13.5V15.5L9 14V16L3 17.5V19.5L9 18V22H15V18L21 19.5V17.5L15 16V14L21 15.5V13.5L15 12V10.5L21 9Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="dev-support-grid-content">
+                        <h3 class="dev-support-grid-title">Code Snippets & Solutions</h3>
+                        <p class="dev-support-grid-text">Browse our collection of shared solutions, code examples, and implementation guides from the community.</p>
+                        <a href="#" class="dev-support-card-link">
+                            Explore Solutions
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#1199fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Section - Single Column Layout -->
+    <section class="dev-support-status dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">System Status</h2>
+            <p class="dev-support-section-subtitle">Real-time information about our platform's performance and availability</p>
+            
+            <div class="dev-support-single-column">
+                <div class="dev-support-status-card">
+                    <div class="dev-support-status-header">
+                        <h3 class="dev-support-status-title">API Status</h3>
+                        <div class="dev-support-status-indicator">
+                            <div class="dev-support-status-dot"></div>
+                            <span>All Systems Operational</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-status-list">
+                        <div class="dev-support-status-item">
+                            <div class="dev-support-service">
+                                <div class="dev-support-service-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                                    </svg>
+                                </div>
+                                <span class="dev-support-service-name">REST API</span>
+                            </div>
+                            <span class="dev-support-service-status dev-support-status-operational">Operational</span>
+                        </div>
+                        
+                        <div class="dev-support-status-item">
+                            <div class="dev-support-service">
+                                <div class="dev-support-service-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z" />
+                                    </svg>
+                                </div>
+                                <span class="dev-support-service-name">Webhooks</span>
+                            </div>
+                            <span class="dev-support-service-status dev-support-status-operational">Operational</span>
+                        </div>
+                        
+                        <div class="dev-support-status-item">
+                            <div class="dev-support-service">
+                                <div class="dev-support-service-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                                    </svg>
+                                </div>
+                                <span class="dev-support-service-name">Authentication Service</span>
+                            </div>
+                            <span class="dev-support-service-status dev-support-status-operational">Operational</span>
+                        </div>
+                        
+                        <div class="dev-support-status-item">
+                            <div class="dev-support-service">
+                                <div class="dev-support-service-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M21,11H3V9H21V11M21,13H3V15H21V13Z" />
+                                    </svg>
+                                </div>
+                                <span class="dev-support-service-name">Data Processing</span>
+                            </div>
+                            <span class="dev-support-service-status dev-support-status-degraded">Degraded Performance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section - Accordion Layout -->
+    <section class="dev-support-resources dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">Tools & Resources</h2>
+            <p class="dev-support-section-subtitle">Everything you need to develop, test, and deploy with our platform</p>
+            
+            <div class="dev-support-accordion-layout">
+                <div class="dev-support-accordion-left">
+                    <h3 class="dev-support-accordion-title">What is your installment package plan?</h3>
+                    <p class="dev-support-accordion-description">We offer flexible installment packages designed to meet the needs of developers at every stage. Whether you're just getting started or scaling your application, we have a plan that fits your requirements and budget.</p>
+                    <p class="dev-support-accordion-description">All plans include access to our core APIs, comprehensive documentation, and community support. Higher tiers offer additional features like dedicated technical support, increased rate limits, and advanced analytics.</p>
+                    <a href="#" class="dev-support-btn dev-support-btn-primary">View All Plans</a>
+                </div>
+                
+                <div class="dev-support-accordion-right">
+                    <div class="dev-support-accordion-item">
+                        <div class="dev-support-accordion-header">
+                            <h4 class="dev-support-accordion-title-small">Postman Collections</h4>
+                            <div class="dev-support-accordion-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 10L12 15L17 10H7Z" fill="#1199fa"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="dev-support-accordion-content">
+                            <p>Pre-configured Postman collections to quickly test our APIs with example requests and responses.</p>
+                            <ul class="dev-support-accordion-list">
+                                <li>Authentication API Collection</li>
+                                <li>Core REST API Collection</li>
+                                <li>Webhook Testing Collection</li>
+                                <li>SDK Integration Examples</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-accordion-item">
+                        <div class="dev-support-accordion-header">
+                            <h4 class="dev-support-accordion-title-small">CLI Tools</h4>
+                            <div class="dev-support-accordion-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 10L12 15L17 10H7Z" fill="#1199fa"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="dev-support-accordion-content">
+                            <p>Command-line interface tools for managing your integration, testing endpoints, and automating workflows.</p>
+                            <ul class="dev-support-accordion-list">
+                                <li>API Testing & Debugging</li>
+                                <li>Environment Configuration</li>
+                                <li>Webhook Management</li>
+                                <li>Data Export Utilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-accordion-item">
+                        <div class="dev-support-accordion-header">
+                            <h4 class="dev-support-accordion-title-small">GitHub Repositories</h4>
+                            <div class="dev-support-accordion-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 10L12 15L17 10H7Z" fill="#1199fa"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="dev-support-accordion-content">
+                            <p>Open-source repositories with SDKs, sample code, and integration examples for various platforms.</p>
+                            <ul class="dev-support-accordion-list">
+                                <li>JavaScript/Node.js SDK</li>
+                                <li>Python Integration Examples</li>
+                                <li>React Component Library</li>
+                                <li>Mobile SDKs (iOS/Android)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-accordion-item">
+                        <div class="dev-support-accordion-header">
+                            <h4 class="dev-support-accordion-title-small">Testing Environments</h4>
+                            <div class="dev-support-accordion-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 10L12 15L17 10H7Z" fill="#1199fa"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="dev-support-accordion-content">
+                            <p>Sandbox and testing environments to safely develop and test your integration without affecting production data.</p>
+                            <ul class="dev-support-accordion-list">
+                                <li>Full Sandbox Environment</li>
+                                <li>Mock API Server</li>
+                                <li>Test Data Generators</li>
+                                <li>Integration Testing Tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Z Pattern Layout -->
+    <section class="dev-support-contact dev-support-section">
+        <div class="dev-support-container">
+            <h2 class="dev-support-section-title">Contact Our Team</h2>
+            <p class="dev-support-section-subtitle">Reach out to our dedicated developer support team for complex issues</p>
+            
+            <div class="dev-support-contact-grid">
+                <div class="dev-support-contact-info">
+                    <div class="dev-support-contact-item">
+                        <div class="dev-support-contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                            </svg>
+                        </div>
+                        <div class="dev-support-contact-details">
+                            <h3>Email Support</h3>
+                            <p>dev-support@yourcompany.com</p>
+                            <p>Typically respond within 4 hours during business hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-contact-item">
+                        <div class="dev-support-contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
+                            </svg>
+                        </div>
+                        <div class="dev-support-contact-details">
+                            <h3>Phone Support</h3>
+                            <p>+1 (555) 123-4567</p>
+                            <p>Available Monday-Friday, 9AM-6PM EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dev-support-contact-item">
+                        <div class="dev-support-contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z" />
+                            </svg>
+                        </div>
+                        <div class="dev-support-contact-details">
+                            <h3>Escalation Process</h3>
+                            <p>For critical production issues</p>
+                            <p>24/7 emergency support for severe outages</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dev-support-contact-form">
+                    <form id="dev-support-contact-form">
+                        <div class="dev-support-form-group">
+                            <label for="contact-name" class="dev-support-form-label">Your Name</label>
+                            <input type="text" id="contact-name" class="dev-support-form-input" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="contact-email" class="dev-support-form-label">Email Address</label>
+                            <input type="email" id="contact-email" class="dev-support-form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="contact-subject" class="dev-support-form-label">Subject</label>
+                            <input type="text" id="contact-subject" class="dev-support-form-input" placeholder="Brief description of your inquiry" required>
+                        </div>
+                        
+                        <div class="dev-support-form-group">
+                            <label for="contact-message" class="dev-support-form-label">Message</label>
+                            <textarea id="contact-message" class="dev-support-form-textarea" placeholder="Please provide detailed information about your inquiry" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="dev-support-btn dev-support-btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize accordions
+            const accordionItems = document.querySelectorAll('.dev-support-accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.dev-support-accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other accordions
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current accordion
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Form submission handlers
+            const ticketForm = document.getElementById('dev-support-ticket-form');
+            const contactForm = document.getElementById('dev-support-contact-form');
+            
+            if (ticketForm) {
+                ticketForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // In a real implementation, you would send the form data to your backend
+                    alert('Support ticket submitted successfully! Our team will get back to you soon.');
+                    ticketForm.reset();
+                });
+            }
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // In a real implementation, you would send the form data to your backend
+                    alert('Message sent successfully! We will respond to your inquiry shortly.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Text reveal animation for hero section
+            const kineticTexts = document.querySelectorAll('.dev-support-kinetic-text');
+            
+            kineticTexts.forEach(text => {
+                // This would be implemented with Intersection Observer in a real scenario
+                // For this example, we'll just add the class
+                text.classList.add('dev-support-kinetic-text');
+            });
+            
+            // Add hover effects to category items
+            const categoryItems = document.querySelectorAll('.dev-support-category');
+            
+            categoryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
