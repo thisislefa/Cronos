@@ -1328,7 +1328,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1362,29 +1361,34 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 16px;
             width: 100%;
             box-sizing: border-box;
+            padding-top: 80px;
         }
 
         @media (min-width: 640px) {
             .itmi-container {
                 padding: 20px;
+                padding-top: 80px;
             }
         }
 
         @media (min-width: 768px) {
             .itmi-container {
                 padding: 24px 40px;
+                padding-top: 100px;
             }
         }
 
         @media (min-width: 1024px) {
             .itmi-container {
                 padding: 24px 60px;
+                padding-top: 100px;
             }
         }
 
         @media (min-width: 1280px) {
             .itmi-container {
                 padding: 24px 100px;
+                padding-top: 100px;
             }
         }
 
@@ -1396,7 +1400,6 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
             padding-bottom: 24px;
             margin-bottom: 2rem;
-            margin-top: 4rem;
             justify-content: center;
         }
 
@@ -1404,13 +1407,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .itmi-header-bar {
                 gap: 16px;
                 justify-content: flex-start;
-                margin-top: 2rem;
             }
         }
 
         @media (min-width: 768px) {
             .itmi-header-bar {
-                margin-top: 4rem;
+                text-align: left;
                 margin-bottom: 3rem;
             }
         }
@@ -1485,19 +1487,12 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 20px;
         }
 
-        /* Cards Layout */
+        /* Cards Layout - Grid on desktop, horizontal scroll on mobile */
         .itmi-cards-grid {
             display: grid;
             gap: 16px;
             margin-bottom: 60px;
-            /* Responsive grid: 1 column on small, 2 columns on medium, 4 columns on large screens */
             grid-template-columns: repeat(1, 1fr);
-        }
-
-        @media (min-width: 640px) {
-            .itmi-cards-grid {
-                gap: 18px;
-            }
         }
 
         @media (min-width: 768px) {
@@ -1514,11 +1509,76 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        /* Mobile horizontal scroll for cards */
+        @media (max-width: 767px) {
+            .itmi-cards-container {
+                position: relative;
+                margin-bottom: 60px;
+            }
+
+            .itmi-cards-scroll {
+                display: flex;
+                gap: 16px;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                margin-top: -100px;
+                padding-bottom: 20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .itmi-cards-scroll::-webkit-scrollbar {
+                display: none;
+            }
+
+            .itmi-cards-nav {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                display: flex;
+                gap: 8px;
+                z-index: 5;
+            }
+
+            .itmi-nav-btn {
+                background-color: #1f2338;
+                border: 1px solid #282D48;
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.2s;
+                color: #F0F0F0;
+            }
+
+            .itmi-nav-btn:hover {
+                background-color: #0091fa;
+                border-color: #0091fa;
+            }
+
+            .itmi-nav-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
         .itmi-card {
-            background-color: #0b1326;
+            background-color: #0e1933;
             border-radius: 20px;
             padding: 20px 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile horizontal scroll card sizing */
+        @media (max-width: 767px) {
+            .itmi-card {
+                min-width: 280px;
+                flex-shrink: 0;
+            }
         }
 
         @media (min-width: 640px) {
@@ -1614,7 +1674,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-weight: 600;
             font-size: 10px;
             color: #FFFFFF;
-            overflow: hidden; /* Keep image rounded */
+            overflow: hidden;
             flex-shrink: 0;
         }
 
@@ -1691,11 +1751,35 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        /* Filter Group - Horizontal Scroll on mobile only */
         .itmi-filter-group {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
+        }
+
+        /* Mobile horizontal scroll for filter group */
+        @media (max-width: 767px) {
+            .itmi-filter-group-container {
+                position: relative;
+                width: 100%;
+            }
+
+            .itmi-filter-group {
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                padding-bottom: 8px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+            }
+
+            .itmi-filter-group::-webkit-scrollbar {
+                display: none;
+            }
         }
 
         @media (min-width: 640px) {
@@ -1716,6 +1800,13 @@ document.addEventListener('DOMContentLoaded', function() {
             cursor: pointer;
             font-size: 12px;
             white-space: nowrap;
+        }
+
+        /* Ensure filter buttons don't shrink on mobile scroll */
+        @media (max-width: 767px) {
+            .itmi-filter-btn {
+                flex-shrink: 0;
+            }
         }
 
         @media (min-width: 640px) {
@@ -1804,7 +1895,7 @@ document.addEventListener('DOMContentLoaded', function() {
             border-radius: 8px;
             padding: 8px 0;
             z-index: 10;
-            right: 0; /* Align to the right */
+            right: 0;
             margin-top: 8px;
         }
 
@@ -1840,15 +1931,14 @@ document.addEventListener('DOMContentLoaded', function() {
             display: block;
         }
 
-
         /* Data Table */
         .itmi-table-card {
             background-color: transparent;
             border-radius: 12px;
-            overflow-x: auto; /* Enable horizontal scroll on small screens */
+            overflow-x: auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 5rem;
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         @media (min-width: 1024px) {
@@ -1860,7 +1950,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .itmi-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px; /* Minimum width to prevent crushing on mobile */
+            min-width: 800px;
         }
 
         @media (min-width: 1024px) {
@@ -1926,7 +2016,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* Keep image rounded */
+            overflow: hidden;
             flex-shrink: 0;
         }
 
@@ -2048,9 +2138,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
 
-        <!-- Trending Cards Section -->
-        <div class="itmi-cards-grid">
-            
+        <!-- Trending Cards Section - Grid on desktop, horizontal scroll on mobile -->
+        <div class="itmi-cards-grid" id="itmi-cards-desktop">
             <!-- Card 1: Trending Tech -->
             <div class="itmi-card itmi-card-1">
                 <div class="itmi-card-header">
@@ -2249,15 +2338,38 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
+        <!-- Mobile horizontal scroll container (hidden on desktop) -->
+        <div class="itmi-cards-container" id="itmi-cards-mobile" style="display: none;">
+            <div class="itmi-cards-scroll" id="itmi-cards-scroll">
+                <!-- Cards will be duplicated here by JavaScript for mobile -->
+            </div>
+            
+            <!-- Navigation Arrows (mobile only) -->
+            <div class="itmi-cards-nav">
+                <button class="itmi-nav-btn" id="itmi-cards-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="itmi-nav-btn" id="itmi-cards-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
         <!-- Filter Bar -->
         <div class="itmi-filter-bar">
-            <!-- Filter Buttons -->
-            <div class="itmi-filter-group" id="itmi-filter-group">
-                <button class="itmi-filter-btn active" data-filter="All Sectors">All Sectors</button>
-                <button class="itmi-filter-btn" data-filter="Top Growth">Top Growth</button>
-                <button class="itmi-filter-btn" data-filter="Top R&D">Top R&D</button>
-                <button class="itmi-filter-btn" data-filter="New">New</button>
-                <button class="itmi-filter-btn" data-filter="Favorites">Favorites</button>
+            <!-- Filter Buttons - Horizontal Scroll on mobile only -->
+            <div class="itmi-filter-group-container">
+                <div class="itmi-filter-group" id="itmi-filter-group">
+                    <button class="itmi-filter-btn active" data-filter="All Sectors">All Sectors</button>
+                    <button class="itmi-filter-btn" data-filter="Top Growth">Top Growth</button>
+                    <button class="itmi-filter-btn" data-filter="Top R&D">Top R&D</button>
+                    <button class="itmi-filter-btn" data-filter="New">New</button>
+                    <button class="itmi-filter-btn" data-filter="Favorites">Favorites</button>
+                </div>
             </div>
             
             <!-- Dropdowns -->
@@ -2318,113 +2430,458 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Data Mockup ---
-    let allSectorData = [
-        {
-            id: 1,
-            rank: 1,
-            iconUrl: 'https://imgs.search.brave.com/lIu3F-AenrMio3181ZI20CrxwyOkerPDP9OzPw1GJkU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjIx/MDAyNzI2My92ZWN0/b3IvYXJ0aWZpY2lh/bC1pbnRlbGxpZ2Vu/Y2UtaWNvbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9dVl0/TnF3cUw0UThqWnRv/UGZjVlhYYmpLUHVK/c21JeUFNWjRQVUh0/SDViYz0',
-            name: 'Artificial Intelligence',
-            symbol: 'AI',
-            marketCap: 2.8e12, // 2.8 Trillion USD
-            yoyGrowth: 34.5,
-            sparklinePath: 'M 0 25 Q 10 15, 20 18 T 40 20 T 60 10 T 80 8 T 100 5', // High growth line
-            keyPlayer: 'OpenAI',
-            rdSpend: 20e9, // 20 Billion USD
-            favorite: false,
-            categories: ['Top Growth', 'Top R&D', 'New'],
-            mainCategory: 'Tech'
-        },
-        {
-            id: 2,
-            rank: 2,
-            iconUrl: 'https://imgs.search.brave.com/7SgirpfhWfX8Ez82jTiGEzesMN1oMisVVZG1djwAqRw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDYv/MDMwLzYwMC9zbWFs/bC9hYnN0cmFjdC1j/bG91ZC1sb2dvLWJs/dWUtc2hhcGUtY2xv/dWQtY29tcHV0aW5n/LWlzb2xhdGVkLW9u/LXdoaXRlLWJhY2tn/cm91bmQtdXNhYmxl/LWZvci1idXNpbmVz/cy1hbmQtdGVjaG5v/bG9neS1sb2dvcy1m/bGF0LWxvZ28tZGVz/aWduLXRlbXBsYXRl/LWVsZW1lbnQtdmVj/dG9yLmpwZw',
-            name: 'Cloud Computing',
-            symbol: 'CLOUD',
-            marketCap: 2.1e12, // 2.1 Trillion USD
-            yoyGrowth: 18.2,
-            sparklinePath: 'M 0 28 Q 10 20, 20 22 T 40 18 T 60 15 T 80 10 T 100 12',
-            keyPlayer: 'Microsoft (Azure)',
-            rdSpend: 27.1e9, // 27.1 Billion USD
-            favorite: true,
-            categories: ['Top Growth', 'Top R&D'],
-            mainCategory: 'Tech'
-        },
-        {
-            id: 3,
-            rank: 3,
-            iconUrl: 'https://imgs.search.brave.com/rfchsHt0EbKCMaXVmolggaPni7SuYt2-txvoImIsdCQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJhbmRmZXRjaC5p/by9pZFdmRG1NTlpW/L3cvNDAwL2gvNDAw/L3RoZW1lL2Rhcmsv/aWNvbi5wbmc_Yz0x/YnhpZDY0TXVwN2Fj/emV3U0FZTVgmdD0x/NzUyMTMxNTk1NTcx',
-            name: 'Semiconductors',
-            symbol: 'SEMI',
-            marketCap: 4.2e12, // 4.2 Trillion USD
-            yoyGrowth: 28.1,
-            sparklinePath: 'M 0 20 Q 10 25, 20 15 T 40 18 T 60 5 T 80 10 T 100 3',
-            keyPlayer: 'NVIDIA',
-            rdSpend: 8.9e9, // 8.9 Billion USD
-            favorite: false,
-            categories: ['Top Growth'],
-            mainCategory: 'Tech'
-        },
-        {
-            id: 4,
-            rank: 4,
-            iconUrl: 'https://imgs.search.brave.com/353r6apL5UMLKJTDAGbEwi2vNz1ztDY5A5rTu8vIKhI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzk4LzU1LzU1/LzM2MF9GXzE5ODU1/NTU2NF9IaVdPaUV5/YzVwRTdGUmdnekh2/REtUVDM0NjBHZWxJ/bC5qcGc',
-            name: 'Cybersecurity',
-            symbol: 'CYBER',
-            marketCap: 345e9, // 345 Billion USD
-            yoyGrowth: 14.7,
-            sparklinePath: 'M 0 28 Q 10 22, 20 18 T 40 20 T 60 14 T 80 16 T 100 10',
-            keyPlayer: 'Palo Alto Networks',
-            rdSpend: 1.9e9, // 1.9 Billion USD
-            favorite: false,
-            categories: ['Top Growth'],
-            mainCategory: 'Tech'
-        },
-        {
-            id: 5,
-            rank: 5,
-            iconUrl: 'https://imgs.search.brave.com/HmmO5sJKAaJ8jVnkNvQQ_fnCur4IT7E_TzMAy4MjnW8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHJvbXB0YmFz/ZS5jb20vREFMTEVf/SU1BR0VTL2lOQXpj/QzVZNkNiZkE5TVRW/TDRNYmpvZkFuczEv/cmVzaXplZC8xNzAy/NzI0NjYzNDkydF84/MDB4ODAwLndlYnA_/YWx0PW1lZGlhJnRv/a2VuPTAwODExZTcz/LTA5MTItNDEzMy04/Y2QzLTUxZWNiZjMy/NTQwMQ',
-            name: 'SaaS',
-            symbol: 'SAAS',
-            marketCap: 1.9e12, // 1.9 Trillion USD
-            yoyGrowth: 16.8,
-            sparklinePath: 'M 0 25 Q 10 20, 20 18 T 40 15 T 60 12 T 80 14 T 100 8',
-            keyPlayer: 'Salesforce',
-            rdSpend: 9.8e9, // 9.8 Billion USD
-            favorite: false,
-            categories: ['Top R&D'],
-            mainCategory: 'SaaS'
-        },
-        {
-            id: 6,
-            rank: 6,
-            iconUrl: 'https://images.seeklogo.com/logo-png/51/1/89-studio-logo-png_seeklogo-515777.png',
-            name: 'E-commerce',
-            symbol: 'ECOM',
-            marketCap: 3.5e12, // 3.5 Trillion USD
-            yoyGrowth: -9.4,
-            sparklinePath: 'M 0 5 Q 10 12, 20 10 T 40 18 T 60 20 T 80 25 T 100 28', // Negative growth line
-            keyPlayer: 'Amazon',
-            rdSpend: 85.5e9, // 85.5 Billion USD
-            favorite: false,
-            categories: ['Top R&D'],
-            mainCategory: 'Finance' 
-        },
-        {
-            id: 7,
-            rank: 7,
-            iconUrl: 'https://imgs.search.brave.com/30LirFazr18im2CIj469GIOdw8mBDpz7tj64ggunsQM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvZ2xvYmFsLWNv/bm5lY3QtdGVjaG5v/bG9neS1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZXNfMjQ1OTktNzQ5/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA',
-            name: 'Quantum Computing',
-            symbol: 'QCOM',
-            marketCap: 5.3e9, // 5.3 Billion USD
-            yoyGrowth: 25.0,
-            sparklinePath: 'M 0 25 Q 10 10, 20 15 T 40 5 T 60 10 T 80 3 T 100 5',
-            keyPlayer: 'IonQ',
-            rdSpend: 150e6, // 150 Million USD
-            favorite: false,
-            categories: ['New', 'Top Growth'],
-            mainCategory: 'Tech'
-        }
-    ];
+let allSectorData = [
+    {
+        id: 1,
+        rank: 1,
+        iconUrl: 'https://imgs.search.brave.com/lIu3F-AenrMio3181ZI20CrxwyOkerPDP9OzPw1GJkU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjIx/MDAyNzI2My92ZWN0/b3IvYXJ0aWZpY2lh/bC1pbnRlbGxpZ2Vu/Y2UtaWNvbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9dVl0/TnF3cUw0UThqWnRv/UGZjVlhYYmpLUHVK/c21JeUFNWjRQVUh0/SDViYz0',
+        name: 'Artificial Intelligence',
+        symbol: 'AI',
+        marketCap: 2.8e12,
+        yoyGrowth: 34.5,
+        sparklinePath: 'M 0 25 Q 10 15, 20 18 T 40 20 T 60 10 T 80 8 T 100 5',
+        keyPlayer: 'OpenAI',
+        rdSpend: 20e9,
+        favorite: false,
+        categories: ['Top Growth', 'Top R&D', 'New'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 2,
+        rank: 2,
+        iconUrl: 'https://imgs.search.brave.com/7SgirpfhWfX8Ez82jTiGEzesMN1oMisVVZG1djwAqRw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlemcu/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDYv/MDMwLzYwMC9zbWFs/bC9hYnN0cmFjdC1j/bG91ZC1sb2dvLWJs/dWUtc2hhcGUtY2xv/dWQtY29tcHV0aW5n/LWlzb2xhdGVkLW9u/LXdoaXRlLWJhY2tn/cm91bmQtdXNhYmxl/LWZvci1idXNpbmVz/cy1hbmQtdGVjaG5v/bG9neS1sb2dvcy1m/bGF0LWxvZ28tZGVz/aWduLXRlbXBsYXRl/LWVsZW1lbnQtdmVj/dG9yLmpwZw',
+        name: 'Cloud Computing',
+        symbol: 'CLOUD',
+        marketCap: 2.1e12,
+        yoyGrowth: 18.2,
+        sparklinePath: 'M 0 28 Q 10 20, 20 22 T 40 18 T 60 15 T 80 10 T 100 12',
+        keyPlayer: 'Microsoft (Azure)',
+        rdSpend: 27.1e9,
+        favorite: true,
+        categories: ['Top Growth', 'Top R&D'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 3,
+        rank: 3,
+        iconUrl: 'https://imgs.search.brave.com/rfchsHt0EbKCMaXVmolggaPni7SuYt2-txvoImIsdCQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJhbmRmZXRjaC5p/by9pZFdmRG1NTlpb/L3cvNDAwL2gvNDAw/L3RoZW1lL2Rhcmsv/aWNvbi5wbmc_Yz0x/YnhpZDY0TXVwN2Fj/emV3U0FZTVgmdD0x/NzUyMTMxNTk1NTcx',
+        name: 'Semiconductors',
+        symbol: 'SEMI',
+        marketCap: 4.2e12,
+        yoyGrowth: 28.1,
+        sparklinePath: 'M 0 20 Q 10 25, 20 15 T 40 18 T 60 5 T 80 10 T 100 3',
+        keyPlayer: 'NVIDIA',
+        rdSpend: 8.9e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 4,
+        rank: 4,
+        iconUrl: 'https://imgs.search.brave.com/353r6apL5UMLKJTDAGbEwi2vNz1ztDY5A5rTu8vIKhI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzk4LzU1LzU1/LzM2MF9GXzE5ODU1/NTU2NF9IaVdPaUV5/YzVwRTdGUmdnekh2/REtUVDM0NjBHZWxJ/bC5qcGc',
+        name: 'Cybersecurity',
+        symbol: 'CYBER',
+        marketCap: 345e9,
+        yoyGrowth: 14.7,
+        sparklinePath: 'M 0 28 Q 10 22, 20 18 T 40 20 T 60 14 T 80 16 T 100 10',
+        keyPlayer: 'Palo Alto Networks',
+        rdSpend: 1.9e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 5,
+        rank: 5,
+        iconUrl: 'https://imgs.search.brave.com/HmmO5sJKAaJ8jVnkNvQQ_fnCur4IT7E_TzMAy4MjnW8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHJvbXB0YmFz/ZS5jb20vREFMTEVf/SU1BR0VTL2lOQXpj/QzVZNkNiZkE5TVRW/TDRNYmpvZkFuczEv/cmVzaXplZC8xNzAy/NzI0NjYzNDkydF84/MDB4ODAwLndlYnA_/YWx0PW1lZGlhJnRv/a2VuPTAwODExZTcz/LTA5MTItNDEzMy04/Y2QzLTUxZWNiZjMy/NTQwMQ',
+        name: 'SaaS',
+        symbol: 'SAAS',
+        marketCap: 1.9e12,
+        yoyGrowth: 16.8,
+        sparklinePath: 'M 0 25 Q 10 20, 20 18 T 40 15 T 60 12 T 80 14 T 100 8',
+        keyPlayer: 'Salesforce',
+        rdSpend: 9.8e9,
+        favorite: false,
+        categories: ['Top R&D'],
+        mainCategory: 'SaaS'
+    },
+    {
+        id: 6,
+        rank: 6,
+        iconUrl: 'https://images.seeklogo.com/logo-png/51/1/89-studio-logo-png_seeklogo-515777.png',
+        name: 'E-commerce',
+        symbol: 'ECOM',
+        marketCap: 3.5e12,
+        yoyGrowth: -9.4,
+        sparklinePath: 'M 0 5 Q 10 12, 20 10 T 40 18 T 60 20 T 80 25 T 100 28',
+        keyPlayer: 'Amazon',
+        rdSpend: 85.5e9,
+        favorite: false,
+        categories: ['Top R&D'],
+        mainCategory: 'Finance'
+    },
+    {
+        id: 7,
+        rank: 7,
+        iconUrl: 'https://imgs.search.brave.com/30LirFazr18im2CIj469GIOdw8mBDpz7tj64ggunsQM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvZ2xvYmFsLWNv/bm5lY3QtdGVjaG5v/bG9neS1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZXNfMjQ1OTktNzQ5/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA',
+        name: 'Quantum Computing',
+        symbol: 'QCOM',
+        marketCap: 5.3e9,
+        yoyGrowth: 25.0,
+        sparklinePath: 'M 0 25 Q 10 10, 20 15 T 40 5 T 60 10 T 80 3 T 100 5',
+        keyPlayer: 'IonQ',
+        rdSpend: 150e6,
+        favorite: false,
+        categories: ['New', 'Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 8,
+        rank: 8,
+        iconUrl: 'https://imgs.search.brave.com/VW5xXZpK2Q8/rs:fit:860:0:0:0/g:ce/bioftech.jpg',
+        name: 'Biotechnology',
+        symbol: 'BIOTECH',
+        marketCap: 1.2e12,
+        yoyGrowth: 12.3,
+        sparklinePath: 'M 0 22 Q 10 18, 20 16 T 40 14 T 60 12 T 80 10 T 100 8',
+        keyPlayer: 'Moderna',
+        rdSpend: 15.2e9,
+        favorite: false,
+        categories: ['Top R&D'],
+        mainCategory: 'Healthcare'
+    },
+    {
+        id: 9,
+        rank: 9,
+        iconUrl: 'https://imgs.search.brave.com/green-energy.jpg',
+        name: 'Renewable Energy',
+        symbol: 'RENEW',
+        marketCap: 2.4e12,
+        yoyGrowth: 22.8,
+        sparklinePath: 'M 0 20 Q 10 15, 20 12 T 40 10 T 60 5 T 80 3 T 100 2',
+        keyPlayer: 'Tesla Energy',
+        rdSpend: 3.5e9,
+        favorite: true,
+        categories: ['Top Growth'],
+        mainCategory: 'Energy'
+    },
+    {
+        id: 10,
+        rank: 10,
+        iconUrl: 'https://imgs.search.brave.com/fintech.jpg',
+        name: 'Fintech',
+        symbol: 'FINTECH',
+        marketCap: 945e9,
+        yoyGrowth: 19.5,
+        sparklinePath: 'M 0 24 Q 10 19, 20 17 T 40 15 T 60 12 T 80 10 T 100 8',
+        keyPlayer: 'Stripe',
+        rdSpend: 2.1e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Finance'
+    },
+    {
+        id: 11,
+        rank: 11,
+        iconUrl: 'https://imgs.search.brave.com/autonomous-vehicles.jpg',
+        name: 'Autonomous Vehicles',
+        symbol: 'AVEHICLES',
+        marketCap: 1.8e12,
+        yoyGrowth: 31.2,
+        sparklinePath: 'M 0 28 Q 10 20, 20 15 T 40 12 T 60 8 T 80 5 T 100 3',
+        keyPlayer: 'Tesla',
+        rdSpend: 12.4e9,
+        favorite: false,
+        categories: ['Top Growth', 'New'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 12,
+        rank: 12,
+        iconUrl: 'https://imgs.search.brave.com/blockchain.jpg',
+        name: 'Blockchain & Crypto',
+        symbol: 'BLOCKCHAIN',
+        marketCap: 2.1e12,
+        yoyGrowth: -2.1,
+        sparklinePath: 'M 0 15 Q 10 20, 20 22 T 40 25 T 60 28 T 80 26 T 100 24',
+        keyPlayer: 'Coinbase',
+        rdSpend: 890e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Finance'
+    },
+    {
+        id: 13,
+        rank: 13,
+        iconUrl: 'https://imgs.search.brave.com/iot.jpg',
+        name: 'Internet of Things',
+        symbol: 'IOT',
+        marketCap: 856e9,
+        yoyGrowth: 17.6,
+        sparklinePath: 'M 0 26 Q 10 21, 20 19 T 40 16 T 60 14 T 80 11 T 100 9',
+        keyPlayer: 'Qualcomm',
+        rdSpend: 6.7e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 14,
+        rank: 14,
+        iconUrl: 'https://imgs.search.brave.com/edtech.jpg',
+        name: 'EdTech',
+        symbol: 'EDTECH',
+        marketCap: 402e9,
+        yoyGrowth: 8.9,
+        sparklinePath: 'M 0 18 Q 10 16, 20 15 T 40 14 T 60 13 T 80 12 T 100 11',
+        keyPlayer: 'Coursera',
+        rdSpend: 445e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 15,
+        rank: 15,
+        iconUrl: 'https://imgs.search.brave.com/drone-delivery.jpg',
+        name: 'Drone Technology',
+        symbol: 'DRONES',
+        marketCap: 127e9,
+        yoyGrowth: 29.4,
+        sparklinePath: 'M 0 22 Q 10 18, 20 15 T 40 12 T 60 8 T 80 5 T 100 3',
+        keyPlayer: 'DJI',
+        rdSpend: 520e6,
+        favorite: false,
+        categories: ['Top Growth', 'New'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 16,
+        rank: 16,
+        iconUrl: 'https://imgs.search.brave.com/robotics.jpg',
+        name: 'Robotics',
+        symbol: 'ROBOTS',
+        marketCap: 378e9,
+        yoyGrowth: 23.1,
+        sparklinePath: 'M 0 24 Q 10 20, 20 17 T 40 14 T 60 11 T 80 8 T 100 6',
+        keyPlayer: 'Boston Dynamics',
+        rdSpend: 1.2e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 17,
+        rank: 17,
+        iconUrl: 'https://imgs.search.brave.com/healthtech.jpg',
+        name: 'HealthTech',
+        symbol: 'HEALTHTECH',
+        marketCap: 689e9,
+        yoyGrowth: 15.7,
+        sparklinePath: 'M 0 23 Q 10 20, 20 18 T 40 16 T 60 14 T 80 12 T 100 10',
+        keyPlayer: 'Teladoc',
+        rdSpend: 1.8e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Healthcare'
+    },
+    {
+        id: 18,
+        rank: 18,
+        iconUrl: 'https://imgs.search.brave.com/virtual-reality.jpg',
+        name: 'Virtual Reality',
+        symbol: 'VR',
+        marketCap: 156e9,
+        yoyGrowth: 18.9,
+        sparklinePath: 'M 0 25 Q 10 21, 20 18 T 40 15 T 60 12 T 80 10 T 100 8',
+        keyPlayer: 'Meta',
+        rdSpend: 2.5e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 19,
+        rank: 19,
+        iconUrl: 'https://imgs.search.brave.com/augmented-reality.jpg',
+        name: 'Augmented Reality',
+        symbol: 'AR',
+        marketCap: 98e9,
+        yoyGrowth: 21.3,
+        sparklinePath: 'M 0 26 Q 10 22, 20 19 T 40 16 T 60 13 T 80 10 T 100 8',
+        keyPlayer: 'Apple Vision',
+        rdSpend: 1.8e9,
+        favorite: false,
+        categories: ['Top Growth', 'New'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 20,
+        rank: 20,
+        iconUrl: 'https://imgs.search.brave.com/space-tech.jpg',
+        name: 'Space Technology',
+        symbol: 'SPACE',
+        marketCap: 424e9,
+        yoyGrowth: 35.6,
+        sparklinePath: 'M 0 28 Q 10 18, 20 14 T 40 10 T 60 5 T 80 2 T 100 1',
+        keyPlayer: 'SpaceX',
+        rdSpend: 3.2e9,
+        favorite: true,
+        categories: ['Top Growth', 'New'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 21,
+        rank: 21,
+        iconUrl: 'https://imgs.search.brave.com/battery-tech.jpg',
+        name: 'Battery Technology',
+        symbol: 'BATTERY',
+        marketCap: 234e9,
+        yoyGrowth: 26.4,
+        sparklinePath: 'M 0 22 Q 10 17, 20 14 T 40 11 T 60 8 T 80 5 T 100 3',
+        keyPlayer: 'QuantumScape',
+        rdSpend: 890e6,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Energy'
+    },
+    {
+        id: 22,
+        rank: 22,
+        iconUrl: 'https://imgs.search.brave.com/nft-web3.jpg',
+        name: 'Web3 & NFTs',
+        symbol: 'WEB3',
+        marketCap: 145e9,
+        yoyGrowth: -15.2,
+        sparklinePath: 'M 0 12 Q 10 18, 20 22 T 40 26 T 60 28 T 80 27 T 100 25',
+        keyPlayer: 'OpenSea',
+        rdSpend: 234e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Finance'
+    },
+    {
+        id: 23,
+        rank: 23,
+        iconUrl: 'https://imgs.search.brave.com/agtech.jpg',
+        name: 'Agricultural Technology',
+        symbol: 'AGTECH',
+        marketCap: 189e9,
+        yoyGrowth: 13.8,
+        sparklinePath: 'M 0 21 Q 10 18, 20 16 T 40 14 T 60 12 T 80 11 T 100 9',
+        keyPlayer: 'Trimble',
+        rdSpend: 567e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 24,
+        rank: 24,
+        iconUrl: 'https://imgs.search.brave.com/nuclear-energy.jpg',
+        name: 'Nuclear Energy',
+        symbol: 'NUCLEAR',
+        marketCap: 567e9,
+        yoyGrowth: 32.5,
+        sparklinePath: 'M 0 26 Q 10 20, 20 16 T 40 12 T 60 8 T 80 4 T 100 2',
+        keyPlayer: 'NuScale',
+        rdSpend: 1.4e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Energy'
+    },
+    {
+        id: 25,
+        rank: 25,
+        iconUrl: 'https://imgs.search.brave.com/3d-printing.jpg',
+        name: '3D Printing',
+        symbol: '3DPRINT',
+        marketCap: 234e9,
+        yoyGrowth: 11.2,
+        sparklinePath: 'M 0 19 Q 10 17, 20 16 T 40 15 T 60 14 T 80 12 T 100 11',
+        keyPlayer: 'Stratasys',
+        rdSpend: 612e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 26,
+        rank: 26,
+        iconUrl: 'https://imgs.search.brave.com/wearables.jpg',
+        name: 'Wearable Technology',
+        symbol: 'WEARABLE',
+        marketCap: 312e9,
+        yoyGrowth: 16.9,
+        sparklinePath: 'M 0 23 Q 10 20, 20 18 T 40 16 T 60 14 T 80 12 T 100 10',
+        keyPlayer: 'Fitbit',
+        rdSpend: 789e6,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 27,
+        rank: 27,
+        iconUrl: 'https://imgs.search.brave.com/gaming-metaverse.jpg',
+        name: 'Gaming & Metaverse',
+        symbol: 'GAMING',
+        marketCap: 2.3e12,
+        yoyGrowth: 7.4,
+        sparklinePath: 'M 0 16 Q 10 15, 20 14 T 40 13 T 60 12 T 80 11 T 100 10',
+        keyPlayer: 'Roblox',
+        rdSpend: 5.6e9,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 28,
+        rank: 28,
+        iconUrl: 'https://imgs.search.brave.com/smart-cities.jpg',
+        name: 'Smart Cities',
+        symbol: 'SMARTCITY',
+        marketCap: 423e9,
+        yoyGrowth: 19.3,
+        sparklinePath: 'M 0 25 Q 10 21, 20 18 T 40 15 T 60 12 T 80 10 T 100 8',
+        keyPlayer: 'Cisco',
+        rdSpend: 3.4e9,
+        favorite: false,
+        categories: ['Top Growth'],
+        mainCategory: 'Tech'
+    },
+    {
+        id: 29,
+        rank: 29,
+        iconUrl: 'https://imgs.search.brave.com/water-tech.jpg',
+        name: 'Water Technology',
+        symbol: 'WATERTECH',
+        marketCap: 156e9,
+        yoyGrowth: 14.6,
+        sparklinePath: 'M 0 22 Q 10 19, 20 17 T 40 15 T 60 13 T 80 11 T 100 9',
+        keyPlayer: 'Veolia',
+        rdSpend: 845e6,
+        favorite: false,
+        categories: [],
+        mainCategory: 'Energy'
+    },
+    {
+        id: 30,
+        rank: 30,
+        iconUrl: 'https://imgs.search.brave.com/carbon-capture.jpg',
+        name: 'Carbon Capture',
+        symbol: 'CARBON',
+        marketCap: 89e9,
+        yoyGrowth: 41.2,
+        sparklinePath: 'M 0 27 Q 10 18, 20 12 T 40 8 T 60 3 T 80 1 T 100 0',
+        keyPlayer: 'Carbon Engineering',
+        rdSpend: 234e6,
+        favorite: false,
+        categories: ['Top Growth', 'New'],
+        mainCategory: 'Energy'
+    }
+];
 
     // --- 2. State ---
     let currentFilter = 'All Sectors'; // Active filter button (e.g., 'Top Growth')
@@ -2468,6 +2925,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.getElementById('itmi-table-body');
     const filterButtonGroup = document.getElementById('itmi-filter-group');
     const filterButtons = document.querySelectorAll('.itmi-filter-btn');
+    const cardsDesktop = document.getElementById('itmi-cards-desktop');
+    const cardsMobile = document.getElementById('itmi-cards-mobile');
+    const cardsScroll = document.getElementById('itmi-cards-scroll');
+    const cardsPrevBtn = document.getElementById('itmi-cards-prev');
+    const cardsNextBtn = document.getElementById('itmi-cards-next');
 
     // Dropdown DOM Refs
     const dropdownButtons = document.querySelectorAll('.itmi-dropdown-btn');
@@ -2563,7 +3025,50 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable(filteredData);
     }
 
+    /**
+     * Setup mobile horizontal scroll for cards
+     */
+    function setupMobileCards() {
+        if (!cardsScroll || !cardsDesktop) return;
+        
+        // Copy cards from desktop grid to mobile scroll container
+        cardsScroll.innerHTML = cardsDesktop.innerHTML;
+    }
+
+    /**
+     * Toggle between mobile and desktop layouts based on screen size
+     */
+    function handleResponsiveLayout() {
+        const isMobile = window.innerWidth < 768;
+        
+        if (isMobile) {
+            // Show mobile layout, hide desktop
+            cardsDesktop.style.display = 'none';
+            cardsMobile.style.display = 'block';
+            setupMobileCards();
+        } else {
+            // Show desktop layout, hide mobile
+            cardsDesktop.style.display = 'grid';
+            cardsMobile.style.display = 'none';
+        }
+    }
+
     // --- 6. Event Handlers ---
+
+    /**
+     * Handles horizontal scrolling for cards (mobile only)
+     */
+    function handleCardsScroll(direction) {
+        if (!cardsScroll || window.innerWidth >= 768) return;
+        
+        const cardWidth = cardsScroll.querySelector('.itmi-card').offsetWidth + 16; // card width + gap
+        const scrollAmount = cardWidth * (direction === 'next' ? 1 : -1);
+        
+        cardsScroll.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
 
     /**
      * Handles clicks on the top filter buttons (All Sectors, Top Growth, etc.)
@@ -2679,8 +3184,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle window resize for responsive layout
+    window.addEventListener('resize', handleResponsiveLayout);
+
 
     // --- 7. Initial Setup ---
+
+    // Setup responsive layout
+    handleResponsiveLayout();
+
+    // Add event listeners for cards navigation (mobile only)
+    if (cardsPrevBtn) {
+        cardsPrevBtn.addEventListener('click', () => handleCardsScroll('prev'));
+    }
+    if (cardsNextBtn) {
+        cardsNextBtn.addEventListener('click', () => handleCardsScroll('next'));
+    }
 
     // Add event listeners for top filters and star toggle
     if (filterButtonGroup) {
