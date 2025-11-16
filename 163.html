@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions</title>
+    <style>
+        .it-comparison-section-custom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 90vh; /* Adjusted height for this layout */
+            background: #001023; /* Bottom color */
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            padding: 40px 190px; /* Padding for content */
+        }
+
+        .it-comparison-section-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-width: 1200px;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1680026319202-fcb822e0ab91?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880'); /* Placeholder for the background image */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9; /* Adjust opacity of the image over the solid color */
+            z-index: 1;
+        }
+
+        .it-comparison-content-custom {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding-right: 40px; /* Space between text and image */
+        }
+
+        .it-comparison-title-custom {
+            font-size: 54px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            color: #fff; /* White text for contrast */
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for readability */
+        }
+
+        .it-comparison-read-more-btn-custom {
+            color: #001023;
+            background: white;
+            border: 1px solid white;
+            border-radius: 50px;
+            padding: 7px 35px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .it-comparison-read-more-btn-custom:hover {
+            background-color: #f4f4f4;
+        }
+
+        .it-comparison-image-container-custom {
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0; /* Prevent the image container from shrinking */
+            width: 400px; /* Adjust as needed */
+            height: 300px; /* Adjust as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Placeholder for the actual comparison image */
+            background-image: url('thumbnails/Screenshot_2025-11-10_210915-removebg-preview.pngoo');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design Additions */
+        @media (max-width: 1400px) {
+            .it-comparison-section-custom {
+                padding: 40px 100px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 4.5em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 350px;
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .it-comparison-section-custom {
+                padding: 40px 60px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 4em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 300px;
+                height: 225px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .it-comparison-section-custom {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 40px;
+                min-height: auto;
+            }
+            
+            .it-comparison-content-custom {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 3.5em;
+                margin-bottom: 25px;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 400px;
+                height: 300px;
+                max-width: 100%;
+            }
+            
+            .it-comparison-section-custom::before {
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .it-comparison-section-custom {
+                padding: 50px 30px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 3em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 350px;
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .it-comparison-section-custom {
+                padding: 40px 20px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 2.5em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 300px;
+                height: 225px;
+            }
+            
+            .it-comparison-read-more-btn-custom {
+                padding: 10px 30px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .it-comparison-title-custom {
+                font-size: 2em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 250px;
+                height: 190px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 320px) {
+            .it-comparison-section-custom {
+                padding: 30px 15px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 1.8em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 200px;
+                height: 150px;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .it-comparison-section-custom {
+                min-height: 100vh;
+                padding: 20px 40px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* High-resolution displays */
+        @media (min-width: 1920px) {
+            .it-comparison-section-custom {
+                padding: 60px 240px;
+            }
+            
+            .it-comparison-title-custom {
+                font-size: 6em;
+            }
+            
+            .it-comparison-image-container-custom {
+                width: 500px;
+                height: 375px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="it-comparison-section-custom">
+        <div class="it-comparison-content-custom">
+            <h1 class="it-comparison-title-custom">Innovation, Growth, and<br>Creativity.</h1>
+            <button class="it-comparison-read-more-btn-custom">About Us</button>
+        </div>
+        <div class="it-comparison-image-container-custom">
+            </div>
+    </div>
+</body>
+</html>

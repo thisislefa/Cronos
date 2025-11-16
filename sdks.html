@@ -1,329 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    
-    <title>Hyperion</title>
-
-    <!-- WEB TAB ICON -->
-    <link rel="icon" type="image/png" href="thumbnails/02.png">
-
-    <!-- FONTS FILES -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arbutus&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=Devonshire&family=Francois+One&family=Freckle+Face&family=Fruktur:ital@0;1&family=Gorditas:wght@400;700&family=Kavoon&family=Londrina+Sketch&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap" rel="stylesheet">
-        
-    <link rel="stylesheet" href="https://cndjs.cloudflare.com/ajax/libs/fomt-awesome/6.2.1/css/all.min.css">
-
-    <!-- CSS FILES -->
-    
-    <link rel="stylesheet" href="css/global-styling.css">
-    <link rel="stylesheet" href="css/scroll-progress.css">
-    
-    <link rel="stylesheet" href="css/page-video.css">
-    <link rel="stylesheet" href="css/contact-page.css">
-    
-    <link rel="stylesheet" href="#">
-    <link rel="stylesheet" href="css/about-us-page.css">
-    
-    <link rel="stylesheet" href="future-of-infrastructure.css">
-
-    <!-- JAVASCRIPT FILES -->
-    
-    <script src="js/scroll-progress.js"></script>
-    
-    <script src="js/page-video.js"></script>
-   
-    <script src="js/about-us-page.js"></script>
-    
-    <script src="feature-page.js"></script>
-</head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-
-<!-- =============================================
-     SCROLL PROGRESS BACK-TO-TOP
-     ============================================= -->
-<!-- Back to Top Button with Progress Circle -->
-<div class="scroll-progress-container" id="backToTopContainer">
-  <svg class="progress-circle-svg">
-    <circle class="progress-circle-bg"></circle>
-    <circle class="progress-circle-fill" id="progressCircle"></circle>
-  </svg>
-  <button class="back-to-top-btn" id="backToTopBtn">
-    <svg class="arrow-icon-svg" viewBox="0 0 24 24">
-      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-    </svg>
-  </button>
-</div>
-<!-- Scroll Progress End -->
-
-<style>
-  .scroll-progress-container {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.scroll-progress-container.show-button {
-  opacity: 1;
-  visibility: visible;
-}
-
-.progress-circle-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  transform: rotate(-90deg);
-}
-
-.progress-circle-bg {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.2);
-  stroke-width: 3;
-  r: 27;
-  cx: 30;
-  cy: 30;
-}
-
-.progress-circle-fill {
-  fill: none;
-  stroke: #007bff;
-  stroke-width: 3;
-  stroke-linecap: round;
-  r: 27;
-  cx: 30;
-  cy: 30;
-  stroke-dasharray: 169.65;
-  stroke-dashoffset: 169.65;
-  transition: stroke-dashoffset 0.1s ease;
-}
-
-.back-to-top-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.back-to-top-btn:hover {
-  background-color: #0056b3;
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-}
-
-.back-to-top-btn:active {
-  transform: translate(-50%, -50%) scale(0.95);
-}
-
-.arrow-icon-svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-.demo-content-section {
-  padding: 40px 20px;
-  margin: 20px 0;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-}
-
-.demo-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.demo-paragraph {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-.demo-header {
-  font-size: 32px;
-  font-weight: bold;
-  color: #007bff;
-  text-align: center;
-  margin: 40px 0;
-}
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const backToTopContainer = document.getElementById('backToTopContainer');
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  const progressCircle = document.getElementById('progressCircle');
-  
-  // Circle circumference for progress calculation
-  const radius = 27;
-  const circumference = 2 * Math.PI * radius;
-  
-  // Set initial stroke-dasharray
-  progressCircle.style.strokeDasharray = circumference;
-  progressCircle.style.strokeDashoffset = circumference;
-  
-  // Show/hide button and update progress on scroll
-  window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = scrollTop / scrollHeight;
-    
-    // Show button after scrolling 100px
-    if (scrollTop > 100) {
-      backToTopContainer.classList.add('show-button');
-    } else {
-      backToTopContainer.classList.remove('show-button');
-    }
-    
-    // Update progress circle
-    const offset = circumference - (scrollProgress * circumference);
-    progressCircle.style.strokeDashoffset = offset;
-  });
-  
-  // Smooth scroll to top when button is clicked
-  backToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- HYPERION-HEADER START -->
 <style>
@@ -1676,2632 +1350,1220 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="defcon-premium-showcase">
-  <div class="defcon-header-container-hd">
-    <div class="defcon-main-heading-hd">Trusted Local Technology Partner in South Africa.</div>
-  </div>
-
-  <button class="defcon-crypto-cta" onclick="window.location.href='page.html'">
-    <span class="defcon-crypto-text">Discover Why Hyperion</span>
-    <span class="defcon-crypto-icon">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-  </button>
-
-</section>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  
-
-/* Base Styles */
-.defcon-premium-showcase {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 60px 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('thumbnails/Gemini_Generated_Image_ap7ly1ap7ly1ap7l.png') no-repeat center center/cover;
-  box-sizing: border-box;
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
-}
-
-/* Header Container: Ensures full width and animation works */
-.defcon-header-container-hd {
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
-  animation: defconFadeInUp 1s ease-out forwards;
-}
-
-/* Main Heading Fixes: Removed fixed 'width: 800px' for responsiveness */
-.defcon-main-heading-hd {
-  font-size: 51px;
-  font-weight: 700;
-  text-transform: none;
-  max-width: 800px; /* Constrains width for readability on large screens */
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-  color: white;
-  text-align: center;
-  margin: 0 auto 3rem auto; /* Centered and set bottom margin */
-}
-
-/* CTA Button Styles - This padding is now maintained on all devices */
-.defcon-crypto-cta {
-  display: inline-flex;
-  align-items: center;
-  background: #dedede;
-  color: #06273e;
-  border: none;
-  padding: 5px 6px 5px 25px;
-  font-size: 17px;
-  font-weight: 600;
-  border-radius: 60px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 4rem;
-  margin-top: 1rem;
-}
-
-.defcon-crypto-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
-}
-
-.defcon-crypto-cta:active {
-  transform: translateY(1px);
-}
-
-.defcon-crypto-text {
-  margin-right: 15px;
-}
-
-.defcon-crypto-icon {
-  width: 40px;
-  height: 40px;
-  background: #0091ff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.defcon-crypto-cta:hover .defcon-crypto-icon {
-  background: #0066ff;
-  transform: translateX(3px);
-}
-
-
-/* --- Responsive Adjustments --- */
-
-/* Laptops / Large Tablets (Max-width 1024px) */
-@media (max-width: 1024px) {
-  .defcon-main-heading-hd {
-    font-size: 44px; /* Scale down for smaller screens */
-  }
-}
-
-/* Tablets (Max-width 767px) */
-@media (max-width: 767px) {
-  .defcon-premium-showcase {
-    min-height: 70vh; /* Reduced height on smaller devices */
-  }
-  .defcon-main-heading-hd {
-    font-size: 38px;
-    line-height: 1.25;
-  }
-}
-
-/* Mobile Devices (Max-width 480px) */
-@media (max-width: 480px) {
-  .defcon-premium-showcase {
-    padding: 40px 5%;
-    min-height: 60vh; /* Reduced height on small phones */
-  }
-  
-  /* Heading size reduced significantly for small screens */
-  .defcon-main-heading-hd {
-    font-size: 30px; 
-    line-height: 1.3;
-    margin-bottom: 2rem;
-  }
-  
-  /* CTA button adjustments: Removed padding override */
-  .defcon-crypto-cta {
-    /* **FIXED: Removed mobile padding override to keep original shape** */
-    font-size: 15px; /* Text size still scales down */
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Icon size is still reduced to prevent overflow */
-  .defcon-crypto-icon {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .defcon-crypto-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .defcon-crypto-text {
-    margin-right: 10px;
-  }
-}
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="hero-section-dv">
-    <div class="container-dv">
-      <div class="content-left">
-        <p style="text-transform: uppercase; color: #001023; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
-        <h1 class="main-heading">
-            Innovate, Integrate <br> and 
-            <span class="highlight-word">
-                Elevate.
-                <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
-                </svg>
-            </span>
-        </h1>
-            
-        <div class="description">
-            <p>We're more than just developers – we're your trusted digital partner. From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence.</p>
-        </div>
-
-        <button class="learn-more" onclick="window.location.href='page.html'">
-          <span class="circle" aria-hidden="true">
-          <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">Learn More</span>
-        </button>
-      </div>
-
-      <div class="image-container">
-          <div class="main-image">
-            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
-          </div>
-          
-          <div class="stats-card">
-            <div class="stats-number">53%</div>
-            <div class="stats-text">High Conversions<br>Everything</div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .hero-section-dv {
-    position: relative;
-    min-height: 100vh;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-    line-height: 1.7;
-  }
-
-  .container-dv {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    padding: 0 20px;
-  }
-
-  .content-left {
-    flex: 1;
-    max-width: 600px;
-    z-index: 2;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .main-heading {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #001023;
-    margin-bottom: 30px;
-    letter-spacing: -0.03em;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .description {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.6;
-    color: #757575;
-    margin-bottom: 40px;
-    max-width: 480px;
-  }
-
-  .image-container {
-    position: relative;
-    flex: 1;
-    max-width: 600px;
-    /* The fixed height on the image container is a responsiveness issue, but it must be kept as requested */
-    height: 400px; 
-  }
-
-  /* --- NEW CREATIVE ADDITION: Dot Pattern Overlay --- */
-  .image-container::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: -40px;
-    width: 50%;
-    height: 50%;
-    background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.4;
-    z-index: 1;
-  }
-
-  .main-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-
-  .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%; /* Focus on the people in the image */
-    display: block; /* Remove any default inline spacing */
-  }
-
-  .stats-card {
-    position: absolute;
-    bottom: -40px;
-    left: -50px;
-    background: #ffd700;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-    min-width: 150px;
-  }
-
-  .stats-number {
-    font-size: 40px;
-    font-weight: 800;
-    color: #001023;
-    line-height: 1;
-    margin-bottom: 5px;
-    text-align: left;
-  }
-
-  .stats-text {
-    font-size: 18px;
-    color: #001023;
-    line-height: 1.3;
-    text-align: left;
-  }
-
-  /* --- NEW CREATIVE ADDITION: Underline Scribble --- */
-  .highlight-word {
-    position: relative;
-    color: #0091ff;
-  }
-
-  .underline-svg {
-    position: absolute;
-    bottom: -15px;
-    left: -5%;
-    width: 110%;
-    height: 25px;
-    overflow: visible;
-  }
-
-  .underline-svg path {
-    stroke: #0091ff;
-    stroke-width: 5;
-    stroke-linecap: round;
-    fill: none;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 1.5s ease-out 0.5s forwards;
-  }
-
-   @keyframes draw {
-    to {
-        stroke-dashoffset: 0;
-    }
-  }
-
-  /* Tablet Styles */
-  @media (max-width: 1024px) {
-    .container-dv {
-        flex-direction: column;
-        text-align: center;
-        gap: 50px;
-    }
-
-    .main-heading {
-        font-size: 3.5rem;
-    }
-
-    .content-left {
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .description {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .image-container {
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin-top: 2rem;
-    }
-
-    /* Adjust dot pattern for tablet */
-    .image-container::after {
-        width: 100%;
-        height: 50%;
-        left: 0;
-        
-    }
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .hero-section-dv {
-      padding: 60px 20px 80px;
-      min-height: auto;
-    }
-
-    .container-dv {
-      gap: 40px;
-      padding: 0 15px;
-    }
-
-    .main-heading {
-        font-size: 2.5rem;
-    }
-
-    .content-left {
-      text-align: left;
-    }
-
-    .description {
-      font-size: 15px;
-      max-width: 100%;
-    }
-
-    .image-container {
-      height: 300px;
-    }
-
-    .main-image img {
-      object-position: center 30%; /* Adjust focus for mobile */
-    }
-
-    .stats-card {
-      bottom: -15px;
-      left: -15px;
-      padding: 15px;
-      min-width: 130px;
-    }
-
-    .stats-number {
-      font-size: 28px;
-    }
-
-    .stats-text {
-      font-size: 13px;
-    }
-
-    .learm-more {
-      padding-bottom: 2rem;
-    }
-  }
-
-  /* Small Phone Styles */
-  @media (max-width: 480px) {
-    .hero-section-dv {
-      padding: 40px 15px 60px;
-    }
-
-    .container-dv {
-      gap: 30px;
-    }
-
-    .main-heading {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-    .description {
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    .image-container {
-      height: 250px;
-    }
-
-    .main-image img {
-      object-position: center 35%; /* Further adjust focus for small screens */
-    }
-
-    .stats-card {
-      bottom: -10px;
-      left: -10px;
-      padding: 12px;
-      min-width: 120px;
-    }
-
-    .stats-number {
-      font-size: 24px;
-    }
-
-    .stats-text {
-      font-size: 12px;
-    }
-  }
-
-  /* Extra Small Phone Styles */
-  @media (max-width: 360px) {
-    .main-heading {
-        font-size: 1.8rem;
-    }
-
-    .image-container {
-      height: 220px;
-    }
-
-    .main-image img {
-      object-position: center 40%; /* Final adjustment for extra small screens */
-    }
-
-    .stats-card {
-      min-width: 110px;
-      padding: 10px;
-    }
-
-    .stats-number {
-      font-size: 22px;
-    }
-  }
-
-  /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #282936;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-        /* KEEPING these hover transitions as they are the core visual feedback */
-        button:hover .circle {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        color: #fff;
-        }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-    <defcon-showcase-section>
-        <div class="services-heading">
-          <h1>What We Do</h1>
-          <h2 class="services-heading-text" style="color: #001023;">Our Full-Spectrum <br> Technology Services</h2>
-        </div>
-        <defcon-showcase-grid>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="software-engineering">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Software Development</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We design, develop, and deploy custom, scalable software and platforms that turn your vision into a high-performance digital reality.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                  <img class="defcon-showcase-image" src="https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="it-infrastructure">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>IT Infrastructure</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We secure your operations with end-to-end cloud solutions, network security, and 24/7 proactive monitoring for maximum stability.
-                    </defcon-showcase-paragraph>
-                    
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg" alt="Creative professionals working together on a laptop." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="marketing">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Marketing & Creative Studio</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We blend innovative creative design with data-driven strategies to build memorable brands and maximize your market presence.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/414974/pexels-photo-414974.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-        </defcon-showcase-grid>
-
-  </defcon-showcase-section>
-    <style>
-      /* --- Google Font Import --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        /* Optimized services-heading */
-        .services-heading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-top: 3rem;
-            text-align: center;
-            color: #001023;
-        }
-
-        .services-heading h1 {
-            color: #001023;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-align: center;
-            
-        }
-
-        .services-heading-text {
-            font-size: 54px;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            padding-bottom: 7rem;
-            text-align: center;
-            color: #001023;
-        }
-
-        /* --- Main "Showcase" Section Wrapper --- */
-        defcon-showcase-section {
-            font-family: 'Inter', sans-serif;
-            background-color: #f6f6f6;
-            display: block;
-            overflow: hidden;
-            padding: 80px 5%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- Grid Layout for the two main cards --- */
-        defcon-showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-        }
-
-        /* --- Individual Showcase Card --- */
-        defcon-showcase-card {
-            display: flex;
-            align-items: center;
-            background-color: #ffffff;
-            border: 1px solid #E5E7EB;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            position: relative;
-            overflow: hidden;
-            
-        }
-
-        defcon-showcase-card.defcon-showcase-is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-       
-
-
-        /* --- Left/Right Columns within the card --- */
-        defcon-showcase-content {
-            flex-basis: 50%;
-            padding: 60px;
-            text-align: left; 
-        }
-
-        defcon-showcase-image-wrapper {
-            flex-basis: 50%;
-            align-self: stretch;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-        }
-
-        /* --- Reversing order for the cards on Desktop --- */
-        /* Card 1: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(1) defcon-showcase-content {
-            order: 2;
-        }
-        defcon-showcase-card:nth-child(1) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-        /* Card 2: Text (Left), Image (Right) - Standard Order */
-        defcon-showcase-card:nth-child(2) defcon-showcase-content {
-            order: 1;
-        }
-        defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
-            order: 2;
-        }
-
-        /* Card 3: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(3) defcon-showcase-content{
-          order: 2;
-        }
-        defcon-showcase-card:nth-child(3) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-
-        /* --- Text Styling --- */
-        defcon-showcase-heading {
-            display: block;
-            font-size: 36px;
-            font-weight: 700;
-            color: #001023;
-            line-height: 1.25;
-            margin-bottom: 16px;
-        }
-
-        /* --- PARAGRAPH FONT FIXES --- */
-        defcon-showcase-paragraph {
-            display: block;
-            font-size: 20px; /* INCREASED FONT SIZE TO 20PX */
-            font-weight: 500; /* INCREASED FONT WEIGHT TO 700 */
-            color: #757575;
-            line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 480px;
-        }
-
-        /* --- Image Styling --- */
-        defcon-showcase-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0s ease;
-        }
-
-       
-        /* =============================================
-           RESPONSIVENESS FIXES
-           ============================================= */
-
-        /* --- Tablet & Medium Devices (Max-width 992px) --- */
-        @media (max-width: 992px) {
-            
-            .services-heading-text {
-                font-size: 44px;
-                padding-bottom: 5rem;
-            }
-
-            defcon-showcase-card {
-                flex-direction: column;
-            }
-            
-            /* Order for all cards on mobile: Image Top (1), Text Bottom (2) */
-            defcon-showcase-card defcon-showcase-content {
-                order: 2;
-            }
-            defcon-showcase-card defcon-showcase-image-wrapper {
-                order: 1;
-            }
-
-            defcon-showcase-content {
-                padding: 40px;
-                text-align: left; 
-            }
-            
-            defcon-showcase-image-wrapper {
-                width: 100%;
-                height: 300px;
-                /* Mobile image wrapper should not have radius to allow card's top radius to show */
-                border-radius: 0; 
-            }
-        }
-
-        /* --- Mobile Devices (Max-width 600px) --- */
-        @media (max-width: 600px) {
-
-            defcon-showcase-section {
-                padding: 50px 5%;
-            }
-
-            .services-heading-text {
-                font-size: 32px; 
-                padding-bottom: 3rem; 
-            }
-
-            defcon-showcase-content {
-                padding: 30px 20px;
-            }
-            
-            defcon-showcase-heading {
-                font-size: 26px;
-                margin-bottom: 12px;
-            }
-
-            defcon-showcase-paragraph {
-                font-size: 18px; /* Slightly reduced for better fit on small phones */
-                margin-bottom: 20px;
-            }
-            
-            defcon-showcase-image-wrapper {
-                height: 200px;
-            }
-        }
-
-
-        /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #001023;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-
-        button:hover .circle {
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        color: #fff;
-        }
-    </style>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        const revealElements = document.querySelectorAll('.defcon-showcase-reveal');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('defcon-showcase-is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        });
-    </script>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="custom-layout-container custom-flex custom-justify-center custom-align-center custom-min-height-full custom-background-light-gray custom-padding-y-large">
-    <div class="custom-section-wrapper custom-flex custom-flex-column custom-md-flex-row custom-gap-medium custom-max-width-extra-large custom-margin-auto custom-align-center">
-
-        <div class="custom-mobile-frame custom-relative custom-width-small custom-height-large custom-background-dark custom-border-radius-extra-large custom-shadow-strong custom-overflow-hidden custom-flex-shrink-zero">
-            <div class="custom-mobile-screen custom-absolute custom-inset-small custom-border-radius-extra-large custom-overflow-hidden custom-background-purple custom-display-flex custom-flex-column custom-justify-between custom-padding-large">
-                <div class="custom-phone-image-placeholder custom-width-full custom-height-full custom-display-flex custom-justify-center custom-align-center custom-text-white custom-font-bold custom-font-size-large custom-background-medium-purple">
-                    <img src="https://imgs.search.brave.com/bc9f9COhOhfM6E0mX9_Ixod4x8rgJ4eF_et89hqLz-Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY3RmYXNzZXRz/Lm5ldC9sem55MzNo/bzFnNDUvMVF1Z2RK/dnQ4ZXhtUzI4VHFt/cWtIay8zZDQ4ZWVl/NWQ2ZjdmZmNlMjdl/YTE2NjIxYzFiODJh/OS9pb3MtaG9tZS1z/Y3JlZW4taWRlYXMt/aW1hZ2UxLnBuZw" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-            </div>
-            <div class="custom-phone-notch custom-absolute custom-top-zero custom-left-half custom-transform-x-negative-half custom-width-medium custom-height-small custom-background-dark custom-border-radius-bottom-large"></div>
-        </div>
-
-        <div class="custom-content-block custom-flex-grow-one custom-max-width-medium custom-text-dark-gray custom-padding-x-small custom-md-padding-x-zero">
-            <h1 class="custom-main-title custom-font-size-extra-large custom-font-weight-bolder custom-margin-bottom-medium custom-line-height-tight">Seamless Digital <br> Experience Design</h1>
-            <p class="custom-description-paragraph custom-font-size-medium custom-text-gray-medium custom-margin-bottom-extra-large">We don't just build apps; we architect custom, scalable mobile platforms for iOS and Android, turning your unique business vision into a high-performance, market-ready product.</p>
-
-            <div class="custom-cards-grid custom-display-grid custom-grid-template-columns-one custom-md-grid-template-columns-two custom-gap-medium">
-                <div class="custom-feature-card custom-background-white custom-padding-extra-large custom-border-radius-large custom-shadow-mild custom-display-flex custom-flex-column custom-align-start custom-border-top-thick custom-border-orange">
-                    <div class="custom-icon-background custom-background-light-orange custom-padding-medium custom-border-radius-small custom-margin-bottom-medium">
-                        <span class="custom-card-icon custom-text-orange custom-font-size-large">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 26 26"><path fill="#006fe6" d="M23.633 5.028a1.074 1.074 0 0 0-.777-.366c-2.295-.06-5.199-2.514-7.119-3.477C14.551.592 13.768.201 13.18.098a1.225 1.225 0 0 0-.36.001c-.588.103-1.371.494-2.556 1.087c-1.92.962-4.824 3.416-7.119 3.476a1.08 1.08 0 0 0-.778.366a1.167 1.167 0 0 0-.291.834c.493 10.023 4.088 16.226 10.396 19.831c.164.093.346.141.527.141s.363-.048.528-.141c6.308-3.605 9.902-9.808 10.396-19.831a1.161 1.161 0 0 0-.29-.834zM18.617 8.97l-5.323 7.855c-.191.282-.491.469-.788.469c-.298 0-.629-.163-.838-.372l-3.752-3.753a.656.656 0 0 1 0-.926l.927-.929a.658.658 0 0 1 .926 0l2.44 2.44l4.239-6.257a.657.657 0 0 1 .91-.173l1.085.736a.657.657 0 0 1 .174.91z"/></svg>
-                        </span>
-                    </div>
-                    <h3 class="custom-card-title custom-font-size-large custom-font-weight-bold custom-margin-bottom-small">Data Encryption</h3>
-                    <p class="custom-card-description custom-text-gray-medium">Protect user data with strong encryption methods to prevent unauthorized access.</p>
-                </div>
-
-                <div class="custom-feature-card custom-background-white custom-padding-extra-large custom-border-radius-large custom-shadow-mild custom-display-flex custom-flex-column custom-align-start custom-border-top-thick custom-border-orange">
-                    <div class="custom-icon-background custom-background-light-orange custom-padding-medium custom-border-radius-small custom-margin-bottom-medium">
-                        <span class="custom-card-icon custom-text-orange custom-font-size-large">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 2048 2048"><path fill="#006fe6" d="m1344 1510l339-339l90 90l-429 429l-237-237l90-90l147 147zm704-742v1280H768v-781q-61 13-128 13q-133 0-249-50t-204-137T50 890T0 640q0-133 50-249t137-204T390 50T640 0q133 0 249 50t204 137t137 203t50 250q0 67-13 128h781zM128 640q0 106 40 199t110 162t163 110t199 41q106 0 199-40t162-110t110-163t41-199q0-106-40-199t-110-162t-163-110t-199-41q-106 0-199 40T279 278T169 441t-41 199zm1792 256h-693q-51 113-134 196t-197 135v693h1024V896zm-915-403L576 922L339 685l90-90l147 147l339-339l90 90z"/></svg>
-                        </span>
-                    </div>
-                    <h3 class="custom-card-title custom-font-size-large custom-font-weight-bold custom-margin-bottom-small">Secure Authentication</h3>
-                    <p class="custom-card-description custom-text-gray-medium">Implement multi-factor authentication (MFA) and strong password policies to enhance security.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Custom Styles */
-    .custom-layout-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #f4f4f4; /* light-gray */
-        padding: 40px 0; /* padding-y-large */
-        font-family: sans-serif;
-        padding-bottom: 200px;
-    }
-
-    .custom-section-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 32px; /* gap-medium */
-        max-width: 1280px; /* max-width-extra-large */
-        margin: auto;
-        align-items: center;
-    }
-
-    .custom-mobile-frame {
-        position: relative;
-        width: 320px; /* width-small */
-        height: 600px; /* height-large */
-        background-color: #000; /* dark */
-        border-radius: 48px; /* border-radius-extra-large */
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-strong */
-        overflow: hidden;
-        flex-shrink: 0;
-    }
-
-    .custom-mobile-screen {
-        position: absolute;
-        inset: 8px; /* inset-small */
-        border-radius: 40px; /* border-radius-extra-large - slightly smaller than frame */
-        overflow: hidden;
-        background-color: #8b5cf6; /* purple */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .custom-phone-image-placeholder {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        font-size: 24px; /* font-size-large */
-        background-color: #9370db; /* medium-purple */
-        border-radius: 30px; /* To match inner screen curve */
-    }
-
-    .custom-phone-notch {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 112px; /* width-medium */
-        height: 24px; /* height-small */
-        background-color: #000; /* dark */
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-    }
-
-    .custom-content-block {
-        flex-grow: 1;
-        max-width: 768px; /* max-width-medium */
-        color: #1a202c; /* dark-gray */
-        padding: 0 16px; /* padding-x-small */
-    }
-
-    .custom-main-title {
-        font-size: 48px; /* font-size-extra-large */
-        font-weight: 700; /* font-weight-bolder */
-        margin-bottom: 24px; /* margin-bottom-medium */
-        color: black;
-        line-height: 1.25; /* line-height-tight */
-    }
-
-    .custom-description-paragraph {
-        font-size: 21px; /* font-size-medium */
-        font-weight: 600;
-        color: #4a5568; /* gray-medium */
-        margin-bottom: 40px; /* margin-bottom-extra-large */
-    }
-
-    .custom-cards-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px; /* gap-medium */
-    }
-
-    .custom-feature-card {
-        background-color: #e2e2e2; /* white */
-        padding: 32px; /* padding-extra-large */
-        border-radius: 20px; /* border-radius-large */
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-mild */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-       
-    }
-
-    .custom-icon-background {
-        background-color: #fff7ed; /* light-orange */
-        padding: 16px; /* padding-medium */
-        border-radius: 8px; /* border-radius-small */
-        margin-bottom: 16px; /* margin-bottom-medium */
-    }
-
-    .custom-card-icon {
-        color: #f97316; /* orange */
-        font-size: 30px; /* font-size-large */
-    }
-
-    .custom-card-title {
-        font-size: 24px; /* font-size-large */
-        font-weight: 700; /* font-weight-bold */
-        margin-bottom: 8px; /* margin-bottom-small */
-    }
-
-    .custom-card-description {
-        color: #4a5568; /* gray-medium */
-        font-size: 1.1rem;
-    }
-
-    /* Responsive Adjustments */
-    @media (min-width: 768px) { /* md breakpoint */
-        .custom-section-wrapper {
-            flex-direction: row;
-        }
-        .custom-content-block {
-            padding: 0;
-        }
-        .custom-cards-grid {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-            background-color: #080d1b;
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .left-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 13em 0 13em 160px;
-            background-color: #080d1b;
-        }
-
-        .tagline {
-            font-size: 14px;
-            font-weight: 600;
-            color: #62b9f7;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .main-heading-op {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 60px;
-            letter-spacing: -0.04em;
-        }
-
-        .highlight {
-            color: #0091ff;
-        }
-
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 60px;
-        }
-
-        .feature-item-op {
-            display: flex;
-            gap: 20px;
-        }
-
-        .feature-icon-op {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            background-color: #ffffff17;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .feature-content-op h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-content-op p {
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1.6;
-            color: #999;
-            max-width: 400px;
-        }
-
-        .cta-button {
-            width: fit-content;
-            padding: 12px 40px;
-            background-color: transparent;
-            color: #fff;
-            border: 1.5px solid #fff;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .cta-button:hover {
-            background-color: #ffffff25;
-        }
-
-        .right-column {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
-            background-color: #080d1b;
-        }
-
-        .screen-image {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 1200px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .left-column {
-                padding: 60px 40px;
-            }
-
-            .main-heading {
-                font-size: 48px;
-            }
-
-            .right-column {
-                padding: 40px;
-                margin-left: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .left-column {
-                padding: 40px 24px;
-            }
-
-            .main-heading {
-                font-size: 36px;
-            }
-
-            .feature-content h3 {
-                font-size: 18px;
-            }
-
-            .feature-content p {
-                font-size: 14px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="left-column">
-            <p class="tagline">Level up with Hyperion</p>
-            <h1 class="main-heading-op">
-                Take Your <br>Business To The<br>
-                <span class="highlight">Next Level</span>
-            </h1>
-
-            <div class="features">
-                <div class="feature-item-op">
-                    <div class="feature-icon-op">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4" y="4" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="14" y="4" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="4" y="14" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="14" y="14" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="feature-content-op">
-                        <h3>High-Performance Premium Apps</h3>
-                        <p>Not your average app drop. These are precision-engineered builds; high-end, encrypted, and lightning-fast.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item-op">
-                    <div class="feature-icon-op">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0091ff" stroke-width="2"/>
-                            <path d="M3 9H21" stroke="#0091ff" stroke-width="2"/>
-                            <path d="M9 9V21" stroke="#0091ff" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="feature-content-op">
-                        <h3>Handcrafted Code Architecture</h3>
-                        <p>Built different, literally. Our sites are coded from scratch, giving you total control, faster load times, and zero limits on creativity.</p>
-                    </div>
-                </div>
-            </div>
-
-            <button class="cta-button" onclick="window.location.href='page.html'">Explore More</button>
-        </div>
-
-        <div class="right-column" style="overflow: hidden;">
-            
-            <img src="https://images.unsplash.com/photo-1760536928911-40831dacdbc3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%; height: auto;">
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============================================
-     *** FAQ SECTION ***
-     ============================================= -->
-<style>
-  /* FAQ Container */
-  .defcon-faq-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Left Column */
-  .defcon-faq-header-col {
-    flex: 0 0 30%;
-    padding-right: 40px;
-    display: flex;
-  }
-
-  .defcon-faq-title {
-    color: #06273e;
-    font-size: 54px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
-    margin-bottom: 30px;
-  }
-
-  /* Right Column */
-  .defcon-faq-content-col {
-    flex: 0 0 70%;
-  }
-
-  /* Accordion Item */
-  .defcon-accordion-item {
-    border-bottom: 2px solid #e5e5e5;
-    margin-bottom: 15px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-  }
-
-  .defcon-accordion-header {
-    background-color: #fff;
-    color: #06273e;
-    padding: 20px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    
-  }
-
-  .defcon-accordion-header span {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .defcon-accordion-header:hover {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-header.active {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-icon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .defcon-accordion-icon-line {
-    position: absolute;
-    background-color: #0091ff;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .defcon-accordion-icon-line-horizontal {
-    width: 20px;
-    height: 3px;
-    top: 50%;
-    left: 2px;
-    transform: translateY(-50%);
-  }
-
-  .defcon-accordion-icon-line-vertical {
-    width: 3px;
-    height: 20px;
-    left: 50%;
-    top: 2px;
-    transform: translateX(-50%);
-  }
-
-  /* Show plus sign by default, rotate on active */
-  .defcon-accordion-header .defcon-accordion-icon {
-    transform: rotate(0deg);
-  }
-  .defcon-accordion-header.active .defcon-accordion-icon {
-    transform: rotate(45deg);
-  }
-
-  /* Hide vertical line when active (turn plus into X) */
-  .defcon-accordion-header.active .defcon-accordion-icon-line-vertical {
-    opacity: 0;
-    transform: translateX(-50%) rotate(90deg);
-  }
-
-  .defcon-accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0s ease;
-    background-color: #fff;
-  }
-
-  .defcon-accordion-content-inner {
-    padding: 0 0 25px 0;
-    color: #333;
-    line-height: 1.6;
-    font-weight: 400;
-    font-size: 1rem;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content {
-    max-height: 500px;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content-inner {
-    transform: translateY(0);
-  }
-
-  .defcon-faq-link {
-    color: #0091ff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0s ease;
-    border-bottom: 1px solid transparent;
-  }
-
-  .defcon-faq-link:hover {
-    border-bottom-color: #0091ff;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .defcon-faq-container {
-      flex-direction: column;
-      padding: 30px 15px;
-    }
-
-    .defcon-faq-header-col {
-      flex: 0 0 100%;
-      padding-right: 0;
-      margin-bottom: 30px;
-    }
-
-    .defcon-faq-content-col {
-      flex: 0 0 100%;
-    }
-
-    .defcon-faq-title {
-      font-size: 2rem;
-      position: static;
-    }
-
-    .defcon-accordion-header {
-      font-size: 1.1rem;
-      padding: 15px 0;
-    }
-  }
-
-  /* Animation Enhancements */
-  @keyframes defcon-fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .defcon-faq-container {
-    animation: defcon-fadeIn 0.6s ease forwards;
-  }
-</style>     
-
-<div class="defcon-faq-section" style="background:#fff; padding:60px 0; font-family: 'Inter', sans-serif;">
-
-<div class="defcon-faq-container">
-  <div class="defcon-faq-header-col">
-    <h2 class="defcon-faq-title rb-fade-in">Frequently Asked Questions</h2>
-  </div>
-  
-  <div class="defcon-faq-content-col">
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What services does your company offer?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We provide a comprehensive suite of professional services including web design, development, UX/UI design, branding, and digital strategy. Our team specializes in creating custom solutions tailored to your business needs. For specific examples, please visit our <a href="#" class="defcon-faq-link">portfolio page</a> or review our <a href="#" class="defcon-faq-link">services breakdown</a>.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>How long does a typical project take?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Project timelines vary based on scope and complexity. A standard website typically takes 6-8 weeks from kickoff to launch, while more complex applications may require 3-6 months. We provide a detailed timeline during our <a href="#" class="defcon-faq-link">discovery phase</a> after understanding your specific requirements.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What is your pricing structure?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We offer both fixed-price projects for well-defined scopes and time-and-materials engagements for more flexible requirements. Our pricing is transparent and tailored to each project's needs. For a detailed quote, please <a href="#" class="defcon-faq-link">contact our sales team</a> or use our <a href="#" class="defcon-faq-link">project calculator</a>.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>Do you provide ongoing support after launch?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Yes, we offer several <a href="#" class="defcon-faq-link">maintenance plans</a> to ensure your digital solution continues to perform optimally. Our support services include security updates, performance optimization, content updates, and technical support. All new projects include 30 days of complimentary post-launch support.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What technologies do you specialize in?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Our team is proficient in modern web technologies including React, Vue.js, Angular, Node.js, Python, PHP, and various CMS platforms. We stay at the forefront of technology trends to deliver cutting-edge solutions. View our complete <a href="technology-stack.html" class="defcon-faq-link">technology stack</a> for more details.</p>
-        </div>
-      </div>
-    </div>
-
-  <p style="margin-top: 4rem; margin-bottom: 3rem; font-size: 16px; color: #06273e; font-weight: 600;">Have more questions? <a href="contactus.html" style="color: #0091ff; text-decoration: none; border-bottom: none; font-weight: 400;">Contact us</a></p>
-
-  </div>
-</div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const accordionHeaders = document.querySelectorAll('.defcon-accordion-header');
-    
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const item = this.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all other accordion items
-        document.querySelectorAll('.defcon-accordion-item').forEach(accordionItem => {
-          if (accordionItem !== item) {
-            accordionItem.classList.remove('active');
-            accordionItem.querySelector('.defcon-accordion-header').classList.remove('active');
-          }
-        });
-        
-        // Toggle current item
-        if (!isActive) {
-          item.classList.add('active');
-          this.classList.add('active');
-        } else {
-          item.classList.remove('active');
-          this.classList.remove('active');
-        }
-      });
-    });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.defcon-accordion-item').forEach(item => {
-      observer.observe(item);
-    });
-  });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Follow Us Bar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>SDKs & Libraries | DEFCON</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-accent: #1199fa;
+            --dark-bg: #010119;
+            --light-text: #fff;
+            --light-bg: #f4f4f4;
+            --medium-text: #e5e5e5;
+            --dark-text: #000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s ease;
+            --section-padding: 80px 0;
+            --container-max-width: 1200px;
+            --border-radius: 12px;
+        }
+
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--medium-text);
+            
+            overflow-x: hidden;
+        }
+
+        .sdk-libraries-container {
+            max-width: 100%;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--light-text);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--primary-accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--light-text);
+        }
+
+        /* Layout Utilities */
+        .sdk-section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .sdk-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .sdk-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .sdk-flex {
+            display: flex;
+            gap: 30px;
+        }
+
+        .sdk-text-center {
+            text-align: center;
+        }
+
+        .sdk-btn {
+            display: inline-block;
+            background-color: #0067b6;
+            color: var(--light-text);
+            padding: 7px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
             font-family: 'Inter', sans-serif;
         }
 
-        .follow-container {
-            background-color: #ffffff;
-            color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .sdk-btn-outline {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
         }
 
-        .follow-bar {
-            padding: 30px 0;
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+        .sdk-btn-outline:hover {
+            background-color: #e5e5e532;
         }
 
-        .follow-content {
+        /* Hero Section */
+        .sdk-hero {
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .follow-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #06273e;
-            white-space: nowrap;
-            line-height: 1;
-            
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .social-icons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 37px;
-            height: 37px;
-            border-radius: 50%;
-            color: #f8f9fa;
-            text-decoration: none;
             position: relative;
             overflow: hidden;
-            backface-visibility: hidden;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(1, 1, 25, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80') center/cover no-repeat;
         }
 
-        .social-icons:hover {
-          background-color: #ececec1b;
-        }
-
-        .social-icons i {
-            font-size: 1.2rem;
-            z-index: 2;
+        .sdk-hero-content {
+            max-width: 800px;
             position: relative;
+            z-index: 2;
         }
 
-        .social-icons::before {
-            content: '';
+        .sdk-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, var(--primary-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sdk-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            color: var(--medium-text);
+        }
+
+        .sdk-hero-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sdk-hero-glow {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0091ff;
-            transform: scale(0);
-            transition: transform 0.3s ease;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.2) 0%, rgba(17, 153, 250, 0) 70%);
+            filter: blur(40px);
+            z-index: 1;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .follow-bar {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-               
-            }
+        .sdk-hero-glow-1 {
+            top: -100px;
+            right: -100px;
+        }
+
+        .sdk-hero-glow-2 {
+            bottom: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Quickstart Section - Asymmetrical Layout */
+        .sdk-quickstart {
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(1, 1, 25, 0.738) 100%), url(thumbnails/Gemini_Generated_Image_xaoghnxaoghnxaog.png) center/cover no-repeat;
+        }
+
+        .sdk-quickstart-grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .sdk-quickstart-content {
+            padding-right: 40px;
+        }
+
+        .sdk-quickstart-content p {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .sdk-quickstart-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .sdk-quickstart-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            transition: var(--transition);
+        }
+
+
+        .sdk-quickstart-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        } 
+
+        .sdk-quickstart-card p {
+            font-weight: 600;
+        }
+
+        .sdk-quickstart-card-icon {
+            width: 24px;
+            height: 24px;
+            padding: 1rem;
+            color: #50aff7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Integration Tutorials - Z Layout */
+        .sdk-integrations {
+            background-color: var(--dark-bg);
+        }
+
+        .sdk-integrations-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .sdk-integration-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .sdk-integration-card p {
+            font-weight: 600;
+        }
+
+        .sdk-integration-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--light-text);
+        }
+
+        /* Use Cases - F Layout */
+        .sdk-usecases {
+            background: linear-gradient(180deg, #091f5b 0%, var(--dark-bg) 100%);
+        }
+
+        .sdk-usecases-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .sdk-usecase-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .sdk-usecase-number {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50px; 
+            padding: 10px;
+            background-color: #0071c7;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            font-weight: 700;
+            width: fit-content;
+        }
+
+        .sdk-usecase-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .sdk-usecase-content p {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #95a4d0;
+        }
+
+        /* Code Examples - Asymmetrical Layout */
+        .sdk-code-examples {
+            background-color: var(--dark-bg);
+        }
+
+        .sdk-code-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sdk-code-tab {
+            padding: 4px 16px;
+            background-color: var(--card-bg);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+        }
+
+        .sdk-code-tab.active {
+            background-color: #0067b6;
+            color: var(--light-text);
+        }
+
+        .sdk-code-container {
+            background-color: #0a0a1a;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        .sdk-code-header {
+            background-color: #151525;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sdk-code-body {
+            padding: 20px;
+        }
+
+        .sdk-code-block {
+            background-color: #0f0f1f;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: monospace;
+            overflow-x: auto;
+            color: var(--medium-text);
+            display: none;
+        }
+
+        .sdk-code-block.active {
+            display: block;
+        }
+
+        .sdk-code-copy {
+            background-color: transparent;
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .sdk-code-copy:hover {
+            background-color: #ffffff23;
+        }
+
+        /* Best Practices - Accordion Layout */
+        .sdk-best-practices {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #020230 100%);
+        }
+
+        .sdk-accordion-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .sdk-accordion-item {
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-bottom: 1px solid white;
+        }
+
+        .sdk-accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .sdk-accordion-header h3 {
+            margin-bottom: 0;
+        }
+
+        .sdk-accordion-icon {
+            transition: var(--transition);
+        }
+
+        .sdk-accordion-item.active .sdk-accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .sdk-accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .sdk-accordion-content p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .sdk-accordion-content ul {
+            list-style: none;
+        }
+
+        .sdk-accordion-item.active .sdk-accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* Deployment Guides - Z Layout */
+        .sdk-deployment {
+            background-color: var(--dark-bg);
+        }
+
+        .sdk-deployment-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .sdk-deployment-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+        }
+
+        .sdk-deployment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sdk-deployment-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             
-            .follow-content {
-                flex-direction: column;
-                gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .sdk-deployment-card p {
+            font-weight: 600;
+            color: #85c6f7;
+        }
+
+        /* Architecture Blueprints - F Layout */
+        .sdk-architecture {
+            background: linear-gradient(180deg, #01011a 0%, var(--dark-bg) 100%);
+        }
+
+        .sdk-architecture-grid {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .sdk-architecture-content p {
+            font-weight: 600;
+            color: #9a95b3;
+        }
+
+        .sdk-architecture-image {
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(17, 153, 250, 0.05) 100%);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sdk-architecture-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-text);
+        }
+
+        /* CTA Section */
+        .sdk-cta {
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            color: var(--light-text);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .sdk-cta h2 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .sdk-cta p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.2rem;
+        }
+
+        .sdk-cta .sdk-btn {
+            background-color: var(--light-text);
+            color: var(--dark-text);
+        }
+
+        .sdk-cta .sdk-btn:hover {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3rem;
             }
-            
-            .social-icons {
-                justify-content: center;
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .sdk-quickstart-grid,
+            .sdk-usecases-grid,
+            .sdk-architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sdk-integrations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sdk-deployment-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 400px) {
-            .social-icons-container {
-                gap: 8px;
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
             }
-            
-            .social-icons {
-                width: 36px;
-                height: 36px;
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .sdk-section {
+                padding: 60px 0;
+            }
+
+            .sdk-integrations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sdk-hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sdk-usecase-item {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .sdk-section {
+                padding: 40px 0;
+            }
+
+            .sdk-container {
+                padding: 0 15px;
             }
         }
     </style>
 </head>
+<body>
+    <div class="sdk-libraries-container">
+        <!-- Hero Section -->
+        <section class="sdk-hero sdk-section">
+            <div class="sdk-container">
+                <div class="sdk-hero-content">
+                    <h1>SDKs & Libraries</h1>
+                    <p>Practical tutorials that teach you how to build with our technology — from zero to production.</p>
+                    <div class="sdk-hero-btns">
+                        <a href="#integrations" class="sdk-btn sdk-btn-outline">View Documentation
+                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32" style="vertical-align: middle;">
+                                <path fill="#ffffff" d="m21.188 9.28l-1.407 1.44L24.063 15H4v2h20.063l-4.282 4.28l1.407 1.44l6-6l.72-.72l-.72-.72l-6-6z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sdk-hero-glow sdk-hero-glow-1"></div>
+            <div class="sdk-hero-glow sdk-hero-glow-2"></div>
+        </section>
 
-</html>
+        <!-- Quickstart Tutorials -->
+        <section id="quickstart" class="sdk-quickstart sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Quickstart Tutorials</h2>
+                <div class="sdk-grid sdk-quickstart-grid">
+                    <div class="sdk-quickstart-content">
+                        <h3>Beginner-friendly guides to get you started</h3>
+                        <p>Perfect for new developers joining our ecosystem. These tutorials will help you set up your environment and make your first API call in minutes.</p>
+                        <a href="page.html" class="sdk-btn">View All Tutorials
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32" style="vertical-align: middle;">
+                                <path fill="#ffffff" d="m21.188 9.28l-1.407 1.44L24.063 15H4v2h20.063l-4.282 4.28l1.407 1.44l6-6l.72-.72l-.72-.72l-6-6z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="sdk-quickstart-cards">
+                        <div class="sdk-quickstart-card">
+                            <h3>
+                                <span class="sdk-quickstart-card-icon">1</span>
+                                Getting Started with the DEFCON API
+                            </h3>
+                            <p>Learn the basics of our API and set up your development environment.</p>
+                        </div>
+                        <div class="sdk-quickstart-card">
+                            <h3>
+                                <span class="sdk-quickstart-card-icon">2</span>
+                                Authenticate Your First Request
+                            </h3>
+                            <p>Understand our authentication flow and make your first authenticated API call.</p>
+                        </div>
+                        <div class="sdk-quickstart-card">
+                            <h3>
+                                <span class="sdk-quickstart-card-icon">3</span>
+                                Using Our Sandbox Environment
+                            </h3>
+                            <p>Test your integration safely in our sandbox before going live.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Tutorials -->
+        <section id="integrations" class="sdk-integrations sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Integration Tutorials</h2>
+                <div class="sdk-grid sdk-integrations-grid">
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#62adfe" d="M7 23q-.825 0-1.412-.587T5 21V3q0-.825.588-1.412T7 1h10q.825 0 1.413.588T19 3v3.1q.45.175.725.55T20 7.5v2q0 .475-.275.85T19 10.9V21q0 .825-.587 1.413T17 23zm0-2h10V3H7zm0 0V3zm2.9-5.5l3.1-3.1V15h2V9H9v2h2.6l-3.1 3.1z"/></svg>
+                        </div>
+                        <h3>Mobile App Integration</h3>
+                        <p>Connect your mobile app to our backend services with step-by-step instructions.</p>
+                    </div>
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="#6cbffe"><g fill="none" stroke="#6cbffe" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="m21.255 7.134l-.494-.857c-.373-.648-.56-.972-.877-1.1c-.71-.29-1.908.32-2.615.52c-.627.144-1.165-.058-1.696-.364a2 2 0 0 1-.788-.968c-.214-.64-.358-1.767-.925-2.176C13.6 2 13.252 2 12.557 2h-1.114c-.695 0-1.042 0-1.303.189c-.567.409-.71 1.536-.925 2.176c-.213.554-.633.878-1.125 1.162a2 2 0 0 1-1.359.17c-.706-.2-1.905-.81-2.615-.52c-.317.128-.504.452-.877 1.1l-.494.857c-.35.607-.525.91-.49 1.234c.083.803 1.253 1.682 1.767 2.257c.252.319.43.875.43 1.375s-.178 1.056-.43 1.375c-.514.575-1.684 1.454-1.768 2.257c-.034.324.141.627.491 1.234l.494.857c.373.648.56.972.877 1.1c.71.29 1.909-.32 2.615-.52c.982-.226 2.123.39 2.484 1.332c.214.64.358 1.767.925 2.176c.261.189.608.189 1.303.189h1.114c.695 0 1.042 0 1.303-.189c.262-.189.372-.518.591-1.178c.247-.74.42-1.517 1.122-1.966c.53-.306 1.069-.508 1.696-.364c.707.2 1.905.81 2.615.52c.317-.128.504-.452.877-1.1l.494-.857c.35-.607.525-.91.49-1.234c-.084-.803-1.253-1.682-1.767-2.257c-.583-.738-.582-2.012 0-2.75c.514-.575 1.683-1.454 1.768-2.257c.034-.324-.141-.627-.491-1.234"/><path d="m7.438 14.992l1.841-5.525a.694.694 0 0 1 1.317 0l1.842 5.525m-4-2h3m4-4v6"/></g></svg>
+                        </div>
+                        <h3>AI/ML Endpoints</h3>
+                        <p>Integrate our AI and machine learning capabilities into your applications.</p>
+                    </div>
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path stroke="#6cbffe" d="M9.5 9.5h-2c-2.346 0-3.518 0-4.326.62a3 3 0 0 0-.554.554C2 11.482 2 12.654 2 15s0 3.518.62 4.326a3 3 0 0 0 .554.554c.808.62 1.98.62 4.326.62h2c2.346 0 3.518 0 4.326-.62a3 3 0 0 0 .554-.554c.62-.808.62-1.98.62-4.326s0-3.518-.62-4.326a3 3 0 0 0-.554-.554c-.808-.62-1.98-.62-4.326-.62m2.25 0V6.75a3.25 3.25 0 0 0-6.5 0V9.5"/><path fill="#6cbffe" d="m21.38 19.326l.595.457zm-.554.554l.457.595zm0-9.76l.457-.595zm.554.554l.595-.457zM18 9.5a.75.75 0 0 0 1.5 0zm-.999-.75a.75.75 0 1 0-.002 1.5zm-.002 11a.75.75 0 1 0 .002 1.5zM13.653 3.2a.75.75 0 1 0 .694 1.33zM21.25 15c0 1.19-.001 2.02-.073 2.656c-.07.62-.199.962-.392 1.214l1.19.913c.427-.556.608-1.205.693-1.96c.083-.738.082-1.668.082-2.823zm-.465 3.87a2.3 2.3 0 0 1-.415.415l.913 1.19q.392-.301.692-.692zM22.75 15c0-1.155.001-2.085-.082-2.824c-.085-.754-.266-1.403-.693-1.959l-1.19.913c.193.252.322.594.392 1.214c.072.636.073 1.466.073 2.656zm-2.38-4.285q.235.181.415.415l1.19-.913q-.301-.392-.692-.692zM19.5 9.5V6.75H18V9.5zm0-2.75a4 4 0 0 0-4-4v1.5a2.5 2.5 0 0 1 2.5 2.5zm-2.501 3.5c1.018.002 1.736.014 2.289.09c.538.072.848.196 1.082.375l.913-1.19c-.515-.395-1.11-.58-1.794-.672c-.669-.09-1.49-.101-2.488-.103zm.002 11c.999-.002 1.82-.012 2.488-.103c.685-.092 1.279-.277 1.794-.672l-.913-1.19c-.234.179-.544.303-1.082.376c-.553.075-1.271.087-2.29.089zM14.347 4.53c.344-.18.736-.281 1.153-.281v-1.5c-.665 0-1.293.163-1.847.451z"/><path stroke="#6cbffe" d="M6 15s1 .5 1.5 2c0 0 1.5-3 3.5-4"/></g></svg>
+                        </div>
+                        <h3>Authentication System</h3>
+                        <p>Implement our secure authentication system in your projects.</p>
+                    </div>
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 32 32"><circle cx="18" cy="26" r="1" fill="#6cbffe"/><path fill="#6cbffe" d="M28 20c1.103 0 2-.897 2-2v-4c0-1.103-.897-2-2-2h-1V7c0-1.103-.897-2-2-2h-5V4c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v1H7c-1.103 0-2 .897-2 2v5.142c-1.72.447-3 2-3 3.858s1.28 3.41 3 3.858V25c0 1.103.897 2 2 2h7v1c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-4c0-1.103-.897-2-2-2h-1v-2h1Zm0-2h-4v-4h4v4ZM14 4h4v4h-4V4Zm-2 3v1c0 1.103.897 2 2 2h4c1.103 0 2-.897 2-2V7h5v5h-1c-1.103 0-2 .897-2 2v1H9.858A3.994 3.994 0 0 0 7 12.142V7h5Zm-8 9c0-1.103.897-2 2-2s2 .897 2 2s-.897 2-2 2s-2-.897-2-2Zm24 12H16v-4h12v4Zm-3-6h-9c-1.103 0-2 .897-2 2v1H7v-5.142A3.994 3.994 0 0 0 9.858 17H22v1c0 1.103.897 2 2 2h1v2Z"/></svg>
+                        </div>
+                        <h3>Microservices Architecture</h3>
+                        <p>Learn how to build with our microservices-based architecture.</p>
+                    </div>
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="#6cbffe"><g fill="none" stroke="#6cbffe" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"><path d="M11.975 7.7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m-6.8 11.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m13.5 0a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3"/><path d="M15.5 21c1.8 1.8 4.6 1.8 6.4 0s1.8-4.6 0-6.4c-1.5-1.5-3.8-1.7-5.5-.7l-3.773-6.355"/><path d="M3.95 13.4c-1.8.5-3.2 2.3-3.2 4.3c0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5h7.43"/><path d="M16.375 7.4c.3-1.5-.1-3.1-1.2-4.2c-1.8-1.8-4.6-1.8-6.4 0c-2 2.1-1.7 5.5.9 7.1l-3.586 6.202"/></g></svg>
+                        </div>
+                        <h3>Webhooks & Events</h3>
+                        <p>Set up webhooks and event listeners to react to real-time data.</p>
+                    </div>
+                    <div class="sdk-integration-card">
+                        <div class="sdk-integration-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 16 16"><path fill="#6cbffe" d="M8 3a3 3 0 0 0-3 3a.5.5 0 0 1-.5.5h-.25a2.25 2.25 0 0 0 0 4.5h.772a5.5 5.5 0 0 0 .185 1H4.25a3.25 3.25 0 0 1-.22-6.493a4 4 0 0 1 7.887-.323a5.49 5.49 0 0 0-1.084-.174A3.001 3.001 0 0 0 8 3Zm7 7.5a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm-4.854-2.353l-2 2a.5.5 0 0 0 .708.707L10 9.707V12.5a.5.5 0 0 0 1 0V9.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2A.499.499 0 0 0 10.503 8h-.006a.498.498 0 0 0-.348.144l-.003.003Z"/></svg>
+                        </div>
+                        <h3>Cloud Services</h3>
+                        <p>Integrate with our cloud infrastructure for scalable applications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Use Cases -->
+        <section class="sdk-usecases sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Practical Use Cases</h2>
+                <div class="sdk-grid sdk-usecases-grid">
+                    <div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">1</div>
+                            <div class="sdk-usecase-content">
+                                <h3>E-commerce Checkout Flow</h3>
+                                <p>Build a complete checkout experience using our payment and order management APIs.</p>
+                            </div>
+                        </div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">2</div>
+                            <div class="sdk-usecase-content">
+                                <h3>Smart Device Controls</h3>
+                                <p>Add IoT device management to your applications using our IoT services.</p>
+                            </div>
+                        </div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">3</div>
+                            <div class="sdk-usecase-content">
+                                <h3>Data Storage & Retrieval</h3>
+                                <p>Learn how to store and retrieve data efficiently using DEFCON Cloud.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">4</div>
+                            <div class="sdk-usecase-content">
+                                <h3>Blockchain Transaction Validation</h3>
+                                <p>Implement secure transaction validation using our Web3/blockchain modules.</p>
+                            </div>
+                        </div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">5</div>
+                            <div class="sdk-usecase-content">
+                                <h3>Real-time Analytics Dashboard</h3>
+                                <p>Create dashboards that display real-time data from our analytics APIs.</p>
+                            </div>
+                        </div>
+                        <div class="sdk-usecase-item">
+                            <div class="sdk-usecase-number">6</div>
+                            <div class="sdk-usecase-content">
+                                <h3>Multi-tenant Applications</h3>
+                                <p>Build applications that serve multiple customers with data isolation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code-Along Examples -->
+        <section class="sdk-code-examples sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Code-Along Examples</h2>
+                <p class="sdk-text-center" style="max-width: 700px; margin: 0 auto 40px; font-weight: 600; font-size: 1.2rem;">Copy-ready code examples in multiple programming languages with setup instructions and troubleshooting tips.</p>
+                
+                <div class="sdk-code-tabs">
+                    <div class="sdk-code-tab active" data-language="javascript">JavaScript</div>
+                    <div class="sdk-code-tab" data-language="python">Python</div>
+                    <div class="sdk-code-tab" data-language="java">Java</div>
+                    <div class="sdk-code-tab" data-language="php">PHP</div>
+                    <div class="sdk-code-tab" data-language="csharp">C#</div>
+                    <div class="sdk-code-tab" data-language="go">Go</div>
+                </div>
+                
+                <div class="sdk-code-container">
+                    <div class="sdk-code-header">
+                        <h3>Making Your First API Call</h3>
+                        <button class="sdk-code-copy">Copy Code</button>
+                    </div>
+                    <div class="sdk-code-body">
+                        <!-- JavaScript Code Block -->
+                        <div class="sdk-code-block active" data-language="javascript">
+                            <pre><code>// Initialize the DEFCON SDK
+const defcon = require('defcon-sdk');
+
+// Configure with your API key
+const client = new defcon.Client({
+  apiKey: 'your-api-key-here',
+  environment: 'sandbox' // or 'production'
+});
+
+// Make your first API call
+async function getUsers() {
+  try {
+    const users = await client.users.list();
+    console.log('Users:', users);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+getUsers();</code></pre>
+                        </div>
+                        
+                        <!-- Python Code Block -->
+                        <div class="sdk-code-block" data-language="python">
+                            <pre><code># Import the DEFCON SDK
+import defcon
+
+# Configure with your API key
+client = defcon.Client(
+    api_key='your-api-key-here',
+    environment='sandbox'  # or 'production'
+)
+
+# Make your first API call
+try:
+    users = client.users.list()
+    print(f"Users: {users}")
+except Exception as error:
+    print(f"Error: {error}")</code></pre>
+                        </div>
+                        
+                        <!-- Java Code Block -->
+                        <div class="sdk-code-block" data-language="java">
+                            <pre><code>// Import the DEFCON SDK
+import com.defcon.sdk.*;
+
+// Configure with your API key
+DefconClient client = DefconClient.builder()
+    .apiKey("your-api-key-here")
+    .environment("sandbox") // or "production"
+    .build();
+
+// Make your first API call
+try {
+    List&lt;User&gt; users = client.users().list();
+    System.out.println("Users: " + users);
+} catch (DefconException e) {
+    System.err.println("Error: " + e.getMessage());
+}</code></pre>
+                        </div>
+                        
+                        <!-- PHP Code Block -->
+                        <div class="sdk-code-block" data-language="php">
+                            <pre><code>// Require the DEFCON SDK
+require_once 'vendor/autoload.php';
+
+use Defcon\DefconClient;
+
+// Configure with your API key
+$client = new DefconClient([
+    'api_key' => 'your-api-key-here',
+    'environment' => 'sandbox' // or 'production'
+]);
+
+// Make your first API call
+try {
+    $users = $client->users->list();
+    echo "Users: " . print_r($users, true);
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}</code></pre>
+                        </div>
+                        
+                        <!-- C# Code Block -->
+                        <div class="sdk-code-block" data-language="csharp">
+                            <pre><code>// Import the DEFCON SDK
+using Defcon.Sdk;
+
+// Configure with your API key
+var client = new DefconClient(new DefconClientOptions
+{
+    ApiKey = "your-api-key-here",
+    Environment = "sandbox" // or "production"
+});
+
+// Make your first API call
+try
+{
+    var users = await client.Users.ListAsync();
+    Console.WriteLine($"Users: {users}");
+}
+catch (DefconException ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}</code></pre>
+                        </div>
+                        
+                        <!-- Go Code Block -->
+                        <div class="sdk-code-block" data-language="go">
+                            <pre><code>package main
+
+import (
+    "fmt"
+    "log"
+    "github.com/defcon/sdk-go"
+)
+
+func main() {
+    // Configure with your API key
+    client := defcon.NewClient(
+        defcon.WithAPIKey("your-api-key-here"),
+        defcon.WithEnvironment("sandbox"), // or "production"
+    )
+    
+    // Make your first API call
+    users, err := client.Users.List()
+    if err != nil {
+        log.Fatalf("Error: %v", err)
+    }
+    
+    fmt.Printf("Users: %+v\n", users)
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="sdk-best-practices sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Best Practices</h2>
+                <p class="sdk-text-center" style="max-width: 700px; margin: 0 auto 40px; font-weight: 600; font-size: 1.1rem;">Learn how to use our tools properly with these essential guidelines and recommendations.</p>
+                
+                <div class="sdk-accordion-container">
+                    <div class="sdk-accordion-item">
+                        <div class="sdk-accordion-header">
+                            <h3>Security and Encryption</h3>
+                            <span class="sdk-accordion-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20"><path fill="#ffffff" d="M10 0c.423 0 .766.343.766.766v8.467h8.468a.766.766 0 1 1 0 1.533h-8.468v8.468a.766.766 0 1 1-1.532 0l-.001-8.468H.766a.766.766 0 0 1 0-1.532l8.467-.001V.766A.768.768 0 0 1 10 0Z"/></svg>                            </span>
+                        </div>
+                        <div class="sdk-accordion-content">
+                            <p>Always use HTTPS for all API requests. Store API keys securely and never expose them in client-side code. Implement proper encryption for sensitive data both in transit and at rest.</p>
+                            <ul class="sdk-accordion-content-sv">
+                                <li>Use environment variables for API keys</li>
+                                <li>Implement request signing where available</li>
+                                <li>Regularly rotate access tokens</li>
+                                <li>Follow the principle of least privilege</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="sdk-accordion-item">
+                        <div class="sdk-accordion-header">
+                            <h3>Error Handling and Retries</h3>
+                            <span class="sdk-accordion-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20"><path fill="#ffffff" d="M10 0c.423 0 .766.343.766.766v8.467h8.468a.766.766 0 1 1 0 1.533h-8.468v8.468a.766.766 0 1 1-1.532 0l-.001-8.468H.766a.766.766 0 0 1 0-1.532l8.467-.001V.766A.768.768 0 0 1 10 0Z"/></svg>                            </span>
+                            </span>
+                        </div>
+                        <div class="sdk-accordion-content">
+                            <p>Implement robust error handling with exponential backoff for retries. Always check for specific error codes before retrying requests.</p>
+                            <ul>
+                                <li>Use exponential backoff for retries (1s, 2s, 4s, etc.)</li>
+                                <li>Implement circuit breakers for repeated failures</li>
+                                <li>Log errors with sufficient context for debugging</li>
+                                <li>Handle rate limiting (429) responses gracefully</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="sdk-accordion-item">
+                        <div class="sdk-accordion-header">
+                            <h3>API Rate Limiting</h3>
+                            <span class="sdk-accordion-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20"><path fill="#ffffff" d="M10 0c.423 0 .766.343.766.766v8.467h8.468a.766.766 0 1 1 0 1.533h-8.468v8.468a.766.766 0 1 1-1.532 0l-.001-8.468H.766a.766.766 0 0 1 0-1.532l8.467-.001V.766A.768.768 0 0 1 10 0Z"/></svg>                            </span>
+                            </span>
+                        </div>
+                        <div class="sdk-accordion-content">
+                            <p>Respect our API rate limits to ensure optimal performance for all users. Implement proper throttling in your applications.</p>
+                            <ul>
+                                <li>Check rate limit headers in API responses</li>
+                                <li>Implement client-side request queuing</li>
+                                <li>Use bulk endpoints when available to reduce request count</li>
+                                <li>Monitor your usage through our dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="sdk-accordion-item">
+                        <div class="sdk-accordion-header">
+                            <h3>Microservices Optimization</h3>
+                            <span class="sdk-accordion-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20"><path fill="#ffffff" d="M10 0c.423 0 .766.343.766.766v8.467h8.468a.766.766 0 1 1 0 1.533h-8.468v8.468a.766.766 0 1 1-1.532 0l-.001-8.468H.766a.766.766 0 0 1 0-1.532l8.467-.001V.766A.768.768 0 0 1 10 0Z"/></svg>                            </span>
+                            </span>
+                        </div>
+                        <div class="sdk-accordion-content">
+                            <p>Design your microservices architecture for resilience and scalability when integrating with our platform.</p>
+                            <ul>
+                                <li>Implement service discovery patterns</li>
+                                <li>Use asynchronous communication where appropriate</li>
+                                <li>Design for failure with proper fallback mechanisms</li>
+                                <li>Monitor inter-service communication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment Guides -->
+        <section class="sdk-deployment sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Deployment Guides</h2>
+                <p class="sdk-text-center" style="max-width: 700px; margin: 0 auto 40px; font-weight: 600; font-size: 1.2rem;">When you're ready to push your builds live, follow these guides for smooth deployment to production.</p>
+                
+                <div class="sdk-grid sdk-deployment-grid">
+                    <div class="sdk-deployment-card">
+                        <h3>
+                            Deploying to the Cloud
+                        </h3>
+                        <p>Step-by-step instructions for deploying DEFCON-powered applications to major cloud platforms including AWS, Azure, and Google Cloud.</p>
+                        <a href="page.html" class="sdk-btn sdk-btn-outline" style="margin-top: 15px;">View Guide</a>
+                    </div>
+                    
+                    <div class="sdk-deployment-card">
+                        <h3>
+                            CI/CD Pipeline Setup
+                        </h3>
+                        <p>Configure continuous integration and deployment pipelines with our tools to automate your testing and deployment processes.</p>
+                        <a href="page.html" class="sdk-btn sdk-btn-outline" style="margin-top: 15px;">View Guide</a>
+                    </div>
+                    
+                    <div class="sdk-deployment-card">
+                        <h3>
+                            Securing Production Requests
+                        </h3>
+                        <p>Best practices for securing your production environment, including certificate management, firewall configuration, and monitoring.</p>
+                        <a href="page.html" class="sdk-btn sdk-btn-outline" style="margin-top: 15px;">View Guide</a>
+                    </div>
+                    
+                    <div class="sdk-deployment-card">
+                        <h3>
+                            Monitoring & Analytics
+                        </h3>
+                        <p>Set up comprehensive monitoring and analytics for your deployed applications to track performance and user behavior.</p>
+                        <a href="page.html" class="sdk-btn sdk-btn-outline" style="margin-top: 15px;">View Guide</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Blueprints -->
+        <section class="sdk-architecture sdk-section">
+            <div class="sdk-container">
+                <h2 class="sdk-text-center">Architecture Blueprints</h2>
+                <p class="sdk-text-center" style="max-width: 700px; margin: 0 auto 40px; font-weight: 600; font-size: 1.2rem;">Developer-oriented diagrams showing recommended setups and integration patterns.</p>
+                
+                <div class="sdk-grid sdk-architecture-grid">
+                    <div class="sdk-architecture-content">
+                        <h3>Enterprise Application Architecture</h3>
+                        <p>This blueprint illustrates the recommended architecture for enterprise-grade applications using our platform. It includes microservices communication patterns, data flow, and security layers.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <h4>Key Components:</h4>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>API Gateway for request routing</li>
+                                <li>Authentication service for user management</li>
+                                <li>Microservices for business logic</li>
+                                <li>Message queue for asynchronous processing</li>
+                                <li>Database with read replicas for scalability</li>
+                            </ul>
+                            
+                            <a href="page.html" class="sdk-btn">Download Blueprint</a>
+                        </div>
+                    </div>
+                    
+                    <div class="sdk-architecture-image">
+                        <div class="sdk-architecture-placeholder">
+                            <img src="https://imgs.search.brave.com/gQFgZJZQnI3LoUu-nddsxyXBDbS1FY847JAVxg7J67w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS82/MzA2MjEyOTExOTYy/MGE0NDc5MWEyZWIv/NjgyZjI1ZTYyZWMz/YmQ4YTM3OWMzZjEw/X2RpYWdyYW1taW5n/X3NvZnR3YXJlX2Fy/Y2hpdGVjdHVyZV90/aGVfY29tcGxldGVf/Z3VpZGVfYmxvZ19p/bmxpbmVfaW1hZ2Vf/MTQ0MHg4MTBfMDJf/Mngud2VicA" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="sdk-cta sdk-section">
+            <div class="sdk-container">
+                <h2>Ready to Start Building?</h2>
+                <p>Join thousands of developers already building amazing applications with our SDKs and libraries.</p>
+                <a href="page.html" class="sdk-btn">Get Started Now</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.sdk-accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.sdk-accordion-item').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Code tab functionality
+            const codeTabs = document.querySelectorAll('.sdk-code-tab');
+            const codeBlocks = document.querySelectorAll('.sdk-code-block');
+            
+            codeTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const language = this.getAttribute('data-language');
+                    
+                    // Remove active class from all tabs
+                    codeTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all code blocks
+                    codeBlocks.forEach(block => {
+                        block.classList.remove('active');
+                    });
+                    
+                    // Show the selected code block
+                    const selectedBlock = document.querySelector(`.sdk-code-block[data-language="${language}"]`);
+                    if (selectedBlock) {
+                        selectedBlock.classList.add('active');
+                    }
+                });
+            });
+            
+            // Code copy functionality
+            const copyButton = document.querySelector('.sdk-code-copy');
+            
+            copyButton.addEventListener('click', function() {
+                const activeCodeBlock = document.querySelector('.sdk-code-block.active');
+                if (!activeCodeBlock) return;
+                
+                const codeElement = activeCodeBlock.querySelector('pre code');
+                const textArea = document.createElement('textarea');
+                textArea.value = codeElement.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Visual feedback
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
 
 
@@ -4978,6 +3240,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

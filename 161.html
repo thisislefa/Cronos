@@ -1,0 +1,184 @@
+<div class="custom-card-container-wrapper custom-flex custom-justify-center custom-align-center custom-min-height-screen custom-padding-large custom-background-light">
+    <div class="custom-cards-layout custom-display-grid custom-grid-cols-one custom-lg-grid-cols-three custom-gap-medium custom-max-width-extra-large">
+
+        <div class="custom-text-card custom-background-white custom-padding-extra-large custom-border-radius-large custom-shadow-mild custom-display-flex custom-flex-column custom-justify-between custom-align-start">
+            <h2 class="custom-card-title-main custom-font-size-extra-large custom-font-weight-bolder custom-line-height-tight custom-text-dark">STRIKER SCORES WINNER</h2>
+            <button class="custom-action-button custom-background-red custom-text-white custom-padding-y-small custom-padding-x-medium custom-border-radius-small custom-font-weight-medium custom-display-flex custom-align-center custom-gap-small custom-hover-background-dark-red custom-transition-colors">
+                OUR CONTACT <span class="custom-arrow-icon custom-font-size-medium">&rarr;</span>
+            </button>
+        </div>
+
+        <div class="custom-info-card custom-background-dark-blue custom-padding-extra-large custom-border-radius-large custom-shadow-mild custom-display-flex custom-flex-column custom-justify-between">
+            <div class="custom-card-header custom-flex custom-align-baseline custom-gap-small custom-margin-bottom-small">
+                <span class="custom-header-highlight custom-text-red custom-font-size-large custom-font-weight-bold">8K</span>
+                <span class="custom-header-text custom-text-white custom-font-size-medium custom-font-weight-bold custom-letter-spacing-wide">FOOTBALL</span>
+            </div>
+            <p class="custom-card-subheader custom-text-white custom-font-size-large custom-font-weight-bold custom-margin-bottom-medium custom-letter-spacing-wide">COLLABORATIONS</p>
+            <p class="custom-card-description custom-text-white custom-font-size-small custom-line-height-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy euismod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+            </p>
+        </div>
+
+        <div class="custom-image-card custom-background-white custom-padding-zero custom-border-radius-large custom-overflow-hidden custom-shadow-mild custom-display-flex custom-justify-center custom-align-center">
+            <div class="custom-image-placeholder custom-width-full custom-height-full custom-background-gray custom-display-flex custom-justify-center custom-align-center custom-text-dark custom-font-bold custom-font-size-large">
+                <img src="thumbnails/pexels-altabena-10142683.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Custom Styles for non-Tailwind CSS */
+    .custom-card-container-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px; /* padding-large */
+        background-color: #f8f8f8; /* light background */
+        font-family: Arial, sans-serif;
+        box-sizing: border-box; /* Ensures padding doesn't affect overall width/height */
+    }
+
+    .custom-cards-layout {
+        display: grid;
+        grid-template-columns: 1fr; /* grid-cols-one */
+        gap: 24px; /* gap-medium */
+        max-width: 1240px; /* max-width-extra-large */
+        width: 100%;
+    }
+
+    /* Card 1: Text with Button */
+    .custom-text-card {
+        background-color: #fff;
+        padding: 40px; /* padding-extra-large */
+        border-radius: 16px; /* border-radius-large */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-mild */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        min-height: 280px; /* Adjust as needed for visual balance */
+    }
+
+    .custom-card-title-main {
+        font-size: 44px; /* font-size-extra-large */
+        font-weight: 800; /* font-weight-bolder */
+        line-height: 1.1; /* line-height-tight */
+        color: #212121; /* text-dark */
+        margin-bottom: 24px; /* Spacing before button if needed */
+        text-transform: uppercase;
+    }
+
+    .custom-action-button {
+        background-color: #dc2626; /* red */
+        color: #fff;
+        padding: 12px 24px; /* padding-y-small, padding-x-medium */
+        border-radius: 6px; /* border-radius-small */
+        font-weight: 600; /* font-weight-medium */
+        display: flex;
+        align-items: center;
+        gap: 8px; /* gap-small */
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* transition-colors */
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+
+    .custom-action-button:hover {
+        background-color: #991b1b; /* dark-red */
+    }
+
+    .custom-arrow-icon {
+        font-size: 20px; /* font-size-medium */
+    }
+
+    /* Card 2: Blue with Text */
+    .custom-info-card {
+        background-color: #1e3a8a; /* dark-blue */
+        padding: 40px; /* padding-extra-large */
+        border-radius: 16px; /* border-radius-large */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-mild */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #fff;
+    }
+
+    .custom-card-header {
+        display: flex;
+        align-items: baseline;
+        gap: 8px; /* gap-small */
+        margin-bottom: 8px; /* margin-bottom-small */
+        text-transform: uppercase;
+    }
+
+    .custom-header-highlight {
+        color: #dc2626; /* red */
+        font-size: 36px; /* font-size-large */
+        font-weight: 700; /* font-weight-bold */
+    }
+
+    .custom-header-text {
+        color: #fff;
+        font-size: 18px; /* font-size-medium */
+        font-weight: 700; /* font-weight-bold */
+        letter-spacing: 0.05em; /* letter-spacing-wide */
+    }
+
+    .custom-card-subheader {
+        color: #fff;
+        font-size: 24px; /* font-size-large */
+        font-weight: 700; /* font-weight-bold */
+        margin-bottom: 24px; /* margin-bottom-medium */
+        letter-spacing: 0.05em; /* letter-spacing-wide */
+        text-transform: uppercase;
+    }
+
+    .custom-card-description {
+        color: #fff;
+        font-size: 15px; /* font-size-small */
+        line-height: 1.6; /* line-height-relaxed */
+    }
+
+    /* Card 3: Image Placeholder */
+    .custom-image-card {
+        background-color: #fff;
+        padding: 0; /* padding-zero */
+        border-radius: 16px; /* border-radius-large */
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-mild */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 280px; /* Ensure consistent height with other cards on larger screens */
+    }
+
+    .custom-image-placeholder {
+        width: 100%;
+        height: 100%;
+        background-color: #e0e0e0; /* gray placeholder background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555; /* dark placeholder text */
+        font-weight: bold;
+        font-size: 28px; /* font-size-large */
+        text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 1024px) { /* lg breakpoint */
+        .custom-cards-layout {
+            grid-template-columns: 1fr 1fr 1fr; /* lg-grid-cols-three */
+        }
+    }
+
+    @media (max-width: 1023px) { /* Adjust for smaller screens below lg */
+        .custom-text-card, .custom-info-card, .custom-image-card {
+            min-height: 280px; /* Ensure a minimum height for all cards */
+        }
+    }
+</style>
