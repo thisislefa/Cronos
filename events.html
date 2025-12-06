@@ -3,423 +3,684 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon - Events & Webinars</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* Define a custom color palette and font using Tailwind config */
-        :root {
-            /* Light Theme Palette */
-            --color-header-bg: #ffffff; /* White header */
-            --color-accent: #0091ff;
-            --color-text-dark: #1a1a1a; /* Dark text */
-            --color-background-light: #f9f9fd; /* Very light background */
-            --color-text-muted: #555566; /* Muted dark gray */
-            --color-card-bg: #ffffff; /* White card background */
-            --header-height: 55px;
-        }
-    </style>
-
-    <script>
-        /* Custom Tailwind Configuration */
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'light-bg': 'var(--color-background-light)',
-                        'light-card': 'var(--color-card-bg)',
-                        'accent-blue': 'var(--color-accent)',
-                        'muted-text': 'var(--color-text-muted)',
-                        'header-light': 'var(--color-header-bg)',
-                        'date-highlight': '#eef6ff', /* Light blue background for date block */
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        /*
-        =============================================
-        0. BASE & UTILITIES
-        =============================================
-        */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-background-light); /* Light background */
-            color: var(--color-text-dark); /* Dark text */
-            line-height: 1.6;
-            padding-top: var(--header-height); /* For fixed header space */
-        }
-        
-        /* Utility for content max width and centering */
-        .content-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
-            box-sizing: border-box;
-        }
-        
-        /* Placeholder for sticky header (mimicking the header area) */
-        .header-placeholder {
-            height: var(--header-height); 
-            background-color: var(--color-header-bg); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 999;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.1); 
-        }
-
-        /*
-        =============================================
-        1. EVENT CARD STYLES
-        =============================================
-        */
-        .event-card {
-            display: flex;
-            background-color: var(--color-card-bg);
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .date-box {
-            flex-shrink: 0;
-            width: 100px; /* Fixed width for the date column */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--date-highlight);
-            color: var(--color-text-dark);
-            text-align: center;
-            border-right: 1px solid #e0e0e0;
-        }
-
-        .event-content {
-            flex-grow: 1;
-        }
-        
-        /* Button Styles */
-        .cta-button {
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-        
-        .cta-register {
-            background-color: var(--color-accent);
-            color: white;
-        }
-        
-        .cta-register:hover {
-            background-color: #0077d8; /* Darker blue on hover */
-        }
-        
-        .cta-view-details {
-            background-color: #f0f0f5;
-            color: var(--color-text-dark);
-            border: 1px solid #d0d0d0;
-        }
-        
-        .cta-view-details:hover {
-            background-color: #e5e5e8;
-        }
-
-
-        /*
-        =============================================
-        2. RESPONSIVENESS
-        =============================================
-        */
-        @media (max-width: 768px) {
-            .content-container {
-                padding: 0 20px;
-            }
-            .event-card {
-                flex-direction: column;
-            }
-            .date-box {
-                width: 100%;
-                padding: 1rem 0;
-                border-bottom: 1px solid #e0e0e0;
-                border-right: none;
-                flex-direction: row;
-                gap: 1.5rem;
-            }
-            .date-box .month {
-                font-size: 1.125rem; /* text-xl */
-            }
-            .date-box .day {
-                font-size: 2.25rem; /* text-4xl */
-                line-height: 1;
-            }
-            .date-box .year {
-                font-size: 1rem; /* text-base */
-            }
-        }
-    </style>
+    <title>Superpower Mega Menu Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- This div mimics the fixed header for visual layout consistency -->
-    <div class="header-placeholder"></div>
-    
-    <!-- =============================================
-         1. HERO SECTION
-         ============================================= -->
-    <section class="py-20 text-center bg-header-light border-b border-gray-200">
-        <div class="content-container">
-            <h1 class="text-6xl font-extrabold mb-4 leading-tight text-gray-900">
-                Explore Our Events
-            </h1>
-            <p class="text-xl max-w-4xl mx-auto text-gray-600">
-                Join our experts for upcoming webinars, conferences, and exclusive workshops on cloud security, DevOps automation, and digital transformation.
-            </p>
-        </div>
-    </section>
+    <header class="sp-header">
+        <nav class="sp-navbar">
+            <div class="sp-nav-left">
+                <a href="#" class="sp-logo">superpower</a>
+            </div>
 
-    <!-- =============================================
-         2. UPCOMING EVENTS
-         ============================================= -->
-    <section class="py-16">
-        <div class="content-container">
-            <h2 class="text-4xl font-bold mb-10 text-gray-800 border-b pb-3 border-accent-blue/50">
-                Upcoming Webinars & Workshops
-            </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="upcomingEventsContainer">
+            <ul class="sp-nav-center">
+                <li class="sp-nav-item"><a href="#" class="sp-nav-link">How it Works</a></li>
+                <li class="sp-nav-item"><a href="#" class="sp-nav-link">What We Test</a></li>
                 
-                <!-- UPCOMING EVENT 1: ZERO TRUST SECURITY (Expanded) -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box">
-                        <span class="month text-sm font-semibold uppercase text-accent-blue">AUG</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-900">22</span>
-                        <span class="year text-base font-medium text-gray-600">2025</span>
-                    </div>
+                <li class="sp-nav-item sp-dropdown-trigger" id="megaMenuTrigger">
+                    <a href="#" class="sp-nav-link sp-active">Reviews</a>
                     
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
-                            The Future of Zero Trust Security
-                        </h3>
-                        <p class="text-sm font-medium text-accent-blue mb-3">
-                            <i class="fas fa-video mr-1"></i> Live Webinar | 10:00 AM PST
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            Dive deep into the Zero Trust model. We'll cover identity verification, micro-segmentation, and policy enforcement to eliminate implicit trust and secure all access requests, regardless of location.
-                        </p>
-                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
-                    </div>
-                </div>
+                    <div class="sp-mega-menu-container">
+                        <div class="sp-mega-wrapper">
+                            
+                            <div class="sp-mega-banner">
+                                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000&auto=format&fit=crop" alt="Person looking at health data" class="sp-banner-img">
+                                <div class="sp-banner-overlay">
+                                    <span class="sp-banner-subtitle">Learn more about your body</span>
+                                    <h2 class="sp-banner-title">Unlock Your Biological Age Today</h2>
+                                    
+                                    <div class="sp-banner-point point-1">
+                                        <div class="sp-point-marker"></div>
+                                        <span class="sp-point-label">EARLY DETECTION</span>
+                                    </div>
+                                    <div class="sp-banner-point point-2">
+                                        <div class="sp-point-marker"></div>
+                                        <span class="sp-point-label">TRACK YOUR HEALTH</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                <!-- UPCOMING EVENT 2: DEVOPS & K8S (Expanded) -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box">
-                        <span class="month text-sm font-semibold uppercase text-accent-blue">SEP</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-900">15</span>
-                        <span class="year text-base font-medium text-gray-600">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
-                            DevOps Automation with Kubernetes
-                        </h3>
-                        <p class="text-sm font-medium text-accent-blue mb-3">
-                            <i class="fas fa-laptop-code mr-1"></i> Virtual Workshop | 1:00 PM EST
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            This practical workshop explores advanced **GitOps** practices, **Helm** chart management, and CI/CD pipelines to achieve faster, more reliable, and immutable deployments on Kubernetes clusters.
-                        </p>
-                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
-                    </div>
-                </div>
+                            <div class="sp-mega-links-area">
+                                
+                                <div class="sp-mega-col sp-col-product">
+                                    <h3 class="sp-col-header">PRODUCT</h3>
+                                    <ul class="sp-product-list">
+                                        <li>
+                                            <a href="#" class="sp-product-item">
+                                                <img src="https://placehold.co/60x60/ff5a36/ffffff?text=Card" alt="How it Works" class="sp-prod-thumb">
+                                                <div class="sp-prod-info">
+                                                    <h4>How it Works</h4>
+                                                    <p>Get the most from your first premium health membership</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sp-product-item">
+                                                <img src="https://placehold.co/60x60/ff5a36/ffffff?text=Vial" alt="What We Test" class="sp-prod-thumb">
+                                                <div class="sp-prod-info">
+                                                    <h4>What We Test</h4>
+                                                    <p>100+ biomarkers included in your annual superpower test panel</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="sp-product-item">
+                                                <img src="https://placehold.co/60x60/ff5a36/ffffff?text=Team" alt="Organizations" class="sp-prod-thumb">
+                                                <div class="sp-prod-info">
+                                                    <h4>Superpower for Organizations</h4>
+                                                    <p>All the benefits of Superpower tailored to your organization</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                <!-- UPCOMING EVENT 3: ANNUAL SUMMIT (Expanded) -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box">
-                        <span class="month text-sm font-semibold uppercase text-accent-blue">OCT</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-900">03</span>
-                        <span class="year text-base font-medium text-gray-600">2025</span>
+                                <div class="sp-mega-col">
+                                    <h3 class="sp-col-header">LEARN MORE</h3>
+                                    <ul class="sp-link-list">
+                                        <li><a href="#">Reviews</a></li>
+                                        <li><a href="#">FAQs</a></li>
+                                        <li><a href="#">Our Why</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="sp-mega-col">
+                                    <h3 class="sp-col-header">OTHER</h3>
+                                    <ul class="sp-link-list">
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Informed Medical Consent</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                    </ul>
+                                </div>
+                            </div> </div>
                     </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
-                            Defcon Annual Technology Summit
-                        </h3>
-                        <p class="text-sm font-medium text-accent-blue mb-3">
-                            <i class="fas fa-map-marker-alt mr-1"></i> Chicago, IL | All Day
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            A two-day event featuring over 50 speakers across three tracks: **Future AI & ML**, **Cyber Resilience**, and **Sustainable Infrastructure**. Includes networking sessions and live demos.
-                        </p>
-                        <a href="#" class="cta-button cta-register inline-block">Secure Your Ticket</a>
+                    </li>
+                <li class="sp-nav-item"><a href="#" class="sp-nav-link">FAQs</a></li>
+                <li class="sp-nav-item"><a href="#" class="sp-nav-link">Our Why</a></li>
+            </ul>
+
+            <div class="sp-nav-right">
+                <a href="#" class="sp-login-btn">Login</a>
+                <a href="#" class="sp-cta-btn">Try Superpower</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="sp-hero-asym full-width">
+        <div class="sp-hero-wrapper">
+            <div class="sp-hero-content">
+                <span class="sp-hero-tagline">FUTURE-STATE ENTERPRISE IT</span>
+                <h1 class="sp-hero-title">Architecting the next decade of digital infrastructure.</h1>
+                <p class="sp-hero-subtitle">
+                    Our AI-driven solutions empower Fortune 500 companies to transcend traditional constraints, delivering unprecedented scale, security, and velocity in the global market.
+                </p>
+                <a href="#" class="sp-hero-cta-btn">Start Transformation</a>
+                <div class="sp-hero-stats">
+                    <div class="sp-stat-item">
+                        <span class="sp-stat-number">40%</span>
+                        <span class="sp-stat-label">Efficiency Gain</span>
+                    </div>
+                    <div class="sp-stat-item">
+                        <span class="sp-stat-number">24/7</span>
+                        <span class="sp-stat-label">System Autonomy</span>
                     </div>
                 </div>
-                
-                <!-- UPCOMING EVENT 4: NEW DATA GOVERNANCE -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box">
-                        <span class="month text-sm font-semibold uppercase text-accent-blue">NOV</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-900">10</span>
-                        <span class="year text-base font-medium text-gray-600">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-900">
-                            Data Governance & Compliance Workshop
-                        </h3>
-                        <p class="text-sm font-medium text-accent-blue mb-3">
-                            <i class="fas fa-file-shield mr-1"></i> Live Webinar | 9:00 AM PST
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            Navigate complex global regulations like **GDPR and CCPA**. This session provides actionable frameworks for data lineage, quality management, and risk mitigation in a compliant enterprise environment.
-                        </p>
-                        <a href="#" class="cta-button cta-register inline-block">Register Now</a>
-                    </div>
+            </div>
+            <div class="sp-hero-visual-container">
+                <div class="sp-hero-visual">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="sp-tech-grid-svg">
+                        <rect x="0" y="0" width="400" height="400" fill="url(#sp-hero-grad)"/>
+                        <defs>
+                            <linearGradient id="sp-hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff5a36; stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#000000; stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+                        <line x1="100" y1="100" x2="300" y2="300" stroke="rgba(255, 90, 54, 0.7)" stroke-width="1"/>
+                        <line x1="300" y1="100" x2="100" y2="300" stroke="rgba(255, 90, 54, 0.7)" stroke-width="1"/>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- =============================================
-         3. PAST EVENTS
-         ============================================= -->
-    <section class="py-16 bg-light-card border-t border-b border-gray-200">
-        <div class="content-container">
-            <h2 class="text-4xl font-bold mb-10 text-gray-800 border-b pb-3 border-gray-300">
-                Past Events & Recordings
-            </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 opacity-75" id="pastEventsContainer">
-                
-                <!-- PAST EVENT 1: AI ADOPTION (Expanded) -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box bg-gray-100">
-                        <span class="month text-sm font-semibold uppercase text-gray-600">JUN</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-700">10</span>
-                        <span class="year text-base font-medium text-gray-500">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
-                            Introduction to Enterprise AI Adoption
-                        </h3>
-                        <p class="text-sm font-medium text-gray-500 mb-3">
-                            <i class="fas fa-check-circle mr-1"></i> Recorded Webinar
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            Review successful enterprise case studies. This recording covers identifying high-ROI AI use cases, building ethical models, and calculating the true financial impact of AI adoption.
-                        </p>
-                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
-                    </div>
-                </div>
+    <main style="padding: 100px; text-align: center; color: #999;">
+        <h1>Page Content Below Hero Section</h1>
+        <p>Hover over "Reviews" to see the mega menu.</p>
+    </main>
 
-                <!-- PAST EVENT 2: COST OPTIMIZATION (Expanded) -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box bg-gray-100">
-                        <span class="month text-sm font-semibold uppercase text-gray-600">MAY</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-700">01</span>
-                        <span class="year text-base font-medium text-gray-500">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
-                            Multi-Cloud Cost Optimization Strategies
-                        </h3>
-                        <p class="text-sm font-medium text-gray-500 mb-3">
-                            <i class="fas fa-check-circle mr-1"></i> Recorded Workshop
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            Master **FinOps** principles. Learn vendor-specific cost monitoring (Cost Explorer, Azure Advisor), reservation strategies (RI/Savings Plans), and architectural rightsizing for maximum cloud efficiency.
-                        </p>
-                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
-                    </div>
-                </div>
-                
-                <!-- PAST EVENT 3: NEW SERVERLESS COMPUTING -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box bg-gray-100">
-                        <span class="month text-sm font-semibold uppercase text-gray-600">APR</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-700">18</span>
-                        <span class="year text-base font-medium text-gray-500">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
-                            Serverless Computing Deep Dive
-                        </h3>
-                        <p class="text-sm font-medium text-gray-500 mb-3">
-                            <i class="fas fa-check-circle mr-1"></i> Recorded Workshop
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            An in-depth look at **AWS Lambda** and **Azure Functions**. Understand event-driven architecture, optimize cold starts, and implement consumption-based billing models to reduce operational costs.
-                        </p>
-                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
-                    </div>
-                </div>
-
-                <!-- PAST EVENT 4: NEW DISASTER RECOVERY -->
-                <div class="event-card">
-                    <!-- Date Box -->
-                    <div class="date-box bg-gray-100">
-                        <span class="month text-sm font-semibold uppercase text-gray-600">MAR</span>
-                        <span class="day text-4xl font-extrabold leading-none text-gray-700">05</span>
-                        <span class="year text-base font-medium text-gray-500">2025</span>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="event-content p-5">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-700">
-                            Disaster Recovery Planning & Automation
-                        </h3>
-                        <p class="text-sm font-medium text-gray-500 mb-3">
-                            <i class="fas fa-check-circle mr-1"></i> Recorded Webinar
-                        </p>
-                        <p class="text-muted-text mb-4 text-base">
-                            Establish robust recovery goals (RPO/RTO). This recording details automated failover setup, immutable backups, and routine testing protocols to ensure rapid business continuity.
-                        </p>
-                        <a href="#" class="cta-button cta-view-details inline-block">View Recording</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Placeholder Footer -->
-    <footer class="py-10 text-center text-gray-500 text-sm">
-        <p>&copy; 2025 Defcon. All Rights Reserved.</p>
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+
+<style>
+    /* --- General Resets & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Variables extracted from previous context */
+    --primary-dark: #001023;
+    --primary-blue: #0c568b;
+    --accent-orange: #ff5a36; /* New Variable for the hero accent */
+    --text-grey: #a8c5dd;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4; /* Light gray background context from image */
+    -webkit-font-smoothing: antialiased;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+/* --- Navbar Styling --- */
+.sp-header {
+    /* KEY CHANGE: Fixed Positioning for Floating Bar */
+    position: fixed; /* Makes the header float */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures it spans the full width */
+    
+    background-color: #3a3a3a; /* Dark grey from image */
+    padding: 18px 40px;
+    color: #ffffff;
+    z-index: 1000; /* High Z-index ensures it sits above all other content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: A slight shadow to lift it visually */
+}
+
+/* Compensating Margin: Add padding to the top element below the header */
+/* Since the header is fixed, it is taken out of the document flow. 
+   We must push the content down by the height of the fixed header. */
+.sp-hero-asym {
+    /* Using a calculated padding value (approx. header height + existing hero padding) */
+    padding-top: calc(75px + 100px); /* 75px is the estimated header height */
+    
+    background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%); 
+    color: white;
+    overflow: hidden;
+    position: relative;
+    z-index: 50;
+    /* ... rest of hero styles ... */
+}
+/* -------------------------------------- */
+/* --- NEW ASYMMETRICAL HERO STYLES --- */
+/* -------------------------------------- */
+/* ... rest of existing hero styles ... */
+.sp-navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sp-logo {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+.sp-nav-center {
+    display: flex;
+    gap: 32px;
+}
+
+.sp-nav-link {
+    font-weight: 500;
+    font-size: 15px;
+    color: #b0b0b0;
+    padding: 10px 0;
+    position: relative;
+}
+
+.sp-nav-link:hover,
+.sp-nav-link.sp-active {
+    color: #ffffff;
+}
+
+.sp-dropdown-trigger {
+    position: relative;
+}
+
+.sp-dropdown-trigger.is-open .sp-nav-link {
+    color: #ffffff;
+}
+
+
+.sp-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.sp-login-btn {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.sp-cta-btn {
+    background-color: var(--accent-orange); /* Orange CTA */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.sp-cta-btn:hover {
+    background-color: #e04828;
+}
+
+
+/* --- MEGA MENU STYLING (Unchanged for orange) --- */
+
+.sp-mega-menu-container {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    padding-top: 15px;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+}
+
+.sp-dropdown-trigger.is-open .sp-mega-menu-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.sp-mega-wrapper {
+    background-color: #ffffff;
+    width: 1200px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.15);
+    padding: 12px;
+    display: flex;
+    gap: 40px;
+    overflow: hidden;
+}
+
+/* Left Banner */
+.sp-mega-banner {
+    position: relative;
+    width: 340px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 420px;
+}
+
+.sp-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) sepia(0.2) hue-rotate(-10deg);
+}
+
+.sp-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px 30px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.sp-banner-subtitle {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.sp-banner-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 240px;
+}
+
+.sp-banner-point {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sp-point-marker {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+.sp-point-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.point-1 { top: 55%; left: 15%; }
+.point-2 { bottom: 25%; right: 15%; }
+
+
+/* Right Links Area */
+.sp-mega-links-area {
+    flex-grow: 1;
+    padding: 30px 30px 30px 0;
+    display: flex;
+    gap: 40px;
+}
+
+.sp-mega-col {
+    flex: 1;
+}
+
+.sp-col-product {
+    flex: 1.4;
+}
+
+.sp-col-header {
+    font-size: 12px;
+    font-weight: 600;
+    color: #a0a0a0;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+/* Product Item Styling */
+.sp-product-list li {
+    margin-bottom: 28px;
+}
+
+.sp-product-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    group: color;
+}
+
+.sp-prod-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.sp-prod-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+}
+
+/* Hover effect changed to orange */
+.sp-product-item:hover h4 {
+    color: var(--accent-orange);
+}
+
+.sp-prod-info p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666666;
+    max-width: 220px;
+}
+
+/* Standard Link Lists (Learn More / Other) */
+.sp-link-list li {
+    margin-bottom: 16px;
+}
+
+.sp-link-list a {
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+/* Hover effect changed to orange */
+.sp-link-list a:hover {
+    color: var(--accent-orange);
+}
+
+/* -------------------------------------- */
+/* --- NEW ASYMMETRICAL HERO STYLES --- */
+/* -------------------------------------- */
+.sp-hero-asym {
+    /* Changed background to deep black/dark gray gradient */
+    background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%); 
+    padding: 100px 0 0 0;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    z-index: 50;
+}
+
+.sp-hero-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 6fr 4fr; 
+    gap: 40px;
+    align-items: center;
+    min-height: 550px;
+}
+
+.sp-hero-content {
+    padding-left: 40px;
+    padding-bottom: 100px;
+}
+
+.sp-hero-tagline {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-orange); /* Changed to orange */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.sp-hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+    /* Retain gradient text for headline */
+    background: linear-gradient(to right, #ffffff, var(--text-grey));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sp-hero-subtitle {
+    font-size: 20px;
+    color: var(--text-grey);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 550px;
+}
+
+.sp-hero-cta-btn {
+    display: inline-block;
+    background-color: var(--accent-orange); /* Changed to orange */
+    color: var(--primary-dark);
+    padding: 16px 45px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    /* Updated shadow to orange */
+    box-shadow: 0 4px 20px rgba(255, 90, 54, 0.3); 
+}
+
+.sp-hero-cta-btn:hover {
+    transform: translateY(-2px);
+    background-color: white;
+}
+
+.sp-hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+}
+
+.sp-stat-item {
+    text-align: left;
+}
+
+.sp-stat-number {
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sp-stat-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-grey);
+    letter-spacing: 1px;
+}
+
+/* Visual Container Styling */
+.sp-hero-visual-container {
+    height: 100%;
+    position: relative;
+    /* Updated gradient to use orange accent */
+    background: radial-gradient(circle at 100% 50%, rgba(255, 90, 54, 0.1) 0%, rgba(0,0,0,0) 70%);
+}
+
+.sp-hero-visual {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.sp-tech-grid-svg {
+    width: 400px;
+    height: 400px;
+    opacity: 0.6;
+    transform: rotate(10deg);
+    animation: sp-pulse 4s infinite alternate ease-in-out;
+}
+
+/* Animation keyframes remain the same */
+@keyframes sp-pulse {
+    from { opacity: 0.6; transform: scale(1) rotate(10deg); }
+    to { opacity: 0.8; transform: scale(1.05) rotate(10deg); }
+}
+
+
+/* Responsive adjustments for the Hero */
+@media (max-width: 1024px) {
+    .sp-hero-wrapper {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+        min-height: auto;
+    }
+    
+    .sp-hero-content {
+        padding: 40px 20px;
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .sp-hero-title {
+        font-size: 48px;
+        letter-spacing: -1px;
+    }
+
+    .sp-hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sp-hero-visual-container {
+        height: 350px;
+        background: none; 
+    }
+
+    .sp-hero-stats {
+        justify-content: center;
+    }
+
+    .sp-tech-grid-svg {
+        width: 300px;
+        height: 300px;
+    }
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('megaMenuTrigger');
+    const menuContainer = trigger.querySelector('.sp-mega-menu-container');
+    let timeoutId;
+
+    // Function to open the menu
+    const openMenu = () => {
+        clearTimeout(timeoutId); // Cancel any pending close action
+        trigger.classList.add('is-open');
+    };
+
+    // Function to close the menu with a slight delay
+    const closeMenu = () => {
+        timeoutId = setTimeout(() => {
+            trigger.classList.remove('is-open');
+        }, 200); // 200ms delay before closing
+    };
+
+    // Add event listeners for mouse hover (desktop)
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', closeMenu);
+    
+    // Ensure hovering over the menu itself keeps it open
+    menuContainer.addEventListener('mouseenter', openMenu);
+    menuContainer.addEventListener('mouseleave', closeMenu);
+
+    // Optional: Click support for touch devices or if preferred over hover
+    trigger.addEventListener('click', (e) => {
+        // Prevent jumping to top of page if anchor is '#'
+        if(e.target.getAttribute('href') === '#') {
+             e.preventDefault();
+        }
+        // To enable click-to-toggle functionality:
+        // trigger.classList.toggle('is-open'); 
+    });
+});
+</script>
