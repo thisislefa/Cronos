@@ -344,7 +344,7 @@
         
         /* Sizing */
         --hyperion-header-height: 55px;
-        --hyperion-content-max-width-fg: 1200px;
+        --hyperion-content-max-width-fg: 1400px;
     }
 
     .hyperion-header-wrapper {
@@ -1179,7 +1179,7 @@
                         <a href="page.html">Log In</a>
                     </button>
                     <button class="hyperion-header-action-btn">
-                        <a href="page.html">Sign Up</a>
+                        <a href="page.html">Get Started With Cronos</a>
                     </button>
                     <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
                       <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
@@ -2401,520 +2401,295 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Enterprise Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-    <defcon-showcase-section>
-        <div class="services-heading">
-          <h1>What We Do</h1>
-          <h2 class="services-heading-text" style="color: #001023;">Our Full-Spectrum <br> Technology Services</h2>
-        </div>
-        <defcon-showcase-grid>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="software-engineering">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Software Development</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We design, develop, and deploy custom, scalable software and platforms that turn your vision into a high-performance digital reality.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                  <img class="defcon-showcase-image" src="https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="it-infrastructure">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>IT Infrastructure</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We secure your operations with end-to-end cloud solutions, network security, and 24/7 proactive monitoring for maximum stability.
-                    </defcon-showcase-paragraph>
-                    
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg" alt="Creative professionals working together on a laptop." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="marketing">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Marketing & Creative Studio</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We blend innovative creative design with data-driven strategies to build memorable brands and maximize your market presence.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/414974/pexels-photo-414974.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-        </defcon-showcase-grid>
-
-  </defcon-showcase-section>
     <style>
-      /* --- Google Font Import --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        /* --- CSS Reset & Global Styles --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Optimized services-heading */
-        .services-heading {
+        body {
+            /* Setting the requested font and dark theme base */
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0E17; /* Deep charcoal background matching the image */
+            color: #FFFFFF;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Main Section Wrapper --- */
+        /* Using a semantic section tag with a descriptive class */
+        .enterprise-hero-section {
+            width: 100%;
+            min-height: 80vh; /* Ensures substantial vertical space */
+            padding: 100px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container to constrain width on large screens */
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* --- Header Area Styling --- */
+        .hero-headline-block {
+            margin-bottom: 96px; /* Large spacing between title and columns */
+            max-width: 850px;
+        }
+
+        /* The main H1 title */
+        .hero-title {
+            font-size: 4rem; /* Large scale typography */
+            font-weight: 400; /* Regular weight by default */
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #E2E8F0; /* Slightly softened white */
+        }
+
+        /* Special class for the bolded words in the title */
+        .title-emphasis {
+            font-weight: 700;
+            color: #FFFFFF; /* Pure white for emphasis */
+        }
+
+        /* --- Three-Column Grid Styling --- */
+        .solutions-grid {
+            display: grid;
+            /* Create three equal columns */
+            grid-template-columns: repeat(3, 1fr);
+            /* Large horizontal gap between columns */
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        /* Semantic article tag for each feature block */
+        .solution-card {
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Wrapper for the icons */
+        .card-icon-wrapper {
+            margin-bottom: 24px;
+            color: #E2E8F0; /* Icon color matches soft white text */
+            display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-top: 3rem;
-            text-align: center;
-            color: #001023;
+            height: 48px;
+            width: 48px;
         }
 
-        .services-heading h1 {
-            color: #001023;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-align: center;
-            
-        }
-
-        .services-heading-text {
-            font-size: 54px;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            padding-bottom: 7rem;
-            text-align: center;
-            color: #001023;
-        }
-
-        /* --- Main "Showcase" Section Wrapper --- */
-        defcon-showcase-section {
-            font-family: 'Inter', sans-serif;
-            background-color: #f6f6f6;
-            display: block;
-            overflow: hidden;
-            padding: 80px 5%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- Grid Layout for the two main cards --- */
-        defcon-showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-        }
-
-        /* --- Individual Showcase Card --- */
-        defcon-showcase-card {
-            display: flex;
-            align-items: center;
-            background-color: #ffffff;
-            border: 1px solid #E5E7EB;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            position: relative;
-            overflow: hidden;
-            
-        }
-
-        defcon-showcase-card.defcon-showcase-is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-       
-
-
-        /* --- Left/Right Columns within the card --- */
-        defcon-showcase-content {
-            flex-basis: 50%;
-            padding: 60px;
-            text-align: left; 
-        }
-
-        defcon-showcase-image-wrapper {
-            flex-basis: 50%;
-            align-self: stretch;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-        }
-
-        /* --- Reversing order for the cards on Desktop --- */
-        /* Card 1: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(1) defcon-showcase-content {
-            order: 2;
-        }
-        defcon-showcase-card:nth-child(1) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-        /* Card 2: Text (Left), Image (Right) - Standard Order */
-        defcon-showcase-card:nth-child(2) defcon-showcase-content {
-            order: 1;
-        }
-        defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
-            order: 2;
-        }
-
-        /* Card 3: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(3) defcon-showcase-content{
-          order: 2;
-        }
-        defcon-showcase-card:nth-child(3) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-
-        /* --- Text Styling --- */
-        defcon-showcase-heading {
-            display: block;
-            font-size: 36px;
-            font-weight: 700;
-            color: #001023;
-            line-height: 1.25;
+        /* The H3 headings for each column */
+        .card-heading {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 16px;
+            line-height: 1.3;
+            color: #FFFFFF;
         }
 
-        /* --- PARAGRAPH FONT FIXES --- */
-        defcon-showcase-paragraph {
-            display: block;
-            font-size: 20px; /* INCREASED FONT SIZE TO 20PX */
-            font-weight: 500; /* INCREASED FONT WEIGHT TO 700 */
-            color: #757575;
+        /* The descriptive paragraph text */
+        .card-description {
+            font-size: 1rem;
+            /* Muted gray/blue for descriptions to create hierarchy */
+            color: #94A3B8; 
             line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 480px;
+            max-width: 340px; /* Ensures optimal reading width */
         }
 
-        /* --- Image Styling --- */
-        defcon-showcase-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0s ease;
-        }
-
-       
-        /* =============================================
-           RESPONSIVENESS FIXES
-           ============================================= */
-
-        /* --- Tablet & Medium Devices (Max-width 992px) --- */
-        @media (max-width: 992px) {
-            
-            .services-heading-text {
-                font-size: 44px;
-                padding-bottom: 5rem;
+        /* --- Responsive Adjustments --- */
+        /* Tablet breakpoints */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
             }
-
-            defcon-showcase-card {
-                flex-direction: column;
-            }
-            
-            /* Order for all cards on mobile: Image Top (1), Text Bottom (2) */
-            defcon-showcase-card defcon-showcase-content {
-                order: 2;
-            }
-            defcon-showcase-card defcon-showcase-image-wrapper {
-                order: 1;
-            }
-
-            defcon-showcase-content {
-                padding: 40px;
-                text-align: left; 
-            }
-            
-            defcon-showcase-image-wrapper {
-                width: 100%;
-                height: 300px;
-                /* Mobile image wrapper should not have radius to allow card's top radius to show */
-                border-radius: 0; 
+            .solutions-grid {
+                gap: 40px;
             }
         }
 
-        /* --- Mobile Devices (Max-width 600px) --- */
-        @media (max-width: 600px) {
-
-            defcon-showcase-section {
-                padding: 50px 5%;
+        /* Mobile breakpoints */
+        @media (max-width: 768px) {
+            .enterprise-hero-section {
+                padding: 64px 20px;
             }
-
-            .services-heading-text {
-                font-size: 32px; 
-                padding-bottom: 3rem; 
+            .hero-headline-block {
+                margin-bottom: 56px;
             }
-
-            defcon-showcase-content {
-                padding: 30px 20px;
+            .hero-title {
+                font-size: 2.25rem;
             }
-            
-            defcon-showcase-heading {
-                font-size: 26px;
-                margin-bottom: 12px;
+            /* Stack the grid columns vertically on mobile */
+            .solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
             }
-
-            defcon-showcase-paragraph {
-                font-size: 18px; /* Slightly reduced for better fit on small phones */
-                margin-bottom: 20px;
+            .card-description {
+                max-width: 100%;
             }
-            
-            defcon-showcase-image-wrapper {
-                height: 200px;
-            }
-        }
-
-
-        /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #001023;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-
-        button:hover .circle {
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        color: #fff;
         }
     </style>
+</head>
+<body>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    <section class="enterprise-hero-section">
+        <div class="hero-container">
+            
+            <header class="hero-headline-block">
+                <h1 class="hero-title">
+                    The <span class="title-emphasis">Backbone</span> for Secure, <br>
+                    <span class="title-emphasis">AI-Driven</span> Enterprises
+                </h1>
+            </header>
 
-        const revealElements = document.querySelectorAll('.defcon-showcase-reveal');
+            <div class="solutions-grid">
+                
+                <article class="solution-card">
+                    <div class="card-icon-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-heading">Full Spectrum IT Solutions</h3>
+                    <p class="card-description">
+                        All-in-one infrastructure. From cloud migration and cybersecurity to custom software development, data analytics, and managed network services.
+                    </p>
+                </article>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('defcon-showcase-is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+                <article class="solution-card">
+                    <div class="card-icon-wrapper">
+                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"/>
+                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-heading">Immutable Security Architecture</h3>
+                    <p class="card-description">
+                        Facilitating robust, zero-trust access to regulated data across distributed networks and hybrid cloud environments for maximum integrity.
+                    </p>
+                </article>
 
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        });
-    </script>
+                <article class="solution-card">
+                    <div class="card-icon-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/>
+                            <path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-heading">Supercharged Ecosystem Integration</h3>
+                    <p class="card-description">
+                        Composable utility for systems across existing and new tech stacks. Instant scalability, enhanced performance, and seamless API interoperability.
+                    </p>
+                </article>
+
+            </div>
+            </div>
+    </section>
+
 </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3058,7 +2833,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             min-height: 100vh;
             font-family: 'Inter', sans-serif;
-            background-color: #080d1b;
+            background-color: #0a0e17;
             color: #fff;
             overflow: hidden;
         }
@@ -3069,7 +2844,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column;
             justify-content: center;
             padding: 13em 0 13em 160px;
-            background-color: #080d1b;
+            background-color: #0a0e17;
         }
 
         .tagline {
@@ -3154,7 +2929,7 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
             justify-content: center;
             padding: 60px;
-            background-color: #080d1b;
+            background-color: #0a0e17;
         }
 
         .screen-image {
@@ -3207,7 +2982,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
     <div class="container">
         <div class="left-column">
-            <p class="tagline">Level up with Hyperion</p>
+            <p class="tagline">Level up with Cronos</p>
             <h1 class="main-heading-op">
                 Take Your <br>Business To The<br>
                 <span class="highlight">Next Level</span>
@@ -4540,20 +4315,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <hr class="pc-footer-line">
       </div>
 
-      <!-- *** MIDDLE CONTENT SECTION *** -->
-      <div class="pc-footer-content">
-        <div class="footer-columns">
-          <div class="footer-left">
-            <p>
-              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
-            </p>
-
-            <p>
-              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
-            </p>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
       <div class="footer-content">
@@ -4579,8 +4341,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <li><a href="careers.html">Careers</a></li>
             <li><a href="page.html">Partners</a></li>
             <li><a href="affiliates.html">Affiliate</a></li>
-            <li><a href="page.html">Verify</a></li>
             <li><a href="licenses-and-registrations.html">Registrations</a></li>
+            <li><a href="page.html">Verify</a></li>
           </ul>
         </div>
 
@@ -4604,15 +4366,28 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="footer-column">
             <h3>Business</h3>
             <ul>
-              <li><a href="page.html">Investment</a></li>
               <li><a href="page.html">Global Network</a></li>
+              <li><a href="page.html">Investment</a></li>
             </ul>
           </div>
         </div>
 
       </div>
 
-      <hr class="pc-footer-line">
+        <hr class="pc-footer-line">
+
+<!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+We operate as a digitally native technology enterprise, delivering end-to-end IT solutions through modern digital infrastructure and streamlined methodologies. Our services are optimized for remote engagement, enabling fast and efficient support, with on-site deployment reserved only for situations where physical presence is essential or remote solutions are not technically viable.            </p>
+          </div>
+        </div>
+      </div>
+
+
+      
       
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
