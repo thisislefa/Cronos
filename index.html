@@ -324,7 +324,6 @@
 
 
 
-
 <!-- HYPERION-HEADER START -->
 <style>
     /* =============================================
@@ -1175,13 +1174,18 @@
                     </li>
                 </ul>
                 <div class="hyperion-header-action-buttons">
-                    
-                    <button class="hyperion-header-action-btn">
-                        <a href="page.html">Cronos Workspace
-                          <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;" width="20" height="20" viewBox="0 0 24 24"><path fill="#fff" d="m16.004 9.414l-8.607 8.607l-1.414-1.414L14.59 8H7.003V6h11v11h-2V9.414Z"/></svg>
-                        </a>
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="page.html">Log In</a>
                     </button>
-                    
+                    <button class="hyperion-header-action-btn">
+                        <a href="page.html">Cronos Workspace</a>
+                    </button>
+                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
+                      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
+                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Contact Sales</p>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -1586,6 +1590,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!-- HYPERION-HEADER END -->
+
 
 
 
@@ -3003,7 +3008,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 flex-direction: row;
                 align-items: flex-start;
                 justify-content: space-between;
-                padding: 100px 40px;
+                padding: 150px 40px;
                 gap: 60px;
             }
         }
@@ -3090,7 +3095,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .cronos-toggle-question-text {
             font-family: var(--cronos-font-family);
             font-weight: 600;
-            font-size: 20px;
+            font-size: 16px;
             line-height: 1.4;
             padding-right: 16px;
             flex: 1;
@@ -3099,7 +3104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Scale question text on larger screens */
         @media (min-width: 600px) {
             .cronos-toggle-question-text {
-                font-size: 10px;
+                font-size: 1.5rem;
                 line-height: 1.45;
                 padding-right: 20px;
             }
@@ -3107,7 +3112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         @media (min-width: 900px) {
             .cronos-toggle-question-text {
-                font-size: 10px;
+                font-size: 1.5rem;
                 line-height: 1.5;
             }
         }
@@ -3232,60 +3237,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="cronos-accordion-item-entity">
             <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
-                <span class="cronos-toggle-question-text">How do you ensure AI/Web3 solution security?</span>
+                <span class="cronos-toggle-question-text">What services does your company offer?</span>
                 <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
             </button>
             <div class="cronos-accordion-content-panel">
                 <p class="cronos-answer-paragraph-text">
-                    Security is paramount. For AI, we focus on data privacy (differential privacy techniques) and model robustness against adversarial attacks. For Web3, we conduct rigorous smart contract audits (using tools like Slither and Mythril) and employ best practices for decentralized key management and secure transaction handling, minimizing vulnerabilities before deployment.
+                We provide a comprehensive suite of professional services including web design, development, UX/UI design, branding, and digital strategy. Our team specializes in creating custom solutions tailored to your business needs. For specific examples, please visit our portfolio page or review our services breakdown.                </p>
+            </div>
+        </div>
+
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">How long does a typical project take?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    Project timelines vary based on scope and complexity. On average, small projects take 4-6 weeks, medium projects 8-12 weeks, and large projects 3-6 months or more. During our initial consultation, we provide a detailed timeline tailored to your specific project requirements.
                 </p>
             </div>
         </div>
 
         <div class="cronos-accordion-item-entity">
             <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
-                <span class="cronos-toggle-question-text">Which Cloud providers do you specialize in?</span>
+                <span class="cronos-toggle-question-text">What is your pricing structure?</span>
                 <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
             </button>
             <div class="cronos-accordion-content-panel">
                 <p class="cronos-answer-paragraph-text">
-                    Cronos specializes in all major platforms, including <strong>AWS, Microsoft Azure, and Google Cloud</strong>. Our migration process begins with a TCO (Total Cost of Ownership) analysis and a readiness assessment. We then execute a phased transition plan—often using a hybrid model first—to ensure zero downtime and optimize resource allocation in the new environment immediately post-migration.
+                    Our pricing is project-based and depends on factors such as scope, complexity, and timeline. We offer fixed-price quotes for well-defined projects and hourly rates for ongoing work or maintenance. During our initial consultation, we provide a detailed proposal outlining costs and payment terms tailored to your project needs.
                 </p>
             </div>
         </div>
 
         <div class="cronos-accordion-item-entity">
             <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
-                <span class="cronos-toggle-question-text">What is the guaranteed response time for critical IT support?</span>
+                <span class="cronos-toggle-question-text">What technologies do you specialize in?</span>
                 <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
             </button>
             <div class="cronos-accordion-content-panel">
                 <p class="cronos-answer-paragraph-text">
-                    We guarantee a rapid response based on defined Service Level Agreements (SLAs). For <strong>Priority 1 (critical) incidents</strong>—such as a complete server outage or security breach—our system guarantees engineer acknowledgment and initial action within <strong>15 minutes, 24/7/365</strong>. Non-critical issues are handled according to a tiered structure to ensure all incidents are addressed efficiently.
+                    We specialize in a wide range of technologies including JavaScript frameworks (React, Angular, Vue), backend platforms (Node.js, Django, Ruby on Rails), cloud services (AWS, Azure, Google Cloud), and DevOps tools (Docker, Kubernetes, Jenkins). Our team stays current with industry trends to deliver modern, scalable solutions tailored to your needs.
                 </p>
             </div>
         </div>
 
         <div class="cronos-accordion-item-entity">
             <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
-                <span class="cronos-toggle-question-text">How is marketing campaign ROI tracked?</span>
+                <span class="cronos-toggle-question-text">Do you provide ongoing support after launch?</span>
                 <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
             </button>
             <div class="cronos-accordion-content-panel">
                 <p class="cronos-answer-paragraph-text">
-                    Our focus is measurable value. We integrate tracking across all channels to calculate key performance indicators (KPIs) like Customer Acquisition Cost (CAC), Lifetime Value (LTV), and marketing-sourced revenue. We provide detailed, customized dashboards that refresh daily, ensuring you always have real-time visibility into the exact revenue generated by our efforts.
-                </p>
-            </div>
-        </div>
-
-        <div class="cronos-accordion-item-entity">
-            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
-                <span class="cronos-toggle-question-text">What is the first step to starting a project with Cronos?</span>
-                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
-            </button>
-            <div class="cronos-accordion-content-panel">
-                <p class="cronos-answer-paragraph-text">
-                    The first step is a <strong>free, non-committal consultation</strong> with one of our senior IT consultants. We discuss your current challenges, future technology goals, and immediate needs. This is followed by a Discovery Session, where we map out a tailored solution blueprint and provide a detailed estimate and project timeline.
+                    Yes, we offer several maintenance plans to ensure your digital solution continues to perform optimally. Our support services include security updates, performance optimization, content updates, and technical support. All new projects include 30 days of complimentary post-launch support.
                 </p>
             </div>
         </div>

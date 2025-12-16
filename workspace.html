@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon IT Section - Gradient Background</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Root Variables */
+        :root {
+            --defcon-navy: #0b1426;
+            --defcon-blue: #0091ff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-white: #ffffff;
+            --defcon-black: #000000;
+            --font-family-inter: 'Inter', sans-serif;
+            --border-radius-1px: 8px;
+            /* New Max Width for Inner Content */
+            --content-max-width: 1000px;
+        }
+
+        /* Container for the whole section */
+        .defcon-merchant-section-container {
+            font-family: var(--font-family-inter);
+            color: var(--defcon-white);
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            padding: 200px 0;
+            border: none; /* Ensure the gradient is full-width */
+            width: 100%;
+            margin: 0; /* Remove margin */
+            text-align: center;
+        }
+        
+        /* New Wrapper to constrain all content (Title and Cards) */
+        .defcon-content-wrapper {
+            /* === KEY CHANGE 2: Constrain and Center Content === */
+            max-width: var(--content-max-width);
+            width: 90%; /* Use percentage for responsiveness */
+            margin: 0 auto;
+            padding: 40px; /* Padding inside the border */   
+        }
+
+        /* Title styling */
+        .defcon-merchant-section-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--defcon-white);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* --- Asymmetrical Grid (No Change to layout logic) --- */
+        .defcon-asym-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual feature card styling */
+        .defcon-asym-feature-card {
+            background-color: #EAEEF4;
+            border-radius: var(--border-radius-1px);
+            padding: 30px;
+            text-align: left; 
+            color: var(--defcon-black);
+            min-height: fit-content;
+            display: flex;
+        }
+        
+        /* Inner Wrapper for vertical alignment */
+        .defcon-card-content-wrapper {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        /* Grid Span Utility Classes */
+        .defcon-grid-span-2 {
+            grid-column: span 2;
+        }
+        
+        .defcon-grid-span-1 {
+            grid-column: span 1;
+        }
+
+
+        /* Large number in feature card */
+        .defcon-feature-card-number {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-navy);
+            line-height: 1;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        /* Small text next to large number */
+        .defcon-feature-card-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            color: #7f7e8f;
+        }
+        
+        /* Bold text inside the description */
+        .defcon-feature-card-text strong {
+            font-weight: 700;
+            color: var(--defcon-navy);
+        }
+
+        /* Styling for the superscript (1) */
+        .defcon-superscript {
+            vertical-align: super;
+            font-size: 0.7em;
+            margin-left: 2px;
+        }
+
+        /* Legal disclaimer at the bottom */
+        .defcon-legal-disclaimer {
+            font-size: 0.8rem;
+            color: var(--defcon-light-gray);
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .defcon-grid-span-2,
+            .defcon-grid-span-1 {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+             .defcon-content-wrapper {
+                padding: 25px;
+                width: 100%; /* Allow content wrapper to take full width on smallest screens */
+            }
+            
+            .defcon-merchant-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-feature-card-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<section class="defcon-merchant-section-container">
+    <div class="defcon-content-wrapper">
+        <h2 class="defcon-merchant-section-title">Become a Cronos.com client</h2>
+
+        <div class="defcon-asym-feature-grid">
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">&lt;15</span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">minutes</span> average response time for all critical-level support incidents.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">1</span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">dedicated account</span> manager per client.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">120<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                       <span style="color: #0b1426;">successful</span> projects. 
+                    </span>
+                </div>
+            </div>
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">80K<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">cyber threats</span> neutralized on our clients' networks.
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="defcon-legal-disclaimer">
+            <span class="defcon-superscript">(1)</span> As per our Enterprise Service Level Agreement (SLA).
+        </p>
+    </div>
+</section>
