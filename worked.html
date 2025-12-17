@@ -3,1148 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronos Workspace | Professional Collaboration Hub</title>
+    <title>Cronos IT - Mobile Infrastructure Management</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --defcon-navy: #0b1426;
-            --defcon-blue: #0091ff;
-            --defcon-light-gray: #f4f4f4;
-            --defcon-white: #ffffff;
-            --defcon-black: #000000;
-            --font-family-inter: 'Inter', sans-serif;
-            --border-radius-8px: 8px;
-            --content-max-width: 1200px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family-inter);
-            color: var(--defcon-navy);
-            background-color: var(--defcon-white);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: var(--content-max-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        .cronos-header {
-            background-color: var(--defcon-navy);
-            color: var(--defcon-white);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .cronos-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--defcon-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            color: var(--defcon-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--defcon-white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--defcon-blue);
-        }
-
-        .nav-link.active {
-            color: var(--defcon-blue);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--defcon-blue);
-            border-radius: 2px;
-        }
-
-        .user-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border-radius: var(--border-radius-8px);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            font-family: var(--font-family-inter);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--defcon-white);
-            border: 2px solid var(--defcon-blue);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(0, 145, 255, 0.1);
-        }
-
-        .btn-primary {
-            background-color: var(--defcon-blue);
-            color: var(--defcon-white);
-        }
-
-        .btn-primary:hover {
-            background-color: #0078d4;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 145, 255, 0.2);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--defcon-white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--defcon-navy) 0%, #152642 100%);
-            color: var(--defcon-white);
-            padding: 4rem 0;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero-title span {
-            color: var(--defcon-blue);
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--defcon-blue);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Main Content Sections */
-        .section {
-            padding: 4rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--defcon-navy);
-        }
-
-        .section-title span {
-            color: var(--defcon-blue);
-        }
-
-        .section-subtitle {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .section-light {
-            background-color: var(--defcon-light-gray);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--defcon-white);
-            border-radius: var(--border-radius-8px);
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-image {
-            height: 180px;
-            background-color: #e9e9e9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--defcon-navy);
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-category {
-            color: var(--defcon-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        .project-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .project-team {
-            display: flex;
-            align-items: center;
-        }
-
-        .team-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--defcon-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin-right: -8px;
-            border: 2px solid white;
-        }
-
-        .team-avatar:nth-child(2) {
-            background-color: #6c5ce7;
-        }
-
-        .team-avatar:nth-child(3) {
-            background-color: #00b894;
-        }
-
-        .project-status {
-            background-color: rgba(0, 145, 255, 0.1);
-            color: var(--defcon-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Case Studies Section */
-        .case-study-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background-color: var(--defcon-white);
-            border-radius: var(--border-radius-8px);
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
-        }
-
-        .case-study-image {
-            background-color: #e9e9e9;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--defcon-navy);
-            font-size: 4rem;
-        }
-
-        .case-study-content {
-            padding: 2.5rem;
-        }
-
-        .case-study-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .case-study-results {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-        }
-
-        .result-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-
-        .result-icon {
-            color: var(--defcon-blue);
-            margin-right: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        /* Events Section */
-        .events-timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .event-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .event-date {
-            background-color: var(--defcon-navy);
-            color: var(--defcon-white);
-            padding: 1rem;
-            border-radius: var(--border-radius-8px);
-            text-align: center;
-        }
-
-        .event-day {
-            font-size: 2rem;
-            font-weight: 700;
-            display: block;
-        }
-
-        .event-month {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .event-details {
-            padding-top: 0.5rem;
-        }
-
-        .event-type {
-            color: var(--defcon-blue);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        /* Networking Section */
-        .networking-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .network-card {
-            background-color: var(--defcon-white);
-            border-radius: var(--border-radius-8px);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-
-        .network-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .network-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(0, 145, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--defcon-blue);
-            font-size: 1.8rem;
-        }
-
-        .network-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        /* Workshops Section */
-        .workshops-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-        }
-
-        .workshop-card {
-            background-color: var(--defcon-white);
-            border-radius: var(--border-radius-8px);
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .workshop-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-
-        .workshop-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .workshop-instructor {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .workshop-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .workshop-tag {
-            background-color: rgba(0, 145, 255, 0.1);
-            color: var(--defcon-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .workshop-sidebar {
-            background-color: var(--defcon-white);
-            border-radius: var(--border-radius-8px);
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            height: fit-content;
-        }
-
-        .sidebar-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--defcon-navy);
-        }
-
-        .skill-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.2rem;
-            padding-bottom: 1.2rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .skill-name {
-            font-weight: 600;
-        }
-
-        .skill-demand {
-            color: var(--defcon-blue);
-            font-weight: 700;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--defcon-navy);
-            color: var(--defcon-white);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-logo span {
-            color: var(--defcon-blue);
-        }
-
-        .footer-description {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--defcon-white);
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .social-icon:hover {
-            background-color: var(--defcon-blue);
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .case-study-card {
-                grid-template-columns: 1fr;
-            }
-            
-            .workshops-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--defcon-navy);
-                flex-direction: column;
-                padding: 1.5rem;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .user-actions {
-                display: none;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .event-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .project-card, .network-card {
-                margin-bottom: 1.5rem;
-            }
-        }
-    </style>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    </head>
 <body>
-    <!-- Header -->
-    <header class="cronos-header">
-        <div class="container">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <i class="fas fa-infinity"></i>
-                </div>
-                <div class="logo-text">CRONOS<span>WORKSPACE</span></div>
-            </div>
-            
-            <nav class="nav-links" id="navLinks">
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#case-studies" class="nav-link">Case Studies</a>
-                <a href="#events" class="nav-link">Exclusive Events</a>
-                <a href="#networking" class="nav-link">Networking</a>
-                <a href="#workshops" class="nav-link">Skill Workshops</a>
-            </nav>
-            
-            <div class="user-actions">
-                <button class="btn btn-outline">Log In</button>
-                <button class="btn btn-primary">Join Now</button>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Collaborate. Innovate. <span>Accelerate.</span></h1>
-                <p class="hero-description">Cronos Workspace is a premier professional hub where industry leaders, innovators, and creators converge to drive meaningful projects, share insights, and develop skills that shape the future.</p>
-                <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Explore Membership</button>
+    <section class="crns-section-wrapper crns-bg-white">
+        <div class="crns-container">
+            <div class="crns-text-col">
+                <span class="crns-eyebrow">CRONOS MOBILE SUITE</span>
+                <h1 class="crns-headline">Full Infrastructure Control. <br>In Your Pocket.</h1>
                 
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">250+</span>
-                        <span class="stat-label">Active Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5,000+</span>
-                        <span class="stat-label">Members</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">120+</span>
-                        <span class="stat-label">Workshops</span>
-                    </div>
+                <div class="crns-feature-list">
+                    <p class="crns-feature-item">
+                        <span class="crns-bold">Monitor.</span> 
+                        <span class="crns-muted">Real-time server latency & uptime checks.</span>
+                    </p>
+                    <p class="crns-feature-item">
+                        <span class="crns-bold">Manage.</span> 
+                        <span class="crns-muted">Restart services via SSH from the app.</span>
+                    </p>
+                    <p class="crns-feature-item">
+                        <span class="crns-bold">Scale.</span> 
+                        <span class="crns-muted">Deploy new instances with a single tap.</span>
+                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured <span>Projects</span></h2>
-                <p class="section-subtitle">Explore innovative collaborations and groundbreaking initiatives from our community members.</p>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">AI & Machine Learning</div>
-                        <h3 class="project-title">Autonomous Supply Chain Optimization</h3>
-                        <p class="project-description">Developing AI-driven solutions for real-time logistics optimization and predictive inventory management.</p>
-                        <div class="project-meta">
-                            <div class="project-team">
-                                <div class="team-avatar">JD</div>
-                                <div class="team-avatar">ML</div>
-                                <div class="team-avatar">SR</div>
-                                <div class="team-avatar">+3</div>
-                            </div>
-                            <div class="project-status">In Progress</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">Sustainability</div>
-                        <h3 class="project-title">Carbon-Neutral Urban Planning</h3>
-                        <p class="project-description">Creating frameworks for sustainable city development with focus on renewable energy integration.</p>
-                        <div class="project-meta">
-                            <div class="project-team">
-                                <div class="team-avatar">AR</div>
-                                <div class="team-avatar">TK</div>
-                                <div class="team-avatar">+4</div>
-                            </div>
-                            <div class="project-status">Planning Phase</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">Cybersecurity</div>
-                        <h3 class="project-title">Zero-Trust Network Architecture</h3>
-                        <p class="project-description">Building next-generation security frameworks for enterprise digital infrastructure protection.</p>
-                        <div class="project-meta">
-                            <div class="project-team">
-                                <div class="team-avatar">VP</div>
-                                <div class="team-avatar">CD</div>
-                                <div class="team-avatar">RJ</div>
-                            </div>
-                            <div class="project-status">Prototype Ready</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="section section-light" id="case-studies">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Success <span>Case Studies</span></h2>
-                <p class="section-subtitle">In-depth analyses of how Cronos Workspace collaborations have driven real-world impact and innovation.</p>
-            </div>
-            
-            <div class="case-study-card">
-                <div class="case-study-image">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="case-study-content">
-                    <div class="project-category">Financial Technology</div>
-                    <h3 class="case-study-title">Blockchain Implementation for Cross-Border Payments</h3>
-                    <p>This case study examines how a Cronos Workspace team developed and implemented a blockchain solution that reduced international transaction times by 85% and costs by 60% for a multinational financial services corporation.</p>
-                    
-                    <div class="case-study-results">
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>Reduced transaction processing from 3-5 days to under 2 hours</span>
-                        </div>
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>Annual cost savings of $12M for the client organization</span>
-                        </div>
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>Scalable architecture now processing 50,000+ transactions daily</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary" style="margin-top: 1.5rem;">View Full Case Study</button>
-                </div>
-            </div>
-            
-            <div class="case-study-card">
-                <div class="case-study-image">
-                    <i class="fas fa-hospital-alt"></i>
-                </div>
-                <div class="case-study-content">
-                    <div class="project-category">Healthcare Innovation</div>
-                    <h3 class="case-study-title">AI-Powered Diagnostic Assistance System</h3>
-                    <p>Explore how a multidisciplinary team created an AI system that assists radiologists in detecting early-stage abnormalities, improving diagnostic accuracy by 40% and reducing false negatives in critical screening scenarios.</p>
-                    
-                    <div class="case-study-results">
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>40% improvement in early detection of critical conditions</span>
-                        </div>
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>Deployed across 12 major healthcare institutions</span>
-                        </div>
-                        <div class="result-item">
-                            <i class="fas fa-check-circle result-icon"></i>
-                            <span>Recipient of the 2023 HealthTech Innovation Award</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary" style="margin-top: 1.5rem;">View Full Case Study</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section" id="events">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Exclusive <span>Events</span></h2>
-                <p class="section-subtitle">Curated gatherings, talks, and experiences designed for meaningful connections and insights.</p>
-            </div>
-            
-            <div class="events-timeline">
-                <div class="event-item">
-                    <div class="event-date">
-                        <span class="event-day">15</span>
-                        <span class="event-month">June</span>
-                    </div>
-                    <div class="event-details">
-                        <div class="event-type">Leadership Summit</div>
-                        <h3 class="event-title">Future of Decentralized Organizations</h3>
-                        <p>An exclusive discussion with industry pioneers on how decentralized autonomous organizations (DAOs) are reshaping corporate structures and decision-making processes.</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; color: var(--defcon-navy); border-color: var(--defcon-navy);">Register Interest</button>
-                    </div>
-                </div>
-                
-                <div class="event-item">
-                    <div class="event-date">
-                        <span class="event-day">28</span>
-                        <span class="event-month">June</span>
-                    </div>
-                    <div class="event-details">
-                        <div class="event-type">Innovation Demo Day</div>
-                        <h3 class="event-title">Cronos Workspace Project Showcase</h3>
-                        <p>Experience live demonstrations of 10 groundbreaking projects developed within the Cronos ecosystem, with opportunities for collaboration and investment.</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; color: var(--defcon-navy); border-color: var(--defcon-navy);">Register Interest</button>
-                    </div>
-                </div>
-                
-                <div class="event-item">
-                    <div class="event-date">
-                        <span class="event-day">12</span>
-                        <span class="event-month">July</span>
-                    </div>
-                    <div class="event-details">
-                        <div class="event-type">Executive Roundtable</div>
-                        <h3 class="event-title">Ethical AI Implementation Framework</h3>
-                        <p>Closed-door session for C-suite executives to develop industry-wide standards for responsible AI deployment and governance.</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; color: var(--defcon-navy); border-color: var(--defcon-navy);">Register Interest</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Networking Section -->
-    <section class="section section-light" id="networking">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Professional <span>Networking</span></h2>
-                <p class="section-subtitle">Connect with industry leaders, innovators, and potential collaborators through our specialized networking channels.</p>
-            </div>
-            
-            <div class="networking-grid">
-                <div class="network-card">
-                    <div class="network-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3 class="network-title">Industry Circles</h3>
-                    <p>Join focused groups based on your industry, where members share insights and opportunities.</p>
-                </div>
-                
-                <div class="network-card">
-                    <div class="network-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="network-title">Mentorship Program</h3>
-                    <p>Connect with experienced professionals or guide emerging talent through structured mentorship.</p>
-                </div>
-                
-                <div class="network-card">
-                    <div class="network-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="network-title">Virtual Roundtables</h3>
-                    <p>Participate in intimate digital discussions on trending topics with limited attendees.</p>
-                </div>
-                
-                <div class="network-card">
-                    <div class="network-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3 class="network-title">Collaboration Hub</h3>
-                    <p>Find potential collaborators for projects based on skills, interests, and availability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Workshops Section -->
-    <section class="section" id="workshops">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skill Development <span>Workshops</span></h2>
-                <p class="section-subtitle">Hands-on learning experiences led by industry experts to expand your capabilities.</p>
-            </div>
-            
-            <div class="workshops-container">
-                <div class="workshops-main">
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <div>
-                                <h3 class="workshop-title">Quantum Computing Fundamentals</h3>
-                                <p class="workshop-instructor">Led by Dr. Elena Rodriguez, Quantum Research Lead</p>
-                            </div>
-                            <div class="project-status">Advanced</div>
-                        </div>
-                        
-                        <div class="workshop-tags">
-                            <span class="workshop-tag">Quantum Computing</span>
-                            <span class="workshop-tag">Algorithms</span>
-                            <span class="workshop-tag">Qiskit</span>
-                        </div>
-                        
-                        <p>This intensive 3-day workshop provides hands-on experience with quantum algorithms, quantum circuit design, and implementation using IBM's Qiskit framework. No prior quantum physics knowledge required.</p>
-                        
-                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Enroll Now</button>
-                    </div>
-                    
-                    <div class="workshop-card">
-                        <div class="workshop-header">
-                            <div>
-                                <h3 class="workshop-title">Strategic Decision Intelligence</h3>
-                                <p class="workshop-instructor">Led by Marcus Chen, Decision Science Director</p>
-                            </div>
-                            <div class="project-status">Intermediate</div>
-                        </div>
-                        
-                        <div class="workshop-tags">
-                            <span class="workshop-tag">Decision Science</span>
-                            <span class="workshop-tag">Data Analysis</span>
-                            <span class="workshop-tag">Strategy</span>
-                        </div>
-                        
-                        <p>Learn to leverage data, cognitive science, and behavioral economics to make better strategic decisions under uncertainty. Includes frameworks for scenario planning and risk assessment.</p>
-                        
-                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Enroll Now</button>
-                    </div>
-                </div>
-                
-                <div class="workshop-sidebar">
-                    <h3 class="sidebar-title">High-Demand Skills</h3>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">AI Ethics & Governance</span>
-                        <span class="skill-demand">92%</span>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">Blockchain Development</span>
-                        <span class="skill-demand">87%</span>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">Cybersecurity Architecture</span>
-                        <span class="skill-demand">94%</span>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">Sustainable Tech Solutions</span>
-                        <span class="skill-demand">89%</span>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">Data Storytelling</span>
-                        <span class="skill-demand">85%</span>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <span class="skill-name">Quantum Algorithm Design</span>
-                        <span class="skill-demand">78%</span>
-                    </div>
-                    
-                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">*Percentage indicates member demand for workshops in these skill areas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">CRONOS<span>WORKSPACE</span></div>
-                <p class="footer-description">A premier professional collaboration hub where innovation meets execution. Join a community shaping the future of technology, business, and society.</p>
-                
-                <div class="footer-social">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-linkedin-in"></i>
+    
+                <div class="crns-cta-group">
+                    <a href="#" class="crns-btn crns-btn-solid">
+                        Download App 
+                        <svg class="crns-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+                    <a href="#" class="crns-btn crns-btn-outline">View Demo</a>
                 </div>
-                
-                <p class="copyright">© 2023 Cronos Workspace. All rights reserved.</p>
             </div>
+    
+            <div class="crns-visual-col">
+                <div class="crns-phone-frame">
+                    <div class="crns-phone-notch"></div>
+                    <div class="crns-phone-screen">
+                        <img src="https://placehold.co/300x600/111827/FFFFFF?text=Cronos+App+Dashboard" alt="Cronos Mobile Dashboard" class="crns-screen-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="crns-section-padding crns-bg-light">
+        <div class="crns-container-col">
+            <div class="crns-center-header">
+                <span class="crns-tag-small">POWERFUL FEATURES</span>
+                <h2 class="crns-subheadline">Server Management Reimagined</h2>
+                <p class="crns-subtitle">Forget the laptop. Handle critical IT operations directly from your iOS or Android device.</p>
+            </div>
+
+            <div class="crns-grid-3">
+                <div class="crns-card">
+                    <div class="crns-icon-box box-blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Secure Biometric Access</h3>
+                    <p>Log into your root servers using FaceID or Fingerprint. No more typing complex SSH keys on a small screen.</p>
+                </div>
+
+                <div class="crns-card">
+                    <div class="crns-icon-box box-orange">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <h3>Push Critical Alerts</h3>
+                    <p>Get notified instantly if CPU usage spikes or a database goes down. Custom thresholds for every metric.</p>
+                </div>
+
+                <div class="crns-card">
+                    <div class="crns-icon-box box-green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3>Remote Terminal</h3>
+                    <p>A fully functional terminal emulator built into the app. Execute scripts and debug logs on the go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="crns-section-padding crns-bg-dark">
+        <div class="crns-container">
+            <div class="crns-stat-row">
+                <div class="crns-stat-item">
+                    <span class="crns-stat-number">500k+</span>
+                    <span class="crns-stat-label">Servers Connected</span>
+                </div>
+                <div class="crns-stat-divider"></div>
+                <div class="crns-stat-item">
+                    <span class="crns-stat-number">99.99%</span>
+                    <span class="crns-stat-label">App Uptime</span>
+                </div>
+                <div class="crns-stat-divider"></div>
+                <div class="crns-stat-item">
+                    <span class="crns-stat-number">0ms</span>
+                    <span class="crns-stat-label">Monitoring Latency</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="crns-footer">
+        <div class="crns-container crns-footer-content">
+            <div class="crns-footer-left">
+                <h4 class="crns-footer-logo">Cronos IT.</h4>
+                <p>Enterprise infrastructure management for the modern mobile era.</p>
+            </div>
+            <div class="crns-footer-right">
+                <a href="#">Platform</a>
+                <a href="#">Security</a>
+                <a href="#">API Docs</a>
+                <a href="#" class="crns-highlight">Login</a>
+            </div>
+        </div>
+        <div class="crns-copyright">
+            &copy; 2025 Cronos IT Solutions. All rights reserved.
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-        
-        // Update active navigation link based on scroll position
-        const sections = document.querySelectorAll('section');
-        const navLinksArray = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinksArray.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
+
+<style>
+    /* --- CRONOS GLOBAL VARIABLES --- */
+:root {
+    --crns-primary: #0B2447;      /* Deep Navy */
+    --crns-accent: #19376D;       /* Brighter Blue */
+    --crns-highlight: #3b82f6;    /* Action Blue */
+    --crns-text-main: #111111;    /* Black */
+    --crns-text-light: #F3F4F6;   /* White/Off-white */
+    --crns-text-muted: #6B7280;   /* Grey */
+    --crns-bg-white: #FFFFFF;
+    --crns-bg-light: #F9FAFB;     /* Section BG */
+    --crns-font: 'Inter', sans-serif;
+}
+
+/* --- RESET & DEFAULTS --- */
+body { margin: 0; padding: 0; font-family: var(--crns-font); -webkit-font-smoothing: antialiased; }
+.crns-bg-white { background-color: var(--crns-bg-white); }
+.crns-bg-light { background-color: var(--crns-bg-light); }
+.crns-bg-dark { background-color: var(--crns-primary); color: var(--crns-bg-white); }
+
+/* --- LAYOUT UTILS --- */
+.crns-section-wrapper { padding: 80px 20px; overflow: hidden; }
+.crns-section-padding { padding: 100px 20px; }
+.crns-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; }
+.crns-container-col { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; }
+
+/* --- HERO SECTION SPECIFICS --- */
+.crns-text-col { flex: 1; min-width: 300px; max-width: 600px; }
+.crns-visual-col { flex: 1; min-width: 300px; display: flex; justify-content: center; perspective: 1500px; }
+
+.crns-eyebrow { display: block; font-size: 14px; font-weight: 700; color: var(--crns-highlight); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+.crns-headline { font-size: 56px; line-height: 1.1; font-weight: 800; color: var(--crns-text-main); margin: 0 0 32px 0; letter-spacing: -1.5px; }
+.crns-feature-list { margin-bottom: 40px; }
+.crns-feature-item { font-size: 18px; margin-bottom: 18px; line-height: 1.5; color: var(--crns-text-main); }
+.crns-bold { font-weight: 700; }
+.crns-muted { color: var(--crns-text-muted); }
+
+/* Buttons */
+.crns-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+.crns-btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.2s ease; cursor: pointer; }
+.crns-btn-solid { background-color: var(--crns-primary); color: white; border: 2px solid var(--crns-primary); }
+.crns-btn-solid:hover { background-color: var(--crns-accent); border-color: var(--crns-accent); transform: translateY(-2px); }
+.crns-btn-outline { background: transparent; border: 2px solid #E5E7EB; color: var(--crns-primary); }
+.crns-btn-outline:hover { border-color: var(--crns-primary); background: #f3f4f6; }
+.crns-arrow-icon { margin-left: 8px; }
+
+/* Phone Mockup */
+.crns-phone-frame { width: 320px; height: 640px; background: #0f172a; border-radius: 48px; border: 10px solid #1e293b; box-shadow: 20px 20px 50px rgba(0,0,0,0.3), -5px -5px 20px rgba(255,255,255,0.05) inset; position: relative; transform: rotateY(-15deg) rotateX(5deg) rotateZ(-2deg); transition: transform 0.4s ease-out; }
+.crns-phone-frame:hover { transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+.crns-phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #1e293b; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; z-index: 10; }
+.crns-phone-screen { width: 100%; height: 100%; background: #000; border-radius: 38px; overflow: hidden; position: relative; }
+.crns-screen-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- FEATURES GRID SECTION --- */
+.crns-center-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; }
+.crns-tag-small { background: #DBEAFE; color: #1E40AF; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+.crns-subheadline { font-size: 36px; font-weight: 700; color: var(--crns-text-main); margin: 20px 0; letter-spacing: -0.5px; }
+.crns-subtitle { font-size: 18px; color: var(--crns-text-muted); line-height: 1.6; }
+
+.crns-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.crns-card { background: white; padding: 40px 30px; border-radius: 16px; border: 1px solid #E5E7EB; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.crns-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--crns-highlight); }
+.crns-card h3 { font-size: 20px; font-weight: 700; margin: 20px 0 10px 0; color: var(--crns-text-main); }
+.crns-card p { font-size: 15px; color: var(--crns-text-muted); line-height: 1.6; margin: 0; }
+
+.crns-icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.box-blue { background: #EFF6FF; color: #3B82F6; }
+.box-orange { background: #FFF7ED; color: #F97316; }
+.box-green { background: #F0FDF4; color: #22C55E; }
+
+/* --- STATS SECTION --- */
+.crns-stat-row { display: flex; justify-content: space-around; align-items: center; width: 100%; padding: 20px 0; }
+.crns-stat-item { text-align: center; }
+.crns-stat-number { display: block; font-size: 48px; font-weight: 800; color: white; margin-bottom: 5px; }
+.crns-stat-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
+.crns-stat-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.2); }
+
+/* --- FOOTER --- */
+.crns-footer { background: #081b36; padding: 60px 20px 20px 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+.crns-footer-content { margin-bottom: 40px; align-items: flex-start; }
+.crns-footer-left { max-width: 400px; }
+.crns-footer-logo { font-size: 24px; color: white; margin: 0 0 15px 0; letter-spacing: -0.5px; }
+.crns-footer-left p { color: rgba(255,255,255,0.6); line-height: 1.6; font-size: 14px; margin: 0; }
+
+.crns-footer-right { display: flex; gap: 30px; }
+.crns-footer-right a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.crns-footer-right a:hover { color: white; }
+.crns-highlight { color: var(--crns-highlight) !important; font-weight: 600; }
+
+.crns-copyright { text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 900px) {
+    .crns-container { flex-direction: column; text-align: center; }
+    .crns-text-col { align-items: center; }
+    .crns-cta-group { justify-content: center; }
+    .crns-headline { font-size: 40px; }
+    
+    .crns-visual-col { margin-top: 40px; perspective: none; }
+    .crns-phone-frame { transform: none; width: 280px; height: 560px; }
+    
+    .crns-stat-row { flex-direction: column; gap: 40px; }
+    .crns-stat-divider { width: 60px; height: 1px; }
+    
+    .crns-footer-content { flex-direction: column; gap: 40px; text-align: center; align-items: center; }
+}
+</style>

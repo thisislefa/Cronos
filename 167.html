@@ -1,0 +1,405 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<section class="crns-section-wrapper">
+    <div class="crns-container">
+        
+        <div class="crns-text-col">
+            <span class="crns-eyebrow">CRONOS IT SOLUTIONS</span>
+            <h1 class="crns-headline">IT Infrastructure Simplified</h1>
+            
+            <div class="crns-feature-list">
+                <p class="crns-feature-item">
+                    <span class="crns-bold">Cronos. Your Foundation.</span> 
+                    <span class="crns-muted">Your Innovation.</span>
+                </p>
+                <p class="crns-feature-item">
+                    <span class="crns-bold">Deploy.</span> 
+                    <span class="crns-muted">No downtime, secure cloud solutions.</span>
+                </p>
+                <p class="crns-feature-item">
+                    <span class="crns-bold">Integrate.</span> 
+                    <span class="crns-muted">Seamless data flow and managed services.</span>
+                </p>
+            </div>
+
+            <div class="crns-cta-group">
+                <a href="#" class="crns-btn crns-btn-outline">Get Started with Cronos</a>
+                <a href="#" class="crns-btn crns-btn-solid">
+                    Explore Services 
+                    <svg class="crns-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="crns-visual-col">
+            <div class="crns-phone-frame">
+                <div class="crns-phone-notch"></div>
+                <div class="crns-phone-screen">
+                    <div class="crns-dash-header">
+                        <div class="crns-dash-menu-icon"></div>
+                        <div class="crns-dash-title">
+                            <h3>System Health</h3>
+                            <span>All Servers Online</span>
+                        </div>
+                        <div class="crns-dash-avatar"></div>
+                    </div>
+
+                    <div class="crns-dash-main-stat">
+                        <h2>99.99%</h2>
+                        <span class="crns-stat-label">Uptime Guarantee</span>
+                        <div class="crns-tags">
+                            <span class="crns-tag success">+2.5% Speed</span>
+                            <span class="crns-tag neutral">Stable</span>
+                        </div>
+                    </div>
+
+                    <div class="crns-icon-grid">
+                        <div class="crns-grid-item">
+                            <div class="crns-circle-icon active"></div>
+                            <span>Monitor</span>
+                        </div>
+                        <div class="crns-grid-item">
+                            <div class="crns-circle-icon"></div>
+                            <span>Deploy</span>
+                        </div>
+                        <div class="crns-grid-item">
+                            <div class="crns-circle-icon"></div>
+                            <span>Backup</span>
+                        </div>
+                        <div class="crns-grid-item">
+                            <div class="crns-circle-icon"></div>
+                            <span>Support</span>
+                        </div>
+                    </div>
+
+                    <div class="crns-service-list">
+                        <div class="crns-list-header">
+                            <span>Active Services</span>
+                            <span class="crns-link">Manage</span>
+                        </div>
+                        
+                        <div class="crns-service-card">
+                            <div class="crns-service-icon icon-orange"></div>
+                            <div class="crns-service-info">
+                                <h4>Cloud Compute</h4>
+                                <p>AWS / Azure Hybrid</p>
+                            </div>
+                            <span class="crns-stat-green">+1.2%</span>
+                        </div>
+
+                        <div class="crns-service-card">
+                            <div class="crns-service-icon icon-blue"></div>
+                            <div class="crns-service-info">
+                                <h4>Data Storage</h4>
+                                <p>Encrypted Vault</p>
+                            </div>
+                            <span class="crns-stat-green">+3.1%</span>
+                        </div>
+
+                        <div class="crns-service-card">
+                            <div class="crns-service-icon icon-grey"></div>
+                            <div class="crns-service-info">
+                                <h4>Network Security</h4>
+                                <p>Firewall Active</p>
+                            </div>
+                            <span class="crns-stat-green">+0.8%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="crns-bottom-nav">
+                        <span>Browse IT Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<style>
+    /* --- CRONOS COMPONENT STYLES --- */
+
+/* 1. Core Layout & Variables */
+.crns-section-wrapper {
+    --crns-primary: #0B2447;      /* Deep Navy */
+    --crns-accent: #19376D;       /* Brighter Blue */
+    --crns-text-main: #111111;    /* Black/Dark Grey */
+    --crns-text-muted: #6B7280;   /* Muted Grey */
+    --crns-bg-light: #F9FAFB;     /* Very light grey for inputs/bg */
+    --crns-white: #F4f4f4;
+    --crns-font: 'Inter', sans-serif;
+    
+    background-color: var(--crns-white);
+    font-family: var(--crns-font);
+    width: 100%;
+    padding: 80px 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevents 3D phone from causing scrollbars */
+}
+
+.crns-section-wrapper * {
+    box-sizing: border-box;
+}
+
+.crns-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* 2. Left Column Typography */
+.crns-text-col {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.crns-eyebrow {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #005396; /* Similar blue to image eyebrow */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+
+.crns-headline {
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--crns-text-main);
+    margin: 0 0 32px 0;
+    letter-spacing: -1px;
+}
+
+.crns-feature-list {
+    margin-bottom: 40px;
+}
+
+.crns-feature-item {
+    font-size: 25px; /* Large readable text */
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.crns-bold {
+    font-weight: 600;
+    color: var(--crns-text-main);
+}
+
+.crns-muted {
+    font-weight: 600;
+    color: var(--crns-text-muted);
+}
+
+/* 3. Buttons */
+.crns-cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.crns-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    transition: all 0.2s ease;
+}
+
+.crns-btn-outline {
+    background: transparent;
+    border: 2px solid #8e8f93; /* Light border */
+    color: var(--crns-primary);
+}
+
+.crns-btn-outline:hover {
+    border-color: var(--crns-primary);
+}
+
+.crns-btn-solid {
+    background-color: var(--crns-primary);
+    color: var(--crns-white);
+    border: 2px solid var(--crns-primary);
+}
+
+.crns-btn-solid:hover {
+    background-color: var(--crns-accent);
+    border-color: var(--crns-accent);
+}
+
+.crns-arrow-icon {
+    margin-left: 8px;
+}
+
+/* 4. Right Column: 3D Phone Mockup */
+.crns-visual-col {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    perspective: 1500px; /* Creates the 3D space */
+}
+
+.crns-phone-frame {
+    width: 300px;
+    height: 600px;
+    background: #0f172a; /* Dark Phone Body */
+    border-radius: 40px;
+    border: 8px solid #1e293b;
+    box-shadow: 
+        20px 20px 50px rgba(0,0,0,0.3),
+        -5px -5px 20px rgba(255,255,255,0.05) inset;
+    position: relative;
+    /* The 3D Tilt Logic */
+    transform: rotateY(-15deg) rotateX(5deg) rotateZ(-2deg);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.crns-phone-frame:hover {
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); /* Resets on hover for fun effect */
+}
+
+.crns-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+    border-radius: 32px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Notch */
+.crns-phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #1e293b;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 10;
+}
+
+/* Dashboard Content Styles */
+.crns-dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.crns-dash-menu-icon, .crns-dash-avatar {
+    width: 32px; 
+    height: 32px; 
+    background: rgba(255,255,255,0.1); 
+    border-radius: 50%;
+}
+
+.crns-dash-title h3 { font-size: 14px; margin: 0; font-weight: 600; }
+.crns-dash-title span { font-size: 10px; opacity: 0.6; }
+
+.crns-dash-main-stat {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.crns-dash-main-stat h2 { font-size: 36px; margin: 0; font-weight: 700; letter-spacing: -1px; }
+.crns-stat-label { font-size: 12px; opacity: 0.7; display: block; margin-bottom: 10px; }
+
+.crns-tags { display: flex; justify-content: center; gap: 8px; }
+.crns-tag { font-size: 10px; padding: 4px 8px; border-radius: 12px; }
+.crns-tag.success { color: #4ade80; background: rgba(74, 222, 128, 0.1); }
+.crns-tag.neutral { color: #94a3b8; background: rgba(148, 163, 184, 0.1); }
+
+/* Icon Grid */
+.crns-icon-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.crns-grid-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.crns-circle-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 12px; }
+.crns-circle-icon.active { background: #3b82f6; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
+.crns-grid-item span { font-size: 10px; opacity: 0.7; }
+
+/* Service List */
+.crns-service-list { flex: 1; }
+.crns-list-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 12px; font-weight: 600; }
+.crns-link { color: #3b82f6; cursor: pointer; }
+
+.crns-service-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+.crns-service-icon { width: 32px; height: 32px; border-radius: 50%; margin-right: 12px; }
+.icon-orange { background: #f59e0b; }
+.icon-blue { background: #3b82f6; }
+.icon-grey { background: #64748b; }
+
+.crns-service-info h4 { margin: 0; font-size: 12px; font-weight: 600; }
+.crns-service-info p { margin: 0; font-size: 10px; opacity: 0.5; }
+.crns-stat-green { margin-left: auto; font-size: 11px; color: #4ade80; font-weight: 600; }
+
+.crns-bottom-nav {
+    margin-top: auto;
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* 5. Responsiveness */
+@media (max-width: 900px) {
+    .crns-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .crns-text-col {
+        align-items: center;
+    }
+    
+    .crns-cta-group {
+        justify-content: center;
+    }
+
+    .crns-visual-col {
+        margin-top: 40px;
+        perspective: none; /* Flatten 3D on mobile for better visibility */
+    }
+    
+    .crns-phone-frame {
+        transform: none; /* Remove tilt on mobile */
+    }
+}
+</style>
+
+
+
+
+
+
