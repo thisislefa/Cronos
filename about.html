@@ -1,798 +1,737 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Arbutus&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=Devonshire&family=Francois+One&family=Freckle+Face&family=Fruktur:ital@0;1&family=Gorditas:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Londrina+Sketch&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap" rel="stylesheet">
 
+<!-- HYPERION-HEADER START -->
 <style>
-        /*
-        =============================================
-        0. ROOT & FONT STYLES
-        =============================================
-        */
-        :root {
-            /* Palette */
-            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
-            --color-accent: #0091ff;      /* Bright Blue Accent */
-            --color-text-light: #fff;
-            --color-background-dark: #000;
-            --color-off-white: #f4f4f4;
-            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
-            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
-            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
-            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
-            
-            /* Sizing */
-            --header-height: 55px;
-            --content-max-width-fg: 1500px;
-        }
+    /* =============================================
+        HYPERION HEADER - UNIQUE STYLES
+        ============================================= */
+    :root {
+        /* Palette */
+        --hyperion-color-header-bg: #080d1b;
+        --hyperion-color-accent: #0091ff;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #080d1b;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #1c1a3b;
+        
+        /* Sizing */
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1400px;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding-top: var(--header-height); /* Space for fixed header */
-            background-color: var(--color-background-dark);
-            color: var(--color-text-light);
-            overflow-x: hidden;
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hyperion-header-wrapper {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%; 
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: none;
+
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    .hyperion-custom-logo-text img {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 30px;
+        vertical-align: middle;
+    }
+    
+    .hyperion-custom-logo-text:hover {
+         color: var(--hyperion-color-accent);
+    }
+
+    /* Desktop Navigation */
+    .hyperion-custom-main-nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px;
+        position: relative;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500;
+        padding: 10px 0;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-link:hover {
+        color: #a0a9be;
+    }
+    
+    /* Icon for desktop links */
+    .hyperion-desktop-link-icon {
+        width: 14px;
+        height: 14px;
+        margin-left: 6px;
+        color: var(--hyperion-color-text-muted);
+        stroke-width: 2;
+    }
+    
+    .hyperion-custom-nav-link:hover .hyperion-desktop-link-icon {
+        color: #a0a9be;
+    }
+    
+    /* Action Buttons Wrapper */
+    .hyperion-header-action-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Primary Action Button (Contact Us) */
+    .hyperion-header-action-btn {
+        background: #0077cc;
+        color: var(--hyperion-color-text-light);
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        border-bottom: none;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .hyperion-header-action-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-action-btn:hover {
+        background-color: #0081ff;
+    }
+    
+    /* Secondary Action Button (Get Started) */
+    .hyperion-header-secondary-btn {
+        background-color: #62b8fa32;
+        color: #95d1ff;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        text-decoration: none;
+        border-bottom: none;
+        font-family: 'Inter', sans-serif;
+        text-decoration: none;
+
+    }
+
+    .hyperion-header-secondary-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-secondary-btn:hover {
+        background-color: #4a4b6b;
+    }
+
+    /* QR Code Dropdown Trigger */
+    .hyperion-qr-dropdown-trigger {
+        position: relative;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        color: var(--hyperion-color-text-light);
+        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .hyperion-qr-dropdown-trigger:hover {
+        background-color: #2b294a;
+    }
+
+    .hyperion-qr-dropdown-trigger svg {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no;
+    }
+
+    /* QR Code Dropdown Content */
+    .hyperion-qr-dropdown-content {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: #080d1b;
+        border-radius: 15px;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        z-index: 100;
+    }
+
+    .hyperion-qr-dropdown-content.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-qr-dropdown-content img {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .hyperion-qr-dropdown-content p {
+        color: var(--hyperion-color-text-light);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* MEGA MENU CONTAINER */
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0s, opacity 0s, transform 0s;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 40px 40px 40px;
+    }
+
+    .hyperion-mega-menu-panel.active {
+        display: block;
+    }
+    
+    /* 3-Column Grid for Mega Menus */
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        gap: 40px;
+        justify-content: start;
+        padding-left: 5rem;
+    }
+    
+    .hyperion-menu-group-card {
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 2.5rem;
+        border-radius: 8px;
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-transform: none;
+        letter-spacing: 0.1px;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        color: var(--hyperion-color-text-muted);
+    }
+    
+    /* Image Icon for mega menu group headings */
+    .hyperion-menu-group-img-icon {
+        width: auto;
+        height: 40px;
+        margin-right: 12px;
+        flex-shrink: 0;
+        border-radius: 11px;
+        backface-visibility: visible;
+    }
+    
+    /* Container for Heading Text and Tagline */
+    .hyperion-menu-group-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Tagline Style */
+    .hyperion-menu-group-tagline {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hyperion-color-text-muted);
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .hyperion-mega-menu-group-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Link Items inside Mega Menu */
+    .hyperion-mega-menu-group-list a {
+        display: block;
+        border-radius: 0;
+        transition: color 0s;
+        position: relative;
+        margin: 7px 0;
+        padding: 2px 0;
+        letter-spacing: -0.03em;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--hyperion-color-text-light);
+         text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-mega-menu-link-title {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        margin-bottom: 0;
+    }
+    
+    .hyperion-mega-menu-group-list a:hover {
+        color: #9cd4ff;
+        background-color: transparent;
+    }
+    
+    /* SVG Icon for mobile dropdown */
+    .hyperion-mobile-dropdown-icon {
+        display: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Mobile Toggle */
+    .hyperion-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 1010;
+    }
+
+    .hyperion-mobile-toggle span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0;
+        transition: all 0.3s ease;
+    }
+
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Mobile Overrides */
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container {
+            padding: 0 20px;
         }
         
-        a {
-            text-decoration: none;
-            color: inherit;
+        .hyperion-mobile-toggle {
+            display: block;
         }
 
-        /*
-        =============================================
-        1. HEADER WRAPPER (FIXED & DARK BLUE)
-        =============================================
-        */
-        .header-wrapper {
-            position: fixed; 
-            top: 0;
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height);
             left: 0;
-            width: 100%; 
-            z-index: 1000;
-            background-color: var(--color-header-bg);
-            /* Removed box-shadow as per request, keeping subtle bottom line */
-        }
-
-        .custom-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-        }
-
-        .custom-header-container {
-            max-width: var(--content-max-width-fg);
             width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
+            height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto;
+            padding: 20px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: block;
+            z-index: 900;
+        }
+
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px;
+            margin-left: 0;
+        }
+
+        .hyperion-custom-nav-list li {
+            margin: 0;
+            width: 100%;
+            
+        }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0;
+            font-size: 1.1rem;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        /* Logo */
-        .custom-logo-text img{
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: var(--color-text-light);
-            transition: color 0.3s ease;
-            height: 23px;
-            vertical-align: middle;
-        }
         
-        .custom-logo-text:hover {
-             color: var(--color-accent);
-        }
-
-        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
-        .custom-main-nav {
-            flex-grow: 1; /* Allows nav to take up remaining space */
-            display: flex;
-            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
-            align-items: center;
-        }
-
-        .custom-nav-list {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-
-        .custom-nav-list li {
-            margin-left: 35px;
-            position: relative;
-        }
-
-        .custom-nav-link {
-            text-decoration: none;
-            color: var(--color-text-light);
-            font-weight: 500;
-            padding: 10px 0;
-            display: flex;
-            font-size: 14px;
-            align-items: center;
-        }
-
-        .custom-nav-link:hover {
-            color: #a0a9be;
-        }
-        
-        /* NEW - Icon for desktop links like Pricing/Projects */
-        .desktop-link-icon {
-            width: 14px;
-            height: 14px;
-            margin-left: 6px;
-            color: var(--color-text-muted);
-            stroke-width: 2;
-        }
-        
-        .custom-nav-link:hover .desktop-link-icon {
-            color: #a0a9be; /* Match the link hover color */
-        }
-        
-        /* Action Buttons Wrapper - NEW */
-        .header-action-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Primary Action Button (Contact Us) */
-        .header-action-btn {
-            background: #0077cc;
-            color: var(--color-text-light);
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 20px; /* Space between the last nav item and this button */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-action-btn a {
-            color: inherit;
-        }
-
-        .header-action-btn:hover {
-            background-color: #0081ff;
-        }
-        
-        /* Secondary Action Button (Get Started) - NEW */
-        .header-secondary-btn {
-            background-color: #62b8fa32; /* Light blue background */
-            color: #95d1ff;
-            border: none;
-            padding: 9px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
-            transition: background-color 0.2s ease;
-        }
-
-        .header-secondary-btn a {
-            color: inherit;
-        }
-
-        .header-secondary-btn:hover {
-            background-color: #4a4b6b; /* Slightly lighter on hover */
-        }
-
-        /* QR Code Dropdown Trigger - NEW */
-        .qr-dropdown-trigger {
-            position: relative;
-            margin-left: 10px; /* Space from Get Started button */
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; /* Circular button */
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            color: var(--color-text-light);
-            font-size: 18px; /* Icon size */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-        }
-        
-        .qr-dropdown-trigger:hover {
-            background-color: #2b294a;
-        }
-
-        /* QR Code Dropdown Content - NEW */
-        .qr-dropdown-content {
-            position: absolute;
-            top: calc(100% + 10px); /* Position below the header, with a gap */
-            right: 0; /* Align to the right of the trigger button */
-            background-color: #080d1b;
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 130px; /* Fixed width for the dropdown */
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
-            z-index: 100; /* Ensure it's above other content */
-        }
-
-        .qr-dropdown-trigger svg {
-            content: '';
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            }
-
-        .qr-dropdown-content.show {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .qr-dropdown-content img {
-            width: 100px; /* Size of the QR code image */
-            height: 100px;
-            background-color: #fff; /* White background for QR code */
-            padding: 10px; /* Padding around QR code to make it look embedded */
-            border-radius: 8px; /* Slightly rounded corners for the QR code */
-            margin-bottom: 15px;
-        }
-
-        .qr-dropdown-content p {
-            color: var(--color-text-light);
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /*
-        =============================================
-        2. MEGA MENU CONTAINER (Look-Alike Styles)
-        =============================================
-        */
-        .mega-menu-container {
-            position: absolute;
-            top: var(--header-height);
-            left: 0;
-            width: 100%;
-            background-color: var(--color-menu-bg);
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: visibility 0s, opacity 0s, transform 0s;
-        }
-
-        .header-wrapper.mega-menu-open .mega-menu-container {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mega-menu-panel {
+        /* Hide desktop-only icons on mobile */
+        .hyperion-desktop-link-icon {
             display: none;
-            max-width: var(--content-max-width-fg);
-            width: 100%; /* Ensure it spans the max width */
-            margin: 0 auto;
-            padding: 20px 40px 40px 40px; /* Reduced top padding */
-        }
-
-        .mega-menu-panel.active {
-            display: block;
         }
         
-        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
-        .megamenu-3-column-grid {
-            display: grid;
-            /* Use auto-fit with a min-max for column width, which helps alignment. 
-               Setting fixed columns here to ensure they stop at a reasonable width 
-               to look like the image, and the entire block is left-aligned within the 1200px container.
-            */
-            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
-            gap: 40px;
-            justify-content: start; /* Aligns the grid itself to the start (left) */
-            padding-left: 9rem;
+        /* Hide the tagline on mobile */
+        .hyperion-menu-group-tagline {
+            display: none;
         }
         
-        .menu-group-card {
-            padding: 0;
-            padding-top: 10px;
-            padding-bottom: 2.5rem;
-            border-radius: 8px; 
-        }
-
-        .menu-group-card h3 {
-            font-size: 13px; /* Slightly larger heading for better hierarchy */
-            font-weight: 600;
-            margin-bottom: 25px; /* More space below heading */
-            text-transform: none;
-            letter-spacing: 0.1px;
-            cursor: default; /* Not a clickable element */
-            
-            /* MODIFIED to contain icon, heading, and tagline */
-            display: flex; 
-            align-items: center; /* Vertically center icon with the text block */
-            color: var(--color-text-muted);
+        /* Show and style mobile icon */
+        .hyperion-mobile-dropdown-icon {
+            display: inline-block;
         }
         
-        /* NEW - Icon for mega menu group headings */
-        .menu-group-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 8px; /* Space between icon and text */
-            color: var(--color-accent); /* Use the accent color */
-            stroke-width: 2;
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0; 
+        /* Rotate icon when the parent menu item is active */
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
         }
         
-        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
-        .menu-group-img-icon {
-            width: auto;
-            height: 40px;
-            margin-right: 8px; /* Space between icon and text */
-            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
-            flex-shrink: 0;
-            backface-visibility: visible
-        }
-        
-        /* NEW - Container for Heading Text and Tagline */
-        .menu-group-text-container {
-            display: flex;
+        /* Mobile Action Buttons */
+        .hyperion-header-action-buttons {
             flex-direction: column;
-            justify-content: center; /* Vertically center the text block if icon is taller */
-        }
-
-        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
-        .menu-group-tagline {
-            font-size: 12px; /* Smaller font for tagline */
-            font-weight: 500; /* Lighter weight */
-            color: var(--color-text-muted); /* Subtler color */
-            margin-top: 5px; /* Small space below the main heading */
-            display: block; /* Ensure it takes up its own line */
-        }
-        
-        .mega-menu-group-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
-        .mega-menu-group-list a {
-            display: block;
-            border-radius: 0; /* Remove border radius */
-            transition: color 0s;
-            position: relative;
-            margin: 5px 0; /* Tighter vertical spacing */
-            padding: 2px 0; /* Minimal padding */
-            letter-spacing: -0.03em;
-            font-size: 19px;
-            font-weight: 600; /* Regular weight for links */
-            color: var(--color-text-light); /* Make column headers light/white */
-        }
-
-        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
-        .mega-menu-link-title {
-            /* This class is now redundant but keeping it for structure if needed later */
-            font-size: inherit; 
-            font-weight: inherit;
-            color: inherit; 
-            margin-bottom: 0;
-        }
-        
-        .mega-menu-group-list a:hover {
-            color: #9cd4ff; /* White on hover */
-            background-color: transparent; /* No background change on hover */
-        }
-        
-        /* REMOVED: .mega-menu-link-desc is removed as requested */
-        .mega-menu-link-desc {
-            display: none; /* Hide descriptions */
-        }
-        
-        /*
-        =============================================
-        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
-        =============================================
-        */
-        
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        /* Mobile Toggle */
-        .mobile-toggle {
-            display: none; 
-            background: none;
-            border: none;
-            width: 30px;
-            height: 24px;
-            cursor: pointer;
-            padding: 0;
-            position: relative;
-            z-index: 1010;
-        }
-
-        /* NEW: SVG Icon for mobile dropdown */
-        .mobile-dropdown-icon {
-            display: none; /* Hide on desktop */
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-toggle span {
-            display: block;
-            height: 2px;
             width: 100%;
-            background-color: var(--color-text-light);
-            margin: 6px 0;
-            transition: all 0.3s ease;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
         }
 
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            text-align: center;
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
-            opacity: 0;
+
+        .hyperion-qr-dropdown-trigger {
+            width: 100%;
+            border-radius: 50px;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            height: auto;
+            box-sizing: border-box;
+            justify-content: center;
+            display: none; /* HIDE QR TRIGGER ON MOBILE */
         }
-        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+
+        .hyperion-qr-dropdown-content {
+            position: static;
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: none;
+            border-top: 1px solid rgba(0, 145, 255, 0.1);
+            border-radius: 0;
+            background-color: #0d0d29;
+            display: none; /* HIDE QR CONTENT ON MOBILE */
         }
         
-        /* Mobile Overrides */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .custom-header-container {
-                padding: 0 20px;
-            }
-            
-            .mobile-toggle {
-                display: block; 
-            }
-
-            .custom-main-nav {
-                position: fixed;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                height: calc(100vh - var(--header-height));
-                background-color: var(--color-header-bg);
-                overflow-y: auto;
-                padding: 20px 0;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                display: block; 
-                z-index: 900;
-            }
-
-            .header-wrapper.mobile-menu-open .custom-main-nav {
-                transform: translateX(0);
-            }
-
-            .custom-nav-list {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0 20px;
-                margin-left: 0; /* Reset desktop margin */
-            }
-
-            .custom-nav-list li {
-                margin: 0;
-                width: 100%;
-                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
-            }
-
-            .custom-nav-link {
-                padding: 15px 0;
-                font-size: 1.1rem;
-                width: 100%;
-                display: flex; /* Use flex to position icon */
-                justify-content: space-between; /* Pushes text left, icon right */
-                align-items: center;
-            }
-            
-            /* NEW - Hide desktop-only icons on mobile */
-            .desktop-link-icon {
-                display: none;
-            }
-            
-            /* Hide the tagline on mobile */
-            .menu-group-tagline {
-                display: none; 
-            }
-            
-            /* Show and style mobile icon */
-            .mobile-dropdown-icon {
-                display: inline-block; /* Show on mobile */
-            }
-            
-            /* Rotate icon when the parent menu item is active */
-            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
-                transform: rotate(180deg);
-            }
-            
-            /* Remove underline effect on mobile */
-            .custom-nav-link::after {
-                display: none;
-            }
-
-            
-            /* Mobile Action Buttons */
-            .header-action-buttons {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
-                box-sizing: border-box; /* Include padding in width */
-                margin-top: 20px; /* Space from last nav item */
-            }
-
-            .header-action-btn,
-            .header-secondary-btn {
-                width: 100%;
-                margin: 10px 0 0 0; /* Stack vertically with space */
-                padding: 15px 20px;
-                text-align: center;
-            }
-
-            .qr-dropdown-trigger {
-                width: 100%;
-                border-radius: 50px; /* Make it a full button shape */
-                margin: 10px 0 0 0;
-                padding: 15px 20px;
-                height: auto; /* Adjust height based on padding */
-                box-sizing: border-box;
-                justify-content: center; /* Center content horizontally */
-                display: none; /* HIDE QR TRIGGER ON MOBILE */
-            }
-
-            .qr-dropdown-trigger i {
-                margin-right: 10px; /* Space between icon and text if we add it */
-            }
-
-            /* Mobile QR Dropdown */
-            .qr-dropdown-content {
-                position: static; /* Remove absolute positioning */
-                width: 100%;
-                margin-top: 15px; /* Space from trigger */
-                padding: 15px;
-                box-shadow: none;
-                border-top: 1px solid rgba(0, 145, 255, 0.1);
-                border-radius: 0;
-                background-color: #0d0d29; /* Match mega menu background */
-                display: none; /* HIDE QR CONTENT ON MOBILE */
-            }
-            
-            .qr-dropdown-content img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .qr-dropdown-content.show {
-                transform: none; /* No transform on mobile */
-            }
-
-            /* Mobile Mega Menu */
-            .mega-menu-container {
-                position: static;
-                visibility: visible;
-                opacity: 1;
-                transform: none;
-                transition: max-height 0.3s ease;
-                overflow: hidden;
-                max-height: 0;
-                background-color: var(--color-menu-bg);
-                border-top: none;
-            }
-
-            .mega-menu-link-title {
-              padding: 0;
-              border-bottom: none;
-            }
-            
-            .custom-nav-item--has-megamenu.active .mega-menu-container {
-                max-height: 2000px;
-                padding: 0;
-            }
-            
-            .mega-menu-panel {
-                padding: 15px 0; /* Align content with parent link */
-                display: block; /* Make panel visible by default inside mobile menu */
-            }
-
-            .megamenu-3-column-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding-left: 0; /* Reset desktop padding */
-            }
-            
-            .menu-group-card {
-                padding: 0;
-            }
-            
-            .menu-group-card h3 {
-                margin-top: 23px;
-                /* Reset mobile h3 layout to default */
-                flex-direction: row; 
-                align-items: center;
-                display: flex;
-            }
-            
-            .mega-menu-group-list a {
-                margin: 10px 0;
-            }
-
-            .mega-menu-group-list li {
-                
-                border: none;
-                
-            }
-            
-            .mega-menu-group-list a:hover {
-                background-color: rgba(0, 145, 255, 0.1);
-            }
+        .hyperion-qr-dropdown-content img {
+            width: 120px;
+            height: 120px;
         }
-    </style>
-</head>
-<body>
 
-<div class="header-wrapper">
+        .hyperion-qr-dropdown-content.show {
+            transform: none;
+        }
+
+        /* Mobile Mega Menu */
+        .hyperion-mega-menu-container {
+            position: static;
+            visibility: visible;
+            opacity: 1;
+            transform: none;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+            background-color: var(--hyperion-color-menu-bg);
+            border-top: none;
+        }
+
+        .hyperion-mega-menu-link-title {
+          padding: 0;
+          border-bottom: none;
+        }
+        
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 2000px;
+            padding: 0;
+        }
+        
+        .hyperion-mega-menu-panel {
+            padding: 15px 0;
+            display: block;
+        }
+
+        .hyperion-megamenu-3-column-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-left: 0;
+        }
+        
+        .hyperion-menu-group-card {
+            padding: 0;
+        }
+        
+        .hyperion-menu-group-card h3 {
+            margin-top: 23px;
+            flex-direction: row;
+            align-items: center;
+            display: flex;
+        }
+        
+        .hyperion-mega-menu-group-list a {
+            margin: 10px 0;
+        }
+
+        .hyperion-mega-menu-group-list li {
+            border: none;
+        }
+        
+        .hyperion-mega-menu-group-list a:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+    }
+</style>
+
+<div class="hyperion-header-wrapper">
     
-    <header class="custom-header">
-        <div class="custom-header-container">
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
             
-            <div class="custom-logo-container">
-                <a href="index.html" class="custom-logo-link custom-logo-text">
-                    <img src="thumbnails/hyperion.png" alt="Defcon Logo">
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="thumbnails/hyperion logo (2).png" alt="Hyperion Logo">
                 </a>
             </div>
 
-            <nav class="custom-main-nav">
-                <ul class="custom-nav-list">
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
                     <li>
-                        <a href="pricing.html" class="custom-nav-link">Pricing
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
+                             
                         </a>
                     </li>
                     <li>
-                        <a href="projects.html" class="custom-nav-link">Projects
-                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="projects">Ecosystem
+                             
                         </a>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="page.html" class="custom-nav-link" data-megamenu-trigger="services">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
                             Solutions
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="services">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Software Development
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">Web Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="mobile-applications.html">
+                                                    <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">API Development</span>
+                                                    <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
-                                                    </a>
-                                            </li>
-                                            <li>
-                                                <a href="page.html">
-                                                    <span class="mega-menu-link-title">Database Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             IT Infrastructure
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                                    <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Data Center Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Marketing & Creative Studio
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    <span class="hyperion-mega-menu-link-title">Content Management</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -801,116 +740,116 @@
                             </div>
                         </div>
                     </li>
-                    <li class="custom-nav-item--has-megamenu">
-                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
                             Discover
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <div class="mega-menu-container">
-                            <div class="mega-menu-panel" data-megamenu-panel="discover">
-                                <div class="megamenu-3-column-grid">
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
-                                            Defcon
+                                            Hyperion
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    <span class="hyperion-mega-menu-link-title">About Us</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    <span class="hyperion-mega-menu-link-title">Product News</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Innovations</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="careers.html">
-                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    <span class="hyperion-mega-menu-link-title">Careers</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="partners.html">
-                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    <span class="hyperion-mega-menu-link-title">Partners</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="licenses-and-registrations.html">
-                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
                                     
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Resources
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    <span class="hyperion-mega-menu-link-title">Blog</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    <span class="hyperion-mega-menu-link-title">eBooks</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    <span class="hyperion-mega-menu-link-title">Webinars</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">YouTube Playlists</span>
+                                                    <span class="hyperion-mega-menu-link-title">Recommendations</span>
                                                     </a>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div class="menu-group-card">
+                                    <div class="hyperion-menu-group-card">
                                         <h3>
                                             Connect
                                         </h3>
-                                        <ul class="mega-menu-group-list">
+                                        <ul class="hyperion-mega-menu-group-list">
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">Media</span>
+                                                    <span class="hyperion-mega-menu-link-title">X</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="page.html">
-                                                    <span class="mega-menu-link-title">X</span>
-                                                    </a>
-                                            </li>
-                                            <li>
-                                                <a href="page.html">
-                                                    <span class="mega-menu-link-title">Facebook</span>
+                                                    <span class="hyperion-mega-menu-link-title">Facebook</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Youtube</span>
+                                                    <span class="hyperion-mega-menu-link-title">LinkedIn</span>
                                                     </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <span class="mega-menu-link-title">Github</span>
+                                                    <span class="hyperion-mega-menu-link-title">Youtube</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">Github</span>
                                                     </a>
                                             </li>
                                         </ul>
@@ -920,23 +859,23 @@
                         </div>
                     </li>
                 </ul>
-                <div class="header-action-buttons">
-                    <button class="header-secondary-btn">
-                        <a href="page.html">Get Started</a>
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="page.html">Log In</a>
                     </button>
-                    <button class="header-action-btn">
-                        <a href="page.html">Contact Us</a>
+                    <button class="hyperion-header-action-btn">
+                        <a href="page.html">Sign Up</a>
                     </button>
-                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
-                        <div class="qr-dropdown-content" id="qrDropdownContent">
-                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
+                      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
+                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Contact Sales</p>
                         </div>
                     </div>
                 </div>
             </nav>
 
-            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -944,127 +883,116 @@
         </div>
     </header>
 
-    <div class="mega-menu-container desktop-mega-menu">
+    <div class="hyperion-mega-menu-container hyperion-desktop-mega-menu">
         
-        <div class="mega-menu-panel" data-megamenu-panel="services">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
-                            Software Engineering
-                            <span class="menu-group-tagline">Build your custom vision</span>
+                        <img src="thumbnails/04 (2).png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Development
+                            <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <button style="color: white; background-color: transparent; text-decoration: none; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Start Project
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Web Applications</span>
+                                <span class="hyperion-mega-menu-link-title">AI</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                <span class="hyperion-mega-menu-link-title">Web Apps</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="mobile-applications.html">
+                                <span class="hyperion-mega-menu-link-title">Mobile Apps</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                <span class="hyperion-mega-menu-link-title">E-commerce</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">E-commerce Solutions</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Blockchain & Web3</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
-                         <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/02.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             IT Infrastructure
-                            <span class="menu-group-tagline">Power your business</span>
+                            <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <button style="color: white; background-color: transparent; text-decoration: none; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Learn About IT
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">IT Consulting</span>
+                                <span class="hyperion-mega-menu-link-title">IT Consulting</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Data Center & Storage</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Smart Technology</span>
+                                <span class="hyperion-mega-menu-link-title">Data Center</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
-                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             Marketing & Creative Studio
-                            <span class="menu-group-tagline">Grow your audience</span>
+                            <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <button style="color: white; background-color: transparent; text-decoration: none; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Explore Marketing
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Graphic Design</span>
+                                <span class="hyperion-mega-menu-link-title">Graphic Design</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Content Management</span>
+                                <span class="hyperion-mega-menu-link-title">Content Management</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Multimedia Production</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                <span class="hyperion-mega-menu-link-title">Advertising</span>
                                 </a>
                         </li>
                     </ul>
@@ -1072,119 +1000,98 @@
             </div>
         </div>
 
-        <div class="mega-menu-panel" data-megamenu-panel="discover">
-            <div class="megamenu-3-column-grid">
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+            <div class="hyperion-megamenu-3-column-grid">
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Hyperion
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">About Us</span>
+                                <span class="hyperion-mega-menu-link-title">About Us</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Roadmap</span>
+                                <span class="hyperion-mega-menu-link-title">Roadmap</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Innovations</span>
+                                <span class="hyperion-mega-menu-link-title">Innovations</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Product News</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Events</span>
+                                <span class="hyperion-mega-menu-link-title">Product News</span>
                                 </a>
                         </li>
                         <li>
                             <a href="careers.html">
-                                <span class="mega-menu-link-title">Careers</span>
+                                <span class="hyperion-mega-menu-link-title">Careers</span>
                                 </a>
                         </li>
                         <li>
                             <a href="partners.html">
-                                <span class="mega-menu-link-title">Partners</span>
+                                <span class="hyperion-mega-menu-link-title">Partners</span>
                                 </a>
                         </li>
                         <li>
                             <a href="licenses-and-registrations.html">
-                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
                                 </a>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
                         Resources
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Blog</span>
+                                <span class="hyperion-mega-menu-link-title">Blog</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">eBooks</span>
+                                <span class="hyperion-mega-menu-link-title">eBooks</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Webinars</span>
+                                <span class="hyperion-mega-menu-link-title">Webinars</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Podcasts</span>
+                                <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                 </a>
                         </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Recommendations</span>
-                                </a>
-                        </li>
-
                     </ul>
                 </div>
 
-                <div class="menu-group-card">
+                <div class="hyperion-menu-group-card">
                     <h3>
-                        Connect
+                        Learn
                     </h3>
-                    <ul class="mega-menu-group-list">
+                    <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">X</span>
+                                <span class="hyperion-mega-menu-link-title">Learn</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">Facebook</span>
+                                <span class="hyperion-mega-menu-link-title">Research</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="mega-menu-link-title">LinkedIn</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Youtube</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="mega-menu-link-title">Github</span>
+                                <span class="hyperion-mega-menu-link-title">Market Updates</span>
                                 </a>
                         </li>
                     </ul>
@@ -1194,213 +1101,187 @@
     </div>
 </div>
 
-
 <script>
 // =============================================
-// JAVASCRIPT FOR MENU FUNCTIONALITY
+// HYPERION HEADER JAVASCRIPT
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const headerWrapper = document.querySelector('.header-wrapper');
-    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
-    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
-    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const body = document.body;
+    const hyperionHeaderWrapper = document.querySelector('.hyperion-header-wrapper');
+    const hyperionDesktopMegaMenuContainer = document.querySelector('.hyperion-desktop-mega-menu');
+    const hyperionMegaMenuTriggers = document.querySelectorAll('[data-hyperion-megamenu-trigger]');
+    const hyperionDesktopMegaMenuPanels = hyperionDesktopMegaMenuContainer.querySelectorAll('.hyperion-mega-menu-panel');
+    const hyperionMobileMenuToggle = document.getElementById('hyperion-mobileMenuToggle');
+    const hyperionBody = document.body;
     
-    // NEW: QR Code Dropdown elements
-    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
-    const qrDropdownContent = document.getElementById('qrDropdownContent');
+    // QR Code Dropdown elements
+    const hyperionQrDropdownTrigger = document.getElementById('hyperion-qrDropdownTrigger');
+    const hyperionQrDropdownContent = document.getElementById('hyperion-qrDropdownContent');
 
-    let closeTimer = null;
-    let qrCloseTimer = null; // Timer for QR dropdown
+    let hyperionCloseTimer = null;
+    let hyperionQrCloseTimer = null;
 
     // =============================================
-    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // DESKTOP MEGA MENU LOGIC
     // =============================================
     
-    // Function to set the active state on trigger and panel
-    function setActiveMenu(trigger, panel) {
-        // Deactivate all others first
-        megaMenuTriggers.forEach(t => t.classList.remove('active'));
-        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+    function hyperionSetActiveMenu(trigger, panel) {
+        hyperionMegaMenuTriggers.forEach(t => t.classList.remove('active'));
+        hyperionDesktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
 
         if (trigger && panel) {
             trigger.classList.add('active');
             panel.classList.add('active');
-            headerWrapper.classList.add('mega-menu-open');
+            hyperionHeaderWrapper.classList.add('hyperion-mega-menu-open');
         } else {
-            // Close all
-            headerWrapper.classList.remove('mega-menu-open');
+            hyperionHeaderWrapper.classList.remove('hyperion-mega-menu-open');
         }
     }
 
-    function handleOpen(trigger) {
+    function hyperionHandleOpen(trigger) {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
-            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
-            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
-            setActiveMenu(trigger, targetMenuPanel);
-            // Close QR dropdown if mega menu opens
-            if (qrDropdownContent.classList.contains('show')) {
-                hideQrDropdown();
+            clearTimeout(hyperionCloseTimer);
+            const targetMenuId = trigger.getAttribute('data-hyperion-megamenu-trigger');
+            const targetMenuPanel = hyperionDesktopMegaMenuContainer.querySelector(`[data-hyperion-megamenu-panel="${targetMenuId}"]`);
+            hyperionSetActiveMenu(trigger, targetMenuPanel);
+            if (hyperionQrDropdownContent.classList.contains('show')) {
+                hyperionHideQrDropdown();
             }
         }
     }
 
-    function handleClose() {
+    function hyperionHandleClose() {
         if (window.innerWidth > 1024) {
-            // Set a slight delay to allow mouse transition from trigger to menu
-            closeTimer = setTimeout(() => {
-                setActiveMenu(null, null); // Close all
+            hyperionCloseTimer = setTimeout(() => {
+                hyperionSetActiveMenu(null, null);
             }, 150); 
         }
     }
 
-    // Attach mouse event listeners for desktop
-    megaMenuTriggers.forEach(trigger => {
-        // Open on mouse enter
+    hyperionMegaMenuTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', () => {
-            handleOpen(trigger);
+            hyperionHandleOpen(trigger);
         });
         
-        // Use the common container as the exit point for the entire menu system
         trigger.parentElement.addEventListener('mouseleave', () => {
-            handleClose();
+            hyperionHandleClose();
         });
     });
 
-    // Prevent menu from closing when mouse is over the menu container
-    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseenter', () => {
         if (window.innerWidth > 1024) {
-            clearTimeout(closeTimer);
+            clearTimeout(hyperionCloseTimer);
         }
     });
 
-    // Close menu when mouse leaves the menu container
-    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
-        handleClose();
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        hyperionHandleClose();
     });
 
     // =============================================
-    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // QR CODE DROPDOWN LOGIC
     // =============================================
-    function showQrDropdown() {
+    function hyperionShowQrDropdown() {
         if (window.innerWidth > 1024) {
-            clearTimeout(qrCloseTimer);
-            qrDropdownContent.classList.add('show');
-            // Close mega menu if QR dropdown opens
-            setActiveMenu(null, null);
+            clearTimeout(hyperionQrCloseTimer);
+            hyperionQrDropdownContent.classList.add('show');
+            hyperionSetActiveMenu(null, null);
         }
     }
 
-    function hideQrDropdown() {
+    function hyperionHideQrDropdown() {
         if (window.innerWidth > 1024) {
-            qrCloseTimer = setTimeout(() => {
-                qrDropdownContent.classList.remove('show');
-            }, 150); // Slight delay for smooth transition
+            hyperionQrCloseTimer = setTimeout(() => {
+                hyperionQrDropdownContent.classList.remove('show');
+            }, 150);
         }
     }
 
-    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
-    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
-    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
-    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseleave', hyperionHideQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseleave', hyperionHideQrDropdown);
 
     // =============================================
-    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // MOBILE MENU LOGIC
     // =============================================
-    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    const hyperionMobileDropdownItems = document.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
     
-    // Mobile hamburger toggle
-    mobileMenuToggle.addEventListener('click', function() {
-        headerWrapper.classList.toggle('mobile-menu-open');
-        body.classList.toggle('mobile-menu-active');
+    hyperionMobileMenuToggle.addEventListener('click', function() {
+        hyperionHeaderWrapper.classList.toggle('hyperion-mobile-menu-open');
+        hyperionBody.classList.toggle('hyperion-mobile-menu-active');
         
-        // If closing the mobile menu, ensure all mega menu active states are cleared
-        if (!headerWrapper.classList.contains('mobile-menu-open')) {
-             mobileDropdownItems.forEach(item => item.classList.remove('active'));
-             // Also close QR dropdown on mobile close
-             qrDropdownContent.classList.remove('show');
+        if (!hyperionHeaderWrapper.classList.contains('hyperion-mobile-menu-open')) {
+             hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+             hyperionQrDropdownContent.classList.remove('show');
         }
     });
 
-    // Mobile dropdown toggle (for Services and Discover links)
-    mobileDropdownItems.forEach(item => {
-        const trigger = item.querySelector('.custom-nav-link');
+    hyperionMobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.hyperion-custom-nav-link');
         trigger.addEventListener('click', function(e) {
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
                 e.stopPropagation(); 
 
-                // Close all other dropdowns
-                mobileDropdownItems.forEach(otherItem => {
+                hyperionMobileDropdownItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
 
-                // Toggle current dropdown
                 item.classList.toggle('active');
-                // Close QR dropdown if a mega menu opens
-                qrDropdownContent.classList.remove('show');
+                hyperionQrDropdownContent.classList.remove('show');
             }
         });
     });
 
-    // Toggle QR dropdown on click for mobile
-    qrDropdownTrigger.addEventListener('click', function(e) {
+    hyperionQrDropdownTrigger.addEventListener('click', function(e) {
         if (window.innerWidth <= 1024) {
             e.preventDefault();
             e.stopPropagation();
-            qrDropdownContent.classList.toggle('show');
-            // Close any open mega menus
-            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+            hyperionQrDropdownContent.classList.toggle('show');
+            hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
         }
     });
 
-    // Close mobile menu when a standard link is clicked
-    document.querySelectorAll('.custom-nav-list a').forEach(link => {
-        // Exclude links that trigger a mega menu, and links that are inside a mega menu
-        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+    document.querySelectorAll('.hyperion-custom-nav-list a').forEach(link => {
+        if (!link.hasAttribute('data-hyperion-megamenu-trigger') && !link.closest('.hyperion-mega-menu-container')) {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 1024) {
-                    headerWrapper.classList.remove('mobile-menu-open');
-                    body.classList.remove('mobile-menu-active');
-                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
+                    hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                    hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                    hyperionQrDropdownContent.classList.remove('show');
                 }
             });
         }
     });
     
-    // Close QR dropdown if clicked outside on desktop
     document.addEventListener('click', function(event) {
-        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
-            hideQrDropdown();
+        if (window.innerWidth > 1024 && !hyperionQrDropdownTrigger.contains(event.target) && !hyperionQrDropdownContent.contains(event.target)) {
+            hyperionHideQrDropdown();
         }
     });
 
     // =============================================
     // WINDOW RESIZE HANDLER
     // =============================================
-    let resizeTimer;
+    let hyperionResizeTimer;
     window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
+        clearTimeout(hyperionResizeTimer);
+        hyperionResizeTimer = setTimeout(function() {
             if (window.innerWidth > 1024) {
-                // Reset desktop/mobile states
-                headerWrapper.classList.remove('mobile-menu-open');
-                body.classList.remove('mobile-menu-active');
-                mobileDropdownItems.forEach(item => item.classList.remove('active'));
-                setActiveMenu(null, null); // Close any open mega menu
-            } else { // Mobile specific reset
-                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
-                 qrDropdownContent.classList.remove('show');
+                hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+                hyperionSetActiveMenu(null, null);
+            } else {
+                hyperionQrDropdownContent.classList.remove('show');
             }
         }, 250);
     });
 });
 </script>
-
+<!-- HYPERION-HEADER END -->
 
 
 
@@ -1434,7 +1315,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Arbutus&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=Devonshire&family=Francois+One&family=Freckle+Face&family=Fruktur:ital@0;1&family=Gorditas:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Londrina+Sketch&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap" rel="stylesheet">
     <style>
         /* ===== RESET & BASE STYLES ===== */
         * {
@@ -1444,16 +1327,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         :root {
-            --defcon-primary-dark: #0a192f;
-            --defcon-secondary-dark: #112240;
+            --defcon-primary-dark: #080d1b;
+            --defcon-secondary-dark: #080d1b;
             --defcon-accent: #0091ff;
             --defcon-text-primary: #e6f1ff;
             --defcon-text-secondary: #8892b0;
-            --defcon-card-bg: #112240;
+            --defcon-card-bg: #091221;
             --values-primary-blue: #0091ff;
             --values-black: #000;
             --values-white: #fff;
-            --values-dark-blue-bg: #03111b;
+            --values-dark-blue-bg: #080d1b;
             --values-light-gray-bg: #f4f4f4;
             --values-text-color: #fff;
             --values-heading-color: #fff;
@@ -1483,7 +1366,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .aboutus-hero-section {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.626) 100%, rgba(0, 145, 255, 0.85) 0%),
                         url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169') center/cover;
-            min-height: 95vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1543,9 +1426,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* Video Hero Section */
         .hero {
-            padding-top: 10rem;
+            padding: 300px 0;
             position: relative;
-            min-height: 90vh;
+            min-height: 80vh;
             width: 100%;
             max-width: 100%;
             overflow: hidden;
@@ -1555,14 +1438,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(2rem, 5vw, 70px);
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: #ffffff;
             text-align: center;
             max-width: 90%;
             line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
@@ -1656,7 +1538,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .defcon-section-title {
             font-size: clamp(2rem, 5vw, 3.4rem);
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: -0.03em;
             color: white;
             margin-bottom: 60px;
@@ -1668,7 +1550,7 @@ document.addEventListener('DOMContentLoaded', function() {
             max-width: 1000px;
             margin: 0 auto;
             background: #ffffff;
-            border-radius: 8px;
+            border-radius: 1px;
             overflow: hidden;
             display: flex;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -1970,7 +1852,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .values-section-title {
             font-size: 54px;
             letter-spacing: -0.04em;
-            font-weight: 700;
+            font-weight: 600;
             color: #ffffff;
             margin-bottom: 50px;
             text-align: center;
@@ -2032,7 +1914,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* ===== CAREER CTA SECTION ===== */
         .aboutus-career-section {
-            background-image: url(https://images.unsplash.com/photo-1630699293470-83d8406ffd31?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/6754846/pexels-photo-6754846.jpeg);
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -2047,30 +1929,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .aboutus-career-heading {
             font-size: 54px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
+            font-weight: 600;
+            letter-spacing: -0.03em;
             margin-bottom: 50px;
-            color: #000;
+            color: #ffffff;
         }
 
         .aboutus-career-button {
             display: inline-block;
-            padding: 9px 30px;
-            border: 1px solid #000;
-            color: #000;
+            padding: 9px 25px;
+            border: 1px solid #ffffff;
+            color: #ffffff;
             font-size: 20px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-        }
-
-        .aboutus-career-button:hover {
-            background-color: white;
-            color: #06273e;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
         }
 
         /* ===== ANIMATIONS ===== */
@@ -2307,15 +2182,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Video Hero Section -->
         <section class="hero">
             <video autoplay muted loop playsinline>
-                <source src="https://www.pexels.com/download/video/34597127/" type="video/mp4">
+                <source src="https://www.pexels.com/download/video/5519942/" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
             <div class="hero-content">
-                <h1>Achieve the extraordinary.</h1>
-                <h1>Make Everything possible.</h1>
+                <h1>The ROI-first technology partner, and<br> trusted platform for IT Solutions.</h1>
                 <div>
-                    <a href="#services" class="btn">See Our Partners
+                    <a href="#services" class="btn">Learn More
                         <span style="vertical-align: middle; justify-content: center; align-items: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#fff" height="24">
                                 <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
@@ -2461,7 +2335,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2 class="aboutus-career-heading">Be part of something extraordinary<br>and shape the future with us</h2>
                 <a href="#careers" class="aboutus-career-button">Explore Careers
                     <span style="vertical-align: middle; justify-items: center; align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#000" height="24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#fff" height="24">
                             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                         </svg>
                     </span>
@@ -2774,7 +2648,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .pc-footer-wrapper {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     
   }
@@ -2789,7 +2663,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .image-logo {
-    height: 45px;
+    height: 35px;
     align-items: center;
     align-self: center;
     vertical-align: middle;
@@ -2882,8 +2756,8 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Footer content with columns */
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 80px;
     margin-bottom: 30px;
     padding-top: 3.5rem;
     width: 100%;
@@ -2920,7 +2794,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .footer-column ul li {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 
   .footer-column ul li a {
@@ -3173,50 +3047,14 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="pc-footer-top">
         <div class="pc-footer-logo">
           <a href="index.html">
-            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
+            <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
           </a>
         </div>
 
         <hr class="pc-footer-line">
-
-        <div class="social-icons-container">
-                <a href="https://x.com/defcon.com" class="social-icons twitter" aria-label="Twitter">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-                      </svg>
-                </a>
-
-                <a href="https://facebook.com/defcon" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-facebook"></i>
-                </a>
-
-                <a href="https://youtube.com/defconplaylists" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
-                <a href="https://linkedin.com/in/defcon" class="social-icons linkedin" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="htts://github.com/thisislefa" class="social-icons github" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
       </div>
 
-      <!-- *** MIDDLE CONTENT SECTION *** -->
-      <div class="pc-footer-content">
-        <div class="footer-columns">
-          <div class="footer-left">
-            <p>
-              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
-            </p>
-
-            <p>
-              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
-            </p>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
       <div class="footer-content">
@@ -3226,88 +3064,34 @@ document.addEventListener('DOMContentLoaded', function() {
           <h3>Resources</h3>
           <ul>
             <li><a href="page.html">Blog</a></li>
-            <li><a href="page.html">Learn</a></li>
-            <li><a href="page.html">eBooks</a></li>
-            <li><a href="page.html">Podcasts</a></li>
-            <li><a href="page.html">Webinars</a></li>
-            <li><a href="page.html">YouTube Playlists</a></li>
-            <li><a href="page.html">Recommendations</a></li>
-            <li><a href="page.html">Training & Certification</a></li>
-          </ul>
-        </div>
-
-        </div>
-
-        <div>
-          <!-- Services Column -->
-          <div class="footer-column">
-            <h3>Solutions</h3>
-            <ul>
-              <li><a href="page.html">Software Development</a></li>
-              <li><a href="page.html">IT Infrastructure</a></li>
-              <li><a href="page.html">Communicative Media</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>Developers</h3>
-            <ul>
-              <li><a href="page.html">API Docs</a></li>
-              <li><a href="page.html">Github</a></li>
-              <li><a href="page.html">SDKs & Libraries</a></li>
-              <li><a href="page.html">Developer Guides</a></li>
-              <li><a href="page.html">Code of Conduct</a></li>
-              <li><a href="page.html">Support</a></li>
-              <li><a href="page.html">Community</a></li>
-              <li><a href="page.html">Open Source</a></li>
-            
-              
-            </ul>
-          </div>
-        </div>
-
-        <!-- Help Column -->
-        <div class="footer-column">
-          <h3>Help</h3>
-          <ul>
-            <li><a href="page.html">Contact Support</a></li>
-            <li><a href="page.html">Plan Comparison</a></li>
+            <li><a href="page.html">Github</a></li>
             <li><a href="page.html">Glossary</a></li>
-            <li><a href="page.html">FAQs</a></li>
-            <li><a href="page.html">Account & Billing</a></li>
-            <li><a href="page.html">Feedback</a></li>
-            <li><a href="page.html">knowledge Base</a></li>
+            <li><a href="page.html">Market Insights</a></li>
           </ul>
         </div>
 
-        <!-- Updates Column -->
+        </div>
+
+         <div>
+          <!-- Updates Column -->
           <div class="footer-column">
-            <h3>Business</h3>
+            <h3>Businesses</h3>
             <ul>
-              <li><a href="page.html">Partnership</a></li>
-              <li><a href="page.html">Industries</a></li>
-              <li><a href="page.html">Investment</a></li>
-              <li><a href="page.html">Corporate Responsibility</a></li>
               <li><a href="page.html">Global Network</a></li>
-              <li><a href="page.html">Market Insights</a></li>
-              <li><a href="page.html">Startup Collaboration</a></li>
             </ul>
           </div>
+        </div>
+
 
         <!-- Company Column -->
         <div class="footer-column">
           <h3>Company</h3>
           <ul>
             <li><a href="page.html">About Us</a></li>
-            <li><a href="page.html">Roadmap</a></li>
-            <li><a href="page.html">Innovations</a></li>
-            <li><a href="page.html">Careers</a></li>
-            <li><a href="page.html">Legal</a></li>
-            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-            <li><a href="partners.html">Partners</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="page.html">Partners</a></li>
             <li><a href="affiliates.html">Affiliate</a></li>
-            <li><a href="security.html">Security</a></li>
-            <li><a href="page.html">Capital</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
             <li><a href="page.html">Verify</a></li>
           </ul>
         </div>
@@ -3319,20 +3103,30 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Updates</h3>
             <ul>
               <li><a href="#">X</a></li>
-              <li><a href="page.html">Company News</a></li>
               <li><a href="page.html">Product Updates</a></li>
-              <li><a href="page.html">Events</a></li>
               <li><a href="page.html">Facebook</a></li>
               <li><a href="page.html">Youtube</a></li>
               <li><a href="page.html">LinkedIn</a></li>
-              <li><a href="page.html">Github</a></li>
             </ul>
           </div>
         </div>
 
       </div>
 
-      <hr class="pc-footer-line">
+        <hr class="pc-footer-line">
+
+<!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+                We operate as a digitally native technology enterprise, delivering end-to-end IT solutions through modern digital infrastructure and streamlined methodologies. Our services are optimized for remote engagement, enabling fast and efficient support, with on-site deployment reserved only for situations where physical presence is essential or remote solutions are not technically viable.            </p>
+          </div>
+        </div>
+      </div>
+
+
+      
       
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
@@ -3355,7 +3149,7 @@ document.addEventListener('DOMContentLoaded', function() {
           .footer-kv a + a {
             padding-left: 12px;
             border-left: 1px solid #7b849b;
-            margin-left: 8px;
+            margin-left: 1px;
           }
 
           @media (max-width: 768px) {
@@ -3378,11 +3172,11 @@ document.addEventListener('DOMContentLoaded', function() {
         </style>
 
         <div class="footer-kv">
-          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Privacy Notice">Legal</a>
           <a href="page.html" aria-label="Status">Status</a>
         </div>
 
-        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+        <span>Copyright &copy; Cronos <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
       </div>
     </div>
   </primecapital-footer>
